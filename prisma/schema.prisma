@@ -818,6 +818,8 @@ model User {
   createdExamVersions    ExamVersion[] @relation("ExamVersionAuthor") // P3-S1
   createdExamMappings    ExamMapping[] @relation("ExamMappingAuthor") // P3-S3
   follows                UserFollow[] // P5-S1
+  saves                  SavedItem[] // P5-S2
+  collections            Collection[] // P5-S2
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -973,5 +975,74 @@ model UserFollow {
 
   @@unique([userId, objectType, objectId])
   @@index([userId, objectType])
+  @@index([objectType, objectId])
+}
+
+// ---------- P5-S2: SavedItem + Collection (Master Plan §6 rows, §10, §31) ----------
+
+// Savable object vocabulary (§10: "any eligible content/knowledge unit/QnA/
+// Question/MockTest/current event"). QnA/Question/MockTest (P7) and
+// CurrentEvent (P6) extend this enum additively — the P5-S1 FollowObjectType
+// precedent. EXAM/TOPIC are deliberately NOT here: following is the §10
+// affordance for exams/topics; saves are for content objects.
+enum SavedObjectType {
+  KNOWLEDGE_UNIT // the canonical record (§7) — survives representation updates
+  CONTENT_ITEM // a specific published language × format representation
+}
+
+// §6 Collection row carries visibility. Collections are private in v1 —
+// PUBLIC sharing joins additively with the P8 sharing system (§21).
+enum CollectionVisibility {
+  PRIVATE
+}
+
+// A user-organised bucket of saved items (§10). The bootstrap "Saved"
+// collection (isDefault, one per user, name fixed per §10) is created lazily
+// by the service on the user's first save — never seeded. Custom collections
+// are user-defined ("Revision", "Important Polity", …); names are unique per
+// user. Deleting a non-default collection returns its items to the default
+// (never destroys saves — §31 reversibility); the default itself is
+// immutable. Rows cascade with the user (§30/§31).
+model Collection {
+  id         String              @id @default(cuid())
+  userId     String
+  name       String
+  isDefault  Boolean             @default(false) // the §10 bootstrap collection
+  visibility CollectionVisibility @default(PRIVATE)
+  createdAt  DateTime            @default(now())
+  updatedAt  DateTime            @updatedAt
+
+  user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items SavedItem[]
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+// A user's saved (bookmarked) content object (§10). Save is an explicit
+// RETRIEVAL action — never a recommendation/personalisation signal by
+// itself; it is deliberately separate from UserFollow (P5-S1).
+//
+// The row stores the canonical object id (never a slug) and the §7 identity
+// rule keeps it stable: publishing a new ContentRevision updates the item
+// under the SAME row — "saved objects retain a stable reference to the
+// canonical object so later updates do not create duplicates" (§10). One row
+// per (user, object): re-organising is a MOVE between collections, never a
+// copy. Retired/withdrawn objects never delete the row — the list resolves
+// them to honest tombstones (§10/§36).
+model SavedItem {
+  id           String          @id @default(cuid())
+  userId       String
+  objectType   SavedObjectType
+  objectId     String // canonical id of the KnowledgeUnit/ContentItem row
+  collectionId String
+  savedAt      DateTime        @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, objectType, objectId])
+  @@index([userId, objectType])
+  @@index([collectionId])
   @@index([objectType, objectId])
 }

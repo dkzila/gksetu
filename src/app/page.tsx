@@ -44,6 +44,7 @@ import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { FollowingView } from '@/components/follows/following-view'
+import { SavedView } from '@/components/saves/saved-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
@@ -203,6 +204,44 @@ export default function GlobIQApp() {
     [config, route]
   )
 
+  // P5-S2: open a saved item's knowledge page — a saved CONTENT_ITEM opens
+  // in its own language's market (the summary resolved it, §35); a saved
+  // KNOWLEDGE_UNIT (language null) opens in the current market. When the
+  // current market already configures the language, stay in-market.
+  const openSavedUnit = useCallback(
+    (topicSlug: string, unitSlug: string, language: string | null) => {
+      if (!config || !route) return
+      let countryIso = route.countryIso
+      let languageCode = route.language
+      if (language) {
+        const current = config.find((entry) => entry.isoCode === route.countryIso)
+        if (current?.languages.some((lang) => lang.code === language)) {
+          languageCode = language // stay in-market, switch language only
+        } else {
+          // First market that configures the item's language (§35).
+          const market =
+            config.find((entry) => entry.isDefault && entry.languages.some((lang) => lang.code === language)) ??
+            config.find((entry) => entry.languages.some((lang) => lang.code === language))
+          if (market) {
+            countryIso = market.isoCode
+            languageCode = language
+          }
+        }
+      }
+      navigateHash(
+        {
+          view: 'unit',
+          countryIso,
+          language: languageCode,
+          topicSlug,
+          unitSlug,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
   // §36 historical window — addressable ?version= on the exam view.
   const switchExamVersion = useCallback(
     (versionId: string | null) => {
@@ -250,8 +289,8 @@ export default function GlobIQApp() {
       navigateHash(
         {
           // Language switching on market-independent surfaces (console,
-          // following) lands on the home view — the console precedent.
-          view: route.view === 'console' || route.view === 'following' ? 'home' : route.view,
+          // following, saved) lands on the home view — the console precedent.
+          view: route.view === 'console' || route.view === 'following' || route.view === 'saved' ? 'home' : route.view,
           countryIso: route.countryIso,
           language: code,
           topicSlug: route.topicSlug,
@@ -334,7 +373,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 5 · Session 1 — Follows
+                Phase 5 · Session 2 — Saves &amp; Collections
               </Badge>
               <HeaderAuth />
             </div>
@@ -462,6 +501,8 @@ export default function GlobIQApp() {
             onGoHome={goHome}
             onSignIn={goSignIn}
           />
+        ) : route.view === 'saved' ? (
+          <SavedView onOpenSavedUnit={openSavedUnit} onGoHome={goHome} onSignIn={goSignIn} />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}

@@ -6,8 +6,11 @@
  *
  * P5-S1: the FOLLOW half — UserFollow rows (§6), the follow/unfollow/list/
  * state APIs (§37), §14 country scoping and §16 canonical summaries.
- * P5-S2: the SAVE half (SavedItem + Collection) will join this module;
- * follows and saves stay structurally separate (§10).
+ * P5-S2: the SAVE half — SavedItem + Collection rows (§6/§10), the
+ * save/unsave/move/list/state and collection APIs, §36 tombstones and the
+ * default-collection bootstrap. Follows and saves stay structurally separate
+ * (§10): a follow is a personalisation signal, a save is retrieval — neither
+ * ever feeds the other's semantics.
  */
 export {
   FollowError,
@@ -41,3 +44,54 @@ export type {
   FollowMutationResult,
   FollowStateResult,
 } from './types'
+
+// ---------- P5-S2: the SAVE half (§10 retrieval — never a recommendation signal) ----------
+
+export {
+  SaveError,
+  toSaveErrorResponse,
+  saveObject,
+  unsaveById,
+  moveSavedItem,
+  listMySaves,
+  getSaveState,
+  createCollection,
+  renameCollection,
+  deleteCollection,
+  MAX_SAVES_PER_USER,
+  MAX_COLLECTIONS_PER_USER,
+  DEFAULT_COLLECTION_NAME,
+} from './save-service'
+export {
+  saveCreateSchema,
+  saveListQuerySchema,
+  saveStateQuerySchema,
+  saveIdSchema,
+  saveMoveSchema,
+  collectionCreateSchema,
+  collectionUpdateSchema,
+  collectionIdSchema,
+  SAVE_OBJECT_TYPES,
+} from './save-validation'
+export type {
+  SaveCreateInput,
+  SaveListQuery,
+  SaveStateQuery,
+  SaveMoveInput,
+  CollectionCreateInput,
+  CollectionUpdateInput,
+  SaveObjectTypeInput,
+} from './save-validation'
+export type {
+  SaveObjectTypePublic,
+  SavedUnitSummary,
+  SavedContentItemSummary,
+  SavedObjectSummary,
+  PublicSave,
+  PublicCollection,
+  SaveListResult,
+  SaveMutationResult,
+  SaveStateResult,
+  CollectionMutationResult,
+  CollectionRemovalResult,
+} from './save-types'

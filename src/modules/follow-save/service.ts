@@ -158,16 +158,19 @@ async function resolveTopicMarket(
     }
   }
 
-  const fallback = await db.language.findUnique({
-    where: { code: resolution.language.code },
-    select: { code: true },
+  const countryRow = await db.country.findUnique({
+    where: { isoCode: resolution.country.isoCode },
+    select: { defaultLanguage: { select: { code: true } } },
   })
   return {
     country: {
       slug: resolution.country.slug,
       isDefault: resolution.country.isDefault,
-      // §35 fallback link of the label chain = the market's default language.
-      defaultLanguageCode: fallback?.code ?? resolution.language.code,
+      // §16 (P5-S2 correction): the path's language segment is omitted only
+      // for the market's DEFAULT language — the country row is the truth,
+      // never the resolved language (a hi request in IN yields /hi/gk/…
+      // paths; the label chain below keeps its own §35 fallbacks).
+      defaultLanguageCode: countryRow?.defaultLanguage?.code ?? resolution.language.code,
     },
     languageCode: resolution.language.code,
   }
@@ -233,6 +236,11 @@ function toTopicSummary(
     market.languageCode,
     defaultLanguageCode
   )
+  // Path language (§16, P5-S2 correction): GLOBAL topics follow the READER's
+  // resolved language (the hub exists in every market — a hi request yields
+  // /hi/gk/…); COUNTRY-scoped topics use their own market's default — the
+  // canonical form in the market where the path must be reachable (§14).
+  const pathLanguage = topic.country ? defaultLanguageCode : market.languageCode
   return {
     kind: 'TOPIC',
     slug: topic.slug,
@@ -245,8 +253,7 @@ function toTopicSummary(
     countryIso: topic.country?.isoCode ?? null,
     canonicalPath: topicPathOf(
       { slug: country.slug, isDefault: country.isDefault, defaultLanguageCode },
-      // Language prefix follows the topic's own market defaults (§16/§35).
-      defaultLanguageCode,
+      pathLanguage,
       topic.slug
     ),
   }

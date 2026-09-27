@@ -41,6 +41,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
+import { SaveButton } from '@/components/saves/save-button'
 
 // ---------- Types (mirror /api/knowledge/page/{ref}) ----------
 
@@ -482,29 +483,40 @@ export function KnowledgePageView({
       </nav>
 
       <header className="space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary" className="gap-1 font-normal">
-            <Tag className="h-3 w-3" aria-hidden="true" />
-            {page.unit.type}
-          </Badge>
-          <Badge variant="outline" className="font-normal text-zinc-600">
-            {page.unit.difficulty}
-          </Badge>
-          {page.unit.scope === 'GLOBAL' ? (
-            <Badge variant="outline" className="font-normal text-teal-700">Global knowledge</Badge>
-          ) : (
-            <Badge variant="outline" className="font-normal text-zinc-600">{page.unit.countryIso ?? '—'} specific</Badge>
-          )}
-          <span className="text-xs text-zinc-400">
-            reading in {page.language.nativeName ?? page.language.name}
-          </span>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="min-w-0 space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="secondary" className="gap-1 font-normal">
+                <Tag className="h-3 w-3" aria-hidden="true" />
+                {page.unit.type}
+              </Badge>
+              <Badge variant="outline" className="font-normal text-zinc-600">
+                {page.unit.difficulty}
+              </Badge>
+              {page.unit.scope === 'GLOBAL' ? (
+                <Badge variant="outline" className="font-normal text-teal-700">Global knowledge</Badge>
+              ) : (
+                <Badge variant="outline" className="font-normal text-zinc-600">{page.unit.countryIso ?? '—'} specific</Badge>
+              )}
+              <span className="text-xs text-zinc-400">
+                reading in {page.language.nativeName ?? page.language.name}
+              </span>
+            </div>
+            <h3 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
+              {page.unit.canonicalName}
+            </h3>
+            {page.quickFact.source === 'FACT_CARD' && page.quickFact.title && page.quickFact.title !== page.unit.canonicalName && (
+              <p className="text-sm text-zinc-500">{page.quickFact.title}</p>
+            )}
+          </div>
+          {/* P5-S2: the §10 retrieval affordance — saves the canonical unit
+              (stable across representation updates), default "Saved" collection. */}
+          <SaveButton
+            objectType="KNOWLEDGE_UNIT"
+            objectRef={page.unit.slug}
+            objectName={page.unit.canonicalName}
+          />
         </div>
-        <h3 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
-          {page.unit.canonicalName}
-        </h3>
-        {page.quickFact.source === 'FACT_CARD' && page.quickFact.title && page.quickFact.title !== page.unit.canonicalName && (
-          <p className="text-sm text-zinc-500">{page.quickFact.title}</p>
-        )}
       </header>
 
       {/* ---------- §22 layer 1: quick fact ---------- */}

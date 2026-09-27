@@ -1,11 +1,12 @@
 'use client'
 
 /**
- * GlobIQ — header auth area (P1-S2, extended P5-S1)
- * Shows the signed-in user chip, the #/following personalisation link (P5-S1)
- * and the sign-out control — or a "Sign in" anchor to #account.
+ * GlobIQ — header auth area (P1-S2, extended P5-S1/P5-S2)
+ * Shows the signed-in user chip, the #/following personalisation link (P5-S1),
+ * the #/saved collections link (P5-S2) and the sign-out control — or a
+ * "Sign in" anchor to #account.
  */
-import { LogIn, LogOut, Rss } from 'lucide-react'
+import { Bookmark, LogIn, LogOut, Rss } from 'lucide-react'
 
 import { useAuth } from '@/stores/auth'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -35,6 +36,17 @@ export function HeaderAuth() {
           <a href="#/following" aria-label="Your followed exams and topics">
             <Rss className="h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">Following</span>
+          </a>
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-9 gap-2 px-2 text-zinc-500 hover:text-emerald-700"
+          asChild
+        >
+          <a href="#/saved" aria-label="Your saved items and collections">
+            <Bookmark className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden md:inline">Saved</span>
           </a>
         </Button>
         <Button

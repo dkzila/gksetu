@@ -139,6 +139,13 @@ export const AUDIT_ACTIONS = {
   /** P5-S1 personalisation signals (§9/§10 — explicit, user-controlled intent). */
   followCreate: 'user.follow.create',
   followRemove: 'user.follow.remove',
+  /** P5-S2 saves & collections (§10/§31 — retrieval actions, user-controlled). */
+  saveCreate: 'user.save.create',
+  saveRemove: 'user.save.remove',
+  saveMove: 'user.save.move',
+  collectionCreate: 'user.collection.create',
+  collectionUpdate: 'user.collection.update',
+  collectionRemove: 'user.collection.remove',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -160,5 +167,7 @@ export const AUDIT_OBJECT_TYPES = {
   examMapping: 'ExamMapping',
   searchDocument: 'SearchDocument',
   userFollow: 'UserFollow',
+  savedItem: 'SavedItem',
+  collection: 'Collection',
   permission: 'Permission',
 } as const

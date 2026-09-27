@@ -328,11 +328,14 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                 <li key={follow.id}>
                   <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
                     <CardContent className="flex flex-wrap items-center gap-3 p-4">
-                      <div className="min-w-0 flex-1">
+                      {/* basis-52 (P5-S2 mobile fix): long names wrap the actions
+                          to their own line instead of overflowing (block
+                          button + truncate needs a width-constrained box). */}
+                      <div className="min-w-0 flex-1 basis-52 sm:basis-64">
                         <button
                           type="button"
                           onClick={() => onOpenExam(exam.slug, exam.countryIso)}
-                          className="min-h-[32px] text-left"
+                          className="block w-full min-h-[32px] text-left"
                         >
                           <span className="block truncate font-semibold text-zinc-900 hover:text-emerald-700">
                             {exam.name}
@@ -402,11 +405,11 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                 <li key={follow.id}>
                   <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
                     <CardContent className="flex flex-wrap items-center gap-3 p-4">
-                      <div className="min-w-0 flex-1">
+                      <div className="min-w-0 flex-1 basis-52 sm:basis-64">
                         <button
                           type="button"
                           onClick={() => onOpenTopic(topic.slug, topic.countryIso)}
-                          className="min-h-[32px] text-left"
+                          className="block w-full min-h-[32px] text-left"
                         >
                           <span className="block truncate font-semibold text-zinc-900 hover:text-emerald-700">
                             {topic.label}

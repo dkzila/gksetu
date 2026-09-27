@@ -83,4 +83,6 @@ export const RATE_LIMITS = {
   discoveryRead: { limit: 60, windowMs: 60 * 1000 }, // public homepage/topic-landing compositions per IP (P4-S2)
   followsRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated follow list/state reads per IP (P5-S1)
   followsWrite: { limit: 30, windowMs: 60 * 1000 }, // follow/unfollow mutations per IP (P5-S1)
+  savesRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated save list/state reads per IP (P5-S2)
+  savesWrite: { limit: 30, windowMs: 60 * 1000 }, // save/unsave/move + collection mutations per IP (P5-S2)
 } as const
