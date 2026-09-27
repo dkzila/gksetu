@@ -631,6 +631,73 @@ export async function listMySaves(
   return { items: result, counts, collections }
 }
 
+/**
+ * The dashboard's retrieval shortcut (P5-S4): the caller's total save count
+ * plus the `limit` most recent rows, hydrated with the same §16/§35/§36
+ * semantics as the management list — a pure retrieval view (§10: saves are
+ * NEVER a recommendation signal, so this block never feeds the queue's
+ * ranking or reasons).
+ */
+export async function listRecentSaves(
+  userId: string,
+  limit: number,
+  query: SaveListQuery = {}
+): Promise<{ total: number; items: PublicSave[] }> {
+  const user = await loadUserContext(userId)
+
+  const [total, rows] = await Promise.all([
+    db.savedItem.count({ where: { userId } }),
+    db.savedItem.findMany({
+      where: { userId },
+      orderBy: { savedAt: 'desc' },
+      take: Math.max(1, Math.min(limit, 10)),
+    }),
+  ])
+  if (rows.length === 0) return { total: 0, items: [] }
+
+  const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
+  const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
+  const [units, items] = await Promise.all([
+    unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
+    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+  ])
+  const unitById = new Map(units.map((unit) => [unit.id, unit]))
+  const itemById = new Map(items.map((item) => [item.id, item]))
+  const itemMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    items.map(async (item) => {
+      itemMarkets.set(item.id, await resolveItemMarket(item))
+    })
+  )
+  const unitMarket = await resolveUnitMarket(user, query)
+
+  const hydrated: PublicSave[] = []
+  for (const row of rows) {
+    if (row.objectType === 'KNOWLEDGE_UNIT') {
+      const unit = unitById.get(row.objectId)
+      if (!unit) continue // defensive: units are soft-deleted (§36), rows never dangle
+      hydrated.push({
+        id: row.id,
+        objectType: 'KNOWLEDGE_UNIT',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toUnitSummary(unit, unit.scope === 'COUNTRY' && unit.country ? await resolveCountryUnitMarket(unit.country.isoCode, query) : unitMarket),
+      })
+    } else {
+      const item = itemById.get(row.objectId)
+      if (!item) continue
+      hydrated.push({
+        id: row.id,
+        objectType: 'CONTENT_ITEM',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toItemSummary(item, itemMarkets.get(item.id) ?? unitMarket),
+      })
+    }
+  }
+  return { total, items: hydrated }
+}
+
 export async function getSaveState(
   userId: string, query: SaveStateQuery
 ): Promise<SaveStateResult> {

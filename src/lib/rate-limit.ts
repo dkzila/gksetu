@@ -87,4 +87,5 @@ export const RATE_LIMITS = {
   savesWrite: { limit: 30, windowMs: 60 * 1000 }, // save/unsave/move + collection mutations per IP (P5-S2)
   profileRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated profile/goal reads per IP (P5-S3)
   profileWrite: { limit: 30, windowMs: 60 * 1000 }, // profile/goal/onboarding mutations per IP (P5-S3)
+  dashboardRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated dashboard/feed reads per IP (P5-S4)
 } as const

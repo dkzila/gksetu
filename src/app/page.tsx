@@ -47,6 +47,7 @@ import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
+import { DashboardView } from '@/components/personalisation/dashboard-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
@@ -244,6 +245,72 @@ export default function GlobIQApp() {
     [config, route]
   )
 
+  // P5-S4: opens any §16 canonical path inside the app — the dashboard's
+  // queue units, signal chips and saves all carry server-built paths; this
+  // lenient parser (the parseHash grammar) turns a path back into a route,
+  // so the dashboard navigates by §16 identity, never by ad-hoc slugs.
+  const openPath = useCallback(
+    (path: string) => {
+      if (!config || !route) return
+      const segments = path.split('/').filter(Boolean)
+      const defaultCountry = config.find((entry) => entry.isDefault) ?? config[0]
+      if (!defaultCountry) return
+      let country = defaultCountry
+      let language = country.defaultLanguage.code
+      let index = 0
+
+      const first = segments[0]
+      if (first && first !== 'gk' && first !== 'exams') {
+        const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
+        const defaultMarketLanguage = country.languages.find(
+          (entry) => entry.code === first && entry.code !== country.defaultLanguage.code
+        )
+        if (bySlug) {
+          country = bySlug
+          index = 1
+        } else if (defaultMarketLanguage) {
+          language = defaultMarketLanguage.code
+          index = 1
+        }
+      }
+      const next = segments[index]
+      if (next && next !== 'gk' && next !== 'exams') {
+        const languageMatch = country.languages.find(
+          (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
+        )
+        if (languageMatch) {
+          language = languageMatch.code
+          index += 1
+        }
+      }
+
+      if (segments[index] === 'gk' && segments[index + 1] && segments[index + 2]) {
+        navigateHash(
+          { view: 'unit', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: segments[index + 2]! },
+          config
+        )
+      } else if (segments[index] === 'gk' && segments[index + 1]) {
+        navigateHash(
+          { view: 'topic', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: null },
+          config
+        )
+      } else if (segments[index] === 'exams' && segments[index + 1]) {
+        navigateHash(
+          {
+            view: 'exam',
+            countryIso: country.isoCode,
+            language,
+            topicSlug: null,
+            unitSlug: null,
+            examSlug: segments[index + 1]!,
+          },
+          config
+        )
+      }
+    },
+    [config, route]
+  )
+
   // §36 historical window — addressable ?version= on the exam view.
   const switchExamVersion = useCallback(
     (versionId: string | null) => {
@@ -291,14 +358,15 @@ export default function GlobIQApp() {
       navigateHash(
         {
           // Language switching on market-independent surfaces (console,
-          // following, saved, onboarding, profile) lands on the home view —
-          // the console precedent.
+          // following, saved, onboarding, profile, dashboard) lands on the
+          // home view — the console precedent.
           view:
             route.view === 'console' ||
             route.view === 'following' ||
             route.view === 'saved' ||
             route.view === 'onboarding' ||
-            route.view === 'profile'
+            route.view === 'profile' ||
+            route.view === 'dashboard'
               ? 'home'
               : route.view,
           countryIso: route.countryIso,
@@ -383,7 +451,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 5 · Session 3 — Onboarding &amp; Goals
+                Phase 5 · Session 4 — Personalised Dashboard
               </Badge>
               <HeaderAuth />
             </div>
@@ -523,6 +591,14 @@ export default function GlobIQApp() {
             onOpenExam={openFollowedExam}
             onOpenTopic={openFollowedTopic}
           />
+        ) : route.view === 'dashboard' ? (
+          <DashboardView
+            countryIso={route.countryIso}
+            language={route.language}
+            onOpenPath={openPath}
+            onGoHome={goHome}
+            onSignIn={goSignIn}
+          />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}
@@ -557,6 +633,7 @@ export default function GlobIQApp() {
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
             onOpenExam={openExam}
+            onOpenPath={openPath}
             onSwitchLanguage={switchLanguage}
             onSignIn={goSignIn}
           />

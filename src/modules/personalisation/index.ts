@@ -8,8 +8,13 @@
  * level, study language, preferences) + the User onboarding state machine +
  * the profile self-service aggregation endpoints. Goals are §9 explicit
  * signals: they drive personalisation only, never anything with legal or
- * commercial consequence. P5-S4 (dashboard/feed) and P5-S5 (explanations +
- * reset) extend this module.
+ * commercial consequence.
+ *
+ * P5-S4: the DASHBOARD/FEED half — the §9 signal union (goal exams ∪
+ * followed exams → the §11 combined queue via the exam-mapping engine,
+ * computed never stored) with explainable reasons on every queue unit, the
+ * §34 homepage teaser's data source, and the §10 retrieval-only saves block.
+ * P5-S5 (explanations + controls incl. reset) extends this module.
  */
 export {
   GoalError,
@@ -19,10 +24,13 @@ export {
   removeMyGoal,
   completeOnboarding,
   skipOnboarding,
+  loadUserContext,
+  getGoalRow,
 } from './service'
 export {
   goalSetSchema,
   goalGetQuerySchema,
+  dashboardGetQuerySchema,
   onboardingActionSchema,
   GOAL_LEVELS,
   MAX_GOAL_EXAMS,
@@ -31,6 +39,7 @@ export {
 export type {
   GoalSetInput,
   GoalGetQuery,
+  DashboardGetQuery,
   OnboardingActionInput,
   GoalLevelInput,
 } from './validation'
@@ -42,3 +51,18 @@ export type {
   GoalMutationResult,
   GoalRemovalResult,
 } from './types'
+
+// ---------- P5-S4: the dashboard/feed (§9/§10/§11/§22/§34) ----------
+
+export { getMyDashboard, DASHBOARD_SAVES_LIMIT } from './dashboard-service'
+export type {
+  DashboardQueueReason,
+  DashboardTier,
+  DashboardQueueUnit,
+  DashboardQueueMode,
+  DashboardQueue,
+  DashboardSignals,
+  DashboardPlan,
+  DashboardSaves,
+  DashboardResponse,
+} from './dashboard-types'

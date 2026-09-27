@@ -31,12 +31,12 @@ import {
   Users,
 } from 'lucide-react'
 
-import { useAuth } from '@/stores/auth'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
+import { DashboardTeaser } from '@/components/personalisation/dashboard-teaser'
 import { SearchBox } from './search-box'
 import { useSeoHead } from './seo-head'
 import type { CountryHomepage, Envelope, HomeUnitCard } from './types'
@@ -59,6 +59,8 @@ export interface HomepageViewProps {
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
+  /** Opens a §16 canonical path inside the app (the dashboard teaser, P5-S4). */
+  onOpenPath: (path: string) => void
   onSwitchLanguage: (code: string) => void
   onSignIn: () => void
 }
@@ -71,6 +73,7 @@ export function HomepageView({
   onOpenTopic,
   onOpenUnit,
   onOpenExam,
+  onOpenPath,
   onSwitchLanguage,
   onSignIn,
 }: HomepageViewProps) {
@@ -78,8 +81,6 @@ export function HomepageView({
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [reloadKey, setReloadKey] = useState(0)
-
-  const auth = useAuth()
 
   const fetchHomepage = useCallback(async () => {
     setLoading(true)
@@ -267,42 +268,19 @@ export function HomepageView({
         )}
       </motion.section>
 
-      {/* ---------- Personalised entry (§34 — anonymous-first) ---------- */}
+      {/* ---------- Personalised entry (§34 — progressive, P5-S4) ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, delay: 0.05 }}
         aria-labelledby="personal-heading"
       >
-        <Card className="border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-teal-50/50">
-          <CardContent className="flex flex-col items-start justify-between gap-4 p-5 sm:flex-row sm:items-center sm:p-6">
-            <div className="space-y-1">
-              <h2 id="personal-heading" className="text-base font-semibold tracking-tight">
-                {auth.status === 'authenticated'
-                  ? `Welcome back${auth.user?.name ? `, ${auth.user.name.split(' ')[0]}` : ''}`
-                  : 'Make it yours'}
-              </h2>
-              <p className="max-w-xl text-sm text-zinc-600">
-                {auth.status === 'authenticated'
-                  ? 'Your combined-exam queue, followed topics and due revisions arrive with the personalisation system — for now, your account keeps your sessions and editorial access.'
-                  : 'Create a free account to follow topics, save knowledge and build your exam queue — personalisation arrives with the follow/save system.'}
-              </p>
-            </div>
-            {auth.status === 'authenticated' ? (
-              <Badge variant="outline" className="shrink-0 border-emerald-300 bg-white text-emerald-700">
-                Signed in as {auth.user?.email}
-              </Badge>
-            ) : (
-              <Button
-                className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-                onClick={onSignIn}
-              >
-                Sign in / Register
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            )}
-          </CardContent>
-        </Card>
+        <DashboardTeaser
+          countryIso={countryIso}
+          language={language}
+          onOpenPath={onOpenPath}
+          onSignIn={onSignIn}
+        />
       </motion.section>
 
       {/* ---------- §34 GK categories ---------- */}

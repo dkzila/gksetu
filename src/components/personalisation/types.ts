@@ -91,6 +91,180 @@ export interface ApiTopicNode {
   children: ApiTopicNode[]
 }
 
+// ---------- Dashboard (mirrors src/modules/personalisation/dashboard-types.ts, P5-S4) ----------
+
+export interface ApiDashboardReason {
+  kind: 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'FOLLOWED_EXAM' | 'FOLLOWED_SUBJECT'
+  text: string
+  examSlug?: string
+  topicSlug?: string
+}
+
+export interface ApiQueueCovering {
+  exam: { slug: string; name: string; code: string }
+  node: {
+    name: string
+    depth: number
+    topic: { slug: string; canonicalName: string; label: string; labelLanguage: string } | null
+  }
+  requiredDepth: string
+  priority: string
+  relevance: string
+  questionLikelihood: string
+  expectedScope: string | null
+  effectiveFrom: string | null
+  effectiveTo: string | null
+}
+
+/** One unit in the personalised queue — the §11 engine row + §9 explanations. */
+export interface ApiDashboardQueueUnit {
+  unit: {
+    unit: {
+      slug: string
+      canonicalName: string
+      canonicalSummary: string | null
+      type: string
+      difficulty: string
+    }
+    canonicalPath: string
+    requiredDepth: string
+    priority: string
+    questionLikelihood: string
+    exams: Array<{ slug: string; name: string; code: string }>
+    examCount: number
+    isShared: boolean
+    coverings: ApiQueueCovering[]
+    latestEffectiveFrom: string | null
+  }
+  tier: 'GOAL_SUBJECT' | 'FOLLOWED_SUBJECT' | 'EXAM_SCOPE'
+  reasons: ApiDashboardReason[]
+}
+
+export interface ApiDashboardExamResolution {
+  exam: { id: string; slug: string; name: string; code: string; level: string }
+  version: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null } | null
+  note: string | null
+  unitCount: number
+  mappingCount: number
+}
+
+export interface ApiDashboardFollowedExam {
+  kind: 'EXAM'
+  slug: string
+  name: string
+  code: string
+  organiser: string
+  level: string
+  status: 'DRAFT' | 'ACTIVE' | 'INACTIVE' | 'RETIRED'
+  countryIso: string
+  canonicalPath: string
+}
+
+export interface ApiDashboardFollowedTopic {
+  kind: 'TOPIC'
+  slug: string
+  canonicalName: string
+  label: string
+  labelLanguage: string
+  type: string
+  scope: 'GLOBAL' | 'COUNTRY'
+  status: 'ACTIVE' | 'INACTIVE' | 'RETIRED'
+  countryIso: string | null
+  canonicalPath: string
+}
+
+export interface ApiDashboardSaveUnitObject {
+  kind: 'KNOWLEDGE_UNIT'
+  slug: string
+  /** The unit's canonical name — the display title for unit saves. */
+  canonicalName: string
+  canonicalSummary: string | null
+  type: string
+  difficulty: string
+  status: string
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  topicSlug: string
+  topicCanonicalName: string
+  canonicalPath: string
+  languageCode: string
+}
+
+export interface ApiDashboardSaveItemObject {
+  kind: 'CONTENT_ITEM'
+  id: string
+  /** The live published revision's title — the display title for item saves. */
+  title: string
+  format: string
+  languageCode: string
+  status: string
+  topicSlug: string
+  topicCanonicalName: string
+  canonicalPath: string
+  countryIso: string | null
+  unit: { slug: string; canonicalName: string; type: string; status: string }
+}
+
+export type ApiDashboardSaveObject = ApiDashboardSaveUnitObject | ApiDashboardSaveItemObject
+
+/** The display title of a saved object (unit canonicalName / item title). */
+export function saveObjectTitle(object: ApiDashboardSaveObject): string {
+  return object.kind === 'KNOWLEDGE_UNIT' ? object.canonicalName : object.title
+}
+
+export interface ApiDashboardSave {
+  id: string
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM'
+  savedAt: string
+  object: ApiDashboardSaveObject
+}
+
+export interface ApiDashboard {
+  market: {
+    country: { isoCode: string; name: string; slug: string }
+    language: { code: string; name: string; nativeName: string | null }
+    direction: 'LTR' | 'RTL'
+    isHomeMarket: boolean
+  }
+  user: {
+    name: string | null
+    onboardingStatus: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'
+    homeCountryIso: string | null
+    preferredLanguageCode: string | null
+  }
+  plan: {
+    level: ApiGoal['level']
+    targetYear: number | null
+    dailyMinutes: number | null
+    studyLanguage: { code: string; name: string } | null
+  } | null
+  goal: ApiGoal | null
+  signals: {
+    goalExamCount: number
+    goalSubjectCount: number
+    followedExamCount: number
+    followedTopicCount: number
+    followedExams: ApiDashboardFollowedExam[]
+    followedTopics: ApiDashboardFollowedTopic[]
+  }
+  queue: {
+    mode: 'GOAL_AND_FOLLOW' | 'GOAL' | 'FOLLOW' | 'NONE'
+    countryIso: string
+    exams: ApiDashboardExamResolution[]
+    units: ApiDashboardQueueUnit[]
+    stats: {
+      examCount: number
+      unitCount: number
+      mappingCount: number
+      sharedUnitCount: number
+      duplicatesAvoided: number
+    }
+    note: string | null
+  }
+  saves: { total: number; items: ApiDashboardSave[] }
+  computedAt: string
+}
+
 // ---------- Shared helpers ----------
 
 export const LEVEL_LABELS: Record<string, string> = {

@@ -28,7 +28,8 @@
  * personalisation management surface (§31) — market-independent, noindex —
  * and `#/saved` (P5-S2) its collections counterpart (§10) — likewise
  * market-independent and never indexed. `#/onboarding` and `#/profile`
- * (P5-S3) are the private goal/onboarding surfaces — same rules.
+ * (P5-S3) are the private goal/onboarding surfaces — same rules. `#/dashboard`
+ * (P5-S4) is the personalised dashboard/feed (§22/§34) — same rules.
  *
  * Addressable state derives from the hash (never duplicated in component
  * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
@@ -43,7 +44,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'following' | 'saved' | 'onboarding' | 'profile' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -113,6 +114,11 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   }
   if (segments[0] === 'profile') {
     return { ...fallback, view: 'profile', scrollTo: null }
+  }
+
+  // P5-S4: the personalised dashboard/feed (§22/§34) — market-independent.
+  if (segments[0] === 'dashboard') {
+    return { ...fallback, view: 'dashboard', scrollTo: null }
   }
 
   let country = defaultCountry
@@ -238,6 +244,7 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'saved') return '#/saved'
   if (route.view === 'onboarding') return '#/onboarding'
   if (route.view === 'profile') return '#/profile'
+  if (route.view === 'dashboard') return '#/dashboard'
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '#/'
 

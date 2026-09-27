@@ -65,6 +65,17 @@ export const goalGetQuerySchema = z.object({
 })
 export type GoalGetQuery = z.infer<typeof goalGetQuerySchema>
 
+/**
+ * GET /api/dashboard query — the same optional §35 label context. The queue
+ * itself is ALWAYS computed in the user's home market (§11 step 1 / §14);
+ * country/language steer labels and §16 paths only (P5-S4).
+ */
+export const dashboardGetQuerySchema = z.object({
+  country: z.string().trim().max(8).optional(),
+  language: z.string().trim().max(8).optional(),
+})
+export type DashboardGetQuery = z.infer<typeof dashboardGetQuerySchema>
+
 /** POST /api/onboarding body. */
 export const onboardingActionSchema = z.object({
   action: z.enum(['complete', 'skip'], { message: 'action must be "complete" or "skip"' }),

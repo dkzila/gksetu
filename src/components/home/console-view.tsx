@@ -57,6 +57,7 @@ import { SeoSection } from '@/components/seo/seo-section'
 import { FollowsSection } from '@/components/follows/follows-section'
 import { SavesSection } from '@/components/saves/saves-section'
 import { PersonalisationSection } from '@/components/personalisation/personalisation-section'
+import { DashboardSection } from '@/components/personalisation/dashboard-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
@@ -370,6 +371,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Personalisation — §9 goals & onboarding APIs (P5-S3) ---------- */}
       <PersonalisationSection />
 
+      {/* ---------- Personalisation — §22 dashboard & feed (P5-S4) ---------- */}
+      <DashboardSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -423,7 +427,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P5-S3 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P5-S4 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

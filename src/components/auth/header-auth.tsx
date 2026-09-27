@@ -1,13 +1,14 @@
 'use client'
 
 /**
- * GlobIQ — header auth area (P1-S2, extended P5-S1/P5-S2/P5-S3)
- * Shows the signed-in user chip, the #/following personalisation link (P5-S1),
- * the #/saved collections link (P5-S2), the #/profile link with a "finish
- * setup" pill while onboarding is pending (P5-S3) and the sign-out control —
- * or a "Sign in" anchor to #account.
+ * GlobIQ — header auth area (P1-S2, extended P5-S1…P5-S4)
+ * Shows the signed-in user chip, the #/dashboard personalised feed link
+ * (P5-S4), the #/following personalisation link (P5-S1), the #/saved
+ * collections link (P5-S2), the #/profile link with a "finish setup" pill
+ * while onboarding is pending (P5-S3) and the sign-out control — or a
+ * "Sign in" anchor to #account.
  */
-import { Bookmark, LogIn, LogOut, Rss, UserRound } from 'lucide-react'
+import { Bookmark, ListChecks, LogIn, LogOut, Rss, UserRound } from 'lucide-react'
 
 import { useAuth } from '@/stores/auth'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -41,6 +42,17 @@ export function HeaderAuth() {
             Finish setup
           </a>
         )}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-9 gap-2 px-2 text-zinc-500 hover:text-emerald-700"
+          asChild
+        >
+          <a href="#/dashboard" aria-label="Your personalised dashboard and combined-exam queue">
+            <ListChecks className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden md:inline">Dashboard</span>
+          </a>
+        </Button>
         <Button
           variant="ghost"
           size="sm"

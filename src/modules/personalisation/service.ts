@@ -87,14 +87,15 @@ const CUID_PATTERN = /^c[a-z0-9]{20,}$/
 
 // ---------- User context ----------
 
-interface UserContext {
+export interface UserContext {
   id: string
   homeCountryId: string | null
   homeCountryIso: string | null
   preferredLanguageCode: string | null
 }
 
-async function loadUserContext(userId: string): Promise<UserContext> {
+/** Shared with the dashboard service (P5-S4) — one user loader per module. */
+export async function loadUserContext(userId: string): Promise<UserContext> {
   const user = await db.user.findUnique({
     where: { id: userId },
     select: {
@@ -292,6 +293,11 @@ const GOAL_INCLUDE = {
 
 async function loadGoalRow(userId: string): Promise<GoalWithRelations | null> {
   return db.userGoal.findUnique({ where: { userId }, include: GOAL_INCLUDE })
+}
+
+/** Shared with the dashboard service (P5-S4) — one goal loader per module. */
+export async function getGoalRow(userId: string): Promise<GoalWithRelations | null> {
+  return loadGoalRow(userId)
 }
 
 async function hydrateGoal(
