@@ -462,6 +462,7 @@ model Exam {
   country  Country       @relation("ExamCountry", fields: [countryId], references: [id])
   createdBy User?         @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   versions ExamVersion[]
+  goalExams UserGoalExam[] // P5-S3 — declared goal exam references
 
   @@unique([countryId, code])
   @@index([status])
@@ -730,6 +731,7 @@ model Language {
   topicAliases        TopicAlias[]
   contentItems        ContentItem[]
   editorialTasks      EditorialTask[]
+  goalStudyLanguages  UserGoal[]     @relation("UserGoalStudyLanguage") // P5-S3
 
   @@index([status])
 }
@@ -777,8 +779,9 @@ model CountryLanguage {
 
 // ---------- P1-S2: Identity & Access (Master Plan §6, §20, §30, §39, §43) ----------
 
-// Base user + auth fields (roles, status, auth method). Onboarding state lands
-// in P5-S3 (personalisation) — do not add early (§41 session protocol).
+// Base user + auth fields (roles, status, auth method) + the §6 personalisation
+// dimensions (home country, preferred language, onboarding state, §20 staff
+// language scope, and the one declared UserGoal — P5-S3).
 model User {
   id                  String     @id @default(cuid())
   email               String     @unique
@@ -820,6 +823,10 @@ model User {
   follows                UserFollow[] // P5-S1
   saves                  SavedItem[] // P5-S2
   collections            Collection[] // P5-S2
+  // P5-S3 (§6): onboarding state + the one declared goal (§9 explicit signal).
+  onboardingStatus      OnboardingStatus @default(PENDING)
+  onboardingCompletedAt DateTime?
+  goal                   UserGoal?
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -874,6 +881,7 @@ model Topic {
   aliases  TopicAlias[]
   knowledgeUnits KnowledgeUnit[] @relation("KnowledgeUnitTopic")
   syllabusNodes  SyllabusNode[]  @relation("SyllabusNodeTopic")
+  goalTopics     UserGoalTopic[] // P5-S3 — declared goal subject references
 
   @@index([parentId, orderIndex])
   @@index([status])
@@ -1045,4 +1053,93 @@ model SavedItem {
   @@index([userId, objectType])
   @@index([collectionId])
   @@index([objectType, objectId])
+}
+
+// ---------- P5-S3: Onboarding state + explicit goals (Master Plan §6, §9, §31) ----------
+
+// §6 User carries "onboarding state". PENDING at registration; the guided
+// flow (or any goal mutation) moves it to IN_PROGRESS; the user completes or
+// explicitly skips. SKIPPED is a deliberate end-state choice, never an error
+// — the flow stays reachable from #/profile forever (§9: goals are
+// changeable at any time). Both end states are idempotent to re-declare.
+enum OnboardingStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+
+// §6 UserGoal/Profile "level" — the self-declared preparation level that
+// feeds §9 explicit personalisation (difficulty shaping in later sessions).
+enum GoalLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+// The §6 UserGoal/Profile row: "user_id, exam_ids, topics, level, language,
+// preferences". One row per user (§9: a single coherent declared goal, not a
+// stream of events — goals are REPLACED, never accumulated; §31: changeable
+// and removable at any time).
+//
+// exam_ids/topics live in the UserGoalExam/UserGoalTopic join rows (a goal
+// exam/topic is a relationship to the canonical Exam/Topic row, cascading
+// with the goal — never a scalar list, so referential honesty is structural).
+//
+// §9 boundary: a declared goal is an EXPLICIT signal — like follows it drives
+// personalisation only, never anything with legal/commercial consequence
+// ("must not be treated as proof the user will actually sit the exam").
+// §14: goal exams are strictly home-market; GLOBAL topics any market,
+// COUNTRY topics home market only (enforced at mutation time; existing rows
+// resolve honestly with §36 statuses if the market context later changes).
+model UserGoal {
+  id              String     @id @default(cuid())
+  userId          String     @unique
+  level           GoalLevel? // self-declared preparation level (§6)
+  studyLanguageId String? // null = follow the account's preferred language (§35)
+  targetYear      Int? // exam year the user is preparing for (e.g. 2026)
+  dailyMinutes    Int? // §6 "preferences": self-declared daily study pace
+  declaredAt      DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studyLanguage Language?      @relation("UserGoalStudyLanguage", fields: [studyLanguageId], references: [id])
+  exams         UserGoalExam[]
+  topics        UserGoalTopic[]
+
+  @@index([userId])
+  @@index([studyLanguageId])
+}
+
+// One declared goal exam — a canonical Exam row reference (§14: home-market
+// ACTIVE exams only at declare time; later lifecycle changes resolve
+// honestly in the goal read, §36).
+model UserGoalExam {
+  id      String   @id @default(cuid())
+  goalId  String
+  examId  String
+  addedAt DateTime @default(now())
+
+  goal UserGoal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  exam Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@unique([goalId, examId])
+  @@index([goalId])
+  @@index([examId])
+}
+
+// One declared goal subject/topic — a canonical Topic row reference
+// (§13/§14: GLOBAL topics from any market, COUNTRY topics home market only).
+model UserGoalTopic {
+  id      String   @id @default(cuid())
+  goalId  String
+  topicId String
+  addedAt DateTime @default(now())
+
+  goal  UserGoal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  topic Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([goalId, topicId])
+  @@index([goalId])
+  @@index([topicId])
 }

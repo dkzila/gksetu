@@ -25,7 +25,7 @@ import {
 import { hashPassword, verifyPassword } from './password'
 import { generateToken, hashToken, sessionExpiry } from './token'
 import type { AuthContext, PublicSession, PublicUser, TokenGrant } from './types'
-import type { LoginInput, RegisterInput } from './validation'
+import type { LoginInput, ProfileUpdateInput, RegisterInput } from './validation'
 
 // ---------- Typed domain errors (mapped to HTTP by route handlers) ----------
 
@@ -84,6 +84,8 @@ function toPublicUser(user: UserWithRelations): PublicUser {
     languageScope: user.languageScope
       ? { code: user.languageScope.code, name: user.languageScope.name }
       : null,
+    onboardingStatus: user.onboardingStatus,
+    onboardingCompletedAt: user.onboardingCompletedAt?.toISOString() ?? null,
     createdAt: user.createdAt.toISOString(),
     lastLoginAt: user.lastLoginAt?.toISOString() ?? null,
   }
@@ -161,8 +163,110 @@ async function noteLoginFailure(
   })
 }
 
-// ---------- Registration ----------
+// ---------- Profile self-service (P5-S3 — §6 profile basics, §35, §31) ----------
 
+/**
+ * Updates the caller's own profile basics: name, home country, preferred
+ * language. The §35 country×language rules are identical to registration
+ * (one source of truth — resolved via the country-locale module). Home-country
+ * changes never touch existing personalised data (§31: no silent destruction);
+ * goal/follow guards apply at their own mutation time (§14).
+ */
+export async function updateMyProfile(
+  userId: string,
+  input: ProfileUpdateInput,
+  actor: AuditActorRef,
+  meta: AuthRequestMeta = { userAgent: null }
+): Promise<PublicUser> {
+  const current = await db.user.findUnique({
+    where: { id: userId },
+    include: { homeCountry: true, preferredLanguage: true, languageScope: true },
+  })
+  if (!current || current.status !== 'ACTIVE') {
+    throw new AuthError('INVALID_CREDENTIALS', 'Account is not active')
+  }
+
+  const data: { name?: string | null; homeCountryId?: string | null; preferredLanguageId?: string | null } = {}
+
+  if (input.name !== undefined) {
+    data.name = input.name // zod guarantees null | 1..80 chars
+  }
+
+  // §14/§35: home country — validated against the ACTIVE country registry.
+  let homeCountryId = current.homeCountryId
+  if (input.homeCountryIso !== undefined) {
+    if (input.homeCountryIso === null) {
+      data.homeCountryId = null
+      homeCountryId = null
+    } else {
+      const iso = input.homeCountryIso.toUpperCase()
+      const country = await findActiveCountryByIso(iso)
+      if (!country) {
+        throw new AuthError('INVALID_COUNTRY', `Country "${iso}" is not available on GlobIQ yet`)
+      }
+      data.homeCountryId = country.id
+      homeCountryId = country.id
+    }
+  }
+
+  // §35: preferred language — active language, and configured in the (new or
+  // existing) home country when one is set. Same rule as registration.
+  if (input.preferredLanguageCode !== undefined) {
+    if (input.preferredLanguageCode === null) {
+      data.preferredLanguageId = null
+    } else {
+      const code = input.preferredLanguageCode.toLowerCase()
+      const language = await findActiveLanguageByCode(code)
+      if (!language) {
+        throw new AuthError('INVALID_LANGUAGE', `Language "${code}" is not available`)
+      }
+      if (homeCountryId && !(await isLanguageConfiguredForCountry(homeCountryId, language.id))) {
+        throw new AuthError(
+          'LANGUAGE_NOT_AVAILABLE_IN_COUNTRY',
+          `Language "${code}" is not available in the selected country`
+        )
+      }
+      data.preferredLanguageId = language.id
+    }
+  }
+
+  if (Object.keys(data).length === 0) {
+    return toPublicUser(current) // nothing requested — idempotent no-op
+  }
+
+  const before = toPublicUser(current)
+  const updated = await db.user.update({
+    where: { id: userId },
+    data,
+    include: { homeCountry: true, preferredLanguage: true, languageScope: true },
+  })
+  const after = toPublicUser(updated)
+
+  await recordAudit({
+    actor,
+    action: AUDIT_ACTIONS.profileUpdate,
+    objectType: AUDIT_OBJECT_TYPES.user,
+    objectId: userId,
+    objectLabel: updated.email,
+    before: {
+      name: before.name,
+      homeCountry: before.homeCountry?.isoCode ?? null,
+      preferredLanguage: before.preferredLanguage?.code ?? null,
+    },
+    after: {
+      name: after.name,
+      homeCountry: after.homeCountry?.isoCode ?? null,
+      preferredLanguage: after.preferredLanguage?.code ?? null,
+    },
+    metadata: { fields: Object.keys(data) },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent,
+  })
+
+  return after
+}
+
+// ---------- Registration ----------
 export async function registerUser(
   input: RegisterInput,
   meta: AuthRequestMeta = { userAgent: null }

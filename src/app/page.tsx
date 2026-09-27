@@ -45,6 +45,8 @@ import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
+import { OnboardingView } from '@/components/personalisation/onboarding-view'
+import { ProfileView } from '@/components/personalisation/profile-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
@@ -289,8 +291,16 @@ export default function GlobIQApp() {
       navigateHash(
         {
           // Language switching on market-independent surfaces (console,
-          // following, saved) lands on the home view — the console precedent.
-          view: route.view === 'console' || route.view === 'following' || route.view === 'saved' ? 'home' : route.view,
+          // following, saved, onboarding, profile) lands on the home view —
+          // the console precedent.
+          view:
+            route.view === 'console' ||
+            route.view === 'following' ||
+            route.view === 'saved' ||
+            route.view === 'onboarding' ||
+            route.view === 'profile'
+              ? 'home'
+              : route.view,
           countryIso: route.countryIso,
           language: code,
           topicSlug: route.topicSlug,
@@ -373,7 +383,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 5 · Session 2 — Saves &amp; Collections
+                Phase 5 · Session 3 — Onboarding &amp; Goals
               </Badge>
               <HeaderAuth />
             </div>
@@ -503,6 +513,16 @@ export default function GlobIQApp() {
           />
         ) : route.view === 'saved' ? (
           <SavedView onOpenSavedUnit={openSavedUnit} onGoHome={goHome} onSignIn={goSignIn} />
+        ) : route.view === 'onboarding' ? (
+          <OnboardingView onDone={goHome} onGoProfile={() => window.location.assign('#/profile')} onSignIn={goSignIn} />
+        ) : route.view === 'profile' ? (
+          <ProfileView
+            onGoHome={goHome}
+            onGoOnboarding={() => window.location.assign('#/onboarding')}
+            onSignIn={goSignIn}
+            onOpenExam={openFollowedExam}
+            onOpenTopic={openFollowedTopic}
+          />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}

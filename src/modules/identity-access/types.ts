@@ -16,6 +16,9 @@ export interface PublicUser {
   preferredLanguage: { code: string; name: string } | null
   /** §18/§20 staff language scope (WRITER narrowing; null = unset/READER). */
   languageScope: { code: string; name: string } | null
+  /** §6 onboarding state (P5-S3) — PENDING → IN_PROGRESS → COMPLETED | SKIPPED. */
+  onboardingStatus: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'
+  onboardingCompletedAt: string | null
   createdAt: string
   lastLoginAt: string | null
 }

@@ -85,4 +85,6 @@ export const RATE_LIMITS = {
   followsWrite: { limit: 30, windowMs: 60 * 1000 }, // follow/unfollow mutations per IP (P5-S1)
   savesRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated save list/state reads per IP (P5-S2)
   savesWrite: { limit: 30, windowMs: 60 * 1000 }, // save/unsave/move + collection mutations per IP (P5-S2)
+  profileRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated profile/goal reads per IP (P5-S3)
+  profileWrite: { limit: 30, windowMs: 60 * 1000 }, // profile/goal/onboarding mutations per IP (P5-S3)
 } as const

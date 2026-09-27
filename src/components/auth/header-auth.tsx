@@ -1,12 +1,13 @@
 'use client'
 
 /**
- * GlobIQ — header auth area (P1-S2, extended P5-S1/P5-S2)
+ * GlobIQ — header auth area (P1-S2, extended P5-S1/P5-S2/P5-S3)
  * Shows the signed-in user chip, the #/following personalisation link (P5-S1),
- * the #/saved collections link (P5-S2) and the sign-out control — or a
- * "Sign in" anchor to #account.
+ * the #/saved collections link (P5-S2), the #/profile link with a "finish
+ * setup" pill while onboarding is pending (P5-S3) and the sign-out control —
+ * or a "Sign in" anchor to #account.
  */
-import { Bookmark, LogIn, LogOut, Rss } from 'lucide-react'
+import { Bookmark, LogIn, LogOut, Rss, UserRound } from 'lucide-react'
 
 import { useAuth } from '@/stores/auth'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -17,6 +18,9 @@ export function HeaderAuth() {
 
   if (status === 'authenticated' && user) {
     const initial = (user.name?.trim() ?? user.email).slice(0, 1).toUpperCase()
+    // §6 onboarding state (P5-S3): a gentle nudge until completed/skipped.
+    const setupPending =
+      user.onboardingStatus === 'PENDING' || user.onboardingStatus === 'IN_PROGRESS'
     return (
       <div className="flex shrink-0 items-center gap-2">
         <span className="hidden items-center gap-2 rounded-full border border-zinc-200 bg-white py-1 pl-1 pr-3 sm:flex">
@@ -27,6 +31,16 @@ export function HeaderAuth() {
           </Avatar>
           <span className="max-w-[140px] truncate text-sm font-medium">{user.name ?? user.email}</span>
         </span>
+        {setupPending && (
+          <a
+            href="#/onboarding"
+            className="hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-100 sm:inline-flex"
+            aria-label="Finish setting up your learning profile"
+          >
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" aria-hidden="true" />
+            Finish setup
+          </a>
+        )}
         <Button
           variant="ghost"
           size="sm"
@@ -47,6 +61,17 @@ export function HeaderAuth() {
           <a href="#/saved" aria-label="Your saved items and collections">
             <Bookmark className="h-4 w-4" aria-hidden="true" />
             <span className="hidden md:inline">Saved</span>
+          </a>
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-9 gap-2 px-2 text-zinc-500 hover:text-emerald-700"
+          asChild
+        >
+          <a href="#/profile" aria-label="Your profile and learning goal">
+            <UserRound className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden md:inline">Profile</span>
           </a>
         </Button>
         <Button

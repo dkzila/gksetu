@@ -146,6 +146,12 @@ export const AUDIT_ACTIONS = {
   collectionCreate: 'user.collection.create',
   collectionUpdate: 'user.collection.update',
   collectionRemove: 'user.collection.remove',
+  /** P5-S3 profile & explicit goals (§6/§9/§31 — self-service, user-controlled). */
+  profileUpdate: 'user.profile.update',
+  goalSet: 'user.goal.set',
+  goalRemove: 'user.goal.remove',
+  onboardingComplete: 'user.onboarding.complete',
+  onboardingSkip: 'user.onboarding.skip',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -169,5 +175,6 @@ export const AUDIT_OBJECT_TYPES = {
   userFollow: 'UserFollow',
   savedItem: 'SavedItem',
   collection: 'Collection',
+  userGoal: 'UserGoal',
   permission: 'Permission',
 } as const

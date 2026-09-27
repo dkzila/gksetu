@@ -60,6 +60,9 @@ interface AuthStore {
   error: string | null
   /** Re-validates a persisted token against /api/auth/me. */
   initialize: () => Promise<void>
+  /** Silently re-reads /api/auth/me (P5-S3) — profile/onboarding mutations
+   *  refresh the header/aware components without a loading flash. */
+  refreshUser: () => Promise<void>
   signIn: (email: string, password: string) => Promise<boolean>
   signUp: (input: { email: string; password: string; name?: string }) => Promise<boolean>
   signOut: () => Promise<void>
@@ -99,6 +102,20 @@ export const useAuth = create<AuthStore>()(
         } else {
           // Token expired/revoked server-side — drop it (§30).
           set({ token: null, user: null, session: null, permissions: [], status: 'unauthenticated' })
+        }
+      },
+
+      refreshUser: async () => {
+        const token = get().token
+        if (!token) return
+        const result = await api<{ user: PublicUser; session: PublicSession; permissions: string[] }>(
+          '/api/auth/me',
+          { token }
+        )
+        if (result.status === 'ok' && result.data) {
+          set({ user: result.data.user, permissions: result.data.permissions ?? [] })
+        } else if (result.error?.code === 'UNAUTHORIZED') {
+          get().signOut()
         }
       },
 
