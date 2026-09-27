@@ -55,6 +55,7 @@ export {
   moveSavedItem,
   listMySaves,
   listRecentSaves,
+  countMySaves,
   getSaveState,
   createCollection,
   renameCollection,

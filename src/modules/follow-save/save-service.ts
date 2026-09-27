@@ -632,6 +632,22 @@ export async function listMySaves(
 }
 
 /**
+ * The §31 inventory counts (P5-S5): the caller's save + collection totals —
+ * a light read for the personalisation controls surface, which lists saves
+ * DELIBERATELY OUTSIDE the signal inventory (§10: retrieval, never a
+ * recommendation signal) and reports what the reset keeps.
+ */
+export async function countMySaves(
+  userId: string
+): Promise<{ total: number; collections: number }> {
+  const [total, collections] = await Promise.all([
+    db.savedItem.count({ where: { userId } }),
+    db.collection.count({ where: { userId } }),
+  ])
+  return { total, collections }
+}
+
+/**
  * The dashboard's retrieval shortcut (P5-S4): the caller's total save count
  * plus the `limit` most recent rows, hydrated with the same §16/§35/§36
  * semantics as the management list — a pure retrieval view (§10: saves are

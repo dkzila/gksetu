@@ -14,7 +14,10 @@
  * followed exams → the §11 combined queue via the exam-mapping engine,
  * computed never stored) with explainable reasons on every queue unit, the
  * §34 homepage teaser's data source, and the §10 retrieval-only saves block.
- * P5-S5 (explanations + controls incl. reset) extends this module.
+ * P5-S5: the EXPLANATIONS & CONTROLS half — the §9 signal inventory (every
+ * explicit signal with its effect sentence, §35 labels, §16 paths, §36
+ * honest statuses and per-signal removal refs) and the §31 explicit reset
+ * (all follows + the goal; onboarding back to PENDING; saves quarantined).
  */
 export {
   GoalError,
@@ -31,6 +34,7 @@ export {
   goalSetSchema,
   goalGetQuerySchema,
   dashboardGetQuerySchema,
+  personalisationGetQuerySchema,
   onboardingActionSchema,
   GOAL_LEVELS,
   MAX_GOAL_EXAMS,
@@ -40,6 +44,7 @@ export type {
   GoalSetInput,
   GoalGetQuery,
   DashboardGetQuery,
+  PersonalisationGetQuery,
   OnboardingActionInput,
   GoalLevelInput,
 } from './validation'
@@ -66,3 +71,20 @@ export type {
   DashboardSaves,
   DashboardResponse,
 } from './dashboard-types'
+
+// ---------- P5-S5: explanations & controls (§9/§31/§10/§35/§36/§46.3) ----------
+
+export { getMyPersonalisation, resetMyPersonalisation } from './inventory-service'
+export type {
+  InventorySignalKind,
+  InventorySignalEffect,
+  InventorySignal,
+  InventoryGoal,
+  InventorySignals,
+  HowItWorks,
+  InventorySaves,
+  InventoryOnboarding,
+  InventoryReset,
+  PersonalisationInventory,
+  PersonalisationResetResult,
+} from './inventory-types'

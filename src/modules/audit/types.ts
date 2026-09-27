@@ -152,6 +152,8 @@ export const AUDIT_ACTIONS = {
   goalRemove: 'user.goal.remove',
   onboardingComplete: 'user.onboarding.complete',
   onboardingSkip: 'user.onboarding.skip',
+  /** P5-S5 explanations & controls (§9/§31 — the explicit reset is a bulk self-service action). */
+  personalisationReset: 'user.personalisation.reset',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */

@@ -51,7 +51,7 @@ export const DASHBOARD_SAVES_LIMIT = 3
 
 // ---------- §9 label market (mirrors resolveGoalMarket's lenient chain) ----------
 
-interface LabelMarket {
+export interface LabelMarket {
   isoCode: string
   slug: string
   name: string
@@ -67,8 +67,11 @@ interface LabelMarket {
  * default. The chain is lenient for DERIVED languages (a study/preferred
  * language not configured in the market falls back to the default) and
  * strict for EXPLICIT query languages (a 400, the goal GET precedent).
+ *
+ * Shared with the P5-S5 inventory service — ONE §35 chain per module, so the
+ * controls page labels exactly what the dashboard labels.
  */
-async function resolveLabelMarket(
+export async function resolveLabelMarket(
   user: UserContext,
   studyLanguageCode: string | null,
   query: DashboardGetQuery

@@ -76,6 +76,18 @@ export const dashboardGetQuerySchema = z.object({
 })
 export type DashboardGetQuery = z.infer<typeof dashboardGetQuerySchema>
 
+/**
+ * GET /api/personalisation query — the same optional §35 label context as the
+ * dashboard (P5-S5): the controls surface labels exactly what the dashboard
+ * labels, through the same chain (query → goal study language → preferred →
+ * market default).
+ */
+export const personalisationGetQuerySchema = z.object({
+  country: z.string().trim().max(8).optional(),
+  language: z.string().trim().max(8).optional(),
+})
+export type PersonalisationGetQuery = z.infer<typeof personalisationGetQuerySchema>
+
 /** POST /api/onboarding body. */
 export const onboardingActionSchema = z.object({
   action: z.enum(['complete', 'skip'], { message: 'action must be "complete" or "skip"' }),

@@ -48,6 +48,7 @@ import { SavedView } from '@/components/saves/saved-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
+import { ControlsView } from '@/components/personalisation/controls-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
@@ -358,15 +359,16 @@ export default function GlobIQApp() {
       navigateHash(
         {
           // Language switching on market-independent surfaces (console,
-          // following, saved, onboarding, profile, dashboard) lands on the
-          // home view — the console precedent.
+          // following, saved, onboarding, profile, dashboard, personalisation)
+          // lands on the home view — the console precedent.
           view:
             route.view === 'console' ||
             route.view === 'following' ||
             route.view === 'saved' ||
             route.view === 'onboarding' ||
             route.view === 'profile' ||
-            route.view === 'dashboard'
+            route.view === 'dashboard' ||
+            route.view === 'personalisation'
               ? 'home'
               : route.view,
           countryIso: route.countryIso,
@@ -451,7 +453,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 5 · Session 4 — Personalised Dashboard
+                Phase 5 · Session 5 — Personalisation Controls
               </Badge>
               <HeaderAuth />
             </div>
@@ -593,6 +595,14 @@ export default function GlobIQApp() {
           />
         ) : route.view === 'dashboard' ? (
           <DashboardView
+            countryIso={route.countryIso}
+            language={route.language}
+            onOpenPath={openPath}
+            onGoHome={goHome}
+            onSignIn={goSignIn}
+          />
+        ) : route.view === 'personalisation' ? (
+          <ControlsView
             countryIso={route.countryIso}
             language={route.language}
             onOpenPath={openPath}

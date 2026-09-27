@@ -433,11 +433,21 @@ export function DashboardView({
                 <Layers className="h-5 w-5 text-emerald-600" aria-hidden="true" />
                 Combined-exam queue
               </h2>
-              {data.queue.mode !== 'NONE' && (
-                <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-600">
-                  Scope: {MODE_LABEL[data.queue.mode]}
-                </Badge>
-              )}
+              <div className="flex flex-wrap items-center gap-2">
+                {data.queue.mode !== 'NONE' && (
+                  <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-600">
+                    Scope: {MODE_LABEL[data.queue.mode]}
+                  </Badge>
+                )}
+                {/* P5-S5: the §9 explanations surface — every signal behind this queue, with its control. */}
+                <a
+                  href="#/personalisation"
+                  className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-zinc-200 bg-white px-2.5 text-xs font-medium text-zinc-600 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+                >
+                  <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
+                  Why do I see this?
+                </a>
+              </div>
             </div>
             <Card className="border-zinc-200 shadow-sm">
               <CardContent className="space-y-4 p-5 sm:p-6">

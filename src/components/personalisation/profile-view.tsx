@@ -12,7 +12,7 @@
  * preferred language — the same §35 rules registration enforces), the
  * declared goal (exams/subjects with §16 paths, level, study language,
  * preferences), the onboarding state, and the personalisation data map
- * (following + saved live one click away).
+ * (controls, following and saved all one click away — P5-S5).
  */
 import { useCallback, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -31,6 +31,7 @@ import {
   RefreshCw,
   Rss,
   Bookmark,
+  Settings2,
   Target,
   Trash2,
   UserRound,
@@ -621,11 +622,23 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Your personalisation data
               </CardTitle>
               <CardDescription>
-                Everything GlobIQ stores about you is reviewable and reversible (§31). A full
-                &ldquo;reset personalisation&rdquo; control arrives in P5-S5.
+                Everything GlobIQ stores about you is reviewable and reversible (§31) — every
+                signal, its effect and its control lives on one page.
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-3 sm:grid-cols-2">
+              <a
+                href="#/personalisation"
+                className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50/50 p-4 transition-colors hover:border-emerald-400"
+              >
+                <Settings2 className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                <span>
+                  <span className="block text-sm font-semibold">Personalisation controls</span>
+                  <span className="block text-xs text-zinc-500">
+                    Why you see what you see — review every signal, reset anytime
+                  </span>
+                </span>
+              </a>
               <a
                 href="#/following"
                 className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"

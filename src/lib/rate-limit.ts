@@ -88,4 +88,6 @@ export const RATE_LIMITS = {
   profileRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated profile/goal reads per IP (P5-S3)
   profileWrite: { limit: 30, windowMs: 60 * 1000 }, // profile/goal/onboarding mutations per IP (P5-S3)
   dashboardRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated dashboard/feed reads per IP (P5-S4)
+  personalisationRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated inventory/explanation reads per IP (P5-S5)
+  personalisationWrite: { limit: 30, windowMs: 60 * 1000 }, // the §31 reset action per IP (P5-S5)
 } as const

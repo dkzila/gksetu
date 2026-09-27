@@ -265,6 +265,83 @@ export interface ApiDashboard {
   computedAt: string
 }
 
+// ---------- Personalisation inventory (mirrors inventory-types.ts, P5-S5) ----------
+
+export interface ApiInventoryEffect {
+  kind: 'QUEUE_SCOPE' | 'QUEUE_RANKING' | 'PLAN' | 'LABELS'
+  text: string
+}
+
+export interface ApiInventorySignal {
+  id: string
+  kind: 'FOLLOWED_EXAM' | 'FOLLOWED_TOPIC' | 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'GOAL_PREFERENCE'
+  label: string
+  detail: string | null
+  slug: string | null
+  canonicalPath: string | null
+  status: 'ACTIVE' | 'INACTIVE' | 'RETIRED' | 'DRAFT' | null
+  declaredAt: string | null
+  effects: ApiInventoryEffect[]
+  removal: { method: 'DELETE'; path: string } | null
+}
+
+export interface ApiInventoryGoal {
+  id: string
+  declaredAt: string
+  updatedAt: string
+  exams: ApiInventorySignal[]
+  subjects: ApiInventorySignal[]
+  preferences: ApiInventorySignal[]
+}
+
+export interface ApiPersonalisation {
+  market: {
+    country: { isoCode: string; name: string; slug: string }
+    language: { code: string; name: string; nativeName: string | null }
+    direction: 'LTR' | 'RTL'
+    isHomeMarket: boolean
+  }
+  user: {
+    name: string | null
+    onboardingStatus: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'
+    homeCountryIso: string | null
+    preferredLanguageCode: string | null
+  }
+  howItWorks: {
+    scope: string
+    ranking: string
+    homeMarket: string
+    labels: string
+    saves: string
+  }
+  signals: {
+    follows: ApiInventorySignal[]
+    goal: ApiInventoryGoal | null
+    counts: {
+      follows: number
+      goalExams: number
+      goalSubjects: number
+      goalPreferences: number
+      total: number
+    }
+  }
+  saves: { total: number; collections: number; note: string }
+  onboarding: { status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'; note: string }
+  reset: { available: boolean; signalCount: number; removes: string[]; keeps: string[] }
+  computedAt: string
+}
+
+export interface ApiResetResult {
+  removed: {
+    follows: number
+    goal: boolean
+    goalExams: number
+    goalSubjects: number
+    onboardingReset: boolean
+  }
+  kept: { saves: number; collections: number }
+}
+
 // ---------- Shared helpers ----------
 
 export const LEVEL_LABELS: Record<string, string> = {
