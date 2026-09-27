@@ -29,7 +29,7 @@ import {
   resolveLocaleContext,
 } from '@/modules/country-locale'
 import { getUnitExamCoverage } from '@/modules/exam-mapping'
-import { buildPageSeo } from '@/modules/seo'
+import { buildKnowledgeGraph, buildPageSeo, SITE_NAME } from '@/modules/seo'
 import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxonomy'
 
 import { materializeDueScheduledContent } from './content-service'
@@ -441,6 +441,48 @@ export async function getKnowledgePage(
     unit.slug
   )
 
+  // ---------- §16 structured-data graph (P4-S5 — Article + LearningResource) ----------
+  // Educational schema over the canonical record (§16 "where applicable",
+  // §22): dates follow the P4-S4 lastmod semantics (first/last published
+  // revision shown on the page), inLanguage is the RENDERED language (§35 —
+  // a Hindi read names hi, never the canonical en), and the breadcrumb trail
+  // is Home → topic chain → this unit, all as §16 paths.
+  const earliestPublished = liveItems.reduce<Date | null>((earliest, item) => {
+    const at = new Date(item.revision.publishedAt)
+    return !earliest || at < earliest ? at : earliest
+  }, null)
+  const structuredData = buildKnowledgeGraph({
+    siteName: SITE_NAME,
+    homePath: resolution.canonicalUrl,
+    inLanguage: resolution.language.code,
+    crumbs: [
+      { name: 'Home', path: resolution.canonicalUrl },
+      ...topicDetail.path.map((entry) => ({
+        name: entry.label,
+        path: buildCanonicalUrl(
+          { slug: country.slug, isDefault: country.isDefault },
+          { code: resolution.language.code },
+          country.defaultLanguage.code,
+          ['gk', entry.slug]
+        ),
+      })),
+      { name: unit.canonicalName, path: null }, // self — closed by the builder
+    ],
+    article: {
+      headline: unit.canonicalName,
+      description: unit.canonicalSummary ?? quickFact.body,
+      path: canonicalPath,
+      inLanguage: resolution.language.code,
+      homePath: resolution.canonicalUrl,
+      articleSection: topicDetail.node.label,
+      datePublished: (earliestPublished ?? unit.createdAt).toISOString(),
+      dateModified: latestPublished ? latestPublished.toISOString() : null,
+      learningResourceType: unit.type,
+      educationalLevel: unit.difficulty as 'BASIC' | 'INTERMEDIATE' | 'ADVANCED',
+      siteName: SITE_NAME,
+    },
+  })
+
   const topicIdentity = await getTopicIdentity(unit.topicId)
 
   // ---------- §22 layer 5: exam coverage (P3-S5 — the unit-side mirror) ----------
@@ -496,6 +538,7 @@ export async function getKnowledgePage(
     translations,
     canonicalPath,
     seo,
+    structuredData,
     scheduledCount,
   }
 }

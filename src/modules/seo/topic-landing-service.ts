@@ -28,6 +28,7 @@ import {
   visibleUnitsWhere,
 } from './composition-helpers'
 import { buildPageSeo } from './page-seo'
+import { buildHubGraph, SITE_NAME } from './structured-data'
 import { SeoError } from './errors'
 import type { TopicLandingQuery } from './validation'
 import type {
@@ -197,6 +198,21 @@ export async function getTopicLanding(
     lastModified: latestSubtreeUnit?._max.updatedAt ?? null,
   })
 
+  // ---------- §16 structured-data graph (P4-S5) ----------
+  // The landing is a CollectionPage (its subtree's units + clusters); the
+  // topic's own description is the honest one (no fabricated copy).
+  const structuredData = buildHubGraph({
+    siteName: SITE_NAME,
+    homePath: context.resolution.canonicalUrl,
+    inLanguage: context.languageCode,
+    name: detail.node.label,
+    selfName: detail.node.label,
+    description: detail.node.description,
+    about: detail.node.label,
+    path: topicHubPath(context, detail.node.slug),
+    crumbs: breadcrumb,
+  })
+
   // ---------- Assembly ----------
   return {
     topic: {
@@ -211,6 +227,7 @@ export async function getTopicLanding(
     },
     canonicalPath: topicHubPath(context, detail.node.slug),
     seo,
+    structuredData,
     breadcrumb,
     children,
     units,

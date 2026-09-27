@@ -132,6 +132,9 @@ export function ExamView({
               page.exam.description ??
               `${page.exam.name} by ${page.exam.organiser}: ${page.coverage.unitCount} mapped units, ${page.coverage.mappingCount} requirements on the current syllabus.`,
             seo: page.seo,
+            language: page.language.code,
+            countryIso: page.exam.countryIso,
+            jsonLd: page.structuredData.graph,
           }
         : null,
     [page]

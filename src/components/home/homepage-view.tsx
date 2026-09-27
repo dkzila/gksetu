@@ -114,6 +114,9 @@ export function HomepageView({
             title: `${homepage.country.name} — GK & exam knowledge hub | GlobIQ`,
             description: `${homepage.country.name}'s discovery hub: ${homepage.stats.topics} topics, ${homepage.stats.units} knowledge units, ${homepage.stats.exams} exams — one canonical knowledge system.`,
             seo: homepage.seo,
+            language: homepage.language.code,
+            countryIso: homepage.country.isoCode,
+            jsonLd: homepage.structuredData.graph,
           }
         : null,
     [homepage]

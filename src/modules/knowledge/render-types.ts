@@ -14,7 +14,7 @@
 import type { ContentFormatPublic } from './content-types'
 import type { SourceVerificationPublic } from './source-types'
 import type { UnitExamRequirement } from '@/modules/exam-mapping'
-import type { PageSeo } from '@/modules/seo'
+import type { PageSeo, PageStructuredData } from '@/modules/seo'
 
 /**
  * §22 layer order — the reading flow: the quick fact first, then the deeper
@@ -173,6 +173,9 @@ export interface KnowledgePage {
   /** §16 SEO block (P4-S4) — canonical, hreflang cluster (the published
    * translation set — the same §35 honesty as `translations`), robots, lastmod. */
   seo: PageSeo
+  /** §16 structured-data graph (P4-S5) — Organization, WebSite,
+   * BreadcrumbList + Article/LearningResource (educational schema, §16). */
+  structuredData: PageStructuredData
   /** §19 — representations scheduled to go live (readable soon). */
   scheduledCount: number
 }

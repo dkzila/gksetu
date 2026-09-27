@@ -21,7 +21,12 @@
  *        the segmented XML sitemap index + robots.txt infrastructure
  *        (GET /api/seo/sitemap, /api/seo/robots, /api/seo/status — also served
  *        at /sitemap.xml and /robots.txt via rewrites).
- * P4-S5 (future session): metadata/structured data and SEO validation.
+ * P4-S5: metadata/structured data and SEO validation — schema.org graphs
+ *        (WebSite, WebPage/CollectionPage, BreadcrumbList,
+ *        Article/LearningResource on knowledge pages) on every public
+ *        composition, built with the same origin-agnostic §16 path contract
+ *        as PageSeo, plus the SEO validation layer behind
+ *        GET /api/seo/status.
  */
 export { SeoError, toSeoErrorResponse } from './errors'
 export type { SeoErrorCode } from './errors'
@@ -49,17 +54,36 @@ export { getExamPage } from './exam-page-service'
 export { getSyllabusTopicPage } from './syllabus-topic-service'
 export { buildPageSeo, resolveSiteOrigin } from './page-seo'
 export {
+  buildArticleNode,
+  buildBreadcrumbNode,
+  buildHomeGraph,
+  buildHubGraph,
+  buildKnowledgeGraph,
+  buildOrganizationNode,
+  buildWebPageNode,
+  buildWebSiteNode,
+  SITE_NAME,
+} from './structured-data'
+export {
   buildRobotsTxt,
   buildSitemapSegment,
   getSeoStatus,
   listSitemapSegments,
+  loadSitemapInventory,
   renderSitemapIndex,
   renderSitemapUrlSet,
   ROBOTS_DISALLOW,
   segmentUrl,
   SITEMAP_TYPES,
 } from './sitemap-service'
-export type { SitemapSegmentInfo, SitemapType, SitemapUrlEntry } from './sitemap-service'
+export type { SitemapInventory, SitemapSegmentInfo, SitemapType, SitemapUrlEntry } from './sitemap-service'
+export { getSeoValidation } from './validation-service'
+export type {
+  KnowledgeSampleInput,
+  SeoValidationCheck,
+  SeoValidationReport,
+  SeoValidationSurface,
+} from './validation-service'
 
 export type {
   CountryHomepage,
@@ -73,11 +97,13 @@ export type {
   HomepageExamCard,
   HomepageTopicCard,
   HomepageUnitCard,
+  JsonLdNode,
   LandingChildTopic,
   LandingExamCard,
   LandingRelatedTopic,
   LandingUnitsSection,
   PageSeo,
+  PageStructuredData,
   SyllabusPlacement,
   SyllabusRequirement,
   SyllabusTopicPage,

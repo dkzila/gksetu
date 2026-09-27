@@ -105,9 +105,12 @@ export function TopicLandingView({
               landing.topic.description ??
               `${landing.topic.label}: ${landing.stats.unitCount} knowledge units, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,
             seo: landing.seo,
+            language,
+            countryIso,
+            jsonLd: landing.structuredData.graph,
           }
         : null,
-    [landing]
+    [landing, language, countryIso]
   )
   useSeoHead(seoInput)
 

@@ -115,9 +115,12 @@ export function SyllabusView({
             title: `${page.topic.label} — ${page.exam.name} syllabus | GlobIQ`,
             description: `${page.topic.label} in the ${page.exam.name} syllabus: ${page.stats.placementCount} placement(s), ${page.stats.requirementCount} requirement(s) with the full §8 vocabulary — the evergreen topic hub link included.`,
             seo: page.seo,
+            language: page.language.code,
+            countryIso,
+            jsonLd: page.structuredData.graph,
           }
         : null,
-    [page]
+    [page, countryIso]
   )
   useSeoHead(seoInput)
 

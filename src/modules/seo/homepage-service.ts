@@ -30,6 +30,10 @@ import {
   topicHubPath,
   visibleUnitsWhere,
 } from './composition-helpers'
+import {
+  buildHomeGraph,
+  SITE_NAME,
+} from './structured-data'
 import { buildPageSeo } from './page-seo'
 import type {
   CountryHomepage,
@@ -195,6 +199,22 @@ export async function getCountryHomepage(input: {
     lastModified: latestUnit?._max.updatedAt ?? null,
   })
 
+  // ---------- §16 structured-data graph (P4-S5) ----------
+  // The hub's WebPage carries the same honest counters the surface renders;
+  // the WebSite node is the localized site view (home path + language).
+  const stats = {
+    topics: flat.length,
+    units: totalVisibleUnits,
+    exams: exams.available ? exams.items.length : 0,
+  }
+  const structuredData = buildHomeGraph({
+    siteName: SITE_NAME,
+    homePath: context.resolution.canonicalUrl,
+    inLanguage: context.languageCode,
+    name: `${context.publicCountry.name} — GK & exam knowledge hub`,
+    description: `${context.publicCountry.name} discovery hub — ${stats.topics} topics, ${stats.units} knowledge units, ${stats.exams} exams.`,
+  })
+
   // ---------- Assembly (§34) ----------
   return {
     country: {
@@ -213,6 +233,7 @@ export async function getCountryHomepage(input: {
     },
     canonicalUrl: context.resolution.canonicalUrl,
     seo,
+    structuredData,
     languages,
     categories,
     majorTopics,
@@ -222,10 +243,6 @@ export async function getCountryHomepage(input: {
       available: false,
       note: 'The current-affairs event feed arrives with the Current Affairs system — until then, browse the Current Affairs category and its evergreen hubs.',
     },
-    stats: {
-      topics: flat.length,
-      units: totalVisibleUnits,
-      exams: exams.available ? exams.items.length : 0,
-    },
+    stats,
   }
 }

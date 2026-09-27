@@ -142,6 +142,8 @@ export interface KnowledgePageData {
     robots: { index: boolean; follow: boolean; reason: string | null }
     lastModified: string | null
   }
+  /** §16 structured-data graph (P4-S5) — Article + LearningResource. */
+  structuredData: { graph: Array<{ '@type': string | string[] } & Record<string, unknown>> }
   scheduledCount: number
 }
 
@@ -430,9 +432,13 @@ export function KnowledgePageView({
             title: `${page.unit.canonicalName} | GlobIQ`,
             description: page.quickFact.body.slice(0, 160),
             seo: page.seo,
+            language: page.language.code,
+            countryIso: country,
+            ogType: 'article' as const,
+            jsonLd: page.structuredData.graph,
           }
         : null,
-    [page, seoInDocument]
+    [page, seoInDocument, country]
   )
   useSeoHead(seoInput)
 

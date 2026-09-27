@@ -40,6 +40,15 @@ export interface ApiPageSeo {
   lastModified: string | null
 }
 
+// ---------- §16 structured data (P4-S5 — mirror of PageStructuredData) ----------
+
+/** One schema.org node; URL-bearing fields (url/@id/item/image) hold §16 paths. */
+export type ApiJsonLdNode = { '@type': string | string[] } & Record<string, unknown>
+
+export interface ApiPageStructuredData {
+  graph: ApiJsonLdNode[]
+}
+
 // ---------- GET /api/home (§34) ----------
 
 export interface HomeUnitCard {
@@ -112,6 +121,7 @@ export interface CountryHomepage {
   }
   canonicalUrl: string
   seo: ApiPageSeo
+  structuredData: ApiPageStructuredData
   languages: Array<{
     code: string
     name: string
@@ -174,6 +184,7 @@ export interface TopicLanding {
   }
   canonicalPath: string
   seo: ApiPageSeo
+  structuredData: ApiPageStructuredData
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   children: LandingChildTopic[]
   units: {
@@ -243,6 +254,7 @@ export interface ExamPage {
   }>
   canonicalPath: string
   seo: ApiPageSeo
+  structuredData: ApiPageStructuredData
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   coverage: {
     unitCount: number
@@ -278,6 +290,7 @@ export interface SyllabusTopicPage {
   topic: { slug: string; canonicalName: string; label: string; labelLanguage: string }
   canonicalPath: string
   seo: ApiPageSeo
+  structuredData: ApiPageStructuredData
   examPath: string
   topicHubPath: string
   /** Non-addressable crumbs carry path null (rendered as plain spans). */

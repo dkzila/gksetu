@@ -279,7 +279,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 4 · Session 4 — Canonical URLs, hreflang, Sitemap &amp; Robots
+                Phase 4 · Session 5 — Metadata, Structured Data &amp; SEO Validation
               </Badge>
               <HeaderAuth />
             </div>

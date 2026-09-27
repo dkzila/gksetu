@@ -36,6 +36,7 @@ import {
   type ReaderContext,
 } from './composition-helpers'
 import { buildPageSeo } from './page-seo'
+import { buildHubGraph, SITE_NAME } from './structured-data'
 import { SeoError } from './errors'
 import type {
   SyllabusPlacement,
@@ -226,6 +227,27 @@ export async function getSyllabusTopicPage(
     lastModified: new Date(detail.currentVersion.effectiveFrom),
   })
 
+  // ---------- §16 structured-data graph (P4-S5) ----------
+  // Where the topic sits in the exam's CURRENT syllabus — a CollectionPage
+  // whose description carries the honest requirement counters.
+  const topicLabel = labels.get(topicRow.id)?.label ?? topicRow.canonicalName
+  const structuredData = buildHubGraph({
+    siteName: SITE_NAME,
+    homePath: context.resolution.canonicalUrl,
+    inLanguage: context.languageCode,
+    name: topicLabel,
+    selfName: topicLabel,
+    description: `${topicLabel} in the ${detail.name} syllabus (${detail.currentVersion.label}) — ${new Set(requirements.map((row) => row.unit.slug)).size} required knowledge units across ${placements.length} placements.`,
+    about: topicLabel,
+    path: syllabusTopicPath(context, detail.slug, topicRow.slug),
+    crumbs: [
+      { name: 'Home', path: context.resolution.canonicalUrl },
+      { name: detail.name, path: examPath(context, detail.slug) },
+      { name: 'Syllabus', path: null }, // the coverage tree lives on the exam page
+      { name: topicLabel, path: null }, // self
+    ],
+  })
+
   return {
     exam: {
       slug: detail.slug,
@@ -243,18 +265,19 @@ export async function getSyllabusTopicPage(
     topic: {
       slug: topicRow.slug,
       canonicalName: topicRow.canonicalName,
-      label: labels.get(topicRow.id)?.label ?? topicRow.canonicalName,
+      label: topicLabel,
       labelLanguage: labels.get(topicRow.id)?.language ?? 'canonical',
     },
     canonicalPath: syllabusTopicPath(context, detail.slug, topicRow.slug),
     seo,
+    structuredData,
     examPath: examPath(context, detail.slug),
     topicHubPath: topicHubPath(context, topicRow.slug),
     breadcrumb: [
       { name: 'Home', path: context.resolution.canonicalUrl },
       { name: detail.name, path: examPath(context, detail.slug) },
       { name: 'Syllabus', path: null }, // the coverage tree lives on the exam page
-      { name: labels.get(topicRow.id)?.label ?? topicRow.canonicalName, path: null }, // self
+      { name: topicLabel, path: null }, // self
     ],
     placements,
     requirements,

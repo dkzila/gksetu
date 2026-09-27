@@ -1,19 +1,24 @@
 'use client'
 
 /**
- * GlobIQ — SEO infrastructure section (P4-S4)
+ * GlobIQ — SEO infrastructure section (P4-S4, extended P4-S5)
  *
- * The §16 verification surface for the canonical-URL/hreflang/sitemap/robots
- * layer: the live robots.txt + sitemap index (fetched from their standard
- * crawler locations — the next.config rewrites), the segment census with URL
- * counts + lastmods (country × language × content type), a segment XML
- * preview, and the origin the absolute URLs resolve against. Every number on
- * this card is computed by the same services the public endpoints use — no
- * parallel truth.
+ * The §16 verification surface: the live robots.txt + sitemap index (fetched
+ * from their standard crawler locations — the next.config rewrites), the
+ * segment census with URL counts + lastmods (country × language × content
+ * type), a segment XML preview, the origin the absolute URLs resolve against
+ * — and since P4-S5, the SEO validation report (sitemap grammar/uniqueness/
+ * parity/determinism, robots artifact, hreflang clusters, the §36 historical
+ * window, the structured-data graphs and the JSON-LD path contract) plus the
+ * sampled structured-data surfaces. Every number on this card is computed by
+ * the same services the public endpoints use — no parallel truth.
  */
 import { useCallback, useEffect, useState } from 'react'
 import {
+  AlertTriangle,
   Bot,
+  Braces,
+  CheckCircle2,
   FileCode2,
   Globe,
   Loader2,
@@ -21,6 +26,7 @@ import {
   RefreshCw,
   Search,
   ShieldCheck,
+  XCircle,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -51,13 +57,51 @@ interface SegmentInfo {
   lastModified: string | null
 }
 
+interface ValidationCheck {
+  id: string
+  label: string
+  status: 'pass' | 'fail' | 'warn'
+  detail: string
+  checked: number
+  failures: string[]
+}
+
+interface ValidationSurface {
+  surface: 'home' | 'topic' | 'exam' | 'syllabus' | 'knowledge'
+  country: string
+  language: string
+  path: string
+  nodeTypes: string[]
+}
+
+interface ValidationReport {
+  passed: number
+  failed: number
+  warnings: number
+  checks: ValidationCheck[]
+  surfaces: ValidationSurface[]
+}
+
 interface SeoStatusDto {
   origin: string
   robots: { disallow: string[]; sitemapLine: string }
   sitemap: { indexUrl: string; urlTotal: number; segments: SegmentInfo[] }
+  validation: ValidationReport
 }
 
 // ---------- Component ----------
+
+const CHECK_ICON = {
+  pass: CheckCircle2,
+  fail: XCircle,
+  warn: AlertTriangle,
+} as const
+
+const CHECK_STYLE = {
+  pass: 'text-emerald-600',
+  fail: 'text-red-600',
+  warn: 'text-amber-600',
+} as const
 
 export function SeoSection() {
   const [status, setStatus] = useState<SeoStatusDto | null>(null)
@@ -120,23 +164,26 @@ export function SeoSection() {
     }
   }, [])
 
+  const validation = status?.validation
+
   return (
     <Card id="seo" className="scroll-mt-24 border-zinc-200 shadow-sm">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-base">
           <Search className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-          SEO infrastructure — canonical URLs, hreflang, sitemap &amp; robots
+          SEO infrastructure — canonical URLs, structured data &amp; validation
           <Badge
             variant="outline"
             className="ml-1 border-emerald-200 bg-emerald-50 font-mono text-[10px] font-normal text-emerald-700"
           >
-            P4-S4
+            P4-S4 · P4-S5
           </Badge>
         </CardTitle>
         <CardDescription>
           The §16 layer: the segmented XML sitemap (country × language × content type), the
-          robots rules (admin/editor/private namespaces disallowed), the hreflang clusters on
-          every public composition, and the per-view document head. Served at{' '}
+          robots rules (admin/editor/private namespaces disallowed), the hreflang clusters and
+          per-view document head, the schema.org structured data on every public composition,
+          and the validation report that polices all of it. Served at{' '}
           <span className="font-mono text-[11px]">/sitemap.xml</span> and{' '}
           <span className="font-mono text-[11px]">/robots.txt</span>.
         </CardDescription>
@@ -146,6 +193,9 @@ export function SeoSection() {
           <div className="space-y-2" aria-busy="true" aria-label="Loading SEO status">
             <Skeleton className="h-12 w-full" />
             <Skeleton className="h-24 w-full" />
+            <p className="text-[11px] text-zinc-400">
+              Composing the validation samples (7 live surfaces + the sitemap inventory)…
+            </p>
           </div>
         ) : error || !status ? (
           <div
@@ -156,6 +206,167 @@ export function SeoSection() {
           </div>
         ) : (
           <>
+            {/* ---------- Validation summary ---------- */}
+            {validation && (
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-lg border border-emerald-200 bg-emerald-50/60 p-3">
+                  <p className="flex items-center gap-1.5 text-xs font-medium text-emerald-700">
+                    <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                    Validation passed
+                  </p>
+                  <p className="mt-1 text-2xl font-semibold tabular-nums text-emerald-800">
+                    {validation.passed}
+                  </p>
+                  <p className="text-[11px] text-emerald-700/80">
+                    of {validation.checks.length} checks
+                  </p>
+                </div>
+                <div
+                  className={`rounded-lg border p-3 ${
+                    validation.failed > 0
+                      ? 'border-red-200 bg-red-50/60'
+                      : 'border-zinc-200 bg-white'
+                  }`}
+                >
+                  <p
+                    className={`flex items-center gap-1.5 text-xs font-medium ${
+                      validation.failed > 0 ? 'text-red-700' : 'text-zinc-500'
+                    }`}
+                  >
+                    <XCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                    Failures
+                  </p>
+                  <p
+                    className={`mt-1 text-2xl font-semibold tabular-nums ${
+                      validation.failed > 0 ? 'text-red-700' : 'text-zinc-900'
+                    }`}
+                  >
+                    {validation.failed}
+                  </p>
+                  <p className="text-[11px] text-zinc-500">any failure is a ship blocker</p>
+                </div>
+                <div
+                  className={`rounded-lg border p-3 ${
+                    validation.warnings > 0
+                      ? 'border-amber-200 bg-amber-50/60'
+                      : 'border-zinc-200 bg-white'
+                  }`}
+                >
+                  <p
+                    className={`flex items-center gap-1.5 text-xs font-medium ${
+                      validation.warnings > 0 ? 'text-amber-700' : 'text-zinc-500'
+                    }`}
+                  >
+                    <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" />
+                    Warnings
+                  </p>
+                  <p
+                    className={`mt-1 text-2xl font-semibold tabular-nums ${
+                      validation.warnings > 0 ? 'text-amber-700' : 'text-zinc-900'
+                    }`}
+                  >
+                    {validation.warnings}
+                  </p>
+                  <p className="text-[11px] text-zinc-500">checks that couldn&apos;t sample</p>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- Validation checks table ---------- */}
+            {validation && (
+              <div className="overflow-hidden rounded-lg border border-zinc-200">
+                <div className="max-h-72 overflow-y-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead className="sticky top-0 bg-zinc-50 text-[11px] uppercase tracking-wide text-zinc-500">
+                      <tr>
+                        <th scope="col" className="px-3 py-2 font-medium">Check</th>
+                        <th scope="col" className="px-3 py-2 font-medium">Result</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-zinc-100 bg-white">
+                      {validation.checks.map((check) => {
+                        const Icon = CHECK_ICON[check.status]
+                        return (
+                          <tr key={check.id} className="align-top hover:bg-zinc-50">
+                            <td className="px-3 py-2">
+                              <p className="font-mono text-[11px] font-medium text-zinc-800">
+                                {check.id}
+                              </p>
+                              <p className="mt-0.5 text-zinc-600">{check.label}</p>
+                              {check.failures.length > 0 && (
+                                <ul className="mt-1 list-inside list-disc text-[10px] text-red-600">
+                                  {check.failures.map((failure) => (
+                                    <li key={failure} className="font-mono">
+                                      {failure.length > 90 ? `${failure.slice(0, 90)}…` : failure}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </td>
+                            <td className="w-24 px-3 py-2">
+                              <span
+                                className={`flex items-center gap-1.5 font-medium ${CHECK_STYLE[check.status]}`}
+                              >
+                                <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                {check.status}
+                              </span>
+                              <p className="mt-0.5 text-[10px] tabular-nums text-zinc-500">
+                                {check.checked} checked
+                              </p>
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* ---------- Structured-data surfaces (the sampled §16 graphs) ---------- */}
+            {validation && validation.surfaces.length > 0 && (
+              <div className="space-y-2">
+                <p className="flex items-center gap-1.5 text-xs font-medium text-zinc-500">
+                  <Braces className="h-3.5 w-3.5" aria-hidden="true" />
+                  Structured data — the live composition samples (JSON-LD per view)
+                </p>
+                <div className="overflow-hidden rounded-lg border border-zinc-200">
+                  <div className="max-h-56 overflow-y-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead className="sticky top-0 bg-zinc-50 text-[11px] uppercase tracking-wide text-zinc-500">
+                        <tr>
+                          <th scope="col" className="px-3 py-2 font-medium">Surface</th>
+                          <th scope="col" className="px-3 py-2 font-medium">Locale</th>
+                          <th scope="col" className="px-3 py-2 font-medium">§16 path</th>
+                          <th scope="col" className="px-3 py-2 font-medium">Graph nodes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-zinc-100 bg-white">
+                        {validation.surfaces.map((surface) => (
+                          <tr key={`${surface.surface}:${surface.country}:${surface.language}`} className="hover:bg-zinc-50">
+                            <td className="px-3 py-1.5 font-medium capitalize text-zinc-800">
+                              {surface.surface}
+                            </td>
+                            <td className="px-3 py-1.5 font-mono text-zinc-600">
+                              {surface.country}/{surface.language}
+                            </td>
+                            <td className="px-3 py-1.5 font-mono text-[10px] text-zinc-600">
+                              {surface.path}
+                            </td>
+                            <td className="px-3 py-1.5">
+                              <span className="font-mono text-[10px] text-emerald-700">
+                                {surface.nodeTypes.join(' + ')}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* ---------- Census ---------- */}
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-zinc-200 bg-white p-3">
@@ -300,7 +511,9 @@ export function SeoSection() {
               <p className="max-w-xl text-[11px] leading-relaxed text-zinc-500">
                 The §16 entries are the production path routes; this dev shell serves the SPA at{' '}
                 <span className="font-mono">/</span> with the hash mirror (the documented P4-S2
-                constraint) — the per-view head wiring ships canonical + hreflang regardless.
+                constraint) — the per-view head ships canonical, hreflang, Open Graph and JSON-LD
+                regardless. The validation samples live compositions on every refresh (slow on the
+                cloud DB — the census is worth it).
               </p>
               <Button
                 variant="outline"

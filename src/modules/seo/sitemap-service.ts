@@ -268,12 +268,10 @@ async function loadModels(): Promise<CountrySitemapModel[]> {
     select: { isoCode: true, isDefault: true },
     orderBy: [{ isDefault: 'desc' }, { isoCode: 'asc' }], // default market first (§37)
   })
-  const models: CountrySitemapModel[] = []
-  for (const country of countries) {
-    const model = await loadCountryModel(country.isoCode)
-    if (model) models.push(model)
-  }
-  return models
+  // Per-country models are independent — loaded together (the §37 order is
+  // preserved by Promise.all's input-order result).
+  const models = await Promise.all(countries.map((country) => loadCountryModel(country.isoCode)))
+  return models.filter((model): model is CountrySitemapModel => model !== null)
 }
 
 /**
@@ -327,6 +325,48 @@ export async function buildSitemapSegment(input: {
     path: entry.path,
     lastModified: entry.lastModified ? entry.lastModified.toISOString() : null,
   }))
+}
+
+/** The full sitemap in one pass (P4-S5): every segment's metadata AND its
+ * URL entries from a single loadModels() walk — the validation layer's
+ * input (one DB pass, not one per segment). */
+export interface SitemapInventory {
+  segments: SitemapSegmentInfo[]
+  /** Segment key `${country}:${language}:${type}` → its URL entries. */
+  entriesBySegment: Map<string, SitemapUrlEntry[]>
+}
+
+export async function loadSitemapInventory(): Promise<SitemapInventory> {
+  const models = await loadModels()
+  const segments: SitemapSegmentInfo[] = []
+  const entriesBySegment = new Map<string, SitemapUrlEntry[]>()
+  for (const model of models) {
+    for (const language of [...model.languages].sort((a, b) => a.code.localeCompare(b.code))) {
+      for (const type of SITEMAP_TYPES) {
+        const rawEntries = segmentEntries(model, language.code, type)
+        if (rawEntries.length === 0) continue
+        const newestLastMod = rawEntries.reduce<Date | null>((newest, entry) => {
+          if (!entry.lastModified) return newest
+          return !newest || entry.lastModified > newest ? entry.lastModified : newest
+        }, null)
+        segments.push({
+          country: model.isoCode,
+          language: language.code,
+          type,
+          urlCount: rawEntries.length,
+          lastModified: newestLastMod ? newestLastMod.toISOString() : null,
+        })
+        entriesBySegment.set(
+          `${model.isoCode}:${language.code}:${type}`,
+          rawEntries.map((entry) => ({
+            path: entry.path,
+            lastModified: entry.lastModified ? entry.lastModified.toISOString() : null,
+          }))
+        )
+      }
+    }
+  }
+  return { segments, entriesBySegment }
 }
 
 // ---------- XML rendering ----------
@@ -403,7 +443,10 @@ export function buildRobotsTxt(origin: string): string {
 
 // ---------- Status summary (the console verification surface) ----------
 
-export async function getSeoStatus(origin: string): Promise<{
+export async function getSeoStatus(
+  origin: string,
+  preloadedSegments?: SitemapSegmentInfo[]
+): Promise<{
   origin: string
   robots: { disallow: string[]; sitemapLine: string }
   sitemap: {
@@ -412,7 +455,7 @@ export async function getSeoStatus(origin: string): Promise<{
     segments: SitemapSegmentInfo[]
   }
 }> {
-  const segments = await listSitemapSegments()
+  const segments = preloadedSegments ?? (await listSitemapSegments())
   return {
     origin,
     robots: {

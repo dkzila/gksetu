@@ -11,7 +11,10 @@
  * §35 (only the country's own languages; canonical fallback labelled
  * honestly), §36 (lifecycle-aware — only VERIFIED units, ACTIVE exams,
  * CURRENT versions, in-effect mappings), §37 (client-agnostic JSON, no HTML
- * fragments — mobile-ready per §39), §38 (public app surface).
+ * fragments — mobile-ready per §39), §38 (public app surface), §16
+ * (P4-S5: structured data generated where valid — WebSite, WebPage,
+ * CollectionPage, BreadcrumbList, Article/LearningResource on knowledge
+ * pages; FAQPage and Quiz land with the P7 QnA/mock-test models).
  */
 import type {
   MappingPriorityPublic,
@@ -38,6 +41,25 @@ export interface PageSeo {
   robots: { index: boolean; follow: boolean; reason: string | null }
   /** W3C date-time of the last substantive change; null when unknown. */
   lastModified: string | null
+}
+
+/**
+ * One schema.org JSON-LD node (P4-S5, §16 "structured data generated where
+ * valid"). URL-bearing fields (`url`, `@id`, `item`, `image`) hold §16 PATHS —
+ * the same origin-agnostic contract as PageSeo (§37): clients resolve them
+ * against their origin at injection time, the validation layer asserts the
+ * contract holds.
+ */
+export type JsonLdNode = { '@type': string | string[] } & Record<string, unknown>
+
+/** The §16 structured-data block every public composition ships (P4-S5). */
+export interface PageStructuredData {
+  /**
+   * The page's JSON-LD graph — injected as one `application/ld+json` script
+   * (`{@context, @graph}`) by whichever client renders the page. Nodes carry
+   * §16 paths per the JsonLdNode contract.
+   */
+  graph: JsonLdNode[]
 }
 
 /** §16 home URL prefix builder input (already country/language resolved). */
@@ -183,6 +205,8 @@ export interface CountryHomepage {
   canonicalUrl: string
   /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
   seo: PageSeo
+  /** §16 structured-data graph (P4-S5) — Organization, WebSite + WebPage. */
+  structuredData: PageStructuredData
   /** §35 language switcher — ONLY this country's configured languages. */
   languages: DiscoveryLanguage[]
   /** §34 GK categories (top-level §13 domains visible in this country). */
@@ -244,6 +268,9 @@ export interface TopicLanding {
   canonicalPath: string
   /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
   seo: PageSeo
+  /** §16 structured-data graph (P4-S5) — Organization, WebSite,
+   * CollectionPage + BreadcrumbList. */
+  structuredData: PageStructuredData
   /** Home → … → self, each entry with its own §16 path (null slug = home). */
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   /** Visible children (§33 clusters) in stable tree order. */
@@ -312,6 +339,10 @@ export interface ExamPage {
    * path), hreflang cluster, robots (historical ?version= reads noindex),
    * lastmod (the shown window's effective date). */
   seo: PageSeo
+  /** §16 structured-data graph (P4-S5) — Organization, WebSite,
+   * CollectionPage + BreadcrumbList (the historical window renders the same
+   * graph — it is served-but-noindex, never a second canonical). */
+  structuredData: PageStructuredData
   /** Home → self, every crumb with its §16 path (null slug = home). */
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   /** §22 syllabus coverage — mapping-bearing branches, full §8 vocabulary
@@ -376,6 +407,9 @@ export interface SyllabusTopicPage {
   canonicalPath: string
   /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
   seo: PageSeo
+  /** §16 structured-data graph (P4-S5) — Organization, WebSite,
+   * CollectionPage + BreadcrumbList (addressable crumbs only). */
+  structuredData: PageStructuredData
   /** §16 exam-page path in the reader's language. */
   examPath: string
   /** §16 topic-hub path (…/gk/{topic}/) — the evergreen internal link. */

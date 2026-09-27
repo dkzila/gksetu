@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P4-S3)
+ * GlobIQ — Foundation Console (P1-S1 → P4-S5)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -153,7 +153,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P4-S4
+            P1-S1 → P4-S5
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -354,7 +354,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Search — §17 product surface + indexing pipeline (P4-S1) ---------- */}
       <SearchSection />
 
-      {/* ---------- SEO infrastructure — §16 sitemap/robots/hreflang (P4-S4) ---------- */}
+      {/* ---------- SEO infrastructure — §16 sitemap/robots/hreflang/structured data (P4-S4/S5) ---------- */}
       <SeoSection />
 
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
@@ -410,7 +410,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P4-S4 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P4-S5 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

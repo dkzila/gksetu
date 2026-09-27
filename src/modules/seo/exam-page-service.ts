@@ -43,6 +43,7 @@ import {
   type ReaderContext,
 } from './composition-helpers'
 import { buildPageSeo } from './page-seo'
+import { buildHubGraph, SITE_NAME } from './structured-data'
 import { SeoError } from './errors'
 import type { ExamPage, ExamPageUnit } from './types'
 import type { ExamPageQuery } from './validation'
@@ -228,6 +229,27 @@ export async function getExamPage(ref: string, query: ExamPageQuery): Promise<Ex
     lastModified: coverage.version ? new Date(coverage.version.effectiveFrom) : null,
   })
 
+  // ---------- §16 structured-data graph (P4-S5) ----------
+  // The exam page is a CollectionPage over the syllabus's required
+  // knowledge. The graph is identical for a historical ?version= read —
+  // served-but-noindex, every URL still the canonical current surface.
+  const structuredData = buildHubGraph({
+    siteName: SITE_NAME,
+    homePath: context.resolution.canonicalUrl,
+    inLanguage: context.languageCode,
+    name: detail.name,
+    selfName: detail.name,
+    description:
+      detail.description ??
+      `${detail.organiser} · ${detail.level} — syllabus coverage, required knowledge and the ranked study list.`,
+    about: detail.name,
+    path: detail.canonicalPath,
+    crumbs: [
+      { name: 'Home', path: context.resolution.canonicalUrl },
+      { name: detail.name, path: examPath(context, detail.slug) },
+    ],
+  })
+
   // ---------- Assembly ----------
   return {
     exam: {
@@ -252,6 +274,7 @@ export async function getExamPage(ref: string, query: ExamPageQuery): Promise<Ex
     versions: startedVersions,
     canonicalPath: detail.canonicalPath,
     seo,
+    structuredData,
     breadcrumb: [
       { slug: null, name: 'Home', path: context.resolution.canonicalUrl },
       { slug: detail.slug, name: detail.name, path: examPath(context, detail.slug) },
