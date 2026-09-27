@@ -177,6 +177,118 @@ export interface TopicLanding {
   stats: { unitCount: number; topicCount: number; examCount: number }
 }
 
+// ---------- GET /api/exams/{ref}/page (§16/§33, P4-S3) ----------
+
+export interface ExamCoverageNode {
+  name: string
+  depth: number
+  priority: number
+  topic: { slug: string; canonicalName: string; label: string; labelLanguage: string } | null
+  mappings: Array<{
+    unit: {
+      slug: string
+      canonicalName: string
+      canonicalSummary: string | null
+      type: string
+      difficulty: string
+    }
+    canonicalPath: string
+    requiredDepth: 'ONE_LINE' | 'FACT' | 'CONCEPT' | 'DETAILED' | 'ANALYTICAL'
+    priority: 'CORE' | 'SUPPORTING' | 'LOW'
+    relevance: 'DIRECT' | 'PARTIAL' | 'CONTEXTUAL'
+    expectedScope: string | null
+    questionLikelihood: 'HIGH' | 'MEDIUM' | 'LOW'
+    effectiveFrom: string | null
+    effectiveTo: string | null
+  }>
+  children: ExamCoverageNode[]
+}
+
+export interface ExamPage {
+  exam: {
+    slug: string
+    name: string
+    code: string
+    organiser: string
+    level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+    description: string | null
+    countryIso: string
+    countryName: string
+  }
+  version: {
+    id: string
+    label: string
+    effectiveFrom: string
+    effectiveTo: string | null
+    isCurrent: boolean
+  } | null
+  versions: Array<{
+    id: string
+    label: string
+    effectiveFrom: string
+    effectiveTo: string | null
+    isCurrent: boolean
+  }>
+  canonicalPath: string
+  breadcrumb: Array<{ slug: string | null; name: string; path: string }>
+  coverage: {
+    unitCount: number
+    mappingCount: number
+    branchCount: number
+    nodes: ExamCoverageNode[]
+  }
+  units: {
+    items: Array<{
+      unit: HomeUnitCard
+      requiredDepth: 'ONE_LINE' | 'FACT' | 'CONCEPT' | 'DETAILED' | 'ANALYTICAL'
+      priority: 'CORE' | 'SUPPORTING' | 'LOW'
+      questionLikelihood: 'HIGH' | 'MEDIUM' | 'LOW'
+      node: { name: string }
+    }>
+    total: number
+  }
+  relatedExams: HomeExamCard[]
+  language: { code: string; name: string; nativeName: string | null }
+}
+
+// ---------- GET /api/exams/{ref}/syllabus/{topic} (§16, P4-S3) ----------
+
+export interface SyllabusTopicPage {
+  exam: {
+    slug: string
+    name: string
+    code: string
+    organiser: string
+    level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+  }
+  version: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null }
+  topic: { slug: string; canonicalName: string; label: string; labelLanguage: string }
+  canonicalPath: string
+  examPath: string
+  topicHubPath: string
+  /** Non-addressable crumbs carry path null (rendered as plain spans). */
+  breadcrumb: Array<{ name: string; path: string | null }>
+  placements: Array<{
+    node: { name: string; priority: number }
+    ancestors: Array<{ name: string }>
+    unitCount: number
+  }>
+  requirements: Array<{
+    unit: HomeUnitCard
+    node: { name: string }
+    requiredDepth: 'ONE_LINE' | 'FACT' | 'CONCEPT' | 'DETAILED' | 'ANALYTICAL'
+    priority: 'CORE' | 'SUPPORTING' | 'LOW'
+    relevance: 'DIRECT' | 'PARTIAL' | 'CONTEXTUAL'
+    questionLikelihood: 'HIGH' | 'MEDIUM' | 'LOW'
+    expectedScope: string | null
+    effectiveFrom: string | null
+    effectiveTo: string | null
+  }>
+  relatedTopics: Array<{ slug: string; label: string; unitCount: number; canonicalPath: string }>
+  stats: { unitCount: number; requirementCount: number; placementCount: number }
+  language: { code: string; name: string; nativeName: string | null }
+}
+
 // ---------- API envelope ----------
 
 export interface Envelope<T> {

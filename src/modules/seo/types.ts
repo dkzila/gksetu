@@ -1,16 +1,25 @@
 /**
- * GlobIQ — SEO module: public-surface DTOs (P4-S2)
+ * GlobIQ — SEO module: public-surface DTOs (P4-S2/P4-S3)
  * Master Plan §33 (SEO landing pages — country GK hubs, evergreen topic
- * pages, topic clusters + internal links), §34 (Homepage Strategy — each
- * country homepage is that country's GK/current-affairs index and discovery
- * hub), §16 (canonical URLs generated from country + language + object
- * identity — never from user input), §14/§15 (explicit country scope
+ * pages, topic clusters + internal links; P4-S3: exam pages and syllabus
+ * pages), §34 (Homepage Strategy — each country homepage is that country's
+ * GK/current-affairs index and discovery hub), §16 (canonical URLs generated
+ * from country + language + object identity — never from user input; the
+ * exam pattern `…/exams/{exam-slug}/` and the syllabus-topic pattern
+ * `…/exams/{exam}/syllabus/{topic}/`), §14/§15 (explicit country scope
  * enforced server-side; COMING_SOON markets browse, never blocked),
  * §35 (only the country's own languages; canonical fallback labelled
  * honestly), §36 (lifecycle-aware — only VERIFIED units, ACTIVE exams,
  * CURRENT versions, in-effect mappings), §37 (client-agnostic JSON, no HTML
  * fragments — mobile-ready per §39), §38 (public app surface).
  */
+import type {
+  MappingPriorityPublic,
+  MappingRelevancePublic,
+  PublicCoverageNode,
+  QuestionLikelihoodPublic,
+  RequiredDepthPublic,
+} from '@/modules/exam-mapping'
 
 /** §16 home URL prefix builder input (already country/language resolved). */
 export type CountryStatusPublic = 'ACTIVE' | 'COMING_SOON'
@@ -224,4 +233,130 @@ export interface TopicLanding {
   relatedTopics: LandingRelatedTopic[]
   /** Subtree counters (units under the whole subtree, visible topics, exams). */
   stats: { unitCount: number; topicCount: number; examCount: number }
+}
+
+// ---------- Exam page + syllabus-topic page (§16/§33, P4-S3) ----------
+
+/**
+ * One entry of the exam page's mapped-units study list: the §22 unit teaser
+ * (quick fact, §16 path, cross-exam count) plus the unit's strongest §8
+ * requirement on the shown version — priority → likelihood → depth; every
+ * anchor stays visible in the coverage tree below.
+ */
+export interface ExamPageUnit {
+  unit: HomepageUnitCard
+  requiredDepth: RequiredDepthPublic
+  priority: MappingPriorityPublic
+  questionLikelihood: QuestionLikelihoodPublic
+  /** The syllabus node anchoring the strongest requirement (§13). */
+  node: { name: string }
+}
+
+/**
+ * GET /api/exams/{ref}/page payload — the §16/§33 exam SEO page composition
+ * (§22 "Exam overview: syllabus coverage"): header, §36 version windows,
+ * the mapping-bearing coverage tree with the full §8 vocabulary, the ranked
+ * single-exam study list and §33 internal links.
+ */
+export interface ExamPage {
+  exam: {
+    slug: string
+    name: string
+    code: string
+    organiser: string
+    level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+    description: string | null
+    countryIso: string
+    countryName: string
+  }
+  /** The shown window — CURRENT by default; an explicitly requested STARTED
+   * version is the §36 historical read. Null when no window has started. */
+  version:
+    | { id: string; label: string; effectiveFrom: string; effectiveTo: string | null; isCurrent: boolean }
+    | null
+  /** §36 selector input — STARTED windows only (future versions are never
+   * public); newest-effective first. */
+  versions: Array<{
+    id: string
+    label: string
+    effectiveFrom: string
+    effectiveTo: string | null
+    isCurrent: boolean
+  }>
+  /** §16 canonical exam path in the reader's language. */
+  canonicalPath: string
+  /** Home → self, every crumb with its §16 path (null slug = home). */
+  breadcrumb: Array<{ slug: string | null; name: string; path: string }>
+  /** §22 syllabus coverage — mapping-bearing branches, full §8 vocabulary
+   * (the requirement layer's public shape, reused verbatim). */
+  coverage: {
+    unitCount: number
+    mappingCount: number
+    branchCount: number
+    nodes: PublicCoverageNode[]
+  }
+  /** The ranked study list (§11 base ranking: priority → likelihood →
+   * freshness → name; capped, total shipped alongside). */
+  units: { items: ExamPageUnit[]; total: number }
+  /** §33 internal links — the reader country's other ACTIVE exams. */
+  relatedExams: HomepageExamCard[]
+  language: { code: string; name: string; nativeName: string | null }
+}
+
+/** One placement of a topic inside the exam's current syllabus tree. */
+export interface SyllabusPlacement {
+  /** The node linking the topic (§13 — the only exam→taxonomy bridge). */
+  node: { name: string; priority: number }
+  /** Ancestor node names, root first — where the node sits in the tree. */
+  ancestors: Array<{ name: string }>
+  /** Units mapped at this node (in-effect on the current version). */
+  unitCount: number
+}
+
+/** One (unit × node) requirement row on the syllabus-topic page. */
+export interface SyllabusRequirement {
+  unit: HomepageUnitCard
+  node: { name: string }
+  requiredDepth: RequiredDepthPublic
+  priority: MappingPriorityPublic
+  relevance: MappingRelevancePublic
+  questionLikelihood: QuestionLikelihoodPublic
+  expectedScope: string | null
+  effectiveFrom: string | null
+  effectiveTo: string | null
+}
+
+/**
+ * GET /api/exams/{ref}/syllabus/{topic} payload — the §16 syllabus-topic
+ * page (`…/exams/{exam}/syllabus/{topic}/`, "indexable when valuable"):
+ * where a canonical topic sits in the exam's CURRENT syllabus, the units
+ * required there with the full §8 vocabulary, and §33 internal links to the
+ * exam's other syllabus topics + the evergreen topic hub.
+ */
+export interface SyllabusTopicPage {
+  exam: {
+    slug: string
+    name: string
+    code: string
+    organiser: string
+    level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+  }
+  /** The CURRENT version whose syllabus is shown — this is an SEO surface;
+   * historical reads stay on the exam page's `?version=` coverage (§36). */
+  version: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null }
+  topic: { slug: string; canonicalName: string; label: string; labelLanguage: string }
+  /** §16 syllabus-topic path (…/exams/{exam}/syllabus/{topic}/). */
+  canonicalPath: string
+  /** §16 exam-page path in the reader's language. */
+  examPath: string
+  /** §16 topic-hub path (…/gk/{topic}/) — the evergreen internal link. */
+  topicHubPath: string
+  /** Home → exam → Syllabus → self; non-addressable crumbs carry path null. */
+  breadcrumb: Array<{ name: string; path: string | null }>
+  placements: SyllabusPlacement[]
+  requirements: SyllabusRequirement[]
+  /** §33 internal links — the exam's other syllabus topics (current version). */
+  relatedTopics: Array<{ slug: string; label: string; unitCount: number; canonicalPath: string }>
+  stats: { unitCount: number; requirementCount: number; placementCount: number }
+  language: { code: string; name: string; nativeName: string | null }
 }

@@ -357,6 +357,11 @@ interface KnowledgePageViewProps {
   country: string
   language: string
   onOpenUnit: (slug: string) => void
+  /**
+   * P4-S3: opens the §16 exam page in-app; when absent the exam rows stay
+   * path displays (the console surface keeps its current behaviour).
+   */
+  onOpenExam?: (slug: string) => void
   onSwitchLanguage: (code: string) => void
 }
 
@@ -365,6 +370,7 @@ export function KnowledgePageView({
   country,
   language,
   onOpenUnit,
+  onOpenExam,
   onSwitchLanguage,
 }: KnowledgePageViewProps) {
   const [page, setPage] = useState<KnowledgePageData | null>(null)
@@ -699,12 +705,24 @@ export function KnowledgePageView({
                     {requirement.expectedScope}
                   </p>
                 )}
-                <code
-                  className="mt-2 inline-block break-all rounded bg-zinc-100 px-2 py-1 text-[11px] text-zinc-600 sm:break-normal"
-                  title="§16 canonical exam-page path"
-                >
-                  {requirement.examPath}
-                </code>
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                  <code
+                    className="inline-block break-all rounded bg-zinc-100 px-2 py-1 text-[11px] text-zinc-600 sm:break-normal"
+                    title="§16 canonical exam-page path"
+                  >
+                    {requirement.examPath}
+                  </code>
+                  {onOpenExam && (
+                    <button
+                      type="button"
+                      onClick={() => onOpenExam(requirement.exam.slug)}
+                      className="inline-flex min-h-[36px] items-center gap-1 rounded-md px-2 text-xs font-medium text-emerald-700 hover:underline"
+                    >
+                      Open the exam page
+                      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </button>
+                  )}
+                </div>
               </li>
             ))}
           </ul>

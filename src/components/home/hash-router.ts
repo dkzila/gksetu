@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §16-mirroring hash router (P4-S2)
+ * GlobIQ — the §16-mirroring hash router (P4-S2, extended P4-S3)
  *
  * The public URL space (Master Plan §16 / Appendix B) is:
  *   India default English   /                       → #/
@@ -10,6 +10,9 @@
  *   Other country + lang    /{country}/{language}/  → #/fr/… (per config)
  *   Topic hub               …/gk/{topic}/           → #/hi/gk/polity-governance/
  *   Knowledge page          …/gk/{topic}/{unit}/    → #/gk/fundamental-rights/article-32/
+ *   Exam page               …/exams/{exam}/         → #/exams/upsc-civil-services/
+ *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
+ *                                                   → #/exams/upsc-civil-services/syllabus/constitutional-framework/
  *
  * Inside this sandbox the browser path must stay `/`, so the canonical URL
  * space is mirrored AFTER the hash — the same segment grammar, the same
@@ -23,23 +26,32 @@
  * scrolled to the account section — the console keeps every verification
  * surface from P1→P4 reachable.
  *
- * Topic-unit pagination is part of the addressable state (`?page=2` after
- * the topic path) — derived from the hash, never duplicated in component
- * state, so the browser back button walks pages and a topic switch always
- * starts at page 1 (§37).
+ * Addressable state derives from the hash (never duplicated in component
+ * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
+ * page's §36 historical window — the browser back button walks both, and
+ * every topic/exam switch starts clean.
  */
 import { useEffect, useState } from 'react'
 
 import type { ApiCountry } from './types'
 
+/** §36 version references are canonical ids (cuid). */
+const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
+
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
   unitSlug: string | null
+  /** The exam whose page (or syllabus topic) is open. */
+  examSlug: string | null
+  /** The syllabus topic under the exam view (§16 …/exams/{exam}/syllabus/{topic}/). */
+  syllabusTopicSlug: string | null
   /** Addressable topic-units page (≥1; only meaningful on the topic view). */
   page: number
+  /** Addressable §36 historical window (exam view only). */
+  versionId: string | null
   /** Console scroll target (e.g. 'account' for the header Sign-in anchor). */
   scrollTo: string | null
 }
@@ -53,16 +65,21 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     language: defaultCountry?.defaultLanguage.code ?? 'en',
     topicSlug: null,
     unitSlug: null,
+    examSlug: null,
+    syllabusTopicSlug: null,
     page: 1,
+    versionId: null,
     scrollTo: null,
   }
   if (!defaultCountry) return fallback
 
-  // Addressable query after the path (?page=N for topic units).
+  // Addressable query after the path (?page=N topic units, ?version= exam windows).
   const [pathPart, queryPart] = hash.split('?')
   const queryParams = new URLSearchParams(queryPart ?? '')
   const pageRaw = Number.parseInt(queryParams.get('page') ?? '1', 10)
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1
+  const versionParam = queryParams.get('version') ?? ''
+  const versionId = VERSION_PATTERN.test(versionParam) ? versionParam : null
 
   const segments = pathPart.replace(/^#\/?/, '').split('/').filter(Boolean)
   if (segments.length === 0) return fallback
@@ -82,7 +99,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   // First segment: a non-default country slug, or the default country's
   // non-default language (§16 — the default market's slug never appears).
   const first = segments[0]
-  if (first !== 'gk') {
+  if (first !== 'gk' && first !== 'exams') {
     const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
     const defaultMarketLanguage = defaultCountry.languages.find(
       (entry) => entry.code === first && entry.code !== defaultCountry.defaultLanguage.code
@@ -98,7 +115,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
 
   // Language segment for the resolved country (non-default only, §35).
   const next = segments[index]
-  if (next && next !== 'gk') {
+  if (next && next !== 'gk' && next !== 'exams') {
     const languageMatch = country.languages.find(
       (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
     )
@@ -113,28 +130,86 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     const topicSlug = segments[index + 1] ?? null
     const unitSlug = segments[index + 2] ?? null
     if (topicSlug && unitSlug) {
-      return { view: 'unit', countryIso: country.isoCode, language, topicSlug, unitSlug, page: 1, scrollTo: null }
+      return {
+        view: 'unit',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        page: 1,
+        versionId: null,
+        scrollTo: null,
+      }
     }
     if (topicSlug) {
-      return { view: 'topic', countryIso: country.isoCode, language, topicSlug, unitSlug: null, page, scrollTo: null }
+      return {
+        view: 'topic',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        page,
+        versionId: null,
+        scrollTo: null,
+      }
+    }
+  }
+
+  // Content path: /exams/{exam}/ and /exams/{exam}/syllabus/{topic}/ (§16).
+  if (segments[index] === 'exams') {
+    const examSlug = segments[index + 1] ?? null
+    if (examSlug && segments[index + 2] === 'syllabus' && segments[index + 3]) {
+      return {
+        view: 'syllabus',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        examSlug,
+        syllabusTopicSlug: segments[index + 3],
+        page: 1,
+        versionId: null,
+        scrollTo: null,
+      }
+    }
+    if (examSlug) {
+      return {
+        view: 'exam',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        examSlug,
+        syllabusTopicSlug: null,
+        page: 1,
+        versionId,
+        scrollTo: null,
+      }
     }
   }
 
   return { ...fallback, countryIso: country.isoCode, language }
 }
 
+/** The route shape buildHash/navigateHash accept (view + addressable state). */
+export interface RouteInput {
+  view: AppRoute['view']
+  countryIso: string
+  language: string
+  topicSlug: string | null
+  unitSlug: string | null
+  examSlug?: string | null
+  syllabusTopicSlug?: string | null
+  page?: number
+  versionId?: string | null
+}
+
 /** Builds the §16-shaped hash for a route (defaults omitted, §16). */
-export function buildHash(
-  route: {
-    view: AppRoute['view']
-    countryIso: string
-    language: string
-    topicSlug: string | null
-    unitSlug: string | null
-    page?: number
-  },
-  config: ApiCountry[]
-): string {
+export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'console') return '#/console'
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '#/'
@@ -147,28 +222,28 @@ export function buildHash(
     segments.push('gk', route.topicSlug)
   } else if (route.view === 'unit' && route.topicSlug && route.unitSlug) {
     segments.push('gk', route.topicSlug, route.unitSlug)
+  } else if (route.view === 'exam' && route.examSlug) {
+    segments.push('exams', route.examSlug)
+  } else if (route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug) {
+    segments.push('exams', route.examSlug, 'syllabus', route.syllabusTopicSlug)
   }
 
   const path = segments.length === 0 ? '#/' : `#/${segments.join('/')}/`
-  // Addressable pagination — only when explicitly beyond page 1.
+
+  // Addressable state — only when explicitly beyond the defaults.
+  const params = new URLSearchParams()
   if (route.view === 'topic' && route.page && route.page > 1) {
-    return `${path}?page=${route.page}`
+    params.set('page', String(route.page))
   }
-  return path
+  if (route.view === 'exam' && route.versionId && VERSION_PATTERN.test(route.versionId)) {
+    params.set('version', route.versionId)
+  }
+  const query = params.toString()
+  return query ? `${path}?${query}` : path
 }
 
 /** Programmatic navigation — sets the hash; the hashchange listener re-parses. */
-export function navigateHash(
-  route: {
-    view: AppRoute['view']
-    countryIso: string
-    language: string
-    topicSlug: string | null
-    unitSlug: string | null
-    page?: number
-  },
-  config: ApiCountry[]
-): void {
+export function navigateHash(route: RouteInput, config: ApiCountry[]): void {
   const next = buildHash(route, config)
   if (window.location.hash === next) {
     // Same hash never fires hashchange — force a re-parse (idempotent nav).

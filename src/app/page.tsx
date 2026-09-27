@@ -1,15 +1,18 @@
 'use client'
 
 /**
- * GlobIQ — App Shell (P4-S2)
+ * GlobIQ — App Shell (P4-S2, extended P4-S3)
  *
  * The public product surface (§38): the §34 country homepage at the §16 root
- * default, the §33 topic landing pages and the §22 knowledge pages — with
- * the §15 country switcher and §35 language switcher always available in the
- * header, and the foundation console (every prior session's verification
- * surface) one click away. In-app navigation mirrors the §16 URL grammar
- * after the hash (#/hi/gk/polity-governance/…) — one grammar, one source of
- * URL truth, driven by the live country/language configuration (§35).
+ * default, the §33 topic landing pages, the §22 knowledge pages, and — from
+ * P4-S3 — the §16 exam pages (…/exams/{exam}/) and syllabus-topic pages
+ * (…/exams/{exam}/syllabus/{topic}/) — with the §15 country switcher and §35
+ * language switcher always available in the header, and the foundation
+ * console (every prior session's verification surface) one click away.
+ * In-app navigation mirrors the §16 URL grammar after the hash
+ * (#/hi/gk/polity-governance/…, #/exams/upsc-civil-services/…) — one grammar,
+ * one source of URL truth, driven by the live country/language configuration
+ * (§35).
  */
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -34,7 +37,9 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { PLATFORM } from '@/config/platform'
 import { HeaderAuth } from '@/components/auth/header-auth'
 import { ConsoleView } from '@/components/home/console-view'
+import { ExamView } from '@/components/home/exam-view'
 import { HomepageView } from '@/components/home/homepage-view'
+import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
@@ -105,6 +110,67 @@ export default function GlobIQApp() {
     [config, route]
   )
 
+  // §16 exam page (…/exams/{slug}/) — P4-S3.
+  const openExam = useCallback(
+    (slug: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'exam',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug: slug,
+          syllabusTopicSlug: null,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // §16 syllabus-topic page (…/exams/{exam}/syllabus/{topic}/) — P4-S3.
+  const openExamSyllabus = useCallback(
+    (examSlug: string, syllabusTopicSlug: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'syllabus',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug,
+          syllabusTopicSlug,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // §36 historical window — addressable ?version= on the exam view.
+  const switchExamVersion = useCallback(
+    (versionId: string | null) => {
+      if (!config || !route || !route.examSlug) return
+      navigateHash(
+        {
+          view: 'exam',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug: route.examSlug,
+          syllabusTopicSlug: null,
+          versionId,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
   // Addressable pagination: the page lives in the hash (?page=N), so the
   // back button walks pages and every topic switch starts clean at page 1.
   const goTopicPage = useCallback(
@@ -135,7 +201,10 @@ export default function GlobIQApp() {
           language: code,
           topicSlug: route.topicSlug,
           unitSlug: route.unitSlug,
+          examSlug: route.examSlug,
+          syllabusTopicSlug: route.syllabusTopicSlug,
           page: route.page,
+          versionId: route.versionId,
         },
         config
       )
@@ -210,7 +279,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 4 · Session 2 — Homepages &amp; Landing Pages
+                Phase 4 · Session 3 — Exam &amp; Syllabus SEO Pages
               </Badge>
               <HeaderAuth />
             </div>
@@ -316,6 +385,7 @@ export default function GlobIQApp() {
             onPageChange={goTopicPage}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
+            onOpenExam={openExam}
             onGoHome={goHome}
           />
         ) : route.view === 'unit' && route.topicSlug && route.unitSlug ? (
@@ -327,7 +397,34 @@ export default function GlobIQApp() {
             language={route.language}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
+            onOpenExam={openExam}
             onSwitchLanguage={switchLanguage}
+          />
+        ) : route.view === 'exam' && route.examSlug ? (
+          <ExamView
+            key={`${route.countryIso}:${route.language}:${route.examSlug}`}
+            examSlug={route.examSlug}
+            countryIso={route.countryIso}
+            language={route.language}
+            versionId={route.versionId}
+            onVersionChange={switchExamVersion}
+            onOpenUnit={openUnit}
+            onOpenExam={openExam}
+            onOpenExamSyllabus={openExamSyllabus}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug ? (
+          <SyllabusView
+            key={`${route.countryIso}:${route.language}:${route.examSlug}:${route.syllabusTopicSlug}`}
+            examSlug={route.examSlug}
+            topicSlug={route.syllabusTopicSlug}
+            countryIso={route.countryIso}
+            language={route.language}
+            onOpenExam={openExam}
+            onOpenUnit={openUnit}
+            onOpenExamSyllabus={openExamSyllabus}
+            onOpenTopic={openTopic}
+            onGoHome={goHome}
           />
         ) : (
           <HomepageView
@@ -336,6 +433,7 @@ export default function GlobIQApp() {
             language={route.language}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
+            onOpenExam={openExam}
             onSwitchLanguage={switchLanguage}
             onSignIn={goSignIn}
           />

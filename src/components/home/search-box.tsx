@@ -1,14 +1,15 @@
 'use client'
 
 /**
- * GlobIQ — homepage search box (P4-S2)
+ * GlobIQ — homepage search box (P4-S2, extended P4-S3)
  *
  * The §34 homepage's search entry: the compact §17 product surface. Queries
  * GET /api/search in the reader's country/language, shows the top results
  * with their type badges and §16 canonical paths, and routes in-app: topic
- * results open the topic landing, unit results open the §22 knowledge page.
- * The full §17 regression console (demo chips, filters, engine health,
- * admin rebuild) stays on the foundation console's SearchSection.
+ * results open the topic landing, unit results open the §22 knowledge page,
+ * and exam results open the §16 exam page (P4-S3). The full §17 regression
+ * console (demo chips, filters, engine health, admin rebuild) stays on the
+ * foundation console's SearchSection.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Loader2, Search, X } from 'lucide-react'
@@ -43,9 +44,10 @@ export interface SearchBoxProps {
   language: string
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  onOpenExam: (slug: string) => void
 }
 
-export function SearchBox({ country, language, onOpenTopic, onOpenUnit }: SearchBoxProps) {
+export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenExam }: SearchBoxProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchItem[] | null>(null)
   const [total, setTotal] = useState(0)
@@ -103,12 +105,15 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit }: Search
   const openResult = (item: SearchItem) => {
     const segments = item.urlPath.split('/').filter(Boolean)
     const gkIndex = segments.indexOf('gk')
+    const examsIndex = segments.indexOf('exams')
     if (item.objectType === 'TOPIC' && gkIndex !== -1 && segments[gkIndex + 1]) {
       onOpenTopic(segments[gkIndex + 1])
     } else if (item.objectType === 'KNOWLEDGE_UNIT' && gkIndex !== -1 && segments[gkIndex + 2]) {
       onOpenUnit(segments[gkIndex + 1], segments[gkIndex + 2])
+    } else if (item.objectType === 'EXAM' && examsIndex !== -1 && segments[examsIndex + 1]) {
+      // §16 exam pages — in-app navigation since P4-S3.
+      onOpenExam(segments[examsIndex + 1])
     }
-    // Exam results display their §16 path — the exam/syllabus SEO pages are P4-S3.
   }
 
   return (
@@ -180,7 +185,6 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit }: Search
         <div className="mt-3 rounded-lg border border-zinc-200 bg-white shadow-sm">
           <ul className="divide-y divide-zinc-100">
             {results.map((item) => {
-              const openable = item.objectType === 'TOPIC' || item.objectType === 'KNOWLEDGE_UNIT'
               const content = (
                 <div className="flex min-h-[44px] items-center justify-between gap-3 px-3 py-2.5">
                   <div className="min-w-0">
@@ -211,22 +215,13 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit }: Search
               )
               return (
                 <li key={`${item.objectType}:${item.ref}`}>
-                  {openable ? (
-                    <button
-                      type="button"
-                      onClick={() => openResult(item)}
-                      className="w-full text-left transition-colors hover:bg-emerald-50/60 focus-visible:bg-emerald-50/60 focus-visible:outline-none"
-                    >
-                      {content}
-                    </button>
-                  ) : (
-                    <div
-                      className="cursor-default"
-                      title="Exam pages arrive with the exam/syllabus SEO surface (P4-S3)"
-                    >
-                      {content}
-                    </div>
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => openResult(item)}
+                    className="w-full text-left transition-colors hover:bg-emerald-50/60 focus-visible:bg-emerald-50/60 focus-visible:outline-none"
+                  >
+                    {content}
+                  </button>
                 </li>
               )
             })}

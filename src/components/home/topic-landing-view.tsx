@@ -43,6 +43,7 @@ export interface TopicLandingViewProps {
   onPageChange: (page: number) => void
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  onOpenExam: (slug: string) => void
   onGoHome: () => void
 }
 
@@ -56,6 +57,7 @@ export function TopicLandingView({
   onPageChange,
   onOpenTopic,
   onOpenUnit,
+  onOpenExam,
   onGoHome,
 }: TopicLandingViewProps) {
   const [landing, setLanding] = useState<TopicLanding | null>(null)
@@ -364,29 +366,43 @@ export function TopicLandingView({
         ) : (
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {landing.exams.items.map((exam) => (
-              <Card key={exam.slug} className="border-zinc-200 bg-white shadow-sm">
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-sm leading-snug">{exam.name}</CardTitle>
-                    <Badge
-                      variant="outline"
-                      className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
-                    >
-                      {exam.level.toLowerCase()}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-xs">
-                    {exam.organiser} · {exam.code}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-1">
-                  <p className="text-xs text-zinc-500">
-                    <strong className="font-semibold text-zinc-700">{exam.mappedUnitCount}</strong>{' '}
-                    {exam.mappedUnitCount === 1 ? 'unit' : 'units'} from this topic in the current
-                    syllabus
-                  </p>
-                  <p className="font-mono text-[10px] text-zinc-300">{exam.canonicalPath}</p>
-                </CardContent>
+              <Card
+                key={exam.slug}
+                className="group cursor-pointer border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+              >
+                <button
+                  type="button"
+                  onClick={() => onOpenExam(exam.slug)}
+                  className="h-full w-full text-left"
+                  aria-label={`Open the ${exam.name} page`}
+                >
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
+                        {exam.name}
+                      </CardTitle>
+                      <Badge
+                        variant="outline"
+                        className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
+                      >
+                        {exam.level.toLowerCase()}
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-xs">
+                      {exam.organiser} · {exam.code}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-1">
+                    <p className="text-xs text-zinc-500">
+                      <strong className="font-semibold text-zinc-700">{exam.mappedUnitCount}</strong>{' '}
+                      {exam.mappedUnitCount === 1 ? 'unit' : 'units'} from this topic in the current
+                      syllabus
+                    </p>
+                    <p className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
+                      {exam.canonicalPath}
+                    </p>
+                  </CardContent>
+                </button>
               </Card>
             ))}
           </div>

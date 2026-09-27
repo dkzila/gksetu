@@ -1,9 +1,9 @@
 /**
- * GlobIQ — SEO module: typed errors (P4-S2)
+ * GlobIQ — SEO module: typed errors (P4-S2/P4-S3)
  * Master Plan §37 (explicit, actionable errors with stable codes — mapped to
- * HTTP by the route handlers). The composition services surface locale and
- * taxonomy failures as SEO-scoped codes so a public client never sees a raw
- * upstream error (§37: no leaked internals).
+ * HTTP by the route handlers). The composition services surface locale,
+ * taxonomy and exam failures as SEO-scoped codes so a public client never
+ * sees a raw upstream error (§37: no leaked internals).
  */
 
 export type SeoErrorCode =
@@ -12,6 +12,12 @@ export type SeoErrorCode =
   | 'TOPIC_NOT_VISIBLE'
   | 'HOMEPAGE_FAILED'
   | 'LANDING_FAILED'
+  | 'EXAM_NOT_FOUND'
+  | 'EXAM_VERSION_NOT_FOUND'
+  | 'EXAM_VERSION_NOT_STARTED'
+  | 'EXAM_PAGE_FAILED'
+  | 'SYLLABUS_TOPIC_NOT_FOUND'
+  | 'SYLLABUS_PAGE_FAILED'
 
 const ERROR_STATUS: Record<SeoErrorCode, number> = {
   COUNTRY_NOT_FOUND: 404,
@@ -19,6 +25,12 @@ const ERROR_STATUS: Record<SeoErrorCode, number> = {
   TOPIC_NOT_VISIBLE: 404,
   HOMEPAGE_FAILED: 500,
   LANDING_FAILED: 500,
+  EXAM_NOT_FOUND: 404,
+  EXAM_VERSION_NOT_FOUND: 404,
+  EXAM_VERSION_NOT_STARTED: 404,
+  EXAM_PAGE_FAILED: 500,
+  SYLLABUS_TOPIC_NOT_FOUND: 404,
+  SYLLABUS_PAGE_FAILED: 500,
 }
 
 export class SeoError extends Error {

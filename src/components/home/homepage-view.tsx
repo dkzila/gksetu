@@ -57,6 +57,7 @@ export interface HomepageViewProps {
   language: string
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  onOpenExam: (slug: string) => void
   onSwitchLanguage: (code: string) => void
   onSignIn: () => void
 }
@@ -68,6 +69,7 @@ export function HomepageView({
   language,
   onOpenTopic,
   onOpenUnit,
+  onOpenExam,
   onSwitchLanguage,
   onSignIn,
 }: HomepageViewProps) {
@@ -218,6 +220,7 @@ export function HomepageView({
           language={language}
           onOpenTopic={onOpenTopic}
           onOpenUnit={onOpenUnit}
+          onOpenExam={onOpenExam}
         />
 
         {/* §35 language switcher — only this country's languages */}
@@ -428,38 +431,52 @@ export function HomepageView({
         ) : (
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {homepage.exams.items.map((exam) => (
-              <Card key={exam.slug} className="border-zinc-200 bg-white shadow-sm">
-                <CardHeader className="pb-2">
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-sm leading-snug">{exam.name}</CardTitle>
-                    <Badge
-                      variant="outline"
-                      className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
-                    >
-                      {exam.level.toLowerCase()}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-xs">
-                    {exam.organiser} · {exam.code}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  {exam.currentVersion ? (
-                    <div className="flex flex-wrap items-center gap-2 text-xs">
-                      <Badge variant="secondary" className="font-normal">
-                        <Clock3 className="mr-1 h-3 w-3" aria-hidden="true" />
-                        {exam.currentVersion.label}
+              <Card
+                key={exam.slug}
+                className="group cursor-pointer border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+              >
+                <button
+                  type="button"
+                  onClick={() => onOpenExam(exam.slug)}
+                  className="h-full w-full text-left"
+                  aria-label={`Open the ${exam.name} page`}
+                >
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
+                        {exam.name}
+                      </CardTitle>
+                      <Badge
+                        variant="outline"
+                        className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
+                      >
+                        {exam.level.toLowerCase()}
                       </Badge>
-                      <span className="text-zinc-500">
-                        {exam.mappingCount} mapped{' '}
-                        {exam.mappingCount === 1 ? 'requirement' : 'requirements'}
-                      </span>
                     </div>
-                  ) : (
-                    <p className="text-xs text-zinc-400">No syllabus version in effect yet.</p>
-                  )}
-                  <p className="font-mono text-[10px] text-zinc-300">{exam.canonicalPath}</p>
-                </CardContent>
+                    <CardDescription className="text-xs">
+                      {exam.organiser} · {exam.code}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    {exam.currentVersion ? (
+                      <div className="flex flex-wrap items-center gap-2 text-xs">
+                        <Badge variant="secondary" className="font-normal">
+                          <Clock3 className="mr-1 h-3 w-3" aria-hidden="true" />
+                          {exam.currentVersion.label}
+                        </Badge>
+                        <span className="text-zinc-500">
+                          {exam.mappingCount} mapped{' '}
+                          {exam.mappingCount === 1 ? 'requirement' : 'requirements'}
+                        </span>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-zinc-400">No syllabus version in effect yet.</p>
+                    )}
+                    <p className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
+                      {exam.canonicalPath}
+                    </p>
+                  </CardContent>
+                </button>
               </Card>
             ))}
           </div>

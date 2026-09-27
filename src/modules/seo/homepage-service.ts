@@ -18,26 +18,21 @@
  */
 import { db } from '@/lib/db'
 import { getPublicTopic, getPublicTree, TaxonomyError } from '@/modules/taxonomy'
-import { mappingInEffect } from '@/modules/exam-mapping'
 
 import {
+  composeExamCards,
   composeUnitCards,
-  examPath,
   flattenTree,
-  isCurrentVersion,
   loadUnitCountByTopic,
   resolveReaderContext,
   subtreeCounts,
   topicHubPath,
   visibleUnitsWhere,
-  type ReaderContext,
 } from './composition-helpers'
-import { SeoError } from './errors'
 import type {
   CountryHomepage,
   DiscoveryLanguage,
   HomepageCategory,
-  HomepageExamCard,
   HomepageTopicCard,
 } from './types'
 
@@ -148,7 +143,9 @@ export async function getCountryHomepage(input: {
     }))
 
   // ---------- §34 exams — the country's ACTIVE exams, CURRENT versions (§36) ----------
-  const exams = await composeHomepageExams(context)
+  // P4-S3: the card composition moved to composition-helpers (composeExamCards)
+  // — the §16 exam pages reuse it for their related-exam links.
+  const exams = await composeExamCards(context, { limit: EXAM_LIMIT })
 
   // ---------- §34 popular knowledge — §22 quick-fact resolution per card ----------
   const visibleTopicIds = flat.map((entry) => entry.node.id)
@@ -203,88 +200,5 @@ export async function getCountryHomepage(input: {
       units: totalVisibleUnits,
       exams: exams.available ? exams.items.length : 0,
     },
-  }
-}
-
-// ---------- §34 exam directory ----------
-
-/**
- * The homepage exam directory: the country's ACTIVE exams with their CURRENT
- * §36 version and §8 in-effect mapping counts. COMING_SOON markets get the
- * quiet state (exam content launches with the market — §14/§38); an ACTIVE
- * country with no exams gets an honest empty list.
- */
-async function composeHomepageExams(context: ReaderContext): Promise<CountryHomepage['exams']> {
-  if (!context.countryActive) {
-    return { available: false, reason: 'COUNTRY_COMING_SOON', items: [] }
-  }
-
-  const examRows = await db.exam.findMany({
-    where: { countryId: context.countryRow.id, status: 'ACTIVE' },
-    include: {
-      versions: { select: { id: true, label: true, effectiveFrom: true, effectiveTo: true } },
-    },
-    orderBy: [{ name: 'asc' }, { slug: 'asc' }], // deterministic (§37)
-    take: EXAM_LIMIT,
-  })
-
-  // CURRENT version per exam (§36 — the version effective today).
-  const currentVersionByExam = new Map<
-    string,
-    { id: string; label: string; effectiveFrom: Date }
-  >()
-  for (const exam of examRows) {
-    const current = exam.versions
-      .filter(isCurrentVersion)
-      .sort((a, b) => b.effectiveFrom.getTime() - a.effectiveFrom.getTime())[0]
-    if (current) {
-      currentVersionByExam.set(exam.id, {
-        id: current.id,
-        label: current.label,
-        effectiveFrom: current.effectiveFrom,
-      })
-    }
-  }
-
-  // §8 in-effect mapping counts on those CURRENT versions (batched).
-  const currentVersionIds = [...currentVersionByExam.values()].map((version) => version.id)
-  const mappingCounts = new Map<string, number>()
-  if (currentVersionIds.length > 0) {
-    const mappings = await db.examMapping.findMany({
-      where: { syllabusNode: { examVersionId: { in: currentVersionIds } } },
-      select: {
-        effectiveFrom: true,
-        effectiveTo: true,
-        syllabusNode: { select: { examVersionId: true } },
-      },
-    })
-    for (const mapping of mappings) {
-      if (mappingInEffect(mapping, false)) {
-        mappingCounts.set(
-          mapping.syllabusNode.examVersionId,
-          (mappingCounts.get(mapping.syllabusNode.examVersionId) ?? 0) + 1
-        )
-      }
-    }
-  }
-
-  return {
-    available: true,
-    reason: null,
-    items: examRows.map<HomepageExamCard>((exam) => {
-      const current = currentVersionByExam.get(exam.id) ?? null
-      return {
-        slug: exam.slug,
-        name: exam.name,
-        code: exam.code,
-        organiser: exam.organiser,
-        level: exam.level,
-        currentVersion: current
-          ? { label: current.label, effectiveFrom: current.effectiveFrom.toISOString() }
-          : null,
-        mappingCount: current ? mappingCounts.get(current.id) ?? 0 : 0,
-        canonicalPath: examPath(context, exam.slug),
-      }
-    }),
   }
 }

@@ -34,6 +34,7 @@ export {
   toMappingErrorResponse,
   mappingEditability,
   mappingInEffect,
+  resolveTopicLabels,
   getAdminVersionMappings,
   searchUnitsForMapping,
   createExamMapping,

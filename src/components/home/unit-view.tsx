@@ -1,14 +1,15 @@
 'use client'
 
 /**
- * GlobIQ — Unit View (P4-S2)
+ * GlobIQ — Unit View (P4-S2, extended P4-S3)
  *
  * The in-app §22 knowledge page: the existing P2-S5/P3-S5 reader component
  * (KnowledgePageView) wrapped in the app chrome — a back-to-topic bar and
- * the §16 canonical path. Reached from homepage/landing/search cards via
- * the hash router (#/gk/{topic}/{unit}/) and from the reader's own related
- * concepts; `onOpenUnit` resolves the target unit's topic first (the §16
- * path needs the topic segment) through the public unit detail API.
+ * the §16 canonical path. Reached from homepage/landing/search/exam cards
+ * via the hash router (#/gk/{topic}/{unit}/) and from the reader's own
+ * related concepts; `onOpenUnit` resolves the target unit's topic first (the
+ * §16 path needs the topic segment) through the public unit detail API.
+ * From P4-S3 the exam-coverage panel's rows open the §16 exam page in-app.
  */
 import { ArrowLeft } from 'lucide-react'
 
@@ -24,6 +25,7 @@ export interface UnitViewProps {
   language: string
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  onOpenExam: (slug: string) => void
   onSwitchLanguage: (code: string) => void
 }
 
@@ -39,6 +41,7 @@ export function UnitView({
   language,
   onOpenTopic,
   onOpenUnit,
+  onOpenExam,
   onSwitchLanguage,
 }: UnitViewProps) {
   // The topic of a related unit opened from inside the reader is resolved
@@ -84,6 +87,7 @@ export function UnitView({
         country={country}
         language={language}
         onOpenUnit={(slug) => void handleOpenUnit(slug)}
+        onOpenExam={onOpenExam}
         onSwitchLanguage={onSwitchLanguage}
       />
     </div>

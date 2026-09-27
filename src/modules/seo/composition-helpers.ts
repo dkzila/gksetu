@@ -1,13 +1,14 @@
 /**
- * GlobIQ — SEO module: shared composition helpers (P4-S2, internal)
+ * GlobIQ — SEO module: shared composition helpers (P4-S2/P4-S3, internal)
  *
- * The primitives both discovery compositions (§34 homepage, §33 topic
- * landing) share: reader-context resolution (§14/§35), visible-tree
- * flattening with §16 path builders, VERIFIED unit-count rollups (§14 scope),
- * the §22 quick-fact card resolution (§35 honest fallback), §8 exam-count
- * aggregation (identical liveness to the requirement layer via
- * `mappingInEffect` + `windowContains`), and the COMING_SOON quiet rule
- * (§14/§38). Internal file — not part of the module's public interface (§28).
+ * The primitives the discovery compositions (§34 homepage, §33 topic
+ * landing, P4-S3 §16 exam page + syllabus-topic page) share: reader-context
+ * resolution (§14/§35), visible-tree flattening with §16 path builders,
+ * VERIFIED unit-count rollups (§14 scope), the §22 quick-fact card resolution
+ * (§35 honest fallback), §8 exam-card aggregation (identical liveness to the
+ * requirement layer via `mappingInEffect` + `windowContains`), and the
+ * COMING_SOON quiet rule (§14/§38). Internal file — not part of the module's
+ * public interface (§28).
  */
 import type { KnowledgeUnit } from '@prisma/client'
 
@@ -24,7 +25,7 @@ import { windowContains } from '@/modules/exams-syllabus'
 import { mappingInEffect } from '@/modules/exam-mapping'
 
 import { SeoError } from './errors'
-import type { HomepageUnitCard } from './types'
+import type { ExamsSection, HomepageExamCard, HomepageUnitCard } from './types'
 
 // ---------- Reader context ----------
 
@@ -180,6 +181,20 @@ export function examPath(context: ReaderContext, examSlug: string): string {
   )
 }
 
+/** §16 syllabus-topic path (…/exams/{exam}/syllabus/{topic}/). */
+export function syllabusTopicPath(
+  context: ReaderContext,
+  examSlug: string,
+  topicSlug: string
+): string {
+  return buildCanonicalUrl(
+    { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
+    { code: context.languageCode },
+    context.defaultLanguageCode,
+    ['exams', examSlug, 'syllabus', topicSlug]
+  )
+}
+
 // ---------- Unit cards (§34 popular knowledge / §33 landing units) ----------
 
 /**
@@ -282,5 +297,97 @@ export function visibleUnitsWhere(topicIds: string[], countryId: string) {
     topicId: { in: topicIds },
     status: 'VERIFIED' as const,
     OR: [{ scope: 'GLOBAL' as const }, { countryId }],
+  }
+}
+
+// ---------- §34/§33 exam-card directory (P4-S2 homepage, P4-S3 exam page) ----------
+
+/**
+ * The country's ACTIVE exam cards with their CURRENT §36 version and §8
+ * in-effect mapping counts — one shared composition for the §34 homepage
+ * directory and the exam page's §33 related-exam links. COMING_SOON markets
+ * get the quiet state (exam content launches with the market — §14/§38);
+ * an ACTIVE country with no exams gets an honest empty list.
+ */
+export async function composeExamCards(
+  context: ReaderContext,
+  options: { excludeSlug?: string; limit?: number } = {}
+): Promise<ExamsSection<HomepageExamCard>> {
+  const { excludeSlug, limit } = options
+  if (!context.countryActive) {
+    return { available: false, reason: 'COUNTRY_COMING_SOON', items: [] }
+  }
+
+  const examRows = await db.exam.findMany({
+    where: {
+      countryId: context.countryRow.id,
+      status: 'ACTIVE',
+      ...(excludeSlug ? { slug: { not: excludeSlug } } : {}),
+    },
+    include: {
+      versions: { select: { id: true, label: true, effectiveFrom: true, effectiveTo: true } },
+    },
+    orderBy: [{ name: 'asc' }, { slug: 'asc' }], // deterministic (§37)
+    take: limit,
+  })
+
+  // CURRENT version per exam (§36 — the version effective today).
+  const currentVersionByExam = new Map<
+    string,
+    { id: string; label: string; effectiveFrom: Date }
+  >()
+  for (const exam of examRows) {
+    const current = exam.versions
+      .filter(isCurrentVersion)
+      .sort((a, b) => b.effectiveFrom.getTime() - a.effectiveFrom.getTime())[0]
+    if (current) {
+      currentVersionByExam.set(exam.id, {
+        id: current.id,
+        label: current.label,
+        effectiveFrom: current.effectiveFrom,
+      })
+    }
+  }
+
+  // §8 in-effect mapping counts on those CURRENT versions (batched).
+  const currentVersionIds = [...currentVersionByExam.values()].map((version) => version.id)
+  const mappingCounts = new Map<string, number>()
+  if (currentVersionIds.length > 0) {
+    const mappings = await db.examMapping.findMany({
+      where: { syllabusNode: { examVersionId: { in: currentVersionIds } } },
+      select: {
+        effectiveFrom: true,
+        effectiveTo: true,
+        syllabusNode: { select: { examVersionId: true } },
+      },
+    })
+    for (const mapping of mappings) {
+      if (mappingInEffect(mapping, false)) {
+        mappingCounts.set(
+          mapping.syllabusNode.examVersionId,
+          (mappingCounts.get(mapping.syllabusNode.examVersionId) ?? 0) + 1
+        )
+      }
+    }
+  }
+
+  return {
+    available: true,
+    reason: null,
+    items: examRows.map<HomepageExamCard>((exam) => {
+      const current = currentVersionByExam.get(exam.id) ?? null
+      return {
+        slug: exam.slug,
+        name: exam.name,
+        code: exam.code,
+        organiser: exam.organiser,
+        level: exam.level,
+        currentVersion: current
+          ? { label: current.label, effectiveFrom: current.effectiveFrom.toISOString() }
+          : null,
+        mappingCount: current ? mappingCounts.get(current.id) ?? 0 : 0,
+        canonicalPath: examPath(context, exam.slug),
+      }
+    }),
   }
 }

@@ -8,6 +8,17 @@ import { PLATFORM } from '@/config/platform'
 
 export const dynamic = 'force-dynamic'
 
+/**
+ * Server-side-only host label derived from the connection string (the label
+ * follows the environment — Supabase pooler or the local sandbox Postgres).
+ */
+function databaseHost(): string {
+  const url = process.env.GLOBIQ_DATABASE_URL ?? ''
+  if (url.includes('supabase')) return 'Supabase'
+  if (/^postgres(ql)?:\/\//.test(url)) return 'PostgreSQL (local)'
+  return 'PostgreSQL'
+}
+
 export async function GET() {
   const startedAt = Date.now()
   try {
@@ -42,7 +53,7 @@ export async function GET() {
       database: {
         connected: true,
         provider: PLATFORM.database.provider,
-        host: PLATFORM.database.host,
+        host: databaseHost(),
         region: PLATFORM.database.region,
       },
       seed: {
