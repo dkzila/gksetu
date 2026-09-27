@@ -62,6 +62,14 @@ enum AuthMethod {
   PASSWORD
 }
 
+// P5-S1 (§6 UserFollow row, §10): the object types a user can follow today.
+// Extension is additive — ENTITY and current-affairs THEME join in P6 when
+// those models exist (never blocked by a migration).
+enum FollowObjectType {
+  EXAM
+  TOPIC
+}
+
 // P1-S4 (§13): one global taxonomy framework — nodes carry stable IDs,
 // parent/child links, aliases, descriptions, country applicability, language
 // labels and status. Exam names never enter the taxonomy (they map only via
@@ -809,6 +817,7 @@ model User {
   createdExams           Exam[]        @relation("ExamAuthor") // P3-S1
   createdExamVersions    ExamVersion[] @relation("ExamVersionAuthor") // P3-S1
   createdExamMappings    ExamMapping[] @relation("ExamMappingAuthor") // P3-S3
+  follows                UserFollow[] // P5-S1
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -933,4 +942,36 @@ model AuditLog {
   @@index([actorId, createdAt])
   @@index([objectType, objectId])
   @@index([action, createdAt])
+}
+
+// ---------- P5-S1: UserFollow (Master Plan §6 UserFollow row, §9, §10, §11, §14) ----------
+
+// A user's declared ongoing interest in a followable object (EXAM | TOPIC
+// today; ENTITY/THEME join in P6). Follow is a *personalisation signal* —
+// feed, notifications, recommendations and dashboard context (§10) — and is
+// deliberately separate from SavedItem/collections (P5-S2: retrieval, never
+// a recommendation input).
+//
+// §14: user-personalised data stays strictly scoped to the owning country —
+// an exam/topic may only be followed from the user's home market (enforced
+// in the follow-save service, never by UI hiding). GLOBAL topics are
+// followable from any market.
+//
+// The unique triple makes follow/unfollow idempotent at the storage layer;
+// rows cascade with the user (§30/§31: deleting an account removes their
+// personalisation data). Followed objects themselves are soft-deleted
+// (RETIRED) elsewhere in the model, so a follow never dangles — the list
+// resolves honestly with the object's current status (§36).
+model UserFollow {
+  id         String           @id @default(cuid())
+  userId     String
+  objectType FollowObjectType
+  objectId   String // canonical id of the Exam/Topic row (never a slug)
+  followedAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, objectType, objectId])
+  @@index([userId, objectType])
+  @@index([objectType, objectId])
 }

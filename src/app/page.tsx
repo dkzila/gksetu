@@ -36,12 +36,14 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { PLATFORM } from '@/config/platform'
 import { HeaderAuth } from '@/components/auth/header-auth'
+import { useAuth } from '@/stores/auth'
 import { ConsoleView } from '@/components/home/console-view'
 import { ExamView } from '@/components/home/exam-view'
 import { HomepageView } from '@/components/home/homepage-view'
 import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
+import { FollowingView } from '@/components/follows/following-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
@@ -49,6 +51,14 @@ export default function GlobIQApp() {
   // ---------- Locale configuration (§35 — the switchers' source of truth) ----------
   const [config, setConfig] = useState<ApiCountry[] | null>(null)
   const [configError, setConfigError] = useState(false)
+
+  // P5-S1: identity bootstrap in the app shell — a persisted token (zustand
+  // persists ONLY the token, §20/§30) must revalidate against /api/auth/me on
+  // every load, not just when the console's account section happens to mount.
+  // Personalised surfaces (follow buttons, #/following) read this state.
+  useEffect(() => {
+    void useAuth.getState().initialize()
+  }, [])
 
   useEffect(() => {
     fetch('/api/countries', { cache: 'no-store' })
@@ -150,6 +160,49 @@ export default function GlobIQApp() {
     [config, route]
   )
 
+  // P5-S1: open a followed exam in ITS OWN market (§14 — a GB exam opens on
+  // the UK market even while browsing India).
+  const openFollowedExam = useCallback(
+    (slug: string, countryIso: string) => {
+      if (!config || !route) return
+      const market = config.find((entry) => entry.isoCode === countryIso)
+      if (!market) return
+      navigateHash(
+        {
+          view: 'exam',
+          countryIso: market.isoCode,
+          language: market.defaultLanguage.code,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug: slug,
+          syllabusTopicSlug: null,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // P5-S1: open a followed topic — COUNTRY-scoped topics in their own market,
+  // GLOBAL topics in the current market.
+  const openFollowedTopic = useCallback(
+    (slug: string, countryIso: string | null) => {
+      if (!config || !route) return
+      const market = countryIso ? config.find((entry) => entry.isoCode === countryIso) : null
+      navigateHash(
+        {
+          view: 'topic',
+          countryIso: market?.isoCode ?? route.countryIso,
+          language: market ? market.defaultLanguage.code : route.language,
+          topicSlug: slug,
+          unitSlug: null,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
   // §36 historical window — addressable ?version= on the exam view.
   const switchExamVersion = useCallback(
     (versionId: string | null) => {
@@ -196,7 +249,9 @@ export default function GlobIQApp() {
       if (!config || !route) return
       navigateHash(
         {
-          view: route.view === 'console' ? 'home' : route.view,
+          // Language switching on market-independent surfaces (console,
+          // following) lands on the home view — the console precedent.
+          view: route.view === 'console' || route.view === 'following' ? 'home' : route.view,
           countryIso: route.countryIso,
           language: code,
           topicSlug: route.topicSlug,
@@ -279,7 +334,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 4 · Session 5 — Metadata, Structured Data &amp; SEO Validation
+                Phase 5 · Session 1 — Follows
               </Badge>
               <HeaderAuth />
             </div>
@@ -399,6 +454,13 @@ export default function GlobIQApp() {
             onOpenUnit={openUnit}
             onOpenExam={openExam}
             onSwitchLanguage={switchLanguage}
+          />
+        ) : route.view === 'following' ? (
+          <FollowingView
+            onOpenExam={openFollowedExam}
+            onOpenTopic={openFollowedTopic}
+            onGoHome={goHome}
+            onSignIn={goSignIn}
           />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView

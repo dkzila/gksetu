@@ -43,6 +43,7 @@ import {
 } from './mapping-chips'
 import type { Envelope, SyllabusTopicPage } from './types'
 import { useSeoHead } from './seo-head'
+import { FollowButton } from '@/components/follows/follow-button'
 
 // ---------- Props ----------
 
@@ -286,6 +287,14 @@ export function SyllabusView({
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 font-mono text-xs text-zinc-400">
             <Signpost className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             {fmtWindow(page.version.effectiveFrom, page.version.effectiveTo)}
+          </span>
+        </div>
+
+        {/* P5-S1 — follow the exam whose syllabus this is (§9/§10) */}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
+          <span className="text-xs text-zinc-400">
+            This is a syllabus view — following follows the exam itself, not this one topic.
           </span>
         </div>
       </motion.section>

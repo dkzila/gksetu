@@ -24,7 +24,8 @@
  *
  * `#account` (the header Sign-in anchor) maps to the foundation console
  * scrolled to the account section — the console keeps every verification
- * surface from P1→P4 reachable.
+ * surface from P1→P4 reachable. `#/following` (P5-S1) is the private
+ * personalisation management surface (§31) — market-independent, noindex.
  *
  * Addressable state derives from the hash (never duplicated in component
  * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
@@ -39,7 +40,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'following' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -90,6 +91,11 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   }
   if (segments[0] === 'account') {
     return { ...fallback, view: 'console', scrollTo: 'account' }
+  }
+
+  // P5-S1: the private following surface (§31) — market-independent.
+  if (segments[0] === 'following') {
+    return { ...fallback, view: 'following', scrollTo: null }
   }
 
   let country = defaultCountry
@@ -211,6 +217,7 @@ export interface RouteInput {
 /** Builds the §16-shaped hash for a route (defaults omitted, §16). */
 export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'console') return '#/console'
+  if (route.view === 'following') return '#/following'
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '#/'
 

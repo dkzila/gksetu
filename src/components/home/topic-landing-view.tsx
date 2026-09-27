@@ -33,6 +33,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 import type { Envelope, HomeUnitCard, TopicLanding } from './types'
 import { useSeoHead } from './seo-head'
+import { FollowButton } from '@/components/follows/follow-button'
 
 // ---------- Props ----------
 
@@ -264,6 +265,23 @@ export function TopicLandingView({
               <span className="text-zinc-500">exams need this</span>
             </span>
           )}
+        </div>
+
+        {/* P5-S1 — the §9/§10 follow action (topic-level, market-aware §14) */}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <FollowButton
+            objectType="TOPIC"
+            objectRef={landing.topic.slug}
+            objectName={landing.topic.label}
+          />
+          <span className="text-xs text-zinc-400">
+            Following a topic keeps it in your personalisation signals (§9) — review and unfollow
+            at
+            <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
+              #/following
+            </a>
+            .
+          </span>
         </div>
       </motion.section>
 

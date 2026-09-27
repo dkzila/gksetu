@@ -81,4 +81,6 @@ export const RATE_LIMITS = {
   searchRead: { limit: 60, windowMs: 60 * 1000 }, // public search queries per IP (P4-S1)
   searchWrite: { limit: 10, windowMs: 60 * 1000 }, // admin index rebuilds/stats per IP (P4-S1)
   discoveryRead: { limit: 60, windowMs: 60 * 1000 }, // public homepage/topic-landing compositions per IP (P4-S2)
+  followsRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated follow list/state reads per IP (P5-S1)
+  followsWrite: { limit: 30, windowMs: 60 * 1000 }, // follow/unfollow mutations per IP (P5-S1)
 } as const

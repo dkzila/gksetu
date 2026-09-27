@@ -55,6 +55,7 @@ import {
 } from './mapping-chips'
 import type { Envelope, ExamCoverageNode, ExamPage, HomeExamCard, HomeUnitCard } from './types'
 import { useSeoHead } from './seo-head'
+import { FollowButton } from '@/components/follows/follow-button'
 
 // ---------- Props ----------
 
@@ -328,6 +329,18 @@ export function ExamView({
             )}
             {page.language.name}
             {page.language.nativeName ? ` · ${page.language.nativeName}` : ''}
+          </span>
+        </div>
+
+        {/* P5-S1 — the §9/§10 follow action (exam-level, never per version) */}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
+          <span className="text-xs text-zinc-400">
+            Follows shape your combined-exam queue and dashboard (§11) — manageable anytime from
+            <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
+              #/following
+            </a>
+            .
           </span>
         </div>
       </motion.section>

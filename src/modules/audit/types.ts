@@ -136,6 +136,9 @@ export const AUDIT_ACTIONS = {
   examMappingDenied: 'exam.mapping.denied',
   /** P4-S1 search index operations (§17/§38 — rebuilds are admin actions). */
   searchReindex: 'search.reindex',
+  /** P5-S1 personalisation signals (§9/§10 — explicit, user-controlled intent). */
+  followCreate: 'user.follow.create',
+  followRemove: 'user.follow.remove',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -156,5 +159,6 @@ export const AUDIT_OBJECT_TYPES = {
   syllabusNode: 'SyllabusNode',
   examMapping: 'ExamMapping',
   searchDocument: 'SearchDocument',
+  userFollow: 'UserFollow',
   permission: 'Permission',
 } as const
