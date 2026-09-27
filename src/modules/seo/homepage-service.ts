@@ -24,11 +24,13 @@ import {
   composeUnitCards,
   flattenTree,
   loadUnitCountByTopic,
+  localePath,
   resolveReaderContext,
   subtreeCounts,
   topicHubPath,
   visibleUnitsWhere,
 } from './composition-helpers'
+import { buildPageSeo } from './page-seo'
 import type {
   CountryHomepage,
   DiscoveryLanguage,
@@ -169,6 +171,30 @@ export async function getCountryHomepage(input: {
     isDefault: language.code === context.defaultLanguageCode,
   }))
 
+  // ---------- §16 SEO block (P4-S4) — canonical, hreflang cluster, lastmod ----------
+  // The hub is structural: every country-configured language carries a real
+  // §34 surface (localized chrome/labels, §35 honest fallback) — the whole
+  // language set is the hreflang cluster. lastmod = the newest visible VERIFIED
+  // unit update (the hub's content substance).
+  const latestUnit =
+    visibleTopicIds.length > 0
+      ? await db.knowledgeUnit.aggregate({
+          _max: { updatedAt: true },
+          where: visibleUnitsWhere(visibleTopicIds, context.countryRow.id),
+        })
+      : null
+  const seo = buildPageSeo({
+    country: {
+      slug: context.publicCountry.slug,
+      isDefault: context.publicCountry.isDefault,
+    },
+    defaultLanguageCode: context.defaultLanguageCode,
+    languageCode: context.languageCode,
+    languages: context.publicCountry.languages,
+    pathFor: (code) => localePath(context, code, []),
+    lastModified: latestUnit?._max.updatedAt ?? null,
+  })
+
   // ---------- Assembly (§34) ----------
   return {
     country: {
@@ -186,6 +212,7 @@ export async function getCountryHomepage(input: {
       direction: context.resolution.language.direction,
     },
     canonicalUrl: context.resolution.canonicalUrl,
+    seo,
     languages,
     categories,
     majorTopics,

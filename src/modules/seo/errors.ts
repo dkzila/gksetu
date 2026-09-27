@@ -18,6 +18,8 @@ export type SeoErrorCode =
   | 'EXAM_PAGE_FAILED'
   | 'SYLLABUS_TOPIC_NOT_FOUND'
   | 'SYLLABUS_PAGE_FAILED'
+  | 'SITEMAP_SEGMENT_NOT_FOUND'
+  | 'SITEMAP_FAILED'
 
 const ERROR_STATUS: Record<SeoErrorCode, number> = {
   COUNTRY_NOT_FOUND: 404,
@@ -31,6 +33,8 @@ const ERROR_STATUS: Record<SeoErrorCode, number> = {
   EXAM_PAGE_FAILED: 500,
   SYLLABUS_TOPIC_NOT_FOUND: 404,
   SYLLABUS_PAGE_FAILED: 500,
+  SITEMAP_SEGMENT_NOT_FOUND: 404,
+  SITEMAP_FAILED: 500,
 }
 
 export class SeoError extends Error {

@@ -21,11 +21,13 @@ import {
   flattenTree,
   isCurrentVersion,
   loadUnitCountByTopic,
+  localePath,
   resolveReaderContext,
   subtreeCounts,
   topicHubPath,
   visibleUnitsWhere,
 } from './composition-helpers'
+import { buildPageSeo } from './page-seo'
 import { SeoError } from './errors'
 import type { TopicLandingQuery } from './validation'
 import type {
@@ -172,6 +174,29 @@ export async function getTopicLanding(
       canonicalPath: topicHubPath(context, node.slug),
     }))
 
+  // ---------- §16 SEO block (P4-S4) — canonical, hreflang cluster, lastmod ----------
+  // The landing is structural: every country-configured language carries the
+  // surface (§35 labels + honest fallback). lastmod = newest visible VERIFIED
+  // unit update under the subtree (empty subtrees stay null — honest).
+  const latestSubtreeUnit =
+    subtreeTopicIds.length > 0
+      ? await db.knowledgeUnit.aggregate({
+          _max: { updatedAt: true },
+          where: visibleUnitsWhere(subtreeTopicIds, context.countryRow.id),
+        })
+      : null
+  const seo = buildPageSeo({
+    country: {
+      slug: context.publicCountry.slug,
+      isDefault: context.publicCountry.isDefault,
+    },
+    defaultLanguageCode: context.defaultLanguageCode,
+    languageCode: context.languageCode,
+    languages: context.publicCountry.languages,
+    pathFor: (code) => localePath(context, code, ['gk', detail.node.slug]),
+    lastModified: latestSubtreeUnit?._max.updatedAt ?? null,
+  })
+
   // ---------- Assembly ----------
   return {
     topic: {
@@ -185,6 +210,7 @@ export async function getTopicLanding(
       countryIso: detail.node.countryIso,
     },
     canonicalPath: topicHubPath(context, detail.node.slug),
+    seo,
     breadcrumb,
     children,
     units,

@@ -10,7 +10,7 @@
  * Every §16 path ships as data; in-app navigation goes through the hash
  * router with the same segment grammar.
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   AlertCircle,
@@ -32,6 +32,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 
 import type { Envelope, HomeUnitCard, TopicLanding } from './types'
+import { useSeoHead } from './seo-head'
 
 // ---------- Props ----------
 
@@ -93,6 +94,22 @@ export function TopicLandingView({
   useEffect(() => {
     void fetchLanding()
   }, [fetchLanding, reloadKey])
+
+  // ---------- §16 document head (P4-S4 — server-built seo block) ----------
+  const seoInput = useMemo(
+    () =>
+      landing
+        ? {
+            title: `${landing.topic.label} — GK topic hub | GlobIQ`,
+            description:
+              landing.topic.description ??
+              `${landing.topic.label}: ${landing.stats.unitCount} knowledge units, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,
+            seo: landing.seo,
+          }
+        : null,
+    [landing]
+  )
+  useSeoHead(seoInput)
 
   // ---------- Loading / error states ----------
 

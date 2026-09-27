@@ -21,6 +21,25 @@ import type {
   RequiredDepthPublic,
 } from '@/modules/exam-mapping'
 
+/**
+ * The §16 SEO block every public indexable composition ships (P4-S4):
+ * canonical path, the hreflang alternate cluster (as §16 paths — §37
+ * client-agnostic; clients/sitemap resolve them against an origin), the
+ * x-default variant, the robots directive and an honest lastModified.
+ */
+export interface PageSeo {
+  /** §16 canonical path of THIS representation (country + language + identity). */
+  canonicalPath: string
+  /** hreflang cluster — every variant of this surface incl. itself (§16/§35). */
+  alternates: Array<{ hreflang: string; path: string }>
+  /** x-default variant (the country's default language when in the cluster). */
+  xDefaultPath: string | null
+  /** noindex representations (e.g. §36 historical ?version= reads) say so. */
+  robots: { index: boolean; follow: boolean; reason: string | null }
+  /** W3C date-time of the last substantive change; null when unknown. */
+  lastModified: string | null
+}
+
 /** §16 home URL prefix builder input (already country/language resolved). */
 export type CountryStatusPublic = 'ACTIVE' | 'COMING_SOON'
 
@@ -162,6 +181,8 @@ export interface CountryHomepage {
   language: { code: string; name: string; nativeName: string | null; direction: 'LTR' | 'RTL' }
   /** §16 canonical home URL for this country × language. */
   canonicalUrl: string
+  /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
+  seo: PageSeo
   /** §35 language switcher — ONLY this country's configured languages. */
   languages: DiscoveryLanguage[]
   /** §34 GK categories (top-level §13 domains visible in this country). */
@@ -221,6 +242,8 @@ export interface TopicLanding {
   }
   /** §16 canonical hub path in the reader's language. */
   canonicalPath: string
+  /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
+  seo: PageSeo
   /** Home → … → self, each entry with its own §16 path (null slug = home). */
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   /** Visible children (§33 clusters) in stable tree order. */
@@ -285,6 +308,10 @@ export interface ExamPage {
   }>
   /** §16 canonical exam path in the reader's language. */
   canonicalPath: string
+  /** §16 SEO block (P4-S4) — canonical (always the current window's clean
+   * path), hreflang cluster, robots (historical ?version= reads noindex),
+   * lastmod (the shown window's effective date). */
+  seo: PageSeo
   /** Home → self, every crumb with its §16 path (null slug = home). */
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   /** §22 syllabus coverage — mapping-bearing branches, full §8 vocabulary
@@ -347,6 +374,8 @@ export interface SyllabusTopicPage {
   topic: { slug: string; canonicalName: string; label: string; labelLanguage: string }
   /** §16 syllabus-topic path (…/exams/{exam}/syllabus/{topic}/). */
   canonicalPath: string
+  /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
+  seo: PageSeo
   /** §16 exam-page path in the reader's language. */
   examPath: string
   /** §16 topic-hub path (…/gk/{topic}/) — the evergreen internal link. */

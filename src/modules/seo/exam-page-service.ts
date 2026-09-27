@@ -38,9 +38,11 @@ import {
   composeUnitCards,
   examPath,
   flattenTree,
+  localePath,
   resolveReaderContext,
   type ReaderContext,
 } from './composition-helpers'
+import { buildPageSeo } from './page-seo'
 import { SeoError } from './errors'
 import type { ExamPage, ExamPageUnit } from './types'
 import type { ExamPageQuery } from './validation'
@@ -207,6 +209,25 @@ export async function getExamPage(ref: string, query: ExamPageQuery): Promise<Ex
       isCurrent: version.isCurrent,
     }))
 
+  // ---------- §16 SEO block (P4-S4) ----------
+  // Canonical is ALWAYS the current window's clean exam path (§16: canonical
+  // tags prevent duplicate parameter pages — a ?version= variant never
+  // becomes its own canonical); a historical read is served but noindex
+  // (reason HISTORICAL_VERSION). lastmod = the shown window's effective date.
+  const shownIsCurrent = coverage.version?.isCurrent ?? false
+  const seo = buildPageSeo({
+    country: {
+      slug: context.publicCountry.slug,
+      isDefault: context.publicCountry.isDefault,
+    },
+    defaultLanguageCode: context.defaultLanguageCode,
+    languageCode: context.languageCode,
+    languages: context.publicCountry.languages,
+    pathFor: (code) => localePath(context, code, ['exams', detail.slug]),
+    noindexReason: shownIsCurrent ? undefined : 'HISTORICAL_VERSION',
+    lastModified: coverage.version ? new Date(coverage.version.effectiveFrom) : null,
+  })
+
   // ---------- Assembly ----------
   return {
     exam: {
@@ -230,6 +251,7 @@ export async function getExamPage(ref: string, query: ExamPageQuery): Promise<Ex
       : null,
     versions: startedVersions,
     canonicalPath: detail.canonicalPath,
+    seo,
     breadcrumb: [
       { slug: null, name: 'Home', path: context.resolution.canonicalUrl },
       { slug: detail.slug, name: detail.name, path: examPath(context, detail.slug) },

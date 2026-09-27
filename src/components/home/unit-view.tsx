@@ -89,6 +89,7 @@ export function UnitView({
         onOpenUnit={(slug) => void handleOpenUnit(slug)}
         onOpenExam={onOpenExam}
         onSwitchLanguage={onSwitchLanguage}
+        seoInDocument
       />
     </div>
   )

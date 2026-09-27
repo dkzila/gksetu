@@ -30,6 +30,16 @@ export interface ApiCountry {
   languages: ApiCountryLanguage[]
 }
 
+// ---------- §16 SEO block (P4-S4 — mirror of the seo module's PageSeo) ----------
+
+export interface ApiPageSeo {
+  canonicalPath: string
+  alternates: Array<{ hreflang: string; path: string }>
+  xDefaultPath: string | null
+  robots: { index: boolean; follow: boolean; reason: string | null }
+  lastModified: string | null
+}
+
 // ---------- GET /api/home (§34) ----------
 
 export interface HomeUnitCard {
@@ -101,6 +111,7 @@ export interface CountryHomepage {
     direction: 'LTR' | 'RTL'
   }
   canonicalUrl: string
+  seo: ApiPageSeo
   languages: Array<{
     code: string
     name: string
@@ -162,6 +173,7 @@ export interface TopicLanding {
     countryIso: string | null
   }
   canonicalPath: string
+  seo: ApiPageSeo
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   children: LandingChildTopic[]
   units: {
@@ -230,6 +242,7 @@ export interface ExamPage {
     isCurrent: boolean
   }>
   canonicalPath: string
+  seo: ApiPageSeo
   breadcrumb: Array<{ slug: string | null; name: string; path: string }>
   coverage: {
     unitCount: number
@@ -264,6 +277,7 @@ export interface SyllabusTopicPage {
   version: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null }
   topic: { slug: string; canonicalName: string; label: string; labelLanguage: string }
   canonicalPath: string
+  seo: ApiPageSeo
   examPath: string
   topicHubPath: string
   /** Non-addressable crumbs carry path null (rendered as plain spans). */

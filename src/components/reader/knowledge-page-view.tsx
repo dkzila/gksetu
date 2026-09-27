@@ -11,7 +11,7 @@
  * GET /api/knowledge/page/{ref} — the same client-agnostic payload a future
  * mobile app will use (§39).
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   AlertCircle,
   ArrowUpRight,
@@ -40,6 +40,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useSeoHead } from '@/components/home/seo-head'
 
 // ---------- Types (mirror /api/knowledge/page/{ref}) ----------
 
@@ -133,6 +134,14 @@ export interface KnowledgePageData {
   language: { code: string; name: string; nativeName: string | null }
   translations: { code: string; name: string; nativeName: string | null; canonicalPath: string }[]
   canonicalPath: string
+  /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
+  seo: {
+    canonicalPath: string
+    alternates: Array<{ hreflang: string; path: string }>
+    xDefaultPath: string | null
+    robots: { index: boolean; follow: boolean; reason: string | null }
+    lastModified: string | null
+  }
   scheduledCount: number
 }
 
@@ -363,6 +372,11 @@ interface KnowledgePageViewProps {
    */
   onOpenExam?: (slug: string) => void
   onSwitchLanguage: (code: string) => void
+  /**
+   * P4-S4: mirror the page's §16 SEO block into the document head (the
+   * product surface); the console verification surface keeps the default.
+   */
+  seoInDocument?: boolean
 }
 
 export function KnowledgePageView({
@@ -372,6 +386,7 @@ export function KnowledgePageView({
   onOpenUnit,
   onOpenExam,
   onSwitchLanguage,
+  seoInDocument = false,
 }: KnowledgePageViewProps) {
   const [page, setPage] = useState<KnowledgePageData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -404,6 +419,22 @@ export function KnowledgePageView({
       cancelled = true
     }
   }, [country, language, unitRef, reloadKey])
+
+  // ---------- §16 document head (P4-S4 — product surface only) ----------
+  // The console verification surface keeps the default head (seoInDocument
+  // absent) — the same optional-affordance rule as onOpenExam (P4-S3).
+  const seoInput = useMemo(
+    () =>
+      seoInDocument && page
+        ? {
+            title: `${page.unit.canonicalName} | GlobIQ`,
+            description: page.quickFact.body.slice(0, 160),
+            seo: page.seo,
+          }
+        : null,
+    [page, seoInDocument]
+  )
+  useSeoHead(seoInput)
 
   if (loading && !page) {
     return (

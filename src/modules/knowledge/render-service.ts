@@ -29,6 +29,7 @@ import {
   resolveLocaleContext,
 } from '@/modules/country-locale'
 import { getUnitExamCoverage } from '@/modules/exam-mapping'
+import { buildPageSeo } from '@/modules/seo'
 import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxonomy'
 
 import { materializeDueScheduledContent } from './content-service'
@@ -402,6 +403,26 @@ export async function getKnowledgePage(
     }))
     .sort((a, b) => a.code.localeCompare(b.code))
 
+  // ---------- §16 SEO block (P4-S4 — built by the seo module's builder) ----------
+  // The knowledge page's hreflang set is the PUBLISHED-representation set
+  // (the same §35 honesty as `translations`): a language with no published
+  // content is a thin canonical-fallback variant, never an equal cluster
+  // member. The rendered language is always included (hreflang self-rule).
+  // lastmod = the newest published revision of this unit.
+  const latestPublished = liveItems.reduce<Date | null>((newest, item) => {
+    const at = new Date(item.revision.publishedAt)
+    return !newest || at > newest ? at : newest
+  }, null)
+  const seo = buildPageSeo({
+    country: { slug: country.slug, isDefault: country.isDefault },
+    defaultLanguageCode: country.defaultLanguage.code,
+    languageCode: resolution.language.code,
+    languages: translations.map((translation) => ({ code: translation.code })),
+    pathFor: (code) =>
+      knowledgePath(country, code, country.defaultLanguage.code, topicDetail.node.slug, unit.slug),
+    lastModified: latestPublished,
+  })
+
   // ---------- §19 scheduled releases pending for this unit ----------
   const scheduledCount = await db.contentItem.count({
     where: {
@@ -474,6 +495,7 @@ export async function getKnowledgePage(
     },
     translations,
     canonicalPath,
+    seo,
     scheduledCount,
   }
 }

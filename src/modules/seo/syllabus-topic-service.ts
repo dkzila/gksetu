@@ -29,11 +29,13 @@ import {
   composeUnitCards,
   examPath,
   flattenTree,
+  localePath,
   resolveReaderContext,
   syllabusTopicPath,
   topicHubPath,
   type ReaderContext,
 } from './composition-helpers'
+import { buildPageSeo } from './page-seo'
 import { SeoError } from './errors'
 import type {
   SyllabusPlacement,
@@ -208,6 +210,22 @@ export async function getSyllabusTopicPage(
 
   // ---------- Assembly ----------
   const topicRow = placementNodes[0].row.topic!
+
+  // ---------- §16 SEO block (P4-S4) — canonical, hreflang cluster, lastmod ----------
+  // CURRENT-only by design (§36): the syllabus page answers "today" — always
+  // indexable, lastmod = the current window's effective date.
+  const seo = buildPageSeo({
+    country: {
+      slug: context.publicCountry.slug,
+      isDefault: context.publicCountry.isDefault,
+    },
+    defaultLanguageCode: context.defaultLanguageCode,
+    languageCode: context.languageCode,
+    languages: context.publicCountry.languages,
+    pathFor: (code) => localePath(context, code, ['exams', detail.slug, 'syllabus', topicRow.slug]),
+    lastModified: new Date(detail.currentVersion.effectiveFrom),
+  })
+
   return {
     exam: {
       slug: detail.slug,
@@ -229,6 +247,7 @@ export async function getSyllabusTopicPage(
       labelLanguage: labels.get(topicRow.id)?.language ?? 'canonical',
     },
     canonicalPath: syllabusTopicPath(context, detail.slug, topicRow.slug),
+    seo,
     examPath: examPath(context, detail.slug),
     topicHubPath: topicHubPath(context, topicRow.slug),
     breadcrumb: [

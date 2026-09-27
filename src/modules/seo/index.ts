@@ -16,8 +16,12 @@
  *        (…/exams/{exam}/syllabus/{topic}/ — placements, §8 requirement
  *        rows, internal links to the exam's other syllabus topics and the
  *        evergreen topic hub).
- * P4-S4…S5 (future sessions): canonical URL/hreflang/sitemap/robots
- *        infrastructure, metadata and structured data with SEO validation.
+ * P4-S4: the §16 SEO block on every public composition (canonical path,
+ *        hreflang cluster + x-default, robots directive, honest lastmod) and
+ *        the segmented XML sitemap index + robots.txt infrastructure
+ *        (GET /api/seo/sitemap, /api/seo/robots, /api/seo/status — also served
+ *        at /sitemap.xml and /robots.txt via rewrites).
+ * P4-S5 (future session): metadata/structured data and SEO validation.
  */
 export { SeoError, toSeoErrorResponse } from './errors'
 export type { SeoErrorCode } from './errors'
@@ -29,18 +33,33 @@ export {
   examRefSchema,
   examPageQuerySchema,
   syllabusTopicQuerySchema,
+  sitemapQuerySchema,
 } from './validation'
 export type {
   HomepageQuery,
   TopicLandingQuery,
   ExamPageQuery,
   SyllabusTopicQuery,
+  SitemapQuery,
 } from './validation'
 
 export { getCountryHomepage } from './homepage-service'
 export { getTopicLanding } from './topic-landing-service'
 export { getExamPage } from './exam-page-service'
 export { getSyllabusTopicPage } from './syllabus-topic-service'
+export { buildPageSeo, resolveSiteOrigin } from './page-seo'
+export {
+  buildRobotsTxt,
+  buildSitemapSegment,
+  getSeoStatus,
+  listSitemapSegments,
+  renderSitemapIndex,
+  renderSitemapUrlSet,
+  ROBOTS_DISALLOW,
+  segmentUrl,
+  SITEMAP_TYPES,
+} from './sitemap-service'
+export type { SitemapSegmentInfo, SitemapType, SitemapUrlEntry } from './sitemap-service'
 
 export type {
   CountryHomepage,
@@ -58,6 +77,7 @@ export type {
   LandingExamCard,
   LandingRelatedTopic,
   LandingUnitsSection,
+  PageSeo,
   SyllabusPlacement,
   SyllabusRequirement,
   SyllabusTopicPage,

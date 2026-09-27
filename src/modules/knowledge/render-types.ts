@@ -14,6 +14,7 @@
 import type { ContentFormatPublic } from './content-types'
 import type { SourceVerificationPublic } from './source-types'
 import type { UnitExamRequirement } from '@/modules/exam-mapping'
+import type { PageSeo } from '@/modules/seo'
 
 /**
  * §22 layer order — the reading flow: the quick fact first, then the deeper
@@ -169,6 +170,9 @@ export interface KnowledgePage {
   }[]
   /** §16 — canonical URL of THIS page (country + language + object identity). */
   canonicalPath: string
+  /** §16 SEO block (P4-S4) — canonical, hreflang cluster (the published
+   * translation set — the same §35 honesty as `translations`), robots, lastmod. */
+  seo: PageSeo
   /** §19 — representations scheduled to go live (readable soon). */
   scheduledCount: number
 }

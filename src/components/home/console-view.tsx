@@ -26,6 +26,7 @@ import {
   Layers,
   RefreshCw,
   Server,
+  ShieldCheck,
   XCircle,
 } from 'lucide-react'
 
@@ -36,6 +37,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { PLATFORM } from '@/config/platform'
 import { PHASES } from '@/config/roadmap'
 import { MODULES } from '@/modules'
+import { useSeoHead } from './seo-head'
 import { AccountSection } from '@/components/auth/account-section'
 import { AuditSection } from '@/components/audit/audit-section'
 import { ContentSection } from '@/components/content/content-section'
@@ -50,6 +52,7 @@ import { SourceSection } from '@/components/sources/source-section'
 import { EditorialSection } from '@/components/editorial/editorial-section'
 import { ReaderSection } from '@/components/reader/reader-section'
 import { SearchSection } from '@/components/search/search-section'
+import { SeoSection } from '@/components/seo/seo-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
@@ -133,6 +136,14 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
     void fetchHealth()
   }, [fetchHealth])
 
+  // §16 (P4-S4): the console is a private verification surface — never indexed.
+  useSeoHead({
+    title: 'Foundation console | GlobIQ',
+    description:
+      'The build verification surface — every module demo from the session history (noindex, §16).',
+    noindex: true,
+  })
+
   const dbConnected = health?.database.connected === true && error === null
 
   return (
@@ -142,7 +153,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P4-S3
+            P1-S1 → P4-S4
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -343,6 +354,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Search — §17 product surface + indexing pipeline (P4-S1) ---------- */}
       <SearchSection />
 
+      {/* ---------- SEO infrastructure — §16 sitemap/robots/hreflang (P4-S4) ---------- */}
+      <SeoSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -396,7 +410,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P4-S3 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P4-S4 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

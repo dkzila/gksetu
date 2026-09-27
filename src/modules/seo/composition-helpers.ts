@@ -150,6 +150,25 @@ export async function loadUnitCountByTopic(
 
 // ---------- §16 path builders (single source of URL truth) ----------
 
+/**
+ * The §16 path of arbitrary segments in an EXPLICIT language of the reader's
+ * country (P4-S4) — the hreflang pathFor closure behind every composition's
+ * seo block: same builder, per-language variant. Default-omission rules are
+ * applied against the country's default language, never the requested one.
+ */
+export function localePath(
+  context: ReaderContext,
+  languageCode: string,
+  segments: readonly string[]
+): string {
+  return buildCanonicalUrl(
+    { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
+    { code: languageCode },
+    context.defaultLanguageCode,
+    segments
+  )
+}
+
 export function topicHubPath(context: ReaderContext, topicSlug: string): string {
   return buildCanonicalUrl(
     { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },

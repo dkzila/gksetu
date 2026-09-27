@@ -11,7 +11,7 @@
  * personalised entry point (anonymous-first per §34; personalisation
  * itself arrives in P5 — rendered honestly, never faked).
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -38,6 +38,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { SearchBox } from './search-box'
+import { useSeoHead } from './seo-head'
 import type { CountryHomepage, Envelope, HomeUnitCard } from './types'
 
 // ---------- Constants ----------
@@ -104,6 +105,20 @@ export function HomepageView({
   useEffect(() => {
     void fetchHomepage()
   }, [fetchHomepage, reloadKey])
+
+  // ---------- §16 document head (P4-S4 — server-built seo block) ----------
+  const seoInput = useMemo(
+    () =>
+      homepage
+        ? {
+            title: `${homepage.country.name} — GK & exam knowledge hub | GlobIQ`,
+            description: `${homepage.country.name}'s discovery hub: ${homepage.stats.topics} topics, ${homepage.stats.units} knowledge units, ${homepage.stats.exams} exams — one canonical knowledge system.`,
+            seo: homepage.seo,
+          }
+        : null,
+    [homepage]
+  )
+  useSeoHead(seoInput)
 
   // ---------- Loading / error states ----------
 

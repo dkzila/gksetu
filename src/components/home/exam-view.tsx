@@ -12,7 +12,7 @@
  * Topic-linked nodes link into the syllabus-topic pages (§16
  * …/exams/{exam}/syllabus/{topic}/); every §16 path ships as data.
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   AlertCircle,
@@ -54,6 +54,7 @@ import {
   type Depth,
 } from './mapping-chips'
 import type { Envelope, ExamCoverageNode, ExamPage, HomeExamCard, HomeUnitCard } from './types'
+import { useSeoHead } from './seo-head'
 
 // ---------- Props ----------
 
@@ -118,6 +119,24 @@ export function ExamView({
   useEffect(() => {
     void fetchPage()
   }, [fetchPage, reloadKey])
+
+  // ---------- §16 document head (P4-S4 — server-built seo block) ----------
+  // A historical ?version= window carries the payload's noindex robots + the
+  // current window's clean canonical (§16 duplicate-parameter rule).
+  const seoInput = useMemo(
+    () =>
+      page
+        ? {
+            title: `${page.exam.name} (${page.exam.code}) — syllabus & study guide | GlobIQ`,
+            description:
+              page.exam.description ??
+              `${page.exam.name} by ${page.exam.organiser}: ${page.coverage.unitCount} mapped units, ${page.coverage.mappingCount} requirements on the current syllabus.`,
+            seo: page.seo,
+          }
+        : null,
+    [page]
+  )
+  useSeoHead(seoInput)
 
   // ---------- Loading / error states ----------
 

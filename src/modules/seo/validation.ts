@@ -71,3 +71,29 @@ export const syllabusTopicQuerySchema = z.object({
 })
 
 export type SyllabusTopicQuery = z.infer<typeof syllabusTopicQuerySchema>
+
+// ---------- Sitemap (P4-S4) ----------
+
+/**
+ * GET /api/seo/sitemap query — no params returns the sitemap index; the full
+ * triple (?country=&language=&type=) returns that segment's URL set (§16:
+ * sitemaps segmented by country/language/content type). Partial triples are
+ * a 400 (§37 boundary).
+ */
+export const sitemapQuerySchema = z
+  .object({
+    country: z.string().trim().min(2).max(8).optional(),
+    language: z.string().trim().min(2).max(8).optional(),
+    type: z.enum(['home', 'topics', 'units', 'exams', 'syllabus']).optional(),
+  })
+  .refine(
+    (query) => {
+      const present = [query.country, query.language, query.type].filter(
+        (value) => value !== undefined
+      ).length
+      return present === 0 || present === 3
+    },
+    { message: 'Provide all of country, language and type — or none for the index' }
+  )
+
+export type SitemapQuery = z.infer<typeof sitemapQuerySchema>

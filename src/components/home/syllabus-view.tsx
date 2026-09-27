@@ -10,7 +10,7 @@
  * internal links (the exam's other syllabus topics + the evergreen topic
  * hub) and the breadcrumb back to the exam page.
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   AlertCircle,
@@ -42,6 +42,7 @@ import {
   type Depth,
 } from './mapping-chips'
 import type { Envelope, SyllabusTopicPage } from './types'
+import { useSeoHead } from './seo-head'
 
 // ---------- Props ----------
 
@@ -105,6 +106,20 @@ export function SyllabusView({
   useEffect(() => {
     void fetchPage()
   }, [fetchPage, reloadKey])
+
+  // ---------- §16 document head (P4-S4 — server-built seo block) ----------
+  const seoInput = useMemo(
+    () =>
+      page
+        ? {
+            title: `${page.topic.label} — ${page.exam.name} syllabus | GlobIQ`,
+            description: `${page.topic.label} in the ${page.exam.name} syllabus: ${page.stats.placementCount} placement(s), ${page.stats.requirementCount} requirement(s) with the full §8 vocabulary — the evergreen topic hub link included.`,
+            seo: page.seo,
+          }
+        : null,
+    [page]
+  )
+  useSeoHead(seoInput)
 
   // ---------- Loading / error states ----------
 
