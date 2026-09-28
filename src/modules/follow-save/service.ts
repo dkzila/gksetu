@@ -13,7 +13,7 @@
  * rows directly — a read-only projection, the same §28 precedent the seo
  * module uses for unit counts (no reverse dependency is ever created).
  */
-import { Prisma, type Exam, type Topic, type UserFollow } from '@prisma/client'
+import { Prisma, type Entity, type Exam, type Topic, type UserFollow } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
   AUDIT_ACTIONS,
@@ -30,6 +30,7 @@ import {
 import { findExam } from '@/modules/exams-syllabus'
 
 import type {
+  FollowedEntitySummary,
   FollowedExamSummary,
   FollowedTopicSummary,
   FollowListResult,
@@ -46,6 +47,7 @@ export type FollowErrorCode =
   | 'FOLLOW_OBJECT_NOT_FOUND'
   | 'EXAM_NOT_FOLLOWABLE'
   | 'TOPIC_NOT_FOLLOWABLE'
+  | 'ENTITY_NOT_FOLLOWABLE'
   | 'HOME_COUNTRY_REQUIRED'
   | 'FOLLOW_COUNTRY_MISMATCH'
   | 'FOLLOW_LIMIT_REACHED'
@@ -55,6 +57,7 @@ const ERROR_STATUS: Record<FollowErrorCode, number> = {
   FOLLOW_OBJECT_NOT_FOUND: 404,
   EXAM_NOT_FOLLOWABLE: 409,
   TOPIC_NOT_FOLLOWABLE: 409,
+  ENTITY_NOT_FOLLOWABLE: 409,
   HOME_COUNTRY_REQUIRED: 403,
   FOLLOW_COUNTRY_MISMATCH: 403,
   FOLLOW_LIMIT_REACHED: 409,
@@ -187,6 +190,12 @@ type TopicWithRelations = Topic & {
   labels: Array<{ language: { code: string }; name: string }>
 }
 
+/** P6-S3: entity rows hydrate with their aliases (§17 display hints). */
+type EntityWithRelations = Entity & {
+  country: { isoCode: string } | null
+  aliases: Array<{ value: string }>
+}
+
 function toExamSummary(exam: ExamWithCountry): FollowedExamSummary {
   const defaultLanguageCode = exam.country.defaultLanguage?.code ?? 'en'
   return {
@@ -221,8 +230,7 @@ function resolveTopicLabel(
 function toTopicSummary(
   topic: TopicWithRelations,
   market: { country: CountryShape; languageCode: string }
-): FollowedTopicSummary {
-  // GLOBAL topics render in the reader's market; COUNTRY-scoped topics always
+): FollowedTopicSummary {  // GLOBAL topics render in the reader's market; COUNTRY-scoped topics always
   // render in their own market (§14 — the path must be reachable there).
   const country = topic.country ?? {
     isoCode: null,
@@ -269,6 +277,30 @@ async function findTopicRow(ref: string): Promise<TopicWithRelations | null> {
       country: { include: { defaultLanguage: { select: { code: true } } } },
     },
   })
+}
+
+async function findEntityRow(ref: string): Promise<EntityWithRelations | null> {
+  return db.entity.findFirst({
+    where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
+    include: {
+      aliases: { select: { value: true } },
+      country: { select: { isoCode: true } },
+    },
+  })
+}
+
+function toEntitySummary(entity: EntityWithRelations): FollowedEntitySummary {
+  return {
+    kind: 'ENTITY',
+    slug: entity.slug,
+    canonicalName: entity.canonicalName,
+    type: entity.type as FollowedEntitySummary['type'],
+    status: entity.status as FollowedEntitySummary['status'],
+    scope: entity.scope as FollowedEntitySummary['scope'],
+    countryIso: entity.country?.isoCode ?? null,
+    aliases: entity.aliases.map((alias) => alias.value).sort((a, b) => a.localeCompare(b)),
+    canonicalPath: null, // entities carry no §16 page in v1 — honest null (§37)
+  }
 }
 
 interface FollowableExam {

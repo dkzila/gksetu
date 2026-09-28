@@ -63,11 +63,13 @@ enum AuthMethod {
 }
 
 // P5-S1 (§6 UserFollow row, §10): the object types a user can follow today.
-// Extension is additive — ENTITY and current-affairs THEME join in P6 when
-// those models exist (never blocked by a migration).
+// Extension is additive — ENTITY joined in P6-S3 (§10 "entity" is a listed
+// followable); current-affairs themes are taxonomy nodes and already ride
+// TOPIC (the §13 Current Affairs domain).
 enum FollowObjectType {
   EXAM
   TOPIC
+  ENTITY // P6-S3 (§6 Entity row, §10): persons/places/organisations/concepts
 }
 
 // P1-S4 (§13): one global taxonomy framework — nodes carry stable IDs,
@@ -758,6 +760,7 @@ model Language {
   contentItems        ContentItem[]
   editorialTasks      EditorialTask[]
   goalStudyLanguages  UserGoal[]     @relation("UserGoalStudyLanguage") // P5-S3
+  entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
 
   @@index([status])
 }
@@ -785,6 +788,7 @@ model Country {
   editorialTasks  EditorialTask[]
   exams           Exam[] @relation("ExamCountry") // P3-S1: every exam belongs to exactly one country (§14)
   currentEvents   CurrentEvent[] @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
+  entities        Entity[] // P6-S3: §14 country-scoped entity reference records
 
   @@index([status])
 }
@@ -912,6 +916,7 @@ model Topic {
   syllabusNodes  SyllabusNode[]  @relation("SyllabusNodeTopic")
   goalTopics     UserGoalTopic[] // P5-S3 — declared goal subject references
   currentEvents  CurrentEvent[] @relation("CurrentEventTopic") // P6-S1: §12 step 3 primary topic
+  eventFilings   CurrentEventTopic[] // P6-S3: additional cross-filing links
 
   @@index([parentId, orderIndex])
   @@index([status])
@@ -1019,13 +1024,14 @@ model UserFollow {
 // ---------- P5-S2: SavedItem + Collection (Master Plan §6 rows, §10, §31) ----------
 
 // Savable object vocabulary (§10: "any eligible content/knowledge unit/QnA/
-// Question/MockTest/current event"). QnA/Question/MockTest (P7) and
-// CurrentEvent (P6) extend this enum additively — the P5-S1 FollowObjectType
-// precedent. EXAM/TOPIC are deliberately NOT here: following is the §10
-// affordance for exams/topics; saves are for content objects.
+// Question/MockTest/current event"). QnA/Question/MockTest (P7) extend this
+// enum additively — the P5-S1 FollowObjectType precedent. EXAM/TOPIC/ENTITY
+// are deliberately NOT here: following is the §10 affordance for exams/topics/
+// entities; saves are for content objects. CURRENT_EVENT joined in P6-S3.
 enum SavedObjectType {
   KNOWLEDGE_UNIT // the canonical record (§7) — survives representation updates
   CONTENT_ITEM // a specific published language × format representation
+  CURRENT_EVENT // P6-S3 (§10): the event record — its §16 page is the retrieval surface
 }
 
 // §6 Collection row carries visibility. Collections are private in v1 —
@@ -1231,6 +1237,9 @@ model CurrentEvent {
   createdBy  User?     @relation("CurrentEventAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   sources    CurrentEventSource[]
   knowledgeUnits CurrentEventKnowledgeUnit[]
+  // P6-S3 (§12 step 3): the entity + additional-topic linking layer.
+  entities         CurrentEventEntity[]
+  additionalTopics CurrentEventTopic[]
   // §12 step 4 (P6-S2): the event's language-specific representations —
   // ContentItems anchored here, riding the §19 workflow + §36 revisions.
   representations ContentItem[] @relation("ContentItemEvent")
@@ -1286,4 +1295,115 @@ model CurrentEventKnowledgeUnit {
 
   @@unique([currentEventId, knowledgeUnitId])
   @@index([knowledgeUnitId])
+}
+
+// ---------- P6-S3: Entity registry + event linking (Master Plan §6 Entity row,
+// §12 step 3, §13, §14, §17, §36, §45) ----------
+
+// §6 Entity row: "Person/place/org/concept etc. — id, type, canonical name,
+// aliases, country". Entities are canonical REFERENCE records (like Topics and
+// the §24 Source registry — never content): one row per real-world entity,
+// whatever the number of events that mention it. `slug` is immutable,
+// kebab-case, URL-stable identity (the §16/§36 precedent — public entity
+// pages may come later; the slug is reserved now).
+//
+// §14 scoping follows the Topic precedent exactly: GLOBAL entities
+// (countryId null) are world-reference records, ADMIN-managed like all global
+// objects; COUNTRY entities belong to exactly one market (managed by that
+// market's admin, followable only from there). Linking is NOT scope-checked:
+// an event may reference any ACTIVE entity (a GLOBAL event links the ISRO
+// entity; a COUNTRY/IN event links the UN) — links are editorial metadata
+// governed by the EVENT's manage permission, the §24 shared-registry
+// philosophy applied to reference data.
+enum EntityType {
+  PERSON
+  PLACE
+  ORGANISATION
+  CONCEPT // missions, schemes, treaties, awards, events-as-subjects, …
+}
+
+// §36: soft-delete only — RETIRED entities stop new links/follows; existing
+// links/follows stay as honest history (never a cascade surprise).
+enum EntityStatus {
+  ACTIVE
+  RETIRED
+}
+
+model Entity {
+  id            String       @id @default(cuid())
+  slug          String       @unique // immutable, kebab-case (§16/§36)
+  canonicalName String
+  description   String? // canonical (English-reference) one-liner
+  type          EntityType
+  status        EntityStatus @default(ACTIVE)
+  scope         TopicScope   @default(GLOBAL) // §14 GLOBAL/COUNTRY (Topic precedent)
+  countryId     String? // set iff scope = COUNTRY (explicit, never inferred)
+  notes         String? // internal editorial notes
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  country Country?            @relation(fields: [countryId], references: [id])
+  aliases EntityAlias[]
+  events  CurrentEventEntity[]
+
+  @@index([type, status])
+  @@index([scope, countryId])
+  @@index([status])
+}
+
+// Alternate names/spellings (§6 "aliases", the TopicAlias §13 precedent):
+// "ISRO" → Indian Space Research Organisation; "UNSC" → United Nations
+// Security Council. languageId null = language-neutral alias. Aliases feed
+// §17 search matching (entity names are first-class search terms) without
+// touching the canonical name.
+model EntityAlias {
+  id         String    @id @default(cuid())
+  entityId   String
+  value      String
+  languageId String?
+  createdAt  DateTime  @default(now())
+
+  entity   Entity    @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  language Language? @relation(fields: [languageId], references: [id])
+
+  @@unique([entityId, value])
+  @@index([languageId])
+}
+
+// §12 step 3: attach entities to the event — who/what the event is about.
+// Mirrors CurrentEventKnowledgeUnit: live editorial metadata (every
+// attach/detach audited), link rows only (the Entity record and its other
+// links are preserved on detach, §36).
+model CurrentEventEntity {
+  id             String   @id @default(cuid())
+  currentEventId String
+  entityId       String
+  note           String? // why this entity is relevant ("the landing agency")
+  createdAt      DateTime @default(now())
+
+  currentEvent CurrentEvent @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
+  entity       Entity      @relation(fields: [entityId], references: [id], onDelete: Cascade)
+
+  @@unique([currentEventId, entityId])
+  @@index([entityId])
+}
+
+// §12 step 3 richer taxonomy: the event's ADDITIONAL canonical topics beyond
+// the required primary (CurrentEvent.topicId). A story is often filed under
+// several branches (Chandrayaan-3 → ISRO Programmes AND Space Technology);
+// the primary stays the §13 breadcrumb anchor, these are the cross-filings.
+// Scope rule mirrors the create-time invariant: a COUNTRY topic may only
+// attach to a COUNTRY event of the same market (§13/§14 containment).
+model CurrentEventTopic {
+  id             String   @id @default(cuid())
+  currentEventId String
+  topicId        String
+  note           String? // why this additional filing fits
+  createdAt      DateTime @default(now())
+
+  currentEvent CurrentEvent @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
+  topic        Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([currentEventId, topicId])
+  @@index([topicId])
 }

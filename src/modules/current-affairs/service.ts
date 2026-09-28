@@ -27,13 +27,16 @@ import {
   type AuditRequestMeta,
 } from '@/modules/audit'
 import { normalizeSourceUrl } from '@/modules/knowledge'
+import { onEventChanged } from '@/modules/search'
 
 import type {
   AdminCurrentEvent,
   AdminCurrentEventDetail,
   AdminCurrentEventListResult,
+  AdminEventEntityLink,
   AdminEventKnowledgeUnitLink,
   AdminEventSourceLink,
+  AdminEventTopicLink,
   AttachEventSourceResult,
   CurrentEventLifecyclePublic,
   EventScopePublic,
@@ -42,8 +45,10 @@ import type {
 import { CURRENT_EVENT_TRANSITIONS } from './types'
 import type { AdminCurrentEventListQuery } from './validation'
 import type {
+  AttachEventEntityInput,
   AttachEventKnowledgeUnitInput,
   AttachEventSourceInput,
+  AttachEventTopicInput,
   CreateCurrentEventInput,
   CurrentEventTransitionInput,
   UpdateCurrentEventInput,
@@ -74,6 +79,12 @@ export type CurrentAffairsErrorCode =
   | 'UNIT_NOT_VERIFIED'
   | 'UNIT_ALREADY_LINKED'
   | 'UNIT_LINK_NOT_FOUND'
+  | 'ENTITY_NOT_FOUND'
+  | 'ENTITY_NOT_LINKABLE'
+  | 'ENTITY_ALREADY_LINKED'
+  | 'ENTITY_LINK_NOT_FOUND'
+  | 'TOPIC_ALREADY_LINKED'
+  | 'TOPIC_LINK_NOT_FOUND'
   | 'EVENT_DENIED'
 
 const ERROR_STATUS: Record<CurrentAffairsErrorCode, number> = {
@@ -97,6 +108,12 @@ const ERROR_STATUS: Record<CurrentAffairsErrorCode, number> = {
   UNIT_NOT_VERIFIED: 409,
   UNIT_ALREADY_LINKED: 409,
   UNIT_LINK_NOT_FOUND: 404,
+  ENTITY_NOT_FOUND: 404,
+  ENTITY_NOT_LINKABLE: 409,
+  ENTITY_ALREADY_LINKED: 409,
+  ENTITY_LINK_NOT_FOUND: 404,
+  TOPIC_ALREADY_LINKED: 409,
+  TOPIC_LINK_NOT_FOUND: 404,
   EVENT_DENIED: 403,
 }
 
@@ -147,6 +164,15 @@ const EVENT_INCLUDE = {
   },
   knowledgeUnits: {
     include: { knowledgeUnit: { include: { topic: true } } },
+    orderBy: [{ createdAt: 'asc' as const }],
+  },
+  // P6-S3 §12 step 3 — the entity + additional-topic linking layer.
+  entities: {
+    include: { entity: { include: { country: { select: { isoCode: true } } } } },
+    orderBy: [{ createdAt: 'asc' as const }],
+  },
+  additionalTopics: {
+    include: { topic: { include: { country: { select: { isoCode: true } } } } },
     orderBy: [{ createdAt: 'asc' as const }],
   },
 }
@@ -280,6 +306,8 @@ function toAdminEvent(event: EventRow): AdminCurrentEvent {
     notes: event.notes,
     sourceCount: event.sources.length,
     unitCount: event.knowledgeUnits.length,
+    entityCount: event.entities.length,
+    additionalTopicCount: event.additionalTopics.length,
     hasPrimarySource: event.sources.some((link) => link.isPrimary),
     createdByEmail: event.createdBy?.email ?? null,
     createdAt: event.createdAt.toISOString(),
@@ -322,6 +350,40 @@ function toAdminEventDetail(event: EventRow): AdminCurrentEventDetail {
           status: link.knowledgeUnit.status,
           type: link.knowledgeUnit.type,
           topicSlug: link.knowledgeUnit.topic.slug,
+        },
+      })
+    ),
+    // P6-S3 §12 step 3 — who/what the event is about + the cross-filings.
+    entities: event.entities.map(
+      (link): AdminEventEntityLink => ({
+        id: link.id,
+        note: link.note,
+        linkedAt: link.createdAt.toISOString(),
+        entity: {
+          id: link.entity.id,
+          slug: link.entity.slug,
+          canonicalName: link.entity.canonicalName,
+          type: link.entity.type,
+          status: link.entity.status,
+          scope: link.entity.scope,
+          countryIso: link.entity.country?.isoCode ?? null,
+          description: link.entity.description,
+        },
+      })
+    ),
+    additionalTopics: event.additionalTopics.map(
+      (link): AdminEventTopicLink => ({
+        id: link.id,
+        note: link.note,
+        linkedAt: link.createdAt.toISOString(),
+        topic: {
+          id: link.topic.id,
+          slug: link.topic.slug,
+          canonicalName: link.topic.canonicalName,
+          type: link.topic.type,
+          status: link.topic.status,
+          scope: link.topic.scope,
+          countryIso: link.topic.country?.isoCode ?? null,
         },
       })
     ),
@@ -1097,6 +1159,237 @@ export async function detachEventKnowledgeUnit(
     userAgent: meta.userAgent ?? null,
   })
 
+  return { detached: true }
+}
+
+// ---------- P6-S3: §12 step 3 entity + additional-topic linking ----------
+
+/**
+ * §12 step 3: link an Entity — who/what the event is about. Links are event
+ * operations (current-affairs:manage on the event governs) and are NOT
+ * §14-scope-checked: entities are shared reference records (the §24
+ * shared-registry philosophy — a GLOBAL event links the ISRO entity, a
+ * COUNTRY/IN event links the UN). Only ACTIVE entities link (§36 — RETIRED
+ * stops new links; existing links stay as honest history).
+ */
+export async function attachEventEntity(
+  actor: Actor,
+  eventId: string,
+  input: AttachEventEntityInput,
+  meta: AuditRequestMeta = {}
+): Promise<AdminEventEntityLink> {
+  assertCan(actor, 'current-affairs:manage')
+  const event = await loadEvent(eventId)
+  if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
+  await assertCanManageEvent(actor, event, 'linkEntity', meta)
+  assertEditable(event)
+
+  const entity = await db.entity.findFirst({
+    where: CUID_PATTERN.test(input.entity) ? { id: input.entity } : { slug: input.entity.toLowerCase() },
+    include: { country: { select: { isoCode: true } } },
+  })
+  if (!entity) throw new CurrentAffairsError('ENTITY_NOT_FOUND', `Unknown entity "${input.entity}"`)
+  if (entity.status !== 'ACTIVE') {
+    throw new CurrentAffairsError(
+      'ENTITY_NOT_LINKABLE',
+      `Entity "${entity.slug}" is ${entity.status.toLowerCase()} — events link only active entities (§36)`
+    )
+  }
+  const already = event.entities.find((link) => link.entityId === entity.id)
+  if (already) {
+    throw new CurrentAffairsError('ENTITY_ALREADY_LINKED', 'This entity is already linked to the event')
+  }
+
+  const created = await db.currentEventEntity.create({
+    data: {
+      currentEventId: event.id,
+      entityId: entity.id,
+      note: input.note ?? null,
+    },
+  })
+
+  await recordAudit({
+    actor: { userId: actor.userId, email: actor.email, role: actor.role },
+    action: AUDIT_ACTIONS.currentEventEntityLink,
+    objectType: AUDIT_OBJECT_TYPES.currentEventEntity,
+    objectId: created.id,
+    objectLabel: `${event.slug} → ${entity.slug}`,
+    after: { eventSlug: event.slug, entitySlug: entity.slug, note: created.note },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent ?? null,
+  })
+
+  // §17: entity names/aliases enrich the event's search neutralText — keep
+  // the derived index honest (the same hook the publish path uses).
+  await onEventChanged(event.slug).catch(() => undefined)
+
+  return {
+    id: created.id,
+    note: created.note,
+    linkedAt: created.createdAt.toISOString(),
+    entity: {
+      id: entity.id,
+      slug: entity.slug,
+      canonicalName: entity.canonicalName,
+      type: entity.type,
+      status: entity.status,
+      scope: entity.scope,
+      countryIso: entity.country?.isoCode ?? null,
+      description: entity.description,
+    },
+  }
+}
+
+/** Detach an entity link (§36 — audited; the Entity record is preserved). */
+export async function detachEventEntity(
+  actor: Actor,
+  eventId: string,
+  linkId: string,
+  meta: AuditRequestMeta = {}
+): Promise<{ detached: true }> {
+  assertCan(actor, 'current-affairs:manage')
+  const event = await loadEvent(eventId)
+  if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
+  await assertCanManageEvent(actor, event, 'unlinkEntity', meta)
+  assertEditable(event)
+
+  const link = event.entities.find((row) => row.id === linkId)
+  if (!link) throw new CurrentAffairsError('ENTITY_LINK_NOT_FOUND', 'Entity link not found on this event')
+
+  await db.currentEventEntity.delete({ where: { id: link.id } })
+
+  await recordAudit({
+    actor: { userId: actor.userId, email: actor.email, role: actor.role },
+    action: AUDIT_ACTIONS.currentEventEntityUnlink,
+    objectType: AUDIT_OBJECT_TYPES.currentEventEntity,
+    objectId: link.id,
+    objectLabel: `${event.slug} → ${link.entity.slug}`,
+    before: { note: link.note },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent ?? null,
+  })
+
+  await onEventChanged(event.slug).catch(() => undefined)
+  return { detached: true }
+}
+
+/**
+ * §12 step 3 richer taxonomy: cross-file the event under an ADDITIONAL
+ * canonical topic (the primary stays CurrentEvent.topicId — the §13
+ * breadcrumb anchor). The create-time scope invariant applies: a COUNTRY
+ * topic may only attach to a COUNTRY event of the same market (§13/§14
+ * containment); GLOBAL topics attach to any event.
+ */
+export async function attachEventTopic(
+  actor: Actor,
+  eventId: string,
+  input: AttachEventTopicInput,
+  meta: AuditRequestMeta = {}
+): Promise<AdminEventTopicLink> {
+  assertCan(actor, 'current-affairs:manage')
+  const event = await loadEvent(eventId)
+  if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
+  await assertCanManageEvent(actor, event, 'linkTopic', meta)
+  assertEditable(event)
+
+  const topic = await db.topic.findFirst({
+    where: CUID_PATTERN.test(input.topic) ? { id: input.topic } : { slug: input.topic.toLowerCase() },
+    include: { country: { select: { isoCode: true } } },
+  })
+  if (!topic) throw new CurrentAffairsError('TOPIC_NOT_FOUND', `Unknown topic "${input.topic}"`)
+  if (topic.status !== 'ACTIVE') {
+    throw new CurrentAffairsError(
+      'TOPIC_NOT_ATTACHABLE',
+      `Topic "${topic.slug}" is ${topic.status.toLowerCase()} — events file only under active topics`
+    )
+  }
+  if (topic.id === event.topicId) {
+    throw new CurrentAffairsError(
+      'TOPIC_ALREADY_LINKED',
+      `"${topic.slug}" is already this event\u2019s primary topic — additional filings are for other branches`
+    )
+  }
+  const already = event.additionalTopics.find((link) => link.topicId === topic.id)
+  if (already) {
+    throw new CurrentAffairsError('TOPIC_ALREADY_LINKED', 'This topic is already filed on the event')
+  }
+  // §13/§14 containment (the create-time invariant, applied per link).
+  if (topic.scope === 'COUNTRY') {
+    if (event.scope !== 'COUNTRY' || event.countryId !== topic.countryId) {
+      throw new CurrentAffairsError(
+        'TOPIC_SCOPE_MISMATCH',
+        `Topic "${topic.slug}" is scoped to ${topic.country?.isoCode ?? 'its market'} — only that market\u2019s country events can file under it`
+      )
+    }
+  }
+
+  const created = await db.currentEventTopic.create({
+    data: {
+      currentEventId: event.id,
+      topicId: topic.id,
+      note: input.note ?? null,
+    },
+  })
+
+  await recordAudit({
+    actor: { userId: actor.userId, email: actor.email, role: actor.role },
+    action: AUDIT_ACTIONS.currentEventTopicLink,
+    objectType: AUDIT_OBJECT_TYPES.currentEventTopic,
+    objectId: created.id,
+    objectLabel: `${event.slug} → ${topic.slug}`,
+    after: { eventSlug: event.slug, topicSlug: topic.slug, note: created.note },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent ?? null,
+  })
+
+  await onEventChanged(event.slug).catch(() => undefined)
+
+  return {
+    id: created.id,
+    note: created.note,
+    linkedAt: created.createdAt.toISOString(),
+    topic: {
+      id: topic.id,
+      slug: topic.slug,
+      canonicalName: topic.canonicalName,
+      type: topic.type,
+      status: topic.status,
+      scope: topic.scope,
+      countryIso: topic.country?.isoCode ?? null,
+    },
+  }
+}
+
+/** Detach an additional-topic filing (§36 — audited; the primary is immutable). */
+export async function detachEventTopic(
+  actor: Actor,
+  eventId: string,
+  linkId: string,
+  meta: AuditRequestMeta = {}
+): Promise<{ detached: true }> {
+  assertCan(actor, 'current-affairs:manage')
+  const event = await loadEvent(eventId)
+  if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
+  await assertCanManageEvent(actor, event, 'unlinkTopic', meta)
+  assertEditable(event)
+
+  const link = event.additionalTopics.find((row) => row.id === linkId)
+  if (!link) throw new CurrentAffairsError('TOPIC_LINK_NOT_FOUND', 'Topic filing not found on this event')
+
+  await db.currentEventTopic.delete({ where: { id: link.id } })
+
+  await recordAudit({
+    actor: { userId: actor.userId, email: actor.email, role: actor.role },
+    action: AUDIT_ACTIONS.currentEventTopicUnlink,
+    objectType: AUDIT_OBJECT_TYPES.currentEventTopic,
+    objectId: link.id,
+    objectLabel: `${event.slug} → ${link.topic.slug}`,
+    before: { note: link.note },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent ?? null,
+  })
+
+  await onEventChanged(event.slug).catch(() => undefined)
   return { detached: true }
 }
 

@@ -13,11 +13,11 @@
 import { z } from 'zod'
 
 /** Savable object types today (§10 — kept in lockstep with the Prisma enum). */
-export const SAVE_OBJECT_TYPES = ['KNOWLEDGE_UNIT', 'CONTENT_ITEM'] as const
+export const SAVE_OBJECT_TYPES = ['KNOWLEDGE_UNIT', 'CONTENT_ITEM', 'CURRENT_EVENT'] as const
 export type SaveObjectTypeInput = (typeof SAVE_OBJECT_TYPES)[number]
 
 /** Follow vocabulary is rejected with an explicit §10 redirect, not a generic enum error. */
-export const FOLLOW_ONLY_TYPES = ['EXAM', 'TOPIC'] as const
+export const FOLLOW_ONLY_TYPES = ['EXAM', 'TOPIC', 'ENTITY'] as const
 
 const objectRefField = z
   .string()
@@ -27,7 +27,7 @@ const objectRefField = z
 
 /** The §10 boundary message shared by create + state schemas. */
 const followRedirectMessage =
-  'Exams and topics are followed, not saved (§10). Use POST /api/follows.'
+  'Exams, topics and entities are followed, not saved (§10). Use POST /api/follows.'
 
 const saveObjectType = z
   .string()
@@ -41,7 +41,7 @@ const saveObjectType = z
       ctx.addIssue({
         code: 'custom',
         message:
-          'objectType must be KNOWLEDGE_UNIT or CONTENT_ITEM (QnA/Question/MockTest join with P7, CurrentEvent with P6)',
+          'objectType must be KNOWLEDGE_UNIT, CONTENT_ITEM or CURRENT_EVENT (QnA/Question/MockTest join with P7)',
       })
     }
   }) as unknown as z.ZodType<SaveObjectTypeInput>

@@ -202,6 +202,22 @@ export const attachEventKnowledgeUnitSchema = z.object({
 
 export type AttachEventKnowledgeUnitInput = z.infer<typeof attachEventKnowledgeUnitSchema>
 
+/** P6-S3 §12 step 3: link an Entity by slug (ACTIVE only — the §36 rule). */
+export const attachEventEntitySchema = z.object({
+  entity: z.string().trim().min(1, 'Pick an entity to link'),
+  note: z.string().trim().max(500).optional(),
+})
+
+export type AttachEventEntityInput = z.infer<typeof attachEventEntitySchema>
+
+/** P6-S3 §12 step 3: cross-file the event under an additional topic. */
+export const attachEventTopicSchema = z.object({
+  topic: z.string().trim().min(1, 'Pick a topic to file under'),
+  note: z.string().trim().max(500).optional(),
+})
+
+export type AttachEventTopicInput = z.infer<typeof attachEventTopicSchema>
+
 export const adminCurrentEventListQuerySchema = z.object({
   q: z.string().trim().min(1).max(200).optional(),
   lifecycle: z.enum(CURRENT_EVENT_LIFECYCLE_ENUMS).optional(),

@@ -92,4 +92,6 @@ export const RATE_LIMITS = {
   personalisationWrite: { limit: 30, windowMs: 60 * 1000 }, // the §31 reset action per IP (P5-S5)
   currentAffairsRead: { limit: 60, windowMs: 60 * 1000 }, // admin event list/detail reads per IP (P6-S1)
   currentAffairsWrite: { limit: 30, windowMs: 60 * 1000 }, // event + aggregation mutations per IP (P6-S1)
+  entityRead: { limit: 60, windowMs: 60 * 1000 }, // admin entity registry reads per IP (P6-S3)
+  entityWrite: { limit: 30, windowMs: 60 * 1000 }, // entity registry + event link mutations per IP (P6-S3)
 } as const

@@ -9,8 +9,8 @@
  * §39 (the same APIs a mobile app consumes).
  */
 
-/** The object types savable today (§10 vocabulary — QnA/Question/MockTest join in P7, CurrentEvent in P6). */
-export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM'
+/** The object types savable today (§10 vocabulary — QnA/Question/MockTest join in P7; CURRENT_EVENT joined in P6-S3). */
+export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
 
 /**
  * Resolved summary of a saved KNOWLEDGE_UNIT — the canonical record (§7).
@@ -65,7 +65,32 @@ export interface SavedContentItemSummary {
   countryIso: string | null
 }
 
-export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary
+/**
+ * Resolved summary of a saved CURRENT_EVENT (P6-S3, §10/§12/§16) — the
+ * event record is the saved object; its §16 page (/current-affairs/{slug}/)
+ * is the retrieval surface. The §7 no-duplicates rule applies verbatim: new
+ * published revisions update the page under the SAME save row. ARCHIVED
+ * events stay savable — they keep their pages as permanent historical
+ * reference (§36 stable identity).
+ */
+export interface SavedEventSummary {
+  kind: 'CURRENT_EVENT'
+  slug: string
+  title: string
+  /** Honest current lifecycle (§12 step 6) — ARCHIVED rows stay listed. */
+  lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+  eventDate: string
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  topicSlug: string
+  topicCanonicalName: string
+  /** §16 event-page path (/current-affairs/{slug}/) in the summary's market. */
+  canonicalPath: string
+  /** The market language the summary resolved in (the path's language). */
+  languageCode: string
+}
+
+export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary
 
 /** One saved-item row, resolved for display (§37 — stable, client-agnostic). */
 export interface PublicSave {
@@ -91,7 +116,7 @@ export interface PublicCollection {
 export interface SaveListResult {
   items: PublicSave[]
   /** Counts coherent with the applied type filter (across ALL collections). */
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number }
+  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number }
   /** The caller's collections with live item counts (name-ordered, default first). */
   collections: PublicCollection[]
 }

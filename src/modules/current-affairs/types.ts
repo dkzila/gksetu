@@ -94,6 +94,39 @@ export interface AdminEventKnowledgeUnitLink {
   }
 }
 
+/** P6-S3 §12 step 3: one linked Entity — who/what the event is about. */
+export interface AdminEventEntityLink {
+  id: string
+  note: string | null
+  linkedAt: string
+  entity: {
+    id: string
+    slug: string
+    canonicalName: string
+    type: string
+    status: string
+    scope: string
+    countryIso: string | null
+    description: string | null
+  }
+}
+
+/** P6-S3 §12 step 3: one additional canonical topic cross-filing. */
+export interface AdminEventTopicLink {
+  id: string
+  note: string | null
+  linkedAt: string
+  topic: {
+    id: string
+    slug: string
+    canonicalName: string
+    type: string
+    status: string
+    scope: string
+    countryIso: string | null
+  }
+}
+
 /** List row (admin). */
 export interface AdminCurrentEvent {
   id: string
@@ -111,6 +144,8 @@ export interface AdminCurrentEvent {
   notes: string | null
   sourceCount: number
   unitCount: number
+  entityCount: number
+  additionalTopicCount: number
   hasPrimarySource: boolean
   createdByEmail: string | null
   createdAt: string
@@ -121,6 +156,9 @@ export interface AdminCurrentEvent {
 export interface AdminCurrentEventDetail extends AdminCurrentEvent {
   sources: AdminEventSourceLink[]
   knowledgeUnits: AdminEventKnowledgeUnitLink[]
+  /** P6-S3 §12 step 3 — the entity + additional-topic linking layer. */
+  entities: AdminEventEntityLink[]
+  additionalTopics: AdminEventTopicLink[]
   /** Lifecycle affordances from server truth (§20/§37). */
   allowedTransitions: CurrentEventLifecyclePublic[]
   /** §36: ARCHIVED events are read-only (affordance for clients). */

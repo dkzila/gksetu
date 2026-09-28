@@ -31,6 +31,10 @@ export {
   detachEventSource,
   attachEventKnowledgeUnit,
   detachEventKnowledgeUnit,
+  attachEventEntity,
+  detachEventEntity,
+  attachEventTopic,
+  detachEventTopic,
 } from './service'
 export { getCurrentEventPage } from './page-service'
 export {
@@ -40,13 +44,17 @@ export {
   attachEventSourceSchema,
   updateEventSourceLinkSchema,
   attachEventKnowledgeUnitSchema,
+  attachEventEntitySchema,
+  attachEventTopicSchema,
   adminCurrentEventListQuerySchema,
   EVENT_SLUG_PATTERN,
 } from './validation'
 export type {
   AdminCurrentEventListQuery,
+  AttachEventEntityInput,
   AttachEventKnowledgeUnitInput,
   AttachEventSourceInput,
+  AttachEventTopicInput,
   CreateCurrentEventInput,
   CurrentEventTransitionInput,
   UpdateCurrentEventInput,
@@ -56,8 +64,10 @@ export type {
   AdminCurrentEvent,
   AdminCurrentEventDetail,
   AdminCurrentEventListResult,
+  AdminEventEntityLink,
   AdminEventKnowledgeUnitLink,
   AdminEventSourceLink,
+  AdminEventTopicLink,
   AttachEventSourceResult,
   CurrentEventLifecyclePublic,
   CurrentEventPagination,

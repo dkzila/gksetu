@@ -165,6 +165,15 @@ export const AUDIT_ACTIONS = {
   /** §12 step 3 canonical knowledge links on events. */
   currentEventUnitLink: 'currentaffairs.event.unit.link',
   currentEventUnitUnlink: 'currentaffairs.event.unit.unlink',
+  /** P6-S3 §12 step 3 entity links on events. */
+  currentEventEntityLink: 'currentaffairs.event.entity.link',
+  currentEventEntityUnlink: 'currentaffairs.event.entity.unlink',
+  /** P6-S3 §12 step 3 additional-topic cross-filings on events. */
+  currentEventTopicLink: 'currentaffairs.event.topic.link',
+  currentEventTopicUnlink: 'currentaffairs.event.topic.unlink',
+  /** P6-S3 entity registry mutations (§6 Entity row — canonical reference records). */
+  entityCreate: 'entity.create',
+  entityUpdate: 'entity.update',
   /** Object-level current-affairs denials (scope/state mismatch — §20 signal). */
   currentEventDenied: 'currentaffairs.event.denied',
 } as const
@@ -194,5 +203,8 @@ export const AUDIT_OBJECT_TYPES = {
   currentEvent: 'CurrentEvent',
   currentEventSource: 'CurrentEventSource',
   currentEventKnowledgeUnit: 'CurrentEventKnowledgeUnit',
+  entity: 'Entity',
+  currentEventEntity: 'CurrentEventEntity',
+  currentEventTopic: 'CurrentEventTopic',
   permission: 'Permission',
 } as const

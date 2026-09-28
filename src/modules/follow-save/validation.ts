@@ -10,8 +10,9 @@
  */
 import { z } from 'zod'
 
-/** Followable object types today (§10 — kept in lockstep with the Prisma enum). */
-export const FOLLOW_OBJECT_TYPES = ['EXAM', 'TOPIC'] as const
+/** Followable object types today (§10 — ENTITY joined in P6-S3; current-affairs
+ *  themes are taxonomy nodes and ride TOPIC, the §13 Current Affairs domain). */
+export const FOLLOW_OBJECT_TYPES = ['EXAM', 'TOPIC', 'ENTITY'] as const
 export type FollowObjectTypeInput = (typeof FOLLOW_OBJECT_TYPES)[number]
 
 /** Public ref — slug (kebab-case) or canonical id (cuid). */
@@ -23,7 +24,7 @@ const objectRefField = z
 
 /** POST /api/follows body. */
 export const followCreateSchema = z.object({
-  objectType: z.enum(FOLLOW_OBJECT_TYPES, { message: 'objectType must be EXAM or TOPIC' }),
+  objectType: z.enum(FOLLOW_OBJECT_TYPES, { message: 'objectType must be EXAM, TOPIC or ENTITY' }),
   objectRef: objectRefField,
 })
 export type FollowCreateInput = z.infer<typeof followCreateSchema>
@@ -38,7 +39,7 @@ export type FollowListQuery = z.infer<typeof followListQuerySchema>
 
 /** GET /api/follows/state query — the single-object button state. */
 export const followStateQuerySchema = z.object({
-  objectType: z.enum(FOLLOW_OBJECT_TYPES, { message: 'objectType must be EXAM or TOPIC' }),
+  objectType: z.enum(FOLLOW_OBJECT_TYPES, { message: 'objectType must be EXAM, TOPIC or ENTITY' }),
   objectRef: objectRefField,
 })
 export type FollowStateQuery = z.infer<typeof followStateQuerySchema>

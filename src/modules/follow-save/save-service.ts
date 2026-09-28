@@ -16,7 +16,7 @@
  * projection precedent the follow half and the seo module use; no reverse
  * dependency on the knowledge module's services is ever created.
  */
-import { Prisma, type Collection, type ContentItem, type KnowledgeUnit, type SavedItem } from '@prisma/client'
+import { Prisma, type Collection, type ContentItem, type CurrentEvent, type KnowledgeUnit, type SavedItem } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
   AUDIT_ACTIONS,
@@ -38,6 +38,7 @@ import type {
   SaveMutationResult,
   SaveStateResult,
   SavedContentItemSummary,
+  SavedEventSummary,
   SavedUnitSummary,
 } from './save-types'
 import type {
@@ -55,6 +56,7 @@ export type SaveErrorCode =
   | 'SAVE_OBJECT_NOT_FOUND'
   | 'UNIT_NOT_SAVABLE'
   | 'CONTENT_ITEM_NOT_SAVABLE'
+  | 'EVENT_NOT_SAVABLE'
   | 'SAVE_LIMIT_REACHED'
   | 'SAVE_NOT_FOUND'
   | 'COLLECTION_NOT_FOUND'
@@ -66,6 +68,7 @@ const ERROR_STATUS: Record<SaveErrorCode, number> = {
   SAVE_OBJECT_NOT_FOUND: 404,
   UNIT_NOT_SAVABLE: 409,
   CONTENT_ITEM_NOT_SAVABLE: 409,
+  EVENT_NOT_SAVABLE: 409,
   SAVE_LIMIT_REACHED: 409,
   SAVE_NOT_FOUND: 404,
   COLLECTION_NOT_FOUND: 404,
@@ -208,6 +211,12 @@ type ItemWithUnit = ContentItem & {
   }
 }
 
+/** P6-S3: the §12 event record — the saved object (its §16 page is the surface). */
+type EventWithTopic = CurrentEvent & {
+  topic: { slug: string; canonicalName: string }
+  country: { isoCode: string } | null
+}
+
 const UNIT_INCLUDE = {
   topic: { select: { slug: true, canonicalName: true } },
   country: { select: { isoCode: true } },
@@ -217,6 +226,11 @@ const ITEM_INCLUDE = {
   language: { select: { code: true } },
   publishedRevision: { select: { title: true } },
   knowledgeUnit: { include: { topic: { select: { slug: true, canonicalName: true } }, country: { select: { isoCode: true } } } },
+} as const
+
+const EVENT_INCLUDE = {
+  topic: { select: { slug: true, canonicalName: true } },
+  country: { select: { isoCode: true } },
 } as const
 
 async function findUnitRow(ref: string): Promise<UnitWithTopic | null> {
@@ -230,16 +244,23 @@ async function findItemRow(ref: string): Promise<ItemWithUnit | null> {
   // Content items have no slug (§7 identity: unit × language × format) — the
   // public representation id is the ref, the same id every knowledge page
   // exposes on its representations. P6-S2: event representations are excluded
-  // — their public surface is the §16 event page, and CURRENT_EVENT joins the
-  // savable vocabulary with the P6-S3/S4 SavedObjectType extension. The cast
-  // is justified by the where clause: a row with knowledgeUnitId != null
-  // always carries its unit relation.
+  // — their public surface is the §16 event page, and CURRENT_EVENT is the
+  // §10 savable vocabulary entry (P6-S3). The cast is justified by the where
+  // clause: a row with knowledgeUnitId != null always carries its unit relation.
   if (!CUID_PATTERN.test(ref)) return null
   const row = await db.contentItem.findFirst({
     where: { id: ref, knowledgeUnitId: { not: null } },
     include: ITEM_INCLUDE,
   })
   return row != null && row.knowledgeUnit != null ? (row as ItemWithUnit) : null
+}
+
+/** P6-S3: events resolve by slug (their §37 public identity). */
+async function findEventRow(ref: string): Promise<EventWithTopic | null> {
+  return db.currentEvent.findFirst({
+    where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
+    include: EVENT_INCLUDE,
+  })
 }
 
 /** Unit statuses publicly readable today (§36): VERIFIED is the live truth,
@@ -263,12 +284,20 @@ interface SavableItem {
   item: ItemWithUnit
 }
 
+interface SavableEvent {
+  objectType: 'CURRENT_EVENT'
+  objectId: string
+  slug: string
+  name: string // the event title
+  event: EventWithTopic
+}
+
 /** Existence + eligibility for one object. NO §14 country guard by design:
  * §15.3 lets a user browse (and thus bookmark) any market's public content —
  * saves are retrieval, not personalisation (§10). */
 async function resolveSavable(
-  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM'; objectRef: string }
-): Promise<SavableUnit | SavableItem> {
+  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'; objectRef: string }
+): Promise<SavableUnit | SavableItem | SavableEvent> {
   if (input.objectType === 'KNOWLEDGE_UNIT') {
     const unit = await findUnitRow(input.objectRef)
     if (!unit) {
@@ -291,6 +320,10 @@ async function resolveSavable(
     }
   }
 
+  if (input.objectType === 'CURRENT_EVENT') {
+    return resolveSavableEvent(input.objectRef)
+  }
+
   const item = await findItemRow(input.objectRef)
   if (!item) {
     throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'This content item does not exist')
@@ -311,6 +344,35 @@ async function resolveSavable(
     slug: item.knowledgeUnit.slug,
     name: item.publishedRevision?.title ?? item.title,
     item,
+  }
+}
+
+// P6-S3: the §10/§35 public gate — an event is savable iff it has a public
+// page (≥1 PUBLISHED representation; the page-service rule). ARCHIVED events
+// STAY savable: they keep their pages as permanent historical reference
+// (§36 stable identity). An EMERGING event before its first publish — or one
+// whose representations were all retired — is editorial data, not a retrieval
+// surface: a clean 409, never a dead link.
+async function resolveSavableEvent(ref: string): Promise<SavableEvent> {
+  const event = await findEventRow(ref)
+  if (!event) {
+    throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'This current event does not exist')
+  }
+  const publishedCount = await db.contentItem.count({
+    where: { currentEventId: event.id, status: 'PUBLISHED', publishedRevisionId: { not: null } },
+  })
+  if (publishedCount === 0) {
+    throw new SaveError(
+      'EVENT_NOT_SAVABLE',
+      'This event has no published coverage yet — its page goes live the moment an update publishes (§19/§35). Save it then.'
+    )
+  }
+  return {
+    objectType: 'CURRENT_EVENT',
+    objectId: event.id,
+    slug: event.slug,
+    name: event.title,
+    event,
   }
 }
 
@@ -357,6 +419,32 @@ function toItemSummary(item: ItemWithUnit, market: MarketShape): SavedContentIte
     topicCanonicalName: unit.topic.canonicalName,
     canonicalPath: unitPath(market.country, market.languageCode, unit.topic.slug, unit.slug),
     countryIso: unit.country?.isoCode ?? null,
+  }
+}
+
+/** P6-S3: §16 event-page path — …/current-affairs/{slug}/ under the locale prefix. */
+function eventPath(market: MarketShape['country'], languageCode: string, eventSlug: string): string {
+  return buildCanonicalUrl(
+    { slug: market.slug, isDefault: market.isDefault },
+    { code: languageCode },
+    market.defaultLanguageCode,
+    ['current-affairs', eventSlug]
+  )
+}
+
+function toEventSummary(event: EventWithTopic, market: MarketShape): SavedEventSummary {
+  return {
+    kind: 'CURRENT_EVENT',
+    slug: event.slug,
+    title: event.title,
+    lifecycleState: event.lifecycleState as SavedEventSummary['lifecycleState'],
+    eventDate: event.eventDate.toISOString(),
+    scope: event.scope as SavedEventSummary['scope'],
+    countryIso: event.country?.isoCode ?? null,
+    topicSlug: event.topic.slug,
+    topicCanonicalName: event.topic.canonicalName,
+    canonicalPath: eventPath(market.country, market.languageCode, event.slug),
+    languageCode: market.languageCode,
   }
 }
 
@@ -464,7 +552,9 @@ export async function saveObject(
     objectLabel:
       target.objectType === 'KNOWLEDGE_UNIT'
         ? `KNOWLEDGE_UNIT:${target.slug}`
-        : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
+        : target.objectType === 'CURRENT_EVENT'
+          ? `CURRENT_EVENT:${target.slug}`
+          : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
     after: {
       objectType: target.objectType,
       objectId: target.objectId,
@@ -501,7 +591,9 @@ export async function unsaveById(
     action: AUDIT_ACTIONS.saveRemove,
     objectType: AUDIT_OBJECT_TYPES.savedItem,
     objectId: existing.id,
-    objectLabel: `${existing.objectType}:${hydrated.object.kind === 'KNOWLEDGE_UNIT' ? hydrated.object.slug : hydrated.object.unit.slug}`,
+    objectLabel: `${existing.objectType}:${
+      hydrated.object.kind === 'CONTENT_ITEM' ? hydrated.object.unit.slug : hydrated.object.slug
+    }`,
     before: {
       objectType: existing.objectType,
       objectId: existing.objectId,
@@ -592,10 +684,12 @@ export async function listMySaves(
 
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
+  const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
 
-  const [units, itemRows] = await Promise.all([
+  const [units, itemRows, eventRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+    eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
   ])
 
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
@@ -604,6 +698,7 @@ export async function listMySaves(
   // the where clause guarantees the unit relation on every row.
   const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
+  const eventById = new Map(eventRows.map((event) => [event.id, event]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
@@ -613,7 +708,7 @@ export async function listMySaves(
   const unitMarket = await resolveUnitMarket(user, query)
 
   const result: PublicSave[] = []
-  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0 }
+  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0, CURRENT_EVENT: 0 }
   for (const row of rows) {
     if (row.objectType === 'KNOWLEDGE_UNIT') {
       const unit = unitById.get(row.objectId)
@@ -626,6 +721,17 @@ export async function listMySaves(
         object: toUnitSummary(unit, unit.scope === 'COUNTRY' && unit.country ? await resolveCountryUnitMarket(unit.country.isoCode, query) : unitMarket),
       })
       counts.KNOWLEDGE_UNIT += 1
+    } else if (row.objectType === 'CURRENT_EVENT') {
+      const event = eventById.get(row.objectId)
+      if (!event) continue // defensive: events cascade (§36), rows never dangle
+      result.push({
+        id: row.id,
+        objectType: 'CURRENT_EVENT',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toEventSummary(event, event.scope === 'COUNTRY' && event.country ? await resolveCountryUnitMarket(event.country.isoCode, query) : unitMarket),
+      })
+      counts.CURRENT_EVENT += 1
     } else {
       const item = itemById.get(row.objectId)
       if (!item) continue
@@ -639,7 +745,7 @@ export async function listMySaves(
       counts.CONTENT_ITEM += 1
     }
   }
-  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM
+  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM + counts.CURRENT_EVENT
   return { items: result, counts, collections }
 }
 
@@ -685,14 +791,17 @@ export async function listRecentSaves(
 
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
-  const [units, itemRows] = await Promise.all([
+  const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
+  const [units, itemRows, eventRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+    eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
   ])
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
   // P6-S2: only unit-anchored representations hydrate (see the note above).
   const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
+  const eventById = new Map(eventRows.map((event) => [event.id, event]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
@@ -712,6 +821,16 @@ export async function listRecentSaves(
         savedAt: row.savedAt.toISOString(),
         collectionId: row.collectionId,
         object: toUnitSummary(unit, unit.scope === 'COUNTRY' && unit.country ? await resolveCountryUnitMarket(unit.country.isoCode, query) : unitMarket),
+      })
+    } else if (row.objectType === 'CURRENT_EVENT') {
+      const event = eventById.get(row.objectId)
+      if (!event) continue
+      hydrated.push({
+        id: row.id,
+        objectType: 'CURRENT_EVENT',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toEventSummary(event, event.scope === 'COUNTRY' && event.country ? await resolveCountryUnitMarket(event.country.isoCode, query) : unitMarket),
       })
     } else {
       const item = itemById.get(row.objectId)
@@ -765,6 +884,27 @@ export async function getSaveState(
         }
       : null
     return { ...base, objectSlug: unit.slug, objectFound: true, saved: row !== null, save }
+  }
+
+  if (query.objectType === 'CURRENT_EVENT') {
+    const event = await findEventRow(query.objectRef)
+    if (!event) return base
+    const row = await db.savedItem.findUnique({
+      where: { userId_objectType_objectId: { userId, objectType: 'CURRENT_EVENT', objectId: event.id } },
+    })
+    const market = event.scope === 'COUNTRY' && event.country
+      ? await resolveCountryUnitMarket(event.country.isoCode, {})
+      : await resolveUnitMarket(user, {})
+    const save = row
+      ? {
+          id: row.id,
+          objectType: 'CURRENT_EVENT' as const,
+          savedAt: row.savedAt.toISOString(),
+          collectionId: row.collectionId,
+          object: toEventSummary(event, market),
+        }
+      : null
+    return { ...base, objectSlug: event.slug, objectFound: true, saved: row !== null, save }
   }
 
   const item = await findItemRow(query.objectRef)
@@ -943,6 +1083,23 @@ async function hydrateSave(user: UserContext, row: SavedItem): Promise<PublicSav
       savedAt: row.savedAt.toISOString(),
       collectionId: row.collectionId,
       object: toUnitSummary(unit, market),
+    }
+  }
+
+  if (row.objectType === 'CURRENT_EVENT') {
+    const event = await db.currentEvent.findUnique({ where: { id: row.objectId }, include: EVENT_INCLUDE })
+    if (!event) {
+      throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'The saved current event no longer exists')
+    }
+    const market = event.scope === 'COUNTRY' && event.country
+      ? await resolveCountryUnitMarket(event.country.isoCode, {})
+      : await resolveUnitMarket(user, {})
+    return {
+      id: row.id,
+      objectType: 'CURRENT_EVENT',
+      savedAt: row.savedAt.toISOString(),
+      collectionId: row.collectionId,
+      object: toEventSummary(event, market),
     }
   }
 

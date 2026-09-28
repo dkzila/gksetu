@@ -40,6 +40,7 @@ export type Permission =
   | 'editorial:work' // work the editorial task board (P2-S4 §19): ADMIN + COUNTRY_ADMIN manage; WRITER claims/works assigned tasks in scope
   | 'exam:manage' // manage exams + exam versions (P3-S1 §18): ADMIN + COUNTRY_ADMIN (own country only — exams are ALWAYS country-owned, §14)
   | 'current-affairs:manage' // manage CurrentEvents + source aggregation (P6-S1 §12): ADMIN + COUNTRY_ADMIN — canonical records, the knowledge:manage precedent (WRITERs enter at the P6-S2 representation layer via content:manage)
+  | 'entities:manage' // manage the Entity reference registry (P6-S3 §6/§12 step 3): ADMIN + COUNTRY_ADMIN — canonical records like taxonomy; event LINKS ride current-affairs:manage on the event
   | 'search:manage' // platform-wide index rebuild + stats (P4-S1 §38 admin console): ADMIN only — the index is a derived projection of every country's data
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
@@ -99,6 +100,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'search:manage',
     'sessions:manage-own',
     'current-affairs:manage',
+    'entities:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -113,6 +115,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'exam:manage',
     'sessions:manage-own',
     'current-affairs:manage',
+    'entities:manage',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish (never granted
@@ -131,6 +134,7 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'editorial:work',
   'exam:manage',
   'current-affairs:manage',
+  'entities:manage',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -215,6 +219,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'editorial:work': 'Work the editorial task board (own scope)',
   'exam:manage': 'Manage exams & exam versions (own country)',
   'current-affairs:manage': 'Manage current events & source aggregation (§12)',
+  'entities:manage': 'Manage the entity registry — persons, places, organisations, concepts (own country + global read)',
   'search:manage': 'Rebuild & inspect the search index',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
