@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P6-S1)
+ * GlobIQ — Foundation Console (P1-S1 → P6-S4)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -381,7 +381,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Personalisation — §9/§31 explanations & controls (P5-S5) ---------- */}
       <ControlsSection />
 
-      {/* ---------- Current affairs — §12 events, aggregation & publishing (P6-S1/S2) ---------- */}
+      {/* ---------- Current affairs — §12 events, aggregation & publishing (P6-S1→S3) ---------- */}
       <CurrentAffairsSection />
 
       {/* ---------- Entities — §6/§12 step 3 reference registry (P6-S3) ---------- */}

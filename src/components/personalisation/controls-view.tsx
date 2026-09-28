@@ -64,6 +64,7 @@ export interface ControlsViewProps {
 const KIND_META: Record<ApiInventorySignal['kind'], { label: string; icon: typeof Rss; className: string }> = {
   FOLLOWED_EXAM: { label: 'Followed exam', icon: Rss, className: 'border-teal-200 bg-teal-50 text-teal-700' },
   FOLLOWED_TOPIC: { label: 'Followed subject', icon: Rss, className: 'border-teal-200 bg-teal-50 text-teal-700' },
+  FOLLOWED_ENTITY: { label: 'Followed entity', icon: Rss, className: 'border-teal-200 bg-teal-50 text-teal-700' },
   GOAL_EXAM: { label: 'Goal exam', icon: GraduationCap, className: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
   GOAL_SUBJECT: { label: 'Goal subject', icon: GraduationCap, className: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
   GOAL_PREFERENCE: { label: 'Preference', icon: SlidersHorizontal, className: 'border-zinc-200 bg-zinc-50 text-zinc-600' },

@@ -274,7 +274,7 @@ export interface ApiInventoryEffect {
 
 export interface ApiInventorySignal {
   id: string
-  kind: 'FOLLOWED_EXAM' | 'FOLLOWED_TOPIC' | 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'GOAL_PREFERENCE'
+  kind: 'FOLLOWED_EXAM' | 'FOLLOWED_TOPIC' | 'FOLLOWED_ENTITY' | 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'GOAL_PREFERENCE'
   label: string
   detail: string | null
   slug: string | null
