@@ -93,6 +93,12 @@ export const AUDIT_ACTIONS = {
   qnaTransition: 'qna.transition',
   /** Object-level QnA denials (country/scope/state mismatch — §20 signal). */
   qnaDenied: 'qna.denied',
+  /** P7-S2 Questions (§22/§23/§19 — every Question mutation is audited). */
+  questionCreate: 'question.create',
+  questionUpdate: 'question.update',
+  questionTransition: 'question.transition',
+  /** Object-level Question denials (country/scope/state mismatch — §20 signal). */
+  questionDenied: 'question.denied',
   sourceCreate: 'source.create',
   sourceUpdate: 'source.update',
   sourceVerify: 'source.verification.transition',
@@ -202,6 +208,8 @@ export const AUDIT_OBJECT_TYPES = {
   contentRevision: 'ContentRevision',
   qna: 'QnA',
   qnaRevision: 'QnARevision',
+  question: 'Question',
+  questionRevision: 'QuestionRevision',
   editorialTask: 'EditorialTask',
   source: 'Source',
   contentSourceLink: 'ContentSourceLink',

@@ -169,6 +169,43 @@ export async function buildUnitDocuments(
     })
     qnaByLanguage.set(qna.language.code, list)
   }
+
+  // §17 Question fold (P7-S2): published practice MCQs enrich the unit's
+  // per-language bodyText — verbatim exam-question queries ("The Kalinga War
+  // was fought in which year?") find the unit page, the QnA-fold precedent.
+  // Language-pure by design (the §35 representation-driven variant rule
+  // stands; a Question-only language mints no new variant). Freshness: a
+  // Question publication joins the per-language reduce (§17.7). Only the
+  // question + options text folds — the explanation stays out (it is
+  // post-answer teaching prose, not discovery surface).
+  const questions = await db.question.findMany({
+    where: {
+      knowledgeUnitId: unit.id,
+      status: 'PUBLISHED',
+      publishedRevisionId: { not: null },
+    },
+    include: { language: true, publishedRevision: true },
+  })
+  const questionByLanguage = new Map<
+    string,
+    Array<{ text: string; publishedAt: Date }>
+  >()
+  for (const question of questions) {
+    if (question.language.status !== 'ACTIVE' || !question.publishedRevision) continue
+    let optionTexts: string[] = []
+    try {
+      optionTexts = (JSON.parse(question.publishedRevision.optionsJson) as Array<{ text: string }>)
+        .map((option) => option.text)
+    } catch {
+      optionTexts = [] // malformed options never break the fold
+    }
+    const list = questionByLanguage.get(question.language.code) ?? []
+    list.push({
+      text: [question.publishedRevision.questionText, ...optionTexts].join(' '),
+      publishedAt: question.publishedRevision.publishedAt,
+    })
+    questionByLanguage.set(question.language.code, list)
+  }
   // §8 exam projection: exams whose CURRENT §36 version carries an in-effect
   // mapping to this unit (any country — reader-country scoping happens at
   // query time, §14).
@@ -214,6 +251,8 @@ export async function buildUnitDocuments(
             // §17 QnA fold — English entries only (language-pure; this
             // canonical document is the English-reference record, §7).
             ...(qnaByLanguage.get('en') ?? []).map((entry) => entry.text),
+            // §17 Question fold — English entries only (language-pure).
+            ...(questionByLanguage.get('en') ?? []).map((entry) => entry.text),
           ]).join(' '),
           neutralText: dedupe([
             unit.canonicalName,
@@ -239,11 +278,14 @@ export async function buildUnitDocuments(
     const label = topic.labels.find((entry) => entry.language.code === languageCode)
     const factCard = representations.find((item) => item.format === 'FACT_CARD')
     const qnaEntries = qnaByLanguage.get(languageCode) ?? []
+    const questionEntries = questionByLanguage.get(languageCode) ?? []
     // §17.7 freshness: the latest publication in this language — content
-    // representations and Q&A entries alike (both are §22 page surfaces).
+    // representations, Q&A entries and practice questions alike (all are
+    // §22 page surfaces).
     const latestPublication = [
       ...representations.map((item) => item.publishedAt),
       ...qnaEntries.map((entry) => entry.publishedAt),
+      ...questionEntries.map((entry) => entry.publishedAt),
     ].reduce(
       (latest, at) => (at.getTime() > latest.getTime() ? at : latest),
       representations[0]!.publishedAt
@@ -264,6 +306,8 @@ export async function buildUnitDocuments(
         ...representations.map((item) => `${item.title} ${item.body}`),
         // §17 QnA fold — this language's published entries (P7-S1).
         ...qnaEntries.map((entry) => entry.text),
+        // §17 Question fold — this language's published MCQs (P7-S2).
+        ...questionEntries.map((entry) => entry.text),
       ]).join(' '),
       neutralText: dedupe([
         unit.canonicalName,

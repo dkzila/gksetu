@@ -10,7 +10,7 @@
  */
 
 /** The object types savable today (§10 vocabulary — QNA joined in P7-S1; Question/MockTest join in P7-S2/S3; CURRENT_EVENT joined in P6-S3). */
-export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'
+export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION'
 
 /**
  * Resolved summary of a saved KNOWLEDGE_UNIT — the canonical record (§7).
@@ -120,7 +120,34 @@ export interface SavedQnaSummary {
   countryIso: string | null
 }
 
-export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary | SavedQnaSummary
+/** P7-S2 §22/§23/§10 — a saved scored practice question (an assessment
+ * representation of its canonical unit). The unit's §22 knowledge page is
+ * the retrieval surface (its scored practice layer); RETIRED entries stay
+ * listed as honest tombstones (§36). */
+export interface SavedQuestionSummary {
+  kind: 'QUESTION'
+  id: string
+  /** Live published revision question (falls back to the working copy only for non-live states — honest §36). */
+  question: string
+  /** The live revision's frozen classification (§36 — never the staged working copy). */
+  difficulty: 'BASIC' | 'INTERMEDIATE' | 'ADVANCED'
+  languageCode: string
+  status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+  /** The question's canonical unit — the §16 path target (its §22 practice layer). */
+  unit: {
+    slug: string
+    canonicalName: string
+    type: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'VERIFIED' | 'OUTDATED' | 'ARCHIVED'
+  }
+  topicSlug: string
+  topicCanonicalName: string
+  /** §16 knowledge-page path in the entry's own language market. */
+  canonicalPath: string
+  countryIso: string | null
+}
+
+export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary | SavedQnaSummary | SavedQuestionSummary
 
 /** One saved-item row, resolved for display (§37 — stable, client-agnostic). */
 export interface PublicSave {
@@ -146,7 +173,7 @@ export interface PublicCollection {
 export interface SaveListResult {
   items: PublicSave[]
   /** Counts coherent with the applied type filter (across ALL collections). */
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number; QNA: number }
+  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number; QNA: number; QUESTION: number }
   /** The caller's collections with live item counts (name-ordered, default first). */
   collections: PublicCollection[]
 }

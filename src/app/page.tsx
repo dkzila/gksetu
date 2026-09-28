@@ -479,7 +479,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 7 · Session 1 — QnA Learning Layer
+                Phase 7 · Session 2 — Question Practice Layer
               </Badge>
               <HeaderAuth />
             </div>

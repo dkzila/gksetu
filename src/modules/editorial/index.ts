@@ -20,6 +20,7 @@ export {
   transitionEditorialTask,
   wireContentWorkflow,
   wireQnaWorkflow,
+  wireQuestionWorkflow,
 } from './service'
 export {
   createEditorialTaskSchema,
@@ -37,6 +38,7 @@ export type {
   AssignableStaff,
   ContentWorkflowEvent,
   QnaWorkflowEvent,
+  QuestionWorkflowEvent,
   EditorialTask,
   EditorialTaskAction,
   EditorialTaskListResult,

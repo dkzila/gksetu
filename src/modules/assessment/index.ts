@@ -6,10 +6,14 @@
  *
  * P7-S1: the QnA layer — explanatory question-and-answer learning content
  * (§6 QnA row, §22 knowledge-page layer, §23 "explanatory, unscored"),
- * riding the §19 workflow with §36 immutable revisions. Questions (scored,
- * P7-S2), MockTests (P7-S3), TestAttempts, mastery and the revision queue
- * join in later sessions — structurally distinct entities, never collapsed
- * into one generic pipeline (§46.14).
+ * riding the §19 workflow with §36 immutable revisions. P7-S2: the Question
+ * layer — the scored MCQ assessment object (§6: options/correct_answer/
+ * explanation/exam_version_id/difficulty) with the same §19/§36 discipline
+ * and the §22 knowledge-page scored practice layer (answers judged
+ * server-side, correctAnswer never public pre-answer). MockTests (P7-S3),
+ * TestAttempts, mastery and the revision queue join in later sessions —
+ * structurally distinct entities, never collapsed into one generic pipeline
+ * (§46.14).
  */
 export {
   QnaError,
@@ -55,3 +59,55 @@ export {
   QNA_EDITABILITY,
   QNA_PUBLISH_GATED_ACTIONS,
 } from './qna-types'
+export {
+  QuestionError,
+  toQuestionErrorResponse,
+  materializeDueScheduledQuestions,
+  getPublicPracticeLayer,
+  checkPracticeAnswer,
+  getAdminQuestions,
+  getAdminQuestion,
+  listQuestionRevisions,
+  createQuestion,
+  updateQuestion,
+  transitionQuestion,
+} from './question-service'
+export {
+  createQuestionSchema,
+  updateQuestionSchema,
+  questionTransitionSchema,
+  adminQuestionListQuerySchema,
+  practiceAnswerSchema,
+  explanationFitsQuestion,
+  questionFitsQuestion,
+  mcqShapeFits,
+  QUESTION_QUESTION_RULES,
+  QUESTION_OPTION_RULES,
+  QUESTION_EXPLANATION_RULES,
+  QUESTION_DIFFICULTIES,
+} from './question-validation'
+export type {
+  CreateQuestionInput,
+  UpdateQuestionInput,
+  QuestionTransitionInput,
+  AdminQuestionListQuery,
+  PracticeAnswerInput,
+} from './question-validation'
+export type {
+  AdminQuestionEntry,
+  AdminQuestionListResult,
+  AdminQuestionRevisionListResult,
+  PublicPracticeQuestion,
+  PublicPracticeLayer,
+  PracticeAnswerResult,
+  QuestionOptionRef,
+  QuestionPagination,
+  QuestionRevisionRef,
+  QuestionStatusPublic,
+  QuestionTransitionAction,
+} from './question-types'
+export {
+  QUESTION_TRANSITIONS,
+  QUESTION_EDITABILITY,
+  QUESTION_PUBLISH_GATED_ACTIONS,
+} from './question-types'

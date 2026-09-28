@@ -2691,6 +2691,296 @@ async function main() {
     qnasSeeded += 1
   }
 
+  // ---------- P7-S2: Question — the scored MCQ practice layer (Master Plan §6 Question row, §7, §22, §23, §45) ----------
+  // §45: "Sample QnA and Question objects tied to the same Knowledge Unit" —
+  // questions on the SAME units as the QnA seeds (the §22 page shows learn →
+  // practice in one flow), EN + HI (§35), difficulty spread (BASIC →
+  // ADVANCED), the §6 optional ExamVersion anchor (UPSC CSE + SSC CGL; the
+  // Kalinga question is deliberately unanchored — the §8 routing is
+  // ExamMapping's job), one §36 two-revision correction, one DRAFT
+  // (lifecycle demo — publish through the Questions workspace) and one
+  // RETIRED (the §10/§36 tombstone demo). Identity is (unit, language,
+  // question) — the §11 discipline; findFirst-then-create is idempotent and
+  // never overwrites live edits (§36).
+  interface QuestionRevisionSeed {
+    options: string[]
+    correctIndex: number
+    explanation: string
+    changeSummary?: string
+    publishedAt?: Date
+  }
+
+  interface QuestionSeed {
+    unitSlug: string
+    languageCode: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+    difficulty: 'BASIC' | 'INTERMEDIATE' | 'ADVANCED'
+    questionText: string
+    /** §6 optional exam anchor (exam slug + version label — authoring context, never identity). */
+    examSlug?: string
+    examVersionLabel?: string
+    /** §24/§26 AI-provenance — one seeded entry is AI-assisted (the §26 candidate demo). */
+    aiAssisted?: boolean
+    revisions: QuestionRevisionSeed[] // empty for never-published entries
+  }
+
+  const questionSeeds: QuestionSeed[] = [
+    {
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'INTERMEDIATE',
+      examSlug: 'upsc-civil-services',
+      examVersionLabel: `${year} syllabus`,
+      questionText: 'Which Article of the Indian Constitution did Dr B R Ambedkar call its “heart and soul”?',
+      revisions: [
+        {
+          options: ['Article 14 — Right to Equality', 'Article 19 — Right to Freedom', 'Article 32 — Right to Constitutional Remedies', 'Article 356 — President’s Rule'],
+          correctIndex: 2,
+          explanation:
+            'Article 32 — the Right to Constitutional Remedies. Ambedkar called it the heart and soul of the Constitution because a right without a remedy is meaningless: Article 32 lets a citizen move the Supreme Court directly for the enforcement of Fundamental Rights through five writs — habeas corpus, mandamus, prohibition, certiorari and quo warranto. The right to move the Court cannot be suspended except as provided by the Constitution (Article 359, during an Emergency).',
+          publishedAt: new Date('2025-06-11T10:00:00Z'),
+        },
+      ],
+    },
+    {
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'BASIC',
+      examSlug: 'ssc-cgl',
+      examVersionLabel: `${year} syllabus`,
+      questionText: 'How many Fundamental Rights does Part III (Articles 12–35) of the Constitution guarantee?',
+      revisions: [
+        {
+          options: ['Five', 'Six', 'Seven', 'Ten'],
+          correctIndex: 1,
+          explanation:
+            'Six: (1) Right to Equality (Articles 14–18), (2) Right to Freedom (Articles 19–22), (3) Right against Exploitation (Articles 23–24), (4) Right to Freedom of Religion (Articles 25–28), (5) Cultural and Educational Rights (Articles 29–30), and (6) Right to Constitutional Remedies (Article 32). They are justiciable — enforceable against the State through the writ jurisdiction of the Supreme Court and the High Courts.',
+          publishedAt: new Date('2025-06-11T10:10:00Z'),
+        },
+      ],
+    },
+    {
+      // §36 correction demo: the first published explanation implied only the
+      // Supreme Court issues habeas corpus; the correction publishes revision 2
+      // with a changeSummary — never a silent edit, previous versions
+      // preserved forever.
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'INTERMEDIATE',
+      questionText: 'Which writ is issued to release a person from unlawful detention?',
+      revisions: [
+        {
+          options: ['Mandamus', 'Habeas corpus', 'Certiorari', 'Quo warranto'],
+          correctIndex: 1,
+          explanation:
+            'Habeas corpus (“you may have the body”) — the Supreme Court issues it under Article 32 to release a person from unlawful detention.',
+          publishedAt: new Date('2025-06-11T10:20:00Z'),
+        },
+        {
+          options: ['Mandamus', 'Habeas corpus', 'Certiorari', 'Quo warranto'],
+          correctIndex: 1,
+          explanation:
+            'Habeas corpus (“you may have the body”) — the court orders the detaining authority to produce the detainee and releases them if the detention is unlawful. BOTH the Supreme Court (Article 32) and the High Courts (Article 226) can issue it — the High Courts’ writ power is even wider, extending beyond Fundamental Rights to other legal rights.',
+          changeSummary: 'Corrected the explanation: High Courts also issue habeas corpus (Article 226) — the first explanation implied only the Supreme Court (§25/§36).',
+          publishedAt: new Date('2025-06-12T10:00:00Z'),
+        },
+      ],
+    },
+    {
+      // §35 translation demo — the same unit carries a Hindi practice question.
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'hi',
+      status: 'PUBLISHED',
+      difficulty: 'BASIC',
+      questionText: 'मौलिक अधिकारों के प्रवर्तन के लिए सीधे सर्वोच्च न्यायालय जा सकता है — यह अधिकार किस अनुच्छेद में है?',
+      revisions: [
+        {
+          options: ['अनुच्छेद 32', 'अनुच्छेद 226', 'अनुच्छेद 356', 'अनुच्छेद 360'],
+          correctIndex: 0,
+          explanation:
+            'अनुच्छेद 32 — संवैधानिक उपचारों का अधिकार — किसी भी नागरिक को मौलिक अधिकारों के प्रवर्तन के लिए सीधे सर्वोच्च न्यायालय का दरवाजा खटखटाने का अधिकार देता है। डॉ. अंबेडकर ने इसे संविधान का “हृदय और आत्मा” कहा, क्योंकि उपचार के बिना अधिकार अर्थहीन है।',
+          publishedAt: new Date('2025-07-02T10:30:00Z'),
+        },
+      ],
+    },
+    {
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'ADVANCED',
+      examSlug: 'upsc-civil-services',
+      examVersionLabel: `${year} syllabus`,
+      questionText: 'Which of the following is NOT a permanent member of the UN Security Council?',
+      revisions: [
+        {
+          options: ['France', 'Germany', 'Russia', 'the United Kingdom'],
+          correctIndex: 1,
+          explanation:
+            'Germany. The five permanent members (P5) are China, France, Russia, the United Kingdom and the United States — the victors of the Second World War written into the UN Charter. Germany is a G4 aspirant (with Brazil, India and Japan), seeking permanent membership through the IGN reform process. The exam trap: Germany is a frequent UN contributor and a G4 member, but it has never held a permanent seat.',
+          publishedAt: new Date('2025-06-16T09:00:00Z'),
+        },
+      ],
+    },
+    {
+      // §10/§36 tombstone demo: published once, then withdrawn — existing
+      // saves keep it listed as an honest RETIRED row; new saves reject.
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'en',
+      status: 'RETIRED',
+      difficulty: 'BASIC',
+      questionText: 'How many members does the UN Security Council have in total?',
+      revisions: [
+        {
+          options: ['10', '15', '20', '25'],
+          correctIndex: 1,
+          explanation:
+            'Fifteen: the five permanent members (P5) with veto power, plus ten non-permanent members elected for two-year terms by the General Assembly without immediate re-election, distributed regionally. This question was retired to demonstrate the §36 withdrawal path — the preserved revision stays queryable forever.',
+          publishedAt: new Date('2025-06-16T09:10:00Z'),
+        },
+      ],
+    },
+    {
+      // §24/§26 AI-provenance demo: an AI-drafted question candidate that
+      // went through the §19 review gate — the flag freezes onto the revision.
+      unitSlug: 'chandrayaan-3-landing-2023',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'BASIC',
+      aiAssisted: true,
+      questionText: 'In which year did India become the fourth country to soft-land on the Moon?',
+      revisions: [
+        {
+          options: ['2019', '2023', '2014', '2008'],
+          correctIndex: 1,
+          explanation:
+            '2023 — the Vikram lander of Chandrayaan-3 touched down near the lunar south pole on 23 August 2023 (IST), making India the fourth country to soft-land on the Moon after the Soviet Union, the United States and China, and the FIRST ever in the south-polar region. The date is now commemorated annually as National Space Day. (Chandrayaan-2 in 2019 attempted but failed the landing; 2014 was the Mars Orbiter Mission; 2008 was Chandrayaan-1, an orbiter with an intentional impact probe.)',
+          publishedAt: new Date('2025-06-20T12:30:00Z'),
+        },
+      ],
+    },
+    {
+      // Lifecycle demo — a drafted question awaiting review, publishable
+      // through the Questions workspace (submit → review → publish).
+      unitSlug: 'chandrayaan-3-landing-2023',
+      languageCode: 'en',
+      status: 'DRAFT',
+      difficulty: 'INTERMEDIATE',
+      questionText: 'What is the official name of the Chandrayaan-3 Vikram lander’s touchdown site?',
+      revisions: [],
+    },
+    {
+      // The §6 optional-anchor demo: NO exam anchor — the question serves
+      // every exam whose syllabus maps this unit (§8 routing is ExamMapping's
+      // job, never a copy).
+      unitSlug: 'ashoka-kalinga-war-261-bce',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      difficulty: 'BASIC',
+      questionText: 'The Kalinga War, which transformed Ashoka towards Dhamma, was fought in which year?',
+      revisions: [
+        {
+          options: ['261 BCE', '232 BCE', '323 BCE', '185 BCE'],
+          correctIndex: 0,
+          explanation:
+            '261 BCE, in Ashoka’s eighth–ninth regnal year. The 13th Major Rock Edict records his remorse — 100,000 killed, 150,000 deported — and the turn from military conquest (bheri-ghosha) to Dhamma conquest (dhamma-ghosha). Kalinga corresponds to present-day coastal Odisha. (232 BCE is Ashoka’s death year; 323 BCE Alexander’s death; 185 BCE the fall of the Mauryan dynasty.)',
+          publishedAt: new Date('2025-06-18T09:30:00Z'),
+        },
+      ],
+    },
+  ]
+
+  let questionsSeeded = 0
+  for (const seed of questionSeeds) {
+    const unit = await prisma.knowledgeUnit.findUnique({ where: { slug: seed.unitSlug } })
+    const languageId = languageIdByCode.get(seed.languageCode)
+    if (!unit || !languageId) {
+      console.warn(`[seed] skipping Question for "${seed.unitSlug}/${seed.languageCode}": unit or language missing`)
+      continue
+    }
+
+    // Never overwrite live edits (§36) — identity is (unit, language, question).
+    const existing = await prisma.question.findFirst({
+      where: { knowledgeUnitId: unit.id, languageId, questionText: seed.questionText },
+      select: { id: true },
+    })
+    if (existing) continue
+
+    // The §6 optional exam anchor — resolved like the syllabus seeds (exam
+    // slug → version label). A missing anchor never drops the question; it
+    // seeds without one (the anchor is context, not identity).
+    let examVersionId: string | null = null
+    if (seed.examSlug && seed.examVersionLabel) {
+      const exam = await prisma.exam.findUnique({
+        where: { slug: seed.examSlug },
+        include: { versions: { select: { id: true, label: true } } },
+      })
+      const version = exam?.versions.find((row) => row.label === seed.examVersionLabel)
+      if (version) {
+        examVersionId = version.id
+      } else {
+        console.warn(`[seed] Question exam anchor "${seed.examSlug}/${seed.examVersionLabel}" not found — seeding without anchor`)
+      }
+    }
+
+    const lastRevision = seed.revisions[seed.revisions.length - 1]
+    const question = await prisma.question.create({
+      data: {
+        knowledgeUnitId: unit.id,
+        examVersionId,
+        languageId,
+        status: seed.status,
+        type: 'MCQ',
+        difficulty: seed.difficulty,
+        questionText: seed.questionText,
+        optionsJson: JSON.stringify(
+          (lastRevision?.options ?? []).map((text, index) => ({
+            key: ['A', 'B', 'C', 'D', 'E', 'F'][index] ?? String(index),
+            text,
+          }))
+        ),
+        correctAnswer: lastRevision ? String.fromCharCode(65 + lastRevision.correctIndex) : 'A',
+        explanation: lastRevision?.explanation ?? 'Draft explanation — publish through the Questions workspace.',
+        aiAssisted: seed.aiAssisted ?? false,
+        createdById: admin.id,
+      },
+    })
+
+    let lastRevisionId: string | null = null
+    for (const [index, revision] of seed.revisions.entries()) {
+      const created = await prisma.questionRevision.create({
+        data: {
+          questionId: question.id,
+          revisionNumber: index + 1,
+          questionText: seed.questionText,
+          optionsJson: JSON.stringify(
+            revision.options.map((text, optionIndex) => ({
+              key: ['A', 'B', 'C', 'D', 'E', 'F'][optionIndex] ?? String(optionIndex),
+              text,
+            }))
+          ),
+          correctAnswer: String.fromCharCode(65 + revision.correctIndex),
+          explanation: revision.explanation,
+          difficulty: seed.difficulty,
+          changeSummary: revision.changeSummary ?? null,
+          aiAssisted: seed.aiAssisted ?? false,
+          publishedById: admin.id,
+          publishedAt: revision.publishedAt ?? new Date(),
+        },
+      })
+      lastRevisionId = created.id
+    }
+    if ((seed.status === 'PUBLISHED' || seed.status === 'RETIRED') && lastRevisionId) {
+      await prisma.question.update({
+        where: { id: question.id },
+        data: { publishedRevisionId: lastRevisionId },
+      })
+    }
+    questionsSeeded += 1
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -2704,7 +2994,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

@@ -13,7 +13,7 @@
 import { z } from 'zod'
 
 /** Savable object types today (§10 — kept in lockstep with the Prisma enum). */
-export const SAVE_OBJECT_TYPES = ['KNOWLEDGE_UNIT', 'CONTENT_ITEM', 'CURRENT_EVENT', 'QNA'] as const
+export const SAVE_OBJECT_TYPES = ['KNOWLEDGE_UNIT', 'CONTENT_ITEM', 'CURRENT_EVENT', 'QNA', 'QUESTION'] as const
 export type SaveObjectTypeInput = (typeof SAVE_OBJECT_TYPES)[number]
 
 /** Follow vocabulary is rejected with an explicit §10 redirect, not a generic enum error. */
@@ -41,7 +41,7 @@ const saveObjectType = z
       ctx.addIssue({
         code: 'custom',
         message:
-          'objectType must be KNOWLEDGE_UNIT, CONTENT_ITEM, CURRENT_EVENT or QNA (Question/MockTest join with P7-S2/S3)',
+          'objectType must be KNOWLEDGE_UNIT, CONTENT_ITEM, CURRENT_EVENT, QNA or QUESTION (MockTest joins with P7-S3)',
       })
     }
   }) as unknown as z.ZodType<SaveObjectTypeInput>

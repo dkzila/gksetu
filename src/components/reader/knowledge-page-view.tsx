@@ -45,6 +45,7 @@ import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
 import { SaveButton } from '@/components/saves/save-button'
+import { PracticeLayer } from '@/components/assessment/practice-layer'
 
 // ---------- Types (mirror /api/knowledge/page/{ref}) ----------
 
@@ -113,6 +114,34 @@ interface PageQnaLayer {
   note: string | null
 }
 
+/** §22 scored practice layer (P7-S2) — one MCQ question, ALWAYS the live
+ * revision snapshot (never the working copy) and NEVER carrying
+ * correctAnswer/explanation: those ship per-question from the answer-check
+ * API only after the learner answers (practice is scored, server-side §22).
+ * The Question id is the §10 save ref. */
+export interface PagePracticeQuestion {
+  id: string
+  question: string
+  options: Array<{ key: string; text: string }>
+  type: 'MCQ'
+  difficulty: 'BASIC' | 'INTERMEDIATE' | 'ADVANCED'
+  /** §6 optional exam anchor display (“authored for UPSC CSE — 2026 syllabus”);
+   * null = unit-level question serving every mapped exam (§8). */
+  examAnchor: { exam: { slug: string; name: string; code: string }; versionLabel: string } | null
+  revision: { number: number; publishedAt: string; changeSummary: string | null }
+  /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
+  aiAssisted: boolean
+  language: { code: string; name: string; nativeName: string | null }
+}
+
+/** The knowledge page's scored practice layer as a whole (rendered after the
+ * Q&A layer, before sources) — `available: false` carries the honest note. */
+export interface PagePracticeLayer {
+  available: boolean
+  entries: PagePracticeQuestion[]
+  note: string | null
+}
+
 /** §22 layer 5 — one (exam × node) requirement row pointing at this unit. */
 interface UnitExamRequirementRow {
   exam: { slug: string; name: string; code: string; level: string }
@@ -152,6 +181,9 @@ export interface KnowledgePageData {
   representations: PageRepresentation[]
   /** §22 practice layer (P7-S1) — between learn (representations) and sources. */
   qna: PageQnaLayer
+  /** §22 scored practice layer (P7-S2) — after the Q&A layer, before sources
+   * (learn → practice: Q&A learning + scored MCQs → revise). */
+  practice: PagePracticeLayer
   sources: PageSource[]
   related: RelatedUnit[]
   examCoverage:
@@ -689,6 +721,9 @@ export function KnowledgePageView({
           </div>
         )}
       </div>
+
+      {/* ---------- §22 layer 2.7: practice — scored MCQs (P7-S2) ---------- */}
+      <PracticeLayer practice={page.practice} />
 
       {/* ---------- §22 layer 3: sources (§24) ---------- */}
       <div className="space-y-3">

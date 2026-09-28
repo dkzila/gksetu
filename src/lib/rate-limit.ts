@@ -97,4 +97,7 @@ export const RATE_LIMITS = {
   entityWrite: { limit: 30, windowMs: 60 * 1000 }, // entity registry + event link mutations per IP (P6-S3)
   qnaRead: { limit: 60, windowMs: 60 * 1000 }, // admin QnA registry reads per IP (P7-S1)
   qnaWrite: { limit: 30, windowMs: 60 * 1000 }, // QnA mutations per IP (P7-S1)
+  questionRead: { limit: 60, windowMs: 60 * 1000 }, // admin Question registry reads per IP (P7-S2)
+  questionWrite: { limit: 30, windowMs: 60 * 1000 }, // Question mutations per IP (P7-S2)
+  questionPractice: { limit: 120, windowMs: 60 * 1000 }, // public practice answer checks per IP (P7-S2 §22 — scored server-side, no persistence)
 } as const

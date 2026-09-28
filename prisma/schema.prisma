@@ -133,32 +133,33 @@ enum KnowledgeDifficulty {
 // (ContentItem, QnA, Question) reference this record from P2-S2 onward and are
 // NEVER re-entered facts. Country scope is explicit, never inferred (§14/§15).
 model KnowledgeUnit {
-  id              String             @id @default(cuid())
-  slug            String             @unique // immutable, URL-stable (§16/§36)
-  canonicalName   String // canonical (English-reference) name
+  id               String              @id @default(cuid())
+  slug             String              @unique // immutable, URL-stable (§16/§36)
+  canonicalName    String // canonical (English-reference) name
   canonicalSummary String? // one-line essence — the "quick fact" (§22 knowledge page)
-  canonicalBody   String // canonical body (English-reference); language versions are ContentItems (P2-S2)
-  type            KnowledgeUnitType
-  status          KnowledgeStatus    @default(DRAFT)
-  difficulty      KnowledgeDifficulty @default(BASIC)
-  scope           TopicScope         @default(GLOBAL) // platform-wide GLOBAL/COUNTRY scope concept (§14)
-  countryId       String? // set iff scope = COUNTRY (explicit, never inferred)
-  topicId         String // canonical taxonomy topic (§13) — primary node
-  validFrom       DateTime? // time validity window (§6 "validity")
-  validUntil      DateTime?
-  notes           String? // internal editorial notes
-  orderIndex      Int                @default(0) // stable ordering within a topic
-  createdById     String?
-  createdAt       DateTime           @default(now())
-  updatedAt       DateTime           @updatedAt
+  canonicalBody    String // canonical body (English-reference); language versions are ContentItems (P2-S2)
+  type             KnowledgeUnitType
+  status           KnowledgeStatus     @default(DRAFT)
+  difficulty       KnowledgeDifficulty @default(BASIC)
+  scope            TopicScope          @default(GLOBAL) // platform-wide GLOBAL/COUNTRY scope concept (§14)
+  countryId        String? // set iff scope = COUNTRY (explicit, never inferred)
+  topicId          String // canonical taxonomy topic (§13) — primary node
+  validFrom        DateTime? // time validity window (§6 "validity")
+  validUntil       DateTime?
+  notes            String? // internal editorial notes
+  orderIndex       Int                 @default(0) // stable ordering within a topic
+  createdById      String?
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
 
-  topic     Topic   @relation("KnowledgeUnitTopic", fields: [topicId], references: [id])
-  country   Country? @relation("KnowledgeUnitCountry", fields: [countryId], references: [id])
-  createdBy User?   @relation("KnowledgeUnitAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  topic        Topic                       @relation("KnowledgeUnitTopic", fields: [topicId], references: [id])
+  country      Country?                    @relation("KnowledgeUnitCountry", fields: [countryId], references: [id])
+  createdBy    User?                       @relation("KnowledgeUnitAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   contentItems ContentItem[] // representations of this canonical record (§7, P2-S2)
-  examMappings ExamMapping[] @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
+  examMappings ExamMapping[]               @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
   eventLinks   CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
-  qnas         QnA[] @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
+  qnas         QnA[]                       @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
+  questions    Question[]                  @relation("QuestionUnit") // P7-S2: scored MCQ assessment representations (§22 practice layer)
 
   // Deduplication is by canonical identity (§11): within one topic, a canonical
   // name identifies exactly one unit. Never merge distinct concepts; never
@@ -241,39 +242,39 @@ enum SourceVerification {
 // Country scope is inherited from the anchor (unit or event) — a
 // representation is never more visible than its canonical record.
 model ContentItem {
-  id             String        @id @default(cuid())
+  id                  String        @id @default(cuid())
   // §7 anchor (knowledge representations) — null iff currentEventId is set.
-  knowledgeUnitId String?
+  knowledgeUnitId     String?
   // §12 step 4 anchor (event representations, P6-S2) — null iff
   // knowledgeUnitId is set. The event is the canonical record: the exam
   // layer flows through the event's linked units (§7/§8), never through
   // re-entered facts.
-  currentEventId  String?
-  languageId     String
-  format         ContentFormat
-  status         ContentStatus @default(DRAFT)
-  title          String // working copy (current editing state)
-  body           String // working copy — public reads never touch this
+  currentEventId      String?
+  languageId          String
+  format              ContentFormat
+  status              ContentStatus @default(DRAFT)
+  title               String // working copy (current editing state)
+  body                String // working copy — public reads never touch this
   // §24/§26 AI-provenance flag (working copy): marks AI-assisted drafting.
   // Snapshotted onto ContentRevision at publish time so every immutable
   // revision carries its own provenance.
-  aiAssisted     Boolean       @default(false)
+  aiAssisted          Boolean       @default(false)
   publishedRevisionId String? // live revision pointer (null = never published)
   // §19 step 7 (P2-S4): set by the `schedule` transition (IN_REVIEW →
   // SCHEDULED); cleared on send_back/publish. Due items are lazily
   // materialized to PUBLISHED on read (see content-service).
-  scheduledForAt    DateTime?
-  createdById    String?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  scheduledForAt      DateTime?
+  createdById         String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
 
-  knowledgeUnit    KnowledgeUnit?    @relation(fields: [knowledgeUnitId], references: [id])
-  currentEvent     CurrentEvent?     @relation("ContentItemEvent", fields: [currentEventId], references: [id], onDelete: Cascade)
-  language         Language         @relation(fields: [languageId], references: [id])
-  createdBy        User?            @relation("ContentItemAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  revisions        ContentRevision[] @relation("ContentItemRevisions")
-  publishedRevision ContentRevision? @relation("LiveContentRevision", fields: [publishedRevisionId], references: [id])
-  sourceLinks      ContentSourceLink[]
+  knowledgeUnit     KnowledgeUnit?      @relation(fields: [knowledgeUnitId], references: [id])
+  currentEvent      CurrentEvent?       @relation("ContentItemEvent", fields: [currentEventId], references: [id], onDelete: Cascade)
+  language          Language            @relation(fields: [languageId], references: [id])
+  createdBy         User?               @relation("ContentItemAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  revisions         ContentRevision[]   @relation("ContentItemRevisions")
+  publishedRevision ContentRevision?    @relation("LiveContentRevision", fields: [publishedRevisionId], references: [id])
+  sourceLinks       ContentSourceLink[]
 
   // One representation per (anchor, language, format) — the §7/§11 canonical-
   // identity rule applied to representations: never duplicate the same
@@ -294,21 +295,21 @@ model ContentItem {
 // appends revision N+1 and moves the ContentItem's live pointer. Every
 // correction carries a changeSummary (§25/§36 provenance — never a silent edit).
 model ContentRevision {
-  id            String   @id @default(cuid())
-  contentItemId String
+  id             String   @id @default(cuid())
+  contentItemId  String
   revisionNumber Int // 1-based, deterministic within the item
-  title         String // immutable snapshot at publish time
-  body          String // immutable snapshot at publish time
-  changeSummary String? // why this revision exists (required on re-publish)
+  title          String // immutable snapshot at publish time
+  body           String // immutable snapshot at publish time
+  changeSummary  String? // why this revision exists (required on re-publish)
   // §24/§26 AI-provenance snapshot at publish time — immutable like the rest
   // of the revision ("any AI-generated field that affects factual publishing
   // carries provenance/status metadata").
-  aiAssisted    Boolean  @default(false)
-  publishedById String?
-  publishedAt   DateTime @default(now())
+  aiAssisted     Boolean  @default(false)
+  publishedById  String?
+  publishedAt    DateTime @default(now())
 
-  contentItem ContentItem @relation("ContentItemRevisions", fields: [contentItemId], references: [id], onDelete: Cascade)
-  publishedBy User?       @relation("ContentRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+  contentItem ContentItem   @relation("ContentItemRevisions", fields: [contentItemId], references: [id], onDelete: Cascade)
+  publishedBy User?         @relation("ContentRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
   liveFor     ContentItem[] @relation("LiveContentRevision")
 
   @@unique([contentItemId, revisionNumber])
@@ -324,10 +325,10 @@ model ContentRevision {
 // scope is enforced on the LINK (which content may cite it), never on the
 // record itself.
 model Source {
-  id           String            @id @default(cuid())
+  id           String             @id @default(cuid())
   title        String // human label, e.g. "ISRO — Chandrayaan-3 soft-landing update"
   publisher    String // §24 publisher/name, e.g. "ISRO", "The Hindu"
-  url          String            @unique // normalized — one record per URL
+  url          String             @unique // normalized — one record per URL
   type         SourceType
   verification SourceVerification @default(UNVERIFIED)
   publishedAt  DateTime? // when the underlying material was published (§24)
@@ -335,11 +336,11 @@ model Source {
   verifiedAt   DateTime? // when an editor verified it (§24 — set on 'verify')
   notes        String? // internal editorial notes
   createdById  String?
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
 
-  createdBy User?               @relation("SourceAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  links     ContentSourceLink[]
+  createdBy  User?                @relation("SourceAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  links      ContentSourceLink[]
   eventLinks CurrentEventSource[] // P6-S1: §12 step 2 source aggregation
 
   @@index([type])
@@ -429,11 +430,11 @@ model EditorialTask {
   createdAt      DateTime              @default(now())
   updatedAt      DateTime              @updatedAt
 
-  country     Country?  @relation(fields: [countryId], references: [id])
-  language    Language? @relation(fields: [languageId], references: [id])
-  assignee    User?     @relation("EditorialTaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
-  createdBy   User?     @relation("EditorialTaskCreator", fields: [createdById], references: [id], onDelete: SetNull)
-  resolvedBy  User?     @relation("EditorialTaskResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+  country    Country?  @relation(fields: [countryId], references: [id])
+  language   Language? @relation(fields: [languageId], references: [id])
+  assignee   User?     @relation("EditorialTaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  createdBy  User?     @relation("EditorialTaskCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  resolvedBy User?     @relation("EditorialTaskResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
 
   @@index([status])
   @@index([type, status])
@@ -474,7 +475,7 @@ model Exam {
   code        String // short human code, e.g. "UPSC-CSE" — unique per country, immutable
   name        String // canonical display name
   organiser   String // §6 conducting body, e.g. "Union Public Service Commission"
-  level       ExamLevel @default(NATIONAL)
+  level       ExamLevel  @default(NATIONAL)
   status      ExamStatus @default(DRAFT)
   countryId   String // §14 — never null: an exam without a country cannot exist
   description String? // public-facing summary (what the exam is, who runs it)
@@ -483,9 +484,9 @@ model Exam {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  country  Country       @relation("ExamCountry", fields: [countryId], references: [id])
-  createdBy User?         @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  versions ExamVersion[]
+  country   Country        @relation("ExamCountry", fields: [countryId], references: [id])
+  createdBy User?          @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  versions  ExamVersion[]
   goalExams UserGoalExam[] // P5-S3 — declared goal exam references
 
   @@unique([countryId, code])
@@ -569,22 +570,22 @@ enum QuestionLikelihood {
 // granularity (e.g. a current-affairs mapping relevant until the next exam
 // cycle); null = valid for the whole version window.
 model ExamMapping {
-  id                String             @id @default(cuid())
-  knowledgeUnitId   String // §7 canonical record — one unit, many mappings
-  examVersionId     String // pinned via the node's version (§36 anchor)
-  syllabusNodeId    String // §6/§13 anchor — the node the unit attaches to
-  relevance         MappingRelevance   @default(DIRECT)
-  priority          MappingPriority    @default(SUPPORTING)
-  requiredDepth     RequiredDepth      @default(CONCEPT)
+  id                 String             @id @default(cuid())
+  knowledgeUnitId    String // §7 canonical record — one unit, many mappings
+  examVersionId      String // pinned via the node's version (§36 anchor)
+  syllabusNodeId     String // §6/§13 anchor — the node the unit attaches to
+  relevance          MappingRelevance   @default(DIRECT)
+  priority           MappingPriority    @default(SUPPORTING)
+  requiredDepth      RequiredDepth      @default(CONCEPT)
   questionLikelihood QuestionLikelihood @default(MEDIUM)
-  expectedScope     String? // §8 "what portion/aspect is actually relevant"
-  sourceBasis       String? // §8 "why the mapping exists" (notification §, PYQs, editor)
-  effectiveFrom     DateTime? // §8 effective_period start (inclusive; null = version start)
-  effectiveTo       DateTime? // §8 effective_period end (inclusive last day; null = no end)
-  notes             String? // §8 "human editorial explanation"
-  createdById       String?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+  expectedScope      String? // §8 "what portion/aspect is actually relevant"
+  sourceBasis        String? // §8 "why the mapping exists" (notification §, PYQs, editor)
+  effectiveFrom      DateTime? // §8 effective_period start (inclusive; null = version start)
+  effectiveTo        DateTime? // §8 effective_period end (inclusive last day; null = no end)
+  notes              String? // §8 "human editorial explanation"
+  createdById        String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
 
   knowledgeUnit KnowledgeUnit @relation("ExamMappingUnit", fields: [knowledgeUnitId], references: [id], onDelete: Cascade)
   examVersion   ExamVersion   @relation("ExamMappingVersion", fields: [examVersionId], references: [id], onDelete: Cascade)
@@ -612,7 +613,7 @@ model ExamMapping {
 // (P3-S3), and the resolution point for the §11 combination engine's step 2
 // ("Resolve each exam to its active ExamVersion").
 model ExamVersion {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   examId        String
   label         String // human label, e.g. "2025 syllabus (2025 notification)"
   effectiveFrom DateTime // inclusive first day (UTC midnight)
@@ -620,13 +621,14 @@ model ExamVersion {
   source        String? // §6 "source" — official notification/URL the structure came from
   notes         String? // internal editorial notes
   createdById   String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  exam      Exam  @relation(fields: [examId], references: [id], onDelete: Cascade)
-  createdBy User? @relation("ExamVersionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  exam          Exam           @relation(fields: [examId], references: [id], onDelete: Cascade)
+  createdBy     User?          @relation("ExamVersionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   syllabusNodes SyllabusNode[]
-  examMappings ExamMapping[] @relation("ExamMappingVersion") // P3-S3
+  examMappings  ExamMapping[]  @relation("ExamMappingVersion") // P3-S3
+  questions     Question[]     @relation("QuestionExamVersion") // P7-S2: Questions authored for this version (§6 optional anchor)
 
   @@index([examId, effectiveFrom])
 }
@@ -642,22 +644,22 @@ model ExamVersion {
 // (§13: exams reach knowledge exclusively through SyllabusNode →
 // ExamMapping, which lands in P3-S3 and anchors on these rows).
 model SyllabusNode {
-  id            String  @id @default(cuid())
+  id            String   @id @default(cuid())
   examVersionId String
   parentId      String? // null = root; must belong to the SAME exam version
   name          String // exam-syllabus label (notification wording — never taxonomy, §13)
   topicId       String? // canonical taxonomy link (GLOBAL or the exam's country — §13/§14)
   depth         Int // 0 for roots; parent.depth + 1 (denormalised for reads)
-  priority      Int     @default(0) // sibling ordering (§6) — ascending within a parent
+  priority      Int      @default(0) // sibling ordering (§6) — ascending within a parent
   notes         String? // internal editorial notes
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  examVersion ExamVersion   @relation(fields: [examVersionId], references: [id], onDelete: Cascade)
-  parent      SyllabusNode?  @relation("SyllabusTree", fields: [parentId], references: [id])
-  children    SyllabusNode[] @relation("SyllabusTree")
-  topic       Topic?          @relation("SyllabusNodeTopic", fields: [topicId], references: [id])
-  examMappings ExamMapping[] @relation("ExamMappingNode") // P3-S3
+  examVersion  ExamVersion    @relation(fields: [examVersionId], references: [id], onDelete: Cascade)
+  parent       SyllabusNode?  @relation("SyllabusTree", fields: [parentId], references: [id])
+  children     SyllabusNode[] @relation("SyllabusTree")
+  topic        Topic?         @relation("SyllabusNodeTopic", fields: [topicId], references: [id])
+  examMappings ExamMapping[]  @relation("ExamMappingNode") // P3-S3
 
   @@index([examVersionId, parentId, priority])
   @@index([topicId])
@@ -691,42 +693,42 @@ enum SearchObjectType {
 }
 
 model SearchDocument {
-  id           String           @id @default(cuid())
-  objectType   SearchObjectType
-  ref          String // public slug of the object (unit/exam/topic slug — §37 stable identifier)
-  languageCode String // ISO code of the indexed language variant ('en', 'hi', …)
+  id            String           @id @default(cuid())
+  objectType    SearchObjectType
+  ref           String // public slug of the object (unit/exam/topic slug — §37 stable identifier)
+  languageCode  String // ISO code of the indexed language variant ('en', 'hi', …)
   // §14/§15 country scope, denormalised for server-side filtering: null =
   // GLOBAL (visible in every ACTIVE country); a code = that market only.
-  countryIso   String?
-  title        String // display title in the indexed language
+  countryIso    String?
+  title         String // display title in the indexed language
   canonicalName String // English-reference canonical name (canonical-fallback presentation, §7)
-  summary      String? // quick fact / description in the indexed language
+  summary       String? // quick fact / description in the indexed language
   // Localised searchable text: representation titles + bodies + summary.
   // Tokenised INTO tsvLang at index time with the language's FTS config
   // (§17 "language-aware tokenisation" — 'english'/'hindi', verified live).
-  bodyText     String
+  bodyText      String
   // Language-neutral searchable text: canonical name + aliases + slug — the
   // cross-language surface (§17 aliases; a Hindi-context query finds an
   // English-only unit by canonical name and gets a canonical-fallback result).
-  neutralText  String
-  aliases      Json? // string[] — editorial aliases (§13 TopicAlias, exam codes) for exact/prefix tiers
-  topicSlug    String? // units: the §13 primary topic slug; topics: the node's own slug
-  topicLabel   String? // §35 topic label in the indexed language
-  unitType     String? // units only: KnowledgeUnitType
-  difficulty   String? // units only: KnowledgeDifficulty
+  neutralText   String
+  aliases       Json? // string[] — editorial aliases (§13 TopicAlias, exam codes) for exact/prefix tiers
+  topicSlug     String? // units: the §13 primary topic slug; topics: the node's own slug
+  topicLabel    String? // §35 topic label in the indexed language
+  unitType      String? // units only: KnowledgeUnitType
+  difficulty    String? // units only: KnowledgeDifficulty
   // string[] of exam slugs whose CURRENT §36 version carries an in-effect §8
   // mapping to this unit (any country — reader-country scoping happens at
   // query time, §14: a GB exam's requirement never leaks into an IN reader).
-  examRefs     Json?
-  freshnessAt  DateTime // ranking input (§17 freshness boosting; CurrentEvent lands P6)
-  indexedAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  examRefs      Json?
+  freshnessAt   DateTime // ranking input (§17 freshness boosting; CurrentEvent lands P6)
+  indexedAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
 
   // Index-time tokenisation (§17): the pipeline writes these via raw SQL
   // (to_tsvector(<language config>, bodyText) / to_tsvector('simple', neutralText)).
   // GIN indexes are created idempotently by the engine's readiness step.
-  tsvLang      Unsupported("tsvector")?
-  tsvNeutral   Unsupported("tsvector")?
+  tsvLang    Unsupported("tsvector")?
+  tsvNeutral Unsupported("tsvector")?
 
   @@unique([objectType, ref, languageCode])
   @@index([languageCode])
@@ -751,17 +753,18 @@ model Language {
   updatedAt  DateTime          @updatedAt
 
   // Countries where this language is the default (URL omits the segment)
-  defaultForCountries Country[] @relation("CountryDefaultLanguage")
+  defaultForCountries Country[]         @relation("CountryDefaultLanguage")
   // Join to countries that support this language
   countryLinks        CountryLanguage[]
   users               User[]
-  languageScopedUsers User[]          @relation("UserLanguageScope")
+  languageScopedUsers User[]            @relation("UserLanguageScope")
   topicLabels         TopicLabel[]
   topicAliases        TopicAlias[]
   contentItems        ContentItem[]
-  qnas                QnA[] @relation("QnALanguage") // P7-S1: Q&A learning representations
+  qnas                QnA[]             @relation("QnALanguage") // P7-S1: Q&A learning representations
+  questions           Question[]        @relation("QuestionLanguage") // P7-S2: scored assessment representations
   editorialTasks      EditorialTask[]
-  goalStudyLanguages  UserGoal[]     @relation("UserGoalStudyLanguage") // P5-S3
+  goalStudyLanguages  UserGoal[]        @relation("UserGoalStudyLanguage") // P5-S3
   entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
 
   @@index([status])
@@ -786,10 +789,10 @@ model Country {
   supported       CountryLanguage[] // languages configured for this country only (§35)
   users           User[]
   topics          Topic[] // country-scoped taxonomy extension nodes (§13)
-  knowledgeUnits  KnowledgeUnit[] @relation("KnowledgeUnitCountry")
+  knowledgeUnits  KnowledgeUnit[]   @relation("KnowledgeUnitCountry")
   editorialTasks  EditorialTask[]
-  exams           Exam[] @relation("ExamCountry") // P3-S1: every exam belongs to exactly one country (§14)
-  currentEvents   CurrentEvent[] @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
+  exams           Exam[]            @relation("ExamCountry") // P3-S1: every exam belongs to exactly one country (§14)
+  currentEvents   CurrentEvent[]    @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
   entities        Entity[] // P6-S3: §14 country-scoped entity reference records
 
   @@index([status])
@@ -830,7 +833,7 @@ model User {
   // Auth (P1-S2): token-based identity — the same Bearer-token contract serves
   // the website today and native apps later (§4, §39).
   passwordHash        String? // null reserved for future non-password auth methods
-  role                UserRole  @default(READER)
+  role                UserRole   @default(READER)
   status              UserStatus @default(ACTIVE)
   authMethod          AuthMethod @default(PASSWORD)
   emailVerifiedAt     DateTime? // verification flow itself is a later concern
@@ -838,33 +841,36 @@ model User {
   createdAt           DateTime   @default(now())
   updatedAt           DateTime   @updatedAt
 
-  homeCountry       Country?       @relation(fields: [homeCountryId], references: [id])
-  preferredLanguage Language?      @relation(fields: [preferredLanguageId], references: [id])
-  languageScope     Language?     @relation("UserLanguageScope", fields: [languageScopeId], references: [id])
-  authSessions      AuthSession[]
-  auditLogs         AuditLog[]
-  authoredKnowledgeUnits KnowledgeUnit[] @relation("KnowledgeUnitAuthor")
-  authoredContentItems   ContentItem[] @relation("ContentItemAuthor")
-  publishedContentRevisions ContentRevision[] @relation("ContentRevisionPublisher")
-  createdSources         Source[] @relation("SourceAuthor")
-  assignedEditorialTasks EditorialTask[] @relation("EditorialTaskAssignee")
-  createdEditorialTasks  EditorialTask[] @relation("EditorialTaskCreator")
-  resolvedEditorialTasks EditorialTask[] @relation("EditorialTaskResolver")
-  createdExams           Exam[]        @relation("ExamAuthor") // P3-S1
-  createdExamVersions    ExamVersion[] @relation("ExamVersionAuthor") // P3-S1
-  createdExamMappings    ExamMapping[] @relation("ExamMappingAuthor") // P3-S3
-  follows                UserFollow[] // P5-S1
-  saves                  SavedItem[] // P5-S2
-  collections            Collection[] // P5-S2
+  homeCountry                Country?           @relation(fields: [homeCountryId], references: [id])
+  preferredLanguage          Language?          @relation(fields: [preferredLanguageId], references: [id])
+  languageScope              Language?          @relation("UserLanguageScope", fields: [languageScopeId], references: [id])
+  authSessions               AuthSession[]
+  auditLogs                  AuditLog[]
+  authoredKnowledgeUnits     KnowledgeUnit[]    @relation("KnowledgeUnitAuthor")
+  authoredContentItems       ContentItem[]      @relation("ContentItemAuthor")
+  publishedContentRevisions  ContentRevision[]  @relation("ContentRevisionPublisher")
+  createdSources             Source[]           @relation("SourceAuthor")
+  assignedEditorialTasks     EditorialTask[]    @relation("EditorialTaskAssignee")
+  createdEditorialTasks      EditorialTask[]    @relation("EditorialTaskCreator")
+  resolvedEditorialTasks     EditorialTask[]    @relation("EditorialTaskResolver")
+  createdExams               Exam[]             @relation("ExamAuthor") // P3-S1
+  createdExamVersions        ExamVersion[]      @relation("ExamVersionAuthor") // P3-S1
+  createdExamMappings        ExamMapping[]      @relation("ExamMappingAuthor") // P3-S3
+  follows                    UserFollow[] // P5-S1
+  saves                      SavedItem[] // P5-S2
+  collections                Collection[] // P5-S2
   // P5-S3 (§6): onboarding state + the one declared goal (§9 explicit signal).
-  onboardingStatus      OnboardingStatus @default(PENDING)
-  onboardingCompletedAt DateTime?
-  goal                   UserGoal?
+  onboardingStatus           OnboardingStatus   @default(PENDING)
+  onboardingCompletedAt      DateTime?
+  goal                       UserGoal?
   // P6-S1 (§12): canonical current-event records authored by this user.
-  createdCurrentEvents  CurrentEvent[] @relation("CurrentEventAuthor")
+  createdCurrentEvents       CurrentEvent[]     @relation("CurrentEventAuthor")
   // P7-S1 (§22/§23): QnA entries authored + revisions published by this user.
-  authoredQnas          QnA[] @relation("QnAAuthor")
-  publishedQnaRevisions QnARevision[] @relation("QnARevisionPublisher")
+  authoredQnas               QnA[]              @relation("QnAAuthor")
+  publishedQnaRevisions      QnARevision[]      @relation("QnARevisionPublisher")
+  // P7-S2 (§22/§23): Questions authored + revisions published by this user.
+  authoredQuestions          Question[]         @relation("QuestionAuthor")
+  publishedQuestionRevisions QuestionRevision[] @relation("QuestionRevisionPublisher")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -912,15 +918,15 @@ model Topic {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
-  parent   Topic?       @relation("TopicTree", fields: [parentId], references: [id])
-  children Topic[]      @relation("TopicTree")
-  country  Country?     @relation(fields: [countryId], references: [id])
-  labels   TopicLabel[]
-  aliases  TopicAlias[]
-  knowledgeUnits KnowledgeUnit[] @relation("KnowledgeUnitTopic")
-  syllabusNodes  SyllabusNode[]  @relation("SyllabusNodeTopic")
+  parent         Topic?              @relation("TopicTree", fields: [parentId], references: [id])
+  children       Topic[]             @relation("TopicTree")
+  country        Country?            @relation(fields: [countryId], references: [id])
+  labels         TopicLabel[]
+  aliases        TopicAlias[]
+  knowledgeUnits KnowledgeUnit[]     @relation("KnowledgeUnitTopic")
+  syllabusNodes  SyllabusNode[]      @relation("SyllabusNodeTopic")
   goalTopics     UserGoalTopic[] // P5-S3 — declared goal subject references
-  currentEvents  CurrentEvent[] @relation("CurrentEventTopic") // P6-S1: §12 step 3 primary topic
+  currentEvents  CurrentEvent[]      @relation("CurrentEventTopic") // P6-S1: §12 step 3 primary topic
   eventFilings   CurrentEventTopic[] // P6-S3: additional cross-filing links
 
   @@index([parentId, orderIndex])
@@ -949,11 +955,11 @@ model TopicLabel {
 // Alternate search terms (§13 "aliases") — e.g. "FR" → Fundamental Rights.
 // languageId null = language-neutral alias.
 model TopicAlias {
-  id         String    @id @default(cuid())
+  id         String   @id @default(cuid())
   topicId    String
   value      String
   languageId String?
-  createdAt  DateTime  @default(now())
+  createdAt  DateTime @default(now())
 
   topic    Topic     @relation(fields: [topicId], references: [id], onDelete: Cascade)
   language Language? @relation(fields: [languageId], references: [id])
@@ -1038,6 +1044,7 @@ enum SavedObjectType {
   CONTENT_ITEM // a specific published language × format representation
   CURRENT_EVENT // P6-S3 (§10): the event record — its §16 page is the retrieval surface
   QNA // P7-S1 (§10/§22): a published Q&A learning entry — reopens the unit page's Q&A layer
+  QUESTION // P7-S2 (§10/§22): a published MCQ practice question — reopens the unit page's practice layer
 }
 
 // §6 Collection row carries visibility. Collections are private in v1 —
@@ -1054,13 +1061,13 @@ enum CollectionVisibility {
 // (never destroys saves — §31 reversibility); the default itself is
 // immutable. Rows cascade with the user (§30/§31).
 model Collection {
-  id         String              @id @default(cuid())
+  id         String               @id @default(cuid())
   userId     String
   name       String
-  isDefault  Boolean             @default(false) // the §10 bootstrap collection
+  isDefault  Boolean              @default(false) // the §10 bootstrap collection
   visibility CollectionVisibility @default(PRIVATE)
-  createdAt  DateTime            @default(now())
-  updatedAt  DateTime            @updatedAt
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
 
   user  User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   items SavedItem[]
@@ -1144,8 +1151,8 @@ model UserGoal {
   declaredAt      DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
 
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  studyLanguage Language?      @relation("UserGoalStudyLanguage", fields: [studyLanguageId], references: [id])
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studyLanguage Language?       @relation("UserGoalStudyLanguage", fields: [studyLanguageId], references: [id])
   exams         UserGoalExam[]
   topics        UserGoalTopic[]
 
@@ -1221,8 +1228,8 @@ enum CurrentEventLifecycle {
 // richer entity/multi-topic linking. `slug` is immutable and URL-stable for
 // the §16 canonical `/current-affairs/{slug}/` page (rendered from P6-S2).
 model CurrentEvent {
-  id             String               @id @default(cuid())
-  slug           String               @unique // immutable, URL-stable (§16)
+  id             String                @id @default(cuid())
+  slug           String                @unique // immutable, URL-stable (§16)
   title          String // canonical (English-reference) event title
   eventDate      DateTime // §6 event_date — when the event happened
   eventEndDate   DateTime? // optional span end (multi-day summits, sessions)
@@ -1230,25 +1237,25 @@ model CurrentEvent {
   summary        String // §6 summary — what happened (canonical reference)
   significance   String? // §6 significance — why it matters for GK/exams
   lifecycleState CurrentEventLifecycle @default(EMERGING)
-  scope          TopicScope           @default(GLOBAL) // §14 GLOBAL/COUNTRY
+  scope          TopicScope            @default(GLOBAL) // §14 GLOBAL/COUNTRY
   countryId      String? // set iff scope = COUNTRY (explicit, never inferred)
   topicId        String // §13 primary canonical topic
   notes          String? // internal editorial notes
   createdById    String?
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 
-  country    Country?  @relation("CurrentEventCountry", fields: [countryId], references: [id])
-  topic      Topic     @relation("CurrentEventTopic", fields: [topicId], references: [id])
-  createdBy  User?     @relation("CurrentEventAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  sources    CurrentEventSource[]
-  knowledgeUnits CurrentEventKnowledgeUnit[]
+  country          Country?                    @relation("CurrentEventCountry", fields: [countryId], references: [id])
+  topic            Topic                       @relation("CurrentEventTopic", fields: [topicId], references: [id])
+  createdBy        User?                       @relation("CurrentEventAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  sources          CurrentEventSource[]
+  knowledgeUnits   CurrentEventKnowledgeUnit[]
   // P6-S3 (§12 step 3): the entity + additional-topic linking layer.
   entities         CurrentEventEntity[]
   additionalTopics CurrentEventTopic[]
   // §12 step 4 (P6-S2): the event's language-specific representations —
   // ContentItems anchored here, riding the §19 workflow + §36 revisions.
-  representations ContentItem[] @relation("ContentItemEvent")
+  representations  ContentItem[]               @relation("ContentItemEvent")
 
   @@index([lifecycleState])
   @@index([lifecycleState, eventDate])
@@ -1276,7 +1283,7 @@ model CurrentEventSource {
   createdAt      DateTime @default(now())
 
   currentEvent CurrentEvent @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
-  source       Source      @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  source       Source       @relation(fields: [sourceId], references: [id], onDelete: Cascade)
 
   @@unique([currentEventId, sourceId])
   @@index([sourceId])
@@ -1296,7 +1303,7 @@ model CurrentEventKnowledgeUnit {
   note            String? // why this unit is relevant to the event
   createdAt       DateTime @default(now())
 
-  currentEvent  CurrentEvent   @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
+  currentEvent  CurrentEvent  @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
   knowledgeUnit KnowledgeUnit @relation(fields: [knowledgeUnitId], references: [id], onDelete: Cascade)
 
   @@unique([currentEventId, knowledgeUnitId])
@@ -1348,7 +1355,7 @@ model Entity {
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
 
-  country Country?            @relation(fields: [countryId], references: [id])
+  country Country?             @relation(fields: [countryId], references: [id])
   aliases EntityAlias[]
   events  CurrentEventEntity[]
 
@@ -1363,11 +1370,11 @@ model Entity {
 // §17 search matching (entity names are first-class search terms) without
 // touching the canonical name.
 model EntityAlias {
-  id         String    @id @default(cuid())
+  id         String   @id @default(cuid())
   entityId   String
   value      String
   languageId String?
-  createdAt  DateTime  @default(now())
+  createdAt  DateTime @default(now())
 
   entity   Entity    @relation(fields: [entityId], references: [id], onDelete: Cascade)
   language Language? @relation(fields: [languageId], references: [id])
@@ -1388,7 +1395,7 @@ model CurrentEventEntity {
   createdAt      DateTime @default(now())
 
   currentEvent CurrentEvent @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
-  entity       Entity      @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  entity       Entity       @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   @@unique([currentEventId, entityId])
   @@index([entityId])
@@ -1484,4 +1491,90 @@ model QnARevision {
 
   @@unique([qnaId, revisionNumber])
   @@index([qnaId, publishedAt])
+}
+
+// ---------- P7-S2: Question — the scored assessment object (Master Plan §6 Question row, §22, §23, §43) ----------
+
+// §23 content format "Question (scored, MCQ or other assessment type)" — the
+// atomic assessment object, structurally distinct from QnA (§46.14: "QnA,
+// Question, and MockTest are structurally distinct entities — never collapse
+// them into one generic 'question' table"). A Question is one MCQ: options +
+// a correct answer + an explanation, anchored to a canonical KnowledgeUnit
+// (§7 — assessment REPRESENTS the record) and OPTIONALLY to the ExamVersion
+// it was authored for (§6 exam_version_id — authoring context, never
+// identity; scope/relevance routing is ExamMapping's job, §8). It rides the
+// same §19 workflow as content and QnA, with the same §36 immutable-revision
+// discipline. The correctAnswer NEVER ships to the public surface before an
+// answer is checked — practice is scored server-side (§22 "scored
+// assessment").
+enum QuestionType {
+  MCQ // single-correct multiple choice — the v1 launch format; §23 leaves room for other assessment types
+}
+
+model Question {
+  id                  String              @id @default(cuid())
+  knowledgeUnitId     String // §7 anchor — the canonical record this question assesses (§6 lists only knowledge_unit_id)
+  examVersionId       String? // §6 OPTIONAL exam anchor — the version this was authored for (context, not identity; §8 routing is ExamMapping's job)
+  languageId          String
+  status              ContentStatus       @default(DRAFT) // §19 workflow (shared states)
+  type                QuestionType        @default(MCQ)
+  difficulty          KnowledgeDifficulty @default(BASIC) // §6 difficulty — the practice layer orders BASIC → ADVANCED
+  questionText        String // working copy; §11 identity (create-time only, like QnA)
+  optionsJson         String // JSON array [{key:'A',text:'…'},…] — §6 "options" (Prisma carries no list primitives; parsed/validated in the service)
+  correctAnswer       String // the correct option KEY ('A'…) — working copy; never public pre-answer
+  explanation         String // §6 explanation — teaching prose revealed after answering
+  // §24/§26 AI-provenance flag (working copy) — snapshotted onto
+  // QuestionRevision at publish time.
+  aiAssisted          Boolean             @default(false)
+  publishedRevisionId String? // live revision pointer (null = never published)
+  // §19 step 7: set by the `schedule` transition; due items materialize to
+  // PUBLISHED lazily on read (question-service).
+  scheduledForAt      DateTime?
+  createdById         String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  knowledgeUnit     KnowledgeUnit      @relation("QuestionUnit", fields: [knowledgeUnitId], references: [id])
+  examVersion       ExamVersion?       @relation("QuestionExamVersion", fields: [examVersionId], references: [id], onDelete: SetNull)
+  language          Language           @relation("QuestionLanguage", fields: [languageId], references: [id])
+  createdBy         User?              @relation("QuestionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  revisions         QuestionRevision[] @relation("QuestionRevisions")
+  publishedRevision QuestionRevision?  @relation("LiveQuestionRevision", fields: [publishedRevisionId], references: [id])
+
+  // §11 canonical identity: within one unit × language, the question text
+  // identifies exactly one Question — the same discipline as QnA. The exam
+  // anchor is NOT part of identity (the same MCQ serves any exam that maps
+  // the unit).
+  @@unique([knowledgeUnitId, languageId, questionText])
+  @@index([status])
+  @@index([knowledgeUnitId, status])
+  @@index([languageId, status])
+  @@index([examVersionId])
+}
+
+// Immutable published snapshot (§36) — the Question twin of QnARevision.
+// Rows are NEVER updated or deleted; publishing again appends revision N+1
+// and moves the live pointer. Every correction carries a changeSummary
+// (§25/§36 provenance — never a silent edit).
+model QuestionRevision {
+  id             String   @id @default(cuid())
+  questionId     String
+  revisionNumber Int // 1-based, deterministic within the Question
+  questionText   String // immutable snapshot at publish time
+  optionsJson    String // immutable snapshot at publish time
+  correctAnswer  String // immutable snapshot at publish time
+  explanation    String // immutable snapshot at publish time
+  difficulty     KnowledgeDifficulty @default(BASIC) // public-facing classification — snapshotted so staged difficulty edits never leak (§36)
+  changeSummary  String? // why this revision exists (required on re-publish)
+  // §24/§26 AI-provenance snapshot at publish time — immutable like the rest.
+  aiAssisted     Boolean  @default(false)
+  publishedById  String?
+  publishedAt    DateTime @default(now())
+
+  question    Question   @relation("QuestionRevisions", fields: [questionId], references: [id], onDelete: Cascade)
+  publishedBy User?      @relation("QuestionRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+  liveFor     Question[] @relation("LiveQuestionRevision")
+
+  @@unique([questionId, revisionNumber])
+  @@index([questionId, publishedAt])
 }
