@@ -9,6 +9,8 @@
  * subtree (§8/§36 — computed, never stored) and §33 sibling internal links.
  * Every §16 path ships as data; in-app navigation goes through the hash
  * router with the same segment grammar.
+ * P7-S3: the "Mock tests for this topic" section — published §22 timed
+ * assemblies scoped to this topic (…/gk/{topic}/mock-tests/{slug}/).
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -18,12 +20,15 @@ import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
+  ClipboardCheck,
   FolderTree,
   GraduationCap,
   Hash,
   Layers,
   Link2,
+  ListChecks,
   RefreshCw,
+  Timer,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -46,7 +51,32 @@ export interface TopicLandingViewProps {
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
+  /** P7-S3: opens a scoped mock test's §22 runner (§16
+   * …/gk/{topic}/mock-tests/{slug}/). */
+  onOpenTest: (topicSlug: string, testSlug: string) => void
   onGoHome: () => void
+}
+
+// ---------- P7-S3: mock tests for this topic (§22, local API mirror) ----------
+// Mirrors GET /api/mock-tests?topic={slug}&language={code} — hand-written per
+// the client-mirror convention (never import server modules).
+
+interface TopicMockTestCard {
+  id: string
+  slug: string
+  title: string
+  questionCount: number
+  durationMinutes: number
+  passPercent: number
+  scope: {
+    type: 'TOPIC' | 'EXAM'
+    topic: { slug: string; canonicalName: string } | null
+    exam: { slug: string; name: string; code: string; versionId: string; versionLabel: string } | null
+  }
+  language: { code: string; name: string; nativeName: string | null }
+  revision: { number: number; publishedAt: string }
+  /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
+  aiAssisted: boolean
 }
 
 // ---------- Component ----------
@@ -60,6 +90,7 @@ export function TopicLandingView({
   onOpenTopic,
   onOpenUnit,
   onOpenExam,
+  onOpenTest,
   onGoHome,
 }: TopicLandingViewProps) {
   const [landing, setLanding] = useState<TopicLanding | null>(null)
@@ -379,6 +410,9 @@ export function TopicLandingView({
         )}
       </section>
 
+      {/* ---------- P7-S3 §22: mock tests scoped to this topic ---------- */}
+      <TopicMockTests slug={slug} language={language} onOpenTest={onOpenTest} />
+
       {/* ---------- §8 exams needing this topic (computed) ---------- */}
       <section aria-labelledby="topic-exams-heading" className="space-y-4">
         <h2 id="topic-exams-heading" className="text-xl font-semibold tracking-tight">
@@ -473,6 +507,182 @@ export function TopicLandingView({
         </section>
       )}
     </div>
+  )
+}
+
+// ---------- P7-S3: mock tests for this topic (§22) ----------
+
+function TopicMockTests({
+  slug,
+  language,
+  onOpenTest,
+}: {
+  slug: string
+  language: string
+  onOpenTest: (topicSlug: string, testSlug: string) => void
+}) {
+  const [tests, setTests] = useState<TopicMockTestCard[] | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  // The public §22 list — fetched independently of the topic payload so an
+  // outage on either side never breaks the other (the exam-view precedent).
+  useEffect(() => {
+    let cancelled = false
+    async function run() {
+      setLoading(true)
+      setFailed(false)
+      try {
+        const params = new URLSearchParams({ topic: slug, language })
+        const response = await fetch(`/api/mock-tests?${params.toString()}`, {
+          cache: 'no-store',
+        })
+        const payload = (await response.json()) as Envelope<{ items: TopicMockTestCard[] }>
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data) {
+          setTests(payload.data.items)
+        } else {
+          setFailed(true)
+        }
+      } catch {
+        if (!cancelled) setFailed(true)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    void run()
+    return () => {
+      cancelled = true
+    }
+  }, [slug, language])
+
+  return (
+    <section aria-labelledby="topic-mock-tests-heading" className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2
+          id="topic-mock-tests-heading"
+          className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+        >
+          <ClipboardCheck className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+          Mock tests for this topic
+        </h2>
+        <p className="text-xs text-zinc-400">
+          Timed, scored assemblies of published questions (§22/§6)
+        </p>
+      </div>
+
+      {loading ? (
+        <div className="grid gap-4 md:grid-cols-2" aria-busy="true" aria-label="Loading mock tests for this topic">
+          {[0, 1].map((index) => (
+            <Skeleton key={index} className="h-36 w-full rounded-xl" />
+          ))}
+        </div>
+      ) : failed ? (
+        // Quiet by design (§36): the topic hub stands alone if the list is down.
+        <p className="rounded-md border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-500">
+          Mock tests could not be loaded right now.
+        </p>
+      ) : !tests || tests.length === 0 ? (
+        <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+          <CardContent className="p-5">
+            <p className="flex items-start gap-2 text-sm text-zinc-600">
+              <ClipboardCheck className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
+              <span>
+                No mock tests for this topic yet — timed practice tests appear here the moment
+                they are published (§22).
+              </span>
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2">
+          {tests.map((test) => {
+            const pathHint =
+              test.scope.type === 'TOPIC' && test.scope.topic
+                ? `/gk/${test.scope.topic.slug}/mock-tests/${test.slug}/`
+                : test.scope.exam
+                  ? `/exams/${test.scope.exam.slug}/mock-tests/${test.slug}/`
+                  : ''
+            return (
+              <Card
+                key={test.id}
+                className="group flex min-w-0 flex-col border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
+              >
+                <button
+                  type="button"
+                  onClick={() => onOpenTest(
+                    test.scope.type === 'TOPIC' && test.scope.topic ? test.scope.topic.slug : slug,
+                    test.slug
+                  )}
+                  className="flex h-full min-w-0 flex-col text-left"
+                  aria-label={`Start the mock test: ${test.title}`}
+                >
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
+                      {test.title}
+                    </CardTitle>
+                    <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                      <Badge
+                        variant="outline"
+                        className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
+                      >
+                        <ListChecks className="mr-1 h-3 w-3" aria-hidden="true" />
+                        {test.questionCount} questions
+                      </Badge>
+                      <Badge
+                        variant="outline"
+                        className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
+                      >
+                        <Timer className="mr-1 h-3 w-3" aria-hidden="true" />
+                        {test.durationMinutes} min
+                      </Badge>
+                      <Badge
+                        variant="outline"
+                        className="border-emerald-200 bg-emerald-50 text-[10px] font-normal text-emerald-700"
+                        title="The score needed to pass (§6)"
+                      >
+                        pass {test.passPercent}%
+                      </Badge>
+                      {test.aiAssisted && (
+                        <Badge
+                          variant="outline"
+                          className="border-fuchsia-200 bg-fuchsia-50 text-[10px] font-normal text-fuchsia-700"
+                          title="§24/§26 — AI-assisted provenance on the live revision"
+                        >
+                          AI-assisted
+                        </Badge>
+                      )}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex flex-1 flex-col gap-2">
+                    <p className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-400">
+                      <span>
+                        Rev {test.revision.number} · published{' '}
+                        {new Date(test.revision.publishedAt).toLocaleDateString('en-IN', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 group-hover:text-emerald-800">
+                        Start test
+                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                    </p>
+                    <p
+                      className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500"
+                      title={`#${pathHint}`}
+                    >
+                      {pathHint}
+                    </p>
+                  </CardContent>
+                </button>
+              </Card>
+            )
+          })}
+        </div>
+      )}
+    </section>
   )
 }
 

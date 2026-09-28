@@ -14,6 +14,10 @@
  *   Exam page               …/exams/{exam}/         → #/exams/upsc-civil-services/
  *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
  *                                                   → #/exams/upsc-civil-services/syllabus/constitutional-framework/
+ *   Mock test (exam-scoped)  …/exams/{exam}/mock-tests/{slug}/
+ *                                                   → #/exams/upsc-civil-services/mock-tests/upsc-cse-polity-world-gk-mini-mock-test/
+ *   Mock test (topic-scoped) …/gk/{topic}/mock-tests/{slug}/
+ *                                                   → #/gk/fundamental-rights/mock-tests/fundamental-rights-warm-up-drill/
  *
  * Inside this sandbox the browser path must stay `/`, so the canonical URL
  * space is mirrored AFTER the hash — the same segment grammar, the same
@@ -37,7 +41,9 @@
  * Addressable state derives from the hash (never duplicated in component
  * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
  * page's §36 historical window — the browser back button walks both, and
- * every topic/exam switch starts clean.
+ * every topic/exam switch starts clean. The §22 mock-test runner (P7-S3)
+ * lives at the two shapes above — the test's scope (exam or topic) is part
+ * of its §16 identity, so the URL carries it.
  */
 import { useEffect, useState } from 'react'
 
@@ -47,7 +53,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -58,6 +64,8 @@ export interface AppRoute {
   examSlug: string | null
   /** The syllabus topic under the exam view (§16 …/exams/{exam}/syllabus/{topic}/). */
   syllabusTopicSlug: string | null
+  /** The §22 mock test whose runner is open (P7-S3 — exam- or topic-scoped). */
+  testSlug: string | null
   /** Addressable topic-units page (≥1; only meaningful on the topic view). */
   page: number
   /** Addressable §36 historical window (exam view only). */
@@ -78,6 +86,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     eventSlug: null,
     examSlug: null,
     syllabusTopicSlug: null,
+    testSlug: null,
     page: 1,
     versionId: null,
     scrollTo: null,
@@ -165,10 +174,27 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     }
   }
 
-  // Content path: /gk/{topic}/{unit}/ (§16).
+  // Content path: /gk/{topic}/{unit}/ (§16) — with the P7-S3 mock-test
+  // branch …/gk/{topic}/mock-tests/{slug}/ (the topic-scoped §22 runner).
   if (segments[index] === 'gk') {
     const topicSlug = segments[index + 1] ?? null
     const unitSlug = segments[index + 2] ?? null
+    if (topicSlug && segments[index + 2] === 'mock-tests' && segments[index + 3]) {
+      return {
+        view: 'test',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug: null,
+        eventSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: segments[index + 3],
+        page: 1,
+        versionId: null,
+        scrollTo: null,
+      }
+    }
     if (topicSlug && unitSlug) {
       return {
         view: 'unit',
@@ -179,6 +205,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         eventSlug: null,
         examSlug: null,
         syllabusTopicSlug: null,
+        testSlug: null,
         page: 1,
         versionId: null,
         scrollTo: null,
@@ -194,6 +221,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         eventSlug: null,
         examSlug: null,
         syllabusTopicSlug: null,
+        testSlug: null,
         page,
         versionId: null,
         scrollTo: null,
@@ -214,6 +242,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         eventSlug,
         examSlug: null,
         syllabusTopicSlug: null,
+        testSlug: null,
         page: 1,
         versionId: null,
         scrollTo: null,
@@ -221,9 +250,26 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     }
   }
 
-  // Content path: /exams/{exam}/ and /exams/{exam}/syllabus/{topic}/ (§16).
+  // Content path: /exams/{exam}/, /exams/{exam}/syllabus/{topic}/ and the
+  // P7-S3 mock-test branch …/exams/{exam}/mock-tests/{slug}/ (§16).
   if (segments[index] === 'exams') {
     const examSlug = segments[index + 1] ?? null
+    if (examSlug && segments[index + 2] === 'mock-tests' && segments[index + 3]) {
+      return {
+        view: 'test',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        eventSlug: null,
+        examSlug,
+        syllabusTopicSlug: null,
+        testSlug: segments[index + 3],
+        page: 1,
+        versionId: null,
+        scrollTo: null,
+      }
+    }
     if (examSlug && segments[index + 2] === 'syllabus' && segments[index + 3]) {
       return {
         view: 'syllabus',
@@ -234,6 +280,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         eventSlug: null,
         examSlug,
         syllabusTopicSlug: segments[index + 3],
+        testSlug: null,
         page: 1,
         versionId: null,
         scrollTo: null,
@@ -249,6 +296,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         eventSlug: null,
         examSlug,
         syllabusTopicSlug: null,
+        testSlug: null,
         page: 1,
         versionId,
         scrollTo: null,
@@ -269,6 +317,8 @@ export interface RouteInput {
   eventSlug?: string | null
   examSlug?: string | null
   syllabusTopicSlug?: string | null
+  /** The §22 mock test to open (P7-S3) — exam- or topic-scoped. */
+  testSlug?: string | null
   page?: number
   versionId?: string | null
 }
@@ -293,6 +343,10 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
     segments.push('gk', route.topicSlug)
   } else if (route.view === 'unit' && route.topicSlug && route.unitSlug) {
     segments.push('gk', route.topicSlug, route.unitSlug)
+  } else if (route.view === 'test' && route.testSlug) {
+    // §16/P7-S3 — the runner's scope is part of the test's identity.
+    if (route.examSlug) segments.push('exams', route.examSlug, 'mock-tests', route.testSlug)
+    else if (route.topicSlug) segments.push('gk', route.topicSlug, 'mock-tests', route.testSlug)
   } else if (route.view === 'event' && route.eventSlug) {
     segments.push('current-affairs', route.eventSlug)
   } else if (route.view === 'exam' && route.examSlug) {

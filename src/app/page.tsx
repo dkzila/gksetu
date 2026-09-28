@@ -9,6 +9,8 @@
  * (…/exams/{exam}/syllabus/{topic}/) — with the §15 country switcher and §35
  * language switcher always available in the header, and the foundation
  * console (every prior session's verification surface) one click away.
+ * P7-S3 adds the §22 mock-test runner pages (…/exams/{exam}/mock-tests/{slug}/
+ * and …/gk/{topic}/mock-tests/{slug}/).
  * In-app navigation mirrors the §16 URL grammar after the hash
  * (#/hi/gk/polity-governance/…, #/exams/upsc-civil-services/…) — one grammar,
  * one source of URL truth, driven by the live country/language configuration
@@ -44,6 +46,7 @@ import { HomepageView } from '@/components/home/homepage-view'
 import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
+import { TestRunnerView } from '@/components/assessment/test-runner-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
@@ -178,6 +181,47 @@ export default function GlobIQApp() {
           unitSlug: null,
           examSlug,
           syllabusTopicSlug,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // §16/P7-S3 mock-test runner — the exam-scoped shape
+  // (…/exams/{exam}/mock-tests/{slug}/).
+  const openExamTest = useCallback(
+    (examSlug: string, testSlug: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'test',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug,
+          testSlug,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // §16/P7-S3 mock-test runner — the topic-scoped shape
+  // (…/gk/{topic}/mock-tests/{slug}/).
+  const openTopicTest = useCallback(
+    (topicSlug: string, testSlug: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'test',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug,
+          unitSlug: null,
+          testSlug,
         },
         config
       )
@@ -479,7 +523,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 7 · Session 2 — Question Practice Layer
+                Phase 7 · Session 3 — Mock Test Engine
               </Badge>
               <HeaderAuth />
             </div>
@@ -586,6 +630,7 @@ export default function GlobIQApp() {
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
             onOpenExam={openExam}
+            onOpenTest={openTopicTest}
             onGoHome={goHome}
           />
         ) : route.view === 'unit' && route.topicSlug && route.unitSlug ? (
@@ -663,7 +708,22 @@ export default function GlobIQApp() {
             onOpenExam={openExam}
             onOpenExamSyllabus={openExamSyllabus}
             onOpenEvent={openEvent}
+            onOpenTest={openExamTest}
             onGoHome={goHome}
+          />
+        ) : route.view === 'test' && route.testSlug ? (
+          <TestRunnerView
+            key={`${route.countryIso}:${route.language}:${route.testSlug}`}
+            testSlug={route.testSlug}
+            examSlug={route.examSlug}
+            topicSlug={route.topicSlug}
+            countryIso={route.countryIso}
+            language={route.language}
+            onGoHome={goHome}
+            onOpenExam={openExam}
+            onOpenTopic={openTopic}
+            onOpenUnit={openUnit}
+            onSignIn={goSignIn}
           />
         ) : route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug ? (
           <SyllabusView

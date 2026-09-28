@@ -60,6 +60,7 @@ export type ApiSavedObject =
   | ApiSavedEvent
   | ApiSavedQna
   | ApiSavedQuestion
+  | ApiSavedMockTest
 
 /** P6-S3 §10/§12/§16 — a saved current event. The event record is the saved
  * object; its §16 page (/current-affairs/{slug}/) is the retrieval surface.
@@ -130,9 +131,32 @@ export interface ApiSavedQuestion {
   countryIso: string | null
 }
 
+/** P7-S3 §22/§6/§10 — a saved mock test. The test's own §22 runner page
+ * (…/exams/{exam}/mock-tests/{slug}/ or …/gk/{topic}/mock-tests/{slug}/)
+ * is the retrieval surface — canonicalPath carries it, so the row reopens
+ * the runner by converting the server-built path to a hash. RETIRED tests
+ * stay listed as honest tombstones (§36). */
+export interface ApiSavedMockTest {
+  kind: 'MOCK_TEST'
+  id: string
+  slug: string
+  title: string
+  questionCount: number
+  durationMinutes: number
+  passPercent: number
+  languageCode: string
+  status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+  scopeType: 'TOPIC' | 'EXAM'
+  /** e.g. “UPSC Civil Services Examination — 2026 syllabus” / “Fundamental Rights”. */
+  scopeLabel: string
+  /** The runner's §16 path in the test's own market. */
+  canonicalPath: string
+  countryIso: string | null
+}
+
 export interface ApiSave {
   id: string
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION' | 'MOCK_TEST'
   savedAt: string
   collectionId: string
   object: ApiSavedObject
@@ -156,6 +180,7 @@ export interface ApiSaveList {
     CURRENT_EVENT: number
     QNA: number
     QUESTION: number
+    MOCK_TEST: number
   }
   collections: ApiCollection[]
 }
@@ -166,7 +191,7 @@ export interface ApiSaveMutation {
 }
 
 export interface ApiSaveState {
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION' | 'MOCK_TEST'
   objectRef: string
   objectSlug: string | null
   objectFound: boolean

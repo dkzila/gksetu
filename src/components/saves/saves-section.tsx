@@ -55,6 +55,7 @@ const API_ROWS: Array<{ method: string; path: string; note: string }> = [
   { method: 'GET', path: '/api/saves/state?objectType=&objectRef=', note: 'Single-object button state (truthful, §36)' },
   { method: 'GET', path: '/api/saves/state?objectType=QNA&objectRef={qnaId}', note: 'P7-S1: the §22 practice layer’s Save button — objectRef is the QnA id' },
   { method: 'GET', path: '/api/saves/state?objectType=QUESTION&objectRef={questionId}', note: 'P7-S2: the §22 scored practice layer’s Save button — objectRef is the Question id' },
+  { method: 'GET', path: '/api/saves/state?objectType=MOCK_TEST&objectRef={testId}', note: 'P7-S3: the §22 mock-test runner’s Save button — objectRef is the MockTest id (RETIRED tests 409 MOCK_TEST_NOT_SAVABLE, the tombstone pattern)' },
   { method: 'POST', path: '/api/collections', note: 'Create a collection { name } — default "Saved" bootstraps on first save' },
   { method: 'PATCH', path: '/api/collections/{id}', note: 'Rename a custom collection (the default is fixed, §10)' },
   { method: 'DELETE', path: '/api/collections/{id}', note: 'Delete a custom collection — items fall back to "Saved" (§31)' },
@@ -623,6 +624,7 @@ export function SavesSection() {
                         {data.counts.CURRENT_EVENT > 0 && ` · ${data.counts.CURRENT_EVENT} events`}
                         {data.counts.QNA > 0 && ` · ${data.counts.QNA} Q&A`}
                         {data.counts.QUESTION > 0 && ` · ${data.counts.QUESTION} ${data.counts.QUESTION === 1 ? 'question' : 'questions'}`}
+                        {data.counts.MOCK_TEST > 0 && ` · ${data.counts.MOCK_TEST} ${data.counts.MOCK_TEST === 1 ? 'test' : 'tests'}`}
                       </span>
                     ) : (
                       <span className="font-normal text-zinc-400">loading…</span>
@@ -654,7 +656,9 @@ export function SavesSection() {
                                 ? 'Q&A'
                                 : item.object.kind === 'QUESTION'
                                   ? 'MCQ'
-                                  : item.object.format}
+                                  : item.object.kind === 'MOCK_TEST'
+                                    ? 'MOCK TEST'
+                                    : item.object.format}
                         </Badge>
                         <span className="font-medium text-zinc-800">
                           {item.object.kind === 'KNOWLEDGE_UNIT'

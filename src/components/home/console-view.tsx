@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P7-S2)
+ * GlobIQ — Foundation Console (P1-S1 → P7-S3)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -65,6 +65,7 @@ import { FreshnessSection } from '@/components/current-affairs/freshness-section
 import { EntitiesSection } from '@/components/entities/entities-section'
 import { QnaSection } from '@/components/assessment/qna-section'
 import { QuestionsSection } from '@/components/assessment/questions-section'
+import { MockTestsSection } from '@/components/assessment/mock-tests-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
@@ -165,7 +166,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P7-S2
+            P1-S1 → P7-S3
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -399,6 +400,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Questions — §22/§23 scored practice layer (P7-S2) ---------- */}
       <QuestionsSection />
 
+      {/* ---------- Mock Tests — §22/§6 timed assessment engine (P7-S3) ---------- */}
+      <MockTestsSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -452,7 +456,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P7-S2 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P7-S3 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

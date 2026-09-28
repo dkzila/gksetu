@@ -347,6 +347,10 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
     } else if (save.object.kind === 'CURRENT_EVENT') {
       // P6-S3 §10/§16 — the event's own page is the retrieval surface.
       onOpenEvent(save.object.slug)
+    } else if (save.object.kind === 'MOCK_TEST') {
+      // P7-S3 §10/§16 — the test's own runner page is the retrieval surface;
+      // canonicalPath is the server-built §16 URL, mirrored after the hash.
+      window.location.hash = `#${save.object.canonicalPath}`
     } else {
       // The item's own language market — the summary resolved it (§35).
       // P7-S1: saved Q&A rows reopen the unit's §22 page (the Practice —
@@ -427,6 +431,14 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                 <strong className="font-semibold">{data.counts.QUESTION}</strong>
                 <span className="text-zinc-500">
                   {data.counts.QUESTION === 1 ? 'question' : 'questions'}
+                </span>
+              </span>
+            )}
+            {data.counts.MOCK_TEST > 0 && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+                <strong className="font-semibold">{data.counts.MOCK_TEST}</strong>
+                <span className="text-zinc-500">
+                  {data.counts.MOCK_TEST === 1 ? 'test' : 'tests'}
                 </span>
               </span>
             )}
@@ -699,6 +711,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                   const isEvent = object.kind === 'CURRENT_EVENT'
                   const isQna = object.kind === 'QNA'
                   const isQuestion = object.kind === 'QUESTION'
+                  const isMockTest = object.kind === 'MOCK_TEST'
                   const title = isUnit
                     ? object.canonicalName
                     : isQna || isQuestion
@@ -733,10 +746,22 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                                         ? 'border-violet-200 bg-violet-50 text-violet-700'
                                         : isQuestion
                                           ? 'border-amber-200 bg-amber-50 text-amber-700'
-                                          : 'border-teal-200 bg-teal-50 text-teal-700'
+                                          : isMockTest
+                                            ? 'border-emerald-300 bg-emerald-100 text-emerald-800'
+                                            : 'border-teal-200 bg-teal-50 text-teal-700'
                                 }`}
                               >
-                                {isUnit ? 'UNIT' : isEvent ? 'EVENT' : isQna ? 'Q&A' : isQuestion ? 'MCQ' : object.format}
+                                {isUnit
+                                  ? 'UNIT'
+                                  : isEvent
+                                    ? 'EVENT'
+                                    : isQna
+                                      ? 'Q&A'
+                                      : isQuestion
+                                        ? 'MCQ'
+                                        : isMockTest
+                                          ? 'MOCK TEST'
+                                          : object.format}
                               </Badge>
                               {isQuestion && (
                                 <Badge
@@ -747,21 +772,36 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                                   {object.difficulty}
                                 </Badge>
                               )}
-                              {!isUnit && <span>{object.languageCode}</span>}
-                              {!isUnit && <span aria-hidden="true">·</span>}
-                              <span>{object.topicCanonicalName}</span>
-                              <span aria-hidden="true">·</span>
-                              <span>
-                                {isUnit
-                                  ? object.type.toLowerCase().replace('_', ' ')
-                                  : isEvent
-                                    ? `event of ${new Date(object.eventDate).toLocaleDateString(undefined, {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        year: 'numeric',
-                                      })}`
-                                    : object.unit.canonicalName}
-                              </span>
+                              {!isUnit && !isMockTest && <span>{object.languageCode}</span>}
+                              {!isUnit && !isMockTest && <span aria-hidden="true">·</span>}
+                              {isMockTest ? (
+                                <>
+                                  <span>
+                                    {object.questionCount} question{object.questionCount === 1 ? '' : 's'} ·{' '}
+                                    {object.durationMinutes} min · pass {object.passPercent}%
+                                  </span>
+                                  <span aria-hidden="true">·</span>
+                                  <span>{object.scopeLabel}</span>
+                                  <span aria-hidden="true">·</span>
+                                  <span>{object.languageCode}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <span>{object.topicCanonicalName}</span>
+                                  <span aria-hidden="true">·</span>
+                                  <span>
+                                    {isUnit
+                                      ? object.type.toLowerCase().replace('_', ' ')
+                                      : isEvent
+                                        ? `event of ${new Date(object.eventDate).toLocaleDateString(undefined, {
+                                            day: 'numeric',
+                                            month: 'short',
+                                            year: 'numeric',
+                                          })}`
+                                        : object.unit.canonicalName}
+                                  </span>
+                                </>
+                              )}
                             </div>
                             <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                               <CalendarClock className="h-3 w-3" aria-hidden="true" />
