@@ -215,3 +215,26 @@ export interface QuestionWorkflowEvent {
     questionText: string
   }
 }
+
+/**
+ * P7-S3: the event the assessment module sends on every MockTest transition
+ * so its §19 workflow wiring stays inside the caller's transaction. Tasks
+ * are keyed `objectType: 'MOCK_TEST'` + the MockTest's id — disjoint from
+ * ContentItem, QnA and Question tasks (§46.14: MockTest is structurally
+ * distinct, never one generic pipeline). The task's country dimension is
+ * the SCOPE's country: an EXAM test inherits the exam's country, a TOPIC
+ * test the topic's (null = a global topic → a platform/global task).
+ */
+export interface MockTestWorkflowEvent {
+  action: 'submit_review' | 'send_back' | 'schedule' | 'publish' | 'retire'
+  actorId: string | null
+  mockTest: {
+    id: string
+    slug: string
+    /** The scope's country (null = a global-topic test → a platform task). */
+    countryId: string | null
+    languageId: string
+    languageCode: string
+    title: string
+  }
+}

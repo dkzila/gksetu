@@ -41,6 +41,7 @@ import type {
   SavedEventSummary,
   SavedQnaSummary,
   SavedQuestionSummary,
+  SavedMockTestSummary,
   SavedUnitSummary,
 } from './save-types'
 import type {
@@ -61,6 +62,7 @@ export type SaveErrorCode =
   | 'EVENT_NOT_SAVABLE'
   | 'QNA_NOT_SAVABLE'
   | 'QUESTION_NOT_SAVABLE'
+  | 'MOCK_TEST_NOT_SAVABLE'
   | 'SAVE_LIMIT_REACHED'
   | 'SAVE_NOT_FOUND'
   | 'COLLECTION_NOT_FOUND'
@@ -75,6 +77,7 @@ const ERROR_STATUS: Record<SaveErrorCode, number> = {
   EVENT_NOT_SAVABLE: 409,
   QNA_NOT_SAVABLE: 409,
   QUESTION_NOT_SAVABLE: 409,
+  MOCK_TEST_NOT_SAVABLE: 409,
   SAVE_LIMIT_REACHED: 409,
   SAVE_NOT_FOUND: 404,
   COLLECTION_NOT_FOUND: 404,
@@ -258,6 +261,19 @@ const QUESTION_INCLUDE = {
   knowledgeUnit: { include: { topic: { select: { slug: true, canonicalName: true } }, country: { select: { isoCode: true } } } },
 } as const
 
+// P7-S3: the MockTest read-only projection — language, live revision (title +
+// composition + timing + pass criteria) and the scope (topic or exam version
+// with its country), mirroring the assessment module's MOCK_TEST_INCLUDE in
+// save-light form.
+const MOCKTEST_INCLUDE = {
+  language: { select: { code: true } },
+  publishedRevision: { select: { title: true, questionIdsJson: true, durationMinutes: true, passPercent: true } },
+  topic: { include: { country: { select: { isoCode: true } } } },
+  examVersion: { include: { exam: { include: { country: { select: { isoCode: true } } } } } },
+} as const
+
+type MockTestWithScope = Prisma.MockTestGetPayload<{ include: typeof MOCKTEST_INCLUDE }>
+
 type QuestionWithUnit = Prisma.QuestionGetPayload<{ include: typeof QUESTION_INCLUDE }>
 
 async function findUnitRow(ref: string): Promise<UnitWithTopic | null> {
@@ -310,6 +326,15 @@ async function findQuestionRow(ref: string): Promise<QuestionWithUnit | null> {
   })
 }
 
+/** P7-S3: a saved mock test resolves by id OR slug (the §37 URL identity —
+ * the runner page saves by id, the copy-paste ref may be the slug). */
+async function findMockTestRow(ref: string): Promise<MockTestWithScope | null> {
+  return db.mockTest.findFirst({
+    where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
+    include: MOCKTEST_INCLUDE,
+  })
+}
+
 /** Unit statuses publicly readable today (§36): VERIFIED is the live truth,
  * OUTDATED stays publicly visible while flagged for correction. DRAFT/IN_REVIEW
  * are not public; ARCHIVED is end-of-life (existing saves tombstone; new saves rejected). */
@@ -355,12 +380,20 @@ interface SavableQuestion {
   question: QuestionWithUnit
 }
 
+interface SavableMockTest {
+  objectType: 'MOCK_TEST'
+  objectId: string
+  slug: string // the test's own §37 URL identity
+  name: string // the live revision title
+  mockTest: MockTestWithScope
+}
+
 /** Existence + eligibility for one object. NO §14 country guard by design:
  * §15.3 lets a user browse (and thus bookmark) any market's public content —
  * saves are retrieval, not personalisation (§10). */
 async function resolveSavable(
-  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION'; objectRef: string }
-): Promise<SavableUnit | SavableItem | SavableEvent | SavableQna | SavableQuestion> {
+  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION' | 'MOCK_TEST'; objectRef: string }
+): Promise<SavableUnit | SavableItem | SavableEvent | SavableQna | SavableQuestion | SavableMockTest> {
   if (input.objectType === 'KNOWLEDGE_UNIT') {
     const unit = await findUnitRow(input.objectRef)
     if (!unit) {
@@ -438,6 +471,33 @@ async function resolveSavable(
       slug: question.knowledgeUnit.slug,
       name: question.publishedRevision?.questionText ?? question.questionText,
       question,
+    }
+  }
+
+  // P7-S3 (§10): a published mock test is savable — retrieval of the §22
+  // runner, never a personalisation signal. RETIRED tests keep existing
+  // saves as tombstones (§36).
+  if (input.objectType === 'MOCK_TEST') {
+    const mockTest = await findMockTestRow(input.objectRef)
+    if (!mockTest) {
+      throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'This mock test does not exist')
+    }
+    if (mockTest.status !== 'PUBLISHED' || !mockTest.publishedRevisionId) {
+      throw new SaveError(
+        'MOCK_TEST_NOT_SAVABLE',
+        mockTest.status === 'RETIRED'
+          ? 'This mock test has been withdrawn (RETIRED) — existing saves keep it as a tombstone (§10/§36).'
+          : mockTest.status === 'SCHEDULED'
+            ? 'This mock test is scheduled to go live automatically (§19) — save it once it is published.'
+            : `This mock test is not published yet (status: ${mockTest.status}).`
+      )
+    }
+    return {
+      objectType: 'MOCK_TEST',
+      objectId: mockTest.id,
+      slug: mockTest.slug,
+      name: mockTest.publishedRevision?.title ?? mockTest.title,
+      mockTest,
     }
   }
 
@@ -594,6 +654,60 @@ function toQuestionSummary(question: QuestionWithUnit, market: MarketShape): Sav
   }
 }
 
+/** P7-S3: §37 runner-page path — …/exams/{exam}/mock-tests/{slug}/ or
+ * …/gk/{topic}/mock-tests/{slug}/ under the locale prefix (§16). */
+function mockTestPath(market: MarketShape['country'], languageCode: string, test: MockTestWithScope): string {
+  const segments =
+    test.scopeType === 'EXAM' && test.examVersion
+      ? ['exams', test.examVersion.exam.slug, 'mock-tests', test.slug]
+      : ['gk', test.topic?.slug ?? 'gk', 'mock-tests', test.slug]
+  return buildCanonicalUrl(
+    { slug: market.slug, isDefault: market.isDefault },
+    { code: languageCode },
+    market.defaultLanguageCode,
+    segments
+  )
+}
+
+/** P7-S3: a saved mock test's display summary — the LIVE revision's title +
+ * frozen composition/timing/pass criteria (§10 no-duplicates: a correction
+ * updates the row, never duplicates it), reopening the §37 runner page. */
+function toMockTestSummary(mockTest: MockTestWithScope, market: MarketShape): SavedMockTestSummary {
+  const revision = mockTest.publishedRevision
+  const questionCount = revision
+    ? ((): number => {
+        try {
+          const parsed = JSON.parse(revision.questionIdsJson)
+          return Array.isArray(parsed) ? parsed.length : 0
+        } catch {
+          return 0
+        }
+      })()
+    : 0
+  const scopeLabel =
+    mockTest.scopeType === 'EXAM' && mockTest.examVersion
+      ? `${mockTest.examVersion.exam.name} — ${mockTest.examVersion.label}`
+      : mockTest.topic?.canonicalName ?? ''
+  return {
+    kind: 'MOCK_TEST',
+    id: mockTest.id,
+    slug: mockTest.slug,
+    title: revision?.title ?? mockTest.title,
+    questionCount,
+    durationMinutes: revision?.durationMinutes ?? mockTest.durationMinutes,
+    passPercent: revision?.passPercent ?? mockTest.passPercent,
+    languageCode: mockTest.language.code,
+    status: mockTest.status as SavedMockTestSummary['status'],
+    scopeType: mockTest.scopeType,
+    scopeLabel,
+    canonicalPath: mockTestPath(market.country, mockTest.language.code, mockTest),
+    countryIso:
+      mockTest.scopeType === 'EXAM'
+        ? mockTest.examVersion?.exam.country?.isoCode ?? null
+        : mockTest.topic?.country?.isoCode ?? null,
+  }
+}
+
 /** P6-S3: §16 event-page path — …/current-affairs/{slug}/ under the locale prefix. */
 function eventPath(market: MarketShape['country'], languageCode: string, eventSlug: string): string {
   return buildCanonicalUrl(
@@ -657,6 +771,25 @@ async function resolveQuestionMarket(question: QuestionWithUnit): Promise<Market
   const countryIso = question.knowledgeUnit.country?.isoCode
   try {
     return await marketFromResolution(countryIso, question.language.code)
+  } catch (error) {
+    if (error instanceof LocaleError) {
+      return await marketFromResolution(countryIso, undefined)
+    }
+    throw error
+  }
+}
+
+/** P7-S3: the market a saved MOCK_TEST reopens in — the scope's market (the
+ * EXAM test's exam country, the TOPIC test's topic country; a global topic
+ * → the default market), always in the TEST's language when that market
+ * configures it (§35). */
+async function resolveMockTestMarket(mockTest: MockTestWithScope): Promise<MarketShape> {
+  const countryIso =
+    (mockTest.scopeType === 'EXAM'
+      ? mockTest.examVersion?.exam.country?.isoCode ?? null
+      : mockTest.topic?.country?.isoCode ?? null) ?? undefined
+  try {
+    return await marketFromResolution(countryIso, mockTest.language.code)
   } catch (error) {
     if (error instanceof LocaleError) {
       return await marketFromResolution(countryIso, undefined)
@@ -760,7 +893,9 @@ export async function saveObject(
             ? `QNA:${target.slug}#${target.name.slice(0, 60)}`
             : target.objectType === 'QUESTION'
               ? `QUESTION:${target.slug}#${target.name.slice(0, 60)}`
-              : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
+              : target.objectType === 'MOCK_TEST'
+                ? `MOCK_TEST:${target.slug}`
+                : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
     after: {
       objectType: target.objectType,
       objectId: target.objectId,
@@ -897,13 +1032,15 @@ export async function listMySaves(
   const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
   const qnaIds = rows.filter((row) => row.objectType === 'QNA').map((row) => row.objectId)
   const questionIds = rows.filter((row) => row.objectType === 'QUESTION').map((row) => row.objectId)
+  const mockTestIds = rows.filter((row) => row.objectType === 'MOCK_TEST').map((row) => row.objectId)
 
-  const [units, itemRows, eventRows, qnaRows, questionRows] = await Promise.all([
+  const [units, itemRows, eventRows, qnaRows, questionRows, mockTestRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
     eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
     qnaIds.length ? db.qnA.findMany({ where: { id: { in: qnaIds } }, include: QNA_INCLUDE }) : Promise.resolve([] as QnaWithUnit[]),
     questionIds.length ? db.question.findMany({ where: { id: { in: questionIds } }, include: QUESTION_INCLUDE }) : Promise.resolve([] as QuestionWithUnit[]),
+    mockTestIds.length ? db.mockTest.findMany({ where: { id: { in: mockTestIds } }, include: MOCKTEST_INCLUDE }) : Promise.resolve([] as MockTestWithScope[]),
   ])
 
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
@@ -915,6 +1052,7 @@ export async function listMySaves(
   const eventById = new Map(eventRows.map((event) => [event.id, event]))
   const qnaById = new Map(qnaRows.map((qna) => [qna.id, qna]))
   const questionById = new Map(questionRows.map((question) => [question.id, question]))
+  const mockTestById = new Map(mockTestRows.map((test) => [test.id, test]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
@@ -933,10 +1071,16 @@ export async function listMySaves(
       questionMarkets.set(question.id, await resolveQuestionMarket(question))
     })
   )
+  const mockTestMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    mockTestRows.map(async (test) => {
+      mockTestMarkets.set(test.id, await resolveMockTestMarket(test))
+    })
+  )
   const unitMarket = await resolveUnitMarket(user, query)
 
   const result: PublicSave[] = []
-  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0, CURRENT_EVENT: 0, QNA: 0, QUESTION: 0 }
+  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0, CURRENT_EVENT: 0, QNA: 0, QUESTION: 0, MOCK_TEST: 0 }
   for (const row of rows) {
     if (row.objectType === 'KNOWLEDGE_UNIT') {
       const unit = unitById.get(row.objectId)
@@ -982,6 +1126,17 @@ export async function listMySaves(
         object: toQuestionSummary(question, questionMarkets.get(question.id) ?? unitMarket),
       })
       counts.QUESTION += 1
+    } else if (row.objectType === 'MOCK_TEST') {
+      const mockTest = mockTestById.get(row.objectId)
+      if (!mockTest) continue // defensive: MockTest rows cascade (§36), rows never dangle
+      result.push({
+        id: row.id,
+        objectType: 'MOCK_TEST',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toMockTestSummary(mockTest, mockTestMarkets.get(mockTest.id) ?? unitMarket),
+      })
+      counts.MOCK_TEST += 1
     } else {
       const item = itemById.get(row.objectId)
       if (!item) continue
@@ -995,7 +1150,7 @@ export async function listMySaves(
       counts.CONTENT_ITEM += 1
     }
   }
-  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM + counts.CURRENT_EVENT + counts.QNA + counts.QUESTION
+  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM + counts.CURRENT_EVENT + counts.QNA + counts.QUESTION + counts.MOCK_TEST
   return { items: result, counts, collections }
 }
 
@@ -1044,12 +1199,14 @@ export async function listRecentSaves(
   const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
   const qnaIds = rows.filter((row) => row.objectType === 'QNA').map((row) => row.objectId)
   const questionIds = rows.filter((row) => row.objectType === 'QUESTION').map((row) => row.objectId)
-  const [units, itemRows, eventRows, qnaRows, questionRows] = await Promise.all([
+  const mockTestIds = rows.filter((row) => row.objectType === 'MOCK_TEST').map((row) => row.objectId)
+  const [units, itemRows, eventRows, qnaRows, questionRows, mockTestRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
     eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
     qnaIds.length ? db.qnA.findMany({ where: { id: { in: qnaIds } }, include: QNA_INCLUDE }) : Promise.resolve([] as QnaWithUnit[]),
     questionIds.length ? db.question.findMany({ where: { id: { in: questionIds } }, include: QUESTION_INCLUDE }) : Promise.resolve([] as QuestionWithUnit[]),
+    mockTestIds.length ? db.mockTest.findMany({ where: { id: { in: mockTestIds } }, include: MOCKTEST_INCLUDE }) : Promise.resolve([] as MockTestWithScope[]),
   ])
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
   // P6-S2: only unit-anchored representations hydrate (see the note above).
@@ -1058,6 +1215,7 @@ export async function listRecentSaves(
   const eventById = new Map(eventRows.map((event) => [event.id, event]))
   const qnaById = new Map(qnaRows.map((qna) => [qna.id, qna]))
   const questionById = new Map(questionRows.map((question) => [question.id, question]))
+  const mockTestById = new Map(mockTestRows.map((test) => [test.id, test]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
@@ -1074,6 +1232,12 @@ export async function listRecentSaves(
   await Promise.all(
     questionRows.map(async (question) => {
       questionMarkets.set(question.id, await resolveQuestionMarket(question))
+    })
+  )
+  const mockTestMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    mockTestRows.map(async (test) => {
+      mockTestMarkets.set(test.id, await resolveMockTestMarket(test))
     })
   )
   const unitMarket = await resolveUnitMarket(user, query)
@@ -1119,6 +1283,16 @@ export async function listRecentSaves(
         savedAt: row.savedAt.toISOString(),
         collectionId: row.collectionId,
         object: toQuestionSummary(question, questionMarkets.get(question.id) ?? unitMarket),
+      })
+    } else if (row.objectType === 'MOCK_TEST') {
+      const mockTest = mockTestById.get(row.objectId)
+      if (!mockTest) continue
+      hydrated.push({
+        id: row.id,
+        objectType: 'MOCK_TEST',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toMockTestSummary(mockTest, mockTestMarkets.get(mockTest.id) ?? unitMarket),
       })
     } else {
       const item = itemById.get(row.objectId)
@@ -1237,6 +1411,28 @@ export async function getSaveState(
       : null
     // Questions have no slug — the identity IS the id (the QnA precedent).
     return { ...base, objectFound: true, saved: row !== null, save }
+  }
+
+  // P7-S3: truthful mock-test button state (the same no-eligibility-guard
+  // decision — rejection surfaces on the save attempt).
+  if (query.objectType === 'MOCK_TEST') {
+    const mockTest = await findMockTestRow(query.objectRef)
+    if (!mockTest) return base
+    const row = await db.savedItem.findUnique({
+      where: { userId_objectType_objectId: { userId, objectType: 'MOCK_TEST', objectId: mockTest.id } },
+    })
+    const market = await resolveMockTestMarket(mockTest)
+    const save = row
+      ? {
+          id: row.id,
+          objectType: 'MOCK_TEST' as const,
+          savedAt: row.savedAt.toISOString(),
+          collectionId: row.collectionId,
+          object: toMockTestSummary(mockTest, market),
+        }
+      : null
+    // The test's own §37 URL identity is its slug.
+    return { ...base, objectSlug: mockTest.slug, objectFound: true, saved: row !== null, save }
   }
 
   const item = await findItemRow(query.objectRef)
@@ -1466,6 +1662,23 @@ async function hydrateSave(user: UserContext, row: SavedItem): Promise<PublicSav
       savedAt: row.savedAt.toISOString(),
       collectionId: row.collectionId,
       object: toQuestionSummary(questionRow, market),
+    }
+  }
+
+  // P7-S3: a saved mock test re-hydrates regardless of status — RETIRED
+  // tests stay listed as honest tombstones (§36).
+  if (row.objectType === 'MOCK_TEST') {
+    const mockTestRow = await db.mockTest.findUnique({ where: { id: row.objectId }, include: MOCKTEST_INCLUDE })
+    if (!mockTestRow) {
+      throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'The saved mock test no longer exists')
+    }
+    const market = await resolveMockTestMarket(mockTestRow)
+    return {
+      id: row.id,
+      objectType: 'MOCK_TEST',
+      savedAt: row.savedAt.toISOString(),
+      collectionId: row.collectionId,
+      object: toMockTestSummary(mockTestRow, market),
     }
   }
 

@@ -21,6 +21,7 @@ export {
   wireContentWorkflow,
   wireQnaWorkflow,
   wireQuestionWorkflow,
+  wireMockTestWorkflow,
 } from './service'
 export {
   createEditorialTaskSchema,
@@ -39,6 +40,7 @@ export type {
   ContentWorkflowEvent,
   QnaWorkflowEvent,
   QuestionWorkflowEvent,
+  MockTestWorkflowEvent,
   EditorialTask,
   EditorialTaskAction,
   EditorialTaskListResult,

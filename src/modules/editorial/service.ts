@@ -38,6 +38,7 @@ import type {
   EditorialTaskTypePublic,
   QnaWorkflowEvent,
   QuestionWorkflowEvent,
+  MockTestWorkflowEvent,
 } from './types'
 import {
   EDITORIAL_TASK_TRANSITIONS,
@@ -1022,6 +1023,110 @@ export async function wireQuestionWorkflow(
       before: { status: 'OPEN/IN_PROGRESS' },
       after: { status: outcome.status, resolutionNote: outcome.note },
       metadata: { auto: event.action, question: objectLabel },
+    }).catch(() => undefined)
+  }
+}
+
+// ---------- P7-S3: §19 workflow wiring for MockTests (called from mocktest-service) ----------
+
+/**
+ * The assessment module's twin of wireQuestionWorkflow (P7-S3): runs inside
+ * the caller's MockTest-transition transaction, keyed `objectType:
+ * 'MOCK_TEST'` so MockTest tasks are disjoint from content, QnA and Question
+ * tasks (§46.14). Same §19 semantics:
+ * - submit_review → auto-open an EDITORIAL_REVIEW task (one per cycle).
+ * - publish/schedule → resolve open tasks (work complete).
+ * - send_back → resolve open tasks (re-submit opens a fresh cycle).
+ * - retire → cancel open tasks (withdrawn product, §19 step 10).
+ */
+export async function wireMockTestWorkflow(
+  tx: Prisma.TransactionClient,
+  event: MockTestWorkflowEvent
+): Promise<void> {
+  const { mockTest } = event
+  const objectLabel = `${mockTest.slug}/${mockTest.languageCode}/MockTest`
+
+  if (event.action === 'submit_review') {
+    // One live review task per MockTest cycle: send_back/publish resolve the
+    // previous one, so a duplicate here only guards double-submits.
+    const existing = await tx.editorialTask.findFirst({
+      where: {
+        objectType: 'MOCK_TEST',
+        objectId: mockTest.id,
+        type: 'EDITORIAL_REVIEW',
+        status: { in: ['OPEN', 'IN_PROGRESS'] },
+      },
+      select: { id: true },
+    })
+    if (!existing) {
+      const created = await tx.editorialTask.create({
+        data: {
+          type: 'EDITORIAL_REVIEW',
+          status: 'OPEN',
+          priority: 'MEDIUM',
+          countryId: mockTest.countryId,
+          languageId: mockTest.languageId,
+          objectType: 'MOCK_TEST',
+          objectId: mockTest.id,
+          objectLabel,
+          title: `Mock test review — ${mockTest.title.slice(0, 120)}`,
+          // The submitter becomes the task's creator — the §19
+          // separation-of-duties guard uses this to block self-reviews.
+          createdById: event.actorId,
+        },
+      })
+      void recordAudit({
+        actor: null,
+        action: AUDIT_ACTIONS.editorialTaskCreate,
+        objectType: AUDIT_OBJECT_TYPES.editorialTask,
+        objectId: created.id,
+        objectLabel: created.title,
+        after: { type: created.type, status: created.status, countryId: mockTest.countryId },
+        metadata: { auto: 'submit_review', mockTest: objectLabel },
+      }).catch(() => undefined)
+    }
+    return
+  }
+
+  const outcome =
+    event.action === 'retire'
+      ? { status: 'CANCELLED' as const, note: 'Mock test retired — open work items cancelled (§19 step 10)' }
+      : event.action === 'schedule'
+        ? { status: 'RESOLVED' as const, note: 'Mock test scheduled for release — review complete (§19 step 7)' }
+        : event.action === 'send_back'
+          ? { status: 'RESOLVED' as const, note: 'Mock test sent back to draft — re-submit opens a fresh review' }
+          : { status: 'RESOLVED' as const, note: 'Mock test published — open work items resolved' }
+
+  const open = await tx.editorialTask.findMany({
+    where: {
+      objectType: 'MOCK_TEST',
+      objectId: mockTest.id,
+      status: { in: ['OPEN', 'IN_PROGRESS'] },
+    },
+    select: { id: true, title: true },
+  })
+  if (open.length === 0) return
+
+  const now = new Date()
+  for (const row of open) {
+    await tx.editorialTask.update({
+      where: { id: row.id },
+      data: {
+        status: outcome.status,
+        resolutionNote: outcome.note,
+        resolvedAt: now,
+        resolvedById: null, // system resolution (§19 wiring)
+      },
+    })
+    void recordAudit({
+      actor: null,
+      action: AUDIT_ACTIONS.editorialTaskTransition,
+      objectType: AUDIT_OBJECT_TYPES.editorialTask,
+      objectId: row.id,
+      objectLabel: row.title,
+      before: { status: 'OPEN/IN_PROGRESS' },
+      after: { status: outcome.status, resolutionNote: outcome.note },
+      metadata: { auto: event.action, mockTest: objectLabel },
     }).catch(() => undefined)
   }
 }

@@ -10,8 +10,10 @@
  * layer — the scored MCQ assessment object (§6: options/correct_answer/
  * explanation/exam_version_id/difficulty) with the same §19/§36 discipline
  * and the §22 knowledge-page scored practice layer (answers judged
- * server-side, correctAnswer never public pre-answer). MockTests (P7-S3),
- * TestAttempts, mastery and the revision queue join in later sessions —
+ * server-side, correctAnswer never public pre-answer). P7-S3: the MockTest +
+ * TestAttempt engine — the timed, scoped, composed assessment product (§6)
+ * with its own §19/§36 lifecycle and the attempt records that feed mastery
+ * (P7-S4). Mastery and the revision queue join in later sessions —
  * structurally distinct entities, never collapsed into one generic pipeline
  * (§46.14).
  */
@@ -111,3 +113,63 @@ export {
   QUESTION_EDITABILITY,
   QUESTION_PUBLISH_GATED_ACTIONS,
 } from './question-types'
+export {
+  MockTestError,
+  toMockTestErrorResponse,
+  materializeDueScheduledMockTests,
+  getPublicMockTests,
+  getPublicMockTest,
+  startAttempt,
+  submitAttempt,
+  getAttempt,
+  getAdminMockTests,
+  getAdminMockTest,
+  listMockTestRevisions,
+  createMockTest,
+  updateMockTest,
+  transitionMockTest,
+} from './mocktest-service'
+export {
+  createMockTestSchema,
+  updateMockTestSchema,
+  mockTestTransitionSchema,
+  adminMockTestListQuerySchema,
+  publicMockTestListQuerySchema,
+  attemptSubmitSchema,
+} from './mocktest-validation'
+export type {
+  CreateMockTestInput,
+  UpdateMockTestInput,
+  MockTestTransitionInput,
+  AdminMockTestListQuery,
+  PublicMockTestListQuery,
+  AttemptSubmitInput,
+} from './mocktest-validation'
+export type {
+  AdminMockTestEntry,
+  AdminMockTestDetail,
+  AdminMockTestListResult,
+  AdminMockTestQuestionRef,
+  AdminMockTestRevisionListResult,
+  AttemptAnswerRecord,
+  AttemptResult,
+  AttemptResultQuestion,
+  AttemptStateResponse,
+  AttemptStatusPublic,
+  MockTestPagination,
+  MockTestRevisionRef,
+  MockTestScopeRef,
+  MockTestScopeType,
+  MockTestStatusPublic,
+  MockTestTransitionAction,
+  PublicAttemptState,
+  PublicMockTestCard,
+  PublicMockTestDetail,
+  PublicMockTestQuestion,
+} from './mocktest-types'
+export {
+  MOCK_TEST_TRANSITIONS,
+  MOCK_TEST_EDITABILITY,
+  MOCK_TEST_PUBLISH_GATED_ACTIONS,
+  MOCK_TEST_RULES,
+} from './mocktest-types'

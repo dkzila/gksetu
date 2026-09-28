@@ -629,6 +629,7 @@ model ExamVersion {
   syllabusNodes SyllabusNode[]
   examMappings  ExamMapping[]  @relation("ExamMappingVersion") // P3-S3
   questions     Question[]     @relation("QuestionExamVersion") // P7-S2: Questions authored for this version (§6 optional anchor)
+  mockTests     MockTest[]     @relation("MockTestExamVersion") // P7-S3: EXAM-scoped mock tests (§6 exam_version_id)
 
   @@index([examId, effectiveFrom])
 }
@@ -763,6 +764,7 @@ model Language {
   contentItems        ContentItem[]
   qnas                QnA[]             @relation("QnALanguage") // P7-S1: Q&A learning representations
   questions           Question[]        @relation("QuestionLanguage") // P7-S2: scored assessment representations
+  mockTests           MockTest[]        @relation("MockTestLanguage") // P7-S3: timed, scoped assemblies of Questions
   editorialTasks      EditorialTask[]
   goalStudyLanguages  UserGoal[]        @relation("UserGoalStudyLanguage") // P5-S3
   entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
@@ -871,6 +873,10 @@ model User {
   // P7-S2 (§22/§23): Questions authored + revisions published by this user.
   authoredQuestions          Question[]         @relation("QuestionAuthor")
   publishedQuestionRevisions QuestionRevision[] @relation("QuestionRevisionPublisher")
+  // P7-S3 (§22/§23): MockTests authored + revisions published + attempts made.
+  authoredMockTests          MockTest[]         @relation("MockTestAuthor")
+  publishedMockTestRevisions MockTestRevision[] @relation("MockTestRevisionPublisher")
+  testAttempts               TestAttempt[]      @relation("UserAttempts")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -928,6 +934,7 @@ model Topic {
   goalTopics     UserGoalTopic[] // P5-S3 — declared goal subject references
   currentEvents  CurrentEvent[]      @relation("CurrentEventTopic") // P6-S1: §12 step 3 primary topic
   eventFilings   CurrentEventTopic[] // P6-S3: additional cross-filing links
+  mockTests      MockTest[]          @relation("MockTestTopic") // P7-S3: TOPIC-scoped mock tests (§6 scope)
 
   @@index([parentId, orderIndex])
   @@index([status])
@@ -1045,6 +1052,7 @@ enum SavedObjectType {
   CURRENT_EVENT // P6-S3 (§10): the event record — its §16 page is the retrieval surface
   QNA // P7-S1 (§10/§22): a published Q&A learning entry — reopens the unit page's Q&A layer
   QUESTION // P7-S2 (§10/§22): a published MCQ practice question — reopens the unit page's practice layer
+  MOCK_TEST // P7-S3 (§10/§22): a published mock test — reopens the test runner page
 }
 
 // §6 Collection row carries visibility. Collections are private in v1 —
@@ -1577,4 +1585,137 @@ model QuestionRevision {
 
   @@unique([questionId, revisionNumber])
   @@index([questionId, publishedAt])
+}
+
+// ---------- P7-S3: MockTest + TestAttempt (Master Plan §6, §22, §43) ----------
+
+// §6 MockTest: "A timed, scoped assembly of Questions" — id, title, scope
+// (topic/exam/syllabus_node), question_ids[], duration_minutes,
+// pass_criteria, exam_version_id (optional), status. Structurally distinct
+// from Question (§46.14/§23: a Question is the atomic MCQ; a MockTest is the
+// COMPOSED, timed, scoped product with its own §19 lifecycle). The §13 topic
+// tree IS the syllabus tree, so a TOPIC scope covers topic AND syllabus_node
+// scoping; an EXAM scope anchors to one ExamVersion (§6 exam_version_id).
+enum MockTestScope {
+  TOPIC // scoped to one §13 taxonomy node (a topic hub or an exam syllabus node — one tree)
+  EXAM // scoped to one ExamVersion — "this exam's current syllabus"
+}
+
+// TestAttempt lifecycle: an attempt opens (IN_PROGRESS), submits within the
+// deadline (SUBMITTED — then immutable: it is the §9/§22 mastery signal that
+// feeds P7-S4), or lapses past its deadline without submission (ABANDONED).
+enum TestAttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  ABANDONED
+}
+
+model MockTest {
+  id             String        @id @default(cuid())
+  slug           String        @unique // §37 URL identity (…/mock-tests/{slug}/) — immutable, generated from the title
+  title          String // working copy; §11 identity (create-time only — re-titling is a new test, the QnA/Question discipline)
+  scopeType      MockTestScope
+  topicId        String? // set iff scopeType = TOPIC (§6 "scope: topic/syllabus_node" — one §13 tree)
+  examVersionId  String? // set iff scopeType = EXAM (§6 exam_version_id — the version whose syllabus the test covers)
+  languageId     String // §35 — a test is a representation product like ContentItem/QnA/Question; every composed Question must match it
+  status         ContentStatus @default(DRAFT) // §19 workflow (shared states)
+  // §6 question_ids[] — the ordered composition (Prisma carries no list
+  // primitives; parsed/validated in the service; snapshotted onto each
+  // MockTestRevision at publish, §36).
+  questionIdsJson String
+  durationMinutes Int // §6 duration_minutes — the timed dimension
+  passPercent     Int // §6 pass_criteria — the passing percentage (0–100)
+  // §24/§26 AI-provenance flag (working copy) — an AI-suggested composition
+  // freezes the flag onto each published revision.
+  aiAssisted          Boolean @default(false)
+  publishedRevisionId String? // live revision pointer (null = never published)
+  // §19 step 7: set by the `schedule` transition; due items materialize to
+  // PUBLISHED lazily on read (mocktest-service).
+  scheduledForAt DateTime?
+  createdById    String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  topic             Topic?            @relation("MockTestTopic", fields: [topicId], references: [id], onDelete: SetNull)
+  examVersion       ExamVersion?      @relation("MockTestExamVersion", fields: [examVersionId], references: [id], onDelete: SetNull)
+  language          Language          @relation("MockTestLanguage", fields: [languageId], references: [id])
+  createdBy         User?             @relation("MockTestAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  revisions         MockTestRevision[] @relation("MockTestRevisions")
+  publishedRevision MockTestRevision? @relation("LiveMockTestRevision", fields: [publishedRevisionId], references: [id])
+  attempts          TestAttempt[]      @relation("AttemptMockTest") // §6 TestAttempt rows — the §9/§22 mastery signal (P7-S4 consumes them)
+
+  // §11 canonical identity: one title per scope × language. Topic and exam
+  // references are deliberately NOT a DB unique (Postgres treats NULLs as
+  // distinct, so a composite unique would not constrain EXAM-scoped rows);
+  // the service enforces the identity with a friendly §37 error, and the
+  // slug remains the hard URL identity.
+  @@index([status])
+  @@index([scopeType, topicId])
+  @@index([scopeType, examVersionId])
+  @@index([languageId, status])
+}
+
+// §36 immutable publish snapshot of a MockTest — the composition
+// (question_ids[]), timing and pass criteria freeze here; public reads serve
+// the live revision. Staged edits to the working copy never leak until a new
+// revision publishes.
+model MockTestRevision {
+  id              String @id @default(cuid())
+  mockTestId      String
+  revisionNumber  Int // 1-based, deterministic within the MockTest
+  title           String // immutable snapshot at publish time
+  questionIdsJson String // §6 question_ids[] — the ordered composition snapshot
+  durationMinutes Int // immutable snapshot at publish time
+  passPercent     Int // immutable snapshot at publish time
+  changeSummary   String? // why this revision exists (required on re-publish)
+  aiAssisted      Boolean @default(false) // §24/§26 provenance snapshot
+  publishedById   String?
+  publishedAt     DateTime @default(now())
+
+  mockTest    MockTest   @relation("MockTestRevisions", fields: [mockTestId], references: [id], onDelete: Cascade)
+  publishedBy User?      @relation("MockTestRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+  liveFor     MockTest[] @relation("LiveMockTestRevision")
+
+  @@unique([mockTestId, revisionNumber])
+  @@index([mockTestId, publishedAt])
+}
+
+// §6 TestAttempt: "A user's attempt at a MockTest or Quiz" — id, user_id,
+// mock_test_id, started_at, submitted_at, answers[], score, per-question
+// correctness. The attempt SNAPSHOT-CARRIES the deal it was started under
+// (composition served, duration, pass criteria — deadlineAt = startedAt +
+// duration): a later correction of the test never rewrites history. SUBMITTED
+// attempts are immutable — they are the §9 implicit signal + §22 mastery
+// source that P7-S4 consumes.
+model TestAttempt {
+  id         String           @id @default(cuid())
+  userId     String
+  mockTestId String
+  status     TestAttemptStatus @default(IN_PROGRESS)
+  startedAt  DateTime         @default(now())
+  // startedAt + the test's durationMinutes snapshot — the server-side truth
+  // the submit endpoint enforces (§22 timed assessment; a client timer is
+  // only presentation).
+  deadlineAt DateTime
+  // Snapshots of the deal at start (§6/§36 spirit): what was served, how
+  // long, at what pass criteria.
+  servedQuestionsJson String // ordered Question ids served (the live revision's composition at start)
+  durationMinutes     Int
+  passPercent         Int
+  submittedAt         DateTime?
+  // §6 answers[] — the per-question record, set once at submit:
+  // [{questionId, selected, correct, correctAnswer, revisionNumber}].
+  answersJson String // empty array while IN_PROGRESS
+  // §6 score — derived once at submit, then immutable.
+  correctCount Int?
+  totalCount   Int?
+  scorePercent Float?
+  passed       Boolean?
+
+  user     User     @relation("UserAttempts", fields: [userId], references: [id], onDelete: Cascade)
+  mockTest MockTest @relation("AttemptMockTest", fields: [mockTestId], references: [id], onDelete: Cascade)
+
+  @@index([userId, mockTestId, status])
+  @@index([mockTestId, status])
+  @@index([userId, status])
 }

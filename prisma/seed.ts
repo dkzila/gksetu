@@ -2981,6 +2981,246 @@ async function main() {
     questionsSeeded += 1
   }
 
+  // ---------- P7-S3: MockTest + TestAttempt (Master Plan §6 MockTest/TestAttempt rows, §22, §45) ----------
+  // §45: "a sample MockTest composed from those Questions, plus one sample
+  // TestAttempt." The sample composes the seed's PUBLISHED English questions
+  // (FR ×3 + UNSC ×1 + Kalinga ×1 — the exam anchor is context, never
+  // identity, so the SSC-anchored six-rights question serves the UPSC test:
+  // §8 routing is ExamMapping's job). One DRAFT (lifecycle demo — publish
+  // through the Mock Tests workspace) and one RETIRED (the §10/§36 tombstone
+  // demo) complete the set. Identity is (scope, language, title) — the §11
+  // discipline; findFirst-then-create is idempotent and never overwrites
+  // live edits (§36).
+  interface MockTestSeed {
+    slug: string
+    title: string
+    scopeType: 'TOPIC' | 'EXAM'
+    topicSlug?: string
+    examSlug?: string
+    examVersionLabel?: string
+    languageCode: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+    durationMinutes: number
+    passPercent: number
+    /** (unit slug, question text) pairs — resolved to live Question ids. */
+    composition: Array<{ unitSlug: string; questionText: string }>
+    revisions: Array<{ changeSummary?: string; publishedAt?: Date }> // length 1 = published once
+  }
+
+  const mockTestSeeds: MockTestSeed[] = [
+    {
+      // §45's sample test: the §22 composed, timed, scored product.
+      slug: 'upsc-cse-polity-world-gk-mini-mock-test',
+      title: 'UPSC CSE — Polity & World GK Mini Mock Test',
+      scopeType: 'EXAM',
+      examSlug: 'upsc-civil-services',
+      examVersionLabel: `${year} syllabus`,
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      durationMinutes: 10,
+      passPercent: 40,
+      composition: [
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'How many Fundamental Rights does Part III (Articles 12–35) of the Constitution guarantee?' },
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'Which Article of the Indian Constitution did Dr B R Ambedkar call its “heart and soul”?' },
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'Which writ is issued to release a person from unlawful detention?' },
+        { unitSlug: 'un-security-council-permanent-members', questionText: 'Which of the following is NOT a permanent member of the UN Security Council?' },
+        { unitSlug: 'ashoka-kalinga-war-261-bce', questionText: 'The Kalinga War, which transformed Ashoka towards Dhamma, was fought in which year?' },
+      ],
+      revisions: [{ publishedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) }],
+    },
+    {
+      // Lifecycle demo — a drafted test awaiting review, publishable through
+      // the Mock Tests workspace (submit → review → publish).
+      slug: 'fundamental-rights-warm-up-drill',
+      title: 'Fundamental Rights Warm-up Drill',
+      scopeType: 'TOPIC',
+      topicSlug: 'fundamental-rights',
+      languageCode: 'en',
+      status: 'DRAFT',
+      durationMinutes: 5,
+      passPercent: 50,
+      composition: [
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'How many Fundamental Rights does Part III (Articles 12–35) of the Constitution guarantee?' },
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'Which Article of the Indian Constitution did Dr B R Ambedkar call its “heart and soul”?' },
+      ],
+      revisions: [],
+    },
+    {
+      // §10/§36 tombstone demo: published once, then withdrawn — existing
+      // saves keep it listed as an honest RETIRED row; new saves reject.
+      slug: 'gk-sprint-mixed-revision-drill',
+      title: 'GK Sprint — Mixed Revision Drill',
+      scopeType: 'EXAM',
+      examSlug: 'upsc-civil-services',
+      examVersionLabel: `${year} syllabus`,
+      languageCode: 'en',
+      status: 'RETIRED',
+      durationMinutes: 5,
+      passPercent: 50,
+      composition: [
+        { unitSlug: 'fundamental-rights-articles-12-35', questionText: 'Which writ is issued to release a person from unlawful detention?' },
+        { unitSlug: 'ashoka-kalinga-war-261-bce', questionText: 'The Kalinga War, which transformed Ashoka towards Dhamma, was fought in which year?' },
+      ],
+      revisions: [{ publishedAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) }],
+    },
+  ]
+
+  let mockTestsSeeded = 0
+  let attemptsSeeded = 0
+  for (const seed of mockTestSeeds) {
+    const languageId = languageIdByCode.get(seed.languageCode)
+    if (!languageId) {
+      console.warn(`[seed] skipping MockTest "${seed.title}": language missing`)
+      continue
+    }
+
+    // Resolve the scope (§6: exactly one of TOPIC / EXAM).
+    let topicId: string | null = null
+    let examVersionId: string | null = null
+    if (seed.scopeType === 'TOPIC') {
+      const topic = await prisma.topic.findUnique({ where: { slug: seed.topicSlug ?? '' } })
+      if (!topic) {
+        console.warn(`[seed] skipping MockTest "${seed.title}": topic "${seed.topicSlug}" missing`)
+        continue
+      }
+      topicId = topic.id
+    } else {
+      const exam = await prisma.exam.findUnique({
+        where: { slug: seed.examSlug ?? '' },
+        include: { versions: { select: { id: true, label: true } } },
+      })
+      const version = exam?.versions.find((row) => row.label === seed.examVersionLabel)
+      if (!version) {
+        console.warn(`[seed] skipping MockTest "${seed.title}": exam version "${seed.examSlug}/${seed.examVersionLabel}" missing`)
+        continue
+      }
+      examVersionId = version.id
+    }
+
+    // Resolve the composition to live Question ids (questions must exist; a
+    // PUBLISHED/RETIRED test additionally requires them published — the seed
+    // composes only seed-published questions, but live DBs may have drifted).
+    const questionIds: string[] = []
+    let compositionValid = true
+    for (const part of seed.composition) {
+      const unit = await prisma.knowledgeUnit.findUnique({ where: { slug: part.unitSlug } })
+      if (!unit) {
+        compositionValid = false
+        break
+      }
+      const question = await prisma.question.findFirst({
+        where: { knowledgeUnitId: unit.id, languageId, questionText: part.questionText },
+        select: { id: true, status: true },
+      })
+      if (!question || (seed.revisions.length > 0 && question.status !== 'PUBLISHED')) {
+        compositionValid = false
+        break
+      }
+      questionIds.push(question.id)
+    }
+    if (!compositionValid) {
+      console.warn(`[seed] skipping MockTest "${seed.title}": composition not resolvable (questions missing or unpublished)`)
+      continue
+    }
+
+    // Never overwrite live edits (§36) — identity is (scope, language, title).
+    const existing = await prisma.mockTest.findFirst({
+      where: { scopeType: seed.scopeType, topicId, examVersionId, languageId, title: seed.title },
+      select: { id: true },
+    })
+    if (existing) continue
+
+    const mockTest = await prisma.mockTest.create({
+      data: {
+        slug: seed.slug,
+        title: seed.title,
+        scopeType: seed.scopeType,
+        topicId,
+        examVersionId,
+        languageId,
+        status: seed.status,
+        questionIdsJson: JSON.stringify(questionIds),
+        durationMinutes: seed.durationMinutes,
+        passPercent: seed.passPercent,
+        aiAssisted: false,
+        createdById: admin.id,
+      },
+    })
+
+    let lastRevisionId: string | null = null
+    for (const [index, revision] of seed.revisions.entries()) {
+      const created = await prisma.mockTestRevision.create({
+        data: {
+          mockTestId: mockTest.id,
+          revisionNumber: index + 1,
+          title: seed.title,
+          questionIdsJson: JSON.stringify(questionIds),
+          durationMinutes: seed.durationMinutes,
+          passPercent: seed.passPercent,
+          aiAssisted: false,
+          changeSummary: revision.changeSummary ?? null,
+          publishedById: admin.id,
+          publishedAt: revision.publishedAt ?? new Date(),
+        },
+      })
+      lastRevisionId = created.id
+    }
+    if ((seed.status === 'PUBLISHED' || seed.status === 'RETIRED') && lastRevisionId) {
+      await prisma.mockTest.update({
+        where: { id: mockTest.id },
+        data: { publishedRevisionId: lastRevisionId },
+      })
+    }
+    mockTestsSeeded += 1
+
+    // §45's sample TestAttempt: the dev admin's submitted attempt at the
+    // sample test — 3/5 correct (60% ≥ 40% → passed), one wrong pick and one
+    // unanswered (the §6 answers[] record shows every served question).
+    if (seed.status === 'PUBLISHED' && seed.slug === 'upsc-cse-polity-world-gk-mini-mock-test') {
+      const alreadyAttempted = await prisma.testAttempt.findFirst({
+        where: { userId: admin.id, mockTestId: mockTest.id, status: 'SUBMITTED' },
+        select: { id: true },
+      })
+      if (!alreadyAttempted) {
+        const startedAt = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+        const deadlineAt = new Date(startedAt.getTime() + seed.durationMinutes * 60 * 1000)
+        const submittedAt = new Date(startedAt.getTime() + 8 * 60 * 1000)
+        // The served order matches the composition; picks follow it:
+        // six-rights B (correct), heart-and-soul C (correct), writs B
+        // (correct), UNSC A France (wrong — the key is B Germany), Kalinga
+        // unanswered (wrong).
+        const answers = [
+          { questionId: questionIds[0], selected: 'B', correct: true, correctAnswer: 'B', revisionNumber: 1 },
+          { questionId: questionIds[1], selected: 'C', correct: true, correctAnswer: 'C', revisionNumber: 1 },
+          { questionId: questionIds[2], selected: 'B', correct: true, correctAnswer: 'B', revisionNumber: 1 },
+          { questionId: questionIds[3], selected: 'A', correct: false, correctAnswer: 'B', revisionNumber: 1 },
+          { questionId: questionIds[4], selected: null, correct: false, correctAnswer: 'A', revisionNumber: 1 },
+        ]
+        const correctCount = answers.filter((answer) => answer.correct).length
+        const scorePercent = Math.round((correctCount / answers.length) * 10000) / 100
+        await prisma.testAttempt.create({
+          data: {
+            userId: admin.id,
+            mockTestId: mockTest.id,
+            status: 'SUBMITTED',
+            startedAt,
+            deadlineAt,
+            servedQuestionsJson: JSON.stringify(questionIds),
+            durationMinutes: seed.durationMinutes,
+            passPercent: seed.passPercent,
+            submittedAt,
+            answersJson: JSON.stringify(answers),
+            correctCount,
+            totalCount: answers.length,
+            scorePercent,
+            passed: scorePercent >= seed.passPercent,
+          },
+        })
+        attemptsSeeded += 1
+      }
+    }
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -2994,7 +3234,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

@@ -99,6 +99,16 @@ export const AUDIT_ACTIONS = {
   questionTransition: 'question.transition',
   /** Object-level Question denials (country/scope/state mismatch — §20 signal). */
   questionDenied: 'question.denied',
+  /** P7-S3 MockTests (§22/§23/§19 — every MockTest mutation is audited). */
+  mocktestCreate: 'mocktest.create',
+  mocktestUpdate: 'mocktest.update',
+  mocktestTransition: 'mocktest.transition',
+  /** Object-level MockTest denials (country/scope/state mismatch — §20 signal). */
+  mocktestDenied: 'mocktest.denied',
+  /** P7-S3 TestAttempts (§6/§22 — the attempt lifecycle: start, submit, lapse). */
+  attemptStart: 'attempt.start',
+  attemptSubmit: 'attempt.submit',
+  attemptAbandon: 'attempt.abandon',
   sourceCreate: 'source.create',
   sourceUpdate: 'source.update',
   sourceVerify: 'source.verification.transition',
@@ -210,6 +220,9 @@ export const AUDIT_OBJECT_TYPES = {
   qnaRevision: 'QnARevision',
   question: 'Question',
   questionRevision: 'QuestionRevision',
+  mockTest: 'MockTest',
+  mockTestRevision: 'MockTestRevision',
+  testAttempt: 'TestAttempt',
   editorialTask: 'EditorialTask',
   source: 'Source',
   contentSourceLink: 'ContentSourceLink',

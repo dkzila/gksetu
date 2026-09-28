@@ -100,4 +100,7 @@ export const RATE_LIMITS = {
   questionRead: { limit: 60, windowMs: 60 * 1000 }, // admin Question registry reads per IP (P7-S2)
   questionWrite: { limit: 30, windowMs: 60 * 1000 }, // Question mutations per IP (P7-S2)
   questionPractice: { limit: 120, windowMs: 60 * 1000 }, // public practice answer checks per IP (P7-S2 §22 — scored server-side, no persistence)
+  mocktestRead: { limit: 60, windowMs: 60 * 1000 }, // admin MockTest registry reads per IP (P7-S3)
+  mocktestWrite: { limit: 30, windowMs: 60 * 1000 }, // MockTest mutations per IP (P7-S3)
+  mocktestAttempt: { limit: 30, windowMs: 60 * 1000 }, // public attempt start/submit mutations per IP (P7-S3 §22 — timed, scored server-side, persisted for mastery)
 } as const

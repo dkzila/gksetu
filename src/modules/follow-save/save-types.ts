@@ -10,7 +10,7 @@
  */
 
 /** The object types savable today (§10 vocabulary — QNA joined in P7-S1; Question/MockTest join in P7-S2/S3; CURRENT_EVENT joined in P6-S3). */
-export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION'
+export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION' | 'MOCK_TEST'
 
 /**
  * Resolved summary of a saved KNOWLEDGE_UNIT — the canonical record (§7).
@@ -147,7 +147,30 @@ export interface SavedQuestionSummary {
   countryIso: string | null
 }
 
-export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary | SavedQnaSummary | SavedQuestionSummary
+/** P7-S3 §22/§23/§10 — a saved mock test (a timed, scoped, composed
+ * assessment product, §6). The §37 runner page (…/mock-tests/{slug}/) is
+ * the retrieval surface; RETIRED tests stay listed as honest tombstones
+ * (§36). */
+export interface SavedMockTestSummary {
+  kind: 'MOCK_TEST'
+  id: string
+  slug: string
+  /** The live revision's title (falls back to the working copy only for non-live states — honest §36). */
+  title: string
+  questionCount: number
+  durationMinutes: number
+  passPercent: number
+  languageCode: string
+  status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+  /** The test's §6 scope — the §16 path prefix (exams/{exam}/ or gk/{topic}/). */
+  scopeType: 'TOPIC' | 'EXAM'
+  scopeLabel: string // e.g. "UPSC CSE — 2025 syllabus" or "Polity & Governance"
+  /** §37 runner path in the test's own language market. */
+  canonicalPath: string
+  countryIso: string | null
+}
+
+export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary | SavedQnaSummary | SavedQuestionSummary | SavedMockTestSummary
 
 /** One saved-item row, resolved for display (§37 — stable, client-agnostic). */
 export interface PublicSave {
@@ -173,7 +196,7 @@ export interface PublicCollection {
 export interface SaveListResult {
   items: PublicSave[]
   /** Counts coherent with the applied type filter (across ALL collections). */
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number; QNA: number; QUESTION: number }
+  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number; QNA: number; QUESTION: number; MOCK_TEST: number }
   /** The caller's collections with live item counts (name-ordered, default first). */
   collections: PublicCollection[]
 }

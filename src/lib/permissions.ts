@@ -40,6 +40,8 @@ export type Permission =
   | 'qna:publish' // P7-S1: publish/schedule/retire QnA — the §18 editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
   | 'question:manage' // P7-S2 (§22/§23): author scored MCQ Questions — the §18 Question/Test-Author class riding WRITER (own country + language scope, the qna:manage precedent)
   | 'question:publish' // P7-S2: publish/schedule/retire Questions — the §18 editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
+  | 'mocktest:manage' // P7-S3 (§22/§23): author MockTests — the §18 Question/Test-Author class riding WRITER (own country + language scope, the qna:manage precedent); the test inherits its SCOPE's country (§14)
+  | 'mocktest:publish' // P7-S3: publish/schedule/retire MockTests — the §18 editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
   | 'source:manage' // create/edit/verify Source evidence records (§24 — platform-level registry; link/unlink rides content:manage on the item)
   | 'editorial:work' // work the editorial task board (P2-S4 §19): ADMIN + COUNTRY_ADMIN manage; WRITER claims/works assigned tasks in scope
   | 'exam:manage' // manage exams + exam versions (P3-S1 §18): ADMIN + COUNTRY_ADMIN (own country only — exams are ALWAYS country-owned, §14)
@@ -109,6 +111,8 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'qna:publish',
     'question:manage',
     'question:publish',
+    'mocktest:manage',
+    'mocktest:publish',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -128,6 +132,8 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'qna:publish',
     'question:manage',
     'question:publish',
+    'mocktest:manage',
+    'mocktest:publish',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -135,7 +141,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
   // (source:manage, platform-level per §24) and work the editorial board in
   // scope. P7-S1: QnA authoring rides the WRITER class — the §18
   // Question/Test Author role consolidated into v1's four-role model.
-  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'sessions:manage-own'],
+  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'mocktest:manage', 'sessions:manage-own'],
   READER: ['sessions:manage-own'],
 }
 
@@ -153,6 +159,8 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'qna:publish',
   'question:manage',
   'question:publish',
+  'mocktest:manage',
+  'mocktest:publish',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -161,6 +169,7 @@ const WRITER_NARROWED: ReadonlySet<Permission> = new Set([
   'editorial:work',
   'qna:manage',
   'question:manage',
+  'mocktest:manage',
 ])
 
 /**
@@ -239,6 +248,8 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'qna:publish': 'Publish, schedule & retire Q&A entries',
   'question:manage': 'Author scored practice questions (own scope, §22)',
   'question:publish': 'Publish, schedule & retire practice questions',
+  'mocktest:manage': 'Author mock tests (own scope, §22)',
+  'mocktest:publish': 'Publish, schedule & retire mock tests',
   'source:manage': 'Manage source evidence & verification (§24)',
   'editorial:work': 'Work the editorial task board (own scope)',
   'exam:manage': 'Manage exams & exam versions (own country)',
