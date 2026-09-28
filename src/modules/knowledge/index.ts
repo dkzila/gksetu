@@ -160,6 +160,11 @@ export {
 // ---------- P2-S5: Canonical reading page (§22) ----------
 export { getKnowledgePage } from './render-service'
 export { PAGE_FORMAT_ORDER } from './render-types'
+// P6-S2: cross-module building blocks for the event page composition — the
+// §19 lazy scheduled-release materializer (scoped to an event's items) and
+// the §24 public provenance surface (event representations cite evidence too).
+export { materializeDueScheduledContent } from './content-service'
+export { getPublicSourcesForItem } from './source-service'
 export type {
   ComparisonRow,
   ExamCoverageLayer,

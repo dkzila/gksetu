@@ -88,6 +88,7 @@ interface AdminItem {
   language: { code: string; name: string; nativeName: string | null }
   title: string
   body: string
+  /** §7 anchor — null for event representations (P6-S2). */
   unit: {
     id: string
     slug: string
@@ -96,7 +97,17 @@ interface AdminItem {
     scope: 'GLOBAL' | 'COUNTRY'
     countryIso: string | null
     topicSlug: string | null
-  }
+  } | null
+  /** §12 step 4 anchor — null for unit representations (P6-S2). */
+  event: {
+    id: string
+    slug: string
+    title: string
+    lifecycleState: string
+    scope: 'GLOBAL' | 'COUNTRY'
+    countryIso: string | null
+    editable: boolean
+  } | null
   liveRevision: RevisionRef | null
   revisionCount: number
   aiAssisted: boolean
@@ -107,12 +118,13 @@ interface AdminItem {
   canEdit: boolean
   editability: 'full' | 'none'
   allowedTransitions: string[]
-  unitVerified: boolean
+  anchorPublishable: boolean
+  anchorBlockReason: string | null
 }
 
 interface RevisionList {
   itemId: string
-  unit: { slug: string; canonicalName: string }
+  anchor: { kind: 'unit' | 'event'; slug: string; name: string }
   language: { code: string; name: string }
   format: string
   revisions: RevisionRef[]
@@ -158,16 +170,43 @@ const formatStyle: Record<string, string> = {
   COMPARISON: 'border-fuchsia-200 bg-fuchsia-50 text-fuchsia-700',
 }
 
+/** P6-S2: the event anchor reference (the workspace's event picker target). */
+export interface AdminEventRef {
+  id: string
+  slug: string
+  title: string
+  lifecycleState: string
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+}
+
 interface AdminProps {
   country: string
+  /** §7 anchor — exactly one of unit/event is set (the XOR invariant). */
   unit: PublicUnitRef | null
+  /** §12 step 4 anchor (P6-S2). */
+  event: AdminEventRef | null
   countryLanguages: Array<{ code: string; name: string; nativeName: string | null }>
 }
 
-export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
+export function ContentAdmin({ unit, event, countryLanguages }: AdminProps) {
   const token = useAuth((state) => state.token)
   const user = useAuth((state) => state.user)
   const { toast } = useToast()
+
+  // P6-S2: the resolved anchor — unit OR event (never both, never neither).
+  // Memoized on the stable prop references: the inline object would change
+  // identity every render, destabilising the fetchItems callback and with it
+  // the selection-reset effect (which must fire only on real anchor switches).
+  const anchor = useMemo(
+    () =>
+      event
+        ? { kind: 'event' as const, slug: event.slug, name: event.title, scope: event.scope, countryIso: event.countryIso, lifecycleState: event.lifecycleState }
+        : unit
+          ? { kind: 'unit' as const, slug: unit.slug, name: unit.canonicalName, scope: unit.scope as 'GLOBAL' | 'COUNTRY', countryIso: unit.countryIso, lifecycleState: null }
+          : null,
+    [event, unit]
+  )
 
   const [statusFilter, setStatusFilter] = useState<string>('')
   const [items, setItems] = useState<AdminItem[] | null>(null)
@@ -207,11 +246,12 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
   const [historyState, setHistoryState] = useState<{ key: string; data: RevisionList } | null>(null)
   const [expandedRevision, setExpandedRevision] = useState<number | null>(null)
 
-  // Global units may use ANY active language (§35 applies per-country only to
-  // country-scoped units) — fetched from the gated /api/languages registry.
+  // Global anchors (units OR events) may use ANY active language (§35 applies
+  // per-country only to country-scoped anchors) — fetched from the gated
+  // /api/languages registry.
   const [globalLanguages, setGlobalLanguages] = useState<Array<{ code: string; name: string; nativeName: string | null }> | null>(null)
   useEffect(() => {
-    if (!token || unit?.scope !== 'GLOBAL') return
+    if (!token || anchor?.scope !== 'GLOBAL') return
     let cancelled = false
     async function run() {
       const response = await fetch('/api/languages', {
@@ -225,26 +265,28 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
     return () => {
       cancelled = true
     }
-  }, [token, unit?.scope])
+  }, [token, anchor?.scope])
 
   // §20: country-scoped staff (COUNTRY_ADMIN + WRITER since P2-S4) see global
-  // units read-only — the server enforces it; this is the honest affordance.
+  // anchors read-only — the server enforces it; this is the honest affordance.
   const isScopedStaff = user?.role === 'COUNTRY_ADMIN' || user?.role === 'WRITER'
-  const unitReadOnlyForRole = unit?.scope === 'GLOBAL' && isScopedStaff
+  const anchorReadOnlyForRole = anchor?.scope === 'GLOBAL' && isScopedStaff
   const isWriter = user?.role === 'WRITER'
 
   const languageOptions = useMemo(() => {
-    if (unit?.scope === 'COUNTRY') return countryLanguages
+    if (anchor?.scope === 'COUNTRY') return countryLanguages
     return globalLanguages ?? []
-  }, [unit?.scope, countryLanguages, globalLanguages])
+  }, [anchor?.scope, countryLanguages, globalLanguages])
 
   const fetchItems = useCallback(async () => {
-    if (!token || !unit) {
+    if (!token || !anchor) {
       setItems(null)
       return
     }
     setError(null)
-    const params = new URLSearchParams({ unit: unit.slug })
+    const params = new URLSearchParams(
+      anchor.kind === 'event' ? { event: anchor.slug } : { unit: anchor.slug }
+    )
     if (statusFilter) params.set('status', statusFilter)
     try {
       const response = await fetch(`/api/content/admin/items?${params.toString()}`, {
@@ -262,7 +304,7 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
       setError('Network error — please retry.')
       setItems([])
     }
-  }, [token, unit, statusFilter])
+  }, [token, anchor, statusFilter])
 
   useEffect(() => {
     setSelectedId(null)
@@ -420,20 +462,29 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
   )
 
   const submitCreate = useCallback(async () => {
-    if (!token || !unit) return
+    if (!token || !anchor) return
     setCreating(true)
     setCreateErrors(null)
     try {
       const response = await fetch('/api/content/admin/items', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ unit: unit.slug, ...createForm }),
+        // P6-S2: the anchor rides the create — unit OR event (§7/§12 step 4).
+        body: JSON.stringify(
+          anchor.kind === 'event' ? { event: anchor.slug, ...createForm } : { unit: anchor.slug, ...createForm }
+        ),
       })
       const payload = (await response.json()) as Envelope<{ item: AdminItem }>
       if (payload.status === 'ok' && payload.data) {
         setItems((current) => [payload.data!.item, ...(current ?? [])])
         setCreateOpen(false)
-        setCreateForm({ format: 'FACT_CARD', language: createForm.language, title: '', body: '', aiAssisted: false })
+        setCreateForm({
+          format: anchor.kind === 'event' ? 'CURRENT_EVENT_UPDATE' : 'FACT_CARD',
+          language: createForm.language,
+          title: '',
+          body: '',
+          aiAssisted: false,
+        })
         toast({ title: 'Representation created', description: 'Entered DRAFT — submit for review, then publish.' })
         setSelectedId(payload.data.item.id)
       } else {
@@ -446,14 +497,14 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
     } finally {
       setCreating(false)
     }
-  }, [token, unit, createForm, toast])
+  }, [token, anchor, createForm, toast])
 
   // ---------- Render ----------
 
-  if (!unit) {
+  if (!anchor) {
     return (
       <p className="rounded-md border border-dashed border-zinc-300 px-3 py-6 text-center text-sm text-zinc-500">
-        Select a knowledge unit above to manage its representations.
+        Select a knowledge unit or a current event above to manage its representations.
       </p>
     )
   }
@@ -463,20 +514,25 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
       {/* Scope banners (§38) */}
       <div className="flex flex-wrap items-center gap-2 text-xs">
         <Badge variant="outline" className="border-zinc-200 bg-zinc-50 font-normal text-zinc-600">
-          {unit.scope === 'GLOBAL' ? (
+          {anchor.scope === 'GLOBAL' ? (
             <>
-              <Globe2 className="mr-1 h-3 w-3" aria-hidden="true" /> global unit
+              <Globe2 className="mr-1 h-3 w-3" aria-hidden="true" /> global {anchor.kind}
             </>
           ) : (
             <>
-              <MapPin className="mr-1 h-3 w-3" aria-hidden="true" /> {unit.countryIso} unit
+              <MapPin className="mr-1 h-3 w-3" aria-hidden="true" /> {anchor.countryIso} {anchor.kind}
             </>
           )}
         </Badge>
-        {unitReadOnlyForRole && (
+        {anchor.kind === 'event' && (
+          <Badge variant="outline" className="border-zinc-200 bg-zinc-50 font-normal text-zinc-600">
+            {anchor.lifecycleState} (§12 lifecycle)
+          </Badge>
+        )}
+        {anchorReadOnlyForRole && (
           <Badge variant="outline" className="border-amber-200 bg-amber-50 font-normal text-amber-700">
             <ShieldAlert className="mr-1 h-3 w-3" aria-hidden="true" />
-            global units are platform-admin only (read-only for country admins)
+            global anchors are platform-admin only (read-only for country staff)
           </Badge>
         )}
       </div>
@@ -508,7 +564,7 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
             Refresh
           </Button>
         </div>
-        {!unitReadOnlyForRole && (
+        {!anchorReadOnlyForRole && (
           <Button
             size="sm"
             className="h-8 gap-2"
@@ -516,6 +572,10 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
               setCreateOpen((open) => !open)
               if (!createForm.language && languageOptions.length > 0) {
                 setCreateForm((form) => ({ ...form, language: languageOptions[0]!.code }))
+              }
+              // P6-S2: the event default format is the source-backed update.
+              if (anchor.kind === 'event' && !createOpen) {
+                setCreateForm((form) => ({ ...form, format: 'CURRENT_EVENT_UPDATE' }))
               }
             }}
           >
@@ -525,12 +585,15 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
         )}
       </div>
 
-      {/* Create form (§7 identity: one unit × one language × one format) */}
-      {createOpen && !unitReadOnlyForRole && (
+      {/* Create form (§7/§12 identity: one anchor × one language × one format) */}
+      {createOpen && !anchorReadOnlyForRole && (
         <div className="rounded-lg border border-emerald-200 bg-emerald-50/40 p-4">
-          <p className="text-sm font-semibold">New representation of “{unit.canonicalName}”</p>
+          <p className="text-sm font-semibold">
+            New representation of “{anchor.name}”
+            {anchor.kind === 'event' && <span className="ml-1.5 text-xs font-normal text-zinc-500">(current event)</span>}
+          </p>
           <p className="mt-0.5 text-xs text-zinc-500">
-            One rendering per language × format (§7) — the fact itself is never re-entered.
+            One rendering per language × format (§7) — {anchor.kind === 'event' ? 'the event’s story is never re-entered; it links its canonical units (§12).' : 'the fact itself is never re-entered.'}
           </p>
           <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="space-y-1.5">
@@ -554,7 +617,7 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
             </div>
             <div className="space-y-1.5">
               <UILabel htmlFor="content-create-language" className="text-xs text-zinc-500">
-                Language{unit.scope === 'COUNTRY' ? ' (configured for this market, §35)' : ' (any active language)'}
+                Language{anchor.scope === 'COUNTRY' ? ' (configured for this market, §35)' : ' (any active language)'}
               </UILabel>
               <Select
                 value={createForm.language || undefined}
@@ -634,7 +697,7 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
         </p>
       ) : items.length === 0 ? (
         <p className="rounded-md border border-dashed border-zinc-300 px-3 py-6 text-center text-sm text-zinc-500">
-          No representations of this unit yet — create the first one.
+          No representations of this {anchor.kind === 'event' ? 'event' : 'unit'} yet — create the first one.
         </p>
       ) : (
         <ul className="space-y-2" role="list">
@@ -735,11 +798,22 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
                   AI-assisted (§26)
                 </Badge>
               )}
-              <span className="text-xs text-zinc-400">of {selected.unit.canonicalName}</span>
+              <span className="text-xs text-zinc-400">
+                of {selected.event ? selected.event.title : selected.unit?.canonicalName}
+                {selected.event && ` · ${selected.event.lifecycleState.toLowerCase()} event`}
+              </span>
             </div>
             <Badge variant="outline" className="border-zinc-200 bg-zinc-50 font-normal text-zinc-500">
-              {selected.unit.scope === 'GLOBAL' ? 'global unit' : `${selected.unit.countryIso} unit`}
-              {selected.unitVerified ? ' · VERIFIED' : ` · unit ${selected.unit.status.toLowerCase()}`}
+              {selected.event
+                ? `${selected.event.scope === 'GLOBAL' ? 'global' : selected.event.countryIso} event`
+                : selected.unit
+                  ? `${selected.unit.scope === 'GLOBAL' ? 'global unit' : `${selected.unit.countryIso} unit`}`
+                  : ''}
+              {selected.anchorPublishable
+                ? selected.event
+                  ? ' · publishable'
+                  : ' · VERIFIED'
+                : ` · ${selected.anchorBlockReason ?? 'not publishable'}`}
             </Badge>
           </div>
 
@@ -886,11 +960,11 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
                     setScheduleError(null)
                     setScheduleDialog(true)
                   }}
-                  disabled={busyAction !== null || !selected.unitVerified}
+                  disabled={busyAction !== null || !selected.anchorPublishable}
                   title={
-                    selected.unitVerified
+                    selected.anchorPublishable
                       ? 'Approve this content for a future release (§19 step 7)'
-                      : `The owning unit is ${selected.unit.status} — scheduling requires VERIFIED`
+                      : (selected.anchorBlockReason ?? 'The anchor does not permit scheduling')
                   }
                 >
                   <Clock8 className="h-4 w-4" aria-hidden="true" />
@@ -909,13 +983,13 @@ export function ContentAdmin({ unit, countryLanguages }: AdminProps) {
                       void runTransition('publish')
                     }
                   }}
-                  disabled={busyAction !== null || !selected.unitVerified}
+                  disabled={busyAction !== null || !selected.anchorPublishable}
                   title={
-                    selected.unitVerified
+                    selected.anchorPublishable
                       ? selected.status === 'SCHEDULED'
                         ? 'Publish now — overrides the scheduled time (§19 step 7)'
                         : 'Snapshot the working copy into an immutable revision'
-                      : `The owning unit is ${selected.unit.status} — publishing requires VERIFIED`
+                      : (selected.anchorBlockReason ?? 'The anchor does not permit publishing')
                   }
                 >
                   {busyAction === 'publish' ? (

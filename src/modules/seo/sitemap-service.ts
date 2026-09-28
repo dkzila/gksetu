@@ -23,7 +23,7 @@ import { SeoError } from './errors'
 
 // ---------- Shapes ----------
 
-export const SITEMAP_TYPES = ['home', 'topics', 'units', 'exams', 'syllabus'] as const
+export const SITEMAP_TYPES = ['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus'] as const
 export type SitemapType = (typeof SITEMAP_TYPES)[number]
 
 /** One indexable §16 URL (path + honest lastmod). */
@@ -53,6 +53,9 @@ interface CountrySitemapModel {
   topics: Array<{ slug: string; lastModified: Date | null }>
   /** Knowledge-page URLs per language — only where content is published (§35). */
   unitsByLanguage: Map<string, Array<{ slug: string; topicSlug: string; lastModified: Date | null }>>
+  /** Event-page URLs per language — only where an event representation is
+   * published (P6-S2, §35; the /current-affairs/{slug}/ canonical pages). */
+  eventsByLanguage: Map<string, Array<{ slug: string; lastModified: Date | null }>>
   /** ACTIVE exams (indexable landing even before a window starts). */
   exams: Array<{ slug: string; lastModified: Date | null }>
   /** Syllabus-topic URLs per exam (placement-exists rule, CURRENT version). */
@@ -163,6 +166,7 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     >()
     for (const row of published) {
       const at = row.publishedRevision?.publishedAt ?? null
+      if (!row.knowledgeUnit) continue // P6-S2: event representations are not unit pages
       const incumbent = byUnit.get(row.knowledgeUnit.slug)
       if (!incumbent) {
         byUnit.set(row.knowledgeUnit.slug, {
@@ -177,6 +181,48 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     unitsByLanguage.set(
       language.code,
       [...byUnit.values()].sort((a, b) => a.slug.localeCompare(b.slug)) // deterministic (§37)
+    )
+  }
+
+  // ---------- Event pages per language (P6-S2, §35 published-only rule) ----------
+  // The /current-affairs/{slug}/ URL exists in a language only when the event
+  // carries a PUBLISHED representation in that language — the same honesty as
+  // knowledge pages. GLOBAL events are browsable in every market (§15);
+  // COUNTRY events only in their own.
+  const eventsByLanguage = new Map<string, Array<{ slug: string; lastModified: Date | null }>>()
+  for (const language of languages) {
+    const publishedEvents = await db.contentItem.findMany({
+      where: {
+        status: 'PUBLISHED',
+        publishedRevisionId: { not: null },
+        language: { code: language.code },
+        currentEvent: {
+          topic: { status: 'ACTIVE' },
+          OR: [
+            { scope: 'GLOBAL' },
+            { scope: 'COUNTRY', countryId: countryRow.id },
+          ],
+        },
+      },
+      select: {
+        currentEvent: { select: { slug: true } },
+        publishedRevision: { select: { publishedAt: true } },
+      },
+    })
+    const byEvent = new Map<string, { slug: string; lastModified: Date | null }>()
+    for (const row of publishedEvents) {
+      if (!row.currentEvent) continue
+      const at = row.publishedRevision?.publishedAt ?? null
+      const incumbent = byEvent.get(row.currentEvent.slug)
+      if (!incumbent) {
+        byEvent.set(row.currentEvent.slug, { slug: row.currentEvent.slug, lastModified: at })
+      } else if (at && (!incumbent.lastModified || at > incumbent.lastModified)) {
+        incumbent.lastModified = at
+      }
+    }
+    eventsByLanguage.set(
+      language.code,
+      [...byEvent.values()].sort((a, b) => a.slug.localeCompare(b.slug)) // deterministic (§37)
     )
   }
 
@@ -220,6 +266,7 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     homeLastModified,
     topics,
     unitsByLanguage,
+    eventsByLanguage,
     exams,
     syllabus,
   }
@@ -248,6 +295,11 @@ function segmentEntries(
       return (model.unitsByLanguage.get(languageCode) ?? []).map((unit) => ({
         path: path(['gk', unit.topicSlug, unit.slug]),
         lastModified: unit.lastModified,
+      }))
+    case 'current-affairs':
+      return (model.eventsByLanguage.get(languageCode) ?? []).map((event) => ({
+        path: path(['current-affairs', event.slug]),
+        lastModified: event.lastModified,
       }))
     case 'exams':
       return model.exams.map((exam) => ({

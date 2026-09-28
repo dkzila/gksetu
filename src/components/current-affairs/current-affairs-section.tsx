@@ -164,6 +164,18 @@ export function CurrentAffairsSection() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [detail, setDetail] = useState<AdminEventDetail | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
+  // P6-S2: the event's representations (§12 step 4) — the publishing overview.
+  const [representations, setRepresentations] = useState<
+    Array<{
+      id: string
+      status: string
+      format: string
+      language: { code: string }
+      revisionCount: number
+      scheduledFor: string | null
+      liveRevision: { revisionNumber: number } | null
+    }>
+  >([])
   const [busy, setBusy] = useState<string | null>(null)
 
   // Create form (§12 steps 1+2 in one call)
@@ -226,8 +238,31 @@ export function CurrentAffairsSection() {
           cache: 'no-store',
         })
         const payload = (await response.json()) as Envelope<{ event: AdminEventDetail }>
-        if (payload.status === 'ok' && payload.data) setDetail(payload.data.event)
-        else toast({ title: 'Could not load the event', description: payload.error?.message, variant: 'destructive' })
+        if (payload.status === 'ok' && payload.data) {
+          setDetail(payload.data.event)
+          // P6-S2: the event's representations (§12 step 4) — authored in the
+          // content workspace; shown here as the publishing overview.
+          const itemsResponse = await fetch(
+            `/api/content/admin/items?event=${encodeURIComponent(payload.data.event.slug)}&pageSize=50`,
+            { headers: authHeaders, cache: 'no-store' }
+          )
+          const itemsPayload = (await itemsResponse.json()) as Envelope<{
+            items: Array<{
+              id: string
+              status: string
+              format: string
+              language: { code: string }
+              revisionCount: number
+              scheduledFor: string | null
+              liveRevision: { revisionNumber: number } | null
+            }>
+          }>
+          setRepresentations(
+            itemsPayload.status === 'ok' && itemsPayload.data ? itemsPayload.data.items : []
+          )
+        } else {
+          toast({ title: 'Could not load the event', description: payload.error?.message, variant: 'destructive' })
+        }
       } finally {
         setDetailLoading(false)
       }
@@ -239,9 +274,11 @@ export function CurrentAffairsSection() {
     if (expandedId === id) {
       setExpandedId(null)
       setDetail(null)
+      setRepresentations([])
     } else {
       setExpandedId(id)
       setDetail(null)
+      setRepresentations([])
       void fetchDetail(id)
     }
   }
@@ -951,6 +988,58 @@ export function CurrentAffairsSection() {
                                       Link unit
                                     </Button>
                                   </div>
+                                )}
+                              </div>
+
+                              {/* P6-S2: representations (§12 step 4) — the publishing overview */}
+                              <div className="space-y-2">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                                  Representations (§12 step 4) — {representations.length}
+                                </p>
+                                {representations.length > 0 ? (
+                                  <ul className="space-y-1.5" aria-label="Event representations">
+                                    {representations.map((item) => (
+                                      <li
+                                        key={item.id}
+                                        className="flex flex-wrap items-center gap-2 rounded-md border border-zinc-100 bg-zinc-50/50 px-3 py-2"
+                                      >
+                                        <Badge variant="outline" className="border-orange-200 bg-orange-50 font-normal text-orange-800">
+                                          {item.format.replace(/_/g, ' ').toLowerCase()}
+                                        </Badge>
+                                        <Badge variant="secondary" className="font-mono text-[10px]">{item.language.code}</Badge>
+                                        <Badge
+                                          variant="outline"
+                                          className={`font-normal ${
+                                            item.status === 'PUBLISHED'
+                                              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                                              : item.status === 'SCHEDULED'
+                                                ? 'border-sky-200 bg-sky-50 text-sky-700'
+                                                : 'border-zinc-200 bg-zinc-50 text-zinc-500'
+                                          }`}
+                                        >
+                                          {item.status.toLowerCase()}
+                                        </Badge>
+                                        <span className="text-xs text-zinc-400">
+                                          {item.liveRevision
+                                            ? `live rev ${item.liveRevision.revisionNumber} · ${item.revisionCount} revision${item.revisionCount === 1 ? '' : 's'}`
+                                            : item.scheduledFor
+                                              ? `scheduled ${new Date(item.scheduledFor).toLocaleString()}`
+                                              : `${item.revisionCount} revision${item.revisionCount === 1 ? '' : 's'}`}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <p className="text-xs text-zinc-400">
+                                    No representations yet — author the event's language-specific updates in the{' '}
+                                    <span className="font-medium text-zinc-600">Content items</span> workspace (anchor:
+                                    current event). Publication is what puts this event on its public page.
+                                  </p>
+                                )}
+                                {representations.some((item) => item.status === 'PUBLISHED') && (
+                                  <p className="text-xs text-zinc-400">
+                                    Public page: <span className="font-mono">#/current-affairs/{detail.slug}/</span>
+                                  </p>
                                 )}
                               </div>
 

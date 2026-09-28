@@ -146,17 +146,24 @@ export interface EditorialTaskListResult {
 /**
  * The event content-service sends on every content transition so the workflow
  * wiring (§19) stays inside the caller's transaction. `languageId` is the
- * ContentItem's language row id; `countryId` is the owning unit's country
- * (null for GLOBAL units → a platform/global task). `actorId` is the
- * transitioning user — recorded as the auto-opened review task's creator so
- * the §19 separation-of-duties guard can block self-reviews.
+ * ContentItem's language row id; `countryId` is the owning anchor's country
+ * (null for GLOBAL anchors → a platform/global task). Since P6-S2 the anchor
+ * is either a KnowledgeUnit (`anchorKind: 'unit'`, `unitSlug` set) or a
+ * CurrentEvent (`anchorKind: 'event'`, `eventSlug` set — §12 step 4
+ * representations ride the same §19 workflow). `actorId` is the transitioning
+ * user — recorded as the auto-opened review task's creator so the §19
+ * separation-of-duties guard can block self-reviews.
  */
 export interface ContentWorkflowEvent {
   action: 'submit_review' | 'send_back' | 'schedule' | 'publish' | 'retire'
   actorId: string | null
   item: {
     id: string
-    unitSlug: string
+    anchorKind: 'unit' | 'event'
+    /** §7 anchor slug — set iff anchorKind = 'unit'. */
+    unitSlug: string | null
+    /** §12 step 4 anchor slug — set iff anchorKind = 'event'. */
+    eventSlug: string | null
     countryId: string | null
     languageId: string
     languageCode: string

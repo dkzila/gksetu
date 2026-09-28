@@ -441,21 +441,30 @@ export async function createEditorialTask(
   }
   const item = await db.contentItem.findUnique({
     where: { id: input.objectId },
-    include: { knowledgeUnit: true, language: true },
+    include: { knowledgeUnit: true, currentEvent: true, language: true },
   })
   if (!item) {
     throw new EditorialError('OBJECT_NOT_FOUND', 'Content item not found')
   }
 
-  // The task inherits the work object's scope (§14/§20): the owning unit's
-  // country — GLOBAL units produce platform (global) tasks.
-  const countryId = item.knowledgeUnit.scope === 'COUNTRY' ? item.knowledgeUnit.countryId : null
+  // The task inherits the work object's scope (§14/§20): the owning anchor's
+  // country — GLOBAL anchors (units or events, P6-S2) produce platform
+  // (global) tasks.
+  const countryId = item.currentEvent
+    ? item.currentEvent.scope === 'COUNTRY'
+      ? item.currentEvent.countryId
+      : null
+    : item.knowledgeUnit
+      ? item.knowledgeUnit.scope === 'COUNTRY'
+        ? item.knowledgeUnit.countryId
+        : null
+      : null
   const languageId = item.languageId
   if (actor.role === 'COUNTRY_ADMIN') {
     if (countryId == null) {
       throw new EditorialError(
         'GLOBAL_TASK_ADMIN_ONLY',
-        'Tasks on global-unit content are platform-admin only (§38 content parity)'
+        'Tasks on global-anchor content are platform-admin only (§38 content parity)'
       )
     }
     if (countryId !== actor.countryId) {
@@ -467,7 +476,8 @@ export async function createEditorialTask(
     await assertAssignable(input.assigneeId, { countryId, languageId })
   }
 
-  const objectLabel = `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`
+  const anchorSlug = item.currentEvent?.slug ?? item.knowledgeUnit?.slug ?? 'unknown'
+  const objectLabel = `${anchorSlug}/${item.language.code}/${item.format}`
   const created = await db.editorialTask.create({
     data: {
       type: input.type,
@@ -717,7 +727,10 @@ export async function wireContentWorkflow(
   event: ContentWorkflowEvent
 ): Promise<void> {
   const { item } = event
-  const objectLabel = `${item.unitSlug}/${item.languageCode}/${item.format}`
+  // P6-S2: the label names whichever canonical record the item represents —
+  // a unit slug (§7) or an event slug (§12 step 4) — the same
+  // anchor/language/format shape either way.
+  const objectLabel = `${item.anchorKind === 'event' ? (item.eventSlug ?? 'event') : (item.unitSlug ?? 'unit')}/${item.languageCode}/${item.format}`
 
   if (event.action === 'submit_review') {
     // One live review task per item cycle: send_back/publish resolve the

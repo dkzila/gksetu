@@ -44,6 +44,7 @@ import type {
   SourceTypePublic,
 } from './source-types'
 import { SOURCE_VERIFICATION_TRANSITIONS } from './source-types'
+import { anchorLabel, anchorOfItem, anchorTarget, type ItemAnchor } from './content-anchors'
 import type {
   AdminSourceListQuery,
   CreateSourceInput,
@@ -67,6 +68,8 @@ export type SourceErrorCode =
   | 'SOURCE_ALREADY_LINKED'
   | 'COUNTRY_MISMATCH'
   | 'GLOBAL_CONTENT_ADMIN_ONLY'
+  | 'LANGUAGE_SCOPE' // P6-S2: the §20 WRITER language-scope narrowing now rides
+  // source-link management too (the pre-existing gap — content-service parity)
 
 const ERROR_STATUS: Record<SourceErrorCode, number> = {
   SOURCE_NOT_FOUND: 404,
@@ -79,6 +82,7 @@ const ERROR_STATUS: Record<SourceErrorCode, number> = {
   SOURCE_ALREADY_LINKED: 409,
   COUNTRY_MISMATCH: 403,
   GLOBAL_CONTENT_ADMIN_ONLY: 403,
+  LANGUAGE_SCOPE: 403,
 }
 
 export class SourceError extends Error {
@@ -112,7 +116,7 @@ type SourceRow = Prisma.SourceGetPayload<null>
 type LinkRow = Prisma.ContentSourceLinkGetPayload<{ include: { source: true } }>
 
 type LinkedItemRow = Prisma.ContentItemGetPayload<{
-  include: { knowledgeUnit: true; language: true }
+  include: { knowledgeUnit: true; currentEvent: true; language: true }
 }>
 
 async function loadSource(id: string): Promise<SourceRow | null> {
@@ -120,25 +124,27 @@ async function loadSource(id: string): Promise<SourceRow | null> {
   return db.source.findUnique({ where: { id } })
 }
 
-/** Item + owning unit + language — the link-operation permission context. */
+/** Item + owning anchor + language — the link-operation permission context. */
 async function loadLinkedItem(id: string): Promise<LinkedItemRow | null> {
   if (!CUID_PATTERN.test(id)) return null
   return db.contentItem.findUnique({
     where: { id },
-    include: { knowledgeUnit: true, language: true },
+    include: { knowledgeUnit: true, currentEvent: true, language: true },
   })
 }
 
-/** A link's permission target: the OWNING unit's country scope (§14) — the
- * same rule as every other content-object operation. */
-function targetOfUnit(unit: LinkedItemRow['knowledgeUnit']): { countryId: string | null } {
-  return { countryId: unit.scope === 'COUNTRY' ? unit.countryId : null }
+/** A link's permission target: the OWNING anchor's country scope (§14) — the
+ * same rule as every other content-object operation (unit or event, P6-S2). */
+function targetOfAnchor(anchor: ItemAnchor): { countryId: string | null } {
+  return anchorTarget(anchor)
 }
 
-function canReadUsage(actor: Actor, unit: LinkedItemRow['knowledgeUnit']): boolean {
+function canReadUsage(actor: Actor, anchor: ItemAnchor): boolean {
   if (actor.role === 'ADMIN') return true
-  if (actor.role === 'COUNTRY_ADMIN') {
-    return unit.scope === 'GLOBAL' || unit.countryId === actor.countryId
+  if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
+    // P6-S2: writers see their scope's citation usage too (they author event
+    // representations now — the board's context is part of working it, §20).
+    return anchor.scope === 'GLOBAL' || anchor.countryId === actor.countryId
   }
   return false
 }
@@ -147,34 +153,49 @@ function canReadUsage(actor: Actor, unit: LinkedItemRow['knowledgeUnit']): boole
 function assertCanManageLinks(
   actor: Actor,
   item: LinkedItemRow,
+  anchor: ItemAnchor,
   operation: string,
   meta?: AuditRequestMeta
 ): void {
-  if (can(actor, 'content:manage', targetOfUnit(item.knowledgeUnit))) return
+  if (can(actor, 'content:manage', { ...targetOfAnchor(anchor), languageId: item.languageId })) return
   void recordAudit({
     actor: { userId: actor.userId, email: actor.email, role: actor.role },
     action: AUDIT_ACTIONS.sourceLinkDenied,
     objectType: AUDIT_OBJECT_TYPES.contentSourceLink,
     objectId: item.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
-    before: { itemStatus: item.status, unitScope: item.knowledgeUnit.scope },
+    objectLabel: anchorLabel(anchor, item.language.code, item.format),
+    before: { itemStatus: item.status, anchorKind: anchor.kind, anchorScope: anchor.scope },
     metadata: {
       attemptedOperation: operation,
       reason:
-        actor.role === 'COUNTRY_ADMIN'
-          ? item.knowledgeUnit.scope === 'GLOBAL'
+        actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER'
+          ? anchor.scope === 'GLOBAL'
             ? 'GLOBAL_CONTENT_ADMIN_ONLY'
-            : 'COUNTRY_MISMATCH'
+            : actor.role === 'WRITER' &&
+                actor.languageScopeId &&
+                item.languageId !== actor.languageScopeId
+              ? 'LANGUAGE_SCOPE'
+              : 'COUNTRY_MISMATCH'
           : 'ROLE',
     },
     ip: meta?.ip ?? null,
     userAgent: meta?.userAgent ?? null,
   }).catch(() => undefined)
-  if (actor.role === 'COUNTRY_ADMIN') {
-    if (item.knowledgeUnit.scope === 'GLOBAL') {
+  if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
+    if (anchor.scope === 'GLOBAL') {
       throw new SourceError(
         'GLOBAL_CONTENT_ADMIN_ONLY',
-        'Country admins cannot attach sources to representations of global knowledge units'
+        'Country-scoped staff cannot attach sources to representations of global records'
+      )
+    }
+    if (
+      actor.role === 'WRITER' &&
+      actor.languageScopeId &&
+      item.languageId !== actor.languageScopeId
+    ) {
+      throw new SourceError(
+        'LANGUAGE_SCOPE',
+        'This representation is outside your language scope (§20 explicit staff scopes)'
       )
     }
     throw new SourceError(
@@ -274,7 +295,7 @@ export async function getAdminSources(
       skip: (query.page - 1) * query.pageSize,
       take: query.pageSize,
       include: {
-        links: { include: { contentItem: { include: { knowledgeUnit: true } } } },
+        links: { include: { contentItem: { include: { knowledgeUnit: true, currentEvent: true } } } },
       },
     }),
     db.source.count({ where }),
@@ -291,7 +312,10 @@ export async function getAdminSources(
   }
 
   const sources = rows.map((row) => {
-    const visible = row.links.filter((link) => canReadUsage(actor, link.contentItem.knowledgeUnit))
+    const visible = row.links.filter((link) => {
+      const anchor = anchorOfItem(link.contentItem)
+      return anchor ? canReadUsage(actor, anchor) : false
+    })
     return toAdminSource(row, visible.length)
   })
 
@@ -316,22 +340,23 @@ export async function getAdminSource(actor: Actor, id: string): Promise<AdminSou
   const links = await db.contentSourceLink.findMany({
     where: { sourceId: source.id },
     include: {
-      contentItem: { include: { knowledgeUnit: true, language: true } },
+      contentItem: { include: { knowledgeUnit: true, currentEvent: true, language: true } },
     },
     orderBy: [{ contentItem: { updatedAt: 'desc' } }, { id: 'desc' }],
   })
 
   const usage: AdminSourceUsage[] = []
   for (const link of links) {
-    if (!canReadUsage(actor, link.contentItem.knowledgeUnit)) continue
+    const anchor = anchorOfItem(link.contentItem)
+    if (!anchor || !canReadUsage(actor, anchor)) continue
     usage.push({
       itemId: link.contentItem.id,
       itemTitle: link.contentItem.title,
       format: link.contentItem.format,
       languageCode: link.contentItem.language.code,
       itemStatus: link.contentItem.status,
-      unitSlug: link.contentItem.knowledgeUnit.slug,
-      unitName: link.contentItem.knowledgeUnit.canonicalName,
+      unitSlug: anchor.slug,
+      unitName: anchor.name,
       claim: link.claim,
     })
   }
@@ -503,7 +528,9 @@ export async function listContentSources(
 ): Promise<AdminContentSourceListResult> {
   const item = await loadLinkedItem(itemId)
   if (!item) throw new SourceError('ITEM_NOT_FOUND', 'Content item not found')
-  if (!canReadUsage(actor, item.knowledgeUnit)) {
+  const anchor = anchorOfItem(item)
+  if (!anchor) throw new SourceError('ITEM_NOT_FOUND', 'Content item has no canonical anchor')
+  if (!canReadUsage(actor, anchor)) {
     throw new SourceError(
       'COUNTRY_MISMATCH',
       'You can only view sources of global content and your own country content'
@@ -535,7 +562,7 @@ export async function listContentSources(
 
   return {
     itemId: item.id,
-    unit: { slug: item.knowledgeUnit.slug, canonicalName: item.knowledgeUnit.canonicalName },
+    anchor: { kind: anchor.kind, slug: anchor.slug, name: anchor.name },
     format: item.format,
     language: { code: item.language.code, name: item.language.name },
     links: mapped,
@@ -552,7 +579,9 @@ export async function linkSourceToItem(
 ): Promise<AdminContentSourceLink> {
   const item = await loadLinkedItem(itemId)
   if (!item) throw new SourceError('ITEM_NOT_FOUND', 'Content item not found')
-  assertCanManageLinks(actor, item, 'link', meta)
+  const anchor = anchorOfItem(item)
+  if (!anchor) throw new SourceError('ITEM_NOT_FOUND', 'Content item has no canonical anchor')
+  assertCanManageLinks(actor, item, anchor, 'link', meta)
 
   const source = await loadSource(input.source)
   if (!source) throw new SourceError('SOURCE_NOT_FOUND', `Unknown source "${input.source}"`)
@@ -588,9 +617,10 @@ export async function linkSourceToItem(
     action: AUDIT_ACTIONS.sourceLinkCreate,
     objectType: AUDIT_OBJECT_TYPES.contentSourceLink,
     objectId: link.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format} ← ${source.publisher}`,
+    objectLabel: `${anchorLabel(anchor, item.language.code, item.format)} ← ${source.publisher}`,
     after: {
       itemId: item.id,
+      anchorKind: anchor.kind,
       sourceId: source.id,
       sourceUrl: source.url,
       claim: link.claim,
@@ -629,7 +659,9 @@ export async function updateContentSourceClaim(
 ): Promise<AdminContentSourceLink> {
   const item = await loadLinkedItem(itemId)
   if (!item) throw new SourceError('ITEM_NOT_FOUND', 'Content item not found')
-  assertCanManageLinks(actor, item, 'update-claim', meta)
+  const anchor = anchorOfItem(item)
+  if (!anchor) throw new SourceError('ITEM_NOT_FOUND', 'Content item has no canonical anchor')
+  assertCanManageLinks(actor, item, anchor, 'update-claim', meta)
 
   const link = await db.contentSourceLink.findUnique({
     where: { id: linkId },
@@ -650,7 +682,7 @@ export async function updateContentSourceClaim(
     action: AUDIT_ACTIONS.sourceLinkUpdate,
     objectType: AUDIT_OBJECT_TYPES.contentSourceLink,
     objectId: link.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format} ← ${link.source.publisher}`,
+    objectLabel: `${anchorLabel(anchor, item.language.code, item.format)} ← ${link.source.publisher}`,
     before: { claim: link.claim },
     after: { claim: updated.claim },
     ip: meta.ip ?? null,
@@ -685,7 +717,9 @@ export async function unlinkSourceFromItem(
 ): Promise<{ ok: true; removedLinkId: string }> {
   const item = await loadLinkedItem(itemId)
   if (!item) throw new SourceError('ITEM_NOT_FOUND', 'Content item not found')
-  assertCanManageLinks(actor, item, 'unlink', meta)
+  const anchor = anchorOfItem(item)
+  if (!anchor) throw new SourceError('ITEM_NOT_FOUND', 'Content item has no canonical anchor')
+  assertCanManageLinks(actor, item, anchor, 'unlink', meta)
 
   const link = await db.contentSourceLink.findUnique({
     where: { id: linkId },
@@ -702,9 +736,10 @@ export async function unlinkSourceFromItem(
     action: AUDIT_ACTIONS.sourceLinkRemove,
     objectType: AUDIT_OBJECT_TYPES.contentSourceLink,
     objectId: link.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format} ← ${link.source.publisher}`,
+    objectLabel: `${anchorLabel(anchor, item.language.code, item.format)} ← ${link.source.publisher}`,
     before: {
       itemId: item.id,
+      anchorKind: anchor.kind,
       sourceId: link.sourceId,
       sourceUrl: link.source.url,
       claim: link.claim,

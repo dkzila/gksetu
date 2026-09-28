@@ -56,6 +56,7 @@ export { buildPageSeo, resolveSiteOrigin } from './page-seo'
 export {
   buildArticleNode,
   buildBreadcrumbNode,
+  buildEventGraph,
   buildHomeGraph,
   buildHubGraph,
   buildKnowledgeGraph,
@@ -94,6 +95,7 @@ export type {
   ExamsSection,
   HomepageCategory,
   HomepageCurrentAffairs,
+  HomepageCurrentAffairsCard,
   HomepageExamCard,
   HomepageTopicCard,
   HomepageUnitCard,

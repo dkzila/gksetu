@@ -83,8 +83,9 @@ const BOOST = {
 } as const
 
 /** §37 deterministic ordering after the score: knowledge first (the §7 core
- * object), then exams, then topics; then title, then ref. */
-const TYPE_RANK: Record<string, number> = { KNOWLEDGE_UNIT: 0, EXAM: 1, TOPIC: 2 }
+ * object), then current-affairs events (§12 — time-sensitive discovery), then
+ * exams, then topics; then title, then ref. */
+const TYPE_RANK: Record<string, number> = { KNOWLEDGE_UNIT: 0, CURRENT_EVENT: 1, EXAM: 2, TOPIC: 3 }
 
 interface ScoredCandidate {
   candidate: SearchCandidate
@@ -257,7 +258,9 @@ function resultPath(
       ? ['gk', candidate.topicSlug ?? candidate.ref, candidate.ref]
       : candidate.objectType === 'TOPIC'
         ? ['gk', candidate.ref]
-        : ['exams', candidate.ref]
+        : candidate.objectType === 'CURRENT_EVENT'
+          ? ['current-affairs', candidate.ref]
+          : ['exams', candidate.ref]
   return buildCanonicalUrl(country, { code: languageCode }, defaultLanguageCode, segments)
 }
 
@@ -329,7 +332,9 @@ export async function publicSearch(query: SearchQueryInput): Promise<SearchRespo
         ? (['EXAM'] as const)
         : query.type === 'topics'
           ? (['TOPIC'] as const)
-          : (['KNOWLEDGE_UNIT', 'EXAM', 'TOPIC'] as const)
+          : query.type === 'events'
+            ? (['CURRENT_EVENT'] as const)
+            : (['KNOWLEDGE_UNIT', 'EXAM', 'TOPIC', 'CURRENT_EVENT'] as const)
 
   const candidates = await querySearchCandidates({
     q: query.q,

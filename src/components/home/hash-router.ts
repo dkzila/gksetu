@@ -10,6 +10,7 @@
  *   Other country + lang    /{country}/{language}/  → #/fr/… (per config)
  *   Topic hub               …/gk/{topic}/           → #/hi/gk/polity-governance/
  *   Knowledge page          …/gk/{topic}/{unit}/    → #/gk/fundamental-rights/article-32/
+ *   Current-affairs page    …/current-affairs/{slug}/ → #/current-affairs/chandrayaan-3-vikram-landing/
  *   Exam page               …/exams/{exam}/         → #/exams/upsc-civil-services/
  *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
  *                                                   → #/exams/upsc-civil-services/syllabus/constitutional-framework/
@@ -46,11 +47,13 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'exam' | 'syllabus' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
   unitSlug: string | null
+  /** The current-affairs event whose §16 page is open (P6-S2). */
+  eventSlug: string | null
   /** The exam whose page (or syllabus topic) is open. */
   examSlug: string | null
   /** The syllabus topic under the exam view (§16 …/exams/{exam}/syllabus/{topic}/). */
@@ -72,6 +75,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     language: defaultCountry?.defaultLanguage.code ?? 'en',
     topicSlug: null,
     unitSlug: null,
+    eventSlug: null,
     examSlug: null,
     syllabusTopicSlug: null,
     page: 1,
@@ -135,7 +139,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   // First segment: a non-default country slug, or the default country's
   // non-default language (§16 — the default market's slug never appears).
   const first = segments[0]
-  if (first !== 'gk' && first !== 'exams') {
+  if (first !== 'gk' && first !== 'exams' && first !== 'current-affairs') {
     const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
     const defaultMarketLanguage = defaultCountry.languages.find(
       (entry) => entry.code === first && entry.code !== defaultCountry.defaultLanguage.code
@@ -151,7 +155,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
 
   // Language segment for the resolved country (non-default only, §35).
   const next = segments[index]
-  if (next && next !== 'gk' && next !== 'exams') {
+  if (next && next !== 'gk' && next !== 'exams' && next !== 'current-affairs') {
     const languageMatch = country.languages.find(
       (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
     )
@@ -172,6 +176,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         language,
         topicSlug,
         unitSlug,
+        eventSlug: null,
         examSlug: null,
         syllabusTopicSlug: null,
         page: 1,
@@ -186,9 +191,30 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         language,
         topicSlug,
         unitSlug: null,
+        eventSlug: null,
         examSlug: null,
         syllabusTopicSlug: null,
         page,
+        versionId: null,
+        scrollTo: null,
+      }
+    }
+  }
+
+  // Content path: /current-affairs/{slug}/ (§16, P6-S2).
+  if (segments[index] === 'current-affairs') {
+    const eventSlug = segments[index + 1] ?? null
+    if (eventSlug) {
+      return {
+        view: 'event',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        eventSlug,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        page: 1,
         versionId: null,
         scrollTo: null,
       }
@@ -205,6 +231,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         language,
         topicSlug: null,
         unitSlug: null,
+        eventSlug: null,
         examSlug,
         syllabusTopicSlug: segments[index + 3],
         page: 1,
@@ -219,6 +246,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         language,
         topicSlug: null,
         unitSlug: null,
+        eventSlug: null,
         examSlug,
         syllabusTopicSlug: null,
         page: 1,
@@ -238,6 +266,7 @@ export interface RouteInput {
   language: string
   topicSlug: string | null
   unitSlug: string | null
+  eventSlug?: string | null
   examSlug?: string | null
   syllabusTopicSlug?: string | null
   page?: number
@@ -264,6 +293,8 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
     segments.push('gk', route.topicSlug)
   } else if (route.view === 'unit' && route.topicSlug && route.unitSlug) {
     segments.push('gk', route.topicSlug, route.unitSlug)
+  } else if (route.view === 'event' && route.eventSlug) {
+    segments.push('current-affairs', route.eventSlug)
   } else if (route.view === 'exam' && route.examSlug) {
     segments.push('exams', route.examSlug)
   } else if (route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug) {

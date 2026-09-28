@@ -161,13 +161,14 @@ function targetOfEvent(event: Pick<EventRow, 'scope' | 'countryId'>): { countryI
   return { countryId: event.scope === 'COUNTRY' ? event.countryId : null }
 }
 
-/** Visibility for reads: ADMIN everything; COUNTRY_ADMIN global + own market. */
+/** Visibility for reads: ADMIN everything; COUNTRY_ADMIN + WRITER (P6-S2 —
+ * writers author event representations) global + own market. */
 function canReadEvent(
   actor: Actor,
   event: Pick<EventRow, 'scope' | 'countryId'>
 ): boolean {
   if (actor.role === 'ADMIN') return true
-  if (actor.role === 'COUNTRY_ADMIN') {
+  if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
     return event.scope === 'GLOBAL' || event.countryId === actor.countryId
   }
   return false
@@ -428,11 +429,23 @@ export async function getAdminEvents(
   actor: Actor,
   query: AdminCurrentEventListQuery
 ): Promise<AdminCurrentEventListResult> {
-  assertCan(actor, 'current-affairs:manage')
+  // P6-S2: writers read the event list too — they author event
+  // representations (content:manage) and need the anchor directory. Mutations
+  // still require current-affairs:manage (the route guards + service checks);
+  // this is the same "see the board's context" read parity as unit content.
+  if (
+    !can(actor, 'current-affairs:manage') &&
+    !can(actor, 'content:manage')
+  ) {
+    throw new CurrentAffairsError(
+      'EVENT_DENIED',
+      'Viewing the event workspace requires current-affairs or content permissions'
+    )
+  }
 
-  // §14/§20 read visibility — country admins never see other markets' events.
+  // §14/§20 read visibility — country staff never see other markets' events.
   let ownCountryId: string | null = null
-  if (actor.role === 'COUNTRY_ADMIN') ownCountryId = actor.countryId
+  if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') ownCountryId = actor.countryId
 
   const countryFilter: Prisma.CurrentEventWhereInput = {}
   if (query.country) {
@@ -440,7 +453,7 @@ export async function getAdminEvents(
     countryFilter.countryId = country?.id ?? 'none'
   }
 
-  // COUNTRY_ADMIN visibility: GLOBAL events + own market's events.
+  // COUNTRY_ADMIN/WRITER visibility: GLOBAL events + own market's events.
   const visibility: Prisma.CurrentEventWhereInput | undefined = ownCountryId
     ? { OR: [{ scope: 'GLOBAL' }, { scope: 'COUNTRY', countryId: ownCountryId }] }
     : undefined
@@ -508,7 +521,18 @@ export async function getAdminEvents(
 /** Admin detail — the full §12 aggregation surface (sources + canonical
  *  KnowledgeUnit links) with server affordances. */
 export async function getAdminEvent(actor: Actor, id: string): Promise<AdminCurrentEventDetail> {
-  assertCan(actor, 'current-affairs:manage')
+  // P6-S2: same read parity as the list — content:manage holders (writers)
+  // may READ the event surface to anchor their representations; every
+  // mutation still requires current-affairs:manage.
+  if (
+    !can(actor, 'current-affairs:manage') &&
+    !can(actor, 'content:manage')
+  ) {
+    throw new CurrentAffairsError(
+      'EVENT_DENIED',
+      'Viewing the event workspace requires current-affairs or content permissions'
+    )
+  }
   const event = await loadEvent(id)
   if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
   if (!canReadEvent(actor, event)) {

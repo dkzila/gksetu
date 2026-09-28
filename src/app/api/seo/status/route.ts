@@ -48,6 +48,9 @@ async function pickKnowledgeSample(): Promise<KnowledgeSampleInput | null> {
     })
     const languageCount = new Map<string, number>()
     for (const row of rows) {
+      // P6-S2: event representations carry a null knowledgeUnitId — the unit
+      // filter above means they cannot appear, but the guard keeps it honest.
+      if (row.knowledgeUnitId == null) continue
       languageCount.set(row.knowledgeUnitId, (languageCount.get(row.knowledgeUnitId) ?? 0) + 1)
     }
     const unitIds = [...languageCount.entries()]

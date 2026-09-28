@@ -155,6 +155,7 @@ export interface AdminContentItem {
   language: { code: string; name: string; nativeName: string | null }
   title: string // working copy (editorial staging)
   body: string // working copy
+  /** §7 anchor — null for event representations (P6-S2). */
   unit: {
     id: string
     slug: string
@@ -163,7 +164,19 @@ export interface AdminContentItem {
     scope: 'GLOBAL' | 'COUNTRY'
     countryIso: string | null
     topicSlug: string | null
-  }
+  } | null
+  /** §12 step 4 anchor (P6-S2) — null for unit representations. */
+  event: {
+    id: string
+    slug: string
+    title: string
+    lifecycleState: string // CurrentEventLifecycle
+    scope: 'GLOBAL' | 'COUNTRY'
+    countryIso: string | null
+    /** §36: ARCHIVED events are read-only end-of-life — representations
+     * cannot publish until an admin reopens the event. */
+    editable: boolean
+  } | null
   liveRevision: ContentRevisionRef | null
   revisionCount: number
   /** §24/§26 AI-provenance flag — working-copy state (snapshotted at publish). */
@@ -179,8 +192,11 @@ export interface AdminContentItem {
   canEdit: boolean
   editability: 'full' | 'none'
   allowedTransitions: ContentTransitionAction[]
-  /** Whether the owning unit is VERIFIED — the publish precondition. */
-  unitVerified: boolean
+  /** Whether the anchor permits publishing: VERIFIED unit (§7) or
+   * non-ARCHIVED event (§36) — publish/schedule gate on this. */
+  anchorPublishable: boolean
+  /** Human explanation when anchorPublishable is false (§37 explicit errors). */
+  anchorBlockReason: string | null
 }
 
 export interface ContentPagination {
@@ -198,7 +214,8 @@ export interface AdminContentListResult {
 /** Admin revision history (§36 — the preserved versions, newest first). */
 export interface AdminContentRevisionListResult {
   itemId: string
-  unit: { slug: string; canonicalName: string }
+  /** P6-S2: the canonical anchor (unit or event). */
+  anchor: { kind: 'unit' | 'event'; slug: string; name: string }
   language: { code: string; name: string }
   format: ContentFormatPublic
   revisions: ContentRevisionRef[]

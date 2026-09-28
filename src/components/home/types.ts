@@ -138,7 +138,21 @@ export interface CountryHomepage {
     items: HomeExamCard[]
   }
   popularUnits: HomeUnitCard[]
-  currentAffairs: { available: false; note: string }
+  /** P6-S2: the latest published events (§34 discovery list — NOT the
+   * exam-aware feed, which is P6-S4). */
+  currentAffairs: {
+    available: boolean
+    items: Array<{
+      slug: string
+      title: string
+      summary: string | null
+      lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+      eventDate: string
+      canonicalPath: string
+      languagesAvailable: string[]
+    }>
+    note: string | null
+  }
   stats: { topics: number; units: number; exams: number }
 }
 

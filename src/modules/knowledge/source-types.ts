@@ -145,7 +145,8 @@ export interface AdminContentSourceLink {
 
 export interface AdminContentSourceListResult {
   itemId: string
-  unit: { slug: string; canonicalName: string }
+  /** P6-S2: the canonical anchor this item's citations back (unit or event). */
+  anchor: { kind: 'unit' | 'event'; slug: string; name: string }
   format: string
   language: { code: string; name: string }
   links: AdminContentSourceLink[]

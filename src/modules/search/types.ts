@@ -5,11 +5,12 @@
  * DTOs, deterministic ordering, explicit errors).
  */
 
-/** §6/§16 public surfaces that exist to be searched today. */
-export type SearchObjectTypePublic = 'KNOWLEDGE_UNIT' | 'EXAM' | 'TOPIC'
+/** §6/§16 public surfaces that exist to be searched today (P6-S2 adds the
+ * event-centric current-affairs surface). */
+export type SearchObjectTypePublic = 'KNOWLEDGE_UNIT' | 'EXAM' | 'TOPIC' | 'CURRENT_EVENT'
 
 /** User-facing type filter (§37 — stable query vocabulary). */
-export type SearchTypeFilter = 'all' | 'units' | 'exams' | 'topics'
+export type SearchTypeFilter = 'all' | 'units' | 'exams' | 'topics' | 'events'
 
 /**
  * §17 matched-by vocabulary — how a result matched the query. One value per
@@ -125,6 +126,8 @@ export interface SearchReindexResult {
   unitsIndexed: number
   topicsIndexed: number
   examsIndexed: number
+  /** P6-S2: events with at least one published representation projected. */
+  eventsIndexed: number
   documentsWritten: number
   documentsRemoved: number
   tookMs: number

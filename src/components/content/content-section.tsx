@@ -1,16 +1,18 @@
 'use client'
 
 /**
- * GlobIQ — Content Section (P2-S2)
+ * GlobIQ — Content Section (P2-S2, extended P6-S2)
  *
- * Section shell for the ContentItem layer on the foundation page: locale bar
- * (country → language, §35) + canonical topic picker (§13) + VERIFIED unit
- * picker (§7 — representations attach to a canonical record) + Explorer/Admin
- * tabs. The Admin tab appears only for holders of `content:manage` (§38);
- * the server remains the sole authority on every operation (§20).
+ * Section shell for the ContentItem layer on the foundation page: the anchor
+ * dimension (P6-S2: a representation renders a KnowledgeUnit §7 OR a
+ * CurrentEvent §12 step 4 — exactly one), the locale bar (§35), the pickers
+ * for each mode (topic → unit / the event directory), and the Explorer/Admin
+ * tabs. The Admin tab appears only for holders of `content:manage` (§38) —
+ * writers author event representations here; the server remains the sole
+ * authority on every operation (§20).
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { FileStack, ShieldCheck } from 'lucide-react'
+import { FileStack, Newspaper, ShieldCheck } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -24,7 +26,7 @@ import {
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useAuth } from '@/stores/auth'
-import { ContentAdmin } from './content-admin'
+import { ContentAdmin, type AdminEventRef } from './content-admin'
 import { ContentExplorer } from './content-explorer'
 
 interface Envelope<T> {
@@ -75,12 +77,19 @@ function flattenTopics(
 
 export function ContentSection() {
   const privileged = useAuth((state) => state.permissions.includes('content:manage'))
+  const token = useAuth((state) => state.token)
+
+  // P6-S2: the anchor mode — unit representations (§7) or event
+  // representations (§12 step 4). Event mode is staff-only (the event
+  // directory is an admin surface); Explorer stays unit-only.
+  const [anchorMode, setAnchorMode] = useState<'unit' | 'event'>('unit')
 
   const [countries, setCountries] = useState<ApiCountry[] | null>(null)
   const [countryIso, setCountryIso] = useState('IN')
   const [language, setLanguage] = useState('en')
   const [topicSlug, setTopicSlug] = useState('fundamental-rights')
   const [unitSlug, setUnitSlug] = useState('fundamental-rights-articles-12-35')
+  const [eventSlug, setEventSlug] = useState<string | null>(null)
   const [tab, setTab] = useState<'explore' | 'admin'>('explore')
 
   // Query-keyed option lists (loading = key mismatch — no sync setState in effect).
@@ -92,11 +101,19 @@ export function ContentSection() {
     key: string
     units: PublicUnitRef[]
   } | null>(null)
+  // The event directory (P6-S2 — readable by content:manage holders; the
+  // route + service enforce the scope).
+  const [eventState, setEventState] = useState<{
+    key: string
+    events: AdminEventRef[]
+  } | null>(null)
 
   const topicKey = `${countryIso}:${language}`
   const topics = topicState?.key === topicKey ? topicState.topics : null
   const unitKey = `${countryIso}:${language}:${topicSlug}`
   const units = unitState?.key === unitKey ? unitState.units : null
+  const eventKey = `events:${token ? 'auth' : 'anon'}`
+  const events = eventState?.key === eventKey ? eventState.events : null
 
   useEffect(() => {
     fetch('/api/countries', { cache: 'no-store' })
@@ -154,6 +171,48 @@ export function ContentSection() {
     }
   }, [countryIso, language, topicSlug])
 
+  // P6-S2: the event directory (staff read — writers pick representation
+  // anchors; §14 visibility is enforced server-side).
+  useEffect(() => {
+    if (!privileged || !token) return
+    let cancelled = false
+    async function run() {
+      const response = await fetch('/api/current-affairs/admin/events?pageSize=100', {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      })
+      const payload = (await response.json()) as Envelope<{
+        events: Array<{
+          id: string
+          slug: string
+          title: string
+          lifecycleState: string
+          scope: 'GLOBAL' | 'COUNTRY'
+          countryIso: string | null
+        }>
+      }>
+      if (cancelled) return
+      setEventState({
+        key: `events:auth`,
+        events:
+          payload.status === 'ok' && payload.data
+            ? payload.data.events.map((event) => ({
+                id: event.id,
+                slug: event.slug,
+                title: event.title,
+                lifecycleState: event.lifecycleState,
+                scope: event.scope,
+                countryIso: event.countryIso,
+              }))
+            : [],
+      })
+    }
+    void run()
+    return () => {
+      cancelled = true
+    }
+  }, [privileged, token])
+
   const onCountryChange = useCallback(
     (iso: string) => {
       setCountryIso(iso)
@@ -173,6 +232,10 @@ export function ContentSection() {
     () => units?.find((unit) => unit.slug === effectiveUnitSlug) ?? null,
     [units, effectiveUnitSlug]
   )
+  const selectedEvent = useMemo(
+    () => events?.find((event) => event.slug === eventSlug) ?? events?.[0] ?? null,
+    [events, eventSlug]
+  )
 
   return (
     <section aria-labelledby="content-heading" className="mt-10 space-y-4">
@@ -188,25 +251,52 @@ export function ContentSection() {
         </Badge>
       </div>
       <p className="max-w-3xl text-sm text-zinc-600">
-        A ContentItem renders one KnowledgeUnit in <span className="font-medium text-zinc-800">one
-        language × one format</span> (§7) — the fact is never re-entered. Public reads always serve
-        the <span className="font-medium text-zinc-800">live revision snapshot</span>; corrections
-        stage in the working copy and publish a <span className="font-medium text-zinc-800">new
-        immutable revision</span> with a change summary (§36 — previous versions preserved forever).
+        A ContentItem renders one canonical record in <span className="font-medium text-zinc-800">one
+        language × one format</span> (§7) — the fact is never re-entered. Since P6-S2 a record is a
+        <span className="font-medium text-zinc-800"> knowledge unit OR a current event</span> (§12
+        step 4): event representations ride the same review workflow and immutable revisions (§19/§36).
+        Public reads always serve the <span className="font-medium text-zinc-800">live revision
+        snapshot</span>; corrections stage in the working copy and publish a{' '}
+        <span className="font-medium text-zinc-800">new immutable revision</span> with a change
+        summary (§36 — previous versions preserved forever).
       </p>
 
       <Card className="border-zinc-200 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Browse context</CardTitle>
           <CardDescription>
-            Country → language → topic → knowledge unit (§5). Content language exposure follows the
+            Anchor → country → language → record (§5/§12). Content language exposure follows the
             country configuration (§35); scoping is server-side (§14/§15).
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          {/* Locale + topic + unit bar (cells min-w-0 + w-full triggers so long
-              labels truncate instead of stretching the grid on mobile) */}
+          {/* Anchor mode (P6-S2) + locale bar (cells min-w-0 + w-full triggers so
+              long labels truncate instead of stretching the grid on mobile) */}
           <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="min-w-0 space-y-1.5">
+              <UILabel htmlFor="content-anchor">Anchor</UILabel>
+              <Select
+                value={anchorMode}
+                onValueChange={(value) => {
+                  setAnchorMode(value as 'unit' | 'event')
+                  if (value === 'event') setTab('admin')
+                }}
+                disabled={!privileged}
+              >
+                <SelectTrigger id="content-anchor" className="w-full" aria-label="Select anchor type">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="unit">Knowledge unit (§7)</SelectItem>
+                  <SelectItem value="event">Current event (§12)</SelectItem>
+                </SelectContent>
+              </Select>
+              {!privileged && (
+                <p className="text-[10px] text-zinc-400">
+                  Event representations are authored by content staff (§38).
+                </p>
+              )}
+            </div>
             <div className="min-w-0 space-y-1.5">
               <UILabel htmlFor="content-country">Country</UILabel>
               <Select value={countryIso} onValueChange={onCountryChange}>
@@ -237,22 +327,50 @@ export function ContentSection() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="min-w-0 space-y-1.5">
-              <UILabel htmlFor="content-topic">Topic</UILabel>
-              <Select value={topicSlug} onValueChange={setTopicSlug} disabled={!topics}>
-                <SelectTrigger id="content-topic" className="w-full" aria-label="Select topic">
-                  <SelectValue placeholder={topics ? 'Choose a topic' : 'Loading…'} />
-                </SelectTrigger>
-                <SelectContent>
-                  {(topics ?? []).map((entry) => (
-                    <SelectItem key={entry.slug} value={entry.slug}>
-                      {entry.prefix ? `${entry.prefix} › ` : ''}
-                      {entry.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {anchorMode === 'unit' ? (
+              <div className="min-w-0 space-y-1.5">
+                <UILabel htmlFor="content-topic">Topic</UILabel>
+                <Select value={topicSlug} onValueChange={setTopicSlug} disabled={!topics}>
+                  <SelectTrigger id="content-topic" className="w-full" aria-label="Select topic">
+                    <SelectValue placeholder={topics ? 'Choose a topic' : 'Loading…'} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(topics ?? []).map((entry) => (
+                      <SelectItem key={entry.slug} value={entry.slug}>
+                        {entry.prefix ? `${entry.prefix} › ` : ''}
+                        {entry.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            ) : (
+              <div className="min-w-0 space-y-1.5">
+                <UILabel htmlFor="content-event">Current event</UILabel>
+                <Select
+                  value={selectedEvent?.slug ?? ''}
+                  onValueChange={setEventSlug}
+                  disabled={!events}
+                >
+                  <SelectTrigger id="content-event" className="w-full" aria-label="Select current event">
+                    <SelectValue
+                      placeholder={events ? 'Choose an event' : events === null ? 'Loading…' : 'No events visible'}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(events ?? []).map((entry) => (
+                      <SelectItem key={entry.slug} value={entry.slug}>
+                        {entry.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </div>
+
+          {/* The unit picker (unit mode only — the fourth cell is the event picker in event mode) */}
+          {anchorMode === 'unit' && (
             <div className="min-w-0 space-y-1.5">
               <UILabel htmlFor="content-unit">Knowledge unit</UILabel>
               <Select value={effectiveUnitSlug} onValueChange={setUnitSlug} disabled={!units}>
@@ -270,7 +388,7 @@ export function ContentSection() {
                 </SelectContent>
               </Select>
             </div>
-          </div>
+          )}
 
           {/* Tabs */}
           <div className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1" role="tablist" aria-label="Content views">
@@ -308,12 +426,29 @@ export function ContentSection() {
               <Skeleton className="h-10 w-full" />
               <Skeleton className="h-40 w-full" />
             </div>
+          ) : anchorMode === 'event' ? (
+            <div className="space-y-3">
+              <p className="flex items-start gap-2 rounded-md border border-orange-200 bg-orange-50/60 px-3 py-2 text-xs text-orange-800">
+                <Newspaper className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                Event representations (§12 step 4): the same §19 review workflow, immutable
+                revisions (§36) and §24 provenance as unit content — one rendering per language ×
+                format per event. Writers author here; publishing needs an editor (§18). The public
+                surface is the §16 event page: <span className="font-mono">#/current-affairs/{selectedEvent?.slug ?? '{slug}'}/</span>
+              </p>
+              <ContentAdmin
+                country={countryIso}
+                unit={null}
+                event={selectedEvent}
+                countryLanguages={country?.languages ?? []}
+              />
+            </div>
           ) : tab === 'explore' ? (
             <ContentExplorer country={countryIso} language={language} unit={selectedUnit} />
           ) : (
             <ContentAdmin
               country={countryIso}
               unit={selectedUnit}
+              event={null}
               countryLanguages={country?.languages ?? []}
             />
           )}

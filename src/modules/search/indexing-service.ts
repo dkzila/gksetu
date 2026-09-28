@@ -351,6 +351,147 @@ export async function buildExamDocuments(
   return { documents: [document], indexable: true }
 }
 
+// ---------- Event documents (§12/§16 current-affairs pages, P6-S2) ----------
+
+/**
+ * Projects one CurrentEvent into the index (P6-S2, §12 step 4): one document
+ * per language that carries at least one PUBLISHED event representation
+ * (§35). Visibility mirrors the public event page: ACTIVE topic, launched
+ * market (§14/§15), and ≥1 published representation (the event record alone
+ * is editorial data — publication is what makes it a public surface).
+ *
+ * §17.7 freshness = the event's OWN eventDate: current affairs are fresh by
+ * when they HAPPENED, not by when a correction landed — a correction to a
+ * two-month-old story does not make it breaking news again (the query
+ * service's 30-day window applies uniformly).
+ *
+ * §8 examRefs ride the event's §12 step 3 linked units (the §7 one-truth
+ * rule): an exam's syllabus requires the KNOWLEDGE the event touches, and the
+ * mapping flows through the same units the event page links — reader-country
+ * scoping happens at query time (§14), exactly like unit documents.
+ */
+export async function buildEventDocuments(
+  eventRef: string
+): Promise<{ documents: IndexableDocument[]; indexable: boolean }> {
+  const event = await db.currentEvent.findFirst({
+    where: CUID_PATTERN.test(eventRef) ? { id: eventRef } : { slug: eventRef.toLowerCase() },
+    include: {
+      topic: {
+        include: {
+          labels: { include: { language: true } },
+          aliases: { include: { language: true } },
+          country: true,
+        },
+      },
+      country: true,
+    },
+  })
+  if (!event) return { documents: [], indexable: false }
+
+  // Public visibility mirrors the P6-S2 page service: ACTIVE topic, and the
+  // effective scope country must have launched (§14/§15).
+  const topic = event.topic
+  if (topic.status !== 'ACTIVE') return { documents: [], indexable: false }
+  const scopeCountry = event.scope === 'COUNTRY' ? event.country : topic.scope === 'COUNTRY' ? topic.country : null
+  if (scopeCountry && scopeCountry.status !== 'ACTIVE') {
+    return { documents: [], indexable: false }
+  }
+  const countryIso = scopeCountry?.isoCode ?? null
+
+  // §35: only languages with an actually-published event representation. An
+  // event with no published representation anywhere is not a public surface
+  // (the EMERGING no-publication state — the page 404s, and so does search).
+  const items = await db.contentItem.findMany({
+    where: {
+      currentEventId: event.id,
+      status: 'PUBLISHED',
+      publishedRevisionId: { not: null },
+    },
+    include: { language: true, publishedRevision: true },
+  })
+  const byLanguage = new Map<
+    string,
+    Array<{ format: string; title: string; body: string; publishedAt: Date }>
+  >()
+  for (const item of items) {
+    if (item.language.status !== 'ACTIVE' || !item.publishedRevision) continue
+    const list = byLanguage.get(item.language.code) ?? []
+    list.push({
+      format: item.format,
+      title: item.publishedRevision.title,
+      body: item.publishedRevision.body.slice(0, BODY_EXCERPT),
+      publishedAt: item.publishedRevision.publishedAt,
+    })
+    byLanguage.set(item.language.code, list)
+  }
+  if (byLanguage.size === 0) return { documents: [], indexable: false }
+
+  // §8 exam projection through the §12 step 3 unit links — the same
+  // in-effect-mapping liveness as unit documents.
+  const unitLinks = await db.currentEventKnowledgeUnit.findMany({
+    where: { currentEventId: event.id },
+    select: { knowledgeUnitId: true },
+  })
+  const unitIds = unitLinks.map((link) => link.knowledgeUnitId)
+  const mappings =
+    unitIds.length > 0
+      ? await db.examMapping.findMany({
+          where: { knowledgeUnitId: { in: unitIds } },
+          include: { examVersion: { include: { exam: { include: { country: true } } } } },
+        })
+      : []
+  const now = Date.now()
+  const examRefs = dedupe(
+    mappings
+      .filter(
+        (mapping) =>
+          mappingIsInEffect(mapping, now) &&
+          mapping.examVersion.exam.status === 'ACTIVE' &&
+          versionIsCurrent(mapping.examVersion, now)
+      )
+      .map((mapping) => mapping.examVersion.exam.slug)
+  )
+
+  const topicAliases = topic.aliases.map((alias) => alias.value)
+  const documents: IndexableDocument[] = []
+  for (const [languageCode, representations] of byLanguage) {
+    const label = topic.labels.find((entry) => entry.language.code === languageCode)
+    const lead = representations[0]!
+    documents.push({
+      objectType: 'CURRENT_EVENT',
+      ref: event.slug,
+      languageCode,
+      countryIso,
+      // §12 canonical identity — the event title; representations live in bodyText.
+      title: event.title,
+      canonicalName: event.title,
+      summary: lead.body.slice(0, 300),
+      bodyText: dedupe([
+        event.title,
+        event.summary,
+        event.significance ?? '',
+        label?.name ?? '',
+        ...representations.map((item) => `${item.title} ${item.body}`),
+      ]).join(' '),
+      neutralText: dedupe([
+        event.title,
+        topic.canonicalName,
+        ...topicAliases,
+        slugTokens(event.slug),
+      ]).join(' '),
+      aliases: dedupe([event.title, ...topicAliases]),
+      topicSlug: topic.slug,
+      topicLabel: label?.name ?? null,
+      unitType: null,
+      difficulty: null,
+      examRefs: examRefs.length > 0 ? examRefs : null,
+      // §17.7: the event's own date (see the doc comment).
+      freshnessAt: event.eventDate,
+    })
+  }
+  return { documents, indexable: true }
+}
+
 // ---------- Targeted (re)index operations ----------
 
 /** Reindexes one object by public ref — builds when public, removes when not. */
@@ -363,7 +504,9 @@ export async function reindexObject(
       ? await buildUnitDocuments(ref)
       : objectType === 'TOPIC'
         ? await buildTopicDocuments(ref)
-        : await buildExamDocuments(ref)
+        : objectType === 'CURRENT_EVENT'
+          ? await buildEventDocuments(ref)
+          : await buildExamDocuments(ref)
 
   if (!built.indexable) {
     return removeSearchDocuments(objectType, ref)
@@ -457,6 +600,18 @@ export async function onMappingsChanged(unitRefs: string[]): Promise<void> {
   }
 }
 
+/** P6-S2: event representations publish/retire/materialize → the event's
+ * documents re-project (a newly published language joins the index; an event
+ * whose last published representation retired leaves it, §35/§36). Called by
+ * the content service inside its publish/retire paths. */
+export async function onEventChanged(eventRef: string): Promise<void> {
+  try {
+    await reindexObject('CURRENT_EVENT', eventRef)
+  } catch (error) {
+    console.error('[search] event reindex failed:', eventRef, error)
+  }
+}
+
 // ---------- Full rebuild + statistics (§38 admin console) ----------
 
 /**
@@ -471,15 +626,18 @@ export async function reindexAll(): Promise<SearchReindexResult> {
   const units = await db.knowledgeUnit.findMany({ select: { slug: true } })
   const topics = await db.topic.findMany({ select: { slug: true } })
   const exams = await db.exam.findMany({ select: { slug: true } })
+  const events = await db.currentEvent.findMany({ select: { slug: true } })
 
   let unitsIndexed = 0
   let topicsIndexed = 0
   let examsIndexed = 0
+  let eventsIndexed = 0
   let documentsWritten = 0
   const liveRefs: Record<SearchObjectTypePublic, string[]> = {
     KNOWLEDGE_UNIT: [],
     EXAM: [],
     TOPIC: [],
+    CURRENT_EVENT: [],
   }
   /** Live language variants per object — stale variants are removed (§35). */
   const liveLanguages = new Map<string, Set<string>>()
@@ -515,6 +673,11 @@ export async function reindexAll(): Promise<SearchReindexResult> {
       examsIndexed += 1
     }
   }
+  for (const event of events) {
+    if (await project('CURRENT_EVENT', event.slug, () => buildEventDocuments(event.slug))) {
+      eventsIndexed += 1
+    }
+  }
 
   // §36: a full reindex leaves no stale rows — documents of objects that left
   // the public surface are removed, and so are language variants of live
@@ -538,6 +701,7 @@ export async function reindexAll(): Promise<SearchReindexResult> {
     unitsIndexed,
     topicsIndexed,
     examsIndexed,
+    eventsIndexed,
     documentsWritten,
     documentsRemoved,
     tookMs: Date.now() - startedAt,

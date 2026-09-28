@@ -229,9 +229,17 @@ async function findUnitRow(ref: string): Promise<UnitWithTopic | null> {
 async function findItemRow(ref: string): Promise<ItemWithUnit | null> {
   // Content items have no slug (§7 identity: unit × language × format) — the
   // public representation id is the ref, the same id every knowledge page
-  // exposes on its representations.
+  // exposes on its representations. P6-S2: event representations are excluded
+  // — their public surface is the §16 event page, and CURRENT_EVENT joins the
+  // savable vocabulary with the P6-S3/S4 SavedObjectType extension. The cast
+  // is justified by the where clause: a row with knowledgeUnitId != null
+  // always carries its unit relation.
   if (!CUID_PATTERN.test(ref)) return null
-  return db.contentItem.findFirst({ where: { id: ref }, include: ITEM_INCLUDE })
+  const row = await db.contentItem.findFirst({
+    where: { id: ref, knowledgeUnitId: { not: null } },
+    include: ITEM_INCLUDE,
+  })
+  return row != null && row.knowledgeUnit != null ? (row as ItemWithUnit) : null
 }
 
 /** Unit statuses publicly readable today (§36): VERIFIED is the live truth,
@@ -585,12 +593,16 @@ export async function listMySaves(
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
 
-  const [units, items] = await Promise.all([
+  const [units, itemRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
-    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
   ])
 
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
+  // P6-S2: only unit-anchored representations hydrate (event representations
+  // are never savable as CONTENT_ITEM — their surface is the §16 event page);
+  // the where clause guarantees the unit relation on every row.
+  const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
@@ -673,11 +685,13 @@ export async function listRecentSaves(
 
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
-  const [units, items] = await Promise.all([
+  const [units, itemRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
-    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
   ])
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
+  // P6-S2: only unit-anchored representations hydrate (see the note above).
+  const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
@@ -932,10 +946,11 @@ async function hydrateSave(user: UserContext, row: SavedItem): Promise<PublicSav
     }
   }
 
-  const item = await db.contentItem.findUnique({ where: { id: row.objectId }, include: ITEM_INCLUDE })
-  if (!item) {
+  const itemRow = await db.contentItem.findUnique({ where: { id: row.objectId }, include: ITEM_INCLUDE })
+  if (!itemRow || itemRow.knowledgeUnit == null) {
     throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'The saved content item no longer exists')
   }
+  const item = itemRow as ItemWithUnit
   const market = await resolveItemMarket(item)
   return {
     id: row.id,

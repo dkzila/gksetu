@@ -51,6 +51,14 @@ const DIFFICULTY_STYLES: Record<string, string> = {
   ADVANCED: 'border-rose-200 bg-rose-50 text-rose-700',
 }
 
+/** §12 lifecycle badges for the current-affairs cards (P6-S2). */
+const LIFECYCLE_STYLES: Record<string, string> = {
+  EMERGING: 'border-amber-200 bg-amber-50 text-amber-800',
+  DEVELOPING: 'border-sky-200 bg-sky-50 text-sky-800',
+  STABLE: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  ARCHIVED: 'border-zinc-300 bg-zinc-100 text-zinc-600',
+}
+
 // ---------- Props ----------
 
 export interface HomepageViewProps {
@@ -240,6 +248,7 @@ export function HomepageView({
           onOpenTopic={onOpenTopic}
           onOpenUnit={onOpenUnit}
           onOpenExam={onOpenExam}
+          onOpenEvent={(slug) => onOpenPath(`/current-affairs/${slug}/`)}
         />
 
         {/* §35 language switcher — only this country's languages */}
@@ -498,31 +507,91 @@ export function HomepageView({
         </section>
       )}
 
-      {/* ---------- §34 current affairs (honest quiet state until P6) ---------- */}
+      {/* ---------- §34 current affairs (P6-S2: the latest published events) ---------- */}
       <section aria-labelledby="current-affairs-heading" className="space-y-4">
-        <h2 id="current-affairs-heading" className="text-xl font-semibold tracking-tight">
-          Current affairs
-        </h2>
-        <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
-          <CardContent className="flex flex-col items-start justify-between gap-3 p-5 sm:flex-row sm:items-center">
-            <div className="flex items-start gap-3">
-              <Newspaper className="mt-0.5 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
-              <div className="space-y-1">
-                <p className="text-sm font-medium text-zinc-800">The event feed is on its way</p>
-                <p className="max-w-xl text-sm text-zinc-500">{homepage.currentAffairs.note}</p>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 id="current-affairs-heading" className="text-xl font-semibold tracking-tight">
+            Current affairs
+          </h2>
+          <span className="text-xs text-zinc-400">
+            The personalised exam-aware feed arrives with the next session (P6-S4)
+          </span>
+        </div>
+        {homepage.currentAffairs.available && homepage.currentAffairs.items.length > 0 ? (
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {homepage.currentAffairs.items.map((event) => (
+              <li key={event.slug}>
+                <Card className="group h-full border-zinc-200 shadow-sm transition-colors hover:border-orange-300">
+                  <CardContent className="flex h-full flex-col gap-2 p-5">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <Badge
+                        variant="outline"
+                        className={`text-[10px] font-normal ${LIFECYCLE_STYLES[event.lifecycleState] ?? 'border-zinc-200 bg-zinc-50 text-zinc-600'}`}
+                      >
+                        {event.lifecycleState.toLowerCase()}
+                      </Badge>
+                      {event.languagesAvailable.length > 1 && (
+                        <Badge variant="outline" className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500">
+                          <Languages className="mr-1 h-3 w-3" aria-hidden="true" />
+                          {event.languagesAvailable.join(' · ')}
+                        </Badge>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      className="min-h-[44px] text-left"
+                      onClick={() => onOpenPath(event.canonicalPath)}
+                    >
+                      <p className="text-sm font-semibold leading-snug text-zinc-900 group-hover:text-orange-800">
+                        {event.title}
+                      </p>
+                    </button>
+                    {event.summary && (
+                      <p className="line-clamp-2 text-xs leading-relaxed text-zinc-500">{event.summary}</p>
+                    )}
+                    <p className="mt-auto flex items-center gap-1.5 text-[11px] text-zinc-400">
+                      <Newspaper className="h-3.5 w-3.5" aria-hidden="true" />
+                      {new Date(event.eventDate).toLocaleDateString('en-IN', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </p>
+                  </CardContent>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+            <CardContent className="flex flex-col items-start justify-between gap-3 p-5 sm:flex-row sm:items-center">
+              <div className="flex items-start gap-3">
+                <Newspaper className="mt-0.5 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-zinc-800">
+                    {homepage.currentAffairs.available
+                      ? 'No published events yet'
+                      : 'Current affairs launches with this market'}
+                  </p>
+                  <p className="max-w-xl text-sm text-zinc-500">
+                    {homepage.currentAffairs.available
+                      ? 'Event pages appear here the moment editors publish their first language update (§12/§19).'
+                      : 'This market has not launched yet — global content stays browsable meanwhile (§15).'}
+                  </p>
+                </div>
               </div>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              className="shrink-0 gap-2 border-zinc-300 bg-white hover:border-emerald-300 hover:text-emerald-700"
-              onClick={() => onOpenTopic('current-affairs')}
-            >
-              Browse the category
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-          </CardContent>
-        </Card>
+              <Button
+                variant="outline"
+                size="sm"
+                className="shrink-0 gap-2 border-zinc-300 bg-white hover:border-emerald-300 hover:text-emerald-700"
+                onClick={() => onOpenTopic('current-affairs')}
+              >
+                Browse the category
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            </CardContent>
+          </Card>
+        )}
       </section>
     </div>
   )

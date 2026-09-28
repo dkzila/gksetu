@@ -6,7 +6,7 @@
  */
 import { z } from 'zod'
 
-export const SEARCH_TYPE_FILTERS = ['all', 'units', 'exams', 'topics'] as const
+export const SEARCH_TYPE_FILTERS = ['all', 'units', 'exams', 'topics', 'events'] as const
 
 export const searchQuerySchema = z.object({
   /** §17: the query text — exact/prefix/alias/typo-tolerant/full-text. */

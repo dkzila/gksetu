@@ -82,10 +82,31 @@ export interface DiscoveryLanguage {
  * fills the live branch; until then every homepage renders the honest quiet
  * state — the discovery hub never fakes freshness (§36/§45).
  */
+export interface HomepageCurrentAffairsCard {
+  slug: string
+  title: string
+  /** One-line hook — the canonical summary, or the lead representation's
+   * opening when the resolved language has a published update. */
+  summary: string | null
+  lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+  eventDate: string
+  /** §16 canonical event-page path in the reader's language. */
+  canonicalPath: string
+  /** Languages with a published representation (§35 — the honest set). */
+  languagesAvailable: string[]
+}
+
+/** §34 homepage element: the latest published current-affairs events — the
+ * P6-S2 discovery list (NOT the exam-aware feed; personalisation arrives
+ * with P6-S4, §22 "current-affairs feed filtered by followed exams"). */
 export interface HomepageCurrentAffairs {
-  available: false
-  /** Human-readable quiet-state note (rendered as-is). */
-  note: string
+  available: boolean
+  /** The latest events with ≥1 published representation visible in the
+   * reader's country, newest first (§37 deterministic). */
+  items: HomepageCurrentAffairsCard[]
+  /** Quiet-state note when available=false (COMING_SOON markets), else the
+   * honest pointer to the personalised feed (P6-S4). */
+  note: string | null
 }
 
 /**

@@ -1,11 +1,14 @@
 /**
- * GlobIQ — Knowledge module: ContentItem input validation (P2-S2)
+ * GlobIQ — Knowledge module: ContentItem input validation (P2-S2, extended
+ * P6-S2 for event representations)
  * Master Plan §23 ("each type has its own schema and validation rules — avoid
  * a single unstructured blob"), §35 (language is a code, validated against
  * the country-locale module in the service), §36 (changeSummary provenance on
- * corrections), §37 (explicit validation errors).
+ * corrections), §37 (explicit validation errors), §12 step 4 (P6-S2: an item
+ * anchors to a KnowledgeUnit OR a CurrentEvent — exactly one, never both,
+ * never neither).
  *
- * Identity fields (unit, language, format) are create-time decisions and
+ * Identity fields (anchor, language, format) are create-time decisions and
  * immutable afterwards — the same migration-safe philosophy as the KU slug
  * (§36). Only title/body (the working copy) are patchable.
  */
@@ -97,8 +100,12 @@ export function bodyFitsFormat(
 
 export const createContentItemSchema = z
   .object({
-    /** KnowledgeUnit ref (slug or id) — the canonical record being represented (§7). */
-    unit: z.string().trim().min(1, 'A knowledge unit is required'),
+    /** KnowledgeUnit ref (slug or id) — the canonical record being represented
+     * (§7). Exactly one of `unit` / `event` is required (§12 step 4, P6-S2). */
+    unit: z.string().trim().min(1, 'A knowledge unit is required').optional(),
+    /** CurrentEvent ref (slug or id) — the event whose explanation this item
+     * renders (§12 step 4, P6-S2). Exactly one of `unit` / `event`. */
+    event: z.string().trim().min(1, 'A current event is required').optional(),
     /** Language code (validated against country-locale in the service, §35). */
     language: z.string().trim().min(2).max(8),
     format: z.enum(CONTENT_FORMATS),
@@ -109,6 +116,14 @@ export const createContentItemSchema = z
     aiAssisted: z.boolean().optional(),
   })
   .superRefine((data, ctx) => {
+    // §12 step 4 XOR invariant: one canonical anchor, never both, never neither.
+    if (!data.unit === !data.event) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: data.unit ? ['event'] : ['unit'],
+        message: 'Provide exactly one anchor: a knowledge unit (unit) or a current event (event) — never both, never neither (§7/§12)',
+      })
+    }
     const check = bodyFitsFormat(data.format, data.body)
     if (!check.ok) {
       ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['body'], message: check.message })
@@ -182,7 +197,9 @@ export type PublicContentListQuery = z.infer<typeof publicContentListQuerySchema
 
 export const adminContentListQuerySchema = z.object({
   unit: z.string().trim().min(1).optional(),
-  status: z.enum(['DRAFT', 'IN_REVIEW', 'PUBLISHED', 'RETIRED']).optional(),
+  /** P6-S2: filter to one event's representations (§12 step 4). */
+  event: z.string().trim().min(1).optional(),
+  status: z.enum(['DRAFT', 'IN_REVIEW', 'SCHEDULED', 'PUBLISHED', 'RETIRED']).optional(),
   language: z.string().trim().min(2).max(8).optional(),
   format: z.enum(CONTENT_FORMATS).optional(),
   q: z.string().trim().min(1).max(200).optional(),

@@ -9,9 +9,14 @@
  *        the §12 step 2 source aggregation workflow (shared-registry evidence,
  *        URL dedup, primary swap) and the §12 step 3 canonical
  *        KnowledgeUnit links (VERIFIED units only, the §7 one-truth rule).
- *        Publishing/revisions (P6-S2), entity/taxonomy linking (P6-S3),
- *        the exam-aware feed (P6-S4) and automated freshness rules (P6-S5)
- *        extend this module additively.
+ * P6-S2: publishing & revisions — the event's language-specific
+ *        representations ride the knowledge module's ContentItem §19 workflow
+ *        (writers enter via content:manage; the read surface here opens to
+ *        content:manage holders so they can pick anchors), and the public
+ *        §16 event page (/current-affairs/{slug}/) assembles the record, the
+ *        live revisions, the §24 evidence, and the §7 unit links.
+ *        Entity/taxonomy linking (P6-S3), the exam-aware feed (P6-S4) and
+ *        freshness rules (P6-S5) extend this module additively.
  */
 export {
   CurrentAffairsError,
@@ -27,6 +32,7 @@ export {
   attachEventKnowledgeUnit,
   detachEventKnowledgeUnit,
 } from './service'
+export { getCurrentEventPage } from './page-service'
 export {
   createCurrentEventSchema,
   updateCurrentEventSchema,
@@ -58,6 +64,12 @@ export type {
   EventScopePublic,
   EventTopicRef,
 } from './types'
+export type {
+  CurrentEventPage,
+  EventPageRepresentation,
+  EventPageSource,
+  EventPageUnit,
+} from './page-types'
 export {
   CURRENT_EVENT_LIFECYCLES,
   CURRENT_EVENT_TRANSITIONS,

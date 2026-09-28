@@ -84,7 +84,7 @@ export const sitemapQuerySchema = z
   .object({
     country: z.string().trim().min(2).max(8).optional(),
     language: z.string().trim().min(2).max(8).optional(),
-    type: z.enum(['home', 'topics', 'units', 'exams', 'syllabus']).optional(),
+    type: z.enum(['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus']).optional(),
   })
   .refine(
     (query) => {

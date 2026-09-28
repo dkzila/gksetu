@@ -24,7 +24,7 @@ import type { Envelope } from './types'
 // ---------- Types (mirror /api/search — the §17 contract subset) ----------
 
 interface SearchItem {
-  objectType: 'KNOWLEDGE_UNIT' | 'EXAM' | 'TOPIC'
+  objectType: 'KNOWLEDGE_UNIT' | 'EXAM' | 'TOPIC' | 'CURRENT_EVENT'
   ref: string
   title: string
   /** §16 canonical path in the reader's language. */
@@ -45,9 +45,11 @@ export interface SearchBoxProps {
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
+  /** P6-S2: opens the §16 current-affairs event page in-app. */
+  onOpenEvent?: (slug: string) => void
 }
 
-export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenExam }: SearchBoxProps) {
+export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenExam, onOpenEvent }: SearchBoxProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchItem[] | null>(null)
   const [total, setTotal] = useState(0)
@@ -106,10 +108,14 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
     const segments = item.urlPath.split('/').filter(Boolean)
     const gkIndex = segments.indexOf('gk')
     const examsIndex = segments.indexOf('exams')
+    const eventsIndex = segments.indexOf('current-affairs')
     if (item.objectType === 'TOPIC' && gkIndex !== -1 && segments[gkIndex + 1]) {
       onOpenTopic(segments[gkIndex + 1])
     } else if (item.objectType === 'KNOWLEDGE_UNIT' && gkIndex !== -1 && segments[gkIndex + 2]) {
       onOpenUnit(segments[gkIndex + 1], segments[gkIndex + 2])
+    } else if (item.objectType === 'CURRENT_EVENT' && eventsIndex !== -1 && segments[eventsIndex + 1]) {
+      // §16 event pages — in-app navigation since P6-S2.
+      onOpenEvent?.(segments[eventsIndex + 1])
     } else if (item.objectType === 'EXAM' && examsIndex !== -1 && segments[examsIndex + 1]) {
       // §16 exam pages — in-app navigation since P4-S3.
       onOpenExam(segments[examsIndex + 1])
@@ -193,7 +199,11 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
                         variant="outline"
                         className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
                       >
-                        {item.objectType === 'KNOWLEDGE_UNIT' ? 'unit' : item.objectType.toLowerCase()}
+                        {item.objectType === 'KNOWLEDGE_UNIT'
+                          ? 'unit'
+                          : item.objectType === 'CURRENT_EVENT'
+                            ? 'event'
+                            : item.objectType.toLowerCase()}
                       </Badge>
                       <p className="truncate text-sm font-medium text-zinc-900">{item.title}</p>
                     </div>

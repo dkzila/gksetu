@@ -7,9 +7,10 @@
  *  - `publicSearch` + `searchQuerySchema` — the §17 product surface (§38
  *    public app): GET /api/search.
  *  - `onUnitChanged` / `onTopicChanged` / `onExamChanged` / `onMappingsChanged`
- *    — indexing hooks called by the knowledge/content/taxonomy/exams/exam-
- *    mapping services after visibility-affecting mutations (§17 freshness by
- *    construction; one-way dependency — this module never imports them back).
+ *    / `onEventChanged` (P6-S2) — indexing hooks called by the
+ *    knowledge/content/taxonomy/exams/exam-mapping services after
+ *    visibility-affecting mutations (§17 freshness by construction; one-way
+ *    dependency — this module never imports them back).
  *  - `reindexAll` + `getIndexStats` — the §38 admin console surface.
  */
 export { SearchError, toSearchErrorResponse } from './errors'
@@ -24,6 +25,7 @@ export {
   buildUnitDocuments,
   buildTopicDocuments,
   buildExamDocuments,
+  buildEventDocuments,
   reindexObject,
   reindexAll,
   getIndexStats,
@@ -31,6 +33,7 @@ export {
   onTopicChanged,
   onExamChanged,
   onMappingsChanged,
+  onEventChanged,
 } from './indexing-service'
 
 export { publicSearch } from './query-service'

@@ -38,6 +38,7 @@ import { PLATFORM } from '@/config/platform'
 import { HeaderAuth } from '@/components/auth/header-auth'
 import { useAuth } from '@/stores/auth'
 import { ConsoleView } from '@/components/home/console-view'
+import { EventView } from '@/components/home/event-view'
 import { ExamView } from '@/components/home/exam-view'
 import { HomepageView } from '@/components/home/homepage-view'
 import { SyllabusView } from '@/components/home/syllabus-view'
@@ -138,6 +139,25 @@ export default function GlobIQApp() {
           unitSlug: null,
           examSlug: slug,
           syllabusTopicSlug: null,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
+  // §16 current-affairs event page (…/current-affairs/{slug}/) — P6-S2.
+  const openEvent = useCallback(
+    (slug: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'event',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          eventSlug: slug,
         },
         config
       )
@@ -261,7 +281,7 @@ export default function GlobIQApp() {
       let index = 0
 
       const first = segments[0]
-      if (first && first !== 'gk' && first !== 'exams') {
+      if (first && first !== 'gk' && first !== 'exams' && first !== 'current-affairs') {
         const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
         const defaultMarketLanguage = country.languages.find(
           (entry) => entry.code === first && entry.code !== country.defaultLanguage.code
@@ -275,7 +295,7 @@ export default function GlobIQApp() {
         }
       }
       const next = segments[index]
-      if (next && next !== 'gk' && next !== 'exams') {
+      if (next && next !== 'gk' && next !== 'exams' && next !== 'current-affairs') {
         const languageMatch = country.languages.find(
           (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
         )
@@ -293,6 +313,11 @@ export default function GlobIQApp() {
       } else if (segments[index] === 'gk' && segments[index + 1]) {
         navigateHash(
           { view: 'topic', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: null },
+          config
+        )
+      } else if (segments[index] === 'current-affairs' && segments[index + 1]) {
+        navigateHash(
+          { view: 'event', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null, eventSlug: segments[index + 1]! },
           config
         )
       } else if (segments[index] === 'exams' && segments[index + 1]) {
@@ -375,6 +400,7 @@ export default function GlobIQApp() {
           language: code,
           topicSlug: route.topicSlug,
           unitSlug: route.unitSlug,
+          eventSlug: route.eventSlug,
           examSlug: route.examSlug,
           syllabusTopicSlug: route.syllabusTopicSlug,
           page: route.page,
@@ -453,7 +479,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 5 · Session 5 — Personalisation Controls
+                Phase 6 · Session 2 — Current Affairs Publishing
               </Badge>
               <HeaderAuth />
             </div>
@@ -572,6 +598,16 @@ export default function GlobIQApp() {
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
             onOpenExam={openExam}
+            onSwitchLanguage={switchLanguage}
+          />
+        ) : route.view === 'event' && route.eventSlug ? (
+          <EventView
+            key={`${route.countryIso}:${route.language}:${route.eventSlug}`}
+            eventSlug={route.eventSlug}
+            country={route.countryIso}
+            language={route.language}
+            onGoHome={goHome}
+            onOpenUnit={openUnit}
             onSwitchLanguage={switchLanguage}
           />
         ) : route.view === 'following' ? (

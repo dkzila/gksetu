@@ -20,6 +20,7 @@ import { db } from '@/lib/db'
 import { getPublicTopic, getPublicTree, TaxonomyError } from '@/modules/taxonomy'
 
 import {
+  composeCurrentAffairs,
   composeExamCards,
   composeUnitCards,
   flattenTree,
@@ -165,6 +166,18 @@ export async function getCountryHomepage(input: {
     popularUnits = await composeUnitCards({ unitRows, context, nodeById })
   }
 
+  // ---------- §34 current affairs — the latest published events (P6-S2) ----------
+  // The DISCOVERY list: newest events with ≥1 published representation
+  // visible in the reader's country (GLOBAL events + the country's own, §14).
+  // NOT the exam-aware feed — that is P6-S4 personalisation (§22).
+  const currentAffairs: CountryHomepage['currentAffairs'] = context.countryActive
+    ? await composeCurrentAffairs(context)
+    : {
+        available: false,
+        items: [],
+        note: 'COUNTRY_COMING_SOON',
+      }
+
   // ---------- §35 language switcher — only the country's own languages ----------
   const languages: DiscoveryLanguage[] = context.publicCountry.languages.map((language) => ({
     code: language.code,
@@ -239,10 +252,7 @@ export async function getCountryHomepage(input: {
     majorTopics,
     exams,
     popularUnits,
-    currentAffairs: {
-      available: false,
-      note: 'The current-affairs event feed arrives with the Current Affairs system — until then, browse the Current Affairs category and its evergreen hubs.',
-    },
+    currentAffairs,
     stats,
   }
 }

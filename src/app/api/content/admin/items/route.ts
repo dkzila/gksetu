@@ -1,10 +1,12 @@
 /**
- * GET  /api/content/admin/items?unit=&status=&language=&format=&q= — admin
- *   list across all lifecycle statuses. ADMIN: everything. COUNTRY_ADMIN:
- *   global (read-only) + own-country content (Master Plan §38).
+ * GET  /api/content/admin/items?unit=&event=&status=&language=&format=&q= —
+ *   admin list across all lifecycle statuses. ADMIN: everything.
+ *   COUNTRY_ADMIN: global (read-only) + own-country content (Master Plan §38).
+ *   P6-S2: `event=` filters to one event's representations (§12 step 4).
  * POST /api/content/admin/items — create a representation (enters DRAFT).
- *   Identity is one unit × one language × one format (§7); the language must
- *   be configured for the unit's country (§35, server-side).
+ *   Identity is one anchor (unit OR event, §7/§12 step 4) × one language × one
+ *   format; the language must be configured for the anchor's country (§35,
+ *   server-side).
  */
 import { NextResponse } from 'next/server'
 
@@ -28,6 +30,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url)
   const parsed = adminContentListQuerySchema.safeParse({
     unit: url.searchParams.get('unit') ?? undefined,
+    event: url.searchParams.get('event') ?? undefined,
     status: url.searchParams.get('status') ?? undefined,
     language: url.searchParams.get('language') ?? undefined,
     format: url.searchParams.get('format') ?? undefined,

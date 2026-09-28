@@ -224,15 +224,28 @@ enum SourceVerification {
   UNRELIABLE // flagged unreliable/retracted — trust revoked
 }
 
-// The publishable representation (§7): one KnowledgeUnit's truth rendered in
-// ONE language and ONE format. Identity (unit + language + format) is
-// immutable post-create — the same migration-safe philosophy as the KU slug.
-// title/body are the WORKING COPY (editorial staging); published snapshots
-// live only in ContentRevision. Country scope is inherited from the Knowledge
-// Unit — a representation is never more visible than its canonical record.
+// The publishable representation (§7): one canonical record's truth rendered
+// in ONE language and ONE format. Since P6-S2 a ContentItem represents EITHER
+// a KnowledgeUnit (§7 — the knowledge layer) OR a CurrentEvent (§12 step 4 —
+// "create language-specific ContentItems for explanation": the event's
+// language-specific explanations ride the SAME §19 workflow, §36 revision
+// history and §24 provenance as unit representations; writers with
+// content:manage enter the current-affairs flow here). Exactly one anchor is
+// set — the XOR invariant is enforced by validation + the service. Identity
+// (anchor + language + format) is immutable post-create — the same
+// migration-safe philosophy as the KU slug. title/body are the WORKING COPY
+// (editorial staging); published snapshots live only in ContentRevision.
+// Country scope is inherited from the anchor (unit or event) — a
+// representation is never more visible than its canonical record.
 model ContentItem {
   id             String        @id @default(cuid())
-  knowledgeUnitId String
+  // §7 anchor (knowledge representations) — null iff currentEventId is set.
+  knowledgeUnitId String?
+  // §12 step 4 anchor (event representations, P6-S2) — null iff
+  // knowledgeUnitId is set. The event is the canonical record: the exam
+  // layer flows through the event's linked units (§7/§8), never through
+  // re-entered facts.
+  currentEventId  String?
   languageId     String
   format         ContentFormat
   status         ContentStatus @default(DRAFT)
@@ -251,19 +264,25 @@ model ContentItem {
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 
-  knowledgeUnit    KnowledgeUnit    @relation(fields: [knowledgeUnitId], references: [id])
+  knowledgeUnit    KnowledgeUnit?    @relation(fields: [knowledgeUnitId], references: [id])
+  currentEvent     CurrentEvent?     @relation("ContentItemEvent", fields: [currentEventId], references: [id], onDelete: Cascade)
   language         Language         @relation(fields: [languageId], references: [id])
   createdBy        User?            @relation("ContentItemAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   revisions        ContentRevision[] @relation("ContentItemRevisions")
   publishedRevision ContentRevision? @relation("LiveContentRevision", fields: [publishedRevisionId], references: [id])
   sourceLinks      ContentSourceLink[]
 
-  // One representation per (unit, language, format) — the §7/§11 canonical-
+  // One representation per (anchor, language, format) — the §7/§11 canonical-
   // identity rule applied to representations: never duplicate the same
-  // rendering; a second explainer in the same language is duplication.
+  // rendering; a second explainer in the same language is duplication. The DB
+  // constraint fully covers unit-anchored items; event-anchored items carry a
+  // NULL knowledgeUnitId, which Postgres treats as distinct in unique
+  // indexes — their (event, language, format) uniqueness is enforced by the
+  // service with the same REPRESENTATION_EXISTS 409 (P6-S2).
   @@unique([knowledgeUnitId, languageId, format])
   @@index([status])
   @@index([knowledgeUnitId, status])
+  @@index([currentEventId, status])
   @@index([languageId, status])
 }
 
@@ -661,6 +680,11 @@ enum SearchObjectType {
   KNOWLEDGE_UNIT // §7 canonical record — its public surface is the §22 page
   EXAM // §6 country exam — public surface is the §22 exam overview
   TOPIC // §13 canonical taxonomy node — public surface is the /gk/{topic}/ hub
+  CURRENT_EVENT // §12 event-centric record (P6-S2) — public surface is the
+  // /current-affairs/{slug}/ page; indexed once per language that carries a
+  // PUBLISHED event representation, with §17.7 freshness = the event's own
+  // eventDate (current affairs are fresh by when they HAPPENED, not by when
+  // a correction landed)
 }
 
 model SearchDocument {
@@ -1207,6 +1231,9 @@ model CurrentEvent {
   createdBy  User?     @relation("CurrentEventAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   sources    CurrentEventSource[]
   knowledgeUnits CurrentEventKnowledgeUnit[]
+  // §12 step 4 (P6-S2): the event's language-specific representations —
+  // ContentItems anchored here, riding the §19 workflow + §36 revisions.
+  representations ContentItem[] @relation("ContentItemEvent")
 
   @@index([lifecycleState])
   @@index([lifecycleState, eventDate])

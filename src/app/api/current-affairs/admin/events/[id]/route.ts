@@ -2,6 +2,8 @@
  * GET   /api/current-affairs/admin/events/{id} — the full §12 aggregation
  *   surface: event record, aggregated sources (with §24 verification states),
  *   linked canonical KnowledgeUnits and server-computed lifecycle affordances.
+ *   P6-S2: content:manage holders (writers picking representation anchors)
+ *   may read this too — mutations below still require current-affairs:manage.
  * PATCH /api/current-affairs/admin/events/{id} — §36 audited metadata edits
  *   (slug + scope immutable; ARCHIVED is read-only — reopen via transition).
  */
@@ -10,25 +12,35 @@ import { NextResponse } from 'next/server'
 import { errors, fail, ok } from '@/lib/api/response'
 import { requirePermission } from '@/lib/api/guard'
 import { checkRateLimit, clientIp, RATE_LIMITS } from '@/lib/rate-limit'
+import { can } from '@/lib/permissions'
 import {
   getAdminEvent,
   toCurrentAffairsErrorResponse,
   updateCurrentEvent,
   updateCurrentEventSchema,
 } from '@/modules/current-affairs'
+import { actorFromUser, authenticateRequest } from '@/modules/identity-access'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const auth = await requirePermission(request, 'current-affairs:manage')
-  if (auth instanceof NextResponse) return auth
+  // P6-S2: the read surface opens to content:manage holders (writers);
+  // the service re-checks §14 visibility.
+  const context = await authenticateRequest(request)
+  if (!context) return errors.unauthorized()
+  const actor = await actorFromUser(context.user)
+  if (!can(actor, 'current-affairs:manage') && !can(actor, 'content:manage')) {
+    return errors.forbidden(
+      'Viewing the event workspace requires current-affairs or content permissions'
+    )
+  }
 
   const limit = checkRateLimit(`current-affairs:read:${clientIp(request)}`, RATE_LIMITS.currentAffairsRead)
   if (!limit.allowed) return errors.rateLimited(limit.retryAfterSec)
 
   const { id } = await params
   try {
-    const event = await getAdminEvent(auth.actor, id)
+    const event = await getAdminEvent(actor, id)
     return ok({ event })
   } catch (error) {
     const mapped = toCurrentAffairsErrorResponse(error)

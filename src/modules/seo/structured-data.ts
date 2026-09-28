@@ -274,3 +274,70 @@ export function buildKnowledgeGraph(input: {
     ],
   }
 }
+
+// ---------- Current-affairs event page (P6-S2, §12/§16 NewsArticle) ----------
+
+/**
+ * The event page's NewsArticle (§16 "Structured data generated where valid:
+ * Article" — an event's published updates are news coverage of a real-world
+ * occurrence; dateline carries §6 location, and the dates follow the P4-S4
+ * semantics: datePublished = the earliest published representation shown,
+ * dateModified = the newest — the same value as PageSeo.lastModified).
+ */
+function buildNewsArticleNode(input: {
+  headline: string
+  description: string | null
+  path: string
+  inLanguage: string
+  homePath: string
+  articleSection: string
+  dateline: string | null
+  datePublished: string | null
+  dateModified: string | null
+  siteName: string
+}): JsonLdNode {
+  const node: JsonLdNode = {
+    '@type': 'NewsArticle',
+    '@id': `${input.path}#article`,
+    headline: input.headline,
+    inLanguage: input.inLanguage,
+    url: input.path,
+    mainEntityOfPage: input.path,
+    image: '/og.png',
+    articleSection: input.articleSection,
+    isPartOf: { '@id': `${input.homePath}#website` },
+    author: { '@id': '/#organization' },
+    publisher: { '@id': '/#organization' },
+  }
+  if (input.description) node.description = input.description
+  if (input.dateline) node.dateline = input.dateline
+  if (input.datePublished) node.datePublished = input.datePublished
+  if (input.dateModified) node.dateModified = input.dateModified
+  return node
+}
+
+/** The event-page graph: Organization + WebSite + BreadcrumbList + NewsArticle. */
+export function buildEventGraph(input: {
+  siteName: string
+  homePath: string
+  inLanguage: string
+  crumbs: Array<{ name: string; path: string | null }>
+  article: Parameters<typeof buildNewsArticleNode>[0]
+}): { graph: JsonLdNode[] } {
+  return {
+    graph: [
+      buildOrganizationNode({ siteName: input.siteName }),
+      buildWebSiteNode({
+        siteName: input.siteName,
+        homePath: input.homePath,
+        inLanguage: input.inLanguage,
+      }),
+      buildBreadcrumbNode({
+        crumbs: input.crumbs,
+        selfPath: input.article.path,
+        selfName: input.article.headline,
+      }),
+      buildNewsArticleNode(input.article),
+    ],
+  }
+}

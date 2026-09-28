@@ -351,7 +351,7 @@ export async function getKnowledgePage(
     })
     for (const row of grouped) {
       const code = languageCodeById.get(row.languageId)
-      if (!code) continue
+      if (!code || row.knowledgeUnitId == null) continue // P6-S2: event items carry a null unit id
       const set = languagesByUnit.get(row.knowledgeUnitId) ?? new Set<string>()
       set.add(code)
       languagesByUnit.set(row.knowledgeUnitId, set)

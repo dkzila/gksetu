@@ -2019,6 +2019,192 @@ async function main() {
     }
   }
 
+  // ---------- P6-S2: Event representations — publishing & revisions (Master
+  // Plan §12 step 4, §19, §36, §45) ----------
+  // Language-specific explanations for the seeded events, riding the SAME
+  // ContentItem machinery: the §19 workflow states, immutable published
+  // revisions (corrections carry change summaries — never silent edits), §24
+  // item-level provenance, and §35 one-rendering-per-language×format. Seed
+  // writes never overwrite live editorial edits (§36).
+
+  interface EventItemSeed {
+    eventSlug: string
+    languageCode: string
+    format: 'CURRENT_EVENT_UPDATE' | 'EXPLAINER' | 'TIMELINE' | 'REVISION_NOTE' | 'FACT_CARD' | 'PROFILE' | 'COMPARISON'
+    status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+    title?: string
+    body?: string
+    scheduledForAt?: Date
+    revisions: Array<{
+      title: string
+      body: string
+      changeSummary?: string
+      publishedAt?: Date
+    }>
+    // §24 item-level evidence: reuse the shared registry by URL.
+    sourceUrl?: string
+  }
+
+  const eventItems: EventItemSeed[] = [
+    {
+      // The flagship public event page (GLOBAL/STABLE): an English update
+      // with a correction cycle — rev 1 published, then a §36 republish with
+      // the change summary (the never-silent-edit proof), plus a Hindi
+      // rendering (§35 multilingual surface).
+      eventSlug: 'chandrayaan-3-vikram-landing',
+      languageCode: 'en',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      sourceUrl: 'https://www.isro.gov.in/Chandrayaan3.html',
+      revisions: [
+        {
+          title: 'Chandrayaan-3: Vikram soft-lands near the lunar south pole',
+          body: 'ISRO\u2019s Chandrayaan-3 mission achieved a historic soft-landing when the Vikram lander touched down near the lunar south pole at 18:04 IST on 23 August 2023. India became the fourth country to soft-land on the Moon and the first to land in the southern polar region.\n\nThe landing site was later named Shiv Shakti Point. The Pragyan rover deployed and conducted in-situ measurements over one lunar day, while the propulsion module orbited the Moon. The mission validated ISRO\u2019s autonomous landing sequence after the Chandrayaan-2 hard-landing in 2019.\n\nFor exam purposes, anchor the date (23 August), the landing site name (Shiv Shakti Point), the rover (Pragyan) and the \u201Cfourth country, first at the south pole\u201D framing — the last is the favourite one-liner.',
+          publishedAt: new Date('2023-08-23T20:00:00Z'),
+        },
+        {
+          title: 'Chandrayaan-3 landing — corrected: fourth country overall, first near the south pole',
+          body: 'ISRO\u2019s Chandrayaan-3 mission achieved a historic soft-landing when the Vikram lander touched down near the lunar south pole at 18:04 IST on 23 August 2023. India became the fourth country to soft-land on the Moon (after the USSR, the USA and China) and the first to land in the southern polar region.\n\nThe landing site was later named Shiv Shakti Point, and 23 August is observed as National Space Day. The Pragyan rover deployed and conducted in-situ measurements over one lunar day, while the propulsion module orbited the Moon.\n\nCorrection note: an early version of this update omitted the list of prior soft-landing countries. The expanded paragraph above fixes that; the exam framing stays \u201Cfourth country, first at the south pole\u201D.',
+          changeSummary: 'Added the prior soft-landing nations and the National Space Day line (§36 correction — never a silent edit)',
+          publishedAt: new Date('2023-08-24T09:30:00Z'),
+        },
+      ],
+    },
+    {
+      eventSlug: 'chandrayaan-3-vikram-landing',
+      languageCode: 'hi',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      revisions: [
+        {
+          title: 'चंद्रयान-3: विक्रम लैंडर चंद्रमा के दक्षिणी ध्रुव के पास उतरा',
+          body: '23 अगस्त 2023 को शाम लगभग 6:04 बजे इसरो के चंद्रयान-3 मिशन ने विक्रम लैंडर को चंद्रमा के दक्षिणी ध्रुव क्षेत्र के पास सुरक्षित रूप से उतारा। इस सफलता के साथ भारत चंद्रमा पर सॉफ्ट-लैंडिंग करने वाला चौथा देश और दक्षिणी ध्रुव क्षेत्र में उतरने वाला पहला देश बन गया।\n\nलैंडिंग स्थल को बाद में शिव शक्ति बिंदु नाम दिया गया। प्रज्ञान रोवर ने एक चंद्रमा-दिवस के दौरान इन-सीटू माप किए।\n\nपरीक्षा की दृष्टि से याद रखें: 23 अगस्त, शिव शक्ति बिंदु, प्रज्ञान रोवर, और \'चौथा देश, दक्षिणी ध्रुव पर पहला\' की तस्वीर।',
+          publishedAt: new Date('2023-08-24T06:00:00Z'),
+        },
+      ],
+    },
+    {
+      // A COUNTRY/IN market event with a published update — visible on the
+      // IN homepage discovery list and its §16 event page.
+      eventSlug: 'national-space-day-notification',
+      languageCode: 'en',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      sourceUrl: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1950000',
+      revisions: [
+        {
+          title: 'National Space Day notified — 23 August commemorates the Chandrayaan-3 landing',
+          body: 'The Government of India notified 23 August as National Space Day, commemorating the Chandrayaan-3 Vikram soft-landing near the lunar south pole. The first official observance cycle rolled out across institutions with outreach programmes, exhibitions and student engagements.\n\nThe day anchors directly to the Chandrayaan-3 knowledge unit: commemorative-date questions are one-liner staples in SSC and state recruitment exams, so fix the pair \u201423 August \u2194 National Space Day \u2194 Chandrayaan-3 landing (2023).',
+          publishedAt: new Date('2025-10-05T10:00:00Z'),
+        },
+      ],
+    },
+    {
+      // The §19 workflow demo on an event representation: a Hindi update in
+      // DRAFT — visible in the workspace, NOT on the public page (§35: the
+      // event is public via its English update; the Hindi one publishes later).
+      eventSlug: 'national-space-day-notification',
+      languageCode: 'hi',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'DRAFT',
+      title: 'राष्ट्रीय स्पेस डिवस — अधिसूचना की दृष्टि में',
+      body: 'भारत सरकार ने 23 अगस्त को राष्ट्रीय स्पेस डिवस घोषित किया, जो चंद्रयान-3 की सॉफ्ट-लैंडिंग की याद में है। पहला आधिकारिक निर्देशन चक्र संस्थानों में आउटरीच कार्यक्रमों के साथ शुरू हुआ। यह ड्राफ्ट प्रकाशित होने से पहले संपादकीय समीक्षा से गुजरता है (§19)।',
+      revisions: [],
+    },
+    {
+      // The ARCHIVED event keeps a published page — §36 stable identity:
+      // archiving ends updates, never the historical reference.
+      eventSlug: 'g20-new-delhi-leaders-declaration',
+      languageCode: 'en',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      sourceUrl: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1961500',
+      revisions: [
+        {
+          title: 'G20 New Delhi Leaders\u2019 Declaration adopted by consensus',
+          body: 'G20 leaders meeting in New Delhi adopted the Leaders\u2019 Declaration by consensus on the summit\u2019s opening day, 9 September 2023, covering inclusive growth, green development and multilateral reform commitments under India\u2019s presidency.\n\nIt was the first G20 declaration adopted under India\u2019s presidency and the consensus came after intense negotiation over the Ukraine language. The event is now archived (§36) — updates have ended, but the reference stays permanently relevant for international-affairs coverage.',
+          publishedAt: new Date('2023-09-09T18:30:00Z'),
+        },
+      ],
+    },
+    // Deliberately NO representation for un-security-council-reform-ign-round:
+    // the EMERGING no-publication state — the event exists for editors (§12
+    // step 1+2), its public page 404s until the first update publishes (§19/§35).
+  ]
+
+  let eventItemsSeeded = 0
+  for (const seed of eventItems) {
+    const event = await prisma.currentEvent.findUnique({ where: { slug: seed.eventSlug }, select: { id: true } })
+    const languageId = languageIdByCode.get(seed.languageCode)
+    if (!event || !languageId) {
+      console.warn(`[seed] skipping event content for "${seed.eventSlug}/${seed.languageCode}": event or language missing`)
+      continue
+    }
+
+    // Never overwrite live edits (§36) — only create when absent (the
+    // event-anchor uniqueness is (event, language, format); Postgres NULLs
+    // are distinct, so the check is explicit).
+    const existing = await prisma.contentItem.findFirst({
+      where: { currentEventId: event.id, languageId, format: seed.format },
+      select: { id: true },
+    })
+    if (existing) continue
+
+    const lastRevision = seed.revisions[seed.revisions.length - 1]
+    const item = await prisma.contentItem.create({
+      data: {
+        currentEventId: event.id,
+        languageId,
+        format: seed.format,
+        status: seed.status,
+        ...(seed.scheduledForAt ? { scheduledForAt: seed.scheduledForAt } : {}),
+        title: lastRevision?.title ?? seed.title ?? 'Untitled draft',
+        body: lastRevision?.body ?? seed.body ?? 'Draft event update — publish through the content workspace.',
+        createdById: admin.id,
+      },
+    })
+
+    let lastRevisionId: string | null = null
+    for (const [index, revision] of seed.revisions.entries()) {
+      const created = await prisma.contentRevision.create({
+        data: {
+          contentItemId: item.id,
+          revisionNumber: index + 1,
+          title: revision.title,
+          body: revision.body,
+          changeSummary: revision.changeSummary ?? null,
+          publishedById: admin.id,
+          publishedAt: revision.publishedAt ?? new Date(),
+        },
+      })
+      lastRevisionId = created.id
+    }
+    if (seed.status === 'PUBLISHED' && lastRevisionId) {
+      await prisma.contentItem.update({
+        where: { id: item.id },
+        data: { publishedRevisionId: lastRevisionId },
+      })
+    }
+
+    // §24 item-level provenance: the representation cites the same shared
+    // registry evidence the event aggregated (one record per URL).
+    if (seed.sourceUrl) {
+      const sourceId = sourceIdByUrl.get(seed.sourceUrl)
+      if (sourceId) {
+        const existingLink = await prisma.contentSourceLink.findUnique({
+          where: { contentItemId_sourceId: { contentItemId: item.id, sourceId } },
+          select: { id: true },
+        })
+        if (!existingLink) {
+          await prisma.contentSourceLink.create({
+            data: { contentItemId: item.id, sourceId, claim: null },
+          })
+        }
+      }
+    }
+    eventItemsSeeded += 1
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -2032,7 +2218,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

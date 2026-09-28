@@ -25,7 +25,12 @@ import { windowContains } from '@/modules/exams-syllabus'
 import { mappingInEffect } from '@/modules/exam-mapping'
 
 import { SeoError } from './errors'
-import type { ExamsSection, HomepageExamCard, HomepageUnitCard } from './types'
+import type {
+  ExamsSection,
+  HomepageCurrentAffairs,
+  HomepageExamCard,
+  HomepageUnitCard,
+} from './types'
 
 // ---------- Reader context ----------
 
@@ -250,7 +255,7 @@ export async function composeUnitCards(params: {
   })
   const factCardByUnit = new Map<string, string>()
   for (const card of factCards) {
-    if (card.publishedRevision) {
+    if (card.publishedRevision && card.knowledgeUnitId != null) {
       factCardByUnit.set(card.knowledgeUnitId, card.publishedRevision.body)
     }
   }
@@ -317,6 +322,125 @@ export function visibleUnitsWhere(topicIds: string[], countryId: string) {
     status: 'VERIFIED' as const,
     OR: [{ scope: 'GLOBAL' as const }, { countryId }],
   }
+}
+
+// ---------- §34 current-affairs discovery cards (P6-S2) ----------
+
+/** §34 current-affairs discovery cap — the homepage surfaces the latest
+ * published events; the full personalised feed is P6-S4. */
+const CURRENT_AFFAIRS_LIMIT = 6
+
+/** The homepage's §34 current-affairs cards: the newest events with ≥1
+ * PUBLISHED representation in a country-configured language (§35 honesty —
+ * publication is what makes an event a public surface), GLOBAL + the
+ * reader's own COUNTRY events (§14), deterministic eventDate-desc order
+ * (§37). The summary prefers the lead published representation's opening in
+ * the READER's language, falling back to the canonical (English-reference)
+ * summary — never a fake translation (§35). */
+export async function composeCurrentAffairs(
+  context: ReaderContext
+): Promise<HomepageCurrentAffairs> {
+  // The country's configured ACTIVE language ids — the §35 exposure set.
+  const languageRows = await db.language.findMany({
+    where: {
+      status: 'ACTIVE',
+      code: { in: context.publicCountry.languages.map((language) => language.code) },
+    },
+    select: { id: true, code: true },
+  })
+  if (languageRows.length === 0) {
+    return { available: true, items: [], note: null }
+  }
+
+  const published = await db.contentItem.findMany({
+    where: {
+      status: 'PUBLISHED',
+      publishedRevisionId: { not: null },
+      languageId: { in: languageRows.map((language) => language.id) },
+      currentEvent: {
+        topic: { status: 'ACTIVE' },
+        OR: [
+          { scope: 'GLOBAL' },
+          { scope: 'COUNTRY', countryId: context.countryRow.id },
+        ],
+      },
+    },
+    select: {
+      languageId: true,
+      publishedRevision: { select: { body: true } },
+      currentEvent: {
+        select: {
+          slug: true,
+          title: true,
+          summary: true,
+          eventDate: true,
+          lifecycleState: true,
+        },
+      },
+    },
+  })
+
+  const codeById = new Map(languageRows.map((language) => [language.id, language.code]))
+  const byEvent = new Map<
+    string,
+    {
+      slug: string
+      title: string
+      summary: string | null
+      readerLanguageSummary: string | null
+      lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+      eventDate: Date
+      languages: Set<string>
+    }
+  >()
+  for (const row of published) {
+    const event = row.currentEvent
+    if (!event) continue
+    const code = codeById.get(row.languageId)
+    if (!code) continue
+    const existing = byEvent.get(event.slug)
+    const opening = row.publishedRevision?.body.slice(0, 220) ?? null
+    if (!existing) {
+      byEvent.set(event.slug, {
+        slug: event.slug,
+        title: event.title,
+        summary: event.summary,
+        readerLanguageSummary: code === context.languageCode ? opening : null,
+        lifecycleState: event.lifecycleState as 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED',
+        eventDate: event.eventDate,
+        languages: new Set([code]),
+      })
+    } else {
+      existing.languages.add(code)
+      if (code === context.languageCode && existing.readerLanguageSummary == null) {
+        existing.readerLanguageSummary = opening
+      }
+    }
+  }
+
+  const items = [...byEvent.values()]
+    .sort(
+      (a, b) =>
+        b.eventDate.getTime() - a.eventDate.getTime() || // newest first (§37)
+        a.slug.localeCompare(b.slug)
+    )
+    .slice(0, CURRENT_AFFAIRS_LIMIT)
+    .map((event) => ({
+      slug: event.slug,
+      title: event.title,
+      summary: event.readerLanguageSummary ?? event.summary,
+      lifecycleState: event.lifecycleState,
+      eventDate: event.eventDate.toISOString(),
+      canonicalPath: buildCanonicalUrl(
+        { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
+        { code: context.languageCode },
+        context.defaultLanguageCode,
+        ['current-affairs', event.slug]
+      ),
+      languagesAvailable: [...event.languages].sort(),
+    }))
+
+  return { available: true, items, note: null }
 }
 
 // ---------- §34/§33 exam-card directory (P4-S2 homepage, P4-S3 exam page) ----------

@@ -37,8 +37,14 @@ import {
   resolveLocaleContext,
 } from '@/modules/country-locale'
 import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxonomy'
-import { onUnitChanged } from '@/modules/search'
+import { onEventChanged, onUnitChanged } from '@/modules/search'
 
+import {
+  anchorLabel,
+  anchorOfItem,
+  anchorTarget,
+  type ItemAnchor,
+} from './content-anchors'
 import type {
   AdminContentItem,
   AdminContentListResult,
@@ -71,6 +77,8 @@ export type ContentErrorCode =
   | 'UNIT_NOT_FOUND'
   | 'UNIT_ARCHIVED'
   | 'UNIT_NOT_VERIFIED'
+  | 'EVENT_NOT_FOUND'
+  | 'EVENT_ARCHIVED'
   | 'REPRESENTATION_EXISTS'
   | 'LANGUAGE_NOT_FOUND'
   | 'LANGUAGE_NOT_AVAILABLE'
@@ -91,6 +99,8 @@ const ERROR_STATUS: Record<ContentErrorCode, number> = {
   UNIT_NOT_FOUND: 404,
   UNIT_ARCHIVED: 400,
   UNIT_NOT_VERIFIED: 409,
+  EVENT_NOT_FOUND: 404,
+  EVENT_ARCHIVED: 409,
   REPRESENTATION_EXISTS: 409,
   LANGUAGE_NOT_FOUND: 404,
   LANGUAGE_NOT_AVAILABLE: 400,
@@ -135,6 +145,7 @@ const CUID_PATTERN = /^c[a-z0-9]{20,}$/
 type ItemRow = Prisma.ContentItemGetPayload<{
   include: {
     knowledgeUnit: true
+    currentEvent: true
     language: true
     publishedRevision: { include: { publishedBy: true } }
     _count: { select: { revisions: true; sourceLinks: true } }
@@ -144,6 +155,7 @@ type ItemRow = Prisma.ContentItemGetPayload<{
 /** The provenance-bearing include used by every item read (§24). */
 const ITEM_INCLUDE = {
   knowledgeUnit: true,
+  currentEvent: true,
   language: true,
   publishedRevision: { include: { publishedBy: true } },
   _count: { select: { revisions: true, sourceLinks: true } },
@@ -151,6 +163,13 @@ const ITEM_INCLUDE = {
 
 async function loadUnitByRef(ref: string): Promise<KnowledgeUnit | null> {
   return db.knowledgeUnit.findFirst({
+    where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
+  })
+}
+
+/** P6-S2: loads a CurrentEvent by public ref (slug or id) — §12 step 4. */
+async function loadEventByRef(ref: string) {
+  return db.currentEvent.findFirst({
     where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
   })
 }
@@ -163,28 +182,43 @@ async function loadItem(id: string): Promise<ItemRow | null> {
   })
 }
 
+/** The item's resolved anchor — every downstream decision flows through it. */
+function anchorOf(item: ItemRow): ItemAnchor {
+  const anchor = anchorOfItem(item)
+  if (!anchor) {
+    // Unreachable through the validated create path (XOR invariant); a
+    // defensive fallback that fails closed rather than leaking scope.
+    throw new ContentError('CONTENT_NOT_FOUND', 'Content item has no canonical anchor')
+  }
+  return anchor
+}
+
 /**
- * A representation's permission target: the OWNING unit's country scope (§14)
+ * A representation's permission target: the OWNING anchor's country scope (§14)
  * plus the item's language (the §20 WRITER language-scope dimension — ignored
- * by roles without a language scope).
+ * by roles without a language scope). Works identically for unit- and
+ * event-anchored representations (P6-S2).
  */
-function targetOfUnit(
-  unit: KnowledgeUnit,
+function targetOfItem(
+  anchor: ItemAnchor,
   languageId?: string | null
 ): { countryId: string | null; languageId?: string | null } {
   return {
-    countryId: unit.scope === 'COUNTRY' ? unit.countryId : null,
+    ...anchorTarget(anchor),
     ...(languageId !== undefined ? { languageId } : {}),
   }
 }
 
-/** The §19 workflow event payload for an item (task wiring). */
+/** The §19 workflow event payload for an item (task wiring) — P6-S2: the
+ * anchor is whichever canonical record the item represents. */
 function workflowItemOf(item: ItemRow): ContentWorkflowEvent['item'] {
-  const unit = item.knowledgeUnit
+  const anchor = anchorOf(item)
   return {
     id: item.id,
-    unitSlug: unit.slug,
-    countryId: unit.scope === 'COUNTRY' ? unit.countryId : null,
+    anchorKind: anchor.kind,
+    unitSlug: anchor.kind === 'unit' ? anchor.slug : null,
+    eventSlug: anchor.kind === 'event' ? anchor.slug : null,
+    countryId: anchor.countryId,
     languageId: item.languageId,
     languageCode: item.language.code,
     format: item.format,
@@ -194,8 +228,10 @@ function workflowItemOf(item: ItemRow): ContentWorkflowEvent['item'] {
 
 /** Working-copy snapshot for audit before/after (redaction truncates bodies). */
 function snapshotOf(item: ItemRow) {
+  const anchor = anchorOf(item)
   return {
-    unitSlug: item.knowledgeUnit.slug,
+    anchorKind: anchor.kind,
+    anchorSlug: anchor.slug,
     languageCode: item.language.code,
     format: item.format,
     status: item.status,
@@ -215,26 +251,27 @@ function assertCanManageContent(
   operation: string,
   meta?: AuditRequestMeta
 ): void {
-  if (can(actor, 'content:manage', targetOfUnit(item.knowledgeUnit, item.languageId))) return
+  const anchor = anchorOf(item)
+  if (can(actor, 'content:manage', targetOfItem(anchor, item.languageId))) return
   void recordAudit({
     actor: { userId: actor.userId, email: actor.email, role: actor.role },
     action: AUDIT_ACTIONS.contentDenied,
     objectType: AUDIT_OBJECT_TYPES.contentItem,
     objectId: item.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
-    before: { status: item.status, unitScope: item.knowledgeUnit.scope },
+    objectLabel: anchorLabel(anchor, item.language.code, item.format),
+    before: { status: item.status, anchorKind: anchor.kind, anchorScope: anchor.scope },
     metadata: {
       attemptedOperation: operation,
-      reason: contentDenialReason(actor, item.knowledgeUnit, item.languageId),
+      reason: contentDenialReason(actor, anchor, item.languageId),
     },
     ip: meta?.ip ?? null,
     userAgent: meta?.userAgent ?? null,
   }).catch(() => undefined) // best-effort; recordAudit itself never throws
   if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
-    if (item.knowledgeUnit.scope === 'GLOBAL') {
+    if (anchor.scope === 'GLOBAL') {
       throw new ContentError(
         'GLOBAL_CONTENT_ADMIN_ONLY',
-        'Country-scoped staff cannot manage representations of global knowledge units'
+        'Country-scoped staff cannot manage representations of global records'
       )
     }
     if (
@@ -257,11 +294,11 @@ function assertCanManageContent(
 
 function contentDenialReason(
   actor: Actor,
-  unit: KnowledgeUnit,
+  anchor: ItemAnchor,
   languageId?: string | null
 ): string {
   if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
-    if (unit.scope === 'GLOBAL') return 'GLOBAL_CONTENT_ADMIN_ONLY'
+    if (anchor.scope === 'GLOBAL') return 'GLOBAL_CONTENT_ADMIN_ONLY'
     if (
       actor.role === 'WRITER' &&
       actor.languageScopeId &&
@@ -279,12 +316,13 @@ function contentDenialReason(
  * Admin read access (taxonomy/KU parity): ADMIN sees all; COUNTRY_ADMIN and
  * WRITER (P2-S4 §18) see global (read-only) + own-country content — a writer's
  * language scope narrows only what they may MANAGE, not what they may read
- * (seeing the board's context is part of working it).
+ * (seeing the board's context is part of working it). P6-S2: identical for
+ * unit- and event-anchored representations.
  */
-function canReadContent(actor: Actor, unit: KnowledgeUnit): boolean {
+function canReadContent(actor: Actor, anchor: ItemAnchor): boolean {
   if (actor.role === 'ADMIN') return true
   if (actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') {
-    return unit.scope === 'GLOBAL' || unit.countryId === actor.countryId
+    return anchor.scope === 'GLOBAL' || anchor.countryId === actor.countryId
   }
   return false
 }
@@ -305,12 +343,12 @@ function toRevisionRef(
 }
 
 async function toAdminItem(actor: Actor, item: ItemRow): Promise<AdminContentItem> {
-  const unit = item.knowledgeUnit
-  const topic = await getTopicIdentity(unit.topicId)
-  const canManage = can(actor, 'content:manage', targetOfUnit(unit, item.languageId))
+  const anchor = anchorOf(item)
+  const topic = item.knowledgeUnit ? await getTopicIdentity(item.knowledgeUnit.topicId) : null
+  const canManage = can(actor, 'content:manage', targetOfItem(anchor, item.languageId))
   // §18 editorial gate: publish-class affordances only for content:publish
   // holders (ADMIN + COUNTRY_ADMIN — writers never see them).
-  const canPublish = can(actor, 'content:publish', targetOfUnit(unit))
+  const canPublish = can(actor, 'content:publish', targetOfItem(anchor))
   const editability = CONTENT_EDITABILITY[item.status as ContentStatusPublic]
   const machineTransitions = Object.keys(
     CONTENT_TRANSITIONS[item.status as ContentStatusPublic]
@@ -325,15 +363,35 @@ async function toAdminItem(actor: Actor, item: ItemRow): Promise<AdminContentIte
     language: { code: item.language.code, name: item.language.name, nativeName: item.language.nativeName },
     title: item.title,
     body: item.body,
-    unit: {
-      id: unit.id,
-      slug: unit.slug,
-      canonicalName: unit.canonicalName,
-      status: unit.status,
-      scope: unit.scope as 'GLOBAL' | 'COUNTRY',
-      countryIso: unit.scope === 'COUNTRY' ? topic?.countryIso ?? null : null,
-      topicSlug: topic?.slug ?? null,
-    },
+    unit: item.knowledgeUnit
+      ? {
+          id: item.knowledgeUnit.id,
+          slug: item.knowledgeUnit.slug,
+          canonicalName: item.knowledgeUnit.canonicalName,
+          status: item.knowledgeUnit.status,
+          scope: item.knowledgeUnit.scope as 'GLOBAL' | 'COUNTRY',
+          countryIso:
+            item.knowledgeUnit.scope === 'COUNTRY' ? topic?.countryIso ?? null : null,
+          topicSlug: topic?.slug ?? null,
+        }
+      : null,
+    event: item.currentEvent
+      ? {
+          id: item.currentEvent.id,
+          slug: item.currentEvent.slug,
+          title: item.currentEvent.title,
+          lifecycleState: item.currentEvent.lifecycleState,
+          scope: item.currentEvent.scope as 'GLOBAL' | 'COUNTRY',
+          countryIso:
+            item.currentEvent.scope === 'COUNTRY' && item.currentEvent.countryId
+              ? (await db.country.findUnique({
+                  where: { id: item.currentEvent.countryId },
+                  select: { isoCode: true },
+                }))?.isoCode ?? null
+              : null,
+          editable: item.currentEvent.lifecycleState !== 'ARCHIVED',
+        }
+      : null,
     liveRevision: item.publishedRevision ? toRevisionRef(item.publishedRevision) : null,
     revisionCount: item._count.revisions,
     aiAssisted: item.aiAssisted,
@@ -346,7 +404,10 @@ async function toAdminItem(actor: Actor, item: ItemRow): Promise<AdminContentIte
     // Affordances from server truth (§20) — non-managers see none; writers
     // never see publish-class actions (§18).
     allowedTransitions: canManage ? transitions : [],
-    unitVerified: unit.status === 'VERIFIED',
+    // P6-S2: the anchor publish gate — VERIFIED unit (§7) or non-ARCHIVED
+    // event (§36); the reason string explains every blocked case (§37).
+    anchorPublishable: anchor.publishable,
+    anchorBlockReason: anchor.blockReason,
   }
 }
 
@@ -444,8 +505,12 @@ async function materializeScheduledItem(itemId: string): Promise<void> {
   ) {
     return
   }
-  // §14 guard: a representation is never more visible than its record.
-  if (item.knowledgeUnit.status !== 'VERIFIED') return
+  // §14 guard: a representation is never more visible than its record — the
+  // anchor must still permit publishing (VERIFIED unit / non-ARCHIVED event).
+  // An anchor that went read-only between approval and release holds the
+  // item in SCHEDULED until the anchor reopens — the honest §36 behaviour.
+  const anchor = anchorOfItem(item)
+  if (!anchor || !anchor.publishable) return
 
   const nextNumber = await db.$transaction(async (tx) => {
     const claimed = await tx.contentItem.updateMany({
@@ -491,15 +556,20 @@ async function materializeScheduledItem(itemId: string): Promise<void> {
     action: AUDIT_ACTIONS.contentItemTransition,
     objectType: AUDIT_OBJECT_TYPES.contentItem,
     objectId: item.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+    objectLabel: anchorLabel(anchor, item.language.code, item.format),
     before: { status: 'SCHEDULED', scheduledFor: item.scheduledForAt.toISOString() },
     after: { status: 'PUBLISHED', revision: nextNumber },
     metadata: { action: 'publish', scheduled: true, materialized: 'lazy-read' },
   })
 
   // P4-S1 §17/§19: the scheduled release just became a public surface — its
-  // language variant joins the search index now, not on the next full reindex.
-  await onUnitChanged(item.knowledgeUnit.slug)
+  // language variant joins the search index now, not on the next full reindex
+  // (unit documents for unit items; event documents for event items, P6-S2).
+  if (anchor?.kind === 'event') {
+    await onEventChanged(anchor.slug)
+  } else if (item.knowledgeUnit) {
+    await onUnitChanged(item.knowledgeUnit.slug)
+  }
 }
 
 /**
@@ -509,13 +579,14 @@ async function materializeScheduledItem(itemId: string): Promise<void> {
  * per-request work stays bounded (§37).
  */
 export async function materializeDueScheduledContent(
-  scope?: { unitId?: string; itemId?: string }
+  scope?: { unitId?: string; eventId?: string; itemId?: string }
 ): Promise<void> {
   const due = await db.contentItem.findMany({
     where: {
       status: 'SCHEDULED',
       scheduledForAt: { lte: new Date() },
       ...(scope?.unitId ? { knowledgeUnitId: scope.unitId } : {}),
+      ...(scope?.eventId ? { currentEventId: scope.eventId } : {}),
       ...(scope?.itemId ? { id: scope.itemId } : {}),
     },
     select: { id: true },
@@ -612,7 +683,17 @@ export async function getPublicContentItem(
   if (!item || item.status !== 'PUBLISHED' || !item.publishedRevision) {
     throw new ContentError('CONTENT_NOT_FOUND', 'Content not found')
   }
-  const unit = item.knowledgeUnit
+  // P6-S2: an event representation's public surface is the §16 event page
+  // (/current-affairs/{slug}/) — the standalone item read is the unit
+  // representation's surface. Redirecting clients to the event page is the
+  // honest answer, not serving a decontextualised event update.
+  if (item.currentEventId) {
+    throw new ContentError(
+      'CONTENT_NOT_VISIBLE',
+      'This is a current-affairs representation — read it on its event page (/current-affairs/{slug}/, §16)'
+    )
+  }
+  const unit = item.knowledgeUnit!
 
   const resolution = await resolveLocaleContext({ country: input.country })
   const countryRow = await db.country.findFirst({
@@ -667,6 +748,14 @@ export async function getAdminContentItems(
     unitId = unit.id
   }
 
+  // P6-S2: the event filter — one event's representations (§12 step 4).
+  let eventId: string | undefined
+  if (query.event) {
+    const event = await loadEventByRef(query.event)
+    if (!event) throw new ContentError('EVENT_NOT_FOUND', `Unknown current event "${query.event}"`)
+    eventId = event.id
+  }
+
   let languageId: string | undefined
   if (query.language) {
     const language = await findActiveLanguageByCode(query.language)
@@ -675,16 +764,22 @@ export async function getAdminContentItems(
   }
 
   // COUNTRY_ADMIN + WRITER (P2-S4 §18): global (read-only) + own-country
-  // content — KU parity. The scope lives on the owning unit, so the filter
-  // rides the relation.
-  const unitScope: Prisma.KnowledgeUnitWhereInput | undefined =
+  // content — KU parity. The scope lives on the owning anchor (unit OR event,
+  // P6-S2), so the filter rides both relations.
+  const anchorScope: Prisma.ContentItemWhereInput | undefined =
     actor.role === 'ADMIN'
       ? undefined
-      : { OR: [{ scope: 'GLOBAL' }, { scope: 'COUNTRY', countryId: actor.countryId }] }
+      : {
+          OR: [
+            { knowledgeUnit: { OR: [{ scope: 'GLOBAL' }, { scope: 'COUNTRY', countryId: actor.countryId }] } },
+            { currentEvent: { OR: [{ scope: 'GLOBAL' }, { scope: 'COUNTRY', countryId: actor.countryId }] } },
+          ],
+        }
 
   const where: Prisma.ContentItemWhereInput = {
     ...(query.status ? { status: query.status } : {}),
     ...(unitId ? { knowledgeUnitId: unitId } : {}),
+    ...(eventId ? { currentEventId: eventId } : {}),
     ...(languageId ? { languageId } : {}),
     ...(query.format ? { format: query.format } : {}),
     ...(query.q
@@ -692,10 +787,11 @@ export async function getAdminContentItems(
           OR: [
             { title: { contains: query.q, mode: 'insensitive' } },
             { knowledgeUnit: { canonicalName: { contains: query.q, mode: 'insensitive' } } },
+            { currentEvent: { title: { contains: query.q, mode: 'insensitive' } } },
           ],
         }
       : {}),
-    ...(unitScope ? { knowledgeUnit: unitScope } : {}),
+    ...(anchorScope ? anchorScope : {}),
   }
 
   const [rows, total] = await Promise.all([
@@ -711,7 +807,8 @@ export async function getAdminContentItems(
 
   const items: AdminContentItem[] = []
   for (const row of rows) {
-    if (canReadContent(actor, row.knowledgeUnit)) items.push(await toAdminItem(actor, row))
+    const anchor = anchorOfItem(row)
+    if (anchor && canReadContent(actor, anchor)) items.push(await toAdminItem(actor, row))
   }
 
   return {
@@ -731,7 +828,8 @@ export async function getAdminContentItem(actor: Actor, id: string): Promise<Adm
   await materializeDueScheduledContent({ itemId: id })
   const item = await loadItem(id)
   if (!item) throw new ContentError('CONTENT_NOT_FOUND', 'Content item not found')
-  if (!canReadContent(actor, item.knowledgeUnit)) {
+  const anchor = anchorOf(item)
+  if (!canReadContent(actor, anchor)) {
     throw new ContentError(
       'COUNTRY_MISMATCH',
       'You can only view global content and your own country content'
@@ -748,7 +846,8 @@ export async function listContentRevisions(
   assertCan(actor, 'content:manage')
   const item = await loadItem(itemId)
   if (!item) throw new ContentError('CONTENT_NOT_FOUND', 'Content item not found')
-  if (!canReadContent(actor, item.knowledgeUnit)) {
+  const anchor = anchorOf(item)
+  if (!canReadContent(actor, anchor)) {
     throw new ContentError(
       'COUNTRY_MISMATCH',
       'You can only view revisions of global content and your own country content'
@@ -763,7 +862,7 @@ export async function listContentRevisions(
 
   return {
     itemId: item.id,
-    unit: { slug: item.knowledgeUnit.slug, canonicalName: item.knowledgeUnit.canonicalName },
+    anchor: { kind: anchor.kind, slug: anchor.slug, name: anchor.name },
     language: { code: item.language.code, name: item.language.name },
     format: item.format as ContentFormatPublic,
     revisions: revisions.map(toRevisionRef),
@@ -779,51 +878,91 @@ export async function createContentItem(
 ): Promise<AdminContentItem> {
   assertCan(actor, 'content:manage')
 
-  // The canonical record (§7) — representations attach to it, never re-enter it.
-  const unit = await loadUnitByRef(input.unit)
-  if (!unit) throw new ContentError('UNIT_NOT_FOUND', `Unknown knowledge unit "${input.unit}"`)
-  if (unit.status === 'ARCHIVED') {
-    throw new ContentError(
-      'UNIT_ARCHIVED',
-      'Archived units cannot receive new representations — create a new unit instead (§36)'
-    )
+  // ---------- The canonical anchor (§7 unit OR §12 step 4 event, P6-S2) ----------
+  // Representations attach to their canonical record, never re-enter it.
+  let anchor: ItemAnchor
+  let unitId: string | null = null
+  let eventId: string | null = null
+  if (input.event) {
+    const event = await loadEventByRef(input.event)
+    if (!event) throw new ContentError('EVENT_NOT_FOUND', `Unknown current event "${input.event}"`)
+    if (event.lifecycleState === 'ARCHIVED') {
+      throw new ContentError(
+        'EVENT_ARCHIVED',
+        'Archived events are read-only (§36) — reopen the event via a lifecycle transition before adding representations'
+      )
+    }
+    eventId = event.id
+    anchor = {
+      kind: 'event',
+      slug: event.slug,
+      name: event.title,
+      scope: event.scope as 'GLOBAL' | 'COUNTRY',
+      countryId: event.scope === 'COUNTRY' ? event.countryId : null,
+      archived: false,
+      publishable: true,
+      blockReason: null,
+    }
+  } else {
+    const unit = await loadUnitByRef(input.unit!)
+    if (!unit) throw new ContentError('UNIT_NOT_FOUND', `Unknown knowledge unit "${input.unit}"`)
+    if (unit.status === 'ARCHIVED') {
+      throw new ContentError(
+        'UNIT_ARCHIVED',
+        'Archived units cannot receive new representations — create a new unit instead (§36)'
+      )
+    }
+    unitId = unit.id
+    anchor = {
+      kind: 'unit',
+      slug: unit.slug,
+      name: unit.canonicalName,
+      scope: unit.scope as 'GLOBAL' | 'COUNTRY',
+      countryId: unit.scope === 'COUNTRY' ? unit.countryId : null,
+      archived: false,
+      publishable: unit.status === 'VERIFIED',
+      blockReason:
+        unit.status === 'VERIFIED'
+          ? null
+          : `The owning unit is ${unit.status} — content can only be published on VERIFIED units (§7)`,
+    }
   }
 
-  // Language (§35): must be ACTIVE; for country-scoped units it must be
-  // configured for that unit's country (enforced server-side, never by UI).
+  // Language (§35): must be ACTIVE; for country-scoped anchors it must be
+  // configured for that anchor's country (enforced server-side, never by UI).
   const language = await findActiveLanguageByCode(input.language.toLowerCase())
   if (!language) {
     throw new ContentError('LANGUAGE_NOT_FOUND', `Unknown or inactive language "${input.language}"`)
   }
-  if (unit.scope === 'COUNTRY' && unit.countryId) {
-    const configured = await isLanguageConfiguredForCountry(unit.countryId, language.id)
+  if (anchor.scope === 'COUNTRY' && anchor.countryId) {
+    const configured = await isLanguageConfiguredForCountry(anchor.countryId, language.id)
     if (!configured) {
       throw new ContentError(
         'LANGUAGE_NOT_AVAILABLE',
-        `Language "${language.code}" is not configured for this unit's country market (§35 — per-country language exposure)`
+        `Language "${language.code}" is not configured for this anchor's country market (§35 — per-country language exposure)`
       )
     }
   }
 
-  // Object-level scope: a representation inherits its unit's country scope,
+  // Object-level scope: a representation inherits its anchor's country scope,
   // and a language-scoped WRITER may only create in their language (§20).
-  if (!can(actor, 'content:manage', targetOfUnit(unit, language.id))) {
-    const reason = contentDenialReason(actor, unit, language.id)
+  if (!can(actor, 'content:manage', targetOfItem(anchor, language.id))) {
+    const reason = contentDenialReason(actor, anchor, language.id)
     await recordAudit({
       actor: { userId: actor.userId, email: actor.email, role: actor.role },
       action: AUDIT_ACTIONS.contentDenied,
       objectType: AUDIT_OBJECT_TYPES.contentItem,
       objectId: null,
-      objectLabel: `${unit.slug}/${language.code}/${input.format}`,
-      before: { unitSlug: unit.slug, unitScope: unit.scope },
+      objectLabel: `${anchor.slug}/${language.code}/${input.format}`,
+      before: { anchorKind: anchor.kind, anchorSlug: anchor.slug, anchorScope: anchor.scope },
       metadata: { attemptedOperation: 'create', reason },
       ip: meta.ip ?? null,
       userAgent: meta.userAgent ?? null,
     }).catch(() => undefined)
-    if ((actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') && unit.scope === 'GLOBAL') {
+    if ((actor.role === 'COUNTRY_ADMIN' || actor.role === 'WRITER') && anchor.scope === 'GLOBAL') {
       throw new ContentError(
         'GLOBAL_CONTENT_ADMIN_ONLY',
-        'Country-scoped staff can only create content for their own country\u2019s units'
+        'Country-scoped staff can only create content for their own country\u2019s records'
       )
     }
     if (
@@ -838,25 +977,32 @@ export async function createContentItem(
     }
     throw new ContentError(
       'COUNTRY_MISMATCH',
-      'You can only create content for your own country\u2019s units'
+      'You can only create content for your own country\u2019s records'
     )
   }
 
-  // §7/§11 identity: one representation per (unit, language, format).
+  // §7/§11 identity: one representation per (anchor, language, format). The
+  // DB constraint covers unit anchors; event anchors are checked here (NULLs
+  // are distinct in Postgres unique indexes — see the schema note).
   const existing = await db.contentItem.findFirst({
-    where: { knowledgeUnitId: unit.id, languageId: language.id, format: input.format },
+    where: {
+      ...(eventId ? { currentEventId: eventId } : { knowledgeUnitId: unitId }),
+      languageId: language.id,
+      format: input.format,
+    },
     select: { id: true, status: true },
   })
   if (existing) {
     throw new ContentError(
       'REPRESENTATION_EXISTS',
-      `A ${input.format} representation in "${language.code}" already exists for this unit (status: ${existing.status}) — one rendering per unit + language + format (§7)`
+      `A ${input.format} representation in "${language.code}" already exists for this ${anchor.kind === 'event' ? 'event' : 'unit'} (status: ${existing.status}) — one rendering per anchor + language + format (§7)`
     )
   }
 
   const created = await db.contentItem.create({
     data: {
-      knowledgeUnitId: unit.id,
+      knowledgeUnitId: unitId,
+      currentEventId: eventId,
       languageId: language.id,
       format: input.format,
       status: 'DRAFT',
@@ -873,9 +1019,14 @@ export async function createContentItem(
     action: AUDIT_ACTIONS.contentItemCreate,
     objectType: AUDIT_OBJECT_TYPES.contentItem,
     objectId: created.id,
-    objectLabel: `${unit.slug}/${language.code}/${input.format}`,
+    objectLabel: anchorLabel(anchor, language.code, input.format),
     after: snapshotOf(created),
-    metadata: { unitSlug: unit.slug, languageCode: language.code, format: input.format },
+    metadata: {
+      anchorKind: anchor.kind,
+      anchorSlug: anchor.slug,
+      languageCode: language.code,
+      format: input.format,
+    },
     ip: meta.ip ?? null,
     userAgent: meta.userAgent ?? null,
   })
@@ -925,7 +1076,7 @@ export async function updateContentItem(
     action: AUDIT_ACTIONS.contentItemUpdate,
     objectType: AUDIT_OBJECT_TYPES.contentItem,
     objectId: item.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+    objectLabel: anchorLabel(anchorOf(item), item.language.code, item.format),
     before,
     after: snapshotOf(updated),
     metadata: {
@@ -951,20 +1102,21 @@ export async function transitionContentItem(
   const item = await loadItem(id)
   if (!item) throw new ContentError('CONTENT_NOT_FOUND', 'Content item not found')
   assertCanManageContent(actor, item, `transition:${input.action}`, meta)
+  const anchor = anchorOf(item)
 
   // §18 editorial gate: publish/schedule/retire are editorial decisions —
   // writers create, edit and submit, but never publish (§18 "cannot publish
   // unless granted"). Denied here with an audit trail (§20/§30).
   if (
     PUBLISH_GATED_ACTIONS.has(input.action) &&
-    !can(actor, 'content:publish', targetOfUnit(item.knowledgeUnit))
+    !can(actor, 'content:publish', targetOfItem(anchor))
   ) {
     await recordAudit({
       actor: { userId: actor.userId, email: actor.email, role: actor.role },
       action: AUDIT_ACTIONS.contentDenied,
       objectType: AUDIT_OBJECT_TYPES.contentItem,
       objectId: item.id,
-      objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+      objectLabel: anchorLabel(anchor, item.language.code, item.format),
       before: { status: item.status },
       metadata: {
         attemptedOperation: `transition:${input.action}`,
@@ -990,10 +1142,20 @@ export async function transitionContentItem(
 
   // ---------- publish: append an immutable revision (§19/§36) ----------
   if (input.action === 'publish') {
-    if (item.knowledgeUnit.status !== 'VERIFIED') {
+    // P6-S2: the anchor publish gate — VERIFIED unit (§7) or non-ARCHIVED
+    // event (§36; an EMERGING event publishes — breaking news is the point
+    // of current affairs, §12).
+    if (anchor.kind === 'event') {
+      if (anchor.archived) {
+        throw new ContentError(
+          'EVENT_ARCHIVED',
+          'This event is archived and read-only (§36) — reopen it via a lifecycle transition before publishing its representations'
+        )
+      }
+    } else if (!anchor.publishable) {
       throw new ContentError(
         'UNIT_NOT_VERIFIED',
-        `The owning unit is ${item.knowledgeUnit.status} — content can only be published on VERIFIED units (a representation is never more visible than its record)`
+        `The owning unit is ${item.knowledgeUnit?.status} — content can only be published on VERIFIED units (a representation is never more visible than its record)`
       )
     }
     const formatCheck = bodyFitsFormat(item.format as ContentFormatPublic, item.body)
@@ -1063,11 +1225,12 @@ export async function transitionContentItem(
       action: AUDIT_ACTIONS.contentItemTransition,
       objectType: AUDIT_OBJECT_TYPES.contentItem,
       objectId: item.id,
-      objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+      objectLabel: anchorLabel(anchor, item.language.code, item.format),
       before: { status: item.status, liveRevision: item.publishedRevision?.revisionNumber ?? null },
       after: { status: 'PUBLISHED', revision: nextNumber },
       metadata: {
         action: 'publish',
+        anchorKind: anchor.kind,
         revisionNumber: nextNumber,
         changeSummary: input.changeSummary?.trim() ?? null,
         republished: isRepublish,
@@ -1077,9 +1240,15 @@ export async function transitionContentItem(
       userAgent: meta.userAgent ?? null,
     })
 
-    // P4-S1 §17: a published/republished representation re-projects the unit's
-    // documents (new language variant, new title/body text, new freshness).
-    await onUnitChanged(item.knowledgeUnit.slug)
+    // P4-S1 §17 / P6-S2: a published/republished representation re-projects
+    // its anchor's documents (new language variant, new title/body text, new
+    // freshness) — unit documents for unit items, event documents for event
+    // items (the event page is the public surface).
+    if (anchor.kind === 'event') {
+      await onEventChanged(anchor.slug)
+    } else {
+      await onUnitChanged(anchor.slug)
+    }
 
     const refreshed = await loadItem(item.id)
     return toAdminItem(actor, refreshed!)
@@ -1094,10 +1263,18 @@ export async function transitionContentItem(
         'A valid future release time is required to schedule content (§19 step 7)'
       )
     }
-    if (item.knowledgeUnit.status !== 'VERIFIED') {
+    // P6-S2: the same anchor publish gate as publish (§36/§7).
+    if (anchor.kind === 'event') {
+      if (anchor.archived) {
+        throw new ContentError(
+          'EVENT_ARCHIVED',
+          'This event is archived and read-only (§36) — reopen it via a lifecycle transition before scheduling its representations'
+        )
+      }
+    } else if (!anchor.publishable) {
       throw new ContentError(
         'UNIT_NOT_VERIFIED',
-        `The owning unit is ${item.knowledgeUnit.status} — only VERIFIED units' content can be scheduled (a representation is never more visible than its record)`
+        `The owning unit is ${item.knowledgeUnit?.status} — only VERIFIED units' content can be scheduled (a representation is never more visible than its record)`
       )
     }
     const formatCheck = bodyFitsFormat(item.format as ContentFormatPublic, item.body)
@@ -1126,7 +1303,7 @@ export async function transitionContentItem(
       action: AUDIT_ACTIONS.contentItemTransition,
       objectType: AUDIT_OBJECT_TYPES.contentItem,
       objectId: item.id,
-      objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+      objectLabel: anchorLabel(anchor, item.language.code, item.format),
       before: { status: item.status },
       after: { status: 'SCHEDULED', scheduledFor: when.toISOString() },
       metadata: { action: 'schedule', scheduledFor: when.toISOString() },
@@ -1163,7 +1340,7 @@ export async function transitionContentItem(
     action: AUDIT_ACTIONS.contentItemTransition,
     objectType: AUDIT_OBJECT_TYPES.contentItem,
     objectId: item.id,
-    objectLabel: `${item.knowledgeUnit.slug}/${item.language.code}/${item.format}`,
+    objectLabel: anchorLabel(anchor, item.language.code, item.format),
     before: { status: item.status },
     after: {
       status: target,
@@ -1177,10 +1354,14 @@ export async function transitionContentItem(
   })
 
   // P4-S1 §17/§19 step 10: retiring withdraws a public representation — the
-  // unit's documents are re-projected (and a unit whose last representation
-  // in a language retired loses that language's document, §35).
+  // anchor's documents are re-projected (and an anchor whose last
+  // representation in a language retired loses that language's document, §35).
   if (input.action === 'retire') {
-    await onUnitChanged(item.knowledgeUnit.slug)
+    if (anchor.kind === 'event') {
+      await onEventChanged(anchor.slug)
+    } else {
+      await onUnitChanged(anchor.slug)
+    }
   }
 
   return toAdminItem(actor, updated)
