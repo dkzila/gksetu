@@ -11,7 +11,7 @@
  * mutation audited), §37 (typed errors mapped to HTTP by route handlers,
  * deterministic ordering), §38 (scoped console surface).
  */
-import type { Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 import { db } from '@/lib/db'
 import { assertCan, can, type Actor } from '@/lib/permissions'

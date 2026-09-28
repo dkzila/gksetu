@@ -608,6 +608,7 @@ export default function GlobIQApp() {
             language={route.language}
             onGoHome={goHome}
             onOpenUnit={openUnit}
+            onOpenTopic={openTopic}
             onSwitchLanguage={switchLanguage}
           />
         ) : route.view === 'following' ? (
@@ -618,7 +619,12 @@ export default function GlobIQApp() {
             onSignIn={goSignIn}
           />
         ) : route.view === 'saved' ? (
-          <SavedView onOpenSavedUnit={openSavedUnit} onGoHome={goHome} onSignIn={goSignIn} />
+          <SavedView
+            onOpenSavedUnit={openSavedUnit}
+            onOpenEvent={openEvent}
+            onGoHome={goHome}
+            onSignIn={goSignIn}
+          />
         ) : route.view === 'onboarding' ? (
           <OnboardingView onDone={goHome} onGoProfile={() => window.location.assign('#/profile')} onSignIn={goSignIn} />
         ) : route.view === 'profile' ? (

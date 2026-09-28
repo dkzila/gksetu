@@ -17,6 +17,7 @@
 export type InventorySignalKind =
   | 'FOLLOWED_EXAM'
   | 'FOLLOWED_TOPIC'
+  | 'FOLLOWED_ENTITY'
   | 'GOAL_EXAM'
   | 'GOAL_SUBJECT'
   | 'GOAL_PREFERENCE'

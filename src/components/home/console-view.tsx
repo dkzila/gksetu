@@ -61,6 +61,7 @@ import { PersonalisationSection } from '@/components/personalisation/personalisa
 import { DashboardSection } from '@/components/personalisation/dashboard-section'
 import { ControlsSection } from '@/components/personalisation/controls-section'
 import { CurrentAffairsSection } from '@/components/current-affairs/current-affairs-section'
+import { EntitiesSection } from '@/components/entities/entities-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
@@ -383,6 +384,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Current affairs — §12 events, aggregation & publishing (P6-S1/S2) ---------- */}
       <CurrentAffairsSection />
 
+      {/* ---------- Entities — §6/§12 step 3 reference registry (P6-S3) ---------- */}
+      <EntitiesSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -436,7 +440,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P6-S2 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P6-S3 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

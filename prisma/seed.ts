@@ -1835,6 +1835,122 @@ async function main() {
     sourceIdByUrl.set(created.url, created.id)
   }
 
+  // ---------- P6-S3: Entity registry — the canonical reference records (Master
+  // Plan §6 Entity row, §12 step 3, §13, §14, §36, §45) ----------
+  // Persons/places/organisations/concepts as canonical records (the
+  // Topic/Source precedent): one row per real-world entity, aliases for §17
+  // search matching, §14 GLOBAL/COUNTRY scope, §36 soft delete. Seed writes
+  // never overwrite live editorial edits.
+
+  interface EntitySeed {
+    slug: string
+    canonicalName: string
+    type: 'PERSON' | 'PLACE' | 'ORGANISATION' | 'CONCEPT'
+    status?: 'ACTIVE' | 'RETIRED'
+    scope: 'GLOBAL' | 'COUNTRY'
+    description?: string
+    notes?: string
+    aliases: Array<{ value: string; language?: string }>
+  }
+
+  const entitySeeds: EntitySeed[] = [
+    {
+      slug: 'isro',
+      canonicalName: 'Indian Space Research Organisation',
+      type: 'ORGANISATION',
+      scope: 'GLOBAL',
+      description: "India's national space agency (est. 1969), operator of the Chandrayaan lunar programme.",
+      aliases: [{ value: 'ISRO' }, { value: 'Indian Space Research Organisation' }],
+    },
+    {
+      slug: 'chandrayaan-3',
+      canonicalName: 'Chandrayaan-3',
+      type: 'CONCEPT',
+      scope: 'GLOBAL',
+      description: "ISRO's third lunar mission (2023) — the Vikram lander's south-polar soft landing.",
+      aliases: [{ value: 'Chandrayaan 3' }, { value: 'चंद्रयान-3', language: 'hi' }],
+    },
+    {
+      slug: 'united-nations-security-council',
+      canonicalName: 'United Nations Security Council',
+      type: 'ORGANISATION',
+      scope: 'GLOBAL',
+      description: "The UN's 15-member organ for international peace and security, with five permanent veto-holding members.",
+      aliases: [{ value: 'UNSC' }, { value: 'Security Council' }],
+    },
+    {
+      slug: 'g20',
+      canonicalName: 'G20',
+      type: 'ORGANISATION',
+      scope: 'GLOBAL',
+      description: "The Group of Twenty — the forum of the world's major economies, summited annually since 2008.",
+      aliases: [{ value: 'Group of Twenty' }, { value: 'G-20' }],
+    },
+    {
+      slug: 'new-delhi',
+      canonicalName: 'New Delhi',
+      type: 'PLACE',
+      scope: 'COUNTRY',
+      description: "India's capital and the seat of the Union Government.",
+      aliases: [{ value: 'Delhi' }],
+    },
+    {
+      slug: 'planning-commission',
+      canonicalName: 'Planning Commission of India',
+      type: 'ORGANISATION',
+      status: 'RETIRED',
+      scope: 'COUNTRY',
+      description: "India's central planning body (1950–2014), replaced by NITI Aayog — kept as historical reference (§36).",
+      notes: 'Retired seed record — demonstrates §36 soft delete: no new links/follows, history preserved.',
+      aliases: [{ value: 'Planning Commission' }],
+    },
+  ]
+
+  const entityIdBySlug = new Map<string, string>()
+  let entitiesSeeded = 0
+  let entityAliasesSeeded = 0
+  for (const seed of entitySeeds) {
+    const languageIdByCode = new Map<string, string>()
+    for (const alias of seed.aliases) {
+      if (!alias.language) continue
+      const language = await prisma.language.findUnique({ where: { code: alias.language }, select: { id: true } })
+      if (language) languageIdByCode.set(alias.language, language.id)
+    }
+    const entity = await prisma.entity.upsert({
+      where: { slug: seed.slug },
+      update: {}, // never overwrite live editorial edits on re-seed (§36)
+      create: {
+        slug: seed.slug,
+        canonicalName: seed.canonicalName,
+        type: seed.type,
+        status: seed.status ?? 'ACTIVE',
+        scope: seed.scope,
+        countryId: seed.scope === 'COUNTRY' ? india.id : null,
+        description: seed.description ?? null,
+        notes: seed.notes ?? null,
+      },
+    })
+    entityIdBySlug.set(seed.slug, entity.id)
+    entitiesSeeded += 1
+
+    for (const alias of seed.aliases) {
+      const existing = await prisma.entityAlias.findUnique({
+        where: { entityId_value: { entityId: entity.id, value: alias.value } },
+        select: { id: true },
+      })
+      if (existing) continue
+      await prisma.entityAlias.create({
+        data: {
+          entityId: entity.id,
+          value: alias.value,
+          languageId: alias.language ? (languageIdByCode.get(alias.language) ?? null) : null,
+        },
+      })
+      entityAliasesSeeded += 1
+    }
+  }
+  console.log(`[seed] entity registry: ${entitiesSeeded} records, ${entityAliasesSeeded} aliases`)
+
   interface EventSeed {
     slug: string
     title: string
@@ -1848,6 +1964,10 @@ async function main() {
     topicSlug: string
     sources: Array<{ url: string; isPrimary?: boolean; note?: string }>
     unitLinks?: Array<{ slug: string; note: string }>
+    /** P6-S3 §12 step 3 — who/what the event is about (Entity slugs). */
+    entityLinks?: Array<{ slug: string; note: string }>
+    /** P6-S3 §12 step 3 — additional-topic cross-filings (§13). */
+    topicLinks?: Array<{ slug: string; note: string }>
     notes?: string
   }
 
@@ -1879,6 +1999,14 @@ async function main() {
       unitLinks: [
         { slug: 'chandrayaan-3-landing-2023', note: 'The canonical knowledge this event established — the §7 one-truth link.' },
       ],
+      entityLinks: [
+        { slug: 'isro', note: 'The landing agency — mission operator and confirmation source.' },
+        { slug: 'chandrayaan-3', note: 'The mission itself — the event IS this entity in action.' },
+      ],
+      topicLinks: [
+        { slug: 'space-technology', note: 'The landing pushed India\'s space-technology frontier.' },
+        { slug: 'science-technology', note: 'The broader S&T domain the story files under.' },
+      ],
     },
     {
       slug: 'national-space-day-notification',
@@ -1902,6 +2030,12 @@ async function main() {
       unitLinks: [
         { slug: 'chandrayaan-3-landing-2023', note: 'The day commemorates this landing — the underlying canonical knowledge.' },
       ],
+      entityLinks: [
+        { slug: 'isro', note: 'The agency whose 2023 landing the day commemorates.' },
+      ],
+      topicLinks: [
+        { slug: 'space-technology', note: 'The domain the observance celebrates.' },
+      ],
     },
     {
       slug: 'un-security-council-reform-ign-round',
@@ -1922,6 +2056,12 @@ async function main() {
           note: 'First aggregated source — the §12 emerging flow: the event exists so five publishers never become five objects.',
         },
       ],
+      entityLinks: [
+        { slug: 'united-nations-security-council', note: 'The body under reform negotiation.' },
+      ],
+      topicLinks: [
+        { slug: 'international-organisations', note: 'The broader org-reform branch the story cross-files under.' },
+      ],
     },
     {
       slug: 'g20-new-delhi-leaders-declaration',
@@ -1940,12 +2080,21 @@ async function main() {
         { url: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1961500', isPrimary: true, note: 'Official adoption record.' },
         { url: 'https://www.thehindu.com/news/national/g20-new-delhi-leaders-declaration/', note: 'Consensus-day reporting.' },
       ],
+      entityLinks: [
+        { slug: 'g20', note: 'The forum whose declaration was adopted.' },
+        { slug: 'new-delhi', note: 'The summit city — a COUNTRY-scoped entity linked from a COUNTRY/IN event (§14).' },
+      ],
+      topicLinks: [
+        { slug: 'international-organisations', note: 'A multilateral-forum outcome cross-filed here.' },
+      ],
     },
   ]
 
   let eventsSeeded = 0
   let eventSourcesSeeded = 0
   let eventUnitsSeeded = 0
+  let eventEntitiesSeeded = 0
+  let eventTopicsSeeded = 0
   for (const seed of currentEvents) {
     const topicId = topicIdBySlug.get(seed.topicSlug)
     if (!topicId) {
@@ -2017,7 +2166,55 @@ async function main() {
       })
       eventUnitsSeeded += 1
     }
+
+    // P6-S3 §12 step 3 — entity links (who/what the event is about). ACTIVE
+    // entities only (§36); the link is live editorial metadata — detach never
+    // deletes the registry record.
+    for (const entityLink of seed.entityLinks ?? []) {
+      const entity = await prisma.entity.findUnique({
+        where: { slug: entityLink.slug },
+        select: { id: true, status: true },
+      })
+      if (!entity || entity.status !== 'ACTIVE') {
+        console.warn(`[seed] skipping entity link on "${seed.slug}": entity "${entityLink.slug}" missing or not ACTIVE`)
+        continue
+      }
+      const existing = await prisma.currentEventEntity.findUnique({
+        where: { currentEventId_entityId: { currentEventId: event.id, entityId: entity.id } },
+        select: { id: true },
+      })
+      if (existing) continue
+      await prisma.currentEventEntity.create({
+        data: { currentEventId: event.id, entityId: entity.id, note: entityLink.note },
+      })
+      eventEntitiesSeeded += 1
+    }
+
+    // P6-S3 §12 step 3 — additional-topic cross-filings (§13 containment:
+    // COUNTRY topics only file same-market COUNTRY events).
+    for (const topicLink of seed.topicLinks ?? []) {
+      const topic = await prisma.topic.findUnique({
+        where: { slug: topicLink.slug },
+        select: { id: true, status: true },
+      })
+      if (!topic || topic.status !== 'ACTIVE') {
+        console.warn(`[seed] skipping topic link on "${seed.slug}": topic "${topicLink.slug}" missing or not ACTIVE`)
+        continue
+      }
+      const existing = await prisma.currentEventTopic.findUnique({
+        where: { currentEventId_topicId: { currentEventId: event.id, topicId: topic.id } },
+        select: { id: true },
+      })
+      if (existing) continue
+      await prisma.currentEventTopic.create({
+        data: { currentEventId: event.id, topicId: topic.id, note: topicLink.note },
+      })
+      eventTopicsSeeded += 1
+    }
   }
+  console.log(
+    `[seed] current events: ${eventsSeeded} events, ${eventSourcesSeeded} source links, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings`
+  )
 
   // ---------- P6-S2: Event representations — publishing & revisions (Master
   // Plan §12 step 4, §19, §36, §45) ----------
@@ -2218,7 +2415,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

@@ -641,10 +641,16 @@ export function SavesSection() {
                         className="flex flex-wrap items-baseline gap-x-2 gap-y-1 rounded-md border border-zinc-100 bg-zinc-50/60 px-3 py-2 text-xs"
                       >
                         <Badge variant="outline" className="font-mono text-[10px] font-normal text-zinc-500">
-                          {item.object.kind === 'KNOWLEDGE_UNIT' ? 'UNIT' : item.object.format}
+                          {item.object.kind === 'KNOWLEDGE_UNIT'
+                            ? 'UNIT'
+                            : item.object.kind === 'CURRENT_EVENT'
+                              ? item.object.lifecycleState
+                              : item.object.format}
                         </Badge>
                         <span className="font-medium text-zinc-800">
-                          {item.object.kind === 'KNOWLEDGE_UNIT' ? item.object.canonicalName : item.object.title}
+                          {item.object.kind === 'KNOWLEDGE_UNIT'
+                            ? item.object.canonicalName
+                            : item.object.title}
                         </span>
                         <span className="font-mono text-[10px] text-zinc-400">{item.object.canonicalPath}</span>
                         <span className="ml-auto text-zinc-400">

@@ -24,7 +24,9 @@ import {
   RefreshCw,
   ShieldAlert,
   Star,
+  Tag,
   Trash2,
+  Users,
   Zap,
 } from 'lucide-react'
 
@@ -94,6 +96,37 @@ interface AdminEventDetail extends AdminEvent {
     linkedAt: string
     unit: { id: string; slug: string; canonicalName: string; status: string; type: string; topicSlug: string | null }
   }>
+  /** P6-S3 §12 step 3 — the entity links (who/what the event is about). */
+  entities: Array<{
+    id: string
+    note: string | null
+    linkedAt: string
+    entity: {
+      id: string
+      slug: string
+      canonicalName: string
+      type: string
+      status: string
+      scope: string
+      countryIso: string | null
+      description: string | null
+    }
+  }>
+  /** P6-S3 §12 step 3 — additional-topic cross-filings. */
+  additionalTopics: Array<{
+    id: string
+    note: string | null
+    linkedAt: string
+    topic: {
+      id: string
+      slug: string
+      canonicalName: string
+      type: string
+      status: string
+      scope: string
+      countryIso: string | null
+    }
+  }>
   allowedTransitions: Lifecycle[]
   editable: boolean
 }
@@ -133,6 +166,9 @@ const API_ROWS: Array<{ method: string; path: string; note: string }> = [
   { method: 'POST', path: '/api/current-affairs/admin/events/{id}/sources', note: '§12 step 2 — aggregate evidence (URL dedup, §11)' },
   { method: 'PATCH/DELETE', path: '/api/current-affairs/admin/events/{id}/sources/{linkId}', note: 'Note/primary swap · detach (registry preserved)' },
   { method: 'POST/DELETE', path: '/api/current-affairs/admin/events/{id}/knowledge-units[/{linkId}]', note: '§12 step 3 — VERIFIED canonical unit links (§7)' },
+  { method: 'POST/DELETE', path: '/api/current-affairs/admin/events/{id}/entities[/{linkId}]', note: 'P6-S3 §12 step 3 — ACTIVE entity links (registry preserved on detach, §36)' },
+  { method: 'POST/DELETE', path: '/api/current-affairs/admin/events/{id}/topics[/{linkId}]', note: 'P6-S3 §12 step 3 — additional-topic cross-filings (§13 containment)' },
+  { method: 'GET/POST/PATCH', path: '/api/entities/admin[/{id}]', note: 'P6-S3 — the Entity reference registry (persons/places/orgs/concepts, §14 scope, aliases)' },
 ]
 
 const DEMO_TOPICS = [
@@ -200,6 +236,11 @@ export function CurrentAffairsSection() {
   const [attachPublisher, setAttachPublisher] = useState('')
   const [attachType, setAttachType] = useState<(typeof SOURCE_TYPES)[number]>('NEWS_MEDIA')
   const [unitSlug, setUnitSlug] = useState('chandrayaan-3-landing-2023')
+  // P6-S3 §12 step 3 — entity + additional-topic linking mini-forms.
+  const [entitySlug, setEntitySlug] = useState('isro')
+  const [entityNote, setEntityNote] = useState('')
+  const [xTopicSlug, setXTopicSlug] = useState('space-technology')
+  const [xTopicNote, setXTopicNote] = useState('')
 
   const authHeaders = { Authorization: `Bearer ${token}` }
 
@@ -467,6 +508,81 @@ export function CurrentAffairsSection() {
     )
   }
 
+  // ---------- P6-S3 §12 step 3: entity + additional-topic linking ----------
+
+  async function handleLinkEntity(id: string) {
+    if (!entitySlug.trim()) {
+      toast({ title: 'Entity required', description: 'Enter the entity slug to link (e.g. isro).', variant: 'destructive' })
+      return
+    }
+    const payload = await call(
+      'link-entity',
+      () =>
+        fetch(`/api/current-affairs/admin/events/${id}/entities`, {
+          method: 'POST',
+          headers: { ...authHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            entity: entitySlug.trim(),
+            ...(entityNote.trim() ? { note: entityNote.trim() } : {}),
+          }),
+        }),
+      'Entity linked (§12 step 3)',
+      'Who/what this event is about — ACTIVE entities only (§36).'
+    )
+    if (payload?.status === 'ok') {
+      setEntityNote('')
+    }
+  }
+
+  async function handleUnlinkEntity(eventId: string, linkId: string) {
+    await call(
+      `unlink-entity-${linkId}`,
+      () =>
+        fetch(`/api/current-affairs/admin/events/${eventId}/entities/${linkId}`, {
+          method: 'DELETE',
+          headers: authHeaders,
+        }),
+      'Entity link removed',
+      'The registry record and its other links stay (§36).'
+    )
+  }
+
+  async function handleLinkTopic(id: string) {
+    if (!xTopicSlug.trim()) {
+      toast({ title: 'Topic required', description: 'Enter the topic slug to cross-file under.', variant: 'destructive' })
+      return
+    }
+    const payload = await call(
+      'link-topic',
+      () =>
+        fetch(`/api/current-affairs/admin/events/${id}/topics`, {
+          method: 'POST',
+          headers: { ...authHeaders, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            topic: xTopicSlug.trim(),
+            ...(xTopicNote.trim() ? { note: xTopicNote.trim() } : {}),
+          }),
+        }),
+      'Cross-filing added (§12 step 3)',
+      'The primary topic stays the breadcrumb anchor — this is an additional filing.'
+    )
+    if (payload?.status === 'ok') {
+      setXTopicNote('')
+    }
+  }
+
+  async function handleUnlinkTopic(eventId: string, linkId: string) {
+    await call(
+      `unlink-topic-${linkId}`,
+      () =>
+        fetch(`/api/current-affairs/admin/events/${eventId}/topics/${linkId}`, {
+          method: 'DELETE',
+          headers: authHeaders,
+        }),
+      'Cross-filing removed'
+    )
+  }
+
   const summary = list?.summary
 
   return (
@@ -489,7 +605,8 @@ export function CurrentAffairsSection() {
         relevant <span className="font-medium text-zinc-800">VERIFIED</span> KnowledgeUnits link through the §7
         one-truth rule, and the lifecycle matures{' '}
         <span className="font-medium text-zinc-800">emerging → developing → stable → archived</span> with full audit
-        history (§36). Publishing/revisions land in P6-S2; entities and taxonomy linking in P6-S3; the exam-aware feed
+        history (§36). Publishing/revisions landed in P6-S2; entity and taxonomy linking (this session, P6-S3) tags who/what the
+        event is about via the shared Entity registry and cross-files it under additional topics; the exam-aware feed
         in P6-S4; automated freshness rules in P6-S5.
       </p>
 
@@ -986,6 +1103,170 @@ export function CurrentAffairsSection() {
                                         <Link2 className="h-3.5 w-3.5" aria-hidden="true" />
                                       )}
                                       Link unit
+                                    </Button>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* P6-S3 §12 step 3: entity links — who/what the event is about */}
+                              <div className="space-y-2">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                                  Entities — who/what this is about (§12 step 3) — {detail.entities.length}
+                                </p>
+                                {detail.entities.length > 0 ? (
+                                  <ul className="space-y-1.5" aria-label="Linked entities">
+                                    {detail.entities.map((link) => (
+                                      <li
+                                        key={link.id}
+                                        className="flex flex-wrap items-center gap-2 rounded-md border border-zinc-100 bg-zinc-50/50 px-3 py-2"
+                                      >
+                                        <Users className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+                                        <span className="text-sm text-zinc-800">{link.entity.canonicalName}</span>
+                                        <Badge variant="outline" className="border-violet-200 bg-violet-50 font-normal text-violet-700">
+                                          {link.entity.type.toLowerCase()}
+                                        </Badge>
+                                        <Badge
+                                          variant="outline"
+                                          className={`font-normal ${
+                                            link.entity.status === 'ACTIVE'
+                                              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                                              : 'border-zinc-200 bg-zinc-100 text-zinc-500'
+                                          }`}
+                                        >
+                                          {link.entity.status.toLowerCase()}
+                                        </Badge>
+                                        <span className="font-mono text-[10px] text-zinc-400">
+                                          {link.entity.scope === 'COUNTRY' ? link.entity.countryIso : 'GLOBAL'}
+                                        </span>
+                                        {link.note && <span className="text-xs italic text-zinc-400">{link.note}</span>}
+                                        {detail.editable && (
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            disabled={busy === `unlink-entity-${link.id}`}
+                                            onClick={() => void handleUnlinkEntity(detail.id, link.id)}
+                                            className="ml-auto h-7 px-2 text-xs text-red-600 hover:text-red-700"
+                                            aria-label={`Unlink ${link.entity.canonicalName}`}
+                                          >
+                                            <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
+                                          </Button>
+                                        )}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <p className="text-xs text-zinc-400">
+                                    No entities linked yet — tag the people, places and organisations this event involves.
+                                  </p>
+                                )}
+                                {detail.editable && (
+                                  <div className="flex flex-col gap-2 rounded-md border border-dashed border-zinc-200 p-3 sm:flex-row sm:items-end">
+                                    <div className="grid flex-1 gap-2 sm:grid-cols-3">
+                                      <Input
+                                        value={entitySlug}
+                                        onChange={(changeEvent) => setEntitySlug(changeEvent.target.value)}
+                                        placeholder="Entity slug (e.g. isro)"
+                                        className="bg-white text-xs"
+                                        aria-label="Entity slug"
+                                      />
+                                      <Input
+                                        value={entityNote}
+                                        onChange={(changeEvent) => setEntityNote(changeEvent.target.value)}
+                                        placeholder="Why relevant (optional)"
+                                        className="bg-white text-xs sm:col-span-2"
+                                        aria-label="Entity link note"
+                                      />
+                                    </div>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      disabled={busy === 'link-entity'}
+                                      onClick={() => void handleLinkEntity(detail.id)}
+                                      className="shrink-0 gap-1.5 border-violet-200 text-violet-700"
+                                    >
+                                      {busy === 'link-entity' ? (
+                                        <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+                                      ) : (
+                                        <Users className="h-3.5 w-3.5" aria-hidden="true" />
+                                      )}
+                                      Link entity
+                                    </Button>
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* P6-S3 §12 step 3: additional-topic cross-filings */}
+                              <div className="space-y-2">
+                                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                                  Cross-filings — additional topics (§13) — {detail.additionalTopics.length}
+                                </p>
+                                {detail.additionalTopics.length > 0 ? (
+                                  <ul className="space-y-1.5" aria-label="Additional topic cross-filings">
+                                    {detail.additionalTopics.map((link) => (
+                                      <li
+                                        key={link.id}
+                                        className="flex flex-wrap items-center gap-2 rounded-md border border-zinc-100 bg-zinc-50/50 px-3 py-2"
+                                      >
+                                        <Tag className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+                                        <span className="text-sm text-zinc-800">{link.topic.canonicalName}</span>
+                                        <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-500">
+                                          {link.topic.type.toLowerCase().replace(/_/g, ' ')}
+                                        </Badge>
+                                        <span className="font-mono text-[10px] text-zinc-400">
+                                          {link.topic.scope === 'COUNTRY' ? link.topic.countryIso : 'GLOBAL'}
+                                        </span>
+                                        {link.note && <span className="text-xs italic text-zinc-400">{link.note}</span>}
+                                        {detail.editable && (
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            disabled={busy === `unlink-topic-${link.id}`}
+                                            onClick={() => void handleUnlinkTopic(detail.id, link.id)}
+                                            className="ml-auto h-7 px-2 text-xs text-red-600 hover:text-red-700"
+                                            aria-label={`Remove ${link.topic.canonicalName} filing`}
+                                          >
+                                            <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
+                                          </Button>
+                                        )}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <p className="text-xs text-zinc-400">
+                                    No cross-filings yet — a story often belongs under several branches (§13).
+                                  </p>
+                                )}
+                                {detail.editable && (
+                                  <div className="flex flex-col gap-2 rounded-md border border-dashed border-zinc-200 p-3 sm:flex-row sm:items-end">
+                                    <div className="grid flex-1 gap-2 sm:grid-cols-3">
+                                      <Input
+                                        value={xTopicSlug}
+                                        onChange={(changeEvent) => setXTopicSlug(changeEvent.target.value)}
+                                        placeholder="Topic slug (e.g. space-technology)"
+                                        className="bg-white text-xs"
+                                        aria-label="Additional topic slug"
+                                      />
+                                      <Input
+                                        value={xTopicNote}
+                                        onChange={(changeEvent) => setXTopicNote(changeEvent.target.value)}
+                                        placeholder="Why this filing fits (optional)"
+                                        className="bg-white text-xs sm:col-span-2"
+                                        aria-label="Cross-filing note"
+                                      />
+                                    </div>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      disabled={busy === 'link-topic'}
+                                      onClick={() => void handleLinkTopic(detail.id)}
+                                      className="shrink-0 gap-1.5 border-emerald-200 text-emerald-700"
+                                    >
+                                      {busy === 'link-topic' ? (
+                                        <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+                                      ) : (
+                                        <Tag className="h-3.5 w-3.5" aria-hidden="true" />
+                                      )}
+                                      Cross-file
                                     </Button>
                                   </div>
                                 )}

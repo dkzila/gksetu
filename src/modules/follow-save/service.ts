@@ -556,8 +556,9 @@ export async function listMyFollows(
 
   const examIds = rows.filter((row) => row.objectType === 'EXAM').map((row) => row.objectId)
   const topicIds = rows.filter((row) => row.objectType === 'TOPIC').map((row) => row.objectId)
+  const entityIds = rows.filter((row) => row.objectType === 'ENTITY').map((row) => row.objectId)
 
-  const [exams, topics] = await Promise.all([
+  const [exams, topics, entities] = await Promise.all([
     examIds.length
       ? db.exam.findMany({
           where: { id: { in: examIds } },
@@ -573,14 +574,24 @@ export async function listMyFollows(
           },
         })
       : Promise.resolve([] as TopicWithRelations[]),
+    entityIds.length
+      ? db.entity.findMany({
+          where: { id: { in: entityIds } },
+          include: {
+            aliases: { select: { value: true } },
+            country: { select: { isoCode: true } },
+          },
+        })
+      : Promise.resolve([] as EntityWithRelations[]),
   ])
 
   const examById = new Map(exams.map((exam) => [exam.id, exam]))
   const topicById = new Map(topics.map((topic) => [topic.id, topic]))
+  const entityById = new Map(entities.map((entity) => [entity.id, entity]))
   const market = await resolveTopicMarket(user, query)
 
   const items: PublicFollow[] = []
-  const counts = { total: 0, EXAM: 0, TOPIC: 0 }
+  const counts = { total: 0, EXAM: 0, TOPIC: 0, ENTITY: 0 }
   for (const row of rows) {
     if (row.objectType === 'EXAM') {
       const exam = examById.get(row.objectId)
@@ -592,6 +603,16 @@ export async function listMyFollows(
         object: toExamSummary(exam),
       })
       counts.EXAM += 1
+    } else if (row.objectType === 'ENTITY') {
+      const entity = entityById.get(row.objectId)
+      if (!entity) continue
+      items.push({
+        id: row.id,
+        objectType: 'ENTITY',
+        followedAt: row.followedAt.toISOString(),
+        object: toEntitySummary(entity),
+      })
+      counts.ENTITY += 1
     } else {
       const topic = topicById.get(row.objectId)
       if (!topic) continue
@@ -604,7 +625,7 @@ export async function listMyFollows(
       counts.TOPIC += 1
     }
   }
-  counts.total = counts.EXAM + counts.TOPIC
+  counts.total = counts.EXAM + counts.TOPIC + counts.ENTITY
   return { items, counts }
 }
 
@@ -641,6 +662,23 @@ export async function getFollowState(
     return { ...base, objectSlug: exam.slug, objectFound: true, following: row !== null, follow }
   }
 
+  if (query.objectType === 'ENTITY') {
+    const entity = await findEntityRow(query.objectRef)
+    if (!entity) return base
+    const row = await db.userFollow.findUnique({
+      where: { userId_objectType_objectId: { userId, objectType: 'ENTITY', objectId: entity.id } },
+    })
+    const follow = row
+      ? {
+          id: row.id,
+          objectType: 'ENTITY' as const,
+          followedAt: row.followedAt.toISOString(),
+          object: toEntitySummary(entity),
+        }
+      : null
+    return { ...base, objectSlug: entity.slug, objectFound: true, following: row !== null, follow }
+  }
+
   const topic = await findTopicRow(query.objectRef)
   if (!topic) return base
   const row = await db.userFollow.findUnique({
@@ -675,6 +713,25 @@ async function hydrateFollow(userId: string, row: UserFollow): Promise<PublicFol
       objectType: 'EXAM',
       followedAt: row.followedAt.toISOString(),
       object: toExamSummary(exam),
+    }
+  }
+
+  if (row.objectType === 'ENTITY') {
+    const entity = await db.entity.findUnique({
+      where: { id: row.objectId },
+      include: {
+        aliases: { select: { value: true } },
+        country: { select: { isoCode: true } },
+      },
+    })
+    if (!entity) {
+      throw new FollowError('FOLLOW_OBJECT_NOT_FOUND', 'The followed entity no longer exists')
+    }
+    return {
+      id: row.id,
+      objectType: 'ENTITY',
+      followedAt: row.followedAt.toISOString(),
+      object: toEntitySummary(entity),
     }
   }
 

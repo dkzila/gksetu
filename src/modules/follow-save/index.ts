@@ -38,6 +38,7 @@ export type {
   FollowObjectTypePublic,
   FollowedExamSummary,
   FollowedTopicSummary,
+  FollowedEntitySummary,
   FollowedObjectSummary,
   PublicFollow,
   FollowListResult,

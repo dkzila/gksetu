@@ -29,7 +29,7 @@ import {
   type AuditRequestMeta,
 } from '@/modules/audit'
 import { countMySaves, listMyFollows } from '@/modules/follow-save'
-import type { FollowedExamSummary, FollowedTopicSummary, PublicFollow } from '@/modules/follow-save'
+import type { FollowedEntitySummary, FollowedExamSummary, FollowedTopicSummary, PublicFollow } from '@/modules/follow-save'
 
 import { getMyGoal, loadUserContext } from './service'
 import { resolveLabelMarket } from './dashboard-service'
@@ -99,6 +99,35 @@ function followedTopicSignal(follow: PublicFollow, topic: FollowedTopicSummary):
         : {
             kind: 'QUEUE_RANKING',
             text: `Currently ${topic.status.toLowerCase()} in the catalogue — units anchored directly to it still rise up your queue where mapped.`,
+          },
+    ],
+    removal: { method: 'DELETE', path: `/api/follows/${follow.id}` },
+  }
+}
+
+function followedEntitySignal(follow: PublicFollow, entity: FollowedEntitySummary): InventorySignal {
+  // P6-S3 §10: a followed entity is a personalisation signal — its events'
+  // coverage rides the §12/§16 surfaces; entities carry no page of their
+  // own in v1, so the honest canonicalPath is null (§37).
+  const typeLabel = entity.type.charAt(0) + entity.type.slice(1).toLowerCase()
+  return {
+    id: follow.id,
+    kind: 'FOLLOWED_ENTITY',
+    label: entity.canonicalName,
+    detail: `${typeLabel}${entity.countryIso ? ` · ${entity.countryIso}` : ''}${entity.aliases.length ? ` · also: ${entity.aliases.slice(0, 3).join(', ')}` : ''}`,
+    slug: entity.slug,
+    canonicalPath: null,
+    status: entity.status,
+    declaredAt: follow.followedAt,
+    effects: [
+      entity.status === 'ACTIVE'
+        ? {
+            kind: 'QUEUE_RANKING',
+            text: `Current affairs tagged \"${entity.canonicalName}\" join your personalised surfaces — entity follows are the §10 signal for event coverage.`,
+          }
+        : {
+            kind: 'QUEUE_RANKING',
+            text: `Retired (§36) — the follow stays listed as honest history, but new ${typeLabel.toLowerCase()} coverage no longer joins your surfaces.`,
           },
     ],
     removal: { method: 'DELETE', path: `/api/follows/${follow.id}` },
@@ -273,7 +302,9 @@ export async function getMyPersonalisation(
   const followSignals: InventorySignal[] = follows.items.map((follow) =>
     follow.object.kind === 'EXAM'
       ? followedExamSignal(follow, follow.object)
-      : followedTopicSignal(follow, follow.object)
+      : follow.object.kind === 'ENTITY'
+        ? followedEntitySignal(follow, follow.object)
+        : followedTopicSignal(follow, follow.object)
   )
 
   const goalPreferences = goal ? goalPreferenceSignals(goal) : []

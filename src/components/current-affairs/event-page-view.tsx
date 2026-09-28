@@ -228,10 +228,12 @@ export interface EventPageViewProps {
   language: string
   /** Opens a linked unit's §16 knowledge page in-app (§7 links). */
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  /** P6-S3: opens an additional topic's §13/§16 hub in-app (cross-filings). */
+  onOpenTopic: (topicSlug: string) => void
   onSwitchLanguage: (code: string) => void
 }
 
-export function EventPageView({ eventRef, country, language, onOpenUnit, onSwitchLanguage }: EventPageViewProps) {
+export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenTopic, onSwitchLanguage }: EventPageViewProps) {
   const [page, setPage] = useState<EventPageData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -325,6 +327,19 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onSwitc
             <Tag className="h-3 w-3" aria-hidden="true" />
             {page.event.topic.label}
           </Badge>
+          {/* P6-S3 §12 step 3 — additional-topic cross-filings under the primary. */}
+          {page.additionalTopics.map((topic) => (
+            <button
+              key={topic.slug}
+              type="button"
+              onClick={() => onOpenTopic(topic.slug)}
+              className="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-2.5 py-0.5 text-xs font-medium text-zinc-600 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+              title={`Cross-filed under ${topic.canonicalName} — open the topic hub`}
+            >
+              <Tag className="h-3 w-3" aria-hidden="true" />
+              {topic.label}
+            </button>
+          ))}
           {page.scheduledCount > 0 && (
             <Badge variant="outline" className="gap-1 border-sky-200 bg-sky-50 text-sky-700">
               <Clock3 className="h-3 w-3" aria-hidden="true" />
@@ -551,6 +566,53 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onSwitc
                 </Card>
               </li>
             ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- P6-S3 §12 step 3: who/what this event is about (entities) ---------- */}
+      {page.entities.length > 0 && (
+        <section aria-labelledby="event-entities" className="space-y-3">
+          <h2 id="event-entities" className="text-lg font-semibold tracking-tight text-zinc-900">
+            People, places &amp; organisations
+          </h2>
+          <p className="text-sm text-zinc-500">
+            The canonical reference records this event involves (§12) — one registry entry whatever the
+            number of stories that mention them.
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {page.entities.map((entity) => {
+              const meta = ENTITY_TYPE_META[entity.type]
+              return (
+                <li key={entity.slug}>
+                  <Card className="h-full border-zinc-200 shadow-sm">
+                    <CardContent className="flex h-full flex-col gap-1.5 py-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Badge variant="outline" className={`gap-1 ${meta.tone}`}>
+                          <Users className="h-3 w-3" aria-hidden="true" />
+                          {meta.label}
+                        </Badge>
+                        {entity.status === 'RETIRED' && (
+                          <Badge variant="outline" className="border-zinc-300 bg-zinc-100 font-normal text-zinc-500">
+                            Retired — kept as history (§36)
+                          </Badge>
+                        )}
+                        {entity.countryIso && (
+                          <span className="font-mono text-[10px] uppercase text-zinc-400">{entity.countryIso}</span>
+                        )}
+                      </div>
+                      <p className="text-sm font-semibold text-zinc-900">{entity.canonicalName}</p>
+                      {entity.description && (
+                        <p className="text-xs leading-relaxed text-zinc-500">{entity.description}</p>
+                      )}
+                      {entity.note && (
+                        <p className="text-xs italic text-zinc-400">{entity.note}</p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </li>
+              )
+            })}
           </ul>
         </section>
       )}

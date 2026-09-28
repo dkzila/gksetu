@@ -21,6 +21,8 @@ export interface EventViewProps {
   language: string
   onGoHome: () => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  /** P6-S3: additional-topic cross-filings open the §13/§16 topic hub. */
+  onOpenTopic: (topicSlug: string) => void
   onSwitchLanguage: (code: string) => void
 }
 
@@ -30,6 +32,7 @@ export function EventView({
   language,
   onGoHome,
   onOpenUnit,
+  onOpenTopic,
   onSwitchLanguage,
 }: EventViewProps) {
   return (
@@ -55,6 +58,7 @@ export function EventView({
         country={country}
         language={language}
         onOpenUnit={onOpenUnit}
+        onOpenTopic={onOpenTopic}
         onSwitchLanguage={onSwitchLanguage}
       />
     </div>

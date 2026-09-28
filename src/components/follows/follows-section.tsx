@@ -303,7 +303,8 @@ export function FollowsSection() {
                     GET /api/follows —{' '}
                     {data ? (
                       <span className="font-normal text-zinc-500">
-                        {data.counts.total} total · {data.counts.EXAM} exams · {data.counts.TOPIC} topics
+                        {data.counts.total} total · {data.counts.EXAM} exams · {data.counts.TOPIC} topics ·{' '}
+                        {data.counts.ENTITY} entities
                       </span>
                     ) : (
                       <span className="font-normal text-zinc-400">loading…</span>
@@ -330,9 +331,15 @@ export function FollowsSection() {
                           {item.objectType}
                         </Badge>
                         <span className="font-medium text-zinc-800">
-                          {item.object.kind === 'EXAM' ? item.object.name : item.object.label}
+                          {item.object.kind === 'EXAM'
+                            ? item.object.name
+                            : item.object.kind === 'ENTITY'
+                              ? item.object.canonicalName
+                              : item.object.label}
                         </span>
-                        <span className="font-mono text-[10px] text-zinc-400">{item.object.canonicalPath}</span>
+                        <span className="font-mono text-[10px] text-zinc-400">
+                          {item.object.kind === 'ENTITY' ? `(no page yet — ${item.object.type.toLowerCase()})` : item.object.canonicalPath}
+                        </span>
                         <span className="ml-auto text-zinc-400">
                           followed {new Date(item.followedAt).toLocaleDateString()}
                         </span>
