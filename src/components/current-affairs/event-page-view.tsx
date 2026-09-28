@@ -26,6 +26,7 @@ import {
   CalendarRange,
   Clock3,
   GraduationCap,
+  Hourglass,
   Lightbulb,
   Link2,
   MapPin,
@@ -135,6 +136,8 @@ export interface EventPageData {
     summary: string
     significance: string | null
     lifecycleState: Lifecycle
+    /** P6-S5 §17 — the server-computed freshness verdict (tier + age + label). */
+    freshness: { tier: 'FRESH' | 'RECENT' | 'SETTLED' | 'HISTORICAL'; ageDays: number; label: string }
     scope: 'GLOBAL' | 'COUNTRY'
     topic: { slug: string; canonicalName: string; label: string }
     topicPath: Array<{ slug: string; label: string }>
@@ -201,6 +204,14 @@ const ENTITY_TYPE_META: Record<EventEntity['type'], { label: string; tone: strin
   PLACE: { label: 'Place', tone: 'border-cyan-200 bg-cyan-50 text-cyan-700' },
   ORGANISATION: { label: 'Organisation', tone: 'border-orange-200 bg-orange-50 text-orange-700' },
   CONCEPT: { label: 'Concept', tone: 'border-teal-200 bg-teal-50 text-teal-700' },
+}
+
+/** P6-S5 §17 — the freshness verdict chip (the same tiers the feeds render). */
+const FRESHNESS_META: Record<EventPageData['event']['freshness']['tier'], { tone: string }> = {
+  FRESH: { tone: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
+  RECENT: { tone: 'border-teal-200 bg-teal-50 text-teal-700' },
+  SETTLED: { tone: 'border-amber-200 bg-amber-50 text-amber-700' },
+  HISTORICAL: { tone: 'border-zinc-300 bg-zinc-100 text-zinc-600' },
 }
 
 function formatDate(iso: string | null): string {
@@ -390,6 +401,14 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
               {page.event.location}
             </span>
           )}
+          <Badge
+            variant="outline"
+            className={`gap-1 ${FRESHNESS_META[page.event.freshness.tier].tone}`}
+            title="The §17 freshness verdict — computed from the event date (P6-S5 rules)"
+          >
+            <Hourglass className="h-3 w-3" aria-hidden="true" />
+            {page.event.freshness.label}
+          </Badge>
         </div>
         <p className="text-[13px] text-zinc-400">{lifecycle.note}</p>
       </header>

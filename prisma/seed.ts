@@ -968,6 +968,17 @@ async function main() {
       verifiedAt: new Date('2025-06-08T00:00:00Z'),
     },
     {
+      title: 'ISRO — Gaganyaan G1 uncrewed test flight mission page',
+      publisher: 'ISRO',
+      url: 'https://www.isro.gov.in/Gaganyaan_G1.html',
+      type: 'OFFICIAL',
+      verification: 'VERIFIED',
+      publishedAt: new Date('2026-09-26T00:00:00Z'),
+      retrievedAt: new Date('2026-09-27T00:00:00Z'),
+      verifiedAt: new Date('2026-09-27T00:00:00Z'),
+      notes: 'Primary official record of the G1 flight — objectives, sequence and recovery result.',
+    },
+    {
       title: 'PIB release — National Space Day notification',
       publisher: 'Press Information Bureau',
       url: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1950000',
@@ -1895,6 +1906,14 @@ async function main() {
       aliases: [{ value: 'Delhi' }],
     },
     {
+      slug: 'gaganyaan',
+      canonicalName: 'Gaganyaan programme',
+      type: 'CONCEPT',
+      scope: 'GLOBAL',
+      description: "ISRO's human spaceflight programme — the Gaganyaan missions aim to carry a crew of three to low Earth orbit and recover them safely.",
+      aliases: [{ value: 'Gaganyaan' }, { value: 'गगनयान', language: 'hi' }],
+    },
+    {
       slug: 'planning-commission',
       canonicalName: 'Planning Commission of India',
       type: 'ORGANISATION',
@@ -2088,6 +2107,40 @@ async function main() {
         { slug: 'international-organisations', note: 'A multilateral-forum outcome cross-filed here.' },
       ],
     },
+    {
+      // P6-S5: the FRESH seed — a days-old event whose freshness tier stays
+      // FRESH (≤ 3 days) and whose EMERGING state the rules never touch. It
+      // keeps the exam feed meaningful after the sweep archives the older
+      // seeds (§36 LIVE = emerging/developing/stable), and cross-files under
+      // `current-affairs` so the ssc-cgl "Current affairs" syllabus node
+      // anchors it (the same §12 step 5 chain as National Space Day).
+      slug: 'gaganyaan-g1-uncrewed-test-flight',
+      title: 'Gaganyaan G1 — first uncrewed test flight completes orbit and recovery',
+      eventDate: new Date('2026-09-26T08:30:00Z'),
+      location: 'Sriharikota, Andhra Pradesh / Bay of Bengal recovery zone',
+      summary:
+        'ISRO flew the first uncrewed Gaganyaan test flight (G1), validating the crew-module launch, orbit operations and sea-recovery sequence that the crewed mission depends on.',
+      significance:
+        'The human-spaceflight programme is a live exam favourite: G1 is the uncrewed dress rehearsal whose systems (escape, life support, recovery) anchor Gaganyaan questions.',
+      lifecycleState: 'EMERGING',
+      scope: 'GLOBAL',
+      topicSlug: 'isro-programmes',
+      sources: [
+        {
+          url: 'https://www.isro.gov.in/Gaganyaan_G1.html',
+          isPrimary: true,
+          note: 'Primary official record — flight objectives, sequence and recovery confirmation.',
+        },
+      ],
+      entityLinks: [
+        { slug: 'isro', note: 'The agency flying the programme.' },
+        { slug: 'gaganyaan', note: 'The programme this flight belongs to — the §7 one-truth link.' },
+      ],
+      topicLinks: [
+        { slug: 'space-technology', note: 'Human spaceflight is the frontier this pushes.' },
+        { slug: 'current-affairs', note: 'Filed for current-affairs syllabus nodes (the §12 step 5 anchor).' },
+      ],
+    },
   ]
 
   let eventsSeeded = 0
@@ -2101,10 +2154,17 @@ async function main() {
       console.warn(`[seed] skipping current event "${seed.slug}": topic "${seed.topicSlug}" not found`)
       continue
     }
-    const event = await prisma.currentEvent.upsert({
+    // Never overwrite live editorial edits (§36) — and never TOUCH an
+    // existing row at all: a no-op upsert still bumps @updatedAt, which
+    // would make "recently updated" a lie. Create-only, like every seed
+    // surface (P6-S5 fix).
+    const existingEvent = await prisma.currentEvent.findUnique({
       where: { slug: seed.slug },
-      update: {}, // never overwrite live editorial edits on re-seed (§36)
-      create: {
+      select: { id: true },
+    })
+    if (existingEvent) continue
+    const event = await prisma.currentEvent.create({
+      data: {
         slug: seed.slug,
         title: seed.title,
         eventDate: seed.eventDate,
@@ -2321,6 +2381,22 @@ async function main() {
           title: 'G20 New Delhi Leaders\u2019 Declaration adopted by consensus',
           body: 'G20 leaders meeting in New Delhi adopted the Leaders\u2019 Declaration by consensus on the summit\u2019s opening day, 9 September 2023, covering inclusive growth, green development and multilateral reform commitments under India\u2019s presidency.\n\nIt was the first G20 declaration adopted under India\u2019s presidency and the consensus came after intense negotiation over the Ukraine language. The event is now archived (§36) — updates have ended, but the reference stays permanently relevant for international-affairs coverage.',
           publishedAt: new Date('2023-09-09T18:30:00Z'),
+        },
+      ],
+    },
+    {
+      // The P6-S5 FRESH event's published update — the §35 public gate that
+      // puts the days-old Gaganyaan flight into the exam feed.
+      eventSlug: 'gaganyaan-g1-uncrewed-test-flight',
+      languageCode: 'en',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      sourceUrl: 'https://www.isro.gov.in/Gaganyaan_G1.html',
+      revisions: [
+        {
+          title: 'Gaganyaan G1: first uncrewed test flight validates the human-spaceflight path',
+          body: 'ISRO flew the first uncrewed test flight of the Gaganyaan programme — G1 — launching the crew module on 26 September 2026 and recovering it from the Bay of Bengal after the planned orbit sequence.\n\nThe flight exercised the systems a crewed mission depends on: the crew escape system in abort mode, environmental control and life support in the module, orbital manoeuvring, and the sea-recovery drill with Indian Navy support.\n\nFor exam purposes, fix the chain: Gaganyaan = India\u2019s human spaceflight programme; G1 = its first UNCREWED rehearsal; the crewed mission follows only after the remaining uncrewed and abort-test milestones.',
+          publishedAt: new Date('2026-09-26T14:00:00Z'),
         },
       ],
     },

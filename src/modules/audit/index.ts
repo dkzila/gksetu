@@ -4,7 +4,7 @@
  * Public interface. Other modules and route handlers import from here only.
  * Internal files may change without notice (modular monolith rule, §28).
  */
-export { recordAudit, listAuditLogs } from './service'
+export { recordAudit, listAuditLogs, latestAuditByAction } from './service'
 export { auditListQuerySchema } from './validation'
 export type { AuditListQuery } from './validation'
 export type {

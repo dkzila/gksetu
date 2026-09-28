@@ -24,6 +24,13 @@
  *        goal ∪ followed exams in their home market (§9/§14), every item
  *        carrying its §9 reason. The reverse resolution (which exams an
  *        event feeds) ships on the public event page as examRelevance.
+ * P6-S5: freshness/archive rules — the single rule table drives BOTH the
+ *        §17 read-side tiers (FRESH/RECENT/SETTLED/HISTORICAL on every feed
+ *        item, event page and workspace row, server-computed per §37) and
+ *        the §12 step 6 write-side sweep: age windows prescribe forward-only
+ *        lifecycle moves (emerging→developing→stable→archived), applied via
+ *        a preview-first, dry-run-default, fully audited console operation
+ *        (§19 step 10, §36 — automated moves carry the rule's fingerprints).
  */
 export {
   CurrentAffairsError,
@@ -45,6 +52,7 @@ export {
 } from './service'
 export { getCurrentEventPage } from './page-service'
 export { getExamAwareFeed, getEventExamRelevance } from './feed-service'
+export { getFreshnessOverview, runFreshnessSweep } from './freshness-service'
 export {
   createCurrentEventSchema,
   updateCurrentEventSchema,
@@ -56,6 +64,7 @@ export {
   attachEventTopicSchema,
   adminCurrentEventListQuerySchema,
   feedQuerySchema,
+  freshnessSweepSchema,
   EVENT_SLUG_PATTERN,
 } from './validation'
 export type {
@@ -67,6 +76,7 @@ export type {
   CreateCurrentEventInput,
   CurrentEventTransitionInput,
   FeedQuery,
+  FreshnessSweepInput,
   UpdateCurrentEventInput,
   UpdateEventSourceLinkInput,
 } from './validation'
@@ -83,6 +93,12 @@ export type {
   CurrentEventPagination,
   EventScopePublic,
   EventTopicRef,
+  FreshnessInfo,
+  FreshnessOverview,
+  FreshnessPendingTransition,
+  FreshnessRuleKey,
+  FreshnessSweepResult,
+  FreshnessTier,
 } from './types'
 export type {
   CurrentEventPage,
@@ -102,4 +118,12 @@ export {
   CURRENT_EVENT_TRANSITIONS,
   EVENT_SCOPES,
   LIFECYCLE_DESCRIPTIONS,
+  FRESHNESS_RULES,
+  FRESHNESS_TIERS,
+  FRESHNESS_TIER_DESCRIPTIONS,
+  computeFreshness,
+  freshnessAgeDays,
+  freshnessAgeLabel,
+  freshnessTierOf,
+  prescribeAutoTransition,
 } from './types'

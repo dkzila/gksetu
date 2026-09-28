@@ -176,6 +176,12 @@ export const AUDIT_ACTIONS = {
   entityUpdate: 'entity.update',
   /** Object-level current-affairs denials (scope/state mismatch — §20 signal). */
   currentEventDenied: 'currentaffairs.event.denied',
+  /** P6-S5 freshness rules (§12 step 6/§19/§36): the sweep's per-event
+   *  automated transitions (actor = the sweep runner, metadata.automated). */
+  currentEventAutoTransition: 'currentaffairs.event.autotransition',
+  /** P6-S5: one summary entry per applied sweep (applied/skipped counts in
+   *  metadata — the freshness overview's "last sweep" reads this). */
+  freshnessSweep: 'currentaffairs.freshness.sweep',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */

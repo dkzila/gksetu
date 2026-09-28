@@ -184,3 +184,19 @@ export async function listAuditLogs(actor: Actor, query: AuditListQuery): Promis
     },
   }
 }
+
+/**
+ * The latest audit entry for any of the given actions — a scoped read helper
+ * for domain services surfacing "last time this ran" (P6-S5: the freshness
+ * overview's lastSweep). No actor check here: the CALLING service enforces
+ * its own permission boundary first (§28/§37 — the audit module owns the
+ * read shape, the domain owns the authorisation).
+ */
+export async function latestAuditByAction(actions: string[]): Promise<PublicAuditLog | null> {
+  if (actions.length === 0) return null
+  const row = await db.auditLog.findFirst({
+    where: { action: { in: actions } },
+    orderBy: [{ createdAt: 'desc' }, { id: 'desc' }], // deterministic (§37)
+  })
+  return row ? toPublicAuditLog(row) : null
+}

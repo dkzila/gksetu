@@ -8,11 +8,12 @@
  * with one exam), §14 (GLOBAL or reader-country events only), §16 (the
  * /current-affairs/{slug}/ canonical path shipped as data), §35 (only the
  * reader country's configured languages; PUBLISHED representations are the
- * public gate), §36 (honest lifecycle — ARCHIVED stays out of LIVE), §37
- * (client-agnostic JSON, deterministic ordering), §39 (the same payload a
- * mobile app renders).
+ * public gate), §36 (honest lifecycle — ARCHIVED stays out of LIVE), §17
+ * (freshness boosting — every item carries the server-computed tier/age
+ * verdict; P6-S5), §37 (client-agnostic JSON, deterministic ordering), §39
+ * (the same payload a mobile app renders).
  */
-import type { CurrentEventLifecyclePublic, EventScopePublic } from './types'
+import type { CurrentEventLifecyclePublic, EventScopePublic, FreshnessInfo } from './types'
 
 /** One feed item — ready to render (§37): the event's canonical record, its
  * §16 path, the exams it feeds with their syllabus anchors, the §9 reason,
@@ -27,6 +28,9 @@ export interface ExamFeedItem {
   summary: string
   significance: string | null
   lifecycleState: CurrentEventLifecyclePublic
+  /** P6-S5 §17 — the server-computed freshness verdict (age from §6 event_date).
+   *  The feed's eventDate-desc order IS the boosted order; the tier labels it. */
+  freshness: FreshnessInfo
   scope: EventScopePublic
   /** §14 market of a COUNTRY event (null = GLOBAL). */
   countryIso: string | null

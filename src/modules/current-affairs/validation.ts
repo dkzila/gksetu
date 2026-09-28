@@ -255,3 +255,11 @@ export const feedQuerySchema = z.object({
 })
 
 export type FeedQuery = z.infer<typeof feedQuerySchema>
+
+/** P6-S5 §12 step 6/§19: the freshness sweep body. Dry-run is the SAFE
+ *  DEFAULT — applying the rules is always an explicit choice (§36). */
+export const freshnessSweepSchema = z.object({
+  dryRun: z.boolean().default(true),
+})
+
+export type FreshnessSweepInput = z.infer<typeof freshnessSweepSchema>

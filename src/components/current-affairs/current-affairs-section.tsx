@@ -50,6 +50,22 @@ interface Envelope<T> {
 
 type Lifecycle = 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
 
+/** P6-S5 §17 — the server-computed freshness verdict on every event row. */
+type Tier = 'FRESH' | 'RECENT' | 'SETTLED' | 'HISTORICAL'
+
+interface Freshness {
+  tier: Tier
+  ageDays: number
+  label: string
+}
+
+const tierStyle: Record<Tier, string> = {
+  FRESH: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+  RECENT: 'border-teal-200 bg-teal-50 text-teal-700',
+  SETTLED: 'border-amber-200 bg-amber-50 text-amber-700',
+  HISTORICAL: 'border-zinc-300 bg-zinc-100 text-zinc-600',
+}
+
 interface AdminEvent {
   id: string
   slug: string
@@ -60,6 +76,8 @@ interface AdminEvent {
   summary: string
   significance: string | null
   lifecycleState: Lifecycle
+  /** P6-S5 §17 — the freshness verdict (age from the §6 event date). */
+  freshness: Freshness
   scope: 'GLOBAL' | 'COUNTRY'
   countryIso: string | null
   topic: { slug: string; name: string }
@@ -171,6 +189,8 @@ const API_ROWS: Array<{ method: string; path: string; note: string }> = [
   { method: 'GET/POST/PATCH', path: '/api/entities/admin[/{id}]', note: 'P6-S3 — the Entity reference registry (persons/places/orgs/concepts, §14 scope, aliases)' },
   { method: 'GET', path: '/api/current-affairs/feed?exam={slug}', note: 'P6-S4 — exam-aware feed: single-exam mode (public)' },
   { method: 'GET', path: '/api/current-affairs/feed', note: 'P6-S4 — exam-aware feed: combined mode over followed + goal exams (Bearer)' },
+  { method: 'GET', path: '/api/current-affairs/admin/freshness', note: 'P6-S5 — the freshness overview: rules, tiers, pending prescriptions, last sweep' },
+  { method: 'POST', path: '/api/current-affairs/admin/freshness', note: 'P6-S5 — run the sweep (dry-run default; applying is audited per event, §36)' },
 ]
 
 const DEMO_TOPICS = [
@@ -877,6 +897,13 @@ export function CurrentAffairsSection() {
                             <span className="min-w-0 max-w-full truncate text-sm font-semibold text-zinc-900">{event.title}</span>
                             <Badge variant="outline" className={`shrink-0 font-normal ${lifecycleStyle[event.lifecycleState]}`}>
                               {event.lifecycleState.toLowerCase()}
+                            </Badge>
+                            <Badge
+                              variant="outline"
+                              className={`shrink-0 font-normal ${tierStyle[event.freshness.tier]}`}
+                              title={event.freshness.label}
+                            >
+                              {event.freshness.label}
                             </Badge>
                             <Badge variant="outline" className={`shrink-0 font-normal ${scopeStyle[event.scope]}`}>
                               {event.scope === 'GLOBAL' ? 'GLOBAL' : event.countryIso ?? 'COUNTRY'}

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P6-S4)
+ * GlobIQ — Foundation Console (P1-S1 → P6-S5)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -61,6 +61,7 @@ import { PersonalisationSection } from '@/components/personalisation/personalisa
 import { DashboardSection } from '@/components/personalisation/dashboard-section'
 import { ControlsSection } from '@/components/personalisation/controls-section'
 import { CurrentAffairsSection } from '@/components/current-affairs/current-affairs-section'
+import { FreshnessSection } from '@/components/current-affairs/freshness-section'
 import { EntitiesSection } from '@/components/entities/entities-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
@@ -162,7 +163,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P6-S4
+            P1-S1 → P6-S5
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -381,8 +382,11 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Personalisation — §9/§31 explanations & controls (P5-S5) ---------- */}
       <ControlsSection />
 
-      {/* ---------- Current affairs — §12 events, aggregation & publishing (P6-S1→S3) ---------- */}
+      {/* ---------- Current affairs — §12 events, aggregation & publishing (P6-S1→S4) ---------- */}
       <CurrentAffairsSection />
+
+      {/* ---------- Freshness & archive rules — §12 step 6 / §17 tiers (P6-S5) ---------- */}
+      <FreshnessSection />
 
       {/* ---------- Entities — §6/§12 step 3 reference registry (P6-S3) ---------- */}
       <EntitiesSection />
@@ -440,7 +444,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P6-S4 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P6-S5 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

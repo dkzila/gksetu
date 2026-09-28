@@ -53,6 +53,7 @@ import { listMyFollows } from '@/modules/follow-save'
 import { getMyGoal, loadUserContext } from '@/modules/personalisation'
 
 import { CurrentAffairsError } from './service'
+import { computeFreshness } from './types'
 import type { EventExamRelevance, ExamAwareFeed, ExamFeedItem } from './feed-types'
 import type { FeedQuery } from './validation'
 
@@ -491,6 +492,8 @@ export async function getExamAwareFeed(query: FeedQuery, userId?: string): Promi
       summary: event.summary,
       significance: event.significance,
       lifecycleState: event.lifecycleState as ExamFeedItem['lifecycleState'],
+      // P6-S5 §17 — the freshness verdict, computed once server-side (§37).
+      freshness: computeFreshness(event.eventDate),
       scope: event.scope as ExamFeedItem['scope'],
       countryIso: event.country?.isoCode ?? null,
       topic: {

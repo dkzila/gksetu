@@ -10,7 +10,7 @@
  * DTOs, deterministic ordering).
  */
 
-import type { CurrentEventLifecyclePublic, EventScopePublic } from './types'
+import type { CurrentEventLifecyclePublic, EventScopePublic, FreshnessInfo } from './types'
 import type { EventExamRelevance } from './feed-types'
 import type { PageSeo, JsonLdNode } from '@/modules/seo'
 
@@ -102,6 +102,8 @@ export interface CurrentEventPage {
     summary: string
     significance: string | null
     lifecycleState: CurrentEventLifecyclePublic
+    /** P6-S5 §17 — the server-computed freshness verdict (age from §6 event_date). */
+    freshness: FreshnessInfo
     scope: EventScopePublic
     topic: { slug: string; canonicalName: string; label: string }
     /** §13 breadcrumb trail (Home → …topic) with §16 paths. */

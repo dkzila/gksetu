@@ -42,7 +42,7 @@ import type {
   EventScopePublic,
   EventTopicRef,
 } from './types'
-import { CURRENT_EVENT_TRANSITIONS } from './types'
+import { CURRENT_EVENT_TRANSITIONS, computeFreshness } from './types'
 import type { AdminCurrentEventListQuery } from './validation'
 import type {
   AttachEventEntityInput,
@@ -294,6 +294,8 @@ function toAdminEvent(event: EventRow): AdminCurrentEvent {
     summary: event.summary,
     significance: event.significance,
     lifecycleState: event.lifecycleState as CurrentEventLifecyclePublic,
+    // P6-S5 §17 — the freshness verdict on every workspace row (§37).
+    freshness: computeFreshness(event.eventDate),
     scope: event.scope as EventScopePublic,
     countryIso: event.country?.isoCode ?? null,
     topic: topicRefOf(event),

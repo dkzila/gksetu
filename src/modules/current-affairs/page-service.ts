@@ -37,6 +37,7 @@ import { getPublicTopic, TaxonomyError } from '@/modules/taxonomy'
 
 import { CurrentAffairsError } from './service'
 import { resolveExamRelevance } from './feed-service'
+import { computeFreshness } from './types'
 import type {
   CurrentEventPage,
   EventPageEntity,
@@ -447,6 +448,8 @@ export async function getCurrentEventPage(
       summary: event.summary,
       significance: event.significance,
       lifecycleState: event.lifecycleState as CurrentEventPage['event']['lifecycleState'],
+      // P6-S5 §17 — the freshness verdict, computed once server-side (§37).
+      freshness: computeFreshness(event.eventDate),
       scope: event.scope as CurrentEventPage['event']['scope'],
       topic: {
         slug: event.topic.slug,

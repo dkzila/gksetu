@@ -103,6 +103,8 @@ interface FeedItem {
   summary: string
   significance: string | null
   lifecycleState: FeedLifecycle
+  /** P6-S5 §17 — the server-computed freshness verdict (tier + age + label). */
+  freshness: { tier: 'FRESH' | 'RECENT' | 'SETTLED' | 'HISTORICAL'; ageDays: number; label: string }
   scope: 'GLOBAL' | 'COUNTRY'
   countryIso: string | null
   topic: { slug: string; canonicalName: string; label: string }
@@ -160,6 +162,14 @@ const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; 
 /** §6 event_date, formatted like the sibling sections (en-IN). */
 function formatFeedDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+/** P6-S5 §17 — the freshness tier chip (the same verdict the event page renders). */
+const FEED_FRESHNESS_META: Record<FeedItem['freshness']['tier'], { tone: string }> = {
+  FRESH: { tone: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
+  RECENT: { tone: 'border-teal-200 bg-teal-50 text-teal-700' },
+  SETTLED: { tone: 'border-amber-200 bg-amber-50 text-amber-700' },
+  HISTORICAL: { tone: 'border-zinc-300 bg-zinc-100 text-zinc-600' },
 }
 
 // ---------- Component ----------
@@ -1017,6 +1027,13 @@ function FeedEventCard({
               <CalendarClock className="h-3 w-3" aria-hidden="true" />
               {formatFeedDate(item.eventDate)}
             </span>
+            <Badge
+              variant="outline"
+              className={`text-[10px] font-normal ${FEED_FRESHNESS_META[item.freshness.tier].tone}`}
+              title={`${item.freshness.label} — the §17 freshness verdict, computed from the event date`}
+            >
+              {item.freshness.label}
+            </Badge>
           </div>
         </CardHeader>
         <CardContent className="flex flex-1 flex-col gap-2">
