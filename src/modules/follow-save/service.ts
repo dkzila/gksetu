@@ -323,11 +323,21 @@ interface FollowableTopic {
   topic: TopicWithRelations
 }
 
+interface FollowableEntity {
+  objectType: 'ENTITY'
+  objectId: string
+  slug: string
+  name: string
+  countryId: string | null // null = GLOBAL scope (§14)
+  status: Entity['status']
+  entity: EntityWithRelations
+}
+
 /** Existence + followability + §14 scope for one object. */
 async function resolveFollowable(
   user: UserContext,
   input: { objectType: FollowObjectTypePublic; objectRef: string }
-): Promise<FollowableExam | FollowableTopic> {
+): Promise<FollowableExam | FollowableTopic | FollowableEntity> {
   if (input.objectType === 'EXAM') {
     const exam = await findExam(input.objectRef)
     if (!exam) {
@@ -366,6 +376,45 @@ async function resolveFollowable(
       countryId: exam.countryId,
       status: exam.status,
       exam: { ...exam, country: { ...country, defaultLanguage: country.defaultLanguage } },
+    }
+  }
+
+  if (input.objectType === 'ENTITY') {
+    // P6-S3 §10/§14: entities are followable reference records — ACTIVE
+    // only (RETIRED stops new follows, §36); GLOBAL from any market,
+    // COUNTRY-scoped only from the owning market (the Topic precedent).
+    const entity = await findEntityRow(input.objectRef)
+    if (!entity) {
+      throw new FollowError('FOLLOW_OBJECT_NOT_FOUND', 'This entity does not exist')
+    }
+    if (entity.status !== 'ACTIVE') {
+      throw new FollowError(
+        'ENTITY_NOT_FOLLOWABLE',
+        `This entity is retired (§36) — existing follows stay as history, new ones are closed.`
+      )
+    }
+    if (entity.scope === 'COUNTRY') {
+      if (!user.homeCountryId) {
+        throw new FollowError(
+          'HOME_COUNTRY_REQUIRED',
+          'Following a country-scoped entity needs a home country on your account.'
+        )
+      }
+      if (entity.countryId !== user.homeCountryId) {
+        throw new FollowError(
+          'FOLLOW_COUNTRY_MISMATCH',
+          `This entity belongs to another market. Country-scoped entities can only be followed from your home country (§14).`
+        )
+      }
+    }
+    return {
+      objectType: 'ENTITY',
+      objectId: entity.id,
+      slug: entity.slug,
+      name: entity.canonicalName,
+      countryId: entity.countryId,
+      status: entity.status,
+      entity,
     }
   }
 

@@ -92,8 +92,9 @@ const ENTITY_INCLUDE = {
   country: { select: { isoCode: true } },
   events: {
     include: {
-      event: { select: { id: true, slug: true, title: true, lifecycleState: true } },
+      currentEvent: { select: { id: true, slug: true, title: true, lifecycleState: true } },
     },
+    orderBy: [{ createdAt: 'asc' as const }],
   },
 } satisfies Prisma.EntityInclude
 
@@ -131,10 +132,10 @@ function toAdminEntityDetail(row: EntityRow): AdminEntityDetail {
       .sort((a, b) => a.value.localeCompare(b.value)), // deterministic (§37)
     events: row.events
       .map((link) => ({
-        eventId: link.event.id,
-        eventSlug: link.event.slug,
-        eventTitle: link.event.title,
-        lifecycleState: link.event.lifecycleState,
+        eventId: link.currentEvent.id,
+        eventSlug: link.currentEvent.slug,
+        eventTitle: link.currentEvent.title,
+        lifecycleState: link.currentEvent.lifecycleState,
         note: link.note,
         linkedAt: link.createdAt.toISOString(),
       }))

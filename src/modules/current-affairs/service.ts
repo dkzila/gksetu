@@ -144,13 +144,7 @@ export function toCurrentAffairsErrorResponse(
 const CUID_PATTERN = /^c[a-z0-9]{20,}$/
 
 type EventRow = Prisma.CurrentEventGetPayload<{
-  include: {
-    country: true
-    topic: true
-    createdBy: true
-    sources: { include: { source: true } }
-    knowledgeUnits: { include: { knowledgeUnit: { include: { topic: true } } } }
-  }
+  include: typeof EVENT_INCLUDE
 }>
 
 /** The single include shape used by every event read — one mapper. */
