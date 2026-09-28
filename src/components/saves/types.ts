@@ -54,11 +54,28 @@ export interface ApiSavedContentItem {
   countryIso: string | null
 }
 
-export type ApiSavedObject = ApiSavedUnit | ApiSavedContentItem
+export type ApiSavedObject = ApiSavedUnit | ApiSavedContentItem | ApiSavedEvent
+
+/** P6-S3 §10/§12/§16 — a saved current event. The event record is the saved
+ * object; its §16 page (/current-affairs/{slug}/) is the retrieval surface.
+ * ARCHIVED events stay listed — permanent historical reference (§36). */
+export interface ApiSavedEvent {
+  kind: 'CURRENT_EVENT'
+  slug: string
+  title: string
+  lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+  eventDate: string
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  topicSlug: string
+  topicCanonicalName: string
+  canonicalPath: string
+  languageCode: string
+}
 
 export interface ApiSave {
   id: string
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
   savedAt: string
   collectionId: string
   object: ApiSavedObject
@@ -75,7 +92,7 @@ export interface ApiCollection {
 
 export interface ApiSaveList {
   items: ApiSave[]
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number }
+  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number }
   collections: ApiCollection[]
 }
 
@@ -85,7 +102,7 @@ export interface ApiSaveMutation {
 }
 
 export interface ApiSaveState {
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
   objectRef: string
   objectSlug: string | null
   objectFound: boolean

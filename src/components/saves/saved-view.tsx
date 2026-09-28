@@ -48,6 +48,8 @@ import type { ApiCollection, ApiSave, ApiSaveList, SaveEnvelope } from './types'
 export interface SavedViewProps {
   /** Opens the knowledge page in the summary's market (§16 grammar in-app). */
   onOpenSavedUnit: (topicSlug: string, unitSlug: string, language: string | null) => void
+  /** P6-S3: opens the saved event's §16 page (/current-affairs/{slug}/). */
+  onOpenEvent: (eventSlug: string) => void
   onGoHome: () => void
   onSignIn: () => void
 }
@@ -81,7 +83,7 @@ const TOMBSTONE_NOTES: Record<string, { label: string; className: string }> = {
 
 // ---------- Component ----------
 
-export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProps) {
+export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: SavedViewProps) {
   const { status, token, user } = useAuth()
   const { toast } = useToast()
 
@@ -160,7 +162,12 @@ export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProp
         })
         const payload = (await response.json()) as SaveEnvelope<{ removed: boolean }>
         if (payload.status === 'ok') {
-          const name = save.object.kind === 'KNOWLEDGE_UNIT' ? save.object.canonicalName : save.object.title
+          const name =
+            save.object.kind === 'KNOWLEDGE_UNIT'
+              ? save.object.canonicalName
+              : save.object.kind === 'CURRENT_EVENT'
+                ? save.object.title
+                : save.object.title
           toast({ title: `Removed “${name}”`, description: 'Out of your collections (§31 — reversible).' })
           await fetchList()
         } else {
@@ -337,6 +344,9 @@ export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProp
   const openItem = (save: ApiSave) => {
     if (save.object.kind === 'KNOWLEDGE_UNIT') {
       onOpenSavedUnit(save.object.topicSlug, save.object.slug, null)
+    } else if (save.object.kind === 'CURRENT_EVENT') {
+      // P6-S3 §10/§16 — the event's own page is the retrieval surface.
+      onOpenEvent(save.object.slug)
     } else {
       // The item's own language market — the summary resolved it (§35).
       onOpenSavedUnit(save.object.topicSlug, save.object.unit.slug, save.object.languageCode)
@@ -396,6 +406,12 @@ export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProp
               <strong className="font-semibold">{data.counts.CONTENT_ITEM}</strong>
               <span className="text-zinc-500">representations</span>
             </span>
+            {data.counts.CURRENT_EVENT > 0 && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+                <strong className="font-semibold">{data.counts.CURRENT_EVENT}</strong>
+                <span className="text-zinc-500">current events</span>
+              </span>
+            )}
           </div>
         )}
       </motion.section>
@@ -662,8 +678,9 @@ export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProp
                 {items.map((save) => {
                   const object = save.object
                   const isUnit = object.kind === 'KNOWLEDGE_UNIT'
+                  const isEvent = object.kind === 'CURRENT_EVENT'
                   const title = isUnit ? object.canonicalName : object.title
-                  const statusNote = TOMBSTONE_NOTES[isUnit ? object.status : object.status]
+                  const statusNote = TOMBSTONE_NOTES[isUnit ? object.status : isEvent ? object.lifecycleState : object.status]
                   const collection = collectionById.get(save.collectionId)
                   return (
                     <li key={save.id}>
@@ -686,16 +703,28 @@ export function SavedView({ onOpenSavedUnit, onGoHome, onSignIn }: SavedViewProp
                                 className={`font-mono text-[10px] font-normal ${
                                   isUnit
                                     ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                                    : 'border-teal-200 bg-teal-50 text-teal-700'
+                                    : isEvent
+                                      ? 'border-orange-200 bg-orange-50 text-orange-700'
+                                      : 'border-teal-200 bg-teal-50 text-teal-700'
                                 }`}
                               >
-                                {isUnit ? 'UNIT' : object.format}
+                                {isUnit ? 'UNIT' : isEvent ? 'EVENT' : object.format}
                               </Badge>
                               {!isUnit && <span>{object.languageCode}</span>}
                               {!isUnit && <span aria-hidden="true">·</span>}
-                              <span>{isUnit ? object.topicCanonicalName : object.topicCanonicalName}</span>
+                              <span>{object.topicCanonicalName}</span>
                               <span aria-hidden="true">·</span>
-                              <span>{isUnit ? object.type.toLowerCase().replace('_', ' ') : object.unit.canonicalName}</span>
+                              <span>
+                                {isUnit
+                                  ? object.type.toLowerCase().replace('_', ' ')
+                                  : isEvent
+                                    ? `event of ${new Date(object.eventDate).toLocaleDateString(undefined, {
+                                        day: 'numeric',
+                                        month: 'short',
+                                        year: 'numeric',
+                                      })}`
+                                    : object.unit.canonicalName}
+                              </span>
                             </div>
                             <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                               <CalendarClock className="h-3 w-3" aria-hidden="true" />

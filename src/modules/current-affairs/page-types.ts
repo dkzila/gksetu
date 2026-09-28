@@ -65,6 +65,31 @@ export interface EventPageUnit {
   topicSlug: string
 }
 
+/** P6-S3 §12 step 3: one linked Entity — who/what the event is about. The
+ * §6 vocabulary (person/place/organisation/concept) renders as a chip; a
+ * RETIRED entity still renders (its links are honest history, §36). */
+export interface EventPageEntity {
+  slug: string
+  canonicalName: string
+  description: string | null
+  type: 'PERSON' | 'PLACE' | 'ORGANISATION' | 'CONCEPT'
+  status: 'ACTIVE' | 'RETIRED'
+  /** §14 — null = a GLOBAL (world-reference) entity. */
+  countryIso: string | null
+  /** The editorial note on the link ("the landing agency"). */
+  note: string | null
+}
+
+/** P6-S3 §12 step 3: an additional-topic cross-filing beyond the primary. */
+export interface EventPageTopicRef {
+  slug: string
+  canonicalName: string
+  /** §13 label in the reader's language when one exists. */
+  label: string
+  /** §16 topic-landing path in the reader's language. */
+  canonicalPath: string
+}
+
 /** GET /api/current-affairs/page/{ref} payload. */
 export interface CurrentEventPage {
   event: {
@@ -95,6 +120,10 @@ export interface CurrentEventPage {
   }>
   sources: EventPageSource[]
   knowledgeUnits: EventPageUnit[]
+  /** P6-S3 §12 step 3 — who/what this event is about (entity chips). */
+  entities: EventPageEntity[]
+  /** P6-S3 §12 step 3 — additional-topic cross-filings beyond the primary. */
+  additionalTopics: EventPageTopicRef[]
   language: { code: string; name: string; nativeName: string | null }
   /** §16 canonical path of THIS page (in the resolved language). */
   canonicalPath: string

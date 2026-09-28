@@ -76,8 +76,10 @@ export type {
 } from './types'
 export type {
   CurrentEventPage,
+  EventPageEntity,
   EventPageRepresentation,
   EventPageSource,
+  EventPageTopicRef,
   EventPageUnit,
 } from './page-types'
 export {

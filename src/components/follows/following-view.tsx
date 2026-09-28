@@ -25,6 +25,7 @@ import {
   RefreshCw,
   Rss,
   Trash2,
+  Users,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
@@ -39,6 +40,7 @@ import type {
   ApiFollow,
   ApiFollowList,
   ApiFollowedExam,
+  ApiFollowedEntity,
   ApiFollowedTopic,
   FollowEnvelope,
 } from './types'
@@ -58,9 +60,19 @@ export interface FollowingViewProps {
 
 type ExamFollow = ApiFollow & { objectType: 'EXAM'; object: ApiFollowedExam }
 type TopicFollow = ApiFollow & { objectType: 'TOPIC'; object: ApiFollowedTopic }
+type EntityFollow = ApiFollow & { objectType: 'ENTITY'; object: ApiFollowedEntity }
 
 const isExamFollow = (item: ApiFollow): item is ExamFollow => item.objectType === 'EXAM'
 const isTopicFollow = (item: ApiFollow): item is TopicFollow => item.objectType === 'TOPIC'
+const isEntityFollow = (item: ApiFollow): item is EntityFollow => item.objectType === 'ENTITY'
+
+/** §6 entity type labels for the chips. */
+const ENTITY_TYPE_LABEL: Record<ApiFollowedEntity['type'], string> = {
+  PERSON: 'Person',
+  PLACE: 'Place',
+  ORGANISATION: 'Organisation',
+  CONCEPT: 'Concept',
+}
 
 // ---------- Helpers ----------
 
@@ -149,11 +161,20 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                     total: Math.max(0, current.counts.total - 1),
                     EXAM: current.counts.EXAM - (follow.objectType === 'EXAM' ? 1 : 0),
                     TOPIC: current.counts.TOPIC - (follow.objectType === 'TOPIC' ? 1 : 0),
+                    ENTITY: current.counts.ENTITY - (follow.objectType === 'ENTITY' ? 1 : 0),
                   },
                 }
               : current
           )
-          toast({ title: `Unfollowed ${follow.object.kind === 'EXAM' ? follow.object.name : follow.object.label}` })
+          toast({
+            title: `Unfollowed ${
+              follow.object.kind === 'EXAM'
+                ? follow.object.name
+                : follow.object.kind === 'ENTITY'
+                  ? follow.object.canonicalName
+                  : follow.object.label
+            }`,
+          })
         } else {
           toast({
             title: 'Could not unfollow',
@@ -205,6 +226,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
 
   const exams = data?.items.filter(isExamFollow) ?? []
   const topics = data?.items.filter(isTopicFollow) ?? []
+  const entities = data?.items.filter(isEntityFollow) ?? []
 
   return (
     <div className="space-y-8">
@@ -255,6 +277,13 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
               <strong className="font-semibold">{data.counts.TOPIC}</strong>
               <span className="text-zinc-500">topics</span>
             </span>
+            {data.counts.ENTITY > 0 && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+                <Users className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+                <strong className="font-semibold">{data.counts.ENTITY}</strong>
+                <span className="text-zinc-500">entities</span>
+              </span>
+            )}
           </div>
         )}
       </motion.section>
@@ -449,6 +478,85 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                           disabled={removingId === follow.id}
                           onClick={() => void unfollow(follow)}
                           aria-label={`Unfollow ${topic.label}`}
+                        >
+                          {removingId === follow.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                          ) : (
+                            <Trash2 className="h-4 w-4" aria-hidden="true" />
+                          )}
+                          Unfollow
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- Entities (P6-S3 §6/§10) ---------- */}
+      {entities.length > 0 && (
+        <section aria-labelledby="following-entities-heading" className="space-y-3">
+          <h2 id="following-entities-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+            <Users className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+            Followed entities
+            <span className="text-sm font-normal text-zinc-400">({entities.length})</span>
+          </h2>
+          <p className="text-sm text-zinc-500">
+            Persons, places, organisations and concepts — the reference records behind current
+            affairs (§6). Their pages arrive with the entity hub; the follow already shapes your
+            feed context (§10).
+          </p>
+          <ul className="space-y-3">
+            {entities.map((follow) => {
+              const entity = follow.object
+              const statusNote = STATUS_NOTES[entity.status]
+              return (
+                <li key={follow.id}>
+                  <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
+                    <CardContent className="flex flex-wrap items-center gap-3 p-4">
+                      <div className="min-w-0 flex-1 basis-52 sm:basis-64">
+                        <span className="block truncate font-semibold text-zinc-900">
+                          {entity.canonicalName}
+                        </span>
+                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-500">
+                          <Badge
+                            variant="outline"
+                            className="border-violet-200 bg-violet-50 text-[10px] font-normal uppercase tracking-wide text-violet-700"
+                          >
+                            {ENTITY_TYPE_LABEL[entity.type]}
+                          </Badge>
+                          <span>{entity.scope === 'COUNTRY' ? `${entity.countryIso ?? ''}-scoped` : 'global'}</span>
+                          {entity.aliases.length > 0 && (
+                            <>
+                              <span aria-hidden="true">·</span>
+                              <span className="truncate">also: {entity.aliases.slice(0, 3).join(', ')}</span>
+                            </>
+                          )}
+                        </div>
+                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
+                          <CalendarClock className="h-3 w-3" aria-hidden="true" />
+                          <span>followed {formatFollowedAt(follow.followedAt)}</span>
+                          <span aria-hidden="true">·</span>
+                          <span className="font-mono">/entities/{entity.slug}</span>
+                          <span className="text-zinc-300">(page upcoming)</span>
+                        </div>
+                        {statusNote && (
+                          <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
+                            {statusNote.label}
+                          </Badge>
+                        )}
+                      </div>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-2 border-zinc-200 bg-white text-zinc-600 hover:border-red-200 hover:text-red-700"
+                          disabled={removingId === follow.id}
+                          onClick={() => void unfollow(follow)}
+                          aria-label={`Unfollow ${entity.canonicalName}`}
                         >
                           {removingId === follow.id ? (
                             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />

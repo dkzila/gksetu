@@ -44,18 +44,32 @@ export interface ApiFollowedTopic {
   canonicalPath: string
 }
 
-export type ApiFollowedObject = ApiFollowedExam | ApiFollowedTopic
+/** P6-S3 §6/§10/§14 — a followed entity (person/place/organisation/concept).
+ * Entities have no §16 page in v1: canonicalPath is null (honest, §37). */
+export interface ApiFollowedEntity {
+  kind: 'ENTITY'
+  slug: string
+  canonicalName: string
+  type: 'PERSON' | 'PLACE' | 'ORGANISATION' | 'CONCEPT'
+  status: 'ACTIVE' | 'RETIRED'
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  aliases: string[]
+  canonicalPath: null
+}
+
+export type ApiFollowedObject = ApiFollowedExam | ApiFollowedTopic | ApiFollowedEntity
 
 export interface ApiFollow {
   id: string
-  objectType: 'EXAM' | 'TOPIC'
+  objectType: 'EXAM' | 'TOPIC' | 'ENTITY'
   followedAt: string
   object: ApiFollowedObject
 }
 
 export interface ApiFollowList {
   items: ApiFollow[]
-  counts: { total: number; EXAM: number; TOPIC: number }
+  counts: { total: number; EXAM: number; TOPIC: number; ENTITY: number }
 }
 
 export interface ApiFollowMutation {
@@ -64,7 +78,7 @@ export interface ApiFollowMutation {
 }
 
 export interface ApiFollowState {
-  objectType: 'EXAM' | 'TOPIC'
+  objectType: 'EXAM' | 'TOPIC' | 'ENTITY'
   objectRef: string
   objectSlug: string | null
   objectFound: boolean

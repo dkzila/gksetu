@@ -38,8 +38,10 @@ import { getPublicTopic, TaxonomyError } from '@/modules/taxonomy'
 import { CurrentAffairsError } from './service'
 import type {
   CurrentEventPage,
+  EventPageEntity,
   EventPageRepresentation,
   EventPageSource,
+  EventPageTopicRef,
   EventPageUnit,
 } from './page-types'
 
@@ -86,6 +88,22 @@ export async function getCurrentEventPage(
       country: true,
       sources: { include: { source: true } },
       knowledgeUnits: { include: { knowledgeUnit: { include: { topic: true } } } },
+      // P6-S3 §12 step 3 — the entity + additional-topic linking layer.
+      entities: {
+        include: { entity: { include: { country: { select: { isoCode: true } } } } },
+        orderBy: [{ createdAt: 'asc' as const }],
+      },
+      additionalTopics: {
+        include: {
+          topic: {
+            include: {
+              labels: { include: { language: true } },
+              country: { select: { isoCode: true } },
+            },
+          },
+        },
+        orderBy: [{ createdAt: 'asc' as const }],
+      },
     },
   })
   if (!event) throw new CurrentAffairsError('EVENT_NOT_FOUND', 'Current event not found')
@@ -360,6 +378,42 @@ export async function getCurrentEventPage(
     },
   })
 
+  // ---------- P6-S3 §12 step 3: who/what the event is about (entity chips) ----------
+  // All linked entities render — RETIRED ones included: their links are
+  // honest history (§36), and the chip carries the state visibly.
+  const entities: EventPageEntity[] = event.entities
+    .map((link) => ({
+      slug: link.entity.slug,
+      canonicalName: link.entity.canonicalName,
+      description: link.entity.description,
+      type: link.entity.type as EventPageEntity['type'],
+      status: link.entity.status as EventPageEntity['status'],
+      countryIso: link.entity.country?.isoCode ?? null,
+      note: link.note,
+    }))
+    .sort((a, b) => a.canonicalName.localeCompare(b.canonicalName)) // deterministic (§37)
+
+  // ---------- P6-S3 §12 step 3: additional-topic cross-filings ----------
+  // A cross-filed COUNTRY topic of another market cannot render a §16 path
+  // here — but §13/§14 containment already guarantees that never happens
+  // (the service blocks the link at attach time), so every filing renders.
+  const additionalTopics: EventPageTopicRef[] = event.additionalTopics
+    .map((link) => {
+      const labelRow = link.topic.labels.find((entry) => entry.language.code === readerLanguage)
+      return {
+        slug: link.topic.slug,
+        canonicalName: link.topic.canonicalName,
+        label: labelRow?.name ?? link.topic.canonicalName,
+        canonicalPath: buildCanonicalUrl(
+          { slug: country.slug, isDefault: country.isDefault },
+          { code: readerLanguage },
+          country.defaultLanguage.code,
+          ['gk', link.topic.slug]
+        ),
+      }
+    })
+    .sort((a, b) => a.canonicalName.localeCompare(b.canonicalName)) // deterministic (§37)
+
   // ---------- §19 scheduled releases pending ----------
   const scheduledCount = await db.contentItem.count({
     where: {
@@ -392,6 +446,8 @@ export async function getCurrentEventPage(
     translations,
     sources,
     knowledgeUnits,
+    entities,
+    additionalTopics,
     language: {
       code: resolution.language.code,
       name: resolution.language.name,

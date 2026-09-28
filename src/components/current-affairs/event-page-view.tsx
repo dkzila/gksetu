@@ -32,6 +32,7 @@ import {
   ShieldQuestion,
   Star,
   Tag,
+  Users,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -40,6 +41,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
+import { SaveButton } from '@/components/saves/save-button'
 
 // ---------- Types (mirror /api/current-affairs/page/{ref}) ----------
 
@@ -84,6 +86,25 @@ interface EventUnit {
   topicSlug: string
 }
 
+/** P6-S3 §12 step 3 — who/what the event is about. */
+interface EventEntity {
+  slug: string
+  canonicalName: string
+  description: string | null
+  type: 'PERSON' | 'PLACE' | 'ORGANISATION' | 'CONCEPT'
+  status: 'ACTIVE' | 'RETIRED'
+  countryIso: string | null
+  note: string | null
+}
+
+/** P6-S3 §12 step 3 — an additional-topic cross-filing. */
+interface EventTopicRef {
+  slug: string
+  canonicalName: string
+  label: string
+  canonicalPath: string
+}
+
 export interface EventPageData {
   event: {
     slug: string
@@ -103,6 +124,8 @@ export interface EventPageData {
   translations: Array<{ code: string; name: string; nativeName: string | null; canonicalPath: string }>
   sources: EventSource[]
   knowledgeUnits: EventUnit[]
+  entities: EventEntity[]
+  additionalTopics: EventTopicRef[]
   language: { code: string; name: string; nativeName: string | null }
   canonicalPath: string
   seo: {
@@ -149,6 +172,13 @@ const FORMAT_LABEL: Record<string, string> = {
   FACT_CARD: 'Fact card',
   PROFILE: 'Profile',
   COMPARISON: 'Comparison',
+}
+
+const ENTITY_TYPE_META: Record<EventEntity['type'], { label: string; tone: string }> = {
+  PERSON: { label: 'Person', tone: 'border-violet-200 bg-violet-50 text-violet-700' },
+  PLACE: { label: 'Place', tone: 'border-cyan-200 bg-cyan-50 text-cyan-700' },
+  ORGANISATION: { label: 'Organisation', tone: 'border-orange-200 bg-orange-50 text-orange-700' },
+  CONCEPT: { label: 'Concept', tone: 'border-teal-200 bg-teal-50 text-teal-700' },
 }
 
 function formatDate(iso: string | null): string {

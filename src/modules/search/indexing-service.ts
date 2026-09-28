@@ -452,6 +452,44 @@ export async function buildEventDocuments(
       .map((mapping) => mapping.examVersion.exam.slug)
   )
 
+  // P6-S3 §12 step 3 + §17: the linked entities — who/what the event is
+  // about — are first-class search terms. Their canonical names and aliases
+  // join the neutral text and the alias set so "ISRO" finds the Chandrayaan
+  // landing and "United Nations Security Council" finds the UNSC debate,
+  // whatever the event's own title says. RETIRED entities still index here:
+  // their links are honest history (§36), and search reflects the record.
+  const entityLinks = await db.currentEventEntity.findMany({
+    where: { currentEventId: event.id },
+    select: {
+      entity: {
+        select: {
+          canonicalName: true,
+          aliases: { select: { value: true } },
+        },
+      },
+    },
+  })
+  const entityNames = entityLinks.map((link) => link.entity.canonicalName)
+  const entityAliases = entityLinks.flatMap((link) => link.entity.aliases.map((alias) => alias.value))
+  // P6-S3 §12 step 3: the additional-topic cross-filings widen the §13
+  // taxonomy surface — a story filed under both Space Technology and ISRO
+  // Programmes matches searchers of either branch.
+  const additionalTopicLinks = await db.currentEventTopic.findMany({
+    where: { currentEventId: event.id },
+    select: {
+      topic: {
+        select: {
+          canonicalName: true,
+          aliases: { select: { value: true } },
+        },
+      },
+    },
+  })
+  const additionalTopicNames = additionalTopicLinks.map((link) => link.topic.canonicalName)
+  const additionalTopicAliases = additionalTopicLinks.flatMap((link) =>
+    link.topic.aliases.map((alias) => alias.value)
+  )
+
   const topicAliases = topic.aliases.map((alias) => alias.value)
   const documents: IndexableDocument[] = []
   for (const [languageCode, representations] of byLanguage) {
@@ -471,15 +509,21 @@ export async function buildEventDocuments(
         event.summary,
         event.significance ?? '',
         label?.name ?? '',
+        ...entityNames,
+        ...additionalTopicNames,
         ...representations.map((item) => `${item.title} ${item.body}`),
       ]).join(' '),
       neutralText: dedupe([
         event.title,
         topic.canonicalName,
         ...topicAliases,
+        ...additionalTopicNames,
+        ...additionalTopicAliases,
+        ...entityNames,
+        ...entityAliases,
         slugTokens(event.slug),
       ]).join(' '),
-      aliases: dedupe([event.title, ...topicAliases]),
+      aliases: dedupe([event.title, ...topicAliases, ...entityNames, ...entityAliases]),
       topicSlug: topic.slug,
       topicLabel: label?.name ?? null,
       unitType: null,

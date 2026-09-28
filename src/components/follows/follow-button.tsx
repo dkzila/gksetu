@@ -25,7 +25,7 @@ import type {
 } from './types'
 
 export interface FollowButtonProps {
-  objectType: 'EXAM' | 'TOPIC'
+  objectType: 'EXAM' | 'TOPIC' | 'ENTITY'
   /** Canonical slug (or id) of the object this button follows. */
   objectRef: string
   /** Display name used in toasts (the object's honest label). */
