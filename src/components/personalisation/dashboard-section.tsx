@@ -264,14 +264,14 @@ export function DashboardSection() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="gap-2 border-zinc-200 bg-white"
+                  className="h-auto min-h-9 max-w-full gap-2 whitespace-normal border-zinc-200 bg-white py-1.5 text-left"
                   onClick={() => void declareDemoGoal()}
                   disabled={busy !== null}
                 >
                   {busy === 'goal' ? (
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />
                   ) : (
-                    <Target className="h-4 w-4" aria-hidden="true" />
+                    <Target className="h-4 w-4 shrink-0" aria-hidden="true" />
                   )}
                   PUT demo goal (2 exams + {DEMO_TOPIC})
                 </Button>

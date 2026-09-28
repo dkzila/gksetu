@@ -31,6 +31,10 @@
  * superseded + current + upcoming future-dated windows); UK (COMING_SOON)
  * carries one DRAFT exam to exercise §14 country scoping.
  *
+ * P6-S1 scope: CurrentEvents + source aggregation (§12/§45) — all four
+ * lifecycle states, GLOBAL + COUNTRY/IN scopes, multi-source aggregation
+ * reusing the shared §24 registry by URL, and VERIFIED canonical unit links.
+ *
  * Run: bun run db:seed
  */
 import { PrismaClient } from '@prisma/client'
@@ -1771,6 +1775,250 @@ async function main() {
     mappingsSeeded += 1
   }
 
+  // ---------- P6-S1: Current events + source aggregation (Master Plan §12/§45) ----------
+  // Structurally rich event-centric records: all four §12 lifecycle states
+  // (emerging → developing → stable → archived), GLOBAL + COUNTRY/IN scopes,
+  // primary-topic anchoring on seeded taxonomy, §12 step 2 source aggregation
+  // (the §45 "sample current event with multiple sources" — evidence REUSES
+  // the shared P2-S3 registry by URL so the dedup philosophy is visible in
+  // seed data), and §12 step 3 canonical KnowledgeUnit links (VERIFIED units
+  // only, §7). Seed writes never overwrite live editorial edits (§36).
+
+  // Extra evidence records the events aggregate (deduped by URL; the rest of
+  // the aggregated evidence reuses the shared P2-S3 registry rows).
+  const eventOnlySources = [
+    {
+      title: 'UN General Assembly — IGN statement on Security Council reform',
+      publisher: 'United Nations',
+      url: 'https://www.un.org/en/ga/ign/sc-reform-note-2025',
+      type: 'OFFICIAL' as const,
+      verification: 'UNVERIFIED' as const, // fresh record — awaiting the §24 verification pass
+      publishedAt: new Date('2025-11-14T00:00:00Z'),
+      notes: 'Registered during the emerging-event demo — the §12 step 1→2 flow (create the event, aggregate the first source).',
+    },
+    {
+      title: 'PIB release — G20 New Delhi Leaders\u2019 Declaration adopted',
+      publisher: 'Press Information Bureau',
+      url: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1961500',
+      type: 'OFFICIAL' as const,
+      verification: 'VERIFIED' as const,
+      publishedAt: new Date('2023-09-09T00:00:00Z'),
+      verifiedAt: new Date('2025-06-20T00:00:00Z'),
+    },
+    {
+      title: 'G20 New Delhi summit closes with consensus on the leaders\u2019 declaration',
+      publisher: 'The Hindu',
+      url: 'https://www.thehindu.com/news/national/g20-new-delhi-leaders-declaration/',
+      type: 'NEWS_MEDIA' as const,
+      verification: 'VERIFIED' as const,
+      publishedAt: new Date('2023-09-10T00:00:00Z'),
+      verifiedAt: new Date('2025-06-20T00:00:00Z'),
+    },
+  ]
+  for (const seed of eventOnlySources) {
+    const created = await prisma.source.upsert({
+      where: { url: seed.url },
+      update: {},
+      create: {
+        title: seed.title,
+        publisher: seed.publisher,
+        url: seed.url,
+        type: seed.type,
+        verification: seed.verification,
+        publishedAt: seed.publishedAt ?? null,
+        retrievedAt: new Date(),
+        verifiedAt: seed.verifiedAt ?? null,
+        notes: seed.notes ?? null,
+        createdById: admin.id,
+      },
+    })
+    sourceIdByUrl.set(created.url, created.id)
+  }
+
+  interface EventSeed {
+    slug: string
+    title: string
+    eventDate: Date
+    eventEndDate?: Date
+    location?: string
+    summary: string
+    significance?: string
+    lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+    scope: 'GLOBAL' | 'COUNTRY'
+    topicSlug: string
+    sources: Array<{ url: string; isPrimary?: boolean; note?: string }>
+    unitLinks?: Array<{ slug: string; note: string }>
+    notes?: string
+  }
+
+  const currentEvents: EventSeed[] = [
+    {
+      slug: 'chandrayaan-3-vikram-landing',
+      title: 'Chandrayaan-3 Vikram soft-landing near the lunar south pole',
+      eventDate: new Date('2023-08-23T18:04:00Z'),
+      location: 'Sriharikota, Andhra Pradesh / lunar south pole region',
+      summary:
+        'ISRO\u2019s Chandrayaan-3 mission soft-landed the Vikram lander near the lunar south pole, making India the fourth country to land on the Moon and the first in the southern polar region.',
+      significance:
+        'A first-in-world south-polar landing and the basis for National Space Day (23 August) — a recurring exam favourite across UPSC/SSC/state recruitment current affairs.',
+      lifecycleState: 'STABLE',
+      scope: 'GLOBAL',
+      topicSlug: 'isro-programmes',
+      sources: [
+        {
+          url: 'https://www.isro.gov.in/Chandrayaan3.html',
+          isPrimary: true,
+          note: 'Primary official record — mission facts, timeline and landing confirmation.',
+        },
+        { url: 'https://www.thehindu.com/science/chandrayaan-3-soft-lands-on-moon/', note: 'Independent same-day reporting confirming the landing sequence.' },
+        {
+          url: 'https://spaceinsider-daily.example.com/india-third-country-moon-landing',
+          note: 'Trust-revoked coverage kept as preserved provenance history (§36) — the \u201Cthird country\u201D error this outlet published is part of the record, never cited as truth.',
+        },
+      ],
+      unitLinks: [
+        { slug: 'chandrayaan-3-landing-2023', note: 'The canonical knowledge this event established — the §7 one-truth link.' },
+      ],
+    },
+    {
+      slug: 'national-space-day-notification',
+      title: 'National Space Day notification — 23 August observance',
+      eventDate: new Date('2025-10-04T00:00:00Z'),
+      location: 'New Delhi',
+      summary:
+        'The Government of India notified 23 August as National Space Day, commemorating the Chandrayaan-3 landing, with the first official observance cycle rolling out across institutions.',
+      significance:
+        'Commemorative-day questions are one-liner staples in SSC and state recruitment exams; the date anchors back to the Chandrayaan-3 knowledge unit.',
+      lifecycleState: 'DEVELOPING',
+      scope: 'COUNTRY',
+      topicSlug: 'current-affairs',
+      sources: [
+        {
+          url: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1950000',
+          isPrimary: true,
+          note: 'The PIB notification — still UNVERIFIED, awaiting the §24 editorial verification pass.',
+        },
+      ],
+      unitLinks: [
+        { slug: 'chandrayaan-3-landing-2023', note: 'The day commemorates this landing — the underlying canonical knowledge.' },
+      ],
+    },
+    {
+      slug: 'un-security-council-reform-ign-round',
+      title: 'UN Security Council reform — new IGN negotiation round',
+      eventDate: new Date('2025-11-14T00:00:00Z'),
+      location: 'UN Headquarters, New York',
+      summary:
+        'A fresh round of Intergovernmental Negotiations (IGN) on Security Council reform opened at the UN General Assembly, with members tabling new positions on expansion and veto use.',
+      significance:
+        'UNSC composition and reform is a recurring international-affairs topic; this event is tracked while positions develop.',
+      lifecycleState: 'EMERGING',
+      scope: 'GLOBAL',
+      topicSlug: 'united-nations',
+      sources: [
+        {
+          url: 'https://www.un.org/en/ga/ign/sc-reform-note-2025',
+          isPrimary: true,
+          note: 'First aggregated source — the §12 emerging flow: the event exists so five publishers never become five objects.',
+        },
+      ],
+    },
+    {
+      slug: 'g20-new-delhi-leaders-declaration',
+      title: 'G20 New Delhi Leaders\u2019 Declaration adopted',
+      eventDate: new Date('2023-09-09T00:00:00Z'),
+      eventEndDate: new Date('2023-09-10T00:00:00Z'),
+      location: 'New Delhi',
+      summary:
+        'G20 leaders meeting in New Delhi adopted the Leaders\u2019 Declaration by consensus on the summit\u2019s opening day, covering growth, green development and multilateral reform commitments.',
+      significance:
+        'The first G20 declaration adopted under India\u2019s presidency — archived now, but permanently relevant to international-affairs coverage.',
+      lifecycleState: 'ARCHIVED',
+      scope: 'COUNTRY',
+      topicSlug: 'polity-governance',
+      sources: [
+        { url: 'https://pib.gov.in/PressReleasePage.aspx?PRID=1961500', isPrimary: true, note: 'Official adoption record.' },
+        { url: 'https://www.thehindu.com/news/national/g20-new-delhi-leaders-declaration/', note: 'Consensus-day reporting.' },
+      ],
+    },
+  ]
+
+  let eventsSeeded = 0
+  let eventSourcesSeeded = 0
+  let eventUnitsSeeded = 0
+  for (const seed of currentEvents) {
+    const topicId = topicIdBySlug.get(seed.topicSlug)
+    if (!topicId) {
+      console.warn(`[seed] skipping current event "${seed.slug}": topic "${seed.topicSlug}" not found`)
+      continue
+    }
+    const event = await prisma.currentEvent.upsert({
+      where: { slug: seed.slug },
+      update: {}, // never overwrite live editorial edits on re-seed (§36)
+      create: {
+        slug: seed.slug,
+        title: seed.title,
+        eventDate: seed.eventDate,
+        eventEndDate: seed.eventEndDate ?? null,
+        location: seed.location ?? null,
+        summary: seed.summary,
+        significance: seed.significance ?? null,
+        lifecycleState: seed.lifecycleState,
+        scope: seed.scope,
+        countryId: seed.scope === 'COUNTRY' ? india.id : null,
+        topicId,
+        notes: seed.notes ?? null,
+        createdById: admin.id,
+      },
+    })
+    eventsSeeded += 1
+
+    // §12 step 2 aggregation — reuse the shared registry by URL (§11 dedup).
+    for (const link of seed.sources) {
+      const sourceId = sourceIdByUrl.get(link.url)
+      if (!sourceId) {
+        console.warn(`[seed] skipping source link on "${seed.slug}": url not seeded`)
+        continue
+      }
+      const existing = await prisma.currentEventSource.findUnique({
+        where: { currentEventId_sourceId: { currentEventId: event.id, sourceId } },
+        select: { id: true },
+      })
+      if (existing) continue
+      await prisma.currentEventSource.create({
+        data: {
+          currentEventId: event.id,
+          sourceId,
+          isPrimary: link.isPrimary ?? false,
+          note: link.note ?? null,
+        },
+      })
+      eventSourcesSeeded += 1
+    }
+
+    // §12 step 3 canonical knowledge links (VERIFIED units only, §7).
+    for (const unitLink of seed.unitLinks ?? []) {
+      const unit = await prisma.knowledgeUnit.findUnique({ where: { slug: unitLink.slug }, select: { id: true, status: true } })
+      if (!unit || unit.status !== 'VERIFIED') {
+        console.warn(`[seed] skipping unit link on "${seed.slug}": unit "${unitLink.slug}" missing or not VERIFIED`)
+        continue
+      }
+      const existing = await prisma.currentEventKnowledgeUnit.findUnique({
+        where: { currentEventId_knowledgeUnitId: { currentEventId: event.id, knowledgeUnitId: unit.id } },
+        select: { id: true },
+      })
+      if (existing) continue
+      await prisma.currentEventKnowledgeUnit.create({
+        data: {
+          currentEventId: event.id,
+          knowledgeUnitId: unit.id,
+          note: unitLink.note,
+        },
+      })
+      eventUnitsSeeded += 1
+    }
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -1784,7 +2032,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

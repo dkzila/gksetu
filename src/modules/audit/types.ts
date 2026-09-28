@@ -154,6 +154,19 @@ export const AUDIT_ACTIONS = {
   onboardingSkip: 'user.onboarding.skip',
   /** P5-S5 explanations & controls (§9/§31 — the explicit reset is a bulk self-service action). */
   personalisationReset: 'user.personalisation.reset',
+  /** P6-S1 current affairs (§12/§36 — every event/link mutation is audited). */
+  currentEventCreate: 'currentaffairs.event.create',
+  currentEventUpdate: 'currentaffairs.event.update',
+  currentEventTransition: 'currentaffairs.event.transition',
+  /** §12 step 2 source aggregation on events. */
+  currentEventSourceLink: 'currentaffairs.event.source.link',
+  currentEventSourceUpdate: 'currentaffairs.event.source.update',
+  currentEventSourceUnlink: 'currentaffairs.event.source.unlink',
+  /** §12 step 3 canonical knowledge links on events. */
+  currentEventUnitLink: 'currentaffairs.event.unit.link',
+  currentEventUnitUnlink: 'currentaffairs.event.unit.unlink',
+  /** Object-level current-affairs denials (scope/state mismatch — §20 signal). */
+  currentEventDenied: 'currentaffairs.event.denied',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -178,5 +191,8 @@ export const AUDIT_OBJECT_TYPES = {
   savedItem: 'SavedItem',
   collection: 'Collection',
   userGoal: 'UserGoal',
+  currentEvent: 'CurrentEvent',
+  currentEventSource: 'CurrentEventSource',
+  currentEventKnowledgeUnit: 'CurrentEventKnowledgeUnit',
   permission: 'Permission',
 } as const

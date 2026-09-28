@@ -90,4 +90,6 @@ export const RATE_LIMITS = {
   dashboardRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated dashboard/feed reads per IP (P5-S4)
   personalisationRead: { limit: 60, windowMs: 60 * 1000 }, // authenticated inventory/explanation reads per IP (P5-S5)
   personalisationWrite: { limit: 30, windowMs: 60 * 1000 }, // the §31 reset action per IP (P5-S5)
+  currentAffairsRead: { limit: 60, windowMs: 60 * 1000 }, // admin event list/detail reads per IP (P6-S1)
+  currentAffairsWrite: { limit: 30, windowMs: 60 * 1000 }, // event + aggregation mutations per IP (P6-S1)
 } as const

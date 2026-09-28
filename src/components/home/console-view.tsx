@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P5-S5)
+ * GlobIQ — Foundation Console (P1-S1 → P6-S1)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -10,9 +10,9 @@
  * this console keeps the API-first foundations inspectable: health, identity,
  * country/language configuration, taxonomy, the canonical content stack, the
  * §22 reading experience, the exam layer, the §11 engine, the §17 search
- * product, the P5-S1 follow APIs, the P5-S2 save/collection APIs, the P5-S3
- * goal/onboarding APIs, the P5-S4 dashboard, the P5-S5 controls, audit, the
- * module map and the phase roadmap.
+ * product, the P5 personalisation suite (follows, saves, goals, dashboard,
+ * controls), the P6-S1 current-affairs workspace, audit, the module map and
+ * the phase roadmap.
  */
 import { useCallback, useEffect, useState } from 'react'
 import {
@@ -60,6 +60,7 @@ import { SavesSection } from '@/components/saves/saves-section'
 import { PersonalisationSection } from '@/components/personalisation/personalisation-section'
 import { DashboardSection } from '@/components/personalisation/dashboard-section'
 import { ControlsSection } from '@/components/personalisation/controls-section'
+import { CurrentAffairsSection } from '@/components/current-affairs/current-affairs-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
@@ -160,7 +161,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P5-S5
+            P1-S1 → P6-S1
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -379,6 +380,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Personalisation — §9/§31 explanations & controls (P5-S5) ---------- */}
       <ControlsSection />
 
+      {/* ---------- Current affairs — §12 events & source aggregation (P6-S1) ---------- */}
+      <CurrentAffairsSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -432,7 +436,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P5-S5 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P6-S1 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

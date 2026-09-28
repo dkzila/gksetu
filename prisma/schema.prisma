@@ -155,6 +155,7 @@ model KnowledgeUnit {
   createdBy User?   @relation("KnowledgeUnitAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   contentItems ContentItem[] // representations of this canonical record (§7, P2-S2)
   examMappings ExamMapping[] @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
+  eventLinks   CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
 
   // Deduplication is by canonical identity (§11): within one topic, a canonical
   // name identifies exactly one unit. Never merge distinct concepts; never
@@ -317,6 +318,7 @@ model Source {
 
   createdBy User?               @relation("SourceAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   links     ContentSourceLink[]
+  eventLinks CurrentEventSource[] // P6-S1: §12 step 2 source aggregation
 
   @@index([type])
   @@index([verification])
@@ -758,6 +760,7 @@ model Country {
   knowledgeUnits  KnowledgeUnit[] @relation("KnowledgeUnitCountry")
   editorialTasks  EditorialTask[]
   exams           Exam[] @relation("ExamCountry") // P3-S1: every exam belongs to exactly one country (§14)
+  currentEvents   CurrentEvent[] @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
 
   @@index([status])
 }
@@ -827,6 +830,8 @@ model User {
   onboardingStatus      OnboardingStatus @default(PENDING)
   onboardingCompletedAt DateTime?
   goal                   UserGoal?
+  // P6-S1 (§12): canonical current-event records authored by this user.
+  createdCurrentEvents  CurrentEvent[] @relation("CurrentEventAuthor")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -882,6 +887,7 @@ model Topic {
   knowledgeUnits KnowledgeUnit[] @relation("KnowledgeUnitTopic")
   syllabusNodes  SyllabusNode[]  @relation("SyllabusNodeTopic")
   goalTopics     UserGoalTopic[] // P5-S3 — declared goal subject references
+  currentEvents  CurrentEvent[] @relation("CurrentEventTopic") // P6-S1: §12 step 3 primary topic
 
   @@index([parentId, orderIndex])
   @@index([status])
@@ -1142,4 +1148,115 @@ model UserGoalTopic {
   @@unique([goalId, topicId])
   @@index([goalId])
   @@index([topicId])
+}
+
+// ---------- P6-S1: Current Affairs — CurrentEvent + source aggregation
+// (Master Plan §6 CurrentEvent row, §12 Current Affairs Architecture, §14, §16,
+// §24, §36, §45) ----------
+
+// §12 step 6 lifecycle states: emerging → developing → stable → archived.
+// EMERGING   — breaking/tracked; sources being aggregated; the editorial
+//              "create the event before five publishers become five objects"
+//              state (§12).
+// DEVELOPING — more sources/context accumulating; corrections expected.
+// STABLE     — the established canonical understanding of the event.
+// ARCHIVED   — end-of-life; read-only like RETIRED taxonomy/content (§36) —
+//              reopenable via an explicit transition, never edited in place.
+// P6-S5 adds automated freshness→archive rules on top of this manual machine.
+enum CurrentEventLifecycle {
+  EMERGING
+  DEVELOPING
+  STABLE
+  ARCHIVED
+}
+
+// §6 CurrentEvent row: "id, event_date, location, entities, summary,
+// significance, lifecycle_state". Event-centric, NOT article-centric (§12):
+// one real-world event = one row, whatever the number of publishers covering
+// it. Fields are the canonical English-reference record — language
+// representations are the P6-S2 publishing layer, exactly as ContentItems
+// represent KnowledgeUnits (§7). `entities` land with the Entity model in
+// P6-S3 (the documented extension point — never a JSON placeholder).
+//
+// Country scope is explicit (§14): GLOBAL events are world-relevant
+// (ADMIN-managed like all global objects); COUNTRY events belong to exactly
+// one market. The primary §13 topic is required — the Current Affairs domain
+// nodes plus every other taxonomy branch are valid anchors; P6-S3 adds the
+// richer entity/multi-topic linking. `slug` is immutable and URL-stable for
+// the §16 canonical `/current-affairs/{slug}/` page (rendered from P6-S2).
+model CurrentEvent {
+  id             String               @id @default(cuid())
+  slug           String               @unique // immutable, URL-stable (§16)
+  title          String // canonical (English-reference) event title
+  eventDate      DateTime // §6 event_date — when the event happened
+  eventEndDate   DateTime? // optional span end (multi-day summits, sessions)
+  location       String? // §6 location — free-text place, e.g. "Sriharikota, Andhra Pradesh"
+  summary        String // §6 summary — what happened (canonical reference)
+  significance   String? // §6 significance — why it matters for GK/exams
+  lifecycleState CurrentEventLifecycle @default(EMERGING)
+  scope          TopicScope           @default(GLOBAL) // §14 GLOBAL/COUNTRY
+  countryId      String? // set iff scope = COUNTRY (explicit, never inferred)
+  topicId        String // §13 primary canonical topic
+  notes          String? // internal editorial notes
+  createdById    String?
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+
+  country    Country?  @relation("CurrentEventCountry", fields: [countryId], references: [id])
+  topic      Topic     @relation("CurrentEventTopic", fields: [topicId], references: [id])
+  createdBy  User?     @relation("CurrentEventAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  sources    CurrentEventSource[]
+  knowledgeUnits CurrentEventKnowledgeUnit[]
+
+  @@index([lifecycleState])
+  @@index([lifecycleState, eventDate])
+  @@index([scope, countryId])
+  @@index([topicId])
+  @@index([eventDate])
+}
+
+// §12 step 2: attach one or more Source records to the event — the SOURCE
+// AGGREGATION join. Reuses the platform-level shared Source registry (P2-S3):
+// the same URL is one Source row whether it backs a ContentItem or an event
+// (the §11 dedup philosophy applied to evidence), so attaching an
+// already-registered URL reuses the record and its verification state.
+// `isPrimary` marks the lead evidence (at most one per event — swapped by the
+// service); `note` carries event-level attribution ("what this source adds").
+// Links are live provenance metadata: every attach/update/detach is audited
+// and detach removes the link row only — the Source record and its other
+// links are preserved (§36).
+model CurrentEventSource {
+  id             String   @id @default(cuid())
+  currentEventId String
+  sourceId       String
+  isPrimary      Boolean  @default(false) // the lead source (one per event)
+  note           String? // event-level attribution: what this source adds
+  createdAt      DateTime @default(now())
+
+  currentEvent CurrentEvent @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
+  source       Source      @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+
+  @@unique([currentEventId, sourceId])
+  @@index([sourceId])
+}
+
+// §12 step 3: attach the relevant canonical KnowledgeUnits to the event —
+// the §7 one-truth rule for current affairs. A breaking event points at the
+// established knowledge it touches (the Chandrayaan-3 event → the
+// Chandrayaan-3 unit) instead of re-entering facts; the exam layer keeps
+// flowing through the SAME unit (§8). Only VERIFIED units are linkable —
+// DRAFT/IN_REVIEW knowledge is not yet canonical truth (P2-S1 public
+// visibility rule). P6-S2 representations hang off the event separately.
+model CurrentEventKnowledgeUnit {
+  id              String   @id @default(cuid())
+  currentEventId  String
+  knowledgeUnitId String
+  note            String? // why this unit is relevant to the event
+  createdAt       DateTime @default(now())
+
+  currentEvent  CurrentEvent   @relation(fields: [currentEventId], references: [id], onDelete: Cascade)
+  knowledgeUnit KnowledgeUnit @relation(fields: [knowledgeUnitId], references: [id], onDelete: Cascade)
+
+  @@unique([currentEventId, knowledgeUnitId])
+  @@index([knowledgeUnitId])
 }

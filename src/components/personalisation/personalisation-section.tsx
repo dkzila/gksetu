@@ -289,14 +289,14 @@ export function PersonalisationSection() {
               <div className="flex flex-wrap gap-2">
                 <Button
                   size="sm"
-                  className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
+                  className="h-auto min-h-9 max-w-full gap-2 whitespace-normal bg-emerald-600 py-1.5 text-left text-white hover:bg-emerald-700"
                   onClick={() => void declareDemoGoal()}
                   disabled={busy !== null}
                 >
                   {busy === 'goal' ? (
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />
                   ) : (
-                    <Target className="h-4 w-4" aria-hidden="true" />
+                    <Target className="h-4 w-4 shrink-0" aria-hidden="true" />
                   )}
                   PUT demo goal ({DEMO_EXAM} + {DEMO_TOPIC})
                 </Button>
