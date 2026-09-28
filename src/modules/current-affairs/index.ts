@@ -17,6 +17,13 @@
  *        live revisions, the §24 evidence, and the §7 unit links.
  *        Entity/taxonomy linking (P6-S3), the exam-aware feed (P6-S4) and
  *        freshness rules (P6-S5) extend this module additively.
+ * P6-S4: the exam-aware feed (§12 step 5) — current affairs matched to a
+ *        followed exam's syllabus via the SAME §13 node-topic links and §8
+ *        mappings the §11 combination engine consumes. EXAM mode is the
+ *        public single-exam view; COMBINED mode is the signed-in caller's
+ *        goal ∪ followed exams in their home market (§9/§14), every item
+ *        carrying its §9 reason. The reverse resolution (which exams an
+ *        event feeds) ships on the public event page as examRelevance.
  */
 export {
   CurrentAffairsError,
@@ -37,6 +44,7 @@ export {
   detachEventTopic,
 } from './service'
 export { getCurrentEventPage } from './page-service'
+export { getExamAwareFeed, getEventExamRelevance } from './feed-service'
 export {
   createCurrentEventSchema,
   updateCurrentEventSchema,
@@ -47,6 +55,7 @@ export {
   attachEventEntitySchema,
   attachEventTopicSchema,
   adminCurrentEventListQuerySchema,
+  feedQuerySchema,
   EVENT_SLUG_PATTERN,
 } from './validation'
 export type {
@@ -57,6 +66,7 @@ export type {
   AttachEventTopicInput,
   CreateCurrentEventInput,
   CurrentEventTransitionInput,
+  FeedQuery,
   UpdateCurrentEventInput,
   UpdateEventSourceLinkInput,
 } from './validation'
@@ -82,6 +92,11 @@ export type {
   EventPageTopicRef,
   EventPageUnit,
 } from './page-types'
+export type {
+  EventExamRelevance,
+  ExamAwareFeed,
+  ExamFeedItem,
+} from './feed-types'
 export {
   CURRENT_EVENT_LIFECYCLES,
   CURRENT_EVENT_TRANSITIONS,

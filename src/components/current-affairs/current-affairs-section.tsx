@@ -169,6 +169,8 @@ const API_ROWS: Array<{ method: string; path: string; note: string }> = [
   { method: 'POST/DELETE', path: '/api/current-affairs/admin/events/{id}/entities[/{linkId}]', note: 'P6-S3 §12 step 3 — ACTIVE entity links (registry preserved on detach, §36)' },
   { method: 'POST/DELETE', path: '/api/current-affairs/admin/events/{id}/topics[/{linkId}]', note: 'P6-S3 §12 step 3 — additional-topic cross-filings (§13 containment)' },
   { method: 'GET/POST/PATCH', path: '/api/entities/admin[/{id}]', note: 'P6-S3 — the Entity reference registry (persons/places/orgs/concepts, §14 scope, aliases)' },
+  { method: 'GET', path: '/api/current-affairs/feed?exam={slug}', note: 'P6-S4 — exam-aware feed: single-exam mode (public)' },
+  { method: 'GET', path: '/api/current-affairs/feed', note: 'P6-S4 — exam-aware feed: combined mode over followed + goal exams (Bearer)' },
 ]
 
 const DEMO_TOPICS = [

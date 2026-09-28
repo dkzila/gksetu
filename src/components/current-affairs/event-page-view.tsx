@@ -10,6 +10,9 @@
  * §12 step 2 aggregated sources + the representations' own citations, one
  * shared registry, verification states intact) → the §12 step 3 canonical
  * KnowledgeUnits (the §7 one-truth links) → the §35 translation surface.
+ * P6-S4: the "In the syllabus of" block (§12 step 5) — which exam syllabi
+ * this event feeds, anchored via §13 topic links or §8 unit mappings
+ * (absence is honest: no block when nothing anchors).
  * This is the READER surface (§38): consumes GET /api/current-affairs/page/
  * {ref} — the same client-agnostic payload a future mobile app uses (§39).
  */
@@ -18,6 +21,7 @@ import {
   AlertCircle,
   ArrowUpRight,
   Bot,
+  BookOpenCheck,
   CalendarClock,
   CalendarRange,
   Clock3,
@@ -105,6 +109,22 @@ interface EventTopicRef {
   canonicalPath: string
 }
 
+/** P6-S4 §12 step 5 — which exam syllabi this event feeds (≤6 exams,
+ * name-sorted; anchors deduped and node-sorted, all server-side). */
+interface EventExamRelevance {
+  exams: Array<{
+    slug: string
+    name: string
+    code: string
+    anchors: Array<{
+      nodeName: string
+      matchVia: 'TOPIC' | 'KNOWLEDGE_UNIT'
+      /** The mapped canonical unit's slug (KNOWLEDGE_UNIT matches only). */
+      unitSlug: string | null
+    }>
+  }>
+}
+
 export interface EventPageData {
   event: {
     slug: string
@@ -126,6 +146,8 @@ export interface EventPageData {
   knowledgeUnits: EventUnit[]
   entities: EventEntity[]
   additionalTopics: EventTopicRef[]
+  /** P6-S4 §12 step 5 — the exam syllabi this event feeds. */
+  examRelevance: EventExamRelevance
   language: { code: string; name: string; nativeName: string | null }
   canonicalPath: string
   seo: {
@@ -613,6 +635,56 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
                 </li>
               )
             })}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- P6-S4 §12 step 5: the exam syllabi this event feeds ---------- */}
+      {/* Absence is honest: no exams → no block. */}
+      {page.examRelevance.exams.length > 0 && (
+        <section aria-labelledby="event-exams" className="space-y-3">
+          <h2
+            id="event-exams"
+            className="flex items-center gap-2 text-lg font-semibold tracking-tight text-zinc-900"
+          >
+            <BookOpenCheck className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+            In the syllabus of
+          </h2>
+          <p className="text-sm text-zinc-500">
+            This event feeds the live syllabi below — each exam anchors it through a linked
+            syllabus topic (§13) or a mapped canonical unit (§8).
+          </p>
+          <ul className="space-y-2.5" aria-label="Exams whose syllabi this event feeds">
+            {page.examRelevance.exams.map((exam) => (
+              <li key={exam.slug} className="rounded-lg border border-zinc-200 bg-white p-3.5 shadow-sm">
+                <p className="text-sm font-semibold text-zinc-900">
+                  {exam.name}{' '}
+                  <span className="font-mono text-xs font-normal text-zinc-400">{exam.code}</span>
+                </p>
+                <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                  {exam.anchors.map((anchor, anchorIndex) => (
+                    <Badge
+                      key={`${exam.slug}-${anchor.nodeName}-${anchor.matchVia}-${anchorIndex}`}
+                      variant="outline"
+                      className="max-w-full border-zinc-200 bg-zinc-50 text-[11px] font-normal text-zinc-600"
+                      title={`${anchor.nodeName} — anchored via ${
+                        anchor.matchVia === 'TOPIC'
+                          ? 'a syllabus-topic link (§13)'
+                          : 'a mapped canonical unit (§8)'
+                      }`}
+                    >
+                      {anchor.nodeName}
+                      {anchor.unitSlug && (
+                        <span className="font-mono text-[10px] text-zinc-400">
+                          {' '}
+                          · via {anchor.unitSlug}
+                        </span>
+                      )}
+                    </Badge>
+                  ))}
+                </div>
+              </li>
+            ))}
           </ul>
         </section>
       )}

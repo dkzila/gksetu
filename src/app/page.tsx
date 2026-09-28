@@ -662,6 +662,7 @@ export default function GlobIQApp() {
             onOpenUnit={openUnit}
             onOpenExam={openExam}
             onOpenExamSyllabus={openExamSyllabus}
+            onOpenEvent={openEvent}
             onGoHome={goHome}
           />
         ) : route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug ? (

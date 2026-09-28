@@ -162,7 +162,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P6-S2
+            P1-S1 → P6-S4
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -440,7 +440,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P6-S3 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P6-S4 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

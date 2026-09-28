@@ -236,3 +236,22 @@ export const adminCurrentEventListQuerySchema = z.object({
 })
 
 export type AdminCurrentEventListQuery = z.infer<typeof adminCurrentEventListQuerySchema>
+
+/** P6-S4 §12 step 5: the exam-aware feed query. `exam` selects the PUBLIC
+ * single-exam mode (no auth); without it the feed is the caller's §9
+ * COMBINED view — goal exams ∪ followed exams — and the route enforces a
+ * Bearer token. `lifecycle` LIVE = emerging/developing/stable (§12 step 6);
+ * ALL adds ARCHIVED for the historical view (P6-S5 formalizes archive
+ * windows). */
+export const feedQuerySchema = z.object({
+  country: z.string().trim().max(8).optional(),
+  language: z.string().trim().max(8).optional(),
+  /** Single-exam mode — public ref (slug or canonical id) of the exam whose
+   * syllabus the feed is matched against (§37 ref convention). */
+  exam: z.string().trim().min(1, 'Pick an exam').max(120).optional(),
+  lifecycle: z.enum(['LIVE', 'ALL']).default('LIVE'),
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(25).default(10),
+})
+
+export type FeedQuery = z.infer<typeof feedQuerySchema>

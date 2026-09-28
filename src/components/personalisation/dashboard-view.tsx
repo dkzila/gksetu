@@ -10,6 +10,9 @@
  * canonical unit ONCE with its "Covers: Exam A + Exam B" badge), §31/§38
  * (private authenticated surface: noindex, never in the sitemap, signed-out
  * gate), §16 (every object links through its canonical path).
+ * P6-S4: the "Current affairs for your exams" rail — the COMBINED-mode
+ * exam-aware feed (§12 step 5) built from the same §9 scope as the queue,
+ * every item opened through its §16 event path.
  */
 import { useCallback, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -24,6 +27,7 @@ import {
   ListChecks,
   Loader2,
   LogIn,
+  Newspaper,
   Pencil,
   RefreshCw,
   Rss,
@@ -90,6 +94,88 @@ const STATUS_STYLE: Record<string, string> = {
   RETIRED: 'border-amber-200 bg-amber-50 text-amber-800',
   INACTIVE: 'border-amber-200 bg-amber-50 text-amber-800',
   DRAFT: 'border-zinc-200 bg-zinc-50 text-zinc-500',
+}
+
+// ---------- P6-S4: exam-aware current-affairs feed (local API mirror) ----------
+// Mirrors GET /api/current-affairs/feed (COMBINED mode, Bearer-authenticated)
+// — hand-written per the client-mirror convention (never import server
+// modules); the same contract as the exam view's EXAM-mode mirror.
+
+type FeedLifecycle = 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+
+interface FeedExamRef {
+  slug: string
+  name: string
+  code: string
+}
+
+interface FeedItem {
+  slug: string
+  title: string
+  eventDate: string
+  eventEndDate: string | null
+  location: string | null
+  summary: string
+  significance: string | null
+  lifecycleState: FeedLifecycle
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  topic: { slug: string; canonicalName: string; label: string }
+  matchedExams: FeedExamRef[]
+  syllabusAnchors: Array<{
+    examSlug: string
+    examName: string
+    nodeName: string
+    matchVia: 'TOPIC' | 'KNOWLEDGE_UNIT'
+  }>
+  /** §9 explanation — a complete sentence, rendered verbatim. */
+  reason: string
+  /** §35: sorted ISO codes of the published representations. */
+  languages: string[]
+  representationCount: number
+  /** §16 canonical event-page path — the rail's navigation handle. */
+  canonicalPath: string
+}
+
+interface ExamAwareFeed {
+  mode: 'EXAM' | 'COMBINED'
+  exam: FeedExamRef | null
+  /** COMBINED mode: the contributing exams (goal ∪ follows, §9). */
+  exams: FeedExamRef[]
+  readerCountryIso: string
+  items: FeedItem[]
+  pagination: { page: number; pageSize: number; total: number; totalPages: number }
+  /** Honest empty-state note (§36) — rendered verbatim when empty. */
+  note: string | null
+}
+
+/** The §12/§36 lifecycle vocabulary — the event page's colour mapping. */
+const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; note: string }> = {
+  EMERGING: {
+    label: 'Emerging',
+    tone: 'border-amber-200 bg-amber-50 text-amber-800',
+    note: 'Breaking coverage — facts may still develop (§12).',
+  },
+  DEVELOPING: {
+    label: 'Developing',
+    tone: 'border-sky-200 bg-sky-50 text-sky-800',
+    note: 'More sources and context are accumulating — corrections expected (§12).',
+  },
+  STABLE: {
+    label: 'Stable',
+    tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+    note: 'The established canonical understanding of this event (§12).',
+  },
+  ARCHIVED: {
+    label: 'Archived',
+    tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
+    note: 'End-of-life for updates — kept as permanent historical reference (§36).',
+  },
+}
+
+/** §6 event_date, formatted like the sibling rows (en-IN). */
+function formatFeedDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 function formatPace(minutes: number | null): string {
@@ -581,6 +667,20 @@ export function DashboardView({
             </Card>
           </section>
 
+          {/* ---------- P6-S4: current affairs for your exams (§12 step 5) ---------- */}
+          {/* Placement choice: directly after the combined-exam queue — the
+              queue is "what to study" and this rail is "what's happening for
+              your exams": the two §22 what-matters-now surfaces built from
+              the same §9 exam scope. The follows orbit and the saves rail
+              (retrieval-only, §10) stay secondary below. */}
+          <CurrentAffairsRail
+            token={token}
+            countryIso={countryIso}
+            language={language}
+            onOpenPath={onOpenPath}
+            onSignIn={onSignIn}
+          />
+
           {/* ---------- Subjects in your orbit (§34 followed topics) ---------- */}
           {(data.signals.followedTopics.length > 0 || (data.goal?.topics.length ?? 0) > 0) && (
             <section aria-labelledby="orbit-heading" className="space-y-3">
@@ -704,5 +804,212 @@ export function DashboardView({
         </>
       )}
     </div>
+  )
+}
+
+// ---------- P6-S4: the current-affairs rail (§12 step 5, COMBINED feed) ----------
+
+function CurrentAffairsRail({
+  token,
+  countryIso,
+  language,
+  onOpenPath,
+  onSignIn,
+}: {
+  token: string | null
+  countryIso: string
+  language: string
+  onOpenPath: (path: string) => void
+  onSignIn: () => void
+}) {
+  const [feed, setFeed] = useState<ExamAwareFeed | null>(null)
+  const [authLost, setAuthLost] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  // The COMBINED-mode feed (goal ∪ follows, §9) — the same Bearer pattern as
+  // the dashboard fetch. Guard: never request it unauthenticated (the route
+  // 401s by design); this rail is unreachable signed-out, but guard anyway.
+  useEffect(() => {
+    if (!token) {
+      setFeed(null)
+      setAuthLost(false)
+      setFailed(false)
+      setLoading(false)
+      return
+    }
+    let cancelled = false
+    async function run() {
+      setLoading(true)
+      setAuthLost(false)
+      setFailed(false)
+      try {
+        const params = new URLSearchParams({ country: countryIso, language, pageSize: '5' })
+        const response = await fetch(`/api/current-affairs/feed?${params.toString()}`, {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: 'no-store',
+        })
+        const payload = (await response.json()) as Envelope<{ feed: ExamAwareFeed }>
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data) {
+          setFeed(payload.data.feed)
+        } else if (response.status === 401) {
+          setAuthLost(true)
+        } else {
+          setFailed(true)
+        }
+      } catch {
+        if (!cancelled) setFailed(true)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    void run()
+    return () => {
+      cancelled = true
+    }
+  }, [token, countryIso, language])
+
+  return (
+    <section
+      aria-labelledby="dashboard-current-affairs-heading"
+      className="space-y-3"
+    >
+      <h2
+        id="dashboard-current-affairs-heading"
+        className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+      >
+        <Newspaper className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+        Current affairs for your exams
+      </h2>
+      <Card className="border-zinc-200 shadow-sm">
+        <CardContent className="space-y-4 p-5 sm:p-6">
+          {loading ? (
+            <div
+              className="space-y-3"
+              aria-busy="true"
+              aria-label="Loading current affairs for your exams"
+            >
+              {[0, 1, 2].map((index) => (
+                <Skeleton key={index} className="h-20 w-full rounded-lg" />
+              ))}
+            </div>
+          ) : authLost ? (
+            // §31: honest degraded state — the session can no longer carry this surface
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-zinc-600">
+                Sign in to see current affairs picked for your exams.
+              </p>
+              <Button
+                size="sm"
+                className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
+                onClick={onSignIn}
+              >
+                <LogIn className="h-4 w-4" aria-hidden="true" />
+                Sign in
+              </Button>
+            </div>
+          ) : failed ? (
+            // Quiet by design: the dashboard stands alone if the feed is down
+            <p className="text-sm text-zinc-500">
+              Current affairs could not be loaded right now.
+            </p>
+          ) : !feed || feed.items.length === 0 ? (
+            // §36: the server's honest empty-scope note, rendered verbatim
+            <p className="text-sm text-zinc-500">
+              {feed?.note ?? 'No current affairs picked for your exams yet.'}
+            </p>
+          ) : (
+            <>
+              {/* §11 step 8 style: which exams picked this rail */}
+              {feed.exams.length > 0 && (
+                <p
+                  className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-500"
+                  aria-label="Exams this feed is picked for"
+                >
+                  <span className="font-medium text-zinc-600">Picked for:</span>
+                  {feed.exams.map((exam, index) => (
+                    <span key={exam.slug} className="inline-flex items-center gap-1.5">
+                      {index > 0 && (
+                        <span className="text-zinc-300" aria-hidden="true">
+                          +
+                        </span>
+                      )}
+                      <Badge
+                        variant="outline"
+                        className="border-zinc-200 bg-white font-normal text-zinc-600"
+                      >
+                        {exam.name}
+                      </Badge>
+                    </span>
+                  ))}
+                </p>
+              )}
+              <ol
+                className="max-h-[24rem] space-y-3 overflow-y-auto pr-1"
+                aria-label="Current affairs picked for your exams"
+              >
+                {feed.items.map((item) => {
+                  const lifecycle = FEED_LIFECYCLE_META[item.lifecycleState]
+                  return (
+                    <li key={item.slug}>
+                      <button
+                        type="button"
+                        onClick={() => onOpenPath(item.canonicalPath)}
+                        className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
+                        aria-label={`Open the event page for ${item.title}`}
+                      >
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <p className="min-w-0 flex-1 text-sm font-semibold leading-snug text-zinc-900">
+                            {item.title}
+                          </p>
+                          <Badge
+                            variant="outline"
+                            className={`shrink-0 text-[10px] font-normal ${lifecycle.tone}`}
+                            title={lifecycle.note}
+                          >
+                            {lifecycle.label}
+                          </Badge>
+                        </div>
+                        <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500">
+                          <span className="inline-flex items-center gap-1 text-zinc-400">
+                            <CalendarClock className="h-3 w-3" aria-hidden="true" />
+                            {formatFeedDate(item.eventDate)}
+                          </span>
+                          <span className="text-zinc-300" aria-hidden="true">
+                            ·
+                          </span>
+                          <span>{item.topic.label}</span>
+                        </p>
+                        {/* §9: the reason sentence, rendered verbatim */}
+                        <p className="mt-1.5 flex items-start gap-1.5 text-xs text-zinc-500">
+                          <Lightbulb
+                            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600"
+                            aria-hidden="true"
+                          />
+                          <span>{item.reason}</span>
+                        </p>
+                        <p
+                          className="mt-1.5 truncate font-mono text-[10px] text-zinc-300"
+                          title={item.canonicalPath}
+                        >
+                          {item.canonicalPath}
+                        </p>
+                      </button>
+                    </li>
+                  )
+                })}
+              </ol>
+              {feed.pagination.total > feed.items.length && (
+                <p className="text-xs text-zinc-400">
+                  Showing {feed.items.length} of {feed.pagination.total} picked{' '}
+                  {feed.pagination.total === 1 ? 'event' : 'events'}.
+                </p>
+              )}
+            </>
+          )}
+        </CardContent>
+      </Card>
+    </section>
   )
 }

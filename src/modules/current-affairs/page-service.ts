@@ -36,6 +36,7 @@ import { buildEventGraph, buildPageSeo, SITE_NAME } from '@/modules/seo'
 import { getPublicTopic, TaxonomyError } from '@/modules/taxonomy'
 
 import { CurrentAffairsError } from './service'
+import { resolveExamRelevance } from './feed-service'
 import type {
   CurrentEventPage,
   EventPageEntity,
@@ -423,6 +424,19 @@ export async function getCurrentEventPage(
     },
   })
 
+  // ---------- P6-S4 §12 step 5: which exam syllabi this event feeds ----------
+  // The reverse resolution of the exam-aware feed, computed from the
+  // already-loaded event links (no double fetch): the reader market's ACTIVE
+  // exams whose in-effect version anchors the event's topics (§13) or maps
+  // its VERIFIED-linked units (§8). Renders as the "feeds: exam X, Y" layer.
+  const examRelevance = await resolveExamRelevance({
+    topicIds: [event.topicId, ...event.additionalTopics.map((link) => link.topic.id)],
+    unitIds: event.knowledgeUnits
+      .filter((link) => link.knowledgeUnit.status === 'VERIFIED') // §7 one-truth links only
+      .map((link) => link.knowledgeUnit.id),
+    countryId: countryRow.id,
+  })
+
   return {
     event: {
       slug: event.slug,
@@ -457,5 +471,6 @@ export async function getCurrentEventPage(
     seo,
     structuredData,
     scheduledCount,
+    examRelevance,
   }
 }

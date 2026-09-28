@@ -11,6 +11,7 @@
  */
 
 import type { CurrentEventLifecyclePublic, EventScopePublic } from './types'
+import type { EventExamRelevance } from './feed-types'
 import type { PageSeo, JsonLdNode } from '@/modules/seo'
 
 /** One published representation on the event page — ALWAYS the live revision. */
@@ -131,4 +132,9 @@ export interface CurrentEventPage {
   structuredData: { graph: JsonLdNode[] }
   /** §19: scheduled representations pending release for this event. */
   scheduledCount: number
+  /** P6-S4 §12 step 5 — which exam syllabi this event feeds: the reader
+   * market's ACTIVE public exams whose in-effect version anchors the
+   * event's topics (§13 node links) or maps its VERIFIED-linked units (§8
+   * mappings). Capped + deterministic (§37). */
+  examRelevance: EventExamRelevance
 }

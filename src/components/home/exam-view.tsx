@@ -11,6 +11,9 @@
  * coverage tree with every §8 field, and §33 related-exam internal links.
  * Topic-linked nodes link into the syllabus-topic pages (§16
  * …/exams/{exam}/syllabus/{topic}/); every §16 path ships as data.
+ * P6-S4: the "Current affairs for this exam" section — live events whose
+ * topics or mapped units anchor to this syllabus (§12 step 5, the public
+ * EXAM-mode feed), opened through the §16 event paths.
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -19,16 +22,20 @@ import {
   ArrowRight,
   BookOpen,
   BookOpenCheck,
+  CalendarClock,
   CalendarRange,
   ClipboardList,
   ChevronLeft,
   GraduationCap,
   History,
   Info,
+  Languages,
   Link2,
   ListOrdered,
+  Newspaper,
   Radio,
   RefreshCw,
+  Tag,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -69,7 +76,90 @@ export interface ExamViewProps {
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
   onOpenExamSyllabus: (examSlug: string, topicSlug: string) => void
+  /** P6-S4: opens a linked current-affairs event page (§16
+   * …/current-affairs/{event-slug}/). */
+  onOpenEvent: (eventSlug: string) => void
   onGoHome: () => void
+}
+
+// ---------- P6-S4: exam-aware current-affairs feed (local API mirror) ----------
+// Mirrors GET /api/current-affairs/feed?exam={slug} (public EXAM mode) —
+// hand-written per the client-mirror convention (never import server modules).
+
+type FeedLifecycle = 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
+
+interface FeedExamRef {
+  slug: string
+  name: string
+  code: string
+}
+
+interface FeedItem {
+  slug: string
+  title: string
+  eventDate: string
+  eventEndDate: string | null
+  location: string | null
+  summary: string
+  significance: string | null
+  lifecycleState: FeedLifecycle
+  scope: 'GLOBAL' | 'COUNTRY'
+  countryIso: string | null
+  topic: { slug: string; canonicalName: string; label: string }
+  matchedExams: FeedExamRef[]
+  syllabusAnchors: Array<{
+    examSlug: string
+    examName: string
+    nodeName: string
+    matchVia: 'TOPIC' | 'KNOWLEDGE_UNIT'
+  }>
+  /** §9 explanation — a complete sentence, renderable verbatim. */
+  reason: string
+  /** §35: sorted ISO codes of the published representations. */
+  languages: string[]
+  representationCount: number
+  /** §16 canonical event-page path in the resolved language. */
+  canonicalPath: string
+}
+
+interface ExamAwareFeed {
+  mode: 'EXAM' | 'COMBINED'
+  exam: FeedExamRef | null
+  exams: FeedExamRef[]
+  readerCountryIso: string
+  items: FeedItem[]
+  pagination: { page: number; pageSize: number; total: number; totalPages: number }
+  /** Honest empty-state note (§36) — set when there is nothing to show. */
+  note: string | null
+}
+
+/** The §12/§36 lifecycle vocabulary — the event page's colour mapping. */
+const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; note: string }> = {
+  EMERGING: {
+    label: 'Emerging',
+    tone: 'border-amber-200 bg-amber-50 text-amber-800',
+    note: 'Breaking coverage — facts may still develop (§12).',
+  },
+  DEVELOPING: {
+    label: 'Developing',
+    tone: 'border-sky-200 bg-sky-50 text-sky-800',
+    note: 'More sources and context are accumulating — corrections expected (§12).',
+  },
+  STABLE: {
+    label: 'Stable',
+    tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+    note: 'The established canonical understanding of this event (§12).',
+  },
+  ARCHIVED: {
+    label: 'Archived',
+    tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
+    note: 'End-of-life for updates — kept as permanent historical reference (§36).',
+  },
+}
+
+/** §6 event_date, formatted like the sibling sections (en-IN). */
+function formatFeedDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 // ---------- Component ----------
@@ -83,6 +173,7 @@ export function ExamView({
   onOpenUnit,
   onOpenExam,
   onOpenExamSyllabus,
+  onOpenEvent,
   onGoHome,
 }: ExamViewProps) {
   const [page, setPage] = useState<ExamPage | null>(null)
@@ -489,6 +580,15 @@ export function ExamView({
         )}
       </section>
 
+      {/* ---------- P6-S4 §12 step 5: current affairs anchored to this exam ---------- */}
+      <ExamCurrentAffairs
+        examSlug={examSlug}
+        countryIso={countryIso}
+        language={language}
+        isHistorical={isHistorical}
+        onOpenEvent={onOpenEvent}
+      />
+
       {/* ---------- §33 related exams ---------- */}
       {page.relatedExams.length > 0 && (
         <section aria-labelledby="related-exams-heading" className="space-y-4">
@@ -740,6 +840,221 @@ function RelatedExamCard({
           <p className="flex items-center gap-1 font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
             <Link2 className="h-3 w-3" aria-hidden="true" />
             {exam.canonicalPath}
+          </p>
+        </CardContent>
+      </button>
+    </Card>
+  )
+}
+
+// ---------- P6-S4: current affairs for this exam (§12 step 5) ----------
+
+function ExamCurrentAffairs({
+  examSlug,
+  countryIso,
+  language,
+  isHistorical,
+  onOpenEvent,
+}: {
+  examSlug: string
+  countryIso: string
+  language: string
+  isHistorical: boolean
+  onOpenEvent: (eventSlug: string) => void
+}) {
+  const [feed, setFeed] = useState<ExamAwareFeed | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  // The public EXAM-mode feed — fetched independently of the exam page
+  // payload so a feed outage never breaks the page (and vice versa).
+  // §36: the feed always follows the in-effect version; a historical window
+  // never changes it (signalled by the note below).
+  useEffect(() => {
+    let cancelled = false
+    async function run() {
+      setLoading(true)
+      setFailed(false)
+      try {
+        const params = new URLSearchParams({
+          exam: examSlug,
+          country: countryIso,
+          language,
+          pageSize: '5',
+        })
+        const response = await fetch(`/api/current-affairs/feed?${params.toString()}`, {
+          cache: 'no-store',
+        })
+        const payload = (await response.json()) as Envelope<{ feed: ExamAwareFeed }>
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data) {
+          setFeed(payload.data.feed)
+        } else {
+          setFailed(true)
+        }
+      } catch {
+        if (!cancelled) setFailed(true)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    void run()
+    return () => {
+      cancelled = true
+    }
+  }, [examSlug, countryIso, language])
+
+  return (
+    <section aria-labelledby="exam-current-affairs-heading" className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2
+          id="exam-current-affairs-heading"
+          className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+        >
+          <Newspaper className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+          Current affairs for this exam
+        </h2>
+        <p className="text-xs text-zinc-400">Live events anchored to this syllabus (§12 step 5)</p>
+      </div>
+
+      {loading ? (
+        <div
+          className="grid gap-4 md:grid-cols-2"
+          aria-busy="true"
+          aria-label="Loading current affairs for this exam"
+        >
+          {[0, 1].map((index) => (
+            <Skeleton key={index} className="h-48 w-full rounded-xl" />
+          ))}
+        </div>
+      ) : failed ? (
+        // Quiet by design (§36): the exam page stands alone if the feed is down.
+        <p className="rounded-md border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-500">
+          Current affairs could not be loaded right now.
+        </p>
+      ) : !feed || feed.items.length === 0 ? (
+        <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+          <CardContent className="p-5">
+            <p className="flex items-start gap-2 text-sm text-zinc-600">
+              <Newspaper className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
+              <span>
+                {feed?.note ??
+                  'No current affairs mapped to this exam’s syllabus yet — events appear here the moment editorial links them (§12).'}
+              </span>
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="space-y-3">
+          {isHistorical && (
+            <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+              Current affairs anchor to the current syllabus version — never to this historical
+              window (§36).
+            </p>
+          )}
+          <div className="grid gap-4 md:grid-cols-2">
+            {feed.items.map((item) => (
+              <FeedEventCard key={item.slug} item={item} onOpenEvent={onOpenEvent} />
+            ))}
+          </div>
+          {feed.pagination.total > feed.items.length && (
+            <p className="text-xs text-zinc-400">
+              Showing {feed.items.length} of {feed.pagination.total} linked{' '}
+              {feed.pagination.total === 1 ? 'event' : 'events'}.
+            </p>
+          )}
+        </div>
+      )}
+    </section>
+  )
+}
+
+// ---------- P6-S4: one feed event card (§37 ready-to-render item) ----------
+
+function FeedEventCard({
+  item,
+  onOpenEvent,
+}: {
+  item: FeedItem
+  onOpenEvent: (eventSlug: string) => void
+}) {
+  const lifecycle = FEED_LIFECYCLE_META[item.lifecycleState]
+  // §11-style anchor line: the syllabus nodes this event is filed under
+  // (node names deduped, the server's deterministic order preserved).
+  const anchorNodes = Array.from(new Set(item.syllabusAnchors.map((anchor) => anchor.nodeName)))
+
+  return (
+    <Card className="group flex min-w-0 flex-col border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md">
+      <button
+        type="button"
+        onClick={() => onOpenEvent(item.slug)}
+        className="flex h-full min-w-0 flex-col text-left"
+        aria-label={`Open the event page for ${item.title}`}
+      >
+        <CardHeader className="pb-2">
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
+              {item.title}
+            </CardTitle>
+            <Badge
+              variant="outline"
+              className={`shrink-0 gap-1 text-[10px] font-normal ${lifecycle.tone}`}
+              title={lifecycle.note}
+            >
+              <Newspaper className="h-3 w-3" aria-hidden="true" />
+              {lifecycle.label}
+            </Badge>
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            <Badge
+              variant="outline"
+              className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
+            >
+              <Tag className="mr-1 h-3 w-3" aria-hidden="true" />
+              {item.topic.label}
+            </Badge>
+            <span className="inline-flex items-center gap-1 text-xs text-zinc-400">
+              <CalendarClock className="h-3 w-3" aria-hidden="true" />
+              {formatFeedDate(item.eventDate)}
+            </span>
+          </div>
+        </CardHeader>
+        <CardContent className="flex flex-1 flex-col gap-2">
+          <p className="line-clamp-2 text-sm leading-relaxed text-zinc-600">{item.summary}</p>
+          {anchorNodes.length > 0 && (
+            <p className="flex flex-wrap items-center gap-1 text-xs text-zinc-500">
+              <span className="font-medium text-zinc-600">Filed under:</span>
+              {anchorNodes.map((node, index) => (
+                <span key={`${node}-${index}`}>
+                  {index > 0 && <span className="text-zinc-300">+</span>} {node}
+                </span>
+              ))}
+            </p>
+          )}
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
+            <span className="inline-flex items-center gap-1.5">
+              <Languages className="h-3 w-3 text-zinc-400" aria-hidden="true" />
+              <span className="sr-only">Published in</span>
+              {item.languages.map((code) => (
+                <Badge
+                  key={code}
+                  variant="outline"
+                  className="border-zinc-200 bg-zinc-50 px-1.5 text-[10px] font-normal text-zinc-500"
+                >
+                  {code}
+                </Badge>
+              ))}
+            </span>
+            <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 group-hover:text-emerald-800">
+              Open event
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          </div>
+          <p
+            className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500"
+            title={item.canonicalPath}
+          >
+            {item.canonicalPath}
           </p>
         </CardContent>
       </button>

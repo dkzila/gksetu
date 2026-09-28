@@ -28,6 +28,13 @@
  * predicate) joins the public interface — the seo module's homepage/landing
  * compositions apply the identical liveness rule when aggregating §8 counts,
  * so no composition can ever drift from the requirement layer's semantics.
+ *
+ * P6-S4: `loadVersionNodes` / `loadVersionMappings` (the §11 engine's row
+ * loaders, NodeRow/MappingRow shapes) join the public interface — the
+ * current-affairs module's exam-aware feed (§12 step 5) matches events to
+ * exams through the SAME node-topic links and mapping rows the union engine
+ * consumes, so the feed can never drift from the combination engine's
+ * matching semantics either.
  */
 export {
   MappingError,
@@ -35,6 +42,8 @@ export {
   mappingEditability,
   mappingInEffect,
   resolveTopicLabels,
+  loadVersionNodes,
+  loadVersionMappings,
   getAdminVersionMappings,
   searchUnitsForMapping,
   createExamMapping,
@@ -42,6 +51,7 @@ export {
   removeExamMapping,
   getPublicExamCoverage,
 } from './mapping-service'
+export type { MappingRow, NodeRow } from './mapping-service'
 export { getCombinedExamView } from './combination-service'
 export { getUnitExamCoverage } from './unit-coverage-service'
 export {
