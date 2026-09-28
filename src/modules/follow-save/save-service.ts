@@ -39,6 +39,7 @@ import type {
   SaveStateResult,
   SavedContentItemSummary,
   SavedEventSummary,
+  SavedQnaSummary,
   SavedUnitSummary,
 } from './save-types'
 import type {
@@ -57,6 +58,7 @@ export type SaveErrorCode =
   | 'UNIT_NOT_SAVABLE'
   | 'CONTENT_ITEM_NOT_SAVABLE'
   | 'EVENT_NOT_SAVABLE'
+  | 'QNA_NOT_SAVABLE'
   | 'SAVE_LIMIT_REACHED'
   | 'SAVE_NOT_FOUND'
   | 'COLLECTION_NOT_FOUND'
@@ -69,6 +71,7 @@ const ERROR_STATUS: Record<SaveErrorCode, number> = {
   UNIT_NOT_SAVABLE: 409,
   CONTENT_ITEM_NOT_SAVABLE: 409,
   EVENT_NOT_SAVABLE: 409,
+  QNA_NOT_SAVABLE: 409,
   SAVE_LIMIT_REACHED: 409,
   SAVE_NOT_FOUND: 404,
   COLLECTION_NOT_FOUND: 404,
@@ -233,6 +236,16 @@ const EVENT_INCLUDE = {
   country: { select: { isoCode: true } },
 } as const
 
+// P7-S1: the QnA read-only projection — language, live revision (question +
+// answer) and the owning unit with its topic/country, mirroring ITEM_INCLUDE.
+const QNA_INCLUDE = {
+  language: { select: { code: true } },
+  publishedRevision: { select: { questionText: true, answerBody: true } },
+  knowledgeUnit: { include: { topic: { select: { slug: true, canonicalName: true } }, country: { select: { isoCode: true } } } },
+} as const
+
+type QnaWithUnit = Prisma.QnAGetPayload<{ include: typeof QNA_INCLUDE }>
+
 async function findUnitRow(ref: string): Promise<UnitWithTopic | null> {
   return db.knowledgeUnit.findFirst({
     where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
@@ -260,6 +273,16 @@ async function findEventRow(ref: string): Promise<EventWithTopic | null> {
   return db.currentEvent.findFirst({
     where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
     include: EVENT_INCLUDE,
+  })
+}
+
+/** P7-S1: QnA entries resolve by id (their §37 public identity — the same id
+ * the §22 knowledge-page Q&A layer exposes on every entry). */
+async function findQnaRow(ref: string): Promise<QnaWithUnit | null> {
+  if (!CUID_PATTERN.test(ref)) return null
+  return db.qnA.findFirst({
+    where: { id: ref },
+    include: QNA_INCLUDE,
   })
 }
 
@@ -292,12 +315,20 @@ interface SavableEvent {
   event: EventWithTopic
 }
 
+interface SavableQna {
+  objectType: 'QNA'
+  objectId: string
+  slug: string // the owning unit's slug — audit/path context
+  name: string // the live revision question
+  qna: QnaWithUnit
+}
+
 /** Existence + eligibility for one object. NO §14 country guard by design:
  * §15.3 lets a user browse (and thus bookmark) any market's public content —
  * saves are retrieval, not personalisation (§10). */
 async function resolveSavable(
-  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'; objectRef: string }
-): Promise<SavableUnit | SavableItem | SavableEvent> {
+  input: { objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'; objectRef: string }
+): Promise<SavableUnit | SavableItem | SavableEvent | SavableQna> {
   if (input.objectType === 'KNOWLEDGE_UNIT') {
     const unit = await findUnitRow(input.objectRef)
     if (!unit) {
@@ -322,6 +353,33 @@ async function resolveSavable(
 
   if (input.objectType === 'CURRENT_EVENT') {
     return resolveSavableEvent(input.objectRef)
+  }
+
+  // P7-S1 (§10): a published Q&A entry is savable — retrieval of the §22
+  // learning layer, never a personalisation signal. RETIRED entries keep
+  // existing saves as tombstones (§36).
+  if (input.objectType === 'QNA') {
+    const qna = await findQnaRow(input.objectRef)
+    if (!qna) {
+      throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'This Q&A entry does not exist')
+    }
+    if (qna.status !== 'PUBLISHED' || !qna.publishedRevisionId) {
+      throw new SaveError(
+        'QNA_NOT_SAVABLE',
+        qna.status === 'RETIRED'
+          ? 'This Q&A entry has been withdrawn (RETIRED) — existing saves keep it as a tombstone (§10/§36).'
+          : qna.status === 'SCHEDULED'
+            ? 'This Q&A entry is scheduled to go live automatically (§19) — save it once it is published.'
+            : `This Q&A entry is not published yet (status: ${qna.status}).`
+      )
+    }
+    return {
+      objectType: 'QNA',
+      objectId: qna.id,
+      slug: qna.knowledgeUnit.slug,
+      name: qna.publishedRevision?.questionText ?? qna.questionText,
+      qna,
+    }
   }
 
   const item = await findItemRow(input.objectRef)
@@ -422,6 +480,35 @@ function toItemSummary(item: ItemWithUnit, market: MarketShape): SavedContentIte
   }
 }
 
+/** P7-S1: a saved QnA's display summary — the LIVE revision's question (§10
+ * no-duplicates: a correction updates the row, never duplicates it) + an
+ * answer excerpt, reopening the owning unit's §16 knowledge page (the §22
+ * Q&A layer where the entry renders). */
+function toQnaSummary(qna: QnaWithUnit, market: MarketShape): SavedQnaSummary {
+  const unit = qna.knowledgeUnit
+  const question = qna.publishedRevision?.questionText ?? qna.questionText
+  const answer = qna.publishedRevision?.answerBody ?? qna.answerBody
+  const answerExcerpt = answer.length > 220 ? `${answer.slice(0, 217)}…` : answer
+  return {
+    kind: 'QNA',
+    id: qna.id,
+    question,
+    answerExcerpt,
+    languageCode: qna.language.code,
+    status: qna.status as SavedQnaSummary['status'],
+    unit: {
+      slug: unit.slug,
+      canonicalName: unit.canonicalName,
+      type: unit.type,
+      status: unit.status as SavedQnaSummary['unit']['status'],
+    },
+    topicSlug: unit.topic.slug,
+    topicCanonicalName: unit.topic.canonicalName,
+    canonicalPath: unitPath(market.country, market.languageCode, unit.topic.slug, unit.slug),
+    countryIso: unit.country?.isoCode ?? null,
+  }
+}
+
 /** P6-S3: §16 event-page path — …/current-affairs/{slug}/ under the locale prefix. */
 function eventPath(market: MarketShape['country'], languageCode: string, eventSlug: string): string {
   return buildCanonicalUrl(
@@ -455,6 +542,21 @@ async function resolveItemMarket(item: ItemWithUnit): Promise<MarketShape> {
   const countryIso = item.knowledgeUnit.country?.isoCode
   try {
     return await marketFromResolution(countryIso, item.language.code)
+  } catch (error) {
+    if (error instanceof LocaleError) {
+      return await marketFromResolution(countryIso, undefined)
+    }
+    throw error
+  }
+}
+
+/** P7-S1: the market a saved QNA reopens in — the item twin: the owning
+ * unit's market when COUNTRY-scoped, else the default market, always in the
+ * ENTRY's language when that market configures it (§35). */
+async function resolveQnaMarket(qna: QnaWithUnit): Promise<MarketShape> {
+  const countryIso = qna.knowledgeUnit.country?.isoCode
+  try {
+    return await marketFromResolution(countryIso, qna.language.code)
   } catch (error) {
     if (error instanceof LocaleError) {
       return await marketFromResolution(countryIso, undefined)
@@ -554,7 +656,9 @@ export async function saveObject(
         ? `KNOWLEDGE_UNIT:${target.slug}`
         : target.objectType === 'CURRENT_EVENT'
           ? `CURRENT_EVENT:${target.slug}`
-          : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
+          : target.objectType === 'QNA'
+            ? `QNA:${target.slug}#${target.name.slice(0, 60)}`
+            : `CONTENT_ITEM:${target.slug}#${target.item.format}`,
     after: {
       objectType: target.objectType,
       objectId: target.objectId,
@@ -592,7 +696,9 @@ export async function unsaveById(
     objectType: AUDIT_OBJECT_TYPES.savedItem,
     objectId: existing.id,
     objectLabel: `${existing.objectType}:${
-      hydrated.object.kind === 'CONTENT_ITEM' ? hydrated.object.unit.slug : hydrated.object.slug
+      hydrated.object.kind === 'CONTENT_ITEM' || hydrated.object.kind === 'QNA'
+        ? hydrated.object.unit.slug
+        : hydrated.object.slug
     }`,
     before: {
       objectType: existing.objectType,
@@ -685,11 +791,13 @@ export async function listMySaves(
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
   const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
+  const qnaIds = rows.filter((row) => row.objectType === 'QNA').map((row) => row.objectId)
 
-  const [units, itemRows, eventRows] = await Promise.all([
+  const [units, itemRows, eventRows, qnaRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
     eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
+    qnaIds.length ? db.qnA.findMany({ where: { id: { in: qnaIds } }, include: QNA_INCLUDE }) : Promise.resolve([] as QnaWithUnit[]),
   ])
 
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
@@ -699,16 +807,23 @@ export async function listMySaves(
   const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
   const eventById = new Map(eventRows.map((event) => [event.id, event]))
+  const qnaById = new Map(qnaRows.map((qna) => [qna.id, qna]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
       itemMarkets.set(item.id, await resolveItemMarket(item))
     })
   )
+  const qnaMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    qnaRows.map(async (qna) => {
+      qnaMarkets.set(qna.id, await resolveQnaMarket(qna))
+    })
+  )
   const unitMarket = await resolveUnitMarket(user, query)
 
   const result: PublicSave[] = []
-  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0, CURRENT_EVENT: 0 }
+  const counts = { total: 0, KNOWLEDGE_UNIT: 0, CONTENT_ITEM: 0, CURRENT_EVENT: 0, QNA: 0 }
   for (const row of rows) {
     if (row.objectType === 'KNOWLEDGE_UNIT') {
       const unit = unitById.get(row.objectId)
@@ -732,6 +847,17 @@ export async function listMySaves(
         object: toEventSummary(event, event.scope === 'COUNTRY' && event.country ? await resolveCountryUnitMarket(event.country.isoCode, query) : unitMarket),
       })
       counts.CURRENT_EVENT += 1
+    } else if (row.objectType === 'QNA') {
+      const qna = qnaById.get(row.objectId)
+      if (!qna) continue // defensive: QnA rows cascade (§36), rows never dangle
+      result.push({
+        id: row.id,
+        objectType: 'QNA',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toQnaSummary(qna, qnaMarkets.get(qna.id) ?? unitMarket),
+      })
+      counts.QNA += 1
     } else {
       const item = itemById.get(row.objectId)
       if (!item) continue
@@ -745,7 +871,7 @@ export async function listMySaves(
       counts.CONTENT_ITEM += 1
     }
   }
-  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM + counts.CURRENT_EVENT
+  counts.total = counts.KNOWLEDGE_UNIT + counts.CONTENT_ITEM + counts.CURRENT_EVENT + counts.QNA
   return { items: result, counts, collections }
 }
 
@@ -792,20 +918,29 @@ export async function listRecentSaves(
   const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
   const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
   const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
-  const [units, itemRows, eventRows] = await Promise.all([
+  const qnaIds = rows.filter((row) => row.objectType === 'QNA').map((row) => row.objectId)
+  const [units, itemRows, eventRows, qnaRows] = await Promise.all([
     unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
     itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
     eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
+    qnaIds.length ? db.qnA.findMany({ where: { id: { in: qnaIds } }, include: QNA_INCLUDE }) : Promise.resolve([] as QnaWithUnit[]),
   ])
   const unitById = new Map(units.map((unit) => [unit.id, unit]))
   // P6-S2: only unit-anchored representations hydrate (see the note above).
   const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
   const itemById = new Map(items.map((item) => [item.id, item]))
   const eventById = new Map(eventRows.map((event) => [event.id, event]))
+  const qnaById = new Map(qnaRows.map((qna) => [qna.id, qna]))
   const itemMarkets = new Map<string, MarketShape>()
   await Promise.all(
     items.map(async (item) => {
       itemMarkets.set(item.id, await resolveItemMarket(item))
+    })
+  )
+  const qnaMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    qnaRows.map(async (qna) => {
+      qnaMarkets.set(qna.id, await resolveQnaMarket(qna))
     })
   )
   const unitMarket = await resolveUnitMarket(user, query)
@@ -831,6 +966,16 @@ export async function listRecentSaves(
         savedAt: row.savedAt.toISOString(),
         collectionId: row.collectionId,
         object: toEventSummary(event, event.scope === 'COUNTRY' && event.country ? await resolveCountryUnitMarket(event.country.isoCode, query) : unitMarket),
+      })
+    } else if (row.objectType === 'QNA') {
+      const qna = qnaById.get(row.objectId)
+      if (!qna) continue
+      hydrated.push({
+        id: row.id,
+        objectType: 'QNA',
+        savedAt: row.savedAt.toISOString(),
+        collectionId: row.collectionId,
+        object: toQnaSummary(qna, qnaMarkets.get(qna.id) ?? unitMarket),
       })
     } else {
       const item = itemById.get(row.objectId)
@@ -905,6 +1050,28 @@ export async function getSaveState(
         }
       : null
     return { ...base, objectSlug: event.slug, objectFound: true, saved: row !== null, save }
+  }
+
+  // P7-S1: truthful Q&A button state (the same no-eligibility-guard decision
+  // as the other types — rejection surfaces on the save attempt itself).
+  if (query.objectType === 'QNA') {
+    const qna = await findQnaRow(query.objectRef)
+    if (!qna) return base
+    const row = await db.savedItem.findUnique({
+      where: { userId_objectType_objectId: { userId, objectType: 'QNA', objectId: qna.id } },
+    })
+    const market = await resolveQnaMarket(qna)
+    const save = row
+      ? {
+          id: row.id,
+          objectType: 'QNA' as const,
+          savedAt: row.savedAt.toISOString(),
+          collectionId: row.collectionId,
+          object: toQnaSummary(qna, market),
+        }
+      : null
+    // QnA entries have no slug — the identity IS the id (the item precedent).
+    return { ...base, objectFound: true, saved: row !== null, save }
   }
 
   const item = await findItemRow(query.objectRef)
@@ -1100,6 +1267,23 @@ async function hydrateSave(user: UserContext, row: SavedItem): Promise<PublicSav
       savedAt: row.savedAt.toISOString(),
       collectionId: row.collectionId,
       object: toEventSummary(event, market),
+    }
+  }
+
+  // P7-S1: a saved Q&A re-hydrates regardless of status — RETIRED entries
+  // stay listed as honest tombstones (§36), like retired content items.
+  if (row.objectType === 'QNA') {
+    const qnaRow = await db.qnA.findUnique({ where: { id: row.objectId }, include: QNA_INCLUDE })
+    if (!qnaRow) {
+      throw new SaveError('SAVE_OBJECT_NOT_FOUND', 'The saved Q&A entry no longer exists')
+    }
+    const market = await resolveQnaMarket(qnaRow)
+    return {
+      id: row.id,
+      objectType: 'QNA',
+      savedAt: row.savedAt.toISOString(),
+      collectionId: row.collectionId,
+      object: toQnaSummary(qnaRow, market),
     }
   }
 

@@ -2478,6 +2478,219 @@ async function main() {
     eventItemsSeeded += 1
   }
 
+  // ---------- P7-S1: QnA — explanatory question-and-answer learning entries (Master Plan §6/§7/§22/§23/§45) ----------
+  // §45: "Sample QnA … tied to the same Knowledge Unit" — several questions
+  // per unit (the §22 knowledge-page Q&A layer lists MANY entries), EN + HI
+  // (§35), one §36 two-revision correction (changeSummary provenance), one
+  // DRAFT (lifecycle demo — publish through the QnA workspace) and one
+  // RETIRED (the §10/§36 tombstone demo). Identity is (unit, language,
+  // question) — the §11 canonical-identity rule; findFirst-then-create is
+  // idempotent and never overwrites live edits (§36).
+  interface QnaRevisionSeed {
+    answerBody: string
+    changeSummary?: string
+    publishedAt?: Date
+  }
+
+  interface QnaSeed {
+    unitSlug: string
+    languageCode: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+    questionText: string
+    /** Working-copy fallback for entries without revisions (DRAFT). */
+    answerBody?: string
+    /** §24/§26 AI-provenance — one seeded entry is AI-assisted (the §26 QnA-candidate demo). */
+    aiAssisted?: boolean
+    revisions: QnaRevisionSeed[] // empty for never-published entries
+  }
+
+  const qnaSeeds: QnaSeed[] = [
+    {
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      questionText: 'What are the six Fundamental Rights guaranteed by Articles 12–35 of the Indian Constitution?',
+      revisions: [
+        {
+          answerBody:
+            'Part III of the Constitution (Articles 12–35) guarantees six Fundamental Rights: (1) Right to Equality (Articles 14–18), (2) Right to Freedom (Articles 19–22), (3) Right against Exploitation (Articles 23–24), (4) Right to Freedom of Religion (Articles 25–28), (5) Cultural and Educational Rights (Articles 29–30), and (6) Right to Constitutional Remedies (Article 32). They are justiciable — enforceable against the State (Article 12) through the writ jurisdiction of the Supreme Court and the High Courts, and any law inconsistent with them is void under Article 13.',
+          publishedAt: new Date('2025-06-11T09:00:00Z'),
+        },
+      ],
+    },
+    {
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      questionText: 'Which article did Dr B R Ambedkar call the “heart and soul” of the Constitution, and why?',
+      revisions: [
+        {
+          answerBody:
+            'Article 32 — the Right to Constitutional Remedies. Ambedkar called it the heart and soul because a right without a remedy is meaningless: Article 32 lets a citizen move the Supreme Court directly for the enforcement of Fundamental Rights through five writs — habeas corpus, mandamus, prohibition, certiorari and quo warranto. The right to move the Court cannot be suspended except as provided by the Constitution (Article 359, during an Emergency).',
+          publishedAt: new Date('2025-06-11T09:10:00Z'),
+        },
+      ],
+    },
+    {
+      // §36 correction demo: the first published answer under-counted the
+      // writs; the correction publishes revision 2 with a changeSummary —
+      // never a silent edit, previous versions preserved forever.
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      questionText: 'How many writs can the Supreme Court issue under Article 32, and what are they?',
+      revisions: [
+        {
+          answerBody:
+            'The Supreme Court issues four writs under Article 32: habeas corpus, mandamus, prohibition and certiorari.',
+          publishedAt: new Date('2025-06-11T09:20:00Z'),
+        },
+        {
+          answerBody:
+            'The Supreme Court issues five writs under Article 32: habeas corpus (“you may have the body” — against unlawful detention), mandamus (“we command” — orders a public authority to perform its duty), prohibition (stops a lower court exceeding jurisdiction), certiorari (quashes an order passed without jurisdiction) and quo warranto (questions the legality of a person holding public office).',
+          changeSummary: 'Corrected the writ count: five writs, not four — quo warranto was missing from the first answer (§25/§36).',
+          publishedAt: new Date('2025-06-12T09:00:00Z'),
+        },
+      ],
+    },
+    {
+      // §35 translation demo — the same unit carries a Hindi Q&A entry.
+      unitSlug: 'fundamental-rights-articles-12-35',
+      languageCode: 'hi',
+      status: 'PUBLISHED',
+      questionText: 'अनुच्छेद 32 को संविधान का “हृदय और आत्मा” क्यों कहा गया?',
+      revisions: [
+        {
+          answerBody:
+            'डॉ. बी. आर. अंबेडकर ने अनुच्छेद 32 (संवैधानिक उपचारों का अधिकार) को संविधान का हृदय और आत्मा कहा, क्योंकि उपचार के बिना अधिकार अर्थहीन हैं। इसके अंतर्गत नागरिक मौलिक अधिकारों के प्रवर्तन के लिए सीधे सर्वोच्च न्यायालय का दरवाजा खटखटा सकता है और पाँच रिट — बंदी प्रत्यक्षीकरण, परमादेश, निषेध, प्रतिकूल आदेश तथा अधिकार पृच्छा — जारी करवा सकता है।',
+          publishedAt: new Date('2025-07-02T10:00:00Z'),
+        },
+      ],
+    },
+    {
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      questionText: 'Why does India seek a permanent seat on the UN Security Council?',
+      revisions: [
+        {
+          answerBody:
+            'India argues it is a natural candidate for permanent UNSC membership: the world\'s most populous democracy, a top-five global economy, a founding UN member and a major troop contributor to UN peacekeeping, plus a responsible nuclear power. Its bid is part of the G4 initiative (Brazil, Germany, India, Japan), each mutually supporting the others\' candidacies, and is backed by key statements at the Intergovernmental Negotiations (IGN) process. The counter-positions — the Uniting for Consensus group preferring longer-term non-permanent seats, and the P5\'s veto over Charter amendment (Article 108) — are the recurring exam angles.',
+          publishedAt: new Date('2025-06-16T08:00:00Z'),
+        },
+      ],
+    },
+    {
+      // §10/§36 tombstone demo: published once, then withdrawn — existing
+      // saves keep it listed as an honest RETIRED row; new saves reject.
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'en',
+      status: 'RETIRED',
+      questionText: 'How many non-permanent members does the UN Security Council have?',
+      revisions: [
+        {
+          answerBody:
+            'The UNSC has ten non-permanent members, elected for two-year terms by the General Assembly without immediate re-election, distributed regionally: three from Africa, two from Asia-Pacific, two from Latin America and the Caribbean, two from Western Europe and Others, and one from Eastern Europe. This entry was retired to demonstrate the §36 withdrawal path — the preserved revision stays queryable forever.',
+          publishedAt: new Date('2025-06-16T08:10:00Z'),
+        },
+      ],
+    },
+    {
+      // §24/§26 AI-provenance demo: an AI-drafted Q&A candidate that went
+      // through the §19 review gate — the flag freezes onto the revision.
+      unitSlug: 'chandrayaan-3-landing-2023',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      aiAssisted: true,
+      questionText: 'Which country became the fourth to soft-land on the Moon, and when did it happen?',
+      revisions: [
+        {
+          answerBody:
+            'India became the fourth country to soft-land on the Moon, after the Soviet Union, the United States and China. The Vikram lander of Chandrayaan-3 touched down near the lunar south pole on 23 August 2023 (IST), at a site later named Shiv Shakti Point. India was also the FIRST country ever to land in the Moon\'s south-polar region — the distinction exams love. The date is now commemorated annually as National Space Day.',
+          publishedAt: new Date('2025-06-20T12:00:00Z'),
+        },
+      ],
+    },
+    {
+      // Lifecycle demo — a drafted question awaiting review, publishable
+      // through the QnA workspace (submit → review → publish).
+      unitSlug: 'chandrayaan-3-landing-2023',
+      languageCode: 'en',
+      status: 'DRAFT',
+      questionText: 'What is Shiv Shakti Point, and why is the name significant?',
+      answerBody:
+        'Shiv Shakti Point is the International Astronomical Union\'s name for the Chandrayaan-3 Vikram lander\'s touchdown site near the lunar south pole. Draft answer awaiting editorial review — the “Shiv” derives from the mission\'s rover name (Pragyan\'s lander Vikram honours Vikram Sarabhai), and “Shakti” signals the strength of the landing. Publish through the QnA workspace to complete this entry.',
+      revisions: [],
+    },
+    {
+      unitSlug: 'ashoka-kalinga-war-261-bce',
+      languageCode: 'en',
+      status: 'PUBLISHED',
+      questionText: 'What does the 13th Rock Edict of Ashoka record about the Kalinga War?',
+      revisions: [
+        {
+          answerBody:
+            'The 13th Major Rock Edict records Ashoka\'s remorse after the Kalinga War (261 BCE, his eighth–ninth regnal year): 100,000 killed, 150,000 deported and many more perished in the aftermath. The grief of the slaughter moved him to abandon military conquest (bheri-ghosha, the drum of war) in favour of Dhamma conquest (dhamma-ghosha) — the pivotal turn toward Buddhism and his policy of Dhamma Vijaya. Kalinga corresponds to present-day coastal Odisha.',
+          publishedAt: new Date('2025-06-18T09:00:00Z'),
+        },
+      ],
+    },
+  ]
+
+  let qnasSeeded = 0
+  for (const seed of qnaSeeds) {
+    const unit = await prisma.knowledgeUnit.findUnique({ where: { slug: seed.unitSlug } })
+    const languageId = languageIdByCode.get(seed.languageCode)
+    if (!unit || !languageId) {
+      console.warn(`[seed] skipping QnA for "${seed.unitSlug}/${seed.languageCode}": unit or language missing`)
+      continue
+    }
+
+    // Never overwrite live edits (§36) — identity is (unit, language, question).
+    const existing = await prisma.qnA.findFirst({
+      where: { knowledgeUnitId: unit.id, languageId, questionText: seed.questionText },
+      select: { id: true },
+    })
+    if (existing) continue
+
+    const lastRevision = seed.revisions[seed.revisions.length - 1]
+    const qna = await prisma.qnA.create({
+      data: {
+        knowledgeUnitId: unit.id,
+        languageId,
+        status: seed.status,
+        questionText: seed.questionText,
+        answerBody: lastRevision?.answerBody ?? seed.answerBody ?? 'Draft answer — publish through the QnA workspace.',
+        aiAssisted: seed.aiAssisted ?? false,
+        createdById: admin.id,
+      },
+    })
+
+    let lastRevisionId: string | null = null
+    for (const [index, revision] of seed.revisions.entries()) {
+      const created = await prisma.qnARevision.create({
+        data: {
+          qnaId: qna.id,
+          revisionNumber: index + 1,
+          questionText: seed.questionText,
+          answerBody: revision.answerBody,
+          changeSummary: revision.changeSummary ?? null,
+          aiAssisted: seed.aiAssisted ?? false,
+          publishedById: admin.id,
+          publishedAt: revision.publishedAt ?? new Date(),
+        },
+      })
+      lastRevisionId = created.id
+    }
+    if ((seed.status === 'PUBLISHED' || seed.status === 'RETIRED') && lastRevisionId) {
+      await prisma.qnA.update({
+        where: { id: qna.id },
+        data: { publishedRevisionId: lastRevisionId },
+      })
+    }
+    qnasSeeded += 1
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -2491,7 +2704,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

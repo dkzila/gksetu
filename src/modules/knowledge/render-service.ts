@@ -33,6 +33,7 @@ import { buildKnowledgeGraph, buildPageSeo, SITE_NAME } from '@/modules/seo'
 import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxonomy'
 
 import { materializeDueScheduledContent } from './content-service'
+import { getPublicQnaLayer } from '@/modules/assessment'
 import type { ContentFormatPublic } from './content-types'
 import { KnowledgeError } from './service'
 import { getPublicSourcesForItem } from './source-service'
@@ -262,6 +263,12 @@ export async function getKnowledgePage(
         PAGE_FORMAT_ORDER.indexOf(a.format) - PAGE_FORMAT_ORDER.indexOf(b.format) ||
         a.title.localeCompare(b.title) // deterministic (§37)
     )
+
+  // ---------- §22 QnA layer (P7-S1) — learn → PRACTICE → revise ----------
+  // The assessment module owns the layer; this page assembles it after its
+  // own visibility chain has validated the unit + locale (the layer never
+  // bypasses that chain — a QnA is never more visible than its record, §14).
+  const qna = await getPublicQnaLayer({ unitId: unit.id, languageId: languageRow.id })
 
   // ---------- §22 quick-fact layer ----------
   const quickFact = factCard
@@ -527,6 +534,7 @@ export async function getKnowledgePage(
     },
     quickFact,
     representations,
+    qna,
     sources,
     related,
     examCoverage,

@@ -140,6 +140,35 @@ export async function buildUnitDocuments(
     })
     byLanguage.set(item.language.code, list)
   }
+
+  // §17 QnA fold (P7-S1): published Q&A entries enrich the unit's per-language
+  // bodyText — question-phrased queries ("why was Article 370 abrogated?")
+  // find the unit page, the P6-S3 entity-fold precedent. Language-pure by
+  // design: an entry joins only its own language's document (the §35 variant
+  // rule — representation-driven variants — stays untouched; a QnA-only
+  // language mints no new variant). Freshness: a QnA publication IS a
+  // publication in that language (§17.7) — it joins the per-language reduce.
+  const qnas = await db.qnA.findMany({
+    where: {
+      knowledgeUnitId: unit.id,
+      status: 'PUBLISHED',
+      publishedRevisionId: { not: null },
+    },
+    include: { language: true, publishedRevision: true },
+  })
+  const qnaByLanguage = new Map<
+    string,
+    Array<{ text: string; publishedAt: Date }>
+  >()
+  for (const qna of qnas) {
+    if (qna.language.status !== 'ACTIVE' || !qna.publishedRevision) continue
+    const list = qnaByLanguage.get(qna.language.code) ?? []
+    list.push({
+      text: `${qna.publishedRevision.questionText} ${qna.publishedRevision.answerBody.slice(0, BODY_EXCERPT)}`,
+      publishedAt: qna.publishedRevision.publishedAt,
+    })
+    qnaByLanguage.set(qna.language.code, list)
+  }
   // §8 exam projection: exams whose CURRENT §36 version carries an in-effect
   // mapping to this unit (any country — reader-country scoping happens at
   // query time, §14).
@@ -178,7 +207,14 @@ export async function buildUnitDocuments(
           title: unit.canonicalName,
           canonicalName: unit.canonicalName,
           summary: unit.canonicalSummary,
-          bodyText: dedupe([unit.canonicalName, unit.canonicalSummary ?? '', unit.canonicalBody]).join(' '),
+          bodyText: dedupe([
+            unit.canonicalName,
+            unit.canonicalSummary ?? '',
+            unit.canonicalBody,
+            // §17 QnA fold — English entries only (language-pure; this
+            // canonical document is the English-reference record, §7).
+            ...(qnaByLanguage.get('en') ?? []).map((entry) => entry.text),
+          ]).join(' '),
           neutralText: dedupe([
             unit.canonicalName,
             topic.canonicalName,
@@ -202,6 +238,16 @@ export async function buildUnitDocuments(
   for (const [languageCode, representations] of byLanguage) {
     const label = topic.labels.find((entry) => entry.language.code === languageCode)
     const factCard = representations.find((item) => item.format === 'FACT_CARD')
+    const qnaEntries = qnaByLanguage.get(languageCode) ?? []
+    // §17.7 freshness: the latest publication in this language — content
+    // representations and Q&A entries alike (both are §22 page surfaces).
+    const latestPublication = [
+      ...representations.map((item) => item.publishedAt),
+      ...qnaEntries.map((entry) => entry.publishedAt),
+    ].reduce(
+      (latest, at) => (at.getTime() > latest.getTime() ? at : latest),
+      representations[0]!.publishedAt
+    )
     documents.push({
       objectType: 'KNOWLEDGE_UNIT',
       ref: unit.slug,
@@ -216,6 +262,8 @@ export async function buildUnitDocuments(
         unit.canonicalBody,
         label?.name ?? '',
         ...representations.map((item) => `${item.title} ${item.body}`),
+        // §17 QnA fold — this language's published entries (P7-S1).
+        ...qnaEntries.map((entry) => entry.text),
       ]).join(' '),
       neutralText: dedupe([
         unit.canonicalName,
@@ -231,10 +279,7 @@ export async function buildUnitDocuments(
       examRefs: examRefs.length > 0 ? examRefs : null,
       // §17.7 freshness = the latest PUBLICATION in this language (not the
       // unit row's updatedAt, which administrative touches also bump).
-      freshnessAt: representations.reduce(
-        (latest, item) => (item.publishedAt.getTime() > latest.getTime() ? item.publishedAt : latest),
-        representations[0]!.publishedAt
-      ),
+      freshnessAt: latestPublication,
     })
   }
   return { documents, indexable: true }

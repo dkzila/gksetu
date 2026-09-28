@@ -165,8 +165,8 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
           const name =
             save.object.kind === 'KNOWLEDGE_UNIT'
               ? save.object.canonicalName
-              : save.object.kind === 'CURRENT_EVENT'
-                ? save.object.title
+              : save.object.kind === 'QNA'
+                ? save.object.question
                 : save.object.title
           toast({ title: `Removed “${name}”`, description: 'Out of your collections (§31 — reversible).' })
           await fetchList()
@@ -349,6 +349,8 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
       onOpenEvent(save.object.slug)
     } else {
       // The item's own language market — the summary resolved it (§35).
+      // P7-S1: saved Q&A rows reopen the unit's §22 page (the Practice —
+      // Q&A layer the entry lives in), in the entry's own language.
       onOpenSavedUnit(save.object.topicSlug, save.object.unit.slug, save.object.languageCode)
     }
   }
@@ -410,6 +412,12 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
                 <strong className="font-semibold">{data.counts.CURRENT_EVENT}</strong>
                 <span className="text-zinc-500">current events</span>
+              </span>
+            )}
+            {data.counts.QNA > 0 && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+                <strong className="font-semibold">{data.counts.QNA}</strong>
+                <span className="text-zinc-500">Q&amp;A</span>
               </span>
             )}
           </div>
@@ -679,7 +687,8 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                   const object = save.object
                   const isUnit = object.kind === 'KNOWLEDGE_UNIT'
                   const isEvent = object.kind === 'CURRENT_EVENT'
-                  const title = isUnit ? object.canonicalName : object.title
+                  const isQna = object.kind === 'QNA'
+                  const title = isUnit ? object.canonicalName : isQna ? object.question : object.title
                   const statusNote = TOMBSTONE_NOTES[isUnit ? object.status : isEvent ? object.lifecycleState : object.status]
                   const collection = collectionById.get(save.collectionId)
                   return (
@@ -705,10 +714,12 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                                     ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                                     : isEvent
                                       ? 'border-orange-200 bg-orange-50 text-orange-700'
-                                      : 'border-teal-200 bg-teal-50 text-teal-700'
+                                      : isQna
+                                        ? 'border-violet-200 bg-violet-50 text-violet-700'
+                                        : 'border-teal-200 bg-teal-50 text-teal-700'
                                 }`}
                               >
-                                {isUnit ? 'UNIT' : isEvent ? 'EVENT' : object.format}
+                                {isUnit ? 'UNIT' : isEvent ? 'EVENT' : isQna ? 'Q&A' : object.format}
                               </Badge>
                               {!isUnit && <span>{object.languageCode}</span>}
                               {!isUnit && <span aria-hidden="true">·</span>}

@@ -158,6 +158,7 @@ model KnowledgeUnit {
   contentItems ContentItem[] // representations of this canonical record (§7, P2-S2)
   examMappings ExamMapping[] @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
   eventLinks   CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
+  qnas         QnA[] @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
 
   // Deduplication is by canonical identity (§11): within one topic, a canonical
   // name identifies exactly one unit. Never merge distinct concepts; never
@@ -758,6 +759,7 @@ model Language {
   topicLabels         TopicLabel[]
   topicAliases        TopicAlias[]
   contentItems        ContentItem[]
+  qnas                QnA[] @relation("QnALanguage") // P7-S1: Q&A learning representations
   editorialTasks      EditorialTask[]
   goalStudyLanguages  UserGoal[]     @relation("UserGoalStudyLanguage") // P5-S3
   entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
@@ -860,6 +862,9 @@ model User {
   goal                   UserGoal?
   // P6-S1 (§12): canonical current-event records authored by this user.
   createdCurrentEvents  CurrentEvent[] @relation("CurrentEventAuthor")
+  // P7-S1 (§22/§23): QnA entries authored + revisions published by this user.
+  authoredQnas          QnA[] @relation("QnAAuthor")
+  publishedQnaRevisions QnARevision[] @relation("QnARevisionPublisher")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1032,6 +1037,7 @@ enum SavedObjectType {
   KNOWLEDGE_UNIT // the canonical record (§7) — survives representation updates
   CONTENT_ITEM // a specific published language × format representation
   CURRENT_EVENT // P6-S3 (§10): the event record — its §16 page is the retrieval surface
+  QNA // P7-S1 (§10/§22): a published Q&A learning entry — reopens the unit page's Q&A layer
 }
 
 // §6 Collection row carries visibility. Collections are private in v1 —
@@ -1406,4 +1412,76 @@ model CurrentEventTopic {
 
   @@unique([currentEventId, topicId])
   @@index([topicId])
+}
+
+// ---------- P7-S1: QnA — explanatory question-and-answer content (Master Plan §6 QnA row, §7, §19, §22, §23, §36) ----------
+
+// A QnA is a LEARNING representation (§23 "explanatory, unscored" — the v2.0
+// correction that split it from the scored Question, P7-S2): one question and
+// its explanatory prose answer, anchored to a canonical KnowledgeUnit (§7 —
+// the fact is never re-entered, only rendered). It rides the same §19
+// workflow and §36 revision discipline as ContentItem: questionText and
+// answerBody are the WORKING COPY (editorial staging); public reads always
+// serve the live QnARevision snapshot, so staged corrections stay invisible
+// until a new revision publishes. Status reuses ContentStatus — the shared
+// §19 state machine (DRAFT → IN_REVIEW → SCHEDULED/PUBLISHED → RETIRED).
+//
+// Identity (§11 canonical-identity rule applied to QnA): within one
+// unit × language, the QUESTION TEXT identifies exactly one QnA — the same
+// question twice is duplication, while many DIFFERENT questions about the
+// same unit are the normal §22 knowledge-page Q&A layer.
+model QnA {
+  id                  String        @id @default(cuid())
+  knowledgeUnitId     String // §7 anchor — QnA represents a canonical unit (never an event: §6 lists only knowledge_unit_id)
+  languageId          String
+  status              ContentStatus @default(DRAFT) // §19 workflow (shared states)
+  questionText        String // working copy (current editing state)
+  answerBody          String // working copy — public reads never touch this
+  // §24/§26 AI-provenance flag (working copy): QnA is a named §26
+  // AI-candidate format ("generate QnA candidates from an approved unit") —
+  // snapshotted onto QnARevision at publish time.
+  aiAssisted          Boolean       @default(false)
+  publishedRevisionId String? // live revision pointer (null = never published)
+  // §19 step 7: set by the `schedule` transition (IN_REVIEW → SCHEDULED);
+  // due items materialize to PUBLISHED lazily on read (qna-service).
+  scheduledForAt      DateTime?
+  createdById         String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  knowledgeUnit     KnowledgeUnit @relation("QnAUnit", fields: [knowledgeUnitId], references: [id])
+  language          Language      @relation("QnALanguage", fields: [languageId], references: [id])
+  createdBy         User?         @relation("QnAAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  revisions         QnARevision[] @relation("QnARevisions")
+  publishedRevision QnARevision?  @relation("LiveQnARevision", fields: [publishedRevisionId], references: [id])
+
+  @@unique([knowledgeUnitId, languageId, questionText])
+  @@index([status])
+  @@index([knowledgeUnitId, status])
+  @@index([languageId, status])
+}
+
+// Immutable published snapshot (§36 "Published content revisions preserve
+// previous versions") — the QnA twin of ContentRevision. Rows are NEVER
+// updated or deleted; publishing again appends revision N+1 and moves the
+// QnA's live pointer. Every correction carries a changeSummary (§25/§36
+// provenance — never a silent edit).
+model QnARevision {
+  id             String   @id @default(cuid())
+  qnaId          String
+  revisionNumber Int // 1-based, deterministic within the QnA
+  questionText   String // immutable snapshot at publish time
+  answerBody     String // immutable snapshot at publish time
+  changeSummary  String? // why this revision exists (required on re-publish)
+  // §24/§26 AI-provenance snapshot at publish time — immutable like the rest.
+  aiAssisted     Boolean  @default(false)
+  publishedById  String?
+  publishedAt    DateTime @default(now())
+
+  qna         QnA   @relation("QnARevisions", fields: [qnaId], references: [id], onDelete: Cascade)
+  publishedBy User? @relation("QnARevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+  liveFor     QnA[] @relation("LiveQnARevision")
+
+  @@unique([qnaId, revisionNumber])
+  @@index([qnaId, publishedAt])
 }

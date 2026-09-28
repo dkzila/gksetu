@@ -9,8 +9,8 @@
  * §39 (the same APIs a mobile app consumes).
  */
 
-/** The object types savable today (§10 vocabulary — QnA/Question/MockTest join in P7; CURRENT_EVENT joined in P6-S3). */
-export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
+/** The object types savable today (§10 vocabulary — QNA joined in P7-S1; Question/MockTest join in P7-S2/S3; CURRENT_EVENT joined in P6-S3). */
+export type SaveObjectTypePublic = 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'
 
 /**
  * Resolved summary of a saved KNOWLEDGE_UNIT — the canonical record (§7).
@@ -90,7 +90,37 @@ export interface SavedEventSummary {
   languageCode: string
 }
 
-export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary
+/**
+ * Resolved summary of a saved QNA (P7-S1, §10/§22/§23) — one published
+ * question-and-answer learning entry. The question shown is the LIVE
+ * revision's; a correction updates it under the same save row (§10
+ * no-duplicates). The §16 retrieval surface is the owning unit's knowledge
+ * page — the §22 Q&A layer where the entry renders.
+ */
+export interface SavedQnaSummary {
+  kind: 'QNA'
+  id: string
+  /** Live published revision question (falls back to the working copy only for non-live states — honest §36). */
+  question: string
+  /** Short excerpt of the live answer — enough to recognise the entry. */
+  answerExcerpt: string
+  languageCode: string
+  status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+  /** The entry's canonical unit — the §16 path target (its §22 Q&A layer). */
+  unit: {
+    slug: string
+    canonicalName: string
+    type: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'VERIFIED' | 'OUTDATED' | 'ARCHIVED'
+  }
+  topicSlug: string
+  topicCanonicalName: string
+  /** §16 knowledge-page path in the entry's own language market. */
+  canonicalPath: string
+  countryIso: string | null
+}
+
+export type SavedObjectSummary = SavedUnitSummary | SavedContentItemSummary | SavedEventSummary | SavedQnaSummary
 
 /** One saved-item row, resolved for display (§37 — stable, client-agnostic). */
 export interface PublicSave {
@@ -116,7 +146,7 @@ export interface PublicCollection {
 export interface SaveListResult {
   items: PublicSave[]
   /** Counts coherent with the applied type filter (across ALL collections). */
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number }
+  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number; QNA: number }
   /** The caller's collections with live item counts (name-ordered, default first). */
   collections: PublicCollection[]
 }

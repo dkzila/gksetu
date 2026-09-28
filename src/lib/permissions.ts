@@ -36,6 +36,8 @@ export type Permission =
   | 'knowledge:manage' // create/edit/transition KnowledgeUnits (country-scoped for COUNTRY_ADMIN)
   | 'content:manage' // create/edit/submit content items + revisions (country-scoped for COUNTRY_ADMIN; WRITER: own country + language scope)
   | 'content:publish' // publish/schedule/retire content — the editorial gate (§18 "cannot publish unless granted"): ADMIN + COUNTRY_ADMIN, never WRITER
+  | 'qna:manage' // P7-S1 (§22/§23): create/edit/submit QnA entries — the §18 Question/Test-Author class; in v1's consolidated roles this rides WRITER (own country + language scope, the content:manage precedent)
+  | 'qna:publish' // P7-S1: publish/schedule/retire QnA — the §18 editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
   | 'source:manage' // create/edit/verify Source evidence records (§24 — platform-level registry; link/unlink rides content:manage on the item)
   | 'editorial:work' // work the editorial task board (P2-S4 §19): ADMIN + COUNTRY_ADMIN manage; WRITER claims/works assigned tasks in scope
   | 'exam:manage' // manage exams + exam versions (P3-S1 §18): ADMIN + COUNTRY_ADMIN (own country only — exams are ALWAYS country-owned, §14)
@@ -101,6 +103,8 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'sessions:manage-own',
     'current-affairs:manage',
     'entities:manage',
+    'qna:manage',
+    'qna:publish',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -116,12 +120,16 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'sessions:manage-own',
     'current-affairs:manage',
     'entities:manage',
+    'qna:manage',
+    'qna:publish',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
-  // granted" — publish-class transitions need content:publish (never granted
-  // at role level). Writers also register/verify evidence (source:manage,
-  // platform-level per §24) and work the editorial board in scope.
-  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'sessions:manage-own'],
+  // granted" — publish-class transitions need content:publish/qna:publish
+  // (never granted at role level). Writers also register/verify evidence
+  // (source:manage, platform-level per §24) and work the editorial board in
+  // scope. P7-S1: QnA authoring rides the WRITER class — the §18
+  // Question/Test Author role consolidated into v1's four-role model.
+  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'sessions:manage-own'],
   READER: ['sessions:manage-own'],
 }
 
@@ -135,12 +143,15 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'exam:manage',
   'current-affairs:manage',
   'entities:manage',
+  'qna:manage',
+  'qna:publish',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
 const WRITER_NARROWED: ReadonlySet<Permission> = new Set([
   'content:manage',
   'editorial:work',
+  'qna:manage',
 ])
 
 /**
@@ -215,6 +226,8 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'knowledge:manage': 'Manage knowledge units (own country)',
   'content:manage': 'Create & edit content (own scope)',
   'content:publish': 'Publish, schedule & retire content',
+  'qna:manage': 'Author Q&A learning entries (own scope, §22)',
+  'qna:publish': 'Publish, schedule & retire Q&A entries',
   'source:manage': 'Manage source evidence & verification (§24)',
   'editorial:work': 'Work the editorial task board (own scope)',
   'exam:manage': 'Manage exams & exam versions (own country)',

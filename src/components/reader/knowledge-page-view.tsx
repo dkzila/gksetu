@@ -17,6 +17,8 @@ import {
   ArrowUpRight,
   Bot,
   CalendarClock,
+  ChevronDown,
+  ChevronRight,
   Clock,
   Columns3,
   FileText,
@@ -26,6 +28,7 @@ import {
   Lightbulb,
   Link2,
   ListChecks,
+  MessageCircleQuestion,
   RefreshCw,
   ScrollText,
   ShieldCheck,
@@ -90,6 +93,26 @@ interface RelatedUnit {
   canonicalPath: string
 }
 
+/** §22 practice layer (P7-S1) — one explanatory Q&A entry, ALWAYS the live
+ * revision snapshot (never the working copy). The QnA id is the §10 save ref. */
+interface PageQnaEntry {
+  id: string
+  question: string
+  answer: string
+  revision: { number: number; publishedAt: string; changeSummary: string | null }
+  /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
+  aiAssisted: boolean
+  language: { code: string; name: string; nativeName: string | null }
+}
+
+/** The knowledge page's Q&A layer as a whole — `available: false` carries the
+ * honest quiet note (never a fabricated placeholder). */
+interface PageQnaLayer {
+  available: boolean
+  entries: PageQnaEntry[]
+  note: string | null
+}
+
 /** §22 layer 5 — one (exam × node) requirement row pointing at this unit. */
 interface UnitExamRequirementRow {
   exam: { slug: string; name: string; code: string; level: string }
@@ -127,6 +150,8 @@ export interface KnowledgePageData {
   }
   quickFact: { source: 'FACT_CARD' | 'CANONICAL_SUMMARY'; title: string | null; body: string }
   representations: PageRepresentation[]
+  /** §22 practice layer (P7-S1) — between learn (representations) and sources. */
+  qna: PageQnaLayer
   sources: PageSource[]
   related: RelatedUnit[]
   examCoverage:
@@ -395,6 +420,9 @@ export function KnowledgePageView({
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [reloadKey, setReloadKey] = useState(0)
+  // §22 practice layer: one Q&A entry expanded at a time (the content-admin
+  // revision-history precedent — the open entry id, null = all collapsed).
+  const [expandedQna, setExpandedQna] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -582,6 +610,85 @@ export function KnowledgePageView({
           </p>
         </div>
       )}
+
+      {/* ---------- §22 layer 2.5: practice — Q&A (P7-S1) ---------- */}
+      <div className="space-y-3">
+        <h4 className="flex flex-wrap items-center gap-2 text-sm font-semibold text-zinc-900">
+          <MessageCircleQuestion className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+          Practice — Q&amp;A
+          {page.qna.entries.length > 0 && (
+            <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
+              {page.qna.entries.length} question{page.qna.entries.length === 1 ? '' : 's'}
+            </Badge>
+          )}
+        </h4>
+        {page.qna.entries.length > 0 ? (
+          <ul className="space-y-2" aria-label="Practice questions and answers">
+            {page.qna.entries.map((entry) => {
+              const expanded = expandedQna === entry.id
+              return (
+                <li key={entry.id} className="rounded-lg border border-zinc-200 bg-white shadow-sm">
+                  {/* The question is the expand header; the save affordance rides it (§10) */}
+                  <div className="flex flex-wrap items-center gap-2 p-3 sm:p-4">
+                    <button
+                      type="button"
+                      onClick={() => setExpandedQna(expanded ? null : entry.id)}
+                      aria-expanded={expanded}
+                      className="flex min-h-[36px] min-w-0 flex-1 items-start gap-2 text-left"
+                    >
+                      {expanded ? (
+                        <ChevronDown className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
+                      ) : (
+                        <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
+                      )}
+                      <span className="text-sm font-semibold leading-snug text-zinc-800">
+                        {entry.question}
+                      </span>
+                    </button>
+                    <span className="shrink-0">
+                      <SaveButton objectType="QNA" objectRef={entry.id} objectName={entry.question} />
+                    </span>
+                  </div>
+                  {expanded && (
+                    <div className="border-t border-zinc-100 p-3 sm:p-4">
+                      <p className="whitespace-pre-line text-[15px] leading-relaxed text-zinc-700">
+                        {entry.answer}
+                      </p>
+                      <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-xs text-zinc-500">
+                        <span>
+                          Rev {entry.revision.number} · published {formatDate(entry.revision.publishedAt)}
+                        </span>
+                        {entry.revision.changeSummary && (
+                          <span className="italic text-zinc-500">
+                            Corrected: “{entry.revision.changeSummary}”
+                          </span>
+                        )}
+                        {entry.aiAssisted && (
+                          <Badge
+                            variant="outline"
+                            className="gap-1 border-fuchsia-200 bg-fuchsia-50 font-normal text-fuchsia-700"
+                          >
+                            <Bot className="h-3 w-3" aria-hidden="true" />
+                            AI-assisted draft
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        ) : (
+          <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-4" role="status">
+            <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
+              <MessageCircleQuestion className="h-4 w-4 text-zinc-400" aria-hidden="true" />
+              No practice Q&A yet
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-zinc-500">{page.qna.note}</p>
+          </div>
+        )}
+      </div>
 
       {/* ---------- §22 layer 3: sources (§24) ---------- */}
       <div className="space-y-3">

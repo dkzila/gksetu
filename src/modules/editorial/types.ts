@@ -171,3 +171,24 @@ export interface ContentWorkflowEvent {
     title: string
   }
 }
+
+/**
+ * P7-S1: the event the assessment module sends on every QnA transition so
+ * its §19 workflow wiring stays inside the caller's transaction. Tasks are
+ * keyed `objectType: 'QNA'` + the QnA's id — disjoint from ContentItem tasks
+ * (§46.14: QnA is structurally distinct, never one generic pipeline). The
+ * anchor is always a KnowledgeUnit (§6 lists only knowledge_unit_id).
+ */
+export interface QnaWorkflowEvent {
+  action: 'submit_review' | 'send_back' | 'schedule' | 'publish' | 'retire'
+  actorId: string | null
+  qna: {
+    id: string
+    unitSlug: string
+    /** Owning unit's country (null = GLOBAL unit → a platform/global task). */
+    countryId: string | null
+    languageId: string
+    languageCode: string
+    questionText: string
+  }
+}

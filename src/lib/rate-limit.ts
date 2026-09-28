@@ -95,4 +95,6 @@ export const RATE_LIMITS = {
   feedRead: { limit: 60, windowMs: 60 * 1000 }, // exam-aware current-affairs feed reads per IP (P6-S4)
   entityRead: { limit: 60, windowMs: 60 * 1000 }, // admin entity registry reads per IP (P6-S3)
   entityWrite: { limit: 30, windowMs: 60 * 1000 }, // entity registry + event link mutations per IP (P6-S3)
+  qnaRead: { limit: 60, windowMs: 60 * 1000 }, // admin QnA registry reads per IP (P7-S1)
+  qnaWrite: { limit: 30, windowMs: 60 * 1000 }, // QnA mutations per IP (P7-S1)
 } as const

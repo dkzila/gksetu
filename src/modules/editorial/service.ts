@@ -36,6 +36,7 @@ import type {
   EditorialTaskPriorityPublic,
   EditorialTaskStatusPublic,
   EditorialTaskTypePublic,
+  QnaWorkflowEvent,
 } from './types'
 import {
   EDITORIAL_TASK_TRANSITIONS,
@@ -813,6 +814,109 @@ export async function wireContentWorkflow(
       before: { status: open.length > 0 ? 'OPEN/IN_PROGRESS' : null },
       after: { status: outcome.status, resolutionNote: outcome.note },
       metadata: { auto: event.action, item: objectLabel },
+    }).catch(() => undefined)
+  }
+}
+
+// ---------- P7-S1: §19 workflow wiring for QnA (called from qna-service) ----------
+
+/**
+ * The assessment module's twin of wireContentWorkflow (P7-S1): runs inside
+ * the caller's QnA-transition transaction, keyed `objectType: 'QNA'` so QnA
+ * tasks are disjoint from content tasks (§46.14). Same §19 semantics:
+ * - submit_review → auto-open an EDITORIAL_REVIEW task (one per cycle).
+ * - publish/schedule → resolve open tasks (work complete).
+ * - send_back → resolve open tasks (re-submit opens a fresh cycle).
+ * - retire → cancel open tasks (withdrawn content, §19 step 10).
+ */
+export async function wireQnaWorkflow(
+  tx: Prisma.TransactionClient,
+  event: QnaWorkflowEvent
+): Promise<void> {
+  const { qna } = event
+  const objectLabel = `${qna.unitSlug}/${qna.languageCode}/QnA`
+
+  if (event.action === 'submit_review') {
+    // One live review task per QnA cycle: send_back/publish resolve the
+    // previous one, so a duplicate here only guards double-submits.
+    const existing = await tx.editorialTask.findFirst({
+      where: {
+        objectType: 'QNA',
+        objectId: qna.id,
+        type: 'EDITORIAL_REVIEW',
+        status: { in: ['OPEN', 'IN_PROGRESS'] },
+      },
+      select: { id: true },
+    })
+    if (!existing) {
+      const created = await tx.editorialTask.create({
+        data: {
+          type: 'EDITORIAL_REVIEW',
+          status: 'OPEN',
+          priority: 'MEDIUM',
+          countryId: qna.countryId,
+          languageId: qna.languageId,
+          objectType: 'QNA',
+          objectId: qna.id,
+          objectLabel,
+          title: `QnA review — ${qna.questionText.slice(0, 120)}`,
+          // The submitter becomes the task's creator — the §19
+          // separation-of-duties guard uses this to block self-reviews.
+          createdById: event.actorId,
+        },
+      })
+      void recordAudit({
+        actor: null,
+        action: AUDIT_ACTIONS.editorialTaskCreate,
+        objectType: AUDIT_OBJECT_TYPES.editorialTask,
+        objectId: created.id,
+        objectLabel: created.title,
+        after: { type: created.type, status: created.status, countryId: qna.countryId },
+        metadata: { auto: 'submit_review', qna: objectLabel },
+      }).catch(() => undefined)
+    }
+    return
+  }
+
+  const outcome =
+    event.action === 'retire'
+      ? { status: 'CANCELLED' as const, note: 'QnA retired — open work items cancelled (§19 step 10)' }
+      : event.action === 'schedule'
+        ? { status: 'RESOLVED' as const, note: 'QnA scheduled for release — review complete (§19 step 7)' }
+        : event.action === 'send_back'
+          ? { status: 'RESOLVED' as const, note: 'QnA sent back to draft — re-submit opens a fresh review' }
+          : { status: 'RESOLVED' as const, note: 'QnA published — open work items resolved' }
+
+  const open = await tx.editorialTask.findMany({
+    where: {
+      objectType: 'QNA',
+      objectId: qna.id,
+      status: { in: ['OPEN', 'IN_PROGRESS'] },
+    },
+    select: { id: true, title: true },
+  })
+  if (open.length === 0) return
+
+  const now = new Date()
+  for (const row of open) {
+    await tx.editorialTask.update({
+      where: { id: row.id },
+      data: {
+        status: outcome.status,
+        resolutionNote: outcome.note,
+        resolvedAt: now,
+        resolvedById: null, // system resolution (§19 wiring)
+      },
+    })
+    void recordAudit({
+      actor: null,
+      action: AUDIT_ACTIONS.editorialTaskTransition,
+      objectType: AUDIT_OBJECT_TYPES.editorialTask,
+      objectId: row.id,
+      objectLabel: row.title,
+      before: { status: 'OPEN/IN_PROGRESS' },
+      after: { status: outcome.status, resolutionNote: outcome.note },
+      metadata: { auto: event.action, qna: objectLabel },
     }).catch(() => undefined)
   }
 }

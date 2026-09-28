@@ -23,7 +23,8 @@ import { Button } from '@/components/ui/button'
 import type { ApiSaveState, SaveEnvelope } from './types'
 
 export interface SaveButtonProps {
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
+  /** P7-S1: QNA — the §22 practice layer's entries (objectRef = the QnA id). */
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'
   /** Canonical slug (unit/event) or id (content item) of the object this button saves. */
   objectRef: string
   /** Display name used in toasts (the object's honest label). */

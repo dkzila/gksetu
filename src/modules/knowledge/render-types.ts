@@ -14,6 +14,7 @@
 import type { ContentFormatPublic } from './content-types'
 import type { SourceVerificationPublic } from './source-types'
 import type { UnitExamRequirement } from '@/modules/exam-mapping'
+import type { PublicQnaLayer } from '@/modules/assessment'
 import type { PageSeo, PageStructuredData } from '@/modules/seo'
 
 /**
@@ -110,6 +111,15 @@ export interface RelatedUnit {
 }
 
 /**
+ * §22 QnA layer (P7-S1) — the practice step between learn (representations)
+ * and revise (revision notes/mock tests): explanatory question-and-answer
+ * entries anchored to this unit in the rendered language, ALWAYS live
+ * revision snapshots (§36). Owned by the assessment module; the knowledge
+ * page only assembles it (§7 — one canonical record, many representations).
+ */
+export type PageQnaLayer = PublicQnaLayer
+
+/**
  * §22 exam-coverage layer — filled since P3-S5 from the §8 requirement layer
  * (the unit-side mirror of the exam coverage read): which exams need this
  * unit today, at what depth, under which syllabus topic. `available: false`
@@ -154,6 +164,9 @@ export interface KnowledgePage {
   }
   quickFact: QuickFactLayer
   representations: PageRepresentation[]
+  /** §22 QnA layer (P7-S1) — published Q&A entries for this unit in this
+   * language; the honest empty note when none exist yet. */
+  qna: PageQnaLayer
   sources: PageSource[]
   related: RelatedUnit[]
   examCoverage: ExamCoverageLayer

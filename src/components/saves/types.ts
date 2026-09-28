@@ -54,7 +54,7 @@ export interface ApiSavedContentItem {
   countryIso: string | null
 }
 
-export type ApiSavedObject = ApiSavedUnit | ApiSavedContentItem | ApiSavedEvent
+export type ApiSavedObject = ApiSavedUnit | ApiSavedContentItem | ApiSavedEvent | ApiSavedQna
 
 /** P6-S3 §10/§12/§16 — a saved current event. The event record is the saved
  * object; its §16 page (/current-affairs/{slug}/) is the retrieval surface.
@@ -73,9 +73,35 @@ export interface ApiSavedEvent {
   languageCode: string
 }
 
+/** P7-S1 §22/§23/§10 — a saved explanatory Q&A entry (a LEARNING
+ * representation of its canonical unit). The unit's §22 knowledge page is
+ * the retrieval surface (its Practice — Q&A layer); RETIRED entries stay
+ * listed as honest tombstones (§36). */
+export interface ApiSavedQna {
+  kind: 'QNA'
+  id: string
+  /** Live published revision question (fallback: the working copy — honest §36). */
+  question: string
+  /** Short excerpt of the live answer — enough to recognise the entry. */
+  answerExcerpt: string
+  languageCode: string
+  status: 'DRAFT' | 'IN_REVIEW' | 'SCHEDULED' | 'PUBLISHED' | 'RETIRED'
+  unit: {
+    slug: string
+    canonicalName: string
+    type: string
+    status: 'DRAFT' | 'IN_REVIEW' | 'VERIFIED' | 'OUTDATED' | 'ARCHIVED'
+  }
+  topicSlug: string
+  topicCanonicalName: string
+  /** §16 knowledge-page path in the entry's own language market. */
+  canonicalPath: string
+  countryIso: string | null
+}
+
 export interface ApiSave {
   id: string
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'
   savedAt: string
   collectionId: string
   object: ApiSavedObject
@@ -92,7 +118,13 @@ export interface ApiCollection {
 
 export interface ApiSaveList {
   items: ApiSave[]
-  counts: { total: number; KNOWLEDGE_UNIT: number; CONTENT_ITEM: number; CURRENT_EVENT: number }
+  counts: {
+    total: number
+    KNOWLEDGE_UNIT: number
+    CONTENT_ITEM: number
+    CURRENT_EVENT: number
+    QNA: number
+  }
   collections: ApiCollection[]
 }
 
@@ -102,7 +134,7 @@ export interface ApiSaveMutation {
 }
 
 export interface ApiSaveState {
-  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT'
+  objectType: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA'
   objectRef: string
   objectSlug: string | null
   objectFound: boolean
