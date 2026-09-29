@@ -61,6 +61,8 @@ export {
   createCollection,
   renameCollection,
   deleteCollection,
+  setCollectionVisibility,
+  listSharedCollectionItems,
   MAX_SAVES_PER_USER,
   MAX_COLLECTIONS_PER_USER,
   DEFAULT_COLLECTION_NAME,
@@ -73,6 +75,7 @@ export {
   saveMoveSchema,
   collectionCreateSchema,
   collectionUpdateSchema,
+  collectionPatchSchema,
   collectionIdSchema,
   SAVE_OBJECT_TYPES,
 } from './save-validation'
@@ -83,6 +86,7 @@ export type {
   SaveMoveInput,
   CollectionCreateInput,
   CollectionUpdateInput,
+  CollectionPatchInput,
   SaveObjectTypeInput,
 } from './save-validation'
 export type {
@@ -92,6 +96,7 @@ export type {
   SavedObjectSummary,
   PublicSave,
   PublicCollection,
+  PublicCollectionItem,
   SaveListResult,
   SaveMutationResult,
   SaveStateResult,

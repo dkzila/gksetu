@@ -36,14 +36,19 @@
  * (P5-S3) are the private goal/onboarding surfaces — same rules. `#/dashboard`
  * (P5-S4) is the personalised dashboard/feed (§22/§34) — same rules.
  * `#/personalisation` (P5-S5) is the explanations & controls surface
- * (§9/§31) — same rules.
+ * (§9/§31) — same rules. `#/collections/{id}/` (P8-S1 §21) is the PUBLIC
+ * unlisted landing view for a LINK-visibility shared collection — the one
+ * collections route that is not #/saved (noindex, reachable only via the
+ * share link).
  *
  * Addressable state derives from the hash (never duplicated in component
  * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
  * page's §36 historical window — the browser back button walks both, and
  * every topic/exam switch starts clean. The §22 mock-test runner (P7-S3)
  * lives at the two shapes above — the test's scope (exam or topic) is part
- * of its §16 identity, so the URL carries it.
+ * of its §16 identity, so the URL carries it. `?q={id}` (P8-S1 §21) focuses
+ * the unit page's practice layer on one question — the question share link's
+ * addressable state.
  */
 import { useEffect, useState } from 'react'
 
@@ -53,7 +58,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'quick-mock' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'quick-mock' | 'collection' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -66,10 +71,14 @@ export interface AppRoute {
   syllabusTopicSlug: string | null
   /** The §22 mock test whose runner is open (P7-S3 — exam- or topic-scoped). */
   testSlug: string | null
+  /** The shared collection whose §21 unlisted view is open (P8-S1). */
+  collectionId: string | null
   /** Addressable topic-units page (≥1; only meaningful on the topic view). */
   page: number
   /** Addressable §36 historical window (exam view only). */
   versionId: string | null
+  /** Addressable §22 practice-layer focus (unit view only — P8-S1 §21 question shares). */
+  focusQuestionId: string | null
   /** Console scroll target (e.g. 'account' for the header Sign-in anchor). */
   scrollTo: string | null
 }
@@ -87,19 +96,24 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     examSlug: null,
     syllabusTopicSlug: null,
     testSlug: null,
+    collectionId: null,
     page: 1,
     versionId: null,
+    focusQuestionId: null,
     scrollTo: null,
   }
   if (!defaultCountry) return fallback
 
-  // Addressable query after the path (?page=N topic units, ?version= exam windows).
+  // Addressable query after the path (?page=N topic units, ?version= exam
+  // windows, ?q= the P8-S1 §21 practice-question focus on unit pages).
   const [pathPart, queryPart] = hash.split('?')
   const queryParams = new URLSearchParams(queryPart ?? '')
   const pageRaw = Number.parseInt(queryParams.get('page') ?? '1', 10)
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1
   const versionParam = queryParams.get('version') ?? ''
   const versionId = VERSION_PATTERN.test(versionParam) ? versionParam : null
+  const focusParam = queryParams.get('q') ?? ''
+  const focusQuestionId = VERSION_PATTERN.test(focusParam) ? focusParam : null
 
   const segments = pathPart.replace(/^#\/?/, '').split('/').filter(Boolean)
   if (segments.length === 0) return fallback
@@ -152,6 +166,12 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     return { ...fallback, view: 'personalisation', scrollTo: null }
   }
 
+  // P8-S1 §21: the public unlisted shared-collection view — market-
+  // independent (a shared collection is owner content, not market content).
+  if (segments[0] === 'collections' && segments[1] && VERSION_PATTERN.test(segments[1])) {
+    return { ...fallback, view: 'collection', collectionId: segments[1], scrollTo: null }
+  }
+
   let country = defaultCountry
   let language = defaultCountry.defaultLanguage.code
   let index = 0
@@ -201,8 +221,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug: null,
         syllabusTopicSlug: null,
         testSlug: segments[index + 3],
+        collectionId: null,
         page: 1,
         versionId: null,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -217,8 +239,11 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug: null,
         syllabusTopicSlug: null,
         testSlug: null,
+        collectionId: null,
         page: 1,
         versionId: null,
+        // P8-S1 §21: the question share link's addressable focus (?q=).
+        focusQuestionId,
         scrollTo: null,
       }
     }
@@ -233,8 +258,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug: null,
         syllabusTopicSlug: null,
         testSlug: null,
+        collectionId: null,
         page,
         versionId: null,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -254,8 +281,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug: null,
         syllabusTopicSlug: null,
         testSlug: null,
+        collectionId: null,
         page: 1,
         versionId: null,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -276,8 +305,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug,
         syllabusTopicSlug: null,
         testSlug: segments[index + 3],
+        collectionId: null,
         page: 1,
         versionId: null,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -292,8 +323,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug,
         syllabusTopicSlug: segments[index + 3],
         testSlug: null,
+        collectionId: null,
         page: 1,
         versionId: null,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -308,8 +341,10 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
         examSlug,
         syllabusTopicSlug: null,
         testSlug: null,
+        collectionId: null,
         page: 1,
         versionId,
+        focusQuestionId: null,
         scrollTo: null,
       }
     }
@@ -330,8 +365,12 @@ export interface RouteInput {
   syllabusTopicSlug?: string | null
   /** The §22 mock test to open (P7-S3) — exam- or topic-scoped. */
   testSlug?: string | null
+  /** The shared collection to open (P8-S1 §21) — the unlisted landing view. */
+  collectionId?: string | null
   page?: number
   versionId?: string | null
+  /** The §22 practice-layer focus (P8-S1 §21 question shares — unit view). */
+  focusQuestionId?: string | null
 }
 
 /** Builds the §16-shaped hash for a route (defaults omitted, §16). */
@@ -343,6 +382,10 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'profile') return '#/profile'
   if (route.view === 'dashboard') return '#/dashboard'
   if (route.view === 'personalisation') return '#/personalisation'
+  // P8-S1 §21: the public unlisted shared-collection view — market-independent.
+  if (route.view === 'collection' && route.collectionId) {
+    return `#/collections/${route.collectionId}/`
+  }
   // P7-S5 §22 — the quick-mock setup (an exam slug deep-links its scope card).
   if (route.view === 'quick-mock') {
     return route.examSlug ? `#/quick-mock/${route.examSlug}/` : '#/quick-mock'
@@ -379,6 +422,10 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   }
   if (route.view === 'exam' && route.versionId && VERSION_PATTERN.test(route.versionId)) {
     params.set('version', route.versionId)
+  }
+  // P8-S1 §21: the question focus rides the unit view's hash (?q={id}).
+  if (route.view === 'unit' && route.focusQuestionId && VERSION_PATTERN.test(route.focusQuestionId)) {
+    params.set('q', route.focusQuestionId)
   }
   const query = params.toString()
   return query ? `${path}?${query}` : path

@@ -33,6 +33,7 @@ import {
 
 import type {
   PublicCollection,
+  PublicCollectionItem,
   PublicSave,
   SaveListResult,
   SaveMutationResult,
@@ -1022,7 +1023,7 @@ export async function listMySaves(
     id: row.id,
     name: row.name,
     isDefault: row.isDefault,
-    visibility: 'PRIVATE' as const,
+    visibility: row.visibility,
     itemCount: row._count.items,
     createdAt: row.createdAt.toISOString(),
   }))
@@ -1496,7 +1497,7 @@ export async function createCollection(
     id: created.id,
     name: created.name,
     isDefault: created.isDefault,
-    visibility: 'PRIVATE',
+    visibility: created.visibility,
     itemCount: 0,
     createdAt: created.createdAt.toISOString(),
   }
@@ -1545,7 +1546,7 @@ export async function renameCollection(
     id: updated.id,
     name: updated.name,
     isDefault: updated.isDefault,
-    visibility: 'PRIVATE',
+    visibility: updated.visibility,
     itemCount,
     createdAt: updated.createdAt.toISOString(),
   }
@@ -1591,6 +1592,211 @@ export async function deleteCollection(
   })
 
   return { removed: true, movedItems, name: existing.name }
+}
+
+/**
+ * P8-S1 (§21): the collection share opt-in/revoke — PRIVATE ↔ LINK. This is
+ * the ONLY write path for visibility, and it is DELIBERATELY available for
+ * the default "Saved" collection too: sharing is the owner's explicit choice
+ * over their own bucket (the §10 immutability rules protect name/deletion,
+ * not visibility). The audit carries before/after so the §30 trail shows
+ * exactly when a collection became public-by-link and when it stopped.
+ */
+export async function setCollectionVisibility(
+  userId: string,
+  collectionId: string,
+  input: { visibility: 'PRIVATE' | 'LINK' },
+  actor: AuditActorRef,
+  meta: AuditRequestMeta = {}
+): Promise<PublicCollection> {
+  await loadUserContext(userId)
+  const existing = await loadOwnedCollection(userId, collectionId)
+  if (existing.visibility === input.visibility) {
+    // Idempotent no-op — the receipt still returns the honest current state.
+    const itemCount = await db.savedItem.count({ where: { collectionId: existing.id } })
+    return {
+      id: existing.id,
+      name: existing.name,
+      isDefault: existing.isDefault,
+      visibility: existing.visibility,
+      itemCount,
+      createdAt: existing.createdAt.toISOString(),
+    }
+  }
+  const updated = await db.collection.update({
+    where: { id: existing.id },
+    data: { visibility: input.visibility },
+  })
+  await recordAudit({
+    actor,
+    action: AUDIT_ACTIONS.collectionShare,
+    objectType: AUDIT_OBJECT_TYPES.collection,
+    objectId: updated.id,
+    objectLabel: updated.name,
+    before: { visibility: existing.visibility },
+    after: { visibility: updated.visibility },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent ?? null,
+  })
+  const itemCount = await db.savedItem.count({ where: { collectionId: updated.id } })
+  return {
+    id: updated.id,
+    name: updated.name,
+    isDefault: updated.isDefault,
+    visibility: updated.visibility,
+    itemCount,
+    createdAt: updated.createdAt.toISOString(),
+  }
+}
+
+/**
+ * P8-S1 (§21): the PUBLIC item projection for a shared (LINK) collection —
+ * the unlisted landing view's rows. Reuses the owner-side summary builders
+ * (one implementation per summary, §28) and projects away EVERYTHING private:
+ * no savedAt, no save-row ids, no owner identity — public content titles,
+ * honest §36 statuses and §16 paths only. The caller (the sharing module)
+ * gates on visibility FIRST; this function itself never leaks a private
+ * collection because it is only ever reached through that gate.
+ */
+export async function listSharedCollectionItems(
+  collectionId: string
+): Promise<PublicCollectionItem[]> {
+  const rows = await db.savedItem.findMany({
+    where: { collectionId },
+    orderBy: { savedAt: 'desc' },
+    take: 100, // the shared view caps at 100 rows — an honest, bounded window
+  })
+
+  const unitIds = rows.filter((row) => row.objectType === 'KNOWLEDGE_UNIT').map((row) => row.objectId)
+  const itemIds = rows.filter((row) => row.objectType === 'CONTENT_ITEM').map((row) => row.objectId)
+  const eventIds = rows.filter((row) => row.objectType === 'CURRENT_EVENT').map((row) => row.objectId)
+  const qnaIds = rows.filter((row) => row.objectType === 'QNA').map((row) => row.objectId)
+  const questionIds = rows.filter((row) => row.objectType === 'QUESTION').map((row) => row.objectId)
+  const mockTestIds = rows.filter((row) => row.objectType === 'MOCK_TEST').map((row) => row.objectId)
+
+  const [units, itemRows, eventRows, qnaRows, questionRows, mockTestRows] = await Promise.all([
+    unitIds.length ? db.knowledgeUnit.findMany({ where: { id: { in: unitIds } }, include: UNIT_INCLUDE }) : Promise.resolve([] as UnitWithTopic[]),
+    itemIds.length ? db.contentItem.findMany({ where: { id: { in: itemIds }, knowledgeUnitId: { not: null } }, include: ITEM_INCLUDE }) : Promise.resolve([] as ItemWithUnit[]),
+    eventIds.length ? db.currentEvent.findMany({ where: { id: { in: eventIds } }, include: EVENT_INCLUDE }) : Promise.resolve([] as EventWithTopic[]),
+    qnaIds.length ? db.qnA.findMany({ where: { id: { in: qnaIds } }, include: QNA_INCLUDE }) : Promise.resolve([] as QnaWithUnit[]),
+    questionIds.length ? db.question.findMany({ where: { id: { in: questionIds } }, include: QUESTION_INCLUDE }) : Promise.resolve([] as QuestionWithUnit[]),
+    mockTestIds.length ? db.mockTest.findMany({ where: { id: { in: mockTestIds } }, include: MOCKTEST_INCLUDE }) : Promise.resolve([] as MockTestWithScope[]),
+  ])
+
+  const unitById = new Map(units.map((unit) => [unit.id, unit]))
+  const items = itemRows.filter((row) => row.knowledgeUnit != null) as ItemWithUnit[]
+  const itemById = new Map(items.map((item) => [item.id, item]))
+  const eventById = new Map(eventRows.map((event) => [event.id, event]))
+  const qnaById = new Map(qnaRows.map((qna) => [qna.id, qna]))
+  const questionById = new Map(questionRows.map((question) => [question.id, question]))
+  const mockTestById = new Map(mockTestRows.map((test) => [test.id, test]))
+
+  // The public view resolves each object in ITS OWN market (§14/§35) — the
+  // owner-free chains: country-scoped objects in their market, global objects
+  // in the default market. No user context exists on this surface by design.
+  const defaultMarket = await marketFromResolution(undefined, undefined)
+  const itemMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    items.map(async (item) => {
+      itemMarkets.set(item.id, await resolveItemMarket(item))
+    })
+  )
+  const qnaMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    qnaRows.map(async (qna) => {
+      qnaMarkets.set(qna.id, await resolveQnaMarket(qna))
+    })
+  )
+  const questionMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    questionRows.map(async (question) => {
+      questionMarkets.set(question.id, await resolveQuestionMarket(question))
+    })
+  )
+  const mockTestMarkets = new Map<string, MarketShape>()
+  await Promise.all(
+    mockTestRows.map(async (test) => {
+      mockTestMarkets.set(test.id, await resolveMockTestMarket(test))
+    })
+  )
+
+  const out: PublicCollectionItem[] = []
+  for (const row of rows) {
+    if (row.objectType === 'KNOWLEDGE_UNIT') {
+      const unit = unitById.get(row.objectId)
+      if (!unit) continue
+      const market = unit.scope === 'COUNTRY' && unit.country
+        ? await resolveCountryUnitMarket(unit.country.isoCode, {})
+        : defaultMarket
+      const summary = toUnitSummary(unit, market)
+      out.push({
+        kind: 'KNOWLEDGE_UNIT',
+        title: summary.canonicalName,
+        status: summary.status,
+        canonicalPath: summary.canonicalPath,
+        detail: summary.topicCanonicalName,
+      })
+    } else if (row.objectType === 'CURRENT_EVENT') {
+      const event = eventById.get(row.objectId)
+      if (!event) continue
+      const market = event.scope === 'COUNTRY' && event.country
+        ? await resolveCountryUnitMarket(event.country.isoCode, {})
+        : defaultMarket
+      const summary = toEventSummary(event, market)
+      out.push({
+        kind: 'CURRENT_EVENT',
+        title: summary.title,
+        status: summary.lifecycleState,
+        canonicalPath: summary.canonicalPath,
+        detail: summary.topicCanonicalName,
+      })
+    } else if (row.objectType === 'QNA') {
+      const qna = qnaById.get(row.objectId)
+      if (!qna) continue
+      const summary = toQnaSummary(qna, qnaMarkets.get(qna.id) ?? defaultMarket)
+      out.push({
+        kind: 'QNA',
+        title: summary.question.length > 140 ? `${summary.question.slice(0, 139)}…` : summary.question,
+        status: summary.status,
+        canonicalPath: summary.canonicalPath,
+        detail: summary.topicCanonicalName,
+      })
+    } else if (row.objectType === 'QUESTION') {
+      const question = questionById.get(row.objectId)
+      if (!question) continue
+      const summary = toQuestionSummary(question, questionMarkets.get(question.id) ?? defaultMarket)
+      out.push({
+        kind: 'QUESTION',
+        title: summary.question.length > 140 ? `${summary.question.slice(0, 139)}…` : summary.question,
+        status: summary.status,
+        canonicalPath: summary.canonicalPath,
+        detail: `${summary.difficulty} · ${summary.topicCanonicalName}`,
+      })
+    } else if (row.objectType === 'MOCK_TEST') {
+      const mockTest = mockTestById.get(row.objectId)
+      if (!mockTest) continue
+      const summary = toMockTestSummary(mockTest, mockTestMarkets.get(mockTest.id) ?? defaultMarket)
+      out.push({
+        kind: 'MOCK_TEST',
+        title: summary.title,
+        status: summary.status,
+        canonicalPath: summary.canonicalPath,
+        detail: summary.scopeLabel,
+      })
+    } else {
+      const item = itemById.get(row.objectId)
+      if (!item) continue
+      const summary = toItemSummary(item, itemMarkets.get(item.id) ?? defaultMarket)
+      out.push({
+        kind: 'CONTENT_ITEM',
+        title: summary.title,
+        status: summary.status,
+        canonicalPath: summary.canonicalPath,
+        detail: summary.topicCanonicalName,
+      })
+    }
+  }
+  return out
 }
 
 // ---------- Hydration ----------

@@ -29,6 +29,7 @@ import {
   RefreshCw,
   Rss,
   Settings2,
+  Share2,
   ShieldAlert,
   ShieldCheck,
   SlidersHorizontal,
@@ -664,6 +665,37 @@ export function ControlsView({
                 <TrendingUp className="h-4 w-4" aria-hidden="true" />
                 Open your revision queue
               </a>
+            </CardContent>
+          </Card>
+
+          {/* ---------- Recorded activity (P8-S1 §21/§32 — sharing analytics) ---------- */}
+          <Card className="border-zinc-200 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Share2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                Recorded when you share — analytics only
+              </CardTitle>
+              <CardDescription>
+                {data.implicit.sharing.shareActionCount} share{' '}
+                {data.implicit.sharing.shareActionCount === 1 ? 'event' : 'events'} attributed to you ·
+                link landings are anonymous
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-xs leading-relaxed text-zinc-500">{data.implicit.sharing.note}</p>
+              <ul className="space-y-2">
+                {data.implicit.sharing.effects.map((effect) => (
+                  <li key={effect.kind} className="flex items-start gap-2 text-xs text-zinc-600">
+                    <span
+                      aria-hidden="true"
+                      className="mt-0.5 inline-flex shrink-0 items-center rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] font-medium text-zinc-500"
+                    >
+                      {effect.kind === 'ANALYTICS' ? 'Platform analytics' : effect.kind}
+                    </span>
+                    <span className="min-w-0 flex-1">{effect.text}</span>
+                  </li>
+                ))}
+              </ul>
             </CardContent>
           </Card>
 

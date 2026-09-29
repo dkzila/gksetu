@@ -1,19 +1,23 @@
 'use client'
 
 /**
- * GlobIQ — Unit View (P4-S2, extended P4-S3)
+ * GlobIQ — Unit View (P4-S2, extended P4-S3, P8-S1)
  *
  * The in-app §22 knowledge page: the existing P2-S5/P3-S5 reader component
- * (KnowledgePageView) wrapped in the app chrome — a back-to-topic bar and
- * the §16 canonical path. Reached from homepage/landing/search/exam cards
- * via the hash router (#/gk/{topic}/{unit}/) and from the reader's own
- * related concepts; `onOpenUnit` resolves the target unit's topic first (the
- * §16 path needs the topic segment) through the public unit detail API.
- * From P4-S3 the exam-coverage panel's rows open the §16 exam page in-app.
+ * (KnowledgePageView) wrapped in the app chrome — a back-to-topic bar, the
+ * §16 canonical path and the P8-S1 §21 share action. Reached from
+ * homepage/landing/search/exam cards via the hash router
+ * (#/gk/{topic}/{unit}/) and from the reader's own related concepts;
+ * `onOpenUnit` resolves the target unit's topic first (the §16 path needs
+ * the topic segment) through the public unit detail API. From P4-S3 the
+ * exam-coverage panel's rows open the §16 exam page in-app. P8-S1 threads
+ * the §21 question-share focus (?q={id}) into the practice layer — a shared
+ * question link opens scrolled to that question.
  */
 import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { ShareButton } from '@/components/shares/share-button'
 
 import { KnowledgePageView } from '@/components/reader/knowledge-page-view'
 import type { Envelope } from './types'
@@ -23,6 +27,8 @@ export interface UnitViewProps {
   unitSlug: string
   country: string
   language: string
+  /** P8-S1 §21: the practice-question focus from a shared link (?q={id}). */
+  focusQuestionId?: string | null
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
@@ -39,6 +45,7 @@ export function UnitView({
   unitSlug,
   country,
   language,
+  focusQuestionId = null,
   onOpenTopic,
   onOpenUnit,
   onOpenExam,
@@ -66,7 +73,7 @@ export function UnitView({
 
   return (
     <div className="space-y-4">
-      {/* Back to the topic hub (§16: the unit lives under …/gk/{topic}/) */}
+      {/* Back to the topic hub (§16: the unit lives under …/gk/{topic}/) + the §21 share action */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Button
           variant="ghost"
@@ -77,15 +84,23 @@ export function UnitView({
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to the topic hub
         </Button>
-        <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
-          #/gk/{topicSlug}/{unitSlug}/
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
+            #/gk/{topicSlug}/{unitSlug}/
+          </p>
+          <ShareButton
+            path={`#/gk/${topicSlug}/${unitSlug}/`}
+            title={unitSlug}
+            className="h-9 px-2.5"
+          />
+        </div>
       </div>
 
       <KnowledgePageView
         unitRef={unitSlug}
         country={country}
         language={language}
+        focusQuestionId={focusQuestionId}
         onOpenUnit={(slug) => void handleOpenUnit(slug)}
         onOpenExam={onOpenExam}
         onSwitchLanguage={onSwitchLanguage}

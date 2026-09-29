@@ -168,6 +168,8 @@ export const AUDIT_ACTIONS = {
   collectionCreate: 'user.collection.create',
   collectionUpdate: 'user.collection.update',
   collectionRemove: 'user.collection.remove',
+  /** P8-S1 (§21): the collection share opt-in/revoke (PRIVATE ↔ LINK). */
+  collectionShare: 'user.collection.share',
   /** P5-S3 profile & explicit goals (§6/§9/§31 — self-service, user-controlled). */
   profileUpdate: 'user.profile.update',
   goalSet: 'user.goal.set',

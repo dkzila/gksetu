@@ -104,9 +104,10 @@ export interface InventorySaves {
 
 /**
  * The §9 IMPLICIT signals this platform derives (P7-S4: mock-test
- * performance — the §22 mastery layer). Listed separately from the explicit
- * inventory: the user never declared these, so the surface states WHAT is
- * derived, FROM WHAT, and what it affects — the §9/§31 honesty contract.
+ * performance — the §22 mastery layer; P8-S1: sharing — §21 share events as
+ * §32 analytics). Listed separately from the explicit inventory: the user
+ * never declared these, so the surface states WHAT is derived, FROM WHAT,
+ * and what it affects — the §9/§31 honesty contract.
  */
 export interface InventoryImplicit {
   mastery: {
@@ -118,6 +119,16 @@ export interface InventoryImplicit {
     /** §9 effect sentences — rendered verbatim. */
     effects: InventorySignalEffect[]
     /** The §31 note: attempts are immutable history; the derived state clears with the reset. */
+    note: string
+  }
+  /** P8-S1 §21/§32: share actions + landing visits — analytics, NEVER a
+   * personalisation input; the reset keeps them (activity history, like
+   * attempts). */
+  sharing: {
+    shareActionCount: number
+    /** §9 effect sentences — rendered verbatim. */
+    effects: Array<{ kind: 'ANALYTICS'; text: string }>
+    /** The §31 note: what is collected, what it never feeds, what the reset does. */
     note: string
   }
 }

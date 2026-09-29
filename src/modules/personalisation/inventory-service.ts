@@ -31,6 +31,7 @@ import {
 import { countMySaves, listMyFollows } from '@/modules/follow-save'
 import type { FollowedEntitySummary, FollowedExamSummary, FollowedTopicSummary, PublicFollow } from '@/modules/follow-save'
 import { getMyMasteryStats } from '@/modules/assessment' // P7-S4: the §9 implicit-signal layer
+import { getMyShareStats } from '@/modules/sharing' // P8-S1: the §21 share-event family (§32 analytics)
 
 import { getMyGoal, loadUserContext } from './service'
 import { resolveLabelMarket } from './dashboard-service'
@@ -305,6 +306,7 @@ export async function getMyPersonalisation(
   // declared. The inventory states what is derived, from what, and what it
   // affects (§31 honesty); the reset clears the derived rows.
   const masteryStats = await getMyMasteryStats(userId)
+  const shareStats = await getMyShareStats(userId)
   const implicit: InventoryImplicit = {
     mastery: {
       ...masteryStats,
@@ -320,6 +322,20 @@ export async function getMyPersonalisation(
       ],
       note:
         'Derived only from your submitted mock-test attempts (§6 — attempts are immutable history; “reset personalisation” clears this derived progress and new attempts rebuild it from that point).',
+    },
+    // P8-S1 §21/§32: shares are recorded as ANALYTICS, never as
+    // personalisation inputs — the §9 honesty contract applied to the
+    // sharing family (the mastery block's twin structure).
+    sharing: {
+      ...shareStats,
+      effects: [
+        {
+          kind: 'ANALYTICS',
+          text: 'Your share actions and the landings on shared links feed the platform’s sharing metrics (§32) — which surfaces get shared and whether people arrive.',
+        },
+      ],
+      note:
+        'Share actions carry your account only when you are signed in; link landings are anonymous. They never feed your queue, ranking or reasons, and “reset personalisation” keeps them — analytics history, like your attempts.',
     },
   }
 
@@ -369,6 +385,7 @@ export async function getMyPersonalisation(
     keeps: [
       `Your ${saveCounts.total} ${pluralise(saveCounts.total, 'saved item', 'saved items')} and ${saveCounts.collections} ${pluralise(saveCounts.collections, 'collection', 'collections')} — retrieval, never personalisation signals`,
       `Your ${masteryStats.submittedAttemptCount} submitted ${pluralise(masteryStats.submittedAttemptCount, 'attempt', 'attempts')} — immutable assessment history (§6), like your saves`,
+      `Your ${shareStats.shareActionCount} share ${pluralise(shareStats.shareActionCount, 'event', 'events')} — anonymous-friendly analytics history (§21/§32), not personalisation`,
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],

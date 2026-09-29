@@ -96,9 +96,25 @@ export const collectionNameSchema = z
 export const collectionCreateSchema = z.object({ name: collectionNameSchema })
 export type CollectionCreateInput = z.infer<typeof collectionCreateSchema>
 
-/** PATCH /api/collections/[id] body. */
+/** PATCH /api/collections/[id] body — the rename shape (P5-S2). */
 export const collectionUpdateSchema = z.object({ name: collectionNameSchema })
 export type CollectionUpdateInput = z.infer<typeof collectionUpdateSchema>
+
+/**
+ * PATCH /api/collections/[id] body — the P8-S1 §21 full patch: exactly one
+ * operation per request (rename OR the share opt-in/revoke), so each PATCH
+ * audits as one coherent action (§30).
+ */
+export const collectionPatchSchema = z
+  .object({
+    name: collectionNameSchema.optional(),
+    visibility: z.enum(['PRIVATE', 'LINK']).optional(),
+  })
+  .refine(
+    (value) => (value.name !== undefined) !== (value.visibility !== undefined),
+    'Send exactly one of name or visibility (one operation per patch)'
+  )
+export type CollectionPatchInput = z.infer<typeof collectionPatchSchema>
 
 /** Collection id param. */
 export const collectionIdSchema = z

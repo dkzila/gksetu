@@ -1,11 +1,15 @@
 /**
- * /api/collections/{id} — rename + delete a collection (P5-S2).
+ * /api/collections/{id} — rename, share opt-in/revoke + delete (P5-S2, P8-S1).
  * Master Plan §10 (the default "Saved" collection is fixed — rename/delete are
- * custom-collection operations), §31 (deleting a bucket never destroys the
- * saves in it — they fall back to the default), §37 (client-agnostic).
+ * custom-collection operations), §21 (P8-S1: PATCH { visibility } is the
+ * explicit share opt-in — PRIVATE ↔ LINK — audited per §30), §31 (deleting a
+ * bucket never destroys the saves in it — they fall back to the default;
+ * revoking sharing never touches the items), §37 (client-agnostic).
  *
- * PATCH  { name }      → { collection }
- * DELETE               → { removed: true, movedItems, name }
+ * PATCH  { name }                  → { collection }
+ * PATCH  { visibility: 'LINK' }    → { collection } — §21 eligible collection
+ * PATCH  { visibility: 'PRIVATE' } → { collection } — revoke sharing
+ * DELETE                             → { removed: true, movedItems, name }
  */
 import { fail, ok, errors } from '@/lib/api/response'
 import { clientIp, checkRateLimit, RATE_LIMITS } from '@/lib/rate-limit'
@@ -13,9 +17,10 @@ import { fieldErrors } from '@/lib/validation'
 import { authenticateRequest } from '@/modules/identity-access'
 import {
   collectionIdSchema,
-  collectionUpdateSchema,
+  collectionPatchSchema,
   deleteCollection,
   renameCollection,
+  setCollectionVisibility,
   toSaveErrorResponse,
 } from '@/modules/follow-save'
 
@@ -46,25 +51,36 @@ export async function PATCH(
     return errors.badRequest('Request body must be valid JSON')
   }
 
-  const parsed = collectionUpdateSchema.safeParse(body)
+  const parsed = collectionPatchSchema.safeParse(body)
   if (!parsed.success) {
     return errors.badRequest('Please fix the highlighted fields', fieldErrors(parsed.error))
   }
 
   try {
-    const collection = await renameCollection(
-      context.user.id,
-      parsedId.data,
-      parsed.data,
-      { userId: context.user.id, email: context.user.email, role: context.user.role },
-      { ip: clientIp(request), userAgent: request.headers.get('user-agent') }
-    )
+    // One PATCH = one operation (§30 audit coherence): the share opt-in/revoke
+    // (P8-S1 §21) or the rename (P5-S2) — never both in one request.
+    const collection =
+      parsed.data.visibility !== undefined
+        ? await setCollectionVisibility(
+            context.user.id,
+            parsedId.data,
+            { visibility: parsed.data.visibility },
+            { userId: context.user.id, email: context.user.email, role: context.user.role },
+            { ip: clientIp(request), userAgent: request.headers.get('user-agent') }
+          )
+        : await renameCollection(
+            context.user.id,
+            parsedId.data,
+            { name: parsed.data.name! },
+            { userId: context.user.id, email: context.user.email, role: context.user.role },
+            { ip: clientIp(request), userAgent: request.headers.get('user-agent') }
+          )
     return ok({ collection })
   } catch (error) {
     const mapped = toSaveErrorResponse(error)
     if (mapped) return fail(mapped.message, mapped.code, mapped.status)
-    console.error('[collections/rename] unexpected error:', error)
-    return fail('Could not rename the collection. Please try again.', 'INTERNAL_ERROR', 500)
+    console.error('[collections/patch] unexpected error:', error)
+    return fail('Could not update the collection. Please try again.', 'INTERNAL_ERROR', 500)
   }
 }
 

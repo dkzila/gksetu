@@ -3401,6 +3401,61 @@ async function main() {
     }
   }
 
+  // ---------- P8-S1: ShareEvent — §21/§32 fixtures over the seeded surfaces ----------
+  // §21 "track share events as analytics events": a small honest fixture set
+  // across the shareable object vocabulary — an attributed share (the signed-
+  // in admin sharing the §11 worked-example unit via copy-link), an anonymous
+  // share (the exam page via the Web Share path), and anonymous landings on
+  // both (the §32 "share actions, landing visits" pair). objectRef is the
+  // PUBLIC stable ref (slug — §37); the rows are append-only analytics, so
+  // the guard is a total count (any live event means the fixture already ran
+  // or real usage exists — either way, never duplicate analytics history).
+  let shareEventsSeeded = 0
+  const existingShareEvents = await prisma.shareEvent.count()
+  if (existingShareEvents === 0) {
+    await prisma.shareEvent.createMany({
+      data: [
+        {
+          objectType: 'KNOWLEDGE_UNIT',
+          objectRef: 'fundamental-rights-articles-12-35',
+          action: 'SHARE_CREATE',
+          channel: 'COPY_LINK',
+          userId: admin.id,
+          countryIso: india.isoCode,
+          createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+        },
+        {
+          objectType: 'KNOWLEDGE_UNIT',
+          objectRef: 'fundamental-rights-articles-12-35',
+          action: 'SHARE_LANDING',
+          channel: null,
+          userId: null,
+          countryIso: india.isoCode,
+          createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+        },
+        {
+          objectType: 'EXAM',
+          objectRef: 'upsc-civil-services',
+          action: 'SHARE_CREATE',
+          channel: 'WEB_SHARE',
+          userId: null, // §31: anonymous shares are by design
+          countryIso: india.isoCode,
+          createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+        },
+        {
+          objectType: 'CURRENT_EVENT',
+          objectRef: 'chandrayaan-3-vikram-landing',
+          action: 'SHARE_LANDING',
+          channel: null,
+          userId: null,
+          countryIso: india.isoCode,
+          createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+        },
+      ],
+    })
+    shareEventsSeeded = 4
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -3414,7 +3469,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

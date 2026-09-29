@@ -426,6 +426,8 @@ interface KnowledgePageViewProps {
   unitRef: string
   country: string
   language: string
+  /** P8-S1 §21: focus the scored practice layer on one question (?q={id}). */
+  focusQuestionId?: string | null
   onOpenUnit: (slug: string) => void
   /**
    * P4-S3: opens the §16 exam page in-app; when absent the exam rows stay
@@ -444,6 +446,7 @@ export function KnowledgePageView({
   unitRef,
   country,
   language,
+  focusQuestionId = null,
   onOpenUnit,
   onOpenExam,
   onSwitchLanguage,
@@ -723,8 +726,13 @@ export function KnowledgePageView({
         )}
       </div>
 
-      {/* ---------- §22 layer 2.7: practice — scored MCQs (P7-S2) ---------- */}
-      <PracticeLayer practice={page.practice} />
+      {/* ---------- §22 layer 2.7: practice — scored MCQs (P7-S2; P8-S1 §21
+          per-question share actions + the ?q= focus from shared links) ---------- */}
+      <PracticeLayer
+        practice={page.practice}
+        unitSharePath={page.canonicalPath}
+        focusQuestionId={focusQuestionId}
+      />
 
       {/* ---------- §22 layer 2.8: your mastery — spaced-review state (P7-S4) ----------
           The revise half of learn → practice → revise: the signed-in reader's

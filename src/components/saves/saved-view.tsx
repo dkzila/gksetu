@@ -22,6 +22,7 @@ import {
   Check,
   FolderInput,
   FolderPlus,
+  Link2,
   Loader2,
   LogIn,
   Pencil,
@@ -41,6 +42,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { useSeoHead } from '@/components/home/seo-head'
+import { CollectionShareControl } from './collection-share-control'
 import type { ApiCollection, ApiSave, ApiSaveList, SaveEnvelope } from './types'
 
 // ---------- Props ----------
@@ -559,10 +561,24 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                     <span className={`text-xs ${active ? 'text-emerald-100' : 'text-zinc-400'}`}>
                       {collection.itemCount}
                     </span>
+                    {/* P8-S1 §21: the shareable state is visible at a glance. */}
+                    {collection.visibility === 'LINK' && (
+                      <Link2
+                        className={`h-3 w-3 ${active ? 'text-emerald-100' : 'text-emerald-600'}`}
+                        aria-label="Shared via link (§21)"
+                      />
+                    )}
                   </button>
                 )
               })}
             </div>
+
+            {/* P8-S1 §21: the collection share opt-in/revoke — available for
+                ANY collection incl. the default (the owner's explicit choice,
+                §10/§21); rename/delete below stay custom-only. */}
+            {activeCollectionRow && (
+              <CollectionShareControl collection={activeCollectionRow} onUpdated={() => void fetchList()} />
+            )}
 
             {/* Custom-collection management (rename/delete — the default is immutable, §10) */}
             {activeCollectionRow && !activeCollectionRow.isDefault && (

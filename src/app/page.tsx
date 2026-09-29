@@ -16,10 +16,13 @@
  * In-app navigation mirrors the §16 URL grammar after the hash
  * (#/hi/gk/polity-governance/…, #/exams/upsc-civil-services/…) — one grammar,
  * one source of URL truth, driven by the live country/language configuration
- * (§35).
+ * (§35). P8-S1 adds the §21 sharing system: the share actions on every
+ * shareable canonical surface and the public unlisted shared-collection view
+ * (#/collections/{id}/) — plus the landing beacon that records a §32 share
+ * event when a page LOAD starts on a shareable surface (§21 analytics).
  */
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ArrowUpRight,
   Globe,
@@ -50,6 +53,7 @@ import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { TestRunnerView } from '@/components/assessment/test-runner-view'
 import { QuickMockView } from '@/components/assessment/quick-mock-view'
+import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
@@ -86,6 +90,52 @@ export default function GlobIQApp() {
   }, [])
 
   const route = useHashRoute(config)
+
+  // P8-S1 §21/§32: the landing beacon — ONE fetch per page load when the
+  // load STARTS on a shareable canonical surface (a §16 knowledge page,
+  // current-affairs item, topic hub, exam page, question focus or shared
+  // collection). In-app hash navigation is NOT a landing — the hash captured
+  // on mount must still be the live hash when the config resolves (the §36-
+  // honest definition of "share link landing": someone opened a link and the
+  // app started there). The record is anonymous-friendly (POST
+  // /api/share/events attaches identity only when signed in) and best-effort
+  // — a failed beacon never blocks the page.
+  const pageLoadHash = useRef<string | null>(null)
+  const landingBeaconFired = useRef(false)
+  useEffect(() => {
+    // Capture once on mount (the page-load URL — the whole definition of a
+    // landing). Declared BEFORE the beacon effect: effects run in order, and
+    // the beacon can only fire once a route exists (config arrives async).
+    if (pageLoadHash.current === null) {
+      pageLoadHash.current = window.location.hash || '#/'
+    }
+  }, [])
+  useEffect(() => {
+    if (!route || landingBeaconFired.current) return
+    const shareable =
+      (route.view === 'unit' && !!route.unitSlug) ||
+      route.view === 'event' ||
+      route.view === 'topic' ||
+      route.view === 'exam' ||
+      route.view === 'collection'
+    if (!shareable) return
+    // The route only counts as a landing while the URL is STILL the one the
+    // page loaded with — any in-app navigation before this point disqualifies.
+    if ((window.location.hash || '#/') !== pageLoadHash.current) return
+    landingBeaconFired.current = true
+    const path =
+      route.view === 'collection' && route.collectionId
+        ? `#/collections/${route.collectionId}/`
+        : window.location.hash || '#/'
+    void fetch('/api/share/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'SHARE_LANDING', path }),
+      keepalive: true,
+    }).catch(() => {
+      // Best-effort analytics (§32) — never a user-facing error.
+    })
+  }, [route])
 
   // Scroll behaviour: view changes start at the top; #account lands on the
   // account section (the header Sign-in anchor keeps working).
@@ -473,6 +523,7 @@ export default function GlobIQApp() {
           syllabusTopicSlug: route.syllabusTopicSlug,
           page: route.page,
           versionId: route.versionId,
+          focusQuestionId: route.focusQuestionId,
         },
         config
       )
@@ -547,7 +598,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 7 · Session 5 — Combined-Exam Mode
+                Phase 8 · Session 1 — Sharing
               </Badge>
               <HeaderAuth />
             </div>
@@ -664,6 +715,7 @@ export default function GlobIQApp() {
             unitSlug={route.unitSlug}
             country={route.countryIso}
             language={route.language}
+            focusQuestionId={route.focusQuestionId}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
             onOpenExam={openExam}
@@ -724,6 +776,13 @@ export default function GlobIQApp() {
             onOpenExam={openExam}
             onOpenUnit={openUnit}
             onSignIn={goSignIn}
+          />
+        ) : route.view === 'collection' && route.collectionId ? (
+          <SharedCollectionView
+            key={route.collectionId}
+            collectionId={route.collectionId}
+            onOpenPath={openPath}
+            onGoHome={goHome}
           />
         ) : route.view === 'personalisation' ? (
           <ControlsView

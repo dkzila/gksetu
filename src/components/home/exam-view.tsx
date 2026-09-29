@@ -70,6 +70,7 @@ import {
 import type { Envelope, ExamCoverageNode, ExamPage, HomeExamCard, HomeUnitCard } from './types'
 import { useSeoHead } from './seo-head'
 import { FollowButton } from '@/components/follows/follow-button'
+import { ShareButton } from '@/components/shares/share-button'
 
 // ---------- Props ----------
 
@@ -393,6 +394,12 @@ export function ExamView({
           >
             {page.canonicalPath}
           </Badge>
+          {/* P8-S1 §21: the exam page's share action — the §16 path is server truth. */}
+          <ShareButton
+            path={`#${page.canonicalPath}`}
+            title={page.exam.name}
+            className="h-7 px-2 text-xs"
+          />
         </div>
         <h1 id="exam-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
           {page.exam.name}

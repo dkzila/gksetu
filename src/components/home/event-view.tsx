@@ -1,17 +1,18 @@
 'use client'
 
 /**
- * GlobIQ — Event View (P6-S2)
+ * GlobIQ — Event View (P6-S2, extended P8-S1)
  *
  * The in-app §16 current-affairs page: the P6-S2 reader component
- * (EventPageView) wrapped in the app chrome — a back-to-home bar and the
- * §16 canonical path. Reached from homepage current-affairs cards, search
- * results and the console via the hash router
+ * (EventPageView) wrapped in the app chrome — a back-to-home bar, the §16
+ * canonical path and the P8-S1 §21 share action. Reached from homepage
+ * current-affairs cards, search results and the console via the hash router
  * (#/current-affairs/{slug}/).
  */
 import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { ShareButton } from '@/components/shares/share-button'
 
 import { EventPageView } from '@/components/current-affairs/event-page-view'
 
@@ -37,7 +38,7 @@ export function EventView({
 }: EventViewProps) {
   return (
     <div className="space-y-4">
-      {/* Back to the discovery hub (§34 — the homepage's current-affairs section) */}
+      {/* Back to the discovery hub (§34) + the §21 share action */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Button
           variant="ghost"
@@ -48,9 +49,12 @@ export function EventView({
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to current affairs
         </Button>
-        <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
-          #/current-affairs/{eventSlug}/
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
+            #/current-affairs/{eventSlug}/
+          </p>
+          <ShareButton path={`#/current-affairs/${eventSlug}/`} title={eventSlug} className="h-9 px-2.5" />
+        </div>
       </div>
 
       <EventPageView

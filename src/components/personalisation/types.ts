@@ -400,7 +400,8 @@ export interface ApiPersonalisation {
       total: number
     }
   }
-  /** P7-S4: the derived §9 implicit signals (mock-test performance → mastery). */
+  /** P7-S4/P8-S1: the derived §9 implicit signals (mastery) + the recorded
+   * activity family (share events — §21/§32 analytics, never a ranking input). */
   implicit: {
     mastery: {
       trackedUnitCount: number
@@ -408,6 +409,11 @@ export interface ApiPersonalisation {
       weakCount: number
       submittedAttemptCount: number
       effects: ApiInventoryEffect[]
+      note: string
+    }
+    sharing: {
+      shareActionCount: number
+      effects: Array<{ kind: 'ANALYTICS'; text: string }>
       note: string
     }
   }

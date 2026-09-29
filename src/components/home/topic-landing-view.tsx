@@ -39,6 +39,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import type { Envelope, HomeUnitCard, TopicLanding } from './types'
 import { useSeoHead } from './seo-head'
 import { FollowButton } from '@/components/follows/follow-button'
+import { ShareButton } from '@/components/shares/share-button'
 
 // ---------- Props ----------
 
@@ -269,6 +270,12 @@ export function TopicLandingView({
           <Badge variant="outline" className="border-zinc-200 bg-white font-mono text-xs font-normal text-zinc-400">
             {landing.canonicalPath}
           </Badge>
+          {/* P8-S1 §21: the topic hub's share action — the §16 path is server truth. */}
+          <ShareButton
+            path={`#${landing.canonicalPath}`}
+            title={landing.topic.label}
+            className="h-7 px-2 text-xs"
+          />
         </div>
         <h1 id="topic-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
           {landing.topic.label}

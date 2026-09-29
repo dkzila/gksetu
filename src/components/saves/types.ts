@@ -166,7 +166,8 @@ export interface ApiCollection {
   id: string
   name: string
   isDefault: boolean
-  visibility: 'PRIVATE'
+  /** P8-S1 §21: LINK = the owner explicitly made this collection shareable via its stable link. */
+  visibility: 'PRIVATE' | 'LINK'
   itemCount: number
   createdAt: string
 }

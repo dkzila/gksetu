@@ -880,6 +880,9 @@ model User {
   testAttempts               TestAttempt[]      @relation("UserAttempts")
   // P7-S4 (§6/§22): derived per-unit mastery states (the revision queue's store).
   masteryStates              MasteryState[]     @relation("UserMastery")
+  // P8-S1 (§21/§32): share events attributed to this user (anonymous shares
+  // carry userId null — §21 "track share events as analytics events").
+  shareEvents                ShareEvent[]       @relation("UserShareEvents")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1058,10 +1061,15 @@ enum SavedObjectType {
   MOCK_TEST // P7-S3 (§10/§22): a published mock test — reopens the test runner page
 }
 
-// §6 Collection row carries visibility. Collections are private in v1 —
-// PUBLIC sharing joins additively with the P8 sharing system (§21).
+// §6 Collection row carries visibility. PRIVATE is the default (§10); LINK
+// is the P8-S1 §21 sharing opt-in — the owner EXPLICITLY makes the
+// collection shareable via its stable link ("eligible collection"). There
+// is deliberately no PUBLIC value: a shared collection is unlisted
+// (reachable only via the link, never listed/indexed), and the owner can
+// revoke sharing anytime (§31 reversibility).
 enum CollectionVisibility {
   PRIVATE
+  LINK // §21: explicitly made shareable by the owner — unlisted link sharing
 }
 
 // A user-organised bucket of saved items (§10). The bootstrap "Saved"
@@ -1786,4 +1794,66 @@ model MasteryState {
   // The revision queue's hot read: my units ordered by due date.
   @@index([userId, nextReviewAt])
   @@index([knowledgeUnitId])
+}
+
+// ---------- P8-S1: the §21 sharing system ----------
+
+// The §21 shareable canonical surfaces. Every value names the object a share
+// action can target — the same vocabulary the share-path parser accepts and
+// the share-card resolver serves (§37 stable resource identifiers: the PUBLIC
+// ref — slug for unit/event/topic/exam, id for question/collection — never an
+// internal-only identifier a client cannot reconstruct).
+enum ShareObjectType {
+  KNOWLEDGE_UNIT // the §16 knowledge page (…/gk/{topic}/{unit}/)
+  CURRENT_EVENT // the §16 current-affairs page (…/current-affairs/{slug}/)
+  TOPIC // the §33/§16 topic hub (…/gk/{topic}/)
+  EXAM // the §16 exam page (…/exams/{exam}/)
+  QUESTION // one §22 scored practice question (its unit page + ?q={id})
+  COLLECTION // a §10 collection the owner explicitly made shareable (§21)
+}
+
+// §21 "track share events as analytics events": a share action created by a
+// user, or a landing visit on a shareable canonical page. NOT a substitute
+// for real social-network analytics (§21) — the platform records ITS OWN
+// actions (shares made, arrivals), never what networks did with them.
+enum ShareEventAction {
+  SHARE_CREATE
+  SHARE_LANDING
+}
+
+// How the share reached the user's clipboard/share sheet. Required on
+// SHARE_CREATE; null on SHARE_LANDING (a landing has no channel).
+enum ShareChannel {
+  WEB_SHARE // the Web Share API path (§21)
+  COPY_LINK // the copy-link fallback (§21)
+}
+
+// One §21 share event (§32 "Sharing: share actions, landing visits").
+// Append-only analytics — no natural unique key, never updated, counts via
+// the indexed reads. objectRef is the PUBLIC stable ref of the shared object
+// (slug or id — §37); the full §16 path is reconstructable from type + ref +
+// market, so the row stays honest across slug-stable edits (§36 revisions
+// never change identity). userId is null for anonymous sharers/visitors
+// (§31 data minimisation — no identity is needed to count a share); rows
+// cascade with the user (§30/§31 — account deletion removes attributed
+// events, anonymous history stays aggregate).
+model ShareEvent {
+  id         String           @id @default(cuid())
+  objectType ShareObjectType
+  objectRef  String
+  action     ShareEventAction
+  channel    ShareChannel?
+  userId     String?
+  // The §35 market the shared path carried (null when unknown/anonymous-root).
+  countryIso String?
+  createdAt  DateTime         @default(now())
+
+  user User? @relation("UserShareEvents", fields: [userId], references: [id], onDelete: Cascade)
+
+  // The §32 sharing-metric reads: per-object share counts + landing counts.
+  @@index([objectType, objectRef, action])
+  // Per-user attribution reads (the §9 inventory count).
+  @@index([userId, createdAt])
+  // Time-windowed analytics reads (P8-S4/S5 consume this).
+  @@index([createdAt])
 }

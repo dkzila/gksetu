@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §22 scored practice layer (P7-S2)
+ * GlobIQ — the §22 scored practice layer (P7-S2, extended P8-S1)
  *
  * Master Plan §22 "learn → practice → revise": after the explanatory Q&A
  * layer comes the SCORED half of practice — one-shot MCQ questions rendered
@@ -11,8 +11,13 @@
  * scoring is always server-side truth (§37 — the same contract a future
  * mobile client consumes, §39). One attempt per page view; the running score
  * chip sums what was answered here.
+ *
+ * P8-S1 §21: every question is a shareable canonical object — each card
+ * carries its own share action (the §16 unit path + ?q={id} focus), and a
+ * shared question link scrolls to and highlights its card once (the address
+ * ?q= state is the §21 stable share URL's fragment).
  */
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Bot,
   CheckCircle2,
@@ -26,6 +31,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { SaveButton } from '@/components/saves/save-button'
+import { ShareButton } from '@/components/shares/share-button'
 
 import type { PagePracticeLayer, PagePracticeQuestion } from '@/components/reader/knowledge-page-view'
 
@@ -70,15 +76,20 @@ interface QuestionCardProps {
   answer: { selected: string; result: PracticeAnswerResult } | null
   busy: boolean
   error: string | null
+  /** P8-S1 §21: the unit page's §16 path — this question's share URL base. */
+  unitSharePath: string
   onSelect: (optionKey: string) => void
   onCheck: () => void
 }
 
-function QuestionCard({ entry, selected, answer, busy, error, onSelect, onCheck }: QuestionCardProps) {
+function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onSelect, onCheck }: QuestionCardProps) {
   const answered = answer !== null
   return (
-    <li className="rounded-lg border border-zinc-200 bg-white shadow-sm">
-      {/* Question header — the save affordance rides it (§10, the QnA precedent) */}
+    <li
+      id={`question-${entry.id}`}
+      className="scroll-mt-24 rounded-lg border border-zinc-200 bg-white shadow-sm"
+    >
+      {/* Question header — the save + share affordances ride it (§10/§21) */}
       <div className="flex flex-wrap items-start gap-2 p-3 sm:p-4">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -102,8 +113,15 @@ function QuestionCard({ entry, selected, answer, busy, error, onSelect, onCheck 
           </div>
           <p className="mt-1.5 text-sm font-semibold leading-snug text-zinc-800">{entry.question}</p>
         </div>
-        <span className="shrink-0">
+        <span className="flex shrink-0 items-center gap-1.5">
           <SaveButton objectType="QUESTION" objectRef={entry.id} objectName={entry.question} />
+          {/* P8-S1 §21: the question's own share link — the unit page + ?q={id}. */}
+          <ShareButton
+            path={`${unitSharePath}?q=${entry.id}`}
+            title={entry.question}
+            iconOnly
+            className="h-9 w-9 px-0"
+          />
         </span>
       </div>
 
@@ -268,11 +286,42 @@ function QuestionCard({ entry, selected, answer, busy, error, onSelect, onCheck 
 
 // ---------- The layer (heading + running score + entries) ----------
 
-export function PracticeLayer({ practice }: { practice: PagePracticeLayer }) {
+export interface PracticeLayerProps {
+  practice: PagePracticeLayer
+  /** P8-S1 §21: the unit page's §16 canonical path (the share URL base). */
+  unitSharePath?: string
+  /** P8-S1 §21: the ?q= focus from a shared question link — scrolls once. */
+  focusQuestionId?: string | null
+}
+
+export function PracticeLayer({ practice, unitSharePath, focusQuestionId = null }: PracticeLayerProps) {
   const [selections, setSelections] = useState<Record<string, string>>({})
   const [answers, setAnswers] = useState<Record<string, { selected: string; result: PracticeAnswerResult }>>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [busyId, setBusyId] = useState<string | null>(null)
+
+  // P8-S1 §21: a shared question link (?q={id}) scrolls to its card once and
+  // highlights it — the focus is addressable state, never component state
+  // beyond the one-shot effect (the hash stays honest; the highlight fades).
+  const focusApplied = useRef(false)
+  useEffect(() => {
+    if (focusApplied.current || !focusQuestionId) return
+    const target = document.getElementById(`question-${focusQuestionId}`)
+    if (!target) return
+    focusApplied.current = true
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    target.classList.add(
+      'border-emerald-400',
+      'ring-2',
+      'ring-emerald-200',
+      'transition-shadow',
+      'duration-1000'
+    )
+    const timer = window.setTimeout(() => {
+      target.classList.remove('ring-2', 'ring-emerald-200')
+    }, 4000)
+    return () => window.clearTimeout(timer)
+  }, [focusQuestionId, practice])
 
   const answeredCount = Object.keys(answers).length
   const correctCount = Object.values(answers).filter((entry) => entry.result.correct).length
@@ -350,6 +399,7 @@ export function PracticeLayer({ practice }: { practice: PagePracticeLayer }) {
               answer={answers[entry.id] ?? null}
               busy={busyId === entry.id}
               error={errors[entry.id] ?? null}
+              unitSharePath={unitSharePath ?? '#/'}
               onSelect={(optionKey) =>
                 setSelections((current) => ({ ...current, [entry.id]: optionKey }))
               }

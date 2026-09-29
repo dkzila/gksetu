@@ -187,9 +187,27 @@ export interface PublicCollection {
   id: string
   name: string
   isDefault: boolean
-  visibility: 'PRIVATE'
+  /** P8-S1 (§21): LINK = the owner explicitly made this collection shareable
+   *  via its stable link ("eligible collection"); PRIVATE = only the owner. */
+  visibility: 'PRIVATE' | 'LINK'
   itemCount: number
   createdAt: string
+}
+
+/**
+ * P8-S1 (§21): one PUBLIC item summary on a shared (LINK) collection — the
+ * unlisted landing view's row. Public content only: no savedAt, no ids the
+ * owner's account owns beyond the content itself, no private user data
+ * (§21/§31). Structurally identical to the sharing module's
+ * SharedCollectionItem — the shapes are kept in sync by type-compat at the
+ * module boundary (one projection, consumed by two DTO names).
+ */
+export interface PublicCollectionItem {
+  kind: 'KNOWLEDGE_UNIT' | 'CONTENT_ITEM' | 'CURRENT_EVENT' | 'QNA' | 'QUESTION' | 'MOCK_TEST'
+  title: string
+  status: string
+  canonicalPath: string | null
+  detail: string | null
 }
 
 /** GET /api/saves response — filtered items + coherent counts + all collections. */
