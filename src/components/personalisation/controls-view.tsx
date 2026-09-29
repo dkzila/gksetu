@@ -35,6 +35,7 @@ import {
   SlidersHorizontal,
   TrendingUp,
   Trash2,
+  Bell,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
@@ -719,6 +720,33 @@ export function ControlsView({
               >
                 <Bookmark className="h-4 w-4" aria-hidden="true" />
                 Manage your saves
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* ---------- Notifications (§27 — outputs, not signals) ---------- */}
+          <Card className="border-dashed border-zinc-300 bg-zinc-50/60 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Bell className="h-4 w-4 text-zinc-500" aria-hidden="true" />
+                Notifications — outputs, not signals
+              </CardTitle>
+              <CardDescription>
+                Every notification says why you get it, with a one-tap mute (§27)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap items-center justify-between gap-3">
+              <p className="max-w-xl text-xs leading-relaxed text-zinc-500">
+                Notifications never feed your queue, ranking or reasons — they are outputs of your
+                signals, not inputs. Their history and per-category × per-channel preferences are
+                yours alone (§31) and are kept by this reset.
+              </p>
+              <a
+                href="#/notifications"
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
+              >
+                <Bell className="h-4 w-4" aria-hidden="true" />
+                Manage notifications
               </a>
             </CardContent>
           </Card>

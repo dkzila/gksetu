@@ -386,6 +386,10 @@ export async function getMyPersonalisation(
       `Your ${saveCounts.total} ${pluralise(saveCounts.total, 'saved item', 'saved items')} and ${saveCounts.collections} ${pluralise(saveCounts.collections, 'collection', 'collections')} — retrieval, never personalisation signals`,
       `Your ${masteryStats.submittedAttemptCount} submitted ${pluralise(masteryStats.submittedAttemptCount, 'attempt', 'attempts')} — immutable assessment history (§6), like your saves`,
       `Your ${shareStats.shareActionCount} share ${pluralise(shareStats.shareActionCount, 'event', 'events')} — anonymous-friendly analytics history (§21/§32), not personalisation`,
+      // P8-S2 §27/§31: notification history is the user's own data (kept,
+      // like attempts) and preferences are account settings (kept, like the
+      // profile) — both managed on #/notifications, never by this reset.
+      'Your notifications and their preferences — history and settings (§27), managed on the notifications surface',
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],

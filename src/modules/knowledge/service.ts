@@ -19,6 +19,7 @@ import type { Prisma, KnowledgeUnit } from '@prisma/client'
 import { db } from '@/lib/db'
 import { assertCan, can, type Actor } from '@/lib/permissions'
 import { onUnitChanged } from '@/modules/search'
+import { notifyUnitVerified } from '@/modules/notifications'
 import {
   AUDIT_ACTIONS,
   AUDIT_OBJECT_TYPES,
@@ -736,6 +737,18 @@ export async function transitionKnowledgeUnit(
   // P4-S1 §17/§36: a lifecycle transition changes public visibility — verify
   // adds the unit to the index, archive/outdated removes it.
   await onUnitChanged(updated.slug)
+
+  // P8-S2 §27: a unit becoming VERIFIED is the "New Knowledge Unit added to
+  // a followed exam's syllabus coverage" moment — followers of the exams
+  // whose in-effect syllabus maps it are notified. Best-effort by contract:
+  // a notification failure never fails the verified transition.
+  if (target === 'VERIFIED') {
+    try {
+      await notifyUnitVerified(updated.id)
+    } catch (notificationError) {
+      console.error('[knowledge:verify] notification trigger failed (transition stands):', notificationError)
+    }
+  }
 
   return toAdminUnit(actor, updated)
 }

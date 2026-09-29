@@ -726,6 +726,18 @@ async function main() {
           body: 'Fundamental Rights, enshrined in Part III of the Constitution of India (Articles 12–35), are justiciable guarantees available against the State as defined by Article 12. Article 13 adds teeth: any law inconsistent with these rights is void. The six rights — Equality (14–18), Freedom (19–22), Against Exploitation (23–24), Freedom of Religion (25–28), Cultural & Educational (29–30) and Constitutional Remedies (32) — are enforceable through the writ jurisdiction of the Supreme Court and the High Courts. Landmark expansions include Maneka Gandhi v. Union of India (1978), which read Article 21\'s "right to life and personal liberty" expansively to include dignity and due process. For exams, anchor on the article ranges, the writs (habeas corpus, mandamus, prohibition, certiorari, quo warranto), and the distinction between Fundamental Rights and Directive Principles.',
           publishedAt: new Date('2025-06-10T09:00:00Z'),
         },
+        {
+          // P8-S2 §25/§36: the live correction — revision 2 with its mandatory
+          // change summary (corrections are never silent). This is the honest
+          // history behind the seeded CORRECTION_PUBLISHED notification: the
+          // §22 suspension sentence now names the Article 359 proclamation
+          // requirement explicitly, per a reader-flagged precision report.
+          title: 'Fundamental Rights (Articles 12–35) — Complete Explainer',
+          body: 'Fundamental Rights, enshrined in Part III of the Constitution of India (Articles 12–35), are justiciable guarantees available against the State as defined by Article 12. Article 13 adds teeth: any law inconsistent with these rights is void. The six rights — Equality (14–18), Freedom (19–22), Against Exploitation (23–24), Freedom of Religion (25–28), Cultural & Educational (29–30) and Constitutional Remedies (32) — are enforceable through the writ jurisdiction of the Supreme Court and the High Courts. Article 32 itself is never suspended except as provided by the Constitution: Article 359 permits enforcement suspension only under a proclaimed Emergency, and never for Articles 20 and 21. Landmark expansions include Maneka Gandhi v. Union of India (1978), which read Article 21\'s "right to life and personal liberty" expansively to include dignity and due process. For exams, anchor on the article ranges, the writs (habeas corpus, mandamus, prohibition, certiorari, quo warranto), and the distinction between Fundamental Rights and Directive Principles.',
+          changeSummary:
+            'Correction (§25): the suspension sentence now names the Article 359 Emergency-proclamation requirement explicitly and notes Articles 20–21 are never suspendable — flagged by a reader for precision.',
+          publishedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        },
       ],
     },
     {
@@ -3456,6 +3468,316 @@ async function main() {
     shareEventsSeeded = 4
   }
 
+  // ---------- P8-S2: Notifications — §27 fixtures over the seeded surfaces ----------
+  // The engine's honest demo state. Follows are the AUDIENCE (admin follows
+  // the UPSC exam + the Polity & Governance subject — the same §9 signals
+  // the dashboard consumes; the IN admin follows SSC CGL); one save is the
+  // CORRECTION audience (admin's FR-unit save — the P8-S1 E2E bucket,
+  // created fresh when absent so both fresh seeds and live databases agree);
+  // one sparse preference demonstrates the §27 per-category × per-channel
+  // opt-out. The notification batches cover every WIRED trigger with honest
+  // history (the feedback trigger lands P8-S3 — no fixture for it, stated).
+  // Follows/saves/preferences are guarded per row (never overwrite live
+  // edits, §36); notification rows are append-only history guarded by a
+  // total count (the share-event precedent).
+  let followsSeeded = 0
+  const ensureFollow = async (
+    userId: string,
+    objectType: 'EXAM' | 'TOPIC',
+    objectId: string
+  ): Promise<string | null> => {
+    const existing = await prisma.userFollow.findUnique({
+      where: { userId_objectType_objectId: { userId, objectType, objectId } },
+      select: { id: true },
+    })
+    if (existing) return existing.id
+    const created = await prisma.userFollow.create({
+      data: { userId, objectType, objectId },
+      select: { id: true },
+    })
+    followsSeeded += 1
+    return created.id
+  }
+
+  const upscExam = await prisma.exam.findUnique({
+    where: { slug: 'upsc-civil-services' },
+    select: { id: true, name: true },
+  })
+  const sscExam = await prisma.exam.findUnique({ where: { slug: 'ssc-cgl' }, select: { id: true } })
+  const polityTopicId = topicIdBySlug.get('polity-governance') ?? null
+  const adminUpscFollowId = upscExam ? await ensureFollow(admin.id, 'EXAM', upscExam.id) : null
+  // The Polity & Governance subject follow joins the §9 signal inventory
+  // (no fixture references it — the audience demo is the follow itself).
+  if (polityTopicId) await ensureFollow(admin.id, 'TOPIC', polityTopicId)
+  if (sscExam) await ensureFollow(inAdmin.id, 'EXAM', sscExam.id)
+
+  // The correction audience: admin's save of the FR unit (find-or-create —
+  // the live E2E collection name, so both states agree).
+  let correctionSaveId: string | null = null
+  const frUnit = await prisma.knowledgeUnit.findUnique({
+    where: { slug: 'fundamental-rights-articles-12-35' },
+    select: { id: true, canonicalName: true },
+  })
+  if (frUnit) {
+    const existingSave = await prisma.savedItem.findUnique({
+      where: {
+        userId_objectType_objectId: { userId: admin.id, objectType: 'KNOWLEDGE_UNIT', objectId: frUnit.id },
+      },
+      select: { id: true },
+    })
+    if (existingSave) {
+      correctionSaveId = existingSave.id
+    } else {
+      let bucket = await prisma.collection.findFirst({
+        where: { userId: admin.id, name: 'Polity revision picks' },
+        select: { id: true },
+      })
+      if (!bucket) {
+        bucket = await prisma.collection.create({
+          data: { userId: admin.id, name: 'Polity revision picks' },
+          select: { id: true },
+        })
+      }
+      const createdSave = await prisma.savedItem.create({
+        data: { userId: admin.id, objectType: 'KNOWLEDGE_UNIT', objectId: frUnit.id, collectionId: bucket.id },
+        select: { id: true },
+      })
+      correctionSaveId = createdSave.id
+    }
+  }
+
+  // Sparse §27 preference: the Hindi-scoped writer opts out of editorial
+  // email (an explicit row either way — the honest stored choice).
+  const existingPref = await prisma.notificationPreference.findUnique({
+    where: {
+      userId_channel_category: { userId: writerHi.id, channel: 'EMAIL', category: 'editorial' },
+    },
+    select: { id: true },
+  })
+  if (!existingPref) {
+    await prisma.notificationPreference.create({
+      data: { userId: writerHi.id, channel: 'EMAIL', category: 'editorial', enabled: false },
+    })
+  }
+
+  // The notification fixtures — one batch per notification, one row per
+  // enabled channel (the sparse defaults: email + web push on), statuses
+  // honest for their age (delivered days ago; the SEO review also read).
+  let notificationsSeeded = 0
+  const existingNotifications = await prisma.notificationEvent.count()
+  if (existingNotifications === 0) {
+    const rows: Array<{
+      userId: string
+      batchId: string
+      triggerType:
+        | 'CA_ITEM_FOLLOWED'
+        | 'UNIT_ADDED_FOLLOWED_EXAM'
+        | 'REVISION_DUE'
+        | 'CORRECTION_PUBLISHED'
+        | 'EDITORIAL_TASK_ASSIGNED'
+        | 'EDITORIAL_REVIEW_REQUESTED'
+        | 'FEEDBACK_REPORT_RECEIVED'
+      objectType: 'CURRENT_EVENT' | 'KNOWLEDGE_UNIT' | 'EDITORIAL_TASK' | 'USER_MASTERY'
+      objectRef: string
+      channel: 'EMAIL' | 'WEB_PUSH' | 'MOBILE_PUSH'
+      status: 'QUEUED' | 'SENT' | 'FAILED' | 'READ'
+      contextJson: object
+      createdAt: Date
+      sentAt: Date | null
+      readAt: Date | null
+    }> = []
+    const pushBatch = (
+      userId: string,
+      triggerType: (typeof rows)[number]['triggerType'],
+      objectType: (typeof rows)[number]['objectType'],
+      objectRef: string,
+      contextJson: object,
+      createdAt: Date,
+      status: 'SENT' | 'READ' = 'SENT'
+    ) => {
+      const batchId = crypto.randomUUID()
+      for (const channel of ['EMAIL', 'WEB_PUSH'] as const) {
+        rows.push({
+          userId,
+          batchId,
+          triggerType,
+          objectType,
+          objectRef,
+          channel,
+          status,
+          contextJson,
+          createdAt,
+          sentAt: new Date(createdAt.getTime() + 60 * 1000),
+          readAt: status === 'READ' ? new Date(createdAt.getTime() + 2 * 60 * 60 * 1000) : null,
+        })
+      }
+    }
+
+    // 1. CA_ITEM_FOLLOWED → admin: the National Space Day notification event
+    //    went publicly live, and admin follows UPSC whose in-effect syllabus
+    //    maps the linked Chandrayaan unit (the §12 step 5 chain).
+    if (adminUpscFollowId && upscExam) {
+      const spaceDayEvent = await prisma.currentEvent.findUnique({
+        where: { slug: 'national-space-day-notification' },
+        select: { title: true, summary: true },
+      })
+      if (spaceDayEvent) {
+        pushBatch(
+          admin.id,
+          'CA_ITEM_FOLLOWED',
+          'CURRENT_EVENT',
+          'national-space-day-notification',
+          {
+            title: spaceDayEvent.title,
+            reason: `Because you follow ${upscExam.name} — this current-affairs item maps into their coverage (§12).`,
+            body:
+              spaceDayEvent.summary.length > 220
+                ? `${spaceDayEvent.summary.slice(0, 217)}…`
+                : spaceDayEvent.summary,
+            objectLabel: 'Current affairs · national-space-day-notification',
+            canonicalPath: '/current-affairs/national-space-day-notification/',
+            appPath: null,
+            actionLabel: 'Open the event',
+            matchedFollows: [
+              {
+                id: adminUpscFollowId,
+                objectType: 'EXAM',
+                label: upscExam.name,
+                removalPath: `/api/follows/${adminUpscFollowId}`,
+              },
+            ],
+            matchedSave: null,
+          },
+          new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+        )
+      }
+    }
+
+    // 2. REVISION_DUE → admin: honest only when units are actually due at
+    //    seed time (the §22 fold of the seeded attempts); the counts and
+    //    sample names come from the live rows.
+    const dueStates = await prisma.masteryState.findMany({
+      where: { userId: admin.id, nextReviewAt: { lte: new Date() } },
+      orderBy: { nextReviewAt: 'asc' },
+      take: 3,
+      include: { knowledgeUnit: { select: { canonicalName: true } } },
+    })
+    if (dueStates.length > 0) {
+      const dueCount = await prisma.masteryState.count({
+        where: { userId: admin.id, nextReviewAt: { lte: new Date() } },
+      })
+      const sample = dueStates.map((row) => row.knowledgeUnit.canonicalName).join(' · ')
+      pushBatch(
+        admin.id,
+        'REVISION_DUE',
+        'USER_MASTERY',
+        admin.id,
+        {
+          title: `${dueCount} ${dueCount === 1 ? 'unit is' : 'units are'} due for revision`,
+          reason: `Your spaced-review schedule (§22) — ${dueCount} ${
+            dueCount === 1 ? 'unit has' : 'units have'
+          } reached the next review date.`,
+          body: dueCount > 3 ? `${sample} · +${dueCount - 3} more` : sample,
+          objectLabel: 'Your revision queue',
+          canonicalPath: null,
+          appPath: '#/dashboard',
+          actionLabel: 'Open your revision queue',
+          matchedFollows: [],
+          matchedSave: null,
+        },
+        new Date(Date.now() - 4 * 60 * 60 * 1000)
+      )
+    }
+
+    // 3. CORRECTION_PUBLISHED → admin: revision 2 of the FR explainer went
+    //    live with its §25 change summary, and admin saved the unit.
+    if (correctionSaveId && frUnit) {
+      pushBatch(
+        admin.id,
+        'CORRECTION_PUBLISHED',
+        'KNOWLEDGE_UNIT',
+        'fundamental-rights-articles-12-35',
+        {
+          title: `Correction published: ${frUnit.canonicalName}`,
+          reason: `Because you saved ${frUnit.canonicalName} — §25 corrections are never silent, and savers hear first.`,
+          body: 'Revision 2 (en): Correction (§25): the suspension sentence now names the Article 359 Emergency-proclamation requirement explicitly and notes Articles 20–21 are never suspendable — flagged by a reader for precision.',
+          objectLabel: 'Knowledge unit · fundamental-rights-articles-12-35',
+          canonicalPath: '/gk/fundamental-rights/fundamental-rights-articles-12-35/',
+          appPath: null,
+          actionLabel: 'Open the corrected page',
+          matchedFollows: [],
+          matchedSave: {
+            id: correctionSaveId,
+            label: frUnit.canonicalName,
+            removalPath: `/api/saves/${correctionSaveId}`,
+          },
+        },
+        new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)
+      )
+    }
+
+    // 4. EDITORIAL_REVIEW_REQUESTED → the IN writer (the FACT_CHECK task —
+    //    a review-type assignment, §19).
+    const factCheckTask = await prisma.editorialTask.findFirst({
+      where: { type: 'FACT_CHECK', assigneeId: writerIn.id },
+      select: { id: true, title: true, notes: true },
+    })
+    if (factCheckTask) {
+      pushBatch(
+        writerIn.id,
+        'EDITORIAL_REVIEW_REQUESTED',
+        'EDITORIAL_TASK',
+        factCheckTask.id,
+        {
+          title: factCheckTask.title,
+          reason: 'A review was requested of you (§19 editorial workflow).',
+          body: factCheckTask.notes,
+          objectLabel: 'Editorial task · fact check',
+          canonicalPath: null,
+          appPath: '#/console',
+          actionLabel: 'Open the editorial workspace',
+          matchedFollows: [],
+          matchedSave: null,
+        },
+        new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+      )
+    }
+
+    // 5. EDITORIAL_REVIEW_REQUESTED → the IN admin (the SEO review —
+    //    RESOLVED and read: honest history, the READ terminal state).
+    const seoTask = await prisma.editorialTask.findFirst({
+      where: { type: 'SEO_REVIEW', assigneeId: inAdmin.id },
+      select: { id: true, title: true },
+    })
+    if (seoTask) {
+      pushBatch(
+        inAdmin.id,
+        'EDITORIAL_REVIEW_REQUESTED',
+        'EDITORIAL_TASK',
+        seoTask.id,
+        {
+          title: seoTask.title,
+          reason: 'A review was requested of you (§19 editorial workflow).',
+          body: null,
+          objectLabel: 'Editorial task · seo review',
+          canonicalPath: null,
+          appPath: '#/console',
+          actionLabel: 'Open the editorial workspace',
+          matchedFollows: [],
+          matchedSave: null,
+        },
+        new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+        'READ'
+      )
+    }
+
+    if (rows.length > 0) {
+      await prisma.notificationEvent.createMany({ data: rows })
+      notificationsSeeded = rows.length
+    }
+  }
+  const notificationPreferencesSeeded = await prisma.notificationPreference.count()
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -3469,7 +3791,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

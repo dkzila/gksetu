@@ -36,10 +36,11 @@
  * (P5-S3) are the private goal/onboarding surfaces — same rules. `#/dashboard`
  * (P5-S4) is the personalised dashboard/feed (§22/§34) — same rules.
  * `#/personalisation` (P5-S5) is the explanations & controls surface
- * (§9/§31) — same rules. `#/collections/{id}/` (P8-S1 §21) is the PUBLIC
- * unlisted landing view for a LINK-visibility shared collection — the one
- * collections route that is not #/saved (noindex, reachable only via the
- * share link).
+ * (§9/§31) — same rules. `#/notifications` (P8-S2 §27) is the private
+ * notification center + preferences surface — same rules.
+ * `#/collections/{id}/` (P8-S1 §21) is the PUBLIC unlisted landing view for a
+ * LINK-visibility shared collection — the one collections route that is not
+ * #/saved (noindex, reachable only via the share link).
  *
  * Addressable state derives from the hash (never duplicated in component
  * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
@@ -58,7 +59,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'quick-mock' | 'collection' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'quick-mock' | 'collection' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -164,6 +165,12 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   // P5-S5: the explanations & controls surface (§9/§31) — market-independent.
   if (segments[0] === 'personalisation') {
     return { ...fallback, view: 'personalisation', scrollTo: null }
+  }
+
+  // P8-S2 §27: the private notification center + preferences surface —
+  // market-independent (a notification is user data, not market content).
+  if (segments[0] === 'notifications') {
+    return { ...fallback, view: 'notifications', scrollTo: null }
   }
 
   // P8-S1 §21: the public unlisted shared-collection view — market-
@@ -382,6 +389,7 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'profile') return '#/profile'
   if (route.view === 'dashboard') return '#/dashboard'
   if (route.view === 'personalisation') return '#/personalisation'
+  if (route.view === 'notifications') return '#/notifications'
   // P8-S1 §21: the public unlisted shared-collection view — market-independent.
   if (route.view === 'collection' && route.collectionId) {
     return `#/collections/${route.collectionId}/`

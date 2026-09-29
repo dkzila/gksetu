@@ -108,4 +108,6 @@ export const RATE_LIMITS = {
   quickMockWrite: { limit: 10, windowMs: 60 * 1000 }, // quick-mock generation per IP (P7-S5 §22 — a mutation: creates a §6 attempt)
   shareRead: { limit: 60, windowMs: 60 * 1000 }, // public share-card/shared-collection reads per IP (P8-S1 §21)
   shareWrite: { limit: 30, windowMs: 60 * 1000 }, // share-event records per IP (P8-S1 §21/§32 — anonymous allowed, object-guarded)
+  notificationsRead: { limit: 60, windowMs: 60 * 1000 }, // private notification feed/preferences/stats reads per IP (P8-S2 §27 — owner-scoped, auth-gated)
+  notificationsWrite: { limit: 30, windowMs: 60 * 1000 }, // mark-read + preference mutations + the admin dispatch sweep per IP (P8-S2 §27)
 } as const

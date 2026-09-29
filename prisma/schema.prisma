@@ -883,6 +883,9 @@ model User {
   // P8-S1 (§21/§32): share events attributed to this user (anonymous shares
   // carry userId null — §21 "track share events as analytics events").
   shareEvents                ShareEvent[]       @relation("UserShareEvents")
+  // P8-S2 (§27): queued/sent/read notifications + per-category opt-ins.
+  notifications              NotificationEvent[]       @relation("UserNotifications")
+  notificationPreferences    NotificationPreference[]  @relation("UserNotificationPreferences")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1856,4 +1859,122 @@ model ShareEvent {
   @@index([userId, createdAt])
   // Time-windowed analytics reads (P8-S4/S5 consume this).
   @@index([createdAt])
+}
+
+// ---------- P8-S2: the §27 notifications engine ----------
+
+// §27 channels — "email, web-push, and mobile-push (mobile-push modeled
+// now, implemented once the app exists — Section 4)". Channel-agnostic by
+// design: the engine fans a trigger out per enabled channel; the transport
+// layer decides delivery. MOBILE_PUSH rows are modeled (preferences + events
+// carry them) but no mobile transport exists until the app ships (§39).
+enum NotificationChannel {
+  EMAIL
+  WEB_PUSH
+  MOBILE_PUSH
+}
+
+// §27 "status (queued/sent/failed/read)": QUEUED at fan-out; the dispatch
+// step moves QUEUED → SENT (or FAILED, retryable); READ is the in-app
+// reading surface's terminal state — a row the user reads before dispatch
+// never delivers (pull-model honesty: seen is seen).
+enum NotificationStatus {
+  QUEUED
+  SENT
+  FAILED
+  READ
+}
+
+// §27 trigger types (non-exhaustive, extendable): the four reader triggers
+// (current-affairs coverage on followed exams/topics, new syllabus units,
+// spaced-review revision, corrections to saved items) + the editorial trio
+// (task assigned, review requested, feedback report received). The feedback
+// trigger is MODELED here per the §27 contract but stays unwired until the
+// ContentFeedback store lands (P8-S3) — no row is ever created for it yet.
+enum NotificationTriggerType {
+  CA_ITEM_FOLLOWED // a current-affairs item's first published representation, matched to a followed exam/topic
+  UNIT_ADDED_FOLLOWED_EXAM // a KnowledgeUnit verified into a followed exam's syllabus coverage
+  REVISION_DUE // the §22 spaced-review schedule: units due (from MasteryState)
+  CORRECTION_PUBLISHED // a §25/§36 correction went live on a unit the user saved
+  EDITORIAL_TASK_ASSIGNED // §27 editorial: a work item was assigned
+  EDITORIAL_REVIEW_REQUESTED // §27 editorial: a review-type work item was assigned
+  FEEDBACK_REPORT_RECEIVED // §27 editorial: a ContentFeedback report arrived (lands P8-S3 — modeled only)
+}
+
+// The triggering object's type — what objectRef points at (a stable PUBLIC
+// ref: slug for events/units, id for tasks — §37). REVISION_DUE's object is
+// the user's own revision queue (objectRef = their user id): the §22
+// aggregate has no other public identity.
+enum NotificationObjectType {
+  CURRENT_EVENT
+  KNOWLEDGE_UNIT
+  EDITORIAL_TASK
+  USER_MASTERY
+}
+
+// One §6 NotificationEvent row — "A triggered, queued notification": ONE
+// channel of ONE notification for ONE user. batchId groups the channel rows
+// of a single notification instance (the in-app surface reads/writes whole
+// notifications: one fan-out = one batch; mark-read marks the batch).
+// contextJson is the §27 explainable payload — the complete reason sentence
+// inputs: matched follows (with their one-tap mute paths), titles, labels,
+// the §16 canonicalPath to reopen the object, due counts. It is a snapshot
+// at trigger time (§36-honest: the notification says what was true when it
+// fired, like a share card — not a live view).
+model NotificationEvent {
+  id          String                 @id @default(cuid())
+  userId      String
+  // Groups this notification's channel rows (one fan-out shares one id).
+  batchId     String
+  triggerType NotificationTriggerType
+  objectType  NotificationObjectType
+  objectRef   String
+  channel     NotificationChannel
+  status      NotificationStatus     @default(QUEUED)
+  contextJson Json
+  createdAt   DateTime               @default(now())
+  sentAt      DateTime?
+  readAt      DateTime?
+
+  user User @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+
+  // The notification-center reads: recent rows newest-first.
+  @@index([userId, createdAt])
+  // Batch reads/writes (mark-read, per-notification grouping).
+  @@index([userId, batchId])
+  // The unread-exists dedup read (REVISION_DUE idempotency) + per-category
+  // unread counts.
+  @@index([userId, triggerType, status])
+  // The dispatch sweep's QUEUED scans.
+  @@index([status, createdAt])
+  // Per-object fan-out history (the §32 editorial/notification analytics).
+  @@index([triggerType, objectRef])
+
+  @@index([createdAt])
+}
+
+// One §6 NotificationPreference row — per-user, per-channel, per-category
+// opt-in state (§27: "never all-or-nothing"). Sparse by design: NO row =
+// the category's default (EMAIL/WEB_PUSH on, MOBILE_PUSH off — mobile-push
+// has no transport until the app exists, so it never defaults on). Rows
+// exist only where the user made an explicit choice; re-enabling after an
+// opt-out writes enabled = true (the honest explicit state, not a delete).
+model NotificationPreference {
+  id        String             @id @default(cuid())
+  userId    String
+  channel   NotificationChannel
+  // The §27 category key (see NOTIFICATION_CATEGORIES in the notifications
+  // module — the shared vocabulary; a string column so categories can be
+  // added without a migration, like SavedObjectType's additive growth).
+  category  String
+  enabled   Boolean
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  user User @relation("UserNotificationPreferences", fields: [userId], references: [id], onDelete: Cascade)
+
+  // The effective-state upsert key (one row per user × channel × category).
+  @@unique([userId, channel, category])
+  // The fan-out's channel resolution read.
+  @@index([userId, category])
 }

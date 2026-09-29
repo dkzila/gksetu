@@ -38,6 +38,7 @@ import {
 } from '@/modules/country-locale'
 import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxonomy'
 import { onEventChanged, onUnitChanged } from '@/modules/search'
+import { notifyCorrectionPublished, notifyEventPublished } from '@/modules/notifications'
 
 import {
   anchorLabel,
@@ -569,6 +570,19 @@ async function materializeScheduledItem(itemId: string): Promise<void> {
     await onEventChanged(anchor.slug)
   } else if (item.knowledgeUnit) {
     await onUnitChanged(item.knowledgeUnit.slug)
+  }
+
+  // P8-S2 §27: a scheduled event representation materializing is the SAME
+  // "current-affairs item goes publicly live" moment as an immediate publish
+  // — the followers of its mapped exams/topics hear about it here too. A
+  // scheduled unit release is a first publish (no correction cycle), so no
+  // correction trigger fires. Best-effort, like the immediate-publish path.
+  try {
+    if (anchor?.kind === 'event' && item.currentEventId) {
+      await notifyEventPublished(item.currentEventId)
+    }
+  } catch (notificationError) {
+    console.error('[content:materialize] notification trigger failed (publish stands):', notificationError)
   }
 }
 
@@ -1248,6 +1262,29 @@ export async function transitionContentItem(
       await onEventChanged(anchor.slug)
     } else {
       await onUnitChanged(anchor.slug)
+    }
+
+    // P8-S2 §27 notification triggers — best-effort by contract (a
+    // notification failure NEVER fails the publish; the §19/§25 moment is
+    // the source of truth, recorded above):
+    //  - an event's FIRST published representation = the current-affairs
+    //    item going publicly live → followers of the mapped exams/topics
+    //    (the §12 step 5 chain) hear about it;
+    //  - a unit representation's REPUBLISH (isRepublish — the mandatory
+    //    change summary is the §25 correction cycle) → the unit's savers
+    //    hear first (§27 "Correction published to a previously saved item").
+    try {
+      if (anchor.kind === 'event' && item.currentEventId && !isRepublish) {
+        await notifyEventPublished(item.currentEventId)
+      } else if (anchor.kind === 'unit' && item.knowledgeUnitId && isRepublish) {
+        await notifyCorrectionPublished(item.knowledgeUnitId, {
+          languageCode: item.language.code,
+          changeSummary: input.changeSummary?.trim() ?? 'A corrected revision went live.',
+          revisionNumber: nextNumber,
+        })
+      }
+    } catch (notificationError) {
+      console.error('[content:publish] notification trigger failed (publish stands):', notificationError)
     }
 
     const refreshed = await loadItem(item.id)

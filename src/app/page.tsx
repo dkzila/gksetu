@@ -20,6 +20,11 @@
  * shareable canonical surface and the public unlisted shared-collection view
  * (#/collections/{id}/) — plus the landing beacon that records a §32 share
  * event when a page LOAD starts on a shareable surface (§21 analytics).
+ * P8-S2 adds the §27 notifications system: the header bell + the private
+ * notification center (#/notifications) — every notification explainable
+ * with a one-tap mute, per-category × per-channel preferences, the queued →
+ * sent → read lifecycle over a modeled dev transport (mobile-push held for
+ * the app, §39).
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -56,6 +61,7 @@ import { QuickMockView } from '@/components/assessment/quick-mock-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
+import { NotificationsView } from '@/components/notifications/notifications-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
@@ -502,7 +508,8 @@ export default function GlobIQApp() {
         {
           // Language switching on market-independent surfaces (console,
           // following, saved, onboarding, profile, dashboard, personalisation,
-          // quick-mock) lands on the home view — the console precedent.
+          // notifications, quick-mock) lands on the home view — the console
+          // precedent.
           view:
             route.view === 'console' ||
             route.view === 'following' ||
@@ -511,6 +518,7 @@ export default function GlobIQApp() {
             route.view === 'profile' ||
             route.view === 'dashboard' ||
             route.view === 'personalisation' ||
+            route.view === 'notifications' ||
             route.view === 'quick-mock'
               ? 'home'
               : route.view,
@@ -596,9 +604,9 @@ export default function GlobIQApp() {
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
+                className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
               >
-                Phase 8 · Session 1 — Sharing
+                Phase 8 · Session 2 — Notifications
               </Badge>
               <HeaderAuth />
             </div>
@@ -792,6 +800,8 @@ export default function GlobIQApp() {
             onGoHome={goHome}
             onSignIn={goSignIn}
           />
+        ) : route.view === 'notifications' ? (
+          <NotificationsView onOpenPath={openPath} onGoHome={goHome} onSignIn={goSignIn} />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}

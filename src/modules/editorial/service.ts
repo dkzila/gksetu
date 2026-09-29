@@ -21,6 +21,7 @@ import type { Prisma } from '@prisma/client'
 
 import { db } from '@/lib/db'
 import { can, type Actor } from '@/lib/permissions'
+import { notifyEditorialAssignment } from '@/modules/notifications'
 import {
   AUDIT_ACTIONS,
   AUDIT_OBJECT_TYPES,
@@ -521,6 +522,15 @@ export async function createEditorialTask(
     userAgent: meta.userAgent ?? null,
   })
 
+  // P8-S2 §27: task-assigned / review-requested — the assignee is notified
+  // (review-type tasks are "a review was requested", §19). Self-assignment
+  // and unassigned tasks notify no one, honestly. Best-effort by contract.
+  try {
+    await notifyEditorialAssignment(created, actor.userId)
+  } catch (notificationError) {
+    console.error('[editorial:create] notification trigger failed (task stands):', notificationError)
+  }
+
   return toTaskDto(actor, created)
 }
 
@@ -586,6 +596,19 @@ export async function updateEditorialTask(
     ip: meta.ip ?? null,
     userAgent: meta.userAgent ?? null,
   })
+
+  // P8-S2 §27: a REASSIGNMENT is an assignment to the new assignee — the
+  // same trigger as creation, fired only when the assignee actually changed
+  // (a title edit or due-date shift never re-notifies). Best-effort.
+  const assigneeChanged =
+    input.assigneeId !== undefined && input.assigneeId !== task.assigneeId
+  if (assigneeChanged) {
+    try {
+      await notifyEditorialAssignment(updated, actor.userId)
+    } catch (notificationError) {
+      console.error('[editorial:update] notification trigger failed (task stands):', notificationError)
+    }
+  }
 
   return toTaskDto(actor, updated)
 }

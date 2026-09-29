@@ -170,6 +170,11 @@ export const AUDIT_ACTIONS = {
   collectionRemove: 'user.collection.remove',
   /** P8-S1 (§21): the collection share opt-in/revoke (PRIVATE ↔ LINK). */
   collectionShare: 'user.collection.share',
+  /** P8-S2 (§27): a per-category × per-channel notification preference change. */
+  notificationPreferenceSet: 'user.notification.preference',
+  /** P8-S2 (§27): the batch dispatch sweep (ensure revision digests + deliver
+   *  queued rows — the freshness-sweep precedent, counts in metadata). */
+  notificationsDispatch: 'notifications.dispatch',
   /** P5-S3 profile & explicit goals (§6/§9/§31 — self-service, user-controlled). */
   profileUpdate: 'user.profile.update',
   goalSet: 'user.goal.set',
@@ -243,5 +248,8 @@ export const AUDIT_OBJECT_TYPES = {
   entity: 'Entity',
   currentEventEntity: 'CurrentEventEntity',
   currentEventTopic: 'CurrentEventTopic',
+  /** P8-S2 (§27): notification rows + preference rows. */
+  notificationEvent: 'NotificationEvent',
+  notificationPreference: 'NotificationPreference',
   permission: 'Permission',
 } as const
