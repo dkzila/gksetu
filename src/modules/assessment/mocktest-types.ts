@@ -17,7 +17,12 @@
  * are immutable history), §37 (client-agnostic DTOs, deterministic ordering,
  * the §37 URL grammar …/mock-tests/{slug}/), §38 (scoped admin reads), §43
  * (P7-S3 scope).
+ *
+ * P7-S5: attempts may anchor EITHER on an editorial MockTest (§6) OR on a
+ * generated §22 combined-exam quick-mock scope snapshot — `mockTest` is null
+ * and `generated` carries the frozen scope on the generated kind.
  */
+import type { QuickMockGeneratedScope } from './quickmock-types'
 
 /**
  * Lifecycle — the §19 state machine, shared vocabulary with
@@ -195,7 +200,10 @@ export interface PublicAttemptState {
   durationMinutes: number
   passPercent: number
   questionCount: number
-  mockTest: { id: string; slug: string; title: string }
+  /** §6 editorial anchor — null on a generated §22 quick-mock attempt (P7-S5). */
+  mockTest: { id: string; slug: string; title: string } | null
+  /** The frozen §22 scope snapshot — set iff mockTest is null (P7-S5). */
+  generated: QuickMockGeneratedScope | null
   questions: PublicMockTestQuestion[]
 }
 
@@ -231,7 +239,10 @@ export interface AttemptResult {
   scorePercent: number
   passed: boolean
   questions: AttemptResultQuestion[]
-  mockTest: { id: string; slug: string; title: string }
+  /** §6 editorial anchor — null on a generated §22 quick-mock attempt (P7-S5). */
+  mockTest: { id: string; slug: string; title: string } | null
+  /** The frozen §22 scope snapshot — set iff mockTest is null (P7-S5). */
+  generated: QuickMockGeneratedScope | null
 }
 
 /** GET /api/attempts/{id} — the attempt's current state (result when SUBMITTED). */

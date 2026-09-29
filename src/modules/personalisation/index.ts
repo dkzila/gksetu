@@ -59,7 +59,15 @@ export type {
 
 // ---------- P5-S4: the dashboard/feed (§9/§10/§11/§22/§34) ----------
 
-export { getMyDashboard, DASHBOARD_SAVES_LIMIT } from './dashboard-service'
+export {
+  getMyDashboard,
+  DASHBOARD_SAVES_LIMIT,
+  // P7-S5 §22/§11: the quick-mock scope resolver (caller-side glue) + the
+  // single-exam queue filter's typed error.
+  resolveQuickMockScope,
+  DashboardError,
+  toDashboardErrorResponse,
+} from './dashboard-service'
 export type {
   DashboardQueueReason,
   DashboardTier,

@@ -23,6 +23,7 @@ import { authenticateRequest } from '@/modules/identity-access'
 import {
   dashboardGetQuerySchema,
   getMyDashboard,
+  toDashboardErrorResponse,
   toGoalErrorResponse,
 } from '@/modules/personalisation'
 
@@ -39,6 +40,9 @@ export async function GET(request: Request) {
   const parsed = dashboardGetQuerySchema.safeParse({
     country: params.get('country') ?? undefined,
     language: params.get('language') ?? undefined,
+    // P7-S5 §11: the explicit single-exam queue choice (null/absent = the
+    // combined view across every eligible scope exam).
+    exam: params.get('exam') ?? undefined,
   })
   if (!parsed.success) {
     return errors.badRequest('Please fix the highlighted fields', fieldErrors(parsed.error))
@@ -52,6 +56,12 @@ export async function GET(request: Request) {
     // explicit requests reject).
     if (error instanceof LocaleError) {
       return fail(error.message, error.code as string, 400)
+    }
+    // P7-S5 §11: an ?exam= outside the caller's active home-market scope —
+    // an honest typed 400 (never a silent fall-back to combined).
+    const dashboardMapped = toDashboardErrorResponse(error)
+    if (dashboardMapped) {
+      return fail(dashboardMapped.message, dashboardMapped.code, dashboardMapped.status)
     }
     const mapped = toGoalErrorResponse(error)
     if (mapped) return fail(mapped.message, mapped.code, mapped.status)

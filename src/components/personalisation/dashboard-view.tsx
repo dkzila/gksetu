@@ -55,6 +55,8 @@ export interface DashboardViewProps {
   language: string
   /** Opens a §16 canonical path inside the app (unit/topic/exam pages). */
   onOpenPath: (path: string) => void
+  /** P7-S5 §22: opens the combined-exam quick-mock surface. */
+  onOpenQuickMock: () => void
   onGoHome: () => void
   onSignIn: () => void
 }
@@ -217,6 +219,7 @@ export function DashboardView({
   countryIso,
   language,
   onOpenPath,
+  onOpenQuickMock,
   onGoHome,
   onSignIn,
 }: DashboardViewProps) {
@@ -226,6 +229,8 @@ export function DashboardView({
   const [data, setData] = useState<ApiDashboard | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  /** P7-S5 §11: the single-exam queue choice (null = combined). */
+  const [scopeExamSlug, setScopeExamSlug] = useState<string | null>(null)
 
   const authed = status === 'authenticated' && !!token
 
@@ -244,10 +249,12 @@ export function DashboardView({
     setLoading(true)
     setError(null)
     try {
-      const response = await fetch(
-        `/api/dashboard?country=${countryIso}&language=${language}`,
-        { headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' }
-      )
+      const params = new URLSearchParams({ country: countryIso, language })
+      if (scopeExamSlug) params.set('exam', scopeExamSlug)
+      const response = await fetch(`/api/dashboard?${params.toString()}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      })
       const payload = (await response.json()) as Envelope<{ dashboard: ApiDashboard }>
       if (payload.status === 'ok' && payload.data) {
         setData(payload.data.dashboard)
@@ -259,7 +266,7 @@ export function DashboardView({
     } finally {
       setLoading(false)
     }
-  }, [token, countryIso, language])
+  }, [token, countryIso, language, scopeExamSlug])
 
   useEffect(() => {
     void fetchDashboard()
@@ -542,14 +549,29 @@ export function DashboardView({
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 id="queue-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
                 <Layers className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-                Combined-exam queue
+                {data.queue.scopeExam ? (
+                  <>
+                    <span className="text-zinc-400">Queue —</span> {data.queue.scopeExam.name}
+                  </>
+                ) : (
+                  'Combined-exam queue'
+                )}
               </h2>
               <div className="flex flex-wrap items-center gap-2">
-                {data.queue.mode !== 'NONE' && (
+                {data.queue.mode !== 'NONE' && !data.queue.scopeExam && (
                   <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-600">
                     Scope: {MODE_LABEL[data.queue.mode]}
                   </Badge>
                 )}
+                {/* P7-S5 §22: the combined-exam quick mock — test what the queue teaches. */}
+                <button
+                  type="button"
+                  onClick={onOpenQuickMock}
+                  className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-emerald-200 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-700 transition-colors hover:border-emerald-300 hover:bg-emerald-100"
+                >
+                  <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+                  Quick mock
+                </button>
                 {/* P5-S5: the §9 explanations surface — every signal behind this queue, with its control. */}
                 <a
                   href="#/personalisation"
@@ -560,6 +582,53 @@ export function DashboardView({
                 </a>
               </div>
             </div>
+
+            {/* P7-S5 §11: the scope chips — combined (default) or one exam's
+                queue only ("the same union algorithm, just with one exam in
+                the input set"). */}
+            {data.queue.scopes.length > 1 && (
+              <div
+                className="flex flex-wrap items-center gap-1.5"
+                role="group"
+                aria-label="Queue scope — all your exams or one"
+              >
+                <span className="text-xs font-medium text-zinc-500">Scope:</span>
+                <button
+                  type="button"
+                  onClick={() => setScopeExamSlug(null)}
+                  aria-pressed={!scopeExamSlug}
+                  className={`min-h-[32px] rounded-full border px-3 text-xs font-medium transition-colors ${
+                    !scopeExamSlug
+                      ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                      : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-200 hover:text-emerald-700'
+                  }`}
+                >
+                  All my exams
+                </button>
+                {data.queue.scopes.map((scope) => (
+                  <button
+                    key={scope.slug}
+                    type="button"
+                    onClick={() => setScopeExamSlug(scope.slug)}
+                    aria-pressed={scopeExamSlug === scope.slug}
+                    title={
+                      scope.fromGoal && scope.fromFollow
+                        ? 'In your goal AND your follows'
+                        : scope.fromGoal
+                          ? 'In your declared goal'
+                          : 'You follow this exam'
+                    }
+                    className={`min-h-[32px] rounded-full border px-3 text-xs font-medium transition-colors ${
+                      scopeExamSlug === scope.slug
+                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                        : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-200 hover:text-emerald-700'
+                    }`}
+                  >
+                    {scope.name}
+                  </button>
+                ))}
+              </div>
+            )}
             <Card className="border-zinc-200 shadow-sm">
               <CardContent className="space-y-4 p-5 sm:p-6">
                 {data.queue.units.length > 0 && (

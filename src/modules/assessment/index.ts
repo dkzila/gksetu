@@ -17,8 +17,10 @@
  * MasteryState row per user × unit, derived exclusively from submitted
  * TestAttempts (§22), scheduled by spaced review and surfaced as the
  * dashboard's due-revision queue (§11 step 7's user-state ranking input).
- * Combined-exam assessment mode (P7-S5) follows — structurally distinct
- * entities, never collapsed into one generic pipeline (§46.14).
+ * P7-S5: the §22 combined-exam quick mock — a GENERATED attempt scoped to
+ * "everything relevant across my followed exams" (or one exam, §11
+ * single-exam mode), composed from the published pool one question per
+ * canonical unit, riding the SAME runner/scoring/mastery engine.
  */
 export {
   QnaError,
@@ -202,3 +204,38 @@ export type {
   MasteryTransition,
   MasteryReviewOutcome,
 } from './mastery-types'
+// ---------- P7-S5: the §22 combined-exam quick mock ----------
+export {
+  getQuickMockSetup,
+  startQuickMock,
+  quickMockDurationMinutes,
+} from './quickmock-service'
+export {
+  QuickMockError,
+  toQuickMockErrorResponse,
+  QUICK_MOCK_DEFAULT_QUESTIONS,
+  QUICK_MOCK_MIN_QUESTIONS,
+  QUICK_MOCK_MAX_QUESTIONS,
+  QUICK_MOCK_PASS_PERCENT,
+  QUICK_MOCK_DURATION_RULE,
+  QUICK_MOCK_SCOPE_RULE,
+} from './quickmock-types'
+export {
+  quickMockSetupQuerySchema,
+  quickMockStartSchema,
+} from './quickmock-validation'
+export type {
+  QuickMockSetupQuery,
+  QuickMockStartInput,
+} from './quickmock-validation'
+export type {
+  QuickMockMode,
+  QuickMockGeneratedScope,
+  QuickMockScopeExam,
+  QuickMockScopeExamRef,
+  QuickMockScopeCard,
+  QuickMockHistoryItem,
+  QuickMockMarket,
+  QuickMockSetup,
+  QuickMockStartResponse,
+} from './quickmock-types'

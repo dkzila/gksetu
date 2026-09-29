@@ -30,7 +30,7 @@ import { LocaleError, resolveLocaleContext } from '@/modules/country-locale'
 import { getCombinedExamView } from '@/modules/exam-mapping'
 import type { CombinedExamResolution, CombinedQueueUnit } from '@/modules/exam-mapping'
 import { MASTERY_RULES_NOTE, getMyMasteryOverview } from '@/modules/assessment'
-import type { MasteryUnitItem } from '@/modules/assessment'
+import type { MasteryUnitItem, QuickMockMarket, QuickMockScopeExam } from '@/modules/assessment'
 import { listMyFollows, listRecentSaves } from '@/modules/follow-save'
 import type { FollowedExamSummary, FollowedTopicSummary, PublicSave } from '@/modules/follow-save'
 import { ExamError } from '@/modules/exams-syllabus'
@@ -56,6 +56,33 @@ import type { DashboardGetQuery } from './validation'
 
 /** The dashboard's saves block size (§10 retrieval shortcut — small by design). */
 export const DASHBOARD_SAVES_LIMIT = 3
+
+// ---------- Typed errors (§37) ----------
+
+export type DashboardErrorCode = 'EXAM_NOT_IN_SCOPE'
+
+/** P7-S5 §11: a single-exam queue filter that is not one of the caller's
+ * active home-market scope exams — an honest, typed 400 (never a silent
+ * fall-back to combined: the user asked for a scope they do not have). */
+export class DashboardError extends Error {
+  readonly code: DashboardErrorCode
+  readonly status: number
+
+  constructor(code: DashboardErrorCode, message: string) {
+    super(message)
+    this.code = code
+    this.status = 400
+  }
+}
+
+export function toDashboardErrorResponse(
+  error: unknown
+): { code: string; message: string; status: number } | null {
+  if (error instanceof DashboardError) {
+    return { code: error.code, message: error.message, status: error.status }
+  }
+  return null
+}
 
 // ---------- §9 label market (mirrors resolveGoalMarket's lenient chain) ----------
 
@@ -453,11 +480,38 @@ export async function getMyDashboard(
       )
     : []
 
+  // P7-S5 §11 single-exam mode: one exam of the caller's scope, chosen
+  // explicitly — the SAME engine call with one exam in the input set ("without
+  // any additional data modeling"). An honest typed error when the choice is
+  // not one of the caller's active home-market exams (never a silent
+  // fall-back — the user asked for a scope they do not have).
+  const scopeExamEntry = query.exam
+    ? eligible.find((entry) => entry.slug === query.exam!.toLowerCase())
+    : undefined
+  if (query.exam && !scopeExamEntry) {
+    const inScope = scope.entries.find((entry) => entry.slug === query.exam!.toLowerCase())
+    throw new DashboardError(
+      'EXAM_NOT_IN_SCOPE',
+      inScope
+        ? `“${inScope.name}” is not active in your home market right now — its single-exam queue returns the moment it is (§36).`
+        : `“${query.exam}” is not one of your goal or followed exams — pick a scope from the chips on your dashboard (§11).`
+    )
+  }
+  const queueExams = scopeExamEntry ? [scopeExamEntry] : eligible
+  const queueScopes = eligible.map((entry) => ({
+    slug: entry.slug,
+    name: entry.name,
+    fromGoal: entry.fromGoal,
+    fromFollow: entry.fromFollow,
+  }))
+
   let queue: DashboardQueue
   if (eligible.length === 0) {
     queue = {
       mode,
       countryIso: user.homeCountryIso ?? market.isoCode,
+      scopeExam: null,
+      scopes: [],
       exams: [],
       units: [],
       stats: { examCount: 0, unitCount: 0, mappingCount: 0, sharedUnitCount: 0, duplicatesAvoided: 0 },
@@ -472,7 +526,7 @@ export async function getMyDashboard(
     // single union implementation — the dashboard never re-derives it (§28).
     try {
       const combined = await getCombinedExamView({
-        exams: eligible.map((entry) => entry.slug),
+        exams: queueExams.map((entry) => entry.slug),
         country: user.homeCountryIso!,
         language: market.languageCode,
       })
@@ -494,6 +548,10 @@ export async function getMyDashboard(
       queue = {
         mode,
         countryIso: user.homeCountryIso!,
+        scopeExam: scopeExamEntry
+          ? { slug: scopeExamEntry.slug, name: scopeExamEntry.name }
+          : null,
+        scopes: queueScopes,
         exams: combined.exams as CombinedExamResolution[],
         units: explained,
         stats: combined.stats,
@@ -507,6 +565,8 @@ export async function getMyDashboard(
         queue = {
           mode,
           countryIso: user.homeCountryIso!,
+          scopeExam: null,
+          scopes: queueScopes,
           exams: [],
           units: [],
           stats: { examCount: 0, unitCount: 0, mappingCount: 0, sharedUnitCount: 0, duplicatesAvoided: 0 },
@@ -514,6 +574,25 @@ export async function getMyDashboard(
         }
       } else {
         throw error
+      }
+    }
+  }
+
+  // P7-S5 §11: in single-exam mode the revision-queue LISTS follow the same
+  // scope (both are §11-union surfaces — "applied identically to the learning
+  // queue and the mock-test scope", §22); the mastery STATS stay the user's
+  // overall state (honest: the filter narrows what to revise NOW, not the
+  // user's whole progress).
+  if (scopeExamEntry) {
+    const scopeUnitSlugs = new Set(queue.units.map((unit) => unit.unit.unit.slug))
+    const inScope = (item: MasteryUnitItem) => scopeUnitSlugs.has(item.unit.slug)
+    if (scopeUnitSlugs.size > 0) {
+      masteryBlock = {
+        ...masteryBlock,
+        due: masteryBlock.due.filter(inScope),
+        upcoming: masteryBlock.upcoming.filter(inScope),
+        weak: masteryBlock.weak.filter(inScope),
+        note: `Scoped to ${scopeExamEntry.name} — the stats stay your overall mastery (§11 single-exam mode).`,
       }
     }
   }
@@ -566,5 +645,72 @@ export async function getMyDashboard(
     mastery: masteryBlock,
     saves,
     computedAt: new Date().toISOString(),
+  }
+}
+
+// ---------- P7-S5: the §22 quick-mock scope resolver (caller-side glue) ----------
+
+/**
+ * Resolves the caller's quick-mock INPUT SET for the assessment module: the
+ * §11 step-1 scope (goal ∪ followed exams, deduplicated by canonical slug,
+ * honest statuses kept) plus the §14/§35 market the §22 combined-exam mode
+ * builds in (always the HOME market + the resolved label language — the same
+ * plumbing getMyDashboard uses). §28 boundary glue: personalisation resolves
+ * the §9 signals, assessment consumes them as caller-resolved inputs (the
+ * mastery-market pattern — the import direction stays one-way).
+ */
+export async function resolveQuickMockScope(
+  userId: string,
+  query: { country?: string; language?: string } = {}
+): Promise<{ scopeExams: QuickMockScopeExam[]; market: QuickMockMarket }> {
+  const user = await loadUserContext(userId)
+  const goal = await getMyGoal(userId, query)
+  const market = await resolveLabelMarket(user, goal?.studyLanguage?.code ?? null, query)
+  const follows = await listMyFollows(userId, {
+    country: market.isoCode,
+    language: market.languageCode,
+  })
+  const followedExams = follows.items.flatMap((item) =>
+    item.object.kind === 'EXAM' ? [item.object] : []
+  )
+
+  const bySlug = new Map<string, QuickMockScopeExam>()
+  for (const exam of goal?.exams ?? []) {
+    bySlug.set(exam.slug, {
+      slug: exam.slug,
+      name: exam.name,
+      code: exam.code,
+      status: exam.status,
+      countryIso: exam.countryIso,
+      fromGoal: true,
+      fromFollow: false,
+    })
+  }
+  for (const exam of followedExams) {
+    const existing = bySlug.get(exam.slug)
+    if (existing) {
+      // The freshest honest read wins (the dashboard's buildExamScope rule).
+      existing.fromFollow = true
+      existing.status = exam.status
+      existing.countryIso = exam.countryIso
+    } else {
+      bySlug.set(exam.slug, {
+        slug: exam.slug,
+        name: exam.name,
+        code: exam.code,
+        status: exam.status,
+        countryIso: exam.countryIso,
+        fromGoal: false,
+        fromFollow: true,
+      })
+    }
+  }
+
+  return {
+    scopeExams: [...bySlug.values()],
+    market: {
+      countryIso: user.homeCountryIso ?? market.isoCode,
+      languageCode: market.languageCode,
+    },
   }
 }

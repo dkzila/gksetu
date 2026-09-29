@@ -53,7 +53,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'quick-mock' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -134,6 +134,17 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   // P5-S4: the personalised dashboard/feed (§22/§34) — market-independent.
   if (segments[0] === 'dashboard') {
     return { ...fallback, view: 'dashboard', scrollTo: null }
+  }
+
+  // P7-S5 §22: the combined-exam quick-mock surface — optionally deep-linked
+  // to one exam's scope (…/quick-mock/{exam}/ → the EXAM card preselected).
+  if (segments[0] === 'quick-mock') {
+    return {
+      ...fallback,
+      view: 'quick-mock',
+      examSlug: segments[1] ?? null,
+      scrollTo: null,
+    }
   }
 
   // P5-S5: the explanations & controls surface (§9/§31) — market-independent.
@@ -332,6 +343,10 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'profile') return '#/profile'
   if (route.view === 'dashboard') return '#/dashboard'
   if (route.view === 'personalisation') return '#/personalisation'
+  // P7-S5 §22 — the quick-mock setup (an exam slug deep-links its scope card).
+  if (route.view === 'quick-mock') {
+    return route.examSlug ? `#/quick-mock/${route.examSlug}/` : '#/quick-mock'
+  }
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '#/'
 

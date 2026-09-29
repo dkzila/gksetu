@@ -73,6 +73,19 @@ export type GoalGetQuery = z.infer<typeof goalGetQuerySchema>
 export const dashboardGetQuerySchema = z.object({
   country: z.string().trim().max(8).optional(),
   language: z.string().trim().max(8).optional(),
+  /**
+   * P7-S5 §11 single-exam mode: "A user may also choose to view a single
+   * exam's queue only" — one exam of the caller's goal ∪ follow scope. The
+   * same union engine runs with one exam in the input set; the filter applies
+   * to the queue AND the revision-queue lists (both §11-union surfaces).
+   */
+  exam: z
+    .string()
+    .trim()
+    .min(2)
+    .max(120)
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$|^c[a-z0-9]{20,}$/i, 'Exam must be a slug or a canonical id')
+    .optional(),
 })
 export type DashboardGetQuery = z.infer<typeof dashboardGetQuerySchema>
 

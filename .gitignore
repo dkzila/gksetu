@@ -69,3 +69,8 @@ docs/PROJECT_ANALYSIS.md
 /skills/.scratch/
 .scratch/
 /skills/
+
+# Runtime dev-server artifacts (never tracked — the P7-S5 fix)
+.dev.pid
+dev.log
+server.log

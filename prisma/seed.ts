@@ -44,6 +44,10 @@ import { getIndexStats, reindexAll } from '../src/modules/search'
 // P7-S4: the SAME pure §22 scheduler the live submit path applies — the
 // seed's mastery fixtures fold through it, never a second implementation.
 import { computeMasteryTransition } from '../src/modules/assessment/mastery-service'
+// P7-S5: the SAME §22 sizing rules the live generate path applies (never a
+// second implementation) — the seed's quick-mock fixture snapshots them.
+import { quickMockDurationMinutes } from '../src/modules/assessment/quickmock-service'
+import { QUICK_MOCK_PASS_PERCENT } from '../src/modules/assessment/quickmock-types'
 
 const prisma = new PrismaClient()
 
@@ -3070,6 +3074,8 @@ async function main() {
 
   let mockTestsSeeded = 0
   let attemptsSeeded = 0
+  // P7-S5: generated §22 quick mocks among the attempts (the summary's line).
+  let quickMocksSeeded = 0
   for (const seed of mockTestSeeds) {
     const languageId = languageIdByCode.get(seed.languageCode)
     if (!languageId) {
@@ -3251,6 +3257,66 @@ async function main() {
         })
         attemptsSeeded += 1
       }
+
+      // ---------- P7-S5: one generated §22 quick-mock attempt (§45) ----------
+      // A SUBMITTED TestAttempt anchored on a SCOPE SNAPSHOT instead of an
+      // editorial MockTest (mockTestId null + generatedScopeJson): the dev
+      // admin's single-exam quick mock over this very composition, 4/5 = 80%
+      // (a stronger round than the editorial attempt — the mastery rebuild
+      // below folds it through the same scheduler). Guarded per user: only
+      // created when no generated attempt exists yet; never overwritten.
+      const existingQuick = await prisma.testAttempt.findFirst({
+        where: { userId: admin.id, mockTestId: null },
+        select: { id: true },
+      })
+      if (!existingQuick) {
+        const scopeExam = await prisma.exam.findUnique({
+          where: { slug: 'upsc-civil-services' },
+          select: { slug: true, name: true, code: true },
+        })
+        if (scopeExam) {
+          const quickKeys = ['B', 'C', 'B', 'B', 'A']
+          const quickPicks: Array<'B' | 'C' | 'A' | null> = ['B', 'C', 'B', 'B', null]
+          const quickAnswers = servedIds.map((questionId, index) => ({
+            questionId,
+            selected: quickPicks[index],
+            correct: quickPicks[index] === quickKeys[index],
+            correctAnswer: quickKeys[index],
+            revisionNumber: 1,
+          }))
+          const quickCorrect = quickAnswers.filter((answer) => answer.correct).length
+          const quickScore = Math.round((quickCorrect / quickAnswers.length) * 10000) / 100
+          const quickStartedAt = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000 - 8 * 60 * 1000)
+          const quickDuration = quickMockDurationMinutes(quickAnswers.length)
+          await prisma.testAttempt.create({
+            data: {
+              userId: admin.id,
+              mockTestId: null,
+              status: 'SUBMITTED',
+              startedAt: quickStartedAt,
+              deadlineAt: new Date(quickStartedAt.getTime() + quickDuration * 60 * 1000),
+              servedQuestionsJson: JSON.stringify(servedIds),
+              durationMinutes: quickDuration,
+              passPercent: QUICK_MOCK_PASS_PERCENT,
+              generatedScopeJson: JSON.stringify({
+                mode: 'EXAM',
+                exams: [scopeExam],
+                unitCount: 3,
+                questionCount: quickAnswers.length,
+                generatedAt: quickStartedAt.toISOString(),
+              }),
+              submittedAt: new Date(quickStartedAt.getTime() + 6 * 60 * 1000),
+              answersJson: JSON.stringify(quickAnswers),
+              correctCount: quickCorrect,
+              totalCount: quickAnswers.length,
+              scorePercent: quickScore,
+              passed: quickScore >= QUICK_MOCK_PASS_PERCENT,
+            },
+          })
+          attemptsSeeded += 1
+          quickMocksSeeded += 1
+        }
+      }
     }
   }
 
@@ -3348,7 +3414,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

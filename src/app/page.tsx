@@ -49,6 +49,7 @@ import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { TestRunnerView } from '@/components/assessment/test-runner-view'
+import { QuickMockView } from '@/components/assessment/quick-mock-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
@@ -108,6 +109,26 @@ export default function GlobIQApp() {
       config
     )
   }, [config, route])
+
+  // P7-S5 §22: the combined-exam quick-mock surface — optionally deep-linked
+  // to one exam's scope card (…/quick-mock/{exam}/).
+  const goQuickMock = useCallback(
+    (examSlug?: string) => {
+      if (!config || !route) return
+      navigateHash(
+        {
+          view: 'quick-mock',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          examSlug: examSlug ?? null,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
 
   const openTopic = useCallback(
     (slug: string) => {
@@ -430,8 +451,8 @@ export default function GlobIQApp() {
       navigateHash(
         {
           // Language switching on market-independent surfaces (console,
-          // following, saved, onboarding, profile, dashboard, personalisation)
-          // lands on the home view — the console precedent.
+          // following, saved, onboarding, profile, dashboard, personalisation,
+          // quick-mock) lands on the home view — the console precedent.
           view:
             route.view === 'console' ||
             route.view === 'following' ||
@@ -439,7 +460,8 @@ export default function GlobIQApp() {
             route.view === 'onboarding' ||
             route.view === 'profile' ||
             route.view === 'dashboard' ||
-            route.view === 'personalisation'
+            route.view === 'personalisation' ||
+            route.view === 'quick-mock'
               ? 'home'
               : route.view,
           countryIso: route.countryIso,
@@ -525,7 +547,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 7 · Session 4 — Mastery & Revision Queue
+                Phase 7 · Session 5 — Combined-Exam Mode
               </Badge>
               <HeaderAuth />
             </div>
@@ -687,7 +709,20 @@ export default function GlobIQApp() {
             countryIso={route.countryIso}
             language={route.language}
             onOpenPath={openPath}
+            onOpenQuickMock={() => goQuickMock()}
             onGoHome={goHome}
+            onSignIn={goSignIn}
+          />
+        ) : route.view === 'quick-mock' ? (
+          <QuickMockView
+            key={route.examSlug ?? 'combined'}
+            countryIso={route.countryIso}
+            language={route.language}
+            initialExamSlug={route.examSlug}
+            onOpenDashboard={() => window.location.assign('#/dashboard')}
+            onGoHome={goHome}
+            onOpenExam={openExam}
+            onOpenUnit={openUnit}
             onSignIn={goSignIn}
           />
         ) : route.view === 'personalisation' ? (
@@ -717,6 +752,7 @@ export default function GlobIQApp() {
           <TestRunnerView
             key={`${route.countryIso}:${route.language}:${route.testSlug}`}
             testSlug={route.testSlug}
+            quickAttemptId={null}
             examSlug={route.examSlug}
             topicSlug={route.topicSlug}
             countryIso={route.countryIso}
@@ -725,6 +761,7 @@ export default function GlobIQApp() {
             onOpenExam={openExam}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
+            onExitQuick={() => goQuickMock()}
             onSignIn={goSignIn}
           />
         ) : route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug ? (

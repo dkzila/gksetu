@@ -72,6 +72,14 @@ export interface DashboardQueue {
   mode: DashboardQueueMode
   /** The market the queue was computed in — always the user's HOME market (§14). */
   countryIso: string
+  /**
+   * P7-S5 §11 single-exam mode: the one exam the queue is scoped to (null =
+   * the combined view across every eligible scope exam). Same engine, one
+   * exam in the input set — never a second implementation (§11).
+   */
+  scopeExam: { slug: string; name: string } | null
+  /** The caller's choosable scopes — the chips input (§11 "single exam's queue only"). */
+  scopes: Array<{ slug: string; name: string; fromGoal: boolean; fromFollow: boolean }>
   /** Per-exam honest resolutions (§36 — includes "no version in effect yet" notes). */
   exams: CombinedExamResolution[]
   /** Union queue, tier-ranked then engine order, each unit once with reasons (§11 steps 4–9). */

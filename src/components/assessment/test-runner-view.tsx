@@ -44,6 +44,7 @@ import {
   LogIn,
   RefreshCw,
   Send,
+  Sparkles,
   Timer,
   XCircle,
 } from 'lucide-react'
@@ -118,6 +119,34 @@ interface PublicMockTestDetail {
   } | null
 }
 
+/** The frozen §22 combined-exam scope snapshot on a generated quick-mock
+ * attempt (P7-S5) — null on editorial attempts. */
+interface GeneratedScope {
+  mode: 'COMBINED' | 'EXAM'
+  exams: Array<{ slug: string; name: string; code: string }>
+  unitCount: number
+  questionCount: number
+  generatedAt: string
+}
+
+/** The runner's title for a generated attempt (§22 — the scope IS the test). */
+function quickMockTitle(generated: GeneratedScope | null): string {
+  if (!generated) return 'Quick mock'
+  if (generated.mode === 'EXAM' && generated.exams[0]) return `Quick mock — ${generated.exams[0].name}`
+  const names = generated.exams.map((exam) => exam.code || exam.name)
+  return names.length === 0
+    ? 'Quick mock — combined'
+    : `Quick mock — combined (${names.join(' + ')})`
+}
+
+/** The §16-style scope sentence for badges/breadcrumbs. */
+function quickScopeLabel(generated: GeneratedScope | null): string {
+  if (!generated) return 'Your exams'
+  if (generated.mode === 'EXAM' && generated.exams[0]) return generated.exams[0].name
+  const names = generated.exams.map((exam) => exam.name)
+  return names.length === 0 ? 'Your followed exams' : names.join(' + ')
+}
+
 /** The running attempt (start/resume response + the detail's active slot). */
 interface AttemptState {
   id: string
@@ -127,7 +156,10 @@ interface AttemptState {
   durationMinutes: number
   passPercent: number
   questionCount: number
-  mockTest: { id: string; slug: string; title: string }
+  /** §6 editorial anchor — null on a generated quick-mock attempt (P7-S5). */
+  mockTest: { id: string; slug: string; title: string } | null
+  /** The frozen §22 scope snapshot — set iff mockTest is null (P7-S5). */
+  generated: GeneratedScope | null
   questions: RunnerQuestion[]
 }
 
@@ -152,7 +184,8 @@ interface AttemptResult {
   totalCount: number
   scorePercent: number
   passed: boolean
-  mockTest: { id: string; slug: string; title: string }
+  mockTest: { id: string; slug: string; title: string } | null
+  generated: GeneratedScope | null
   questions: ResultQuestion[]
 }
 
@@ -209,7 +242,11 @@ function attemptStorageKey(testSlug: string): string {
 // ---------- Props ----------
 
 export interface TestRunnerViewProps {
-  testSlug: string
+  /** The editorial test's slug — null in quick mode (§22 P7-S5). */
+  testSlug: string | null
+  /** Quick mode: the generated attempt to run/resume (§22 combined-exam
+   * mode) — the runner loads it straight from /api/attempts/{id}. */
+  quickAttemptId: string | null
   /** The route's scope context (§16 — one of the two is set). */
   examSlug: string | null
   topicSlug: string | null
@@ -220,6 +257,8 @@ export interface TestRunnerViewProps {
   onOpenTopic: (slug: string) => void
   /** Opens a §16 knowledge page — the result review's "Learn more" loop (§22). */
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
+  /** Quick mode: back to the quick-mock setup (regeneration lives there). */
+  onExitQuick: () => void
   onSignIn: () => void
 }
 
@@ -227,6 +266,7 @@ export interface TestRunnerViewProps {
 
 export function TestRunnerView({
   testSlug,
+  quickAttemptId,
   examSlug,
   topicSlug,
   countryIso,
@@ -235,10 +275,14 @@ export function TestRunnerView({
   onOpenExam,
   onOpenTopic,
   onOpenUnit,
+  onExitQuick,
   onSignIn,
 }: TestRunnerViewProps) {
   const { status, token } = useAuth()
   const { toast } = useToast()
+
+  // §22 P7-S5 quick mode: no editorial test — a generated attempt keyed by id.
+  const quickMode = quickAttemptId !== null
 
   // Detail (public + viewer-scoped myAttempts).
   const [detail, setDetail] = useState<PublicMockTestDetail | null>(null)
@@ -266,19 +310,27 @@ export function TestRunnerView({
   // ---------- §16 document head ----------
   const seoInput = useMemo(
     () =>
-      detail
+      quickMode
         ? {
-            title: `${detail.title} — mock test | GlobIQ`,
-            description: `A timed ${detail.durationMinutes}-minute mock test: ${detail.questionCount} questions, pass mark ${detail.passPercent}%. ${
-              detail.scope.type === 'EXAM'
-                ? `Scoped to ${detail.scope.exam?.name ?? 'its exam'} (${detail.scope.exam?.versionLabel ?? ''}).`
-                : `Scoped to the ${detail.scope.topic?.canonicalName ?? ''} topic.`
-            }`,
-            language: detail.language.code,
+            title: 'Quick mock — combined-exam mode | GlobIQ',
+            description:
+              'A timed quick mock generated from your followed exams — one question per topic, scored server-side, feeding your mastery and revision schedule (§22).',
+            language,
             countryIso,
           }
-        : null,
-    [detail, countryIso]
+        : detail
+          ? {
+              title: `${detail.title} — mock test | GlobIQ`,
+              description: `A timed ${detail.durationMinutes}-minute mock test: ${detail.questionCount} questions, pass mark ${detail.passPercent}%. ${
+                detail.scope.type === 'EXAM'
+                  ? `Scoped to ${detail.scope.exam?.name ?? 'its exam'} (${detail.scope.exam?.versionLabel ?? ''}).`
+                  : `Scoped to the ${detail.scope.topic?.canonicalName ?? ''} topic.`
+              }`,
+              language: detail.language.code,
+              countryIso,
+            }
+          : null,
+    [detail, countryIso, quickMode, language]
   )
   useSeoHead(seoInput)
 
@@ -288,6 +340,7 @@ export function TestRunnerView({
   // and refetch forever (the query-key discipline).
 
   const fetchDetail = useCallback(async () => {
+    if (!testSlug) return // quick mode never fetches an editorial detail
     setLoading(true)
     setDetailError(null)
     try {
@@ -356,9 +409,54 @@ export function TestRunnerView({
     }
   }, [testSlug, token])
 
+  // ---------- Quick-mode load (P7-S5 §22) ----------
+  // A generated attempt always exists when the runner opens on it — straight
+  // to running (IN_PROGRESS) or result (SUBMITTED); no landing phase.
+  const fetchQuickAttempt = useCallback(async () => {
+    if (!quickAttemptId) return
+    setLoading(true)
+    setDetailError(null)
+    try {
+      const response = await fetch(`/api/attempts/${encodeURIComponent(quickAttemptId)}`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        cache: 'no-store',
+      })
+      const payload = (await response.json()) as Envelope<AttemptStateResponse>
+      if (payload.status === 'ok' && payload.data) {
+        const state = payload.data
+        if (state.result) {
+          setAttempt(null)
+          setAnswers({})
+          setResult(state.result)
+          setDeadlineExceeded(false)
+          setPhase('result')
+        } else if (state.attempt.status === 'IN_PROGRESS') {
+          setAttempt(state.attempt)
+          setAnswers({})
+          setResult(null)
+          setDeadlineExceeded(false)
+          setPhase('running')
+        } else {
+          // §36 honest: an abandoned generated attempt — back to the setup.
+          setDetailError({
+            code: 'ATTEMPT_NOT_FOUND',
+            message: 'This quick mock closed without a submission (its deadline passed).',
+          })
+        }
+      } else {
+        setDetailError(payload.error ?? { code: 'ERROR', message: 'Could not load this attempt' })
+      }
+    } catch {
+      setDetailError({ code: 'NETWORK', message: 'Could not reach the attempt service' })
+    } finally {
+      setLoading(false)
+    }
+  }, [quickAttemptId, token])
+
   useEffect(() => {
-    void fetchDetail()
-  }, [fetchDetail, reloadKey])
+    if (quickMode) void fetchQuickAttempt()
+    else void fetchDetail()
+  }, [quickMode, fetchQuickAttempt, fetchDetail, reloadKey])
 
   // ---------- The countdown (running only) ----------
 
@@ -467,7 +565,9 @@ export function TestRunnerView({
         setResult(payload.data.result)
         setPhase('result')
         setSubmitDialog(false)
-        window.sessionStorage.setItem(attemptStorageKey(testSlug), payload.data.result.attemptId)
+        if (testSlug) {
+          window.sessionStorage.setItem(attemptStorageKey(testSlug), payload.data.result.attemptId)
+        }
         window.scrollTo({ top: 0 })
       } else if (payload.error?.code === 'ATTEMPT_DEADLINE_PASSED') {
         setDeadlineExceeded(true)
@@ -484,7 +584,8 @@ export function TestRunnerView({
           description: payload.error.message,
           variant: 'destructive',
         })
-        void fetchDetail()
+        if (quickMode) void fetchQuickAttempt()
+        else void fetchDetail()
       } else {
         toast({
           title: 'Could not submit',
@@ -497,15 +598,24 @@ export function TestRunnerView({
     } finally {
       setSubmitting(false)
     }
-  }, [token, attempt, submitting, answers, testSlug, toast, fetchDetail])
+  }, [token, attempt, submitting, answers, testSlug, quickMode, toast, fetchDetail, fetchQuickAttempt])
 
   const retake = useCallback(() => {
+    if (quickMode) {
+      // Regeneration is a setup-view action (scope + size choice) — exit there.
+      setResult(null)
+      setAttempt(null)
+      setDeadlineExceeded(false)
+      setPhase('landing')
+      onExitQuick()
+      return
+    }
     setResult(null)
     setAttempt(null)
     setDeadlineExceeded(false)
     setPhase('landing')
     void startAttempt()
-  }, [startAttempt])
+  }, [quickMode, onExitQuick, startAttempt])
 
   const answeredCount = useMemo(
     () => (attempt ? Object.keys(answers).length : 0),
@@ -525,24 +635,27 @@ export function TestRunnerView({
     )
   }
 
-  if (detailError && !detail) {
+  if (detailError && !detail && !(quickMode && (attempt || result))) {
     const notFound = detailError.code === 'MOCK_TEST_NOT_FOUND'
     const notPublished = detailError.code === 'MOCK_TEST_NOT_PUBLISHED'
+    const attemptMissing = detailError.code === 'ATTEMPT_NOT_FOUND'
     return (
-      <Card className={notFound || notPublished ? 'border-zinc-200 bg-white' : 'border-red-200 bg-red-50/60'}>
+      <Card className={notFound || notPublished || attemptMissing ? 'border-zinc-200 bg-white' : 'border-red-200 bg-red-50/60'}>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <AlertCircle
-              className={`h-5 w-5 ${notFound || notPublished ? 'text-amber-500' : 'text-red-500'}`}
+              className={`h-5 w-5 ${notFound || notPublished || attemptMissing ? 'text-amber-500' : 'text-red-500'}`}
               aria-hidden="true"
             />
             {notFound
               ? 'Mock test not available'
               : notPublished
                 ? 'This mock test is not live'
-                : 'Mock test unavailable'}
+                : attemptMissing
+                  ? 'This attempt is not available'
+                  : 'Mock test unavailable'}
           </CardTitle>
-          <CardDescription className={notFound || notPublished ? '' : 'text-red-700'}>
+          <CardDescription className={notFound || notPublished || attemptMissing ? '' : 'text-red-700'}>
             {notFound
               ? `“${testSlug}” does not exist in this market — check the mock-test lists on the exam and topic pages (§16).`
               : notPublished
@@ -551,7 +664,12 @@ export function TestRunnerView({
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2">
-          {examSlug ? (
+          {quickMode ? (
+            <Button size="sm" variant="outline" className="gap-2" onClick={onExitQuick}>
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              Back to Quick mock
+            </Button>
+          ) : examSlug ? (
             <Button size="sm" variant="outline" className="gap-2" onClick={() => onOpenExam(examSlug)}>
               <ChevronLeft className="h-4 w-4" aria-hidden="true" />
               Back to the exam page
@@ -580,19 +698,29 @@ export function TestRunnerView({
     )
   }
 
-  if (!detail) return null
+  if (!detail && !quickMode) return null
 
-  const scope = detail.scope
-  const scopeLabel =
-    scope.type === 'EXAM' && scope.exam
+  // §22 P7-S5: the quick variant of every scope-derived label (the generated
+  // snapshot IS the test's identity — no editorial detail exists).
+  const quickGenerated = attempt?.generated ?? result?.generated ?? null
+  const runnerTitle = attempt
+    ? attempt.mockTest?.title ?? quickMockTitle(attempt.generated)
+    : result
+      ? result.mockTest?.title ?? quickMockTitle(result.generated)
+      : quickMockTitle(quickGenerated)
+
+  const scope = detail?.scope
+  const scopeLabel = quickMode
+    ? quickScopeLabel(quickGenerated)
+    : scope?.type === 'EXAM' && scope.exam
       ? `${scope.exam.name} — ${scope.exam.versionLabel}`
-      : scope.type === 'TOPIC' && scope.topic
+      : scope?.type === 'TOPIC' && scope.topic
         ? scope.topic.canonicalName
         : 'General knowledge'
   const scopePath =
-    scope.type === 'EXAM' && scope.exam
+    !quickMode && detail && scope?.type === 'EXAM' && scope.exam
       ? `#/exams/${scope.exam.slug}/mock-tests/${detail.slug}/`
-      : scope.topic
+      : !quickMode && detail && scope?.topic
         ? `#/gk/${scope.topic.slug}/mock-tests/${detail.slug}/`
         : ''
 
@@ -612,7 +740,15 @@ export function TestRunnerView({
         </li>
         <li className="flex items-center gap-1.5">
           <span className="text-zinc-300" aria-hidden="true">/</span>
-          {scope.type === 'EXAM' && scope.exam ? (
+          {quickMode ? (
+            <button
+              type="button"
+              onClick={onExitQuick}
+              className="min-h-[32px] text-zinc-500 transition-colors hover:text-emerald-700"
+            >
+              Quick mock
+            </button>
+          ) : scope?.type === 'EXAM' && scope.exam ? (
             <button
               type="button"
               onClick={() => onOpenExam(scope.exam!.slug)}
@@ -620,7 +756,7 @@ export function TestRunnerView({
             >
               {scope.exam.name}
             </button>
-          ) : scope.topic ? (
+          ) : scope?.topic ? (
             <button
               type="button"
               onClick={() => onOpenTopic(scope.topic!.slug)}
@@ -635,14 +771,38 @@ export function TestRunnerView({
         <li className="flex items-center gap-1.5">
           <span className="text-zinc-300" aria-hidden="true">/</span>
           <span aria-current="page" className="font-medium text-zinc-900">
-            {detail.title}
+            {quickMode ? runnerTitle : detail!.title}
           </span>
         </li>
       </ol>
     </nav>
   )
 
-  const metaBadges = (
+  const metaBadges = quickMode ? (
+    <div className="flex flex-wrap items-center gap-1.5">
+      <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
+        <ListChecks className="mr-1 h-3 w-3" aria-hidden="true" />
+        Quick mock
+      </Badge>
+      <Badge
+        variant="outline"
+        className="gap-1 border-zinc-200 bg-white font-normal text-zinc-600"
+        title="§22 — a combined mock test scoped to your followed exams (or one of them)"
+      >
+        {quickGenerated?.mode === 'EXAM' ? (
+          <GraduationCap className="h-3 w-3" aria-hidden="true" />
+        ) : (
+          <Sparkles className="h-3 w-3" aria-hidden="true" />
+        )}
+        {scopeLabel}
+      </Badge>
+      {attempt && (
+        <Badge variant="secondary" className="font-mono text-[10px] font-normal">
+          {attempt.questionCount} questions · pass {attempt.passPercent}%
+        </Badge>
+      )}
+    </div>
+  ) : (
     <div className="flex flex-wrap items-center gap-1.5">
       <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
         <ListChecks className="mr-1 h-3 w-3" aria-hidden="true" />
@@ -653,7 +813,7 @@ export function TestRunnerView({
         className="gap-1 border-zinc-200 bg-white font-normal text-zinc-600"
         title={`Scoped to ${scopeLabel} (§6 — the test's scope is part of its identity)`}
       >
-        {scope.type === 'EXAM' ? (
+        {scope?.type === 'EXAM' ? (
           <GraduationCap className="h-3 w-3" aria-hidden="true" />
         ) : (
           <Hash className="h-3 w-3" aria-hidden="true" />
@@ -661,9 +821,9 @@ export function TestRunnerView({
         {scopeLabel}
       </Badge>
       <Badge variant="secondary" className="font-mono text-[10px] font-normal">
-        {detail.language.nativeName ?? detail.language.name} ({detail.language.code})
+        {detail!.language.nativeName ?? detail!.language.name} ({detail!.language.code})
       </Badge>
-      {detail.aiAssisted && (
+      {detail!.aiAssisted && (
         <Badge
           variant="outline"
           className="gap-1 border-fuchsia-200 bg-fuchsia-50 font-normal text-fuchsia-700"
@@ -689,7 +849,7 @@ export function TestRunnerView({
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2">
             <div className="flex min-w-0 flex-1 items-center gap-2">
               <p className="min-h-[32px] truncate text-sm font-semibold text-zinc-900">
-                {attempt.mockTest.title}
+                {runnerTitle}
               </p>
             </div>
             <p
@@ -740,13 +900,20 @@ export function TestRunnerView({
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap items-center gap-2">
-              <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={retake} disabled={starting}>
-                {starting ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ClipboardCheck className="h-4 w-4" aria-hidden="true" />}
-                Retake the test
-              </Button>
-              <Button size="sm" variant="ghost" className="gap-2 text-zinc-500" onClick={() => void fetchDetail()}>
+              {quickMode ? (
+                <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onExitQuick}>
+                  <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
+                  Back to Quick mock
+                </Button>
+              ) : (
+                <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={retake} disabled={starting}>
+                  {starting ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <ClipboardCheck className="h-4 w-4" aria-hidden="true" />}
+                  Retake the test
+                </Button>
+              )}
+              <Button size="sm" variant="ghost" className="gap-2 text-zinc-500" onClick={() => void (quickMode ? fetchQuickAttempt() : fetchDetail())}>
                 <RefreshCw className="h-4 w-4" aria-hidden="true" />
-                Back to the overview
+                Refresh
               </Button>
             </CardContent>
           </Card>
@@ -906,7 +1073,7 @@ export function TestRunnerView({
           className="space-y-3"
         >
           <h1 id="result-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
-            {result.mockTest.title} — your result
+            {runnerTitle} — your result
           </h1>
           <Card
             className={`border-zinc-200 shadow-sm ${result.passed ? 'bg-emerald-50/40' : 'bg-rose-50/30'}`}
@@ -964,7 +1131,7 @@ export function TestRunnerView({
                 ) : (
                   <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
                 )}
-                Retake the test
+                {quickMode ? 'Generate a new quick mock' : 'Retake the test'}
               </Button>
             </CardContent>
           </Card>
@@ -1135,6 +1302,10 @@ export function TestRunnerView({
   }
 
   // ================= LANDING =================
+
+  // Quick mode never lands here (a generated attempt always opens running or
+  // at its result); the guard keeps the editorial-only section honest for TS.
+  if (!detail) return null
 
   return (
     <div className="space-y-6">

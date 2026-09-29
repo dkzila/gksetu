@@ -29,6 +29,7 @@ import {
   ClipboardCheck,
   ClipboardList,
   ChevronLeft,
+  ChevronRight,
   GraduationCap,
   History,
   Info,
@@ -41,6 +42,7 @@ import {
   RefreshCw,
   Tag,
   Timer,
+  Zap,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -975,6 +977,29 @@ function ExamMockTests({
         </Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
+          {/* P7-S5 §22: the combined-exam quick mock, deep-linked to this exam's
+              scope card (§11 single-exam mode) — the mock-test surface applies
+              the same union the learning queue does. */}
+          <a
+            href={`#/quick-mock/${examSlug}/`}
+            className="group flex min-w-0 flex-col rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
+            aria-label={`Generate a quick mock scoped to this exam`}
+          >
+            <div className="flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100" aria-hidden="true">
+                <Zap className="h-4 w-4 text-emerald-700" />
+              </span>
+              <span className="text-sm font-semibold text-emerald-800">Quick mock for this exam</span>
+            </div>
+            <p className="mt-2 flex-1 text-xs leading-relaxed text-emerald-800/80">
+              A timed test generated from the published pool for this exam's scope — one question
+              per topic (§11), the same scoring and mastery fold (§22).
+            </p>
+            <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 group-hover:gap-1.5">
+              Open Quick mock
+              <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          </a>
           {tests.map((test) => (
             <MockTestCard
               key={test.id}

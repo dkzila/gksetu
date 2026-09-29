@@ -53,6 +53,9 @@ import { wireMockTestWorkflow } from '@/modules/editorial'
 
 // P7-S4: the §22 mastery fold rides the submit claim transaction.
 import { applyMasteryFromAttempt } from './mastery-service'
+// P7-S5: the §22 combined-exam quick-mock scope snapshot (parsed on generated
+// attempts — editorial attempts never carry one).
+import { parseQuickMockScope } from './quickmock-types'
 
 import type {
   AdminMockTestDetail,
@@ -780,8 +783,9 @@ async function abandonExpiredAttempts(userId: string, mockTestId: string): Promi
 
 /** Projects a TestAttempt row into the public state DTO (the runner's
  * source of truth). `servedQuestionIdsOverride` re-serves the attempt's own
- * frozen composition — a later test correction never rewrites a running deal. */
-async function toAttemptState(
+ * frozen composition — a later test correction never rewrites a running deal.
+ * Exported for the §22 quick-mock path (P7-S5) — one projection, both anchors. */
+export async function toAttemptState(
   attempt: Prisma.TestAttemptGetPayload<{ include: { mockTest: true } }>,
   servedQuestionIdsOverride?: string[]
 ): Promise<PublicAttemptState> {
@@ -807,7 +811,12 @@ async function toAttemptState(
     durationMinutes: attempt.durationMinutes,
     passPercent: attempt.passPercent,
     questionCount: served.length,
-    mockTest: { id: attempt.mockTestId, slug: attempt.mockTest.slug, title: attempt.mockTest.title },
+    // P7-S5: null on a generated §22 quick-mock attempt — `generated` carries
+    // the frozen scope snapshot instead (mode + covering exams).
+    mockTest: attempt.mockTest
+      ? { id: attempt.mockTest.id, slug: attempt.mockTest.slug, title: attempt.mockTest.title }
+      : null,
+    generated: attempt.mockTestId ? null : parseQuickMockScope(attempt.generatedScopeJson ?? ''),
     questions,
   }
 }
@@ -1030,7 +1039,12 @@ async function toAttemptResult(
     scorePercent: attempt.scorePercent ?? 0,
     passed: attempt.passed ?? false,
     questions: review,
-    mockTest: { id: attempt.mockTestId, slug: attempt.mockTest.slug, title: attempt.mockTest.title },
+    // P7-S5: null on a generated §22 quick-mock attempt (the scope snapshot
+    // ships instead — the runner labels it honestly either way).
+    mockTest: attempt.mockTest
+      ? { id: attempt.mockTest.id, slug: attempt.mockTest.slug, title: attempt.mockTest.title }
+      : null,
+    generated: attempt.mockTestId ? null : parseQuickMockScope(attempt.generatedScopeJson ?? ''),
   }
 }
 
@@ -1081,7 +1095,7 @@ export async function submitAttempt(
       action: AUDIT_ACTIONS.attemptAbandon,
       objectType: AUDIT_OBJECT_TYPES.testAttempt,
       objectId: attempt.id,
-      objectLabel: `${attempt.mockTest.slug}/Attempt`,
+      objectLabel: `${attempt.mockTest?.slug ?? 'quick-mock'}/Attempt`,
       before: { status: 'IN_PROGRESS' },
       after: { status: 'ABANDONED' },
       metadata: { reason: 'late-submit', graceMs: SUBMIT_GRACE_MS },
@@ -1235,7 +1249,7 @@ export async function submitAttempt(
     action: AUDIT_ACTIONS.attemptSubmit,
     objectType: AUDIT_OBJECT_TYPES.testAttempt,
     objectId: attempt.id,
-    objectLabel: `${attempt.mockTest.slug}/Attempt`,
+    objectLabel: `${attempt.mockTest?.slug ?? 'quick-mock'}/Attempt`,
     before: { status: 'IN_PROGRESS' },
     after: {
       status: 'SUBMITTED',

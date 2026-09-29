@@ -319,6 +319,10 @@ export interface ApiDashboard {
   queue: {
     mode: 'GOAL_AND_FOLLOW' | 'GOAL' | 'FOLLOW' | 'NONE'
     countryIso: string
+    /** P7-S5 §11: the single-exam scope when filtered (null = combined). */
+    scopeExam: { slug: string; name: string } | null
+    /** P7-S5 §11: the caller's choosable scopes (the chips input). */
+    scopes: Array<{ slug: string; name: string; fromGoal: boolean; fromFollow: boolean }>
     exams: ApiDashboardExamResolution[]
     units: ApiDashboardQueueUnit[]
     stats: {
