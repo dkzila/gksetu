@@ -160,6 +160,7 @@ model KnowledgeUnit {
   eventLinks   CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
   qnas         QnA[]                       @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
   questions    Question[]                  @relation("QuestionUnit") // P7-S2: scored MCQ assessment representations (§22 practice layer)
+  masteryStates MasteryState[]             @relation("UnitMastery") // P7-S4: derived per-user proficiency rows (§6/§22)
 
   // Deduplication is by canonical identity (§11): within one topic, a canonical
   // name identifies exactly one unit. Never merge distinct concepts; never
@@ -877,6 +878,8 @@ model User {
   authoredMockTests          MockTest[]         @relation("MockTestAuthor")
   publishedMockTestRevisions MockTestRevision[] @relation("MockTestRevisionPublisher")
   testAttempts               TestAttempt[]      @relation("UserAttempts")
+  // P7-S4 (§6/§22): derived per-unit mastery states (the revision queue's store).
+  masteryStates              MasteryState[]     @relation("UserMastery")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1718,4 +1721,54 @@ model TestAttempt {
   @@index([userId, mockTestId, status])
   @@index([mockTestId, status])
   @@index([userId, status])
+}
+
+// ---------- P7-S4: MasteryState (Master Plan §6 row, §22, §9/§31) ----------
+
+// §6 MasteryState: "Per-user, per-Knowledge-Unit/topic proficiency — user_id,
+// knowledge_unit_id, mastery_score, last_reviewed_at, next_review_at". One
+// row per user × canonical unit, written EXCLUSIVELY by the submit path of a
+// §6 TestAttempt (§22: "Mastery state per Knowledge Unit/topic, derived from
+// TestAttempt history") — one submitted attempt updates every unit it
+// touched, exactly once, inside the attempt's claim transaction.
+//
+// mastery_score is the user's overall accuracy on the unit across submitted
+// attempts (correctCount/attemptedCount — plain, explainable §9), NOT a
+// proprietary black box. streak counts consecutive perfect rounds (every
+// served question on the unit answered correctly) and drives §22 spaced
+// review: intervals 1 → 3 → 7 → 14 → 30 → 60 days; ANY wrong or unanswered
+// answer resets the streak and schedules tomorrow. next_review_at is the
+// revision queue's due date.
+//
+// §36: the row is derived honest history — a RETIRED unit keeps its mastery
+// rows (they render with the unit's honest status). §30/§31: rows cascade
+// with the user account; the explicit "reset personalisation" control clears
+// them (a §9 implicit signal) while the immutable attempts stay — new
+// attempts rebuild mastery from that point on.
+model MasteryState {
+  id              String   @id @default(cuid())
+  userId          String
+  knowledgeUnitId String
+  // §6 mastery_score — overall accuracy 0–100 (1 decimal).
+  masteryScore    Float
+  // Running tallies across every submitted attempt that served this unit.
+  attemptedCount Int
+  correctCount   Int
+  // §22 spaced-review scheduler input — consecutive all-correct rounds.
+  streak Int @default(0)
+  // §6 last_reviewed_at — the most recent submitted attempt touching the unit.
+  lastReviewedAt DateTime
+  // §6 next_review_at — the spaced-review due date (the revision queue's key).
+  nextReviewAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user          User          @relation("UserMastery", fields: [userId], references: [id], onDelete: Cascade)
+  knowledgeUnit KnowledgeUnit @relation("UnitMastery", fields: [knowledgeUnitId], references: [id])
+
+  // The §6 per-user-per-unit identity — upserts are idempotent at the storage layer.
+  @@unique([userId, knowledgeUnitId])
+  // The revision queue's hot read: my units ordered by due date.
+  @@index([userId, nextReviewAt])
+  @@index([knowledgeUnitId])
 }

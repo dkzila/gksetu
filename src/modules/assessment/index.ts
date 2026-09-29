@@ -13,9 +13,12 @@
  * server-side, correctAnswer never public pre-answer). P7-S3: the MockTest +
  * TestAttempt engine — the timed, scoped, composed assessment product (§6)
  * with its own §19/§36 lifecycle and the attempt records that feed mastery
- * (P7-S4). Mastery and the revision queue join in later sessions —
- * structurally distinct entities, never collapsed into one generic pipeline
- * (§46.14).
+ * (P7-S4). P7-S4: mastery tracking + the revision queue — the §6
+ * MasteryState row per user × unit, derived exclusively from submitted
+ * TestAttempts (§22), scheduled by spaced review and surfaced as the
+ * dashboard's due-revision queue (§11 step 7's user-state ranking input).
+ * Combined-exam assessment mode (P7-S5) follows — structurally distinct
+ * entities, never collapsed into one generic pipeline (§46.14).
  */
 export {
   QnaError,
@@ -173,3 +176,29 @@ export {
   MOCK_TEST_PUBLISH_GATED_ACTIONS,
   MOCK_TEST_RULES,
 } from './mocktest-types'
+// ---------- P7-S4: mastery tracking + the §22 revision queue ----------
+export {
+  computeMasteryTransition,
+  getMyMasteryOverview,
+  getMyUnitMastery,
+  getMyMasteryStats,
+  MASTERY_RULES_NOTE,
+} from './mastery-service'
+export {
+  MasteryError,
+  toMasteryErrorResponse,
+  REVIEW_INTERVALS_DAYS,
+  WEAK_MASTERY_THRESHOLD,
+  DUE_SOON_DAYS,
+} from './mastery-types'
+export { masteryQuerySchema } from './mastery-validation'
+export type { MasteryQuery } from './mastery-validation'
+export type {
+  MasteryOverview,
+  MasteryUnitItem,
+  MasteryTopicRollup,
+  MasteryUnitStateResponse,
+  MasteryStats,
+  MasteryTransition,
+  MasteryReviewOutcome,
+} from './mastery-types'

@@ -17,14 +17,20 @@
  * goal exams and followed exams (declared + passive signals); goal subjects
  * and followed topics never add units — they RE-RANK and EXPLAIN (a unit
  * whose syllabus topic is a declared goal subject outranks one merely
- * followed, which outranks plain exam scope). Every unit carries its reasons
- * ("Because your goal includes …", §9). Saves appear ONLY as a clearly
- * labelled retrieval block and never touch ranking (§10).
+ * followed, which outranks plain exam scope). P7-S4 adds the §22 implicit
+ * layer: a unit whose spaced review is DUE outranks everything (§11 step
+ * 7's "user state (mastery, revision due-date)" input — what matters now).
+ * Every unit carries its reasons ("Because your goal includes …", §9).
+ * Saves appear ONLY as a clearly labelled retrieval block and never touch
+ * ranking (§10); mastery derives ONLY from submitted attempts (§6/§22) and
+ * clears with the §31 reset.
  */
 import { db } from '@/lib/db'
 import { LocaleError, resolveLocaleContext } from '@/modules/country-locale'
 import { getCombinedExamView } from '@/modules/exam-mapping'
 import type { CombinedExamResolution, CombinedQueueUnit } from '@/modules/exam-mapping'
+import { MASTERY_RULES_NOTE, getMyMasteryOverview } from '@/modules/assessment'
+import type { MasteryUnitItem } from '@/modules/assessment'
 import { listMyFollows, listRecentSaves } from '@/modules/follow-save'
 import type { FollowedExamSummary, FollowedTopicSummary, PublicSave } from '@/modules/follow-save'
 import { ExamError } from '@/modules/exams-syllabus'
@@ -35,8 +41,10 @@ import { getMyGoal, loadUserContext } from './service'
 import type { UserContext } from './service'
 import type { GoalTopicSummary, PublicGoal } from './types'
 import type {
+  DashboardMastery,
   DashboardPlan,
   DashboardQueue,
+  DashboardQueueMastery,
   DashboardQueueMode,
   DashboardQueueReason,
   DashboardQueueUnit,
@@ -165,9 +173,23 @@ function buildExamScope(goal: PublicGoal | null, followedExams: FollowedExamSumm
 // ---------- §9 reasons + tier overlay ----------
 
 const TIER_RANK: Record<DashboardTier, number> = {
-  GOAL_SUBJECT: 0,
-  FOLLOWED_SUBJECT: 1,
-  EXAM_SCOPE: 2,
+  // P7-S4 §22/§11 step 7: a DUE spaced review is what matters NOW — it
+  // outranks even declared goal subjects (time-sensitive, §22 dashboard:
+  // "what matters now … due revisions").
+  REVISION_DUE: 0,
+  GOAL_SUBJECT: 1,
+  FOLLOWED_SUBJECT: 2,
+  EXAM_SCOPE: 3,
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000
+
+/** Compact "last reviewed" label for the REVISION_DUE reason sentence. */
+function daysAgoLabel(iso: string, now: number): string {
+  const days = Math.floor((now - new Date(iso).getTime()) / DAY_MS)
+  if (days <= 0) return 'today'
+  if (days === 1) return 'yesterday'
+  return `${days} days ago`
 }
 
 interface SignalIndex {
@@ -254,15 +276,33 @@ async function buildSignalIndex(
  * Explains one §11 queue unit from the caller's §9 signals (§9: "Recommendation
  * output must be explainable"). Reasons are complete sentences, ready to
  * render verbatim on any client (§39). Covering exams explain scope; the
- * unit's syllabus-node topics explain subject affinity.
+ * unit's syllabus-node topics explain subject affinity; P7-S4 adds the §22
+ * implicit-signal reason — a due spaced review — and the §11 step 7 tier.
  */
-function explainUnit(unit: CombinedQueueUnit, signals: SignalIndex): { tier: DashboardTier; reasons: DashboardQueueReason[] } {
+function explainUnit(
+  unit: CombinedQueueUnit,
+  signals: SignalIndex,
+  masteryItem: MasteryUnitItem | undefined
+): { tier: DashboardTier; reasons: DashboardQueueReason[]; mastery: DashboardQueueMastery | null } {
   const reasons: DashboardQueueReason[] = []
   const seen = new Set<string>()
   const push = (reason: DashboardQueueReason, key: string) => {
     if (seen.has(key)) return
     seen.add(key)
     reasons.push(reason)
+  }
+
+  // §22/§11 step 7 (P7-S4): the implicit signal leads the explanation when
+  // the unit's spaced review is due — the strongest "what matters now".
+  if (masteryItem?.isDue) {
+    push(
+      {
+        kind: 'REVISION_DUE',
+        text: `Because this unit is due for revision — mastery ${masteryItem.masteryScore}%, last reviewed ${daysAgoLabel(masteryItem.lastReviewedAt, Date.now())} (§22 spaced review)`,
+        topicSlug: masteryItem.unit.topicSlug,
+      },
+      `revision-due:${unit.unit.slug}`
+    )
   }
 
   for (const exam of unit.exams) {
@@ -307,12 +347,21 @@ function explainUnit(unit: CombinedQueueUnit, signals: SignalIndex): { tier: Das
     }
   }
 
-  const tier: DashboardTier = reasons.some((reason) => reason.kind === 'GOAL_SUBJECT')
-    ? 'GOAL_SUBJECT'
-    : reasons.some((reason) => reason.kind === 'FOLLOWED_SUBJECT')
-      ? 'FOLLOWED_SUBJECT'
-      : 'EXAM_SCOPE'
-  return { tier, reasons }
+  const tier: DashboardTier = masteryItem?.isDue
+    ? 'REVISION_DUE'
+    : reasons.some((reason) => reason.kind === 'GOAL_SUBJECT')
+      ? 'GOAL_SUBJECT'
+      : reasons.some((reason) => reason.kind === 'FOLLOWED_SUBJECT')
+        ? 'FOLLOWED_SUBJECT'
+        : 'EXAM_SCOPE'
+  const mastery: DashboardQueueMastery | null = masteryItem
+    ? {
+        score: masteryItem.masteryScore,
+        lastReviewedAt: masteryItem.lastReviewedAt,
+        nextReviewAt: masteryItem.nextReviewAt,
+      }
+    : null
+  return { tier, reasons, mastery }
 }
 
 // ---------- The dashboard (GET /api/dashboard) ----------
@@ -358,6 +407,46 @@ export async function getMyDashboard(
         ? 'FOLLOW'
         : 'NONE'
 
+  // P7-S4 §22/§11 step 7: the user's mastery state — the implicit-signal
+  // tier (due revisions re-rank the queue) and the dashboard's due-
+  // revisions block. Resolved in the SAME label market as the queue (§35
+  // coherence); honest degradation keeps the dashboard alive if the
+  // assessment surface is unavailable.
+  const masteryByUnitSlug = new Map<string, MasteryUnitItem>()
+  let masteryBlock: DashboardMastery
+  try {
+    const masteryOverview = await getMyMasteryOverview(userId, {
+      country: market.isoCode,
+      language: market.languageCode,
+    })
+    for (const item of masteryOverview.units) masteryByUnitSlug.set(item.unit.slug, item)
+    masteryBlock = {
+      stats: masteryOverview.stats,
+      due: masteryOverview.due.slice(0, 8),
+      upcoming: masteryOverview.upcoming.slice(0, 5),
+      weak: masteryOverview.weak.slice(0, 5),
+      rules: masteryOverview.scheduling.rules,
+      note: masteryOverview.note,
+    }
+  } catch (error) {
+    console.error('[dashboard] mastery overview unavailable:', error)
+    masteryBlock = {
+      stats: {
+        trackedUnitCount: 0,
+        dueCount: 0,
+        dueSoonCount: 0,
+        weakCount: 0,
+        averageScore: null,
+        submittedAttemptCount: 0,
+      },
+      due: [],
+      upcoming: [],
+      weak: [],
+      rules: MASTERY_RULES_NOTE,
+      note: 'Your revision queue is unavailable right now — try refreshing in a moment.',
+    }
+  }
+
   const eligible = user.homeCountryIso
     ? scope.entries.filter(
         (entry) => entry.status === 'ACTIVE' && entry.countryIso === user.homeCountryIso
@@ -390,11 +479,16 @@ export async function getMyDashboard(
 
       const signals = await buildSignalIndex(market, goal, followedExams, followedTopics)
       const explained = combined.units.map((unit) => {
-        const { tier, reasons } = explainUnit(unit, signals)
-        return { unit, tier, reasons } satisfies DashboardQueueUnit
+        const { tier, reasons, mastery } = explainUnit(
+          unit,
+          signals,
+          masteryByUnitSlug.get(unit.unit.slug)
+        )
+        return { unit, tier, reasons, mastery } satisfies DashboardQueueUnit
       })
-      // §9 layering: goal subjects → followed subjects → engine base order
-      // (priority → likelihood → freshness, §11 step 7). Stable within tiers.
+      // §9/§22 layering (P7-S4): due revisions → goal subjects → followed
+      // subjects → engine base order (priority → likelihood → freshness,
+      // §11 step 7). Stable within tiers.
       explained.sort((a, b) => TIER_RANK[a.tier] - TIER_RANK[b.tier])
 
       queue = {
@@ -469,6 +563,7 @@ export async function getMyDashboard(
     goal,
     signals,
     queue,
+    mastery: masteryBlock,
     saves,
     computedAt: new Date().toISOString(),
   }

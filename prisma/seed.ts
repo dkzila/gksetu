@@ -41,6 +41,9 @@ import { PrismaClient } from '@prisma/client'
 
 import { hashPassword } from '../src/modules/identity-access/password'
 import { getIndexStats, reindexAll } from '../src/modules/search'
+// P7-S4: the SAME pure §22 scheduler the live submit path applies — the
+// seed's mastery fixtures fold through it, never a second implementation.
+import { computeMasteryTransition } from '../src/modules/assessment/mastery-service'
 
 const prisma = new PrismaClient()
 
@@ -3124,88 +3127,118 @@ async function main() {
     }
 
     // Never overwrite live edits (§36) — identity is (scope, language, title).
+    // When the test already exists, the §45 attempt fixtures still seed
+    // (their own per-user guards keep this idempotent) against the LIVE
+    // composition — never a stale seed assumption.
     const existing = await prisma.mockTest.findFirst({
       where: { scopeType: seed.scopeType, topicId, examVersionId, languageId, title: seed.title },
-      select: { id: true },
-    })
-    if (existing) continue
-
-    const mockTest = await prisma.mockTest.create({
-      data: {
-        slug: seed.slug,
-        title: seed.title,
-        scopeType: seed.scopeType,
-        topicId,
-        examVersionId,
-        languageId,
-        status: seed.status,
-        questionIdsJson: JSON.stringify(questionIds),
-        durationMinutes: seed.durationMinutes,
-        passPercent: seed.passPercent,
-        aiAssisted: false,
-        createdById: admin.id,
-      },
+      select: { id: true, questionIdsJson: true },
     })
 
-    let lastRevisionId: string | null = null
-    for (const [index, revision] of seed.revisions.entries()) {
-      const created = await prisma.mockTestRevision.create({
+    let testId: string
+    let servedIds: string[]
+    if (existing) {
+      testId = existing.id
+      servedIds = JSON.parse(existing.questionIdsJson) as string[]
+    } else {
+      const mockTest = await prisma.mockTest.create({
         data: {
-          mockTestId: mockTest.id,
-          revisionNumber: index + 1,
+          slug: seed.slug,
           title: seed.title,
+          scopeType: seed.scopeType,
+          topicId,
+          examVersionId,
+          languageId,
+          status: seed.status,
           questionIdsJson: JSON.stringify(questionIds),
           durationMinutes: seed.durationMinutes,
           passPercent: seed.passPercent,
           aiAssisted: false,
-          changeSummary: revision.changeSummary ?? null,
-          publishedById: admin.id,
-          publishedAt: revision.publishedAt ?? new Date(),
+          createdById: admin.id,
         },
       })
-      lastRevisionId = created.id
-    }
-    if ((seed.status === 'PUBLISHED' || seed.status === 'RETIRED') && lastRevisionId) {
-      await prisma.mockTest.update({
-        where: { id: mockTest.id },
-        data: { publishedRevisionId: lastRevisionId },
-      })
-    }
-    mockTestsSeeded += 1
 
-    // §45's sample TestAttempt: the dev admin's submitted attempt at the
+      let lastRevisionId: string | null = null
+      for (const [index, revision] of seed.revisions.entries()) {
+        const created = await prisma.mockTestRevision.create({
+          data: {
+            mockTestId: mockTest.id,
+            revisionNumber: index + 1,
+            title: seed.title,
+            questionIdsJson: JSON.stringify(questionIds),
+            durationMinutes: seed.durationMinutes,
+            passPercent: seed.passPercent,
+            aiAssisted: false,
+            changeSummary: revision.changeSummary ?? null,
+            publishedById: admin.id,
+            publishedAt: revision.publishedAt ?? new Date(),
+          },
+        })
+        lastRevisionId = created.id
+      }
+      if ((seed.status === 'PUBLISHED' || seed.status === 'RETIRED') && lastRevisionId) {
+        await prisma.mockTest.update({
+          where: { id: mockTest.id },
+          data: { publishedRevisionId: lastRevisionId },
+        })
+      }
+      mockTestsSeeded += 1
+      testId = mockTest.id
+      servedIds = questionIds
+    }
+
+    // §45's sample TestAttempts: the dev admin's submitted attempt at the
     // sample test — 3/5 correct (60% ≥ 40% → passed), one wrong pick and one
-    // unanswered (the §6 answers[] record shows every served question).
-    if (seed.status === 'PUBLISHED' && seed.slug === 'upsc-cse-polity-world-gk-mini-mock-test') {
-      const alreadyAttempted = await prisma.testAttempt.findFirst({
-        where: { userId: admin.id, mockTestId: mockTest.id, status: 'SUBMITTED' },
-        select: { id: true },
-      })
-      if (!alreadyAttempted) {
-        const startedAt = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+    // unanswered (the §6 answers[] record shows every served question) — and
+    // the dev IN admin's (P7-S4's distribution-shaped fixture): 2/5 = 40%,
+    // a different wrong pattern, submitted 1 day ago. Both feed the §22
+    // mastery fixtures below (the seed's ready-made revision-queue demo).
+    // The pick/key fixtures assume the seed composition's 5 questions — a
+    // live-drifted composition (different count) skips honestly.
+    if (
+      seed.status === 'PUBLISHED' &&
+      seed.slug === 'upsc-cse-polity-world-gk-mini-mock-test' &&
+      servedIds.length === 5
+    ) {
+      const attemptFixtures: Array<{
+        userId: string
+        submittedAgoMs: number
+        // Picks follow the served order: q0 six-rights B (key B), q1
+        // heart-and-soul C (key C), q2 writs B (key B), q3 UNSC B (key B),
+        // q4 Kalinga A (key A).
+        picks: Array<'B' | 'C' | 'A' | null>
+      }> = [
+        { userId: admin.id, submittedAgoMs: 3 * 24 * 60 * 60 * 1000, picks: ['B', 'C', 'B', 'A', null] },
+        { userId: inAdmin.id, submittedAgoMs: 1 * 24 * 60 * 60 * 1000, picks: ['B', 'A', 'B', 'C', null] },
+      ]
+      for (const fixture of attemptFixtures) {
+        const alreadyAttempted = await prisma.testAttempt.findFirst({
+          where: { userId: fixture.userId, mockTestId: testId, status: 'SUBMITTED' },
+          select: { id: true },
+        })
+        if (alreadyAttempted) continue
+
+        const startedAt = new Date(Date.now() - fixture.submittedAgoMs - 10 * 60 * 1000)
         const deadlineAt = new Date(startedAt.getTime() + seed.durationMinutes * 60 * 1000)
-        const submittedAt = new Date(startedAt.getTime() + 8 * 60 * 1000)
-        // The served order matches the composition; picks follow it:
-        // six-rights B (correct), heart-and-soul C (correct), writs B
-        // (correct), UNSC A France (wrong — the key is B Germany), Kalinga
-        // unanswered (wrong).
-        const answers = [
-          { questionId: questionIds[0], selected: 'B', correct: true, correctAnswer: 'B', revisionNumber: 1 },
-          { questionId: questionIds[1], selected: 'C', correct: true, correctAnswer: 'C', revisionNumber: 1 },
-          { questionId: questionIds[2], selected: 'B', correct: true, correctAnswer: 'B', revisionNumber: 1 },
-          { questionId: questionIds[3], selected: 'A', correct: false, correctAnswer: 'B', revisionNumber: 1 },
-          { questionId: questionIds[4], selected: null, correct: false, correctAnswer: 'A', revisionNumber: 1 },
-        ]
+        const submittedAt = new Date(Date.now() - fixture.submittedAgoMs)
+        const keys = ['B', 'C', 'B', 'B', 'A']
+        const answers = servedIds.map((questionId, index) => ({
+          questionId,
+          selected: fixture.picks[index],
+          correct: fixture.picks[index] === keys[index],
+          correctAnswer: keys[index],
+          revisionNumber: 1,
+        }))
         const correctCount = answers.filter((answer) => answer.correct).length
         const scorePercent = Math.round((correctCount / answers.length) * 10000) / 100
         await prisma.testAttempt.create({
           data: {
-            userId: admin.id,
-            mockTestId: mockTest.id,
+            userId: fixture.userId,
+            mockTestId: testId,
             status: 'SUBMITTED',
             startedAt,
             deadlineAt,
-            servedQuestionsJson: JSON.stringify(questionIds),
+            servedQuestionsJson: JSON.stringify(servedIds),
             durationMinutes: seed.durationMinutes,
             passPercent: seed.passPercent,
             submittedAt,
@@ -3218,6 +3251,87 @@ async function main() {
         })
         attemptsSeeded += 1
       }
+    }
+  }
+
+  // ---------- P7-S4: MasteryState — §22 fixtures from the full attempt history ----------
+  // Mastery derives ONLY from submitted §6 attempts (§22). The seed rebuilds
+  // each fixture user's per-unit states by folding their SUBMITTED attempts
+  // chronologically through the SAME pure scheduler the live submit path
+  // applies (computeMasteryTransition — never a second implementation).
+  // Idempotent per the §36 discipline: a unit's row is created only when
+  // missing — live rows (from real attempts through the app) are never
+  // overwritten.
+  let masteryStatesSeeded = 0
+  for (const masteryUser of [admin, inAdmin]) {
+    const attempts = await prisma.testAttempt.findMany({
+      where: { userId: masteryUser.id, status: 'SUBMITTED' },
+      orderBy: { submittedAt: 'asc' },
+    })
+    if (attempts.length === 0) continue
+
+    const servedIds = [
+      ...new Set(attempts.flatMap((attempt) => JSON.parse(attempt.servedQuestionsJson) as string[])),
+    ]
+    const questionRows = await prisma.question.findMany({
+      where: { id: { in: servedIds } },
+      select: { id: true, knowledgeUnitId: true },
+    })
+    const unitByQuestion = new Map(questionRows.map((row) => [row.id, row.knowledgeUnitId]))
+
+    // Fold chronologically: previous transition → next (the live path's
+    // exactly-once fold, replayed over history).
+    const transitionByUnit = new Map<
+      string,
+      { attemptedCount: number; correctCount: number; streak: number; masteryScore: number; lastReviewedAt: Date; nextReviewAt: Date }
+    >()
+    for (const attempt of attempts) {
+      const answers = JSON.parse(attempt.answersJson) as Array<{ questionId: string; correct: boolean }>
+      const outcomeByUnit = new Map<string, { unitId: string; correct: number; total: number }>()
+      for (const answer of answers) {
+        const unitId = unitByQuestion.get(answer.questionId)
+        if (!unitId) continue
+        const bucket = outcomeByUnit.get(unitId) ?? { unitId, correct: 0, total: 0 }
+        bucket.total += 1
+        if (answer.correct) bucket.correct += 1
+        outcomeByUnit.set(unitId, bucket)
+      }
+      const reviewedAt = attempt.submittedAt ?? attempt.startedAt
+      for (const outcome of outcomeByUnit.values()) {
+        const previous = transitionByUnit.get(outcome.unitId)
+        const next = computeMasteryTransition(
+          previous
+            ? {
+                attemptedCount: previous.attemptedCount,
+                correctCount: previous.correctCount,
+                streak: previous.streak,
+              }
+            : null,
+          { correct: outcome.correct, total: outcome.total, reviewedAt }
+        )
+        transitionByUnit.set(outcome.unitId, next)
+      }
+    }
+
+    for (const [unitId, transition] of transitionByUnit) {
+      const existing = await prisma.masteryState.findUnique({
+        where: { userId_knowledgeUnitId: { userId: masteryUser.id, knowledgeUnitId: unitId } },
+        select: { id: true },
+      })
+      if (existing) continue // live state wins — never overwrite (§36)
+      await prisma.masteryState.create({
+        data: {
+          userId: masteryUser.id,
+          knowledgeUnitId: unitId,
+          masteryScore: transition.masteryScore,
+          attemptedCount: transition.attemptedCount,
+          correctCount: transition.correctCount,
+          streak: transition.streak,
+          lastReviewedAt: transition.lastReviewedAt,
+          nextReviewAt: transition.nextReviewAt,
+        },
+      })
+      masteryStatesSeeded += 1
     }
   }
 
@@ -3234,7 +3348,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

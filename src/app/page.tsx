@@ -10,7 +10,9 @@
  * language switcher always available in the header, and the foundation
  * console (every prior session's verification surface) one click away.
  * P7-S3 adds the §22 mock-test runner pages (…/exams/{exam}/mock-tests/{slug}/
- * and …/gk/{topic}/mock-tests/{slug}/).
+ * and …/gk/{topic}/mock-tests/{slug}/). P7-S4 surfaces the §22 mastery layer
+ * on the existing surfaces — the dashboard's revision queue, the knowledge
+ * page's "your mastery" strip — no new routes (private state, noindex).
  * In-app navigation mirrors the §16 URL grammar after the hash
  * (#/hi/gk/polity-governance/…, #/exams/upsc-civil-services/…) — one grammar,
  * one source of URL truth, driven by the live country/language configuration
@@ -523,7 +525,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 lg:inline-flex"
               >
-                Phase 7 · Session 3 — Mock Test Engine
+                Phase 7 · Session 4 — Mastery & Revision Queue
               </Badge>
               <HeaderAuth />
             </div>

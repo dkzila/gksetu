@@ -30,6 +30,7 @@ import {
 } from '@/modules/audit'
 import { countMySaves, listMyFollows } from '@/modules/follow-save'
 import type { FollowedEntitySummary, FollowedExamSummary, FollowedTopicSummary, PublicFollow } from '@/modules/follow-save'
+import { getMyMasteryStats } from '@/modules/assessment' // P7-S4: the §9 implicit-signal layer
 
 import { getMyGoal, loadUserContext } from './service'
 import { resolveLabelMarket } from './dashboard-service'
@@ -37,6 +38,7 @@ import type { PublicGoal } from './types'
 import type {
   HowItWorks,
   InventoryGoal,
+  InventoryImplicit,
   InventoryOnboarding,
   InventoryReset,
   InventorySaves,
@@ -299,6 +301,28 @@ export async function getMyPersonalisation(
   // §10: saves counted separately — the quarantine made visible.
   const saveCounts = await countMySaves(userId)
 
+  // P7-S4 §9 implicit signals: the §22 mastery layer — derived, never
+  // declared. The inventory states what is derived, from what, and what it
+  // affects (§31 honesty); the reset clears the derived rows.
+  const masteryStats = await getMyMasteryStats(userId)
+  const implicit: InventoryImplicit = {
+    mastery: {
+      ...masteryStats,
+      effects: [
+        {
+          kind: 'QUEUE_RANKING',
+          text: 'Units due for revision rise to the top of your combined-exam queue (§11 step 7 — user state ranks the queue).',
+        },
+        {
+          kind: 'REVISION_QUEUE',
+          text: 'Your dashboard’s revision queue is scheduled from these units — spaced review at 1 → 3 → 7 → 14 → 30 → 60 days after a perfect round, tomorrow after a slip (§22).',
+        },
+      ],
+      note:
+        'Derived only from your submitted mock-test attempts (§6 — attempts are immutable history; “reset personalisation” clears this derived progress and new attempts rebuild it from that point).',
+    },
+  }
+
   const followSignals: InventorySignal[] = follows.items.map((follow) =>
     follow.object.kind === 'EXAM'
       ? followedExamSignal(follow, follow.object)
@@ -339,10 +363,12 @@ export async function getMyPersonalisation(
       goal
         ? `Your declared goal — ${counts.goalExams} ${pluralise(counts.goalExams, 'exam', 'exams')}, ${counts.goalSubjects} ${pluralise(counts.goalSubjects, 'subject', 'subjects')} and its preferences`
         : 'Your declared goal — none declared yet',
+      `Your derived mastery progress — ${pluralise(masteryStats.trackedUnitCount, '1 tracked unit', `${masteryStats.trackedUnitCount} tracked units`)} and their revision schedule (new attempts rebuild it)`,
       'Your setup status returns to "pending" — the guided flow will offer itself again',
     ],
     keeps: [
       `Your ${saveCounts.total} ${pluralise(saveCounts.total, 'saved item', 'saved items')} and ${saveCounts.collections} ${pluralise(saveCounts.collections, 'collection', 'collections')} — retrieval, never personalisation signals`,
+      `Your ${masteryStats.submittedAttemptCount} submitted ${pluralise(masteryStats.submittedAttemptCount, 'attempt', 'attempts')} — immutable assessment history (§6), like your saves`,
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],
@@ -372,6 +398,7 @@ export async function getMyPersonalisation(
       saveCounts.total
     ),
     signals: { follows: followSignals, goal: inventoryGoal, counts },
+    implicit,
     saves: {
       total: saveCounts.total,
       collections: saveCounts.collections,
@@ -389,10 +416,12 @@ export async function getMyPersonalisation(
  * The explicit "reset personalisation" control (§9/§31). Removes every §9
  * personalisation signal — all follows and the declared goal (join rows
  * cascade) — and returns the §6 onboarding state to its fresh-canvas PENDING
- * so the guided flow can offer itself again. Deliberately PRESERVES saves
- * and collections (§10 — retrieval, never signals) and account settings
- * (identity fields belong to the profile self-service). Idempotent: resetting
- * an empty account is a successful no-op.
+ * so the guided flow can offer itself again. P7-S4: the derived §22 mastery
+ * rows clear too (the implicit signal — the revision queue empties), while
+ * the immutable §6 attempts survive like saves do. Deliberately PRESERVES
+ * saves and collections (§10 — retrieval, never signals) and account
+ * settings (identity fields belong to the profile self-service).
+ * Idempotent: resetting an empty account is a successful no-op.
  */
 export async function resetMyPersonalisation(
   userId: string,
@@ -402,21 +431,22 @@ export async function resetMyPersonalisation(
   const user = await loadUserContext(userId)
 
   // Snapshot BEFORE the mutation — the audit before-state and the receipt.
-  const [followsBefore, goalBefore, userRow] = await Promise.all([
+  const [followsBefore, goalBefore, userRow, masteryBefore] = await Promise.all([
     db.userFollow.count({ where: { userId } }),
     db.userGoal.findUnique({
       where: { userId },
       include: { exams: { select: { examId: true } }, topics: { select: { topicId: true } } },
     }),
     db.user.findUnique({ where: { id: userId }, select: { onboardingStatus: true } }),
+    db.masteryState.count({ where: { userId } }),
   ])
   const onboardingWas = userRow?.onboardingStatus ?? 'PENDING'
 
   // §10: saves survive — counted BEFORE so the receipt can say so honestly.
   const kept = await countMySaves(userId)
 
-  // Cold pooled Supabase connections can stretch each round-trip past ~700ms
-  // (the setMyGoal precedent); this transaction is up to 3 statements.
+  // Cold pooled connections can stretch each round-trip past ~700ms
+  // (the setMyGoal precedent); this transaction is up to 4 statements.
   await db.$transaction(
     async (tx) => {
       if (followsBefore > 0) {
@@ -425,6 +455,12 @@ export async function resetMyPersonalisation(
       if (goalBefore) {
         // Join rows (UserGoalExam/UserGoalTopic) cascade with the goal.
         await tx.userGoal.delete({ where: { id: goalBefore.id } })
+      }
+      // P7-S4 §9/§31: the derived §22 mastery rows clear — the implicit
+      // signal. The immutable §6 attempts survive (kept, like saves); new
+      // attempts rebuild mastery from that point on.
+      if (masteryBefore > 0) {
+        await tx.masteryState.deleteMany({ where: { userId } })
       }
       // §6 onboarding state: back to the fresh canvas — the guided flow may
       // offer itself again (and the user can skip once more; both honest).
@@ -461,12 +497,14 @@ export async function resetMyPersonalisation(
           }
         : null,
       onboardingStatus: onboardingWas,
+      masteryStates: masteryBefore,
     },
-    after: { followCount: 0, goal: null, onboardingStatus: 'PENDING' },
+    after: { followCount: 0, goal: null, onboardingStatus: 'PENDING', masteryStates: 0 },
     metadata: {
       removedFollows: followsBefore,
       removedGoalExams: goalBefore?.exams.length ?? 0,
       removedGoalSubjects: goalBefore?.topics.length ?? 0,
+      clearedMasteryStates: masteryBefore,
       keptSaves: kept.total,
       keptCollections: kept.collections,
     },
@@ -481,6 +519,7 @@ export async function resetMyPersonalisation(
       goalExams: goalBefore?.exams.length ?? 0,
       goalSubjects: goalBefore?.topics.length ?? 0,
       onboardingReset: onboardingWas !== 'PENDING',
+      masteryStates: masteryBefore,
     },
     kept: { saves: kept.total, collections: kept.collections },
   }

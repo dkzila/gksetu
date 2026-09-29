@@ -77,9 +77,24 @@ const DEPTH_LABEL: Record<string, string> = {
 }
 
 const TIER_STYLE: Record<ApiDashboardQueueUnit['tier'], { label: string; className: string }> = {
+  REVISION_DUE: { label: 'Due for revision', className: 'border-rose-300 bg-rose-50 text-rose-700' },
   GOAL_SUBJECT: { label: 'Goal subject', className: 'border-emerald-300 bg-emerald-50 text-emerald-700' },
   FOLLOWED_SUBJECT: { label: 'Followed subject', className: 'border-teal-300 bg-teal-50 text-teal-700' },
   EXAM_SCOPE: { label: 'Exam scope', className: 'border-zinc-200 bg-white text-zinc-500' },
+}
+
+/** P7-S4 §22 — the mastery chip's honest colour (score tiers, not vanity). */
+function masteryChipClass(score: number): string {
+  if (score >= 80) return 'border-emerald-200 bg-emerald-50 text-emerald-700'
+  if (score >= 50) return 'border-amber-200 bg-amber-50 text-amber-800'
+  return 'border-rose-200 bg-rose-50 text-rose-700'
+}
+
+/** P7-S4 §22 — the due/overdue badge label. */
+function dueLabel(dueInDays: number): string {
+  if (dueInDays < 0) return `Overdue ${-dueInDays}${-dueInDays === 1 ? ' day' : ' days'}`
+  if (dueInDays === 0) return 'Due today'
+  return `In ${dueInDays} ${dueInDays === 1 ? 'day' : 'days'}`
 }
 
 const MODE_LABEL: Record<string, string> = {
@@ -600,8 +615,8 @@ export function DashboardView({
                         : 'Your queue appears once a declared or followed exam has an active syllabus version.'}
                     </p>
                     <p className="text-xs text-zinc-400">
-                      Due revisions and weak-topic feedback join this queue with the assessment
-                      system (§22, Phase 7).
+                      Units due for revision rise to the top once you have submitted attempts —
+                      try a mock test from an exam page or topic hub (§22).
                     </p>
                   </div>
                 ) : (
@@ -627,6 +642,15 @@ export function DashboardView({
                                 <Badge variant="outline" className={`text-[10px] ${tier.className}`}>
                                   {tier.label}
                                 </Badge>
+                                {entry.mastery && (
+                                  <Badge
+                                    variant="outline"
+                                    className={`text-[10px] font-semibold ${masteryChipClass(entry.mastery.score)}`}
+                                    title={`Last reviewed ${new Date(entry.mastery.lastReviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} · next review ${new Date(entry.mastery.nextReviewAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}`}
+                                  >
+                                    Mastery {entry.mastery.score}%
+                                  </Badge>
+                                )}
                                 <Badge
                                   variant="outline"
                                   className={`text-[10px] font-semibold ${DEPTH_STYLE[entry.unit.requiredDepth] ?? 'border-zinc-200 bg-white text-zinc-600'}`}
@@ -672,6 +696,178 @@ export function DashboardView({
                       )
                     })}
                   </ol>
+                )}
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* ---------- P7-S4: the §22 revision queue (due / upcoming / weak) ---------- */}
+          {/* Placement: directly after the combined-exam queue — §22's dashboard
+              order is "combined-exam queue, due revisions" — the two
+              what-matters-now surfaces. Every row opens the §16 knowledge page
+              (revise loops back to learn, §22). */}
+          <section aria-labelledby="mastery-heading" className="space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 id="mastery-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
+                <CalendarClock className="h-5 w-5 text-rose-600" aria-hidden="true" />
+                Revision queue
+              </h2>
+              {data.mastery.stats.trackedUnitCount > 0 && (
+                <div className="flex flex-wrap items-center gap-2" role="status">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
+                    <strong className="font-semibold">{data.mastery.stats.trackedUnitCount}</strong> tracked
+                  </span>
+                  {data.mastery.stats.averageScore !== null && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
+                      avg <strong className="font-semibold">{data.mastery.stats.averageScore}%</strong>
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
+                    from <strong className="font-semibold">{data.mastery.stats.submittedAttemptCount}</strong>{' '}
+                    {data.mastery.stats.submittedAttemptCount === 1 ? 'attempt' : 'attempts'}
+                  </span>
+                </div>
+              )}
+            </div>
+            <Card className="border-zinc-200 shadow-sm">
+              <CardContent className="space-y-4 p-5 sm:p-6">
+                {data.mastery.stats.trackedUnitCount === 0 ? (
+                  <div className="space-y-2 rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-500">
+                    <p>{data.mastery.note ?? 'No mastery yet — the revision queue builds from your submitted mock tests.'}</p>
+                    <p className="text-xs text-zinc-400">
+                      Attempt a mock test and every unit it touched starts a spaced-review schedule (§22) —
+                      due units then rise to the top of your learning queue.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    {data.mastery.note && (
+                      <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                        {data.mastery.note}
+                      </p>
+                    )}
+
+                    {data.mastery.due.length > 0 && (
+                      <div className="space-y-2.5">
+                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
+                          <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-100 px-1.5 text-[11px] font-semibold text-rose-700">
+                            {data.mastery.stats.dueCount}
+                          </span>
+                          due now
+                        </p>
+                        <ol
+                          className="max-h-96 space-y-2.5 overflow-y-auto pr-1"
+                          aria-label="Units due for revision"
+                        >
+                          {data.mastery.due.map((item) => (
+                            <li key={item.unit.slug}>
+                              <button
+                                type="button"
+                                onClick={() => onOpenPath(item.unit.canonicalPath)}
+                                className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-rose-300 hover:bg-rose-50/30"
+                                aria-label={`Revise ${item.unit.canonicalName}`}
+                              >
+                                <div className="flex flex-wrap items-start justify-between gap-2">
+                                  <div className="min-w-0 flex-1">
+                                    <p className="break-words text-sm font-semibold leading-snug text-zinc-900">
+                                      {item.unit.canonicalName}
+                                    </p>
+                                    <p className="mt-0.5 text-xs text-zinc-500">
+                                      {item.unit.topicLabel}
+                                      {item.unit.status === 'RETIRED' && (
+                                        <span className="ml-1.5 font-medium text-amber-700">(unit retired — kept as history, §36)</span>
+                                      )}
+                                    </p>
+                                  </div>
+                                  <span className="flex shrink-0 flex-wrap items-center gap-1.5">
+                                    {item.isWeak && (
+                                      <Badge variant="outline" className="border-rose-200 bg-rose-50 text-[10px] text-rose-700">
+                                        Weak
+                                      </Badge>
+                                    )}
+                                    <Badge
+                                      variant="outline"
+                                      className={`text-[10px] font-semibold ${masteryChipClass(item.masteryScore)}`}
+                                    >
+                                      Mastery {item.masteryScore}%
+                                    </Badge>
+                                    <Badge variant="outline" className="border-rose-200 bg-rose-50 text-[10px] font-semibold text-rose-700">
+                                      {dueLabel(item.dueInDays)}
+                                    </Badge>
+                                  </span>
+                                </div>
+                                <p className="mt-2 text-xs text-zinc-500">{item.reason}</p>
+                                <p className="mt-1.5 truncate font-mono text-[10px] text-zinc-300" title={item.unit.canonicalPath}>
+                                  {item.unit.canonicalPath}
+                                </p>
+                              </button>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+
+                    {data.mastery.upcoming.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
+                          <ListChecks className="h-4 w-4 text-teal-600" aria-hidden="true" />
+                          Coming up (next 7 days)
+                        </p>
+                        <ul className="space-y-1.5">
+                          {data.mastery.upcoming.map((item) => (
+                            <li key={item.unit.slug}>
+                              <button
+                                type="button"
+                                onClick={() => onOpenPath(item.unit.canonicalPath)}
+                                className="flex w-full flex-wrap items-center justify-between gap-2 rounded-lg border border-zinc-100 bg-zinc-50/60 px-3 py-2 text-left transition-colors hover:border-teal-200 hover:bg-teal-50/40"
+                              >
+                                <span className="min-w-0 flex-1 truncate text-sm text-zinc-700">
+                                  {item.unit.canonicalName}
+                                  <span className="ml-1.5 text-xs text-zinc-400">{item.unit.topicLabel}</span>
+                                </span>
+                                <span className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500">
+                                  <span className={`font-semibold ${masteryChipClass(item.masteryScore).split(' ').pop() ?? ''}`}>
+                                    {item.masteryScore}%
+                                  </span>
+                                  · {dueLabel(item.dueInDays)}
+                                </span>
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {data.mastery.weak.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
+                          <Target className="h-4 w-4 text-amber-600" aria-hidden="true" />
+                          Weak topics
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {data.mastery.weak.map((item) => (
+                            <button
+                              key={item.unit.slug}
+                              type="button"
+                              onClick={() => onOpenPath(item.unit.canonicalPath)}
+                              className="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 text-xs font-medium text-rose-700 transition-colors hover:border-rose-400"
+                            >
+                              {item.unit.canonicalName}
+                              <span className="font-semibold">{item.masteryScore}%</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* §9 transparency: the stated §22 rules, on demand */}
+                    <details className="group rounded-md border border-zinc-200 bg-zinc-50/60 px-3 py-2">
+                      <summary className="cursor-pointer list-none text-xs font-medium text-zinc-600 group-open:text-zinc-900">
+                        How this schedule works (§22)
+                      </summary>
+                      <p className="mt-2 text-xs leading-relaxed text-zinc-500">{data.mastery.rules}</p>
+                    </details>
+                  </>
                 )}
               </CardContent>
             </Card>

@@ -51,6 +51,9 @@ import {
 } from '@/modules/country-locale'
 import { wireMockTestWorkflow } from '@/modules/editorial'
 
+// P7-S4: the §22 mastery fold rides the submit claim transaction.
+import { applyMasteryFromAttempt } from './mastery-service'
+
 import type {
   AdminMockTestDetail,
   AdminMockTestEntry,
@@ -1171,26 +1174,61 @@ export async function submitAttempt(
   const submittedAt = new Date()
   const answersJson = JSON.stringify(answers)
 
+  // §22 mastery (P7-S4): aggregate the attempt's answers per CANONICAL UNIT —
+  // the §7 questions anchor at exactly one unit each, so one submitted
+  // attempt yields one outcome per unit it touched.
+  const outcomesByUnit = new Map<string, { unitId: string; correct: number; total: number }>()
+  for (const record of answers) {
+    const unitId = byId.get(record.questionId)?.knowledgeUnitId
+    if (!unitId) continue // defensive: served questions always anchor a unit
+    const bucket = outcomesByUnit.get(unitId) ?? { unitId, correct: 0, total: 0 }
+    bucket.total += 1
+    if (record.correct) bucket.correct += 1
+    outcomesByUnit.set(unitId, bucket)
+  }
+
   // The conditional claim makes double-submits safe: only an IN_PROGRESS
-  // attempt may transition to SUBMITTED (§6 immutability thereafter).
-  const claimed = await db.testAttempt.updateMany({
-    where: { id: attempt.id, status: 'IN_PROGRESS' },
-    data: {
-      status: 'SUBMITTED',
-      submittedAt,
-      answersJson,
-      correctCount,
-      totalCount,
-      scorePercent,
-      passed,
+  // attempt may transition to SUBMITTED (§6 immutability thereafter) — and
+  // the §22 mastery fold rides the SAME transaction, so one submitted
+  // attempt updates every unit it touched exactly once (never twice, never
+  // lost to a crash between claim and fold).
+  let masteryUnits = 0
+  const claimed = await db.$transaction(
+    async (tx) => {
+      const claim = await tx.testAttempt.updateMany({
+        where: { id: attempt.id, status: 'IN_PROGRESS' },
+        data: {
+          status: 'SUBMITTED',
+          submittedAt,
+          answersJson,
+          correctCount,
+          totalCount,
+          scorePercent,
+          passed,
+        },
+      })
+      if (claim.count === 0) return { count: 0, unitsUpdated: 0 }
+      const mastery = await applyMasteryFromAttempt(tx, {
+        userId: user.userId,
+        submittedAt,
+        outcomes: [...outcomesByUnit.values()].map((bucket) => ({
+          unitId: bucket.unitId,
+          correct: bucket.correct,
+          total: bucket.total,
+          reviewedAt: submittedAt,
+        })),
+      })
+      return { count: claim.count, unitsUpdated: mastery.unitsUpdated }
     },
-  })
+    { timeout: 20_000, maxWait: 10_000 }
+  )
   if (claimed.count === 0) {
     throw new MockTestError(
       'ATTEMPT_ALREADY_SUBMITTED',
       'This attempt was already submitted — §6 attempts are immutable once scored.'
     )
   }
+  masteryUnits = claimed.unitsUpdated
 
   await recordAudit({
     actor: { userId: user.userId, email: user.email, role: 'READER' },
@@ -1206,7 +1244,7 @@ export async function submitAttempt(
       scorePercent,
       passed,
     },
-    metadata: { mockTestId: attempt.mockTestId, answered: answerByQuestion.size },
+    metadata: { mockTestId: attempt.mockTestId, answered: answerByQuestion.size, masteryUnits },
     ip: meta.ip ?? null,
     userAgent: meta.userAgent ?? null,
   })

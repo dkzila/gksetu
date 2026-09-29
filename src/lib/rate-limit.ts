@@ -103,4 +103,5 @@ export const RATE_LIMITS = {
   mocktestRead: { limit: 60, windowMs: 60 * 1000 }, // admin MockTest registry reads per IP (P7-S3)
   mocktestWrite: { limit: 30, windowMs: 60 * 1000 }, // MockTest mutations per IP (P7-S3)
   mocktestAttempt: { limit: 30, windowMs: 60 * 1000 }, // public attempt start/submit mutations per IP (P7-S3 §22 — timed, scored server-side, persisted for mastery)
+  masteryRead: { limit: 60, windowMs: 60 * 1000 }, // private mastery/revision-queue reads per IP (P7-S4 §22 — owner-scoped, auth-gated)
 } as const

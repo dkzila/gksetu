@@ -12,6 +12,7 @@
  */
 
 import type { CombinedExamResolution, CombinedQueueUnit } from '@/modules/exam-mapping'
+import type { MasteryUnitItem } from '@/modules/assessment'
 import type { FollowedExamSummary, FollowedTopicSummary, PublicSave } from '@/modules/follow-save'
 import type { PublicGoal } from './types'
 
@@ -21,7 +22,13 @@ import type { PublicGoal } from './types'
  * clients while `text` is the human sentence rendered as-is.
  */
 export interface DashboardQueueReason {
-  kind: 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'FOLLOWED_EXAM' | 'FOLLOWED_SUBJECT'
+  kind:
+    | 'GOAL_EXAM'
+    | 'GOAL_SUBJECT'
+    | 'FOLLOWED_EXAM'
+    | 'FOLLOWED_SUBJECT'
+    /** P7-S4 §22/§11 step 7 — the unit's spaced review is due (implicit signal). */
+    | 'REVISION_DUE'
   /** Ready-to-render explanation, e.g. "Your goal includes UPSC Civil Services Examination". */
   text: string
   /** Present for exam-covering reasons (§37 stable slug reference). */
@@ -33,9 +40,19 @@ export interface DashboardQueueReason {
 /**
  * The personalisation tier a queue unit earned (§9 layering — declared goal
  * signals outrank passive follows; everything else keeps the engine's §11
- * base order). This is the ONLY re-ranking the dashboard applies.
+ * base order). P7-S4 adds the §22/§11 step 7 user-state tier: a unit whose
+ * spaced review is DUE rises above goal subjects — "what matters now" is
+ * time-sensitive (§22). This and goal/follow signals are the ONLY
+ * re-ranking the dashboard applies.
  */
-export type DashboardTier = 'GOAL_SUBJECT' | 'FOLLOWED_SUBJECT' | 'EXAM_SCOPE'
+export type DashboardTier = 'REVISION_DUE' | 'GOAL_SUBJECT' | 'FOLLOWED_SUBJECT' | 'EXAM_SCOPE'
+
+/** The user's §22 mastery state on one queue unit (P7-S4 — an implicit signal, §9). */
+export interface DashboardQueueMastery {
+  score: number
+  lastReviewedAt: string
+  nextReviewAt: string
+}
 
 /** One unit in the personalised queue: the §11 engine row + §9 explanations. */
 export interface DashboardQueueUnit {
@@ -43,6 +60,8 @@ export interface DashboardQueueUnit {
   unit: CombinedQueueUnit
   tier: DashboardTier
   reasons: DashboardQueueReason[]
+  /** Present when the user has submitted an attempt touching this unit (P7-S4). */
+  mastery: DashboardQueueMastery | null
 }
 
 /** Which §9 signals produced the exam scope (§11 step 1's input set). */
@@ -95,6 +114,33 @@ export interface DashboardSaves {
   items: PublicSave[]
 }
 
+/**
+ * The §22 revision-queue block (P7-S4): what the dashboard's "due revisions"
+ * surface renders — the due slice first (most overdue), the 7-day horizon,
+ * and the weak list. Items are the assessment module's §9-explainable queue
+ * rows verbatim (§37 single shape across surfaces).
+ */
+export interface DashboardMastery {
+  stats: {
+    trackedUnitCount: number
+    dueCount: number
+    dueSoonCount: number
+    weakCount: number
+    averageScore: number | null
+    submittedAttemptCount: number
+  }
+  /** The due units, most overdue first (§22 — capped at 8 on this surface). */
+  due: MasteryUnitItem[]
+  /** Due within the next 7 days (§22 — capped at 5). */
+  upcoming: MasteryUnitItem[]
+  /** §22 "weak topics" — lowest mastery first (capped at 5). */
+  weak: MasteryUnitItem[]
+  /** The stated §22 scheduling rules (§9 transparency — rendered verbatim). */
+  rules: string
+  /** Honest §36 note — rendered verbatim when empty. */
+  note: string | null
+}
+
 /** GET /api/dashboard response (§37 envelope, §39 mobile-ready). */
 export interface DashboardResponse {
   market: {
@@ -114,6 +160,8 @@ export interface DashboardResponse {
   goal: PublicGoal | null
   signals: DashboardSignals
   queue: DashboardQueue
+  /** P7-S4: the §22 revision queue (due/upcoming/weak + the stated rules). */
+  mastery: DashboardMastery
   saves: DashboardSaves
   computedAt: string
 }

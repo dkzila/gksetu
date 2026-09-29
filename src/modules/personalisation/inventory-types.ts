@@ -28,7 +28,7 @@ export type InventorySignalKind =
  * output must be explainable — so must its input inventory).
  */
 export interface InventorySignalEffect {
-  kind: 'QUEUE_SCOPE' | 'QUEUE_RANKING' | 'PLAN' | 'LABELS'
+  kind: 'QUEUE_SCOPE' | 'QUEUE_RANKING' | 'REVISION_QUEUE' | 'PLAN' | 'LABELS'
   text: string
 }
 
@@ -102,6 +102,26 @@ export interface InventorySaves {
   note: string
 }
 
+/**
+ * The §9 IMPLICIT signals this platform derives (P7-S4: mock-test
+ * performance — the §22 mastery layer). Listed separately from the explicit
+ * inventory: the user never declared these, so the surface states WHAT is
+ * derived, FROM WHAT, and what it affects — the §9/§31 honesty contract.
+ */
+export interface InventoryImplicit {
+  mastery: {
+    trackedUnitCount: number
+    dueCount: number
+    weakCount: number
+    /** The immutable §6 records mastery derives from. */
+    submittedAttemptCount: number
+    /** §9 effect sentences — rendered verbatim. */
+    effects: InventorySignalEffect[]
+    /** The §31 note: attempts are immutable history; the derived state clears with the reset. */
+    note: string
+  }
+}
+
 /** The §6 onboarding state as part of the personalisation lifecycle. */
 export interface InventoryOnboarding {
   status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'
@@ -137,6 +157,8 @@ export interface PersonalisationInventory {
   }
   howItWorks: HowItWorks
   signals: InventorySignals
+  /** P7-S4: the derived §9 implicit signals (mock-test performance → mastery). */
+  implicit: InventoryImplicit
   saves: InventorySaves
   onboarding: InventoryOnboarding
   reset: InventoryReset
@@ -152,6 +174,8 @@ export interface PersonalisationResetResult {
     goalSubjects: number
     /** True when the setup status actually changed (it was not already PENDING). */
     onboardingReset: boolean
+    /** P7-S4: derived mastery rows cleared (§9 implicit signal, §31). */
+    masteryStates: number
   }
   /** What the reset deliberately preserved (§10/§31) — with live counts. */
   kept: {

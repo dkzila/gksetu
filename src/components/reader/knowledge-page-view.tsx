@@ -46,6 +46,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
 import { SaveButton } from '@/components/saves/save-button'
 import { PracticeLayer } from '@/components/assessment/practice-layer'
+import { MasteryStrip } from '@/components/assessment/mastery-strip'
 
 // ---------- Types (mirror /api/knowledge/page/{ref}) ----------
 
@@ -724,6 +725,13 @@ export function KnowledgePageView({
 
       {/* ---------- §22 layer 2.7: practice — scored MCQs (P7-S2) ---------- */}
       <PracticeLayer practice={page.practice} />
+
+      {/* ---------- §22 layer 2.8: your mastery — spaced-review state (P7-S4) ----------
+          The revise half of learn → practice → revise: the signed-in reader's
+          §22 spaced-review state for THIS unit, derived from submitted
+          attempts. Renders nothing signed-out (§31 private state). */}
+      <MasteryStrip unitSlug={page.unit.slug} />
+
 
       {/* ---------- §22 layer 3: sources (§24) ---------- */}
       <div className="space-y-3">

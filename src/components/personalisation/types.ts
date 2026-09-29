@@ -94,7 +94,7 @@ export interface ApiTopicNode {
 // ---------- Dashboard (mirrors src/modules/personalisation/dashboard-types.ts, P5-S4) ----------
 
 export interface ApiDashboardReason {
-  kind: 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'FOLLOWED_EXAM' | 'FOLLOWED_SUBJECT'
+  kind: 'GOAL_EXAM' | 'GOAL_SUBJECT' | 'FOLLOWED_EXAM' | 'FOLLOWED_SUBJECT' | 'REVISION_DUE'
   text: string
   examSlug?: string
   topicSlug?: string
@@ -136,8 +136,77 @@ export interface ApiDashboardQueueUnit {
     coverings: ApiQueueCovering[]
     latestEffectiveFrom: string | null
   }
-  tier: 'GOAL_SUBJECT' | 'FOLLOWED_SUBJECT' | 'EXAM_SCOPE'
+  tier: 'REVISION_DUE' | 'GOAL_SUBJECT' | 'FOLLOWED_SUBJECT' | 'EXAM_SCOPE'
   reasons: ApiDashboardReason[]
+  /** P7-S4 §22 — present when a submitted attempt touched this unit. */
+  mastery: { score: number; lastReviewedAt: string; nextReviewAt: string } | null
+}
+
+// ---------- P7-S4: mastery / revision queue (mirrors mastery-types.ts) ----------
+
+/** One tracked unit in the §22 revision queue (the assessment module's row verbatim). */
+export interface ApiMasteryUnitItem {
+  unit: {
+    slug: string
+    canonicalName: string
+    status: string
+    topicSlug: string
+    topicName: string
+    topicLabel: string
+    canonicalPath: string
+  }
+  masteryScore: number
+  attemptedCount: number
+  correctCount: number
+  streak: number
+  lastReviewedAt: string
+  nextReviewAt: string
+  dueInDays: number
+  isDue: boolean
+  isWeak: boolean
+  reason: string
+}
+
+/** The dashboard's §22 mastery block (trimmed from the full overview). */
+export interface ApiDashboardMastery {
+  stats: {
+    trackedUnitCount: number
+    dueCount: number
+    dueSoonCount: number
+    weakCount: number
+    averageScore: number | null
+    submittedAttemptCount: number
+  }
+  due: ApiMasteryUnitItem[]
+  upcoming: ApiMasteryUnitItem[]
+  weak: ApiMasteryUnitItem[]
+  rules: string
+  note: string | null
+}
+
+/** GET /api/mastery?unit= — the §22 knowledge-page mastery strip. */
+export interface ApiMasteryUnitState {
+  unit: {
+    slug: string
+    canonicalName: string
+    topicSlug: string
+    topicName: string
+    topicLabel: string
+    canonicalPath: string
+  }
+  state: {
+    masteryScore: number
+    attemptedCount: number
+    correctCount: number
+    streak: number
+    lastReviewedAt: string
+    nextReviewAt: string
+    dueInDays: number
+    isDue: boolean
+    isWeak: boolean
+    reason: string
+  } | null
+  note: string | null
 }
 
 export interface ApiDashboardExamResolution {
@@ -262,13 +331,15 @@ export interface ApiDashboard {
     note: string | null
   }
   saves: { total: number; items: ApiDashboardSave[] }
+  /** P7-S4: the §22 revision queue (due/upcoming/weak + the stated rules). */
+  mastery: ApiDashboardMastery
   computedAt: string
 }
 
 // ---------- Personalisation inventory (mirrors inventory-types.ts, P5-S5) ----------
 
 export interface ApiInventoryEffect {
-  kind: 'QUEUE_SCOPE' | 'QUEUE_RANKING' | 'PLAN' | 'LABELS'
+  kind: 'QUEUE_SCOPE' | 'QUEUE_RANKING' | 'REVISION_QUEUE' | 'PLAN' | 'LABELS'
   text: string
 }
 
@@ -325,6 +396,17 @@ export interface ApiPersonalisation {
       total: number
     }
   }
+  /** P7-S4: the derived §9 implicit signals (mock-test performance → mastery). */
+  implicit: {
+    mastery: {
+      trackedUnitCount: number
+      dueCount: number
+      weakCount: number
+      submittedAttemptCount: number
+      effects: ApiInventoryEffect[]
+      note: string
+    }
+  }
   saves: { total: number; collections: number; note: string }
   onboarding: { status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'SKIPPED'; note: string }
   reset: { available: boolean; signalCount: number; removes: string[]; keeps: string[] }
@@ -338,6 +420,8 @@ export interface ApiResetResult {
     goalExams: number
     goalSubjects: number
     onboardingReset: boolean
+    /** P7-S4: derived §22 mastery rows cleared (§9/§31). */
+    masteryStates: number
   }
   kept: { saves: number; collections: number }
 }

@@ -32,6 +32,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   SlidersHorizontal,
+  TrendingUp,
   Trash2,
 } from 'lucide-react'
 
@@ -298,9 +299,13 @@ export function ControlsView({
           payload.data.reset.removed.follows +
           payload.data.reset.removed.goalExams +
           payload.data.reset.removed.goalSubjects
+        const masteryNote =
+          payload.data.reset.removed.masteryStates > 0
+            ? ` · ${payload.data.reset.removed.masteryStates} mastery ${payload.data.reset.removed.masteryStates === 1 ? 'row' : 'rows'} cleared`
+            : ''
         toast({
           title: 'Personalisation reset',
-          description: `${removedSignals} signal${removedSignals === 1 ? '' : 's'} removed · ${payload.data.reset.kept.saves} save${payload.data.reset.kept.saves === 1 ? '' : 's'} kept.`,
+          description: `${removedSignals} signal${removedSignals === 1 ? '' : 's'} removed${masteryNote} · ${payload.data.reset.kept.saves} save${payload.data.reset.kept.saves === 1 ? '' : 's'} kept.`,
         })
         setConfirmingReset(false)
         await fetchInventory()
@@ -619,6 +624,46 @@ export function ControlsView({
                   </div>
                 </>
               )}
+            </CardContent>
+          </Card>
+
+          {/* ---------- Derived signals (P7-S4 §9 implicit — mastery) ---------- */}
+          <Card className="border-zinc-200 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <TrendingUp className="h-4 w-4 text-rose-600" aria-hidden="true" />
+                Derived from your attempts — mastery
+              </CardTitle>
+              <CardDescription>
+                {data.implicit.mastery.trackedUnitCount} tracked{' '}
+                {data.implicit.mastery.trackedUnitCount === 1 ? 'unit' : 'units'} ·{' '}
+                {data.implicit.mastery.dueCount} due · {data.implicit.mastery.weakCount} weak · from{' '}
+                {data.implicit.mastery.submittedAttemptCount} submitted{' '}
+                {data.implicit.mastery.submittedAttemptCount === 1 ? 'attempt' : 'attempts'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-xs leading-relaxed text-zinc-500">{data.implicit.mastery.note}</p>
+              <ul className="space-y-2">
+                {data.implicit.mastery.effects.map((effect) => (
+                  <li key={effect.kind} className="flex items-start gap-2 text-xs text-zinc-600">
+                    <span
+                      aria-hidden="true"
+                      className="mt-0.5 inline-flex shrink-0 items-center rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] font-medium text-zinc-500"
+                    >
+                      {effect.kind === 'REVISION_QUEUE' ? 'Revision queue' : effect.kind === 'QUEUE_RANKING' ? 'Queue ranking' : effect.kind}
+                    </span>
+                    <span className="min-w-0 flex-1">{effect.text}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#/dashboard"
+                className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-rose-300 hover:text-rose-700"
+              >
+                <TrendingUp className="h-4 w-4" aria-hidden="true" />
+                Open your revision queue
+              </a>
             </CardContent>
           </Card>
 
