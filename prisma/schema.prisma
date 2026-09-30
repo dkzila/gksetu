@@ -152,15 +152,15 @@ model KnowledgeUnit {
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
 
-  topic        Topic                       @relation("KnowledgeUnitTopic", fields: [topicId], references: [id])
-  country      Country?                    @relation("KnowledgeUnitCountry", fields: [countryId], references: [id])
-  createdBy    User?                       @relation("KnowledgeUnitAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  contentItems ContentItem[] // representations of this canonical record (§7, P2-S2)
-  examMappings ExamMapping[]               @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
-  eventLinks   CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
-  qnas         QnA[]                       @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
-  questions    Question[]                  @relation("QuestionUnit") // P7-S2: scored MCQ assessment representations (§22 practice layer)
-  masteryStates MasteryState[]             @relation("UnitMastery") // P7-S4: derived per-user proficiency rows (§6/§22)
+  topic         Topic                       @relation("KnowledgeUnitTopic", fields: [topicId], references: [id])
+  country       Country?                    @relation("KnowledgeUnitCountry", fields: [countryId], references: [id])
+  createdBy     User?                       @relation("KnowledgeUnitAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  contentItems  ContentItem[] // representations of this canonical record (§7, P2-S2)
+  examMappings  ExamMapping[]               @relation("ExamMappingUnit") // P3-S3 requirement layer (§8)
+  eventLinks    CurrentEventKnowledgeUnit[] // P6-S1: events pointing at this canonical truth (§12 step 3)
+  qnas          QnA[]                       @relation("QnAUnit") // P7-S1: explanatory Q&A representations (§22 QnA layer)
+  questions     Question[]                  @relation("QuestionUnit") // P7-S2: scored MCQ assessment representations (§22 practice layer)
+  masteryStates MasteryState[]              @relation("UnitMastery") // P7-S4: derived per-user proficiency rows (§6/§22)
 
   // Deduplication is by canonical identity (§11): within one topic, a canonical
   // name identifies exactly one unit. Never merge distinct concepts; never
@@ -431,11 +431,11 @@ model EditorialTask {
   createdAt      DateTime              @default(now())
   updatedAt      DateTime              @updatedAt
 
-  country    Country?  @relation(fields: [countryId], references: [id])
-  language   Language? @relation(fields: [languageId], references: [id])
-  assignee   User?     @relation("EditorialTaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
-  createdBy  User?     @relation("EditorialTaskCreator", fields: [createdById], references: [id], onDelete: SetNull)
-  resolvedBy User?     @relation("EditorialTaskResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+  country        Country?         @relation(fields: [countryId], references: [id])
+  language       Language?        @relation(fields: [languageId], references: [id])
+  assignee       User?            @relation("EditorialTaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  createdBy      User?            @relation("EditorialTaskCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  resolvedBy     User?            @relation("EditorialTaskResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
   // P8-S3 (§25): the ContentFeedback report this CORRECTION task was opened
   // by (nullable — most tasks are not feedback-routed; unique on the report
   // side: one report, one task).
@@ -771,6 +771,7 @@ model Language {
   questions           Question[]        @relation("QuestionLanguage") // P7-S2: scored assessment representations
   mockTests           MockTest[]        @relation("MockTestLanguage") // P7-S3: timed, scoped assemblies of Questions
   editorialTasks      EditorialTask[]
+  translations        Translation[] // P9-S1 §6: translation links keyed on the target language
   goalStudyLanguages  UserGoal[]        @relation("UserGoalStudyLanguage") // P5-S3
   entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
 
@@ -848,52 +849,53 @@ model User {
   createdAt           DateTime   @default(now())
   updatedAt           DateTime   @updatedAt
 
-  homeCountry                Country?           @relation(fields: [homeCountryId], references: [id])
-  preferredLanguage          Language?          @relation(fields: [preferredLanguageId], references: [id])
-  languageScope              Language?          @relation("UserLanguageScope", fields: [languageScopeId], references: [id])
+  homeCountry                Country?                 @relation(fields: [homeCountryId], references: [id])
+  preferredLanguage          Language?                @relation(fields: [preferredLanguageId], references: [id])
+  languageScope              Language?                @relation("UserLanguageScope", fields: [languageScopeId], references: [id])
   authSessions               AuthSession[]
   auditLogs                  AuditLog[]
-  authoredKnowledgeUnits     KnowledgeUnit[]    @relation("KnowledgeUnitAuthor")
-  authoredContentItems       ContentItem[]      @relation("ContentItemAuthor")
-  publishedContentRevisions  ContentRevision[]  @relation("ContentRevisionPublisher")
-  createdSources             Source[]           @relation("SourceAuthor")
-  assignedEditorialTasks     EditorialTask[]    @relation("EditorialTaskAssignee")
-  createdEditorialTasks      EditorialTask[]    @relation("EditorialTaskCreator")
-  resolvedEditorialTasks     EditorialTask[]    @relation("EditorialTaskResolver")
-  createdExams               Exam[]             @relation("ExamAuthor") // P3-S1
-  createdExamVersions        ExamVersion[]      @relation("ExamVersionAuthor") // P3-S1
-  createdExamMappings        ExamMapping[]      @relation("ExamMappingAuthor") // P3-S3
+  authoredKnowledgeUnits     KnowledgeUnit[]          @relation("KnowledgeUnitAuthor")
+  authoredContentItems       ContentItem[]            @relation("ContentItemAuthor")
+  publishedContentRevisions  ContentRevision[]        @relation("ContentRevisionPublisher")
+  createdSources             Source[]                 @relation("SourceAuthor")
+  assignedEditorialTasks     EditorialTask[]          @relation("EditorialTaskAssignee")
+  createdEditorialTasks      EditorialTask[]          @relation("EditorialTaskCreator")
+  resolvedEditorialTasks     EditorialTask[]          @relation("EditorialTaskResolver")
+  createdExams               Exam[]                   @relation("ExamAuthor") // P3-S1
+  createdExamVersions        ExamVersion[]            @relation("ExamVersionAuthor") // P3-S1
+  createdExamMappings        ExamMapping[]            @relation("ExamMappingAuthor") // P3-S3
+  createdTranslations        Translation[]            @relation("TranslationCreator") // P9-S1 §6/§35
   follows                    UserFollow[] // P5-S1
   saves                      SavedItem[] // P5-S2
   collections                Collection[] // P5-S2
   // P5-S3 (§6): onboarding state + the one declared goal (§9 explicit signal).
-  onboardingStatus           OnboardingStatus   @default(PENDING)
+  onboardingStatus           OnboardingStatus         @default(PENDING)
   onboardingCompletedAt      DateTime?
   goal                       UserGoal?
   // P6-S1 (§12): canonical current-event records authored by this user.
-  createdCurrentEvents       CurrentEvent[]     @relation("CurrentEventAuthor")
+  createdCurrentEvents       CurrentEvent[]           @relation("CurrentEventAuthor")
   // P7-S1 (§22/§23): QnA entries authored + revisions published by this user.
-  authoredQnas               QnA[]              @relation("QnAAuthor")
-  publishedQnaRevisions      QnARevision[]      @relation("QnARevisionPublisher")
+  authoredQnas               QnA[]                    @relation("QnAAuthor")
+  publishedQnaRevisions      QnARevision[]            @relation("QnARevisionPublisher")
   // P7-S2 (§22/§23): Questions authored + revisions published by this user.
-  authoredQuestions          Question[]         @relation("QuestionAuthor")
-  publishedQuestionRevisions QuestionRevision[] @relation("QuestionRevisionPublisher")
+  authoredQuestions          Question[]               @relation("QuestionAuthor")
+  publishedQuestionRevisions QuestionRevision[]       @relation("QuestionRevisionPublisher")
   // P7-S3 (§22/§23): MockTests authored + revisions published + attempts made.
-  authoredMockTests          MockTest[]         @relation("MockTestAuthor")
-  publishedMockTestRevisions MockTestRevision[] @relation("MockTestRevisionPublisher")
-  testAttempts               TestAttempt[]      @relation("UserAttempts")
+  authoredMockTests          MockTest[]               @relation("MockTestAuthor")
+  publishedMockTestRevisions MockTestRevision[]       @relation("MockTestRevisionPublisher")
+  testAttempts               TestAttempt[]            @relation("UserAttempts")
   // P7-S4 (§6/§22): derived per-unit mastery states (the revision queue's store).
-  masteryStates              MasteryState[]     @relation("UserMastery")
+  masteryStates              MasteryState[]           @relation("UserMastery")
   // P8-S1 (§21/§32): share events attributed to this user (anonymous shares
   // carry userId null — §21 "track share events as analytics events").
-  shareEvents                ShareEvent[]       @relation("UserShareEvents")
+  shareEvents                ShareEvent[]             @relation("UserShareEvents")
   // P8-S2 (§27): queued/sent/read notifications + per-category opt-ins.
-  notifications              NotificationEvent[]       @relation("UserNotifications")
-  notificationPreferences    NotificationPreference[]  @relation("UserNotificationPreferences")
+  notifications              NotificationEvent[]      @relation("UserNotifications")
+  notificationPreferences    NotificationPreference[] @relation("UserNotificationPreferences")
   // P8-S3 (§25): reports filed by this user (anonymous reports have no row
   // here) + reports this user resolved as an editor.
-  contentFeedbacks           ContentFeedback[]  @relation("UserContentFeedback")
-  resolvedContentFeedbacks   ContentFeedback[]  @relation("UserResolvedContentFeedback")
+  contentFeedbacks           ContentFeedback[]        @relation("UserContentFeedback")
+  resolvedContentFeedbacks   ContentFeedback[]        @relation("UserResolvedContentFeedback")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1587,7 +1589,7 @@ model Question {
 // and moves the live pointer. Every correction carries a changeSummary
 // (§25/§36 provenance — never a silent edit).
 model QuestionRevision {
-  id             String   @id @default(cuid())
+  id             String              @id @default(cuid())
   questionId     String
   revisionNumber Int // 1-based, deterministic within the Question
   questionText   String // immutable snapshot at publish time
@@ -1597,9 +1599,9 @@ model QuestionRevision {
   difficulty     KnowledgeDifficulty @default(BASIC) // public-facing classification — snapshotted so staged difficulty edits never leak (§36)
   changeSummary  String? // why this revision exists (required on re-publish)
   // §24/§26 AI-provenance snapshot at publish time — immutable like the rest.
-  aiAssisted     Boolean  @default(false)
+  aiAssisted     Boolean             @default(false)
   publishedById  String?
-  publishedAt    DateTime @default(now())
+  publishedAt    DateTime            @default(now())
 
   question    Question   @relation("QuestionRevisions", fields: [questionId], references: [id], onDelete: Cascade)
   publishedBy User?      @relation("QuestionRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
@@ -1633,37 +1635,37 @@ enum TestAttemptStatus {
 }
 
 model MockTest {
-  id             String        @id @default(cuid())
-  slug           String        @unique // §37 URL identity (…/mock-tests/{slug}/) — immutable, generated from the title
-  title          String // working copy; §11 identity (create-time only — re-titling is a new test, the QnA/Question discipline)
-  scopeType      MockTestScope
-  topicId        String? // set iff scopeType = TOPIC (§6 "scope: topic/syllabus_node" — one §13 tree)
-  examVersionId  String? // set iff scopeType = EXAM (§6 exam_version_id — the version whose syllabus the test covers)
-  languageId     String // §35 — a test is a representation product like ContentItem/QnA/Question; every composed Question must match it
-  status         ContentStatus @default(DRAFT) // §19 workflow (shared states)
+  id                  String        @id @default(cuid())
+  slug                String        @unique // §37 URL identity (…/mock-tests/{slug}/) — immutable, generated from the title
+  title               String // working copy; §11 identity (create-time only — re-titling is a new test, the QnA/Question discipline)
+  scopeType           MockTestScope
+  topicId             String? // set iff scopeType = TOPIC (§6 "scope: topic/syllabus_node" — one §13 tree)
+  examVersionId       String? // set iff scopeType = EXAM (§6 exam_version_id — the version whose syllabus the test covers)
+  languageId          String // §35 — a test is a representation product like ContentItem/QnA/Question; every composed Question must match it
+  status              ContentStatus @default(DRAFT) // §19 workflow (shared states)
   // §6 question_ids[] — the ordered composition (Prisma carries no list
   // primitives; parsed/validated in the service; snapshotted onto each
   // MockTestRevision at publish, §36).
-  questionIdsJson String
-  durationMinutes Int // §6 duration_minutes — the timed dimension
-  passPercent     Int // §6 pass_criteria — the passing percentage (0–100)
+  questionIdsJson     String
+  durationMinutes     Int // §6 duration_minutes — the timed dimension
+  passPercent         Int // §6 pass_criteria — the passing percentage (0–100)
   // §24/§26 AI-provenance flag (working copy) — an AI-suggested composition
   // freezes the flag onto each published revision.
-  aiAssisted          Boolean @default(false)
+  aiAssisted          Boolean       @default(false)
   publishedRevisionId String? // live revision pointer (null = never published)
   // §19 step 7: set by the `schedule` transition; due items materialize to
   // PUBLISHED lazily on read (mocktest-service).
-  scheduledForAt DateTime?
-  createdById    String?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
+  scheduledForAt      DateTime?
+  createdById         String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
 
-  topic             Topic?            @relation("MockTestTopic", fields: [topicId], references: [id], onDelete: SetNull)
-  examVersion       ExamVersion?      @relation("MockTestExamVersion", fields: [examVersionId], references: [id], onDelete: SetNull)
-  language          Language          @relation("MockTestLanguage", fields: [languageId], references: [id])
-  createdBy         User?             @relation("MockTestAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  topic             Topic?             @relation("MockTestTopic", fields: [topicId], references: [id], onDelete: SetNull)
+  examVersion       ExamVersion?       @relation("MockTestExamVersion", fields: [examVersionId], references: [id], onDelete: SetNull)
+  language          Language           @relation("MockTestLanguage", fields: [languageId], references: [id])
+  createdBy         User?              @relation("MockTestAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   revisions         MockTestRevision[] @relation("MockTestRevisions")
-  publishedRevision MockTestRevision? @relation("LiveMockTestRevision", fields: [publishedRevisionId], references: [id])
+  publishedRevision MockTestRevision?  @relation("LiveMockTestRevision", fields: [publishedRevisionId], references: [id])
   attempts          TestAttempt[]      @relation("AttemptMockTest") // §6 TestAttempt rows — the §9/§22 mastery signal (P7-S4 consumes them)
 
   // §11 canonical identity: one title per scope × language. Topic and exam
@@ -1682,7 +1684,7 @@ model MockTest {
 // the live revision. Staged edits to the working copy never leak until a new
 // revision publishes.
 model MockTestRevision {
-  id              String @id @default(cuid())
+  id              String   @id @default(cuid())
   mockTestId      String
   revisionNumber  Int // 1-based, deterministic within the MockTest
   title           String // immutable snapshot at publish time
@@ -1690,7 +1692,7 @@ model MockTestRevision {
   durationMinutes Int // immutable snapshot at publish time
   passPercent     Int // immutable snapshot at publish time
   changeSummary   String? // why this revision exists (required on re-publish)
-  aiAssisted      Boolean @default(false) // §24/§26 provenance snapshot
+  aiAssisted      Boolean  @default(false) // §24/§26 provenance snapshot
   publishedById   String?
   publishedAt     DateTime @default(now())
 
@@ -1718,18 +1720,18 @@ model MockTestRevision {
 // exactly-one-anchor (an editorial attempt always has mockTestId, a generated
 // one never does). Editorial rows are untouched by the widening.
 model TestAttempt {
-  id         String           @id @default(cuid())
-  userId     String
+  id                  String            @id @default(cuid())
+  userId              String
   // §11: the combined view is COMPUTED, never a separately stored syllabus —
   // so a quick mock anchors on its SCOPE SNAPSHOT, not a stored MockTest row
   // (null iff this attempt was generated by the §22 combined-exam mode).
-  mockTestId String?
-  status     TestAttemptStatus @default(IN_PROGRESS)
-  startedAt  DateTime         @default(now())
+  mockTestId          String?
+  status              TestAttemptStatus @default(IN_PROGRESS)
+  startedAt           DateTime          @default(now())
   // startedAt + the test's durationMinutes snapshot — the server-side truth
   // the submit endpoint enforces (§22 timed assessment; a client timer is
   // only presentation).
-  deadlineAt  DateTime
+  deadlineAt          DateTime
   // Snapshots of the deal at start (§6/§36 spirit): what was served, how
   // long, at what pass criteria.
   servedQuestionsJson String // ordered Question ids served (the live revision's composition at start)
@@ -1742,12 +1744,12 @@ model TestAttempt {
   submittedAt         DateTime?
   // §6 answers[] — the per-question record, set once at submit:
   // [{questionId, selected, correct, correctAnswer, revisionNumber}].
-  answersJson String // empty array while IN_PROGRESS
+  answersJson         String // empty array while IN_PROGRESS
   // §6 score — derived once at submit, then immutable.
-  correctCount Int?
-  totalCount   Int?
-  scorePercent Float?
-  passed       Boolean?
+  correctCount        Int?
+  totalCount          Int?
+  scorePercent        Float?
+  passed              Boolean?
 
   user     User      @relation("UserAttempts", fields: [userId], references: [id], onDelete: Cascade)
   mockTest MockTest? @relation("AttemptMockTest", fields: [mockTestId], references: [id], onDelete: Cascade)
@@ -1793,16 +1795,16 @@ model MasteryState {
   // §6 mastery_score — overall accuracy 0–100 (1 decimal).
   masteryScore    Float
   // Running tallies across every submitted attempt that served this unit.
-  attemptedCount Int
-  correctCount   Int
+  attemptedCount  Int
+  correctCount    Int
   // §22 spaced-review scheduler input — consecutive all-correct rounds.
-  streak Int @default(0)
+  streak          Int      @default(0)
   // §6 last_reviewed_at — the most recent submitted attempt touching the unit.
-  lastReviewedAt DateTime
+  lastReviewedAt  DateTime
   // §6 next_review_at — the spaced-review due date (the revision queue's key).
-  nextReviewAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  nextReviewAt    DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   user          User          @relation("UserMastery", fields: [userId], references: [id], onDelete: Cascade)
   knowledgeUnit KnowledgeUnit @relation("UnitMastery", fields: [knowledgeUnitId], references: [id])
@@ -1939,7 +1941,7 @@ enum NotificationObjectType {
 // at trigger time (§36-honest: the notification says what was true when it
 // fired, like a share card — not a live view).
 model NotificationEvent {
-  id          String                 @id @default(cuid())
+  id          String                  @id @default(cuid())
   userId      String
   // Groups this notification's channel rows (one fan-out shares one id).
   batchId     String
@@ -1947,9 +1949,9 @@ model NotificationEvent {
   objectType  NotificationObjectType
   objectRef   String
   channel     NotificationChannel
-  status      NotificationStatus     @default(QUEUED)
+  status      NotificationStatus      @default(QUEUED)
   contextJson Json
-  createdAt   DateTime               @default(now())
+  createdAt   DateTime                @default(now())
   sentAt      DateTime?
   readAt      DateTime?
 
@@ -1966,7 +1968,6 @@ model NotificationEvent {
   @@index([status, createdAt])
   // Per-object fan-out history (the §32 editorial/notification analytics).
   @@index([triggerType, objectRef])
-
   @@index([createdAt])
 }
 
@@ -1977,7 +1978,7 @@ model NotificationEvent {
 // exist only where the user made an explicit choice; re-enabling after an
 // opt-out writes enabled = true (the honest explicit state, not a delete).
 model NotificationPreference {
-  id        String             @id @default(cuid())
+  id        String              @id @default(cuid())
   userId    String
   channel   NotificationChannel
   // The §27 category key (see NOTIFICATION_CATEGORIES in the notifications
@@ -1985,8 +1986,8 @@ model NotificationPreference {
   // added without a migration, like SavedObjectType's additive growth).
   category  String
   enabled   Boolean
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
 
   user User @relation("UserNotificationPreferences", fields: [userId], references: [id], onDelete: Cascade)
 
@@ -2045,7 +2046,7 @@ enum FeedbackStatus {
 // routes into the §19 editorial workflow as a CORRECTION EditorialTask
 // (taskId) created at submission; resolving the task cascades back here.
 model ContentFeedback {
-  id             String            @id @default(cuid())
+  id             String             @id @default(cuid())
   // NULL = anonymous report (§21 precedent); SetNull on account deletion —
   // the report outlives the reporter (§31: the quality loop is content
   // data, not account data).
@@ -2064,14 +2065,14 @@ model ContentFeedback {
   feedbackType   FeedbackType
   // The reporter's description (min 10 chars — a report says what's wrong).
   description    String
-  status         FeedbackStatus    @default(OPEN)
+  status         FeedbackStatus     @default(OPEN)
   // The §19/§25 link: the CORRECTION task this report routed into.
-  taskId         String? @unique
+  taskId         String?            @unique
   resolutionNote String?
   resolvedById   String?
   resolvedAt     DateTime?
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
 
   user       User?          @relation("UserContentFeedback", fields: [userId], references: [id], onDelete: SetNull)
   resolvedBy User?          @relation("UserResolvedContentFeedback", fields: [resolvedById], references: [id], onDelete: SetNull)
@@ -2163,7 +2164,7 @@ enum LandingSurface {
   MOCK_TEST // the §22 runner (app-gated page, still a real arrival)
   COLLECTION // the §21 unlisted shared-collection landing
   APP // every in-app/private view (dashboard, console, profile…) — an
-       // arrival is an arrival; the census records it honestly
+  // arrival is an arrival; the census records it honestly
 }
 
 enum LandingReferrer {
@@ -2222,4 +2223,84 @@ model SeoObservation {
   @@index([observedAt])
   // Per-page reads (which pages earn the engine's traffic).
   @@index([pagePath, observedAt])
+}
+
+// ---------- P9-S1: Translation / localisation framework (Master Plan §6 Translation row, §18 Translator/Localiser, §19 step 5, §26, §35, §36) ----------
+
+// The representation types a translation link can join. ContentItem + QnA
+// are the v1 translatable surfaces (the §23 reading formats). Question and
+// MockTest are assessment objects whose language lifecycle is exam-specific —
+// a documented future extension, never silently assumed.
+enum TranslationSourceType {
+  CONTENT_ITEM
+  QNA
+}
+
+// The link's own lifecycle, derived exclusively from representation
+// transitions (§36 — status is recorded data, never a guess):
+//   DRAFT     — the target representation is not published yet (work in progress)
+//   PUBLISHED — the target published, synced to the source revision recorded
+//               on the link
+//   OUTDATED  — the SOURCE published a newer revision after that sync (§36
+//               drift). The target is still published and public — this is an
+//               editorial freshness flag, NEVER a visibility flag (§35 keeps
+//               exposing it: only actual published translations surface).
+//   RETIRED   — the link itself was retired (e.g. a wrong pairing); the
+//               content rows on both ends stand untouched (§36 soft delete).
+enum TranslationStatus {
+  DRAFT
+  PUBLISHED
+  OUTDATED
+  RETIRED
+}
+
+// §6 Translation row: "source_content_id, source_content_type, language,
+// translated fields, status". Architecture adaptation (deliberate, §35):
+// the translated fields live in the TARGET representation — a full
+// first-class ContentItem/QnA that rides the §19 workflow with immutable §36
+// revisions (P2-S2 established that a Hindi explainer is a representation of
+// the canonical record, never a re-entered fact). The Translation row is
+// therefore the provenance LINK: which source representation the target was
+// translated from, at which source revision, into which language, with which
+// lifecycle status — plus the §26 AI-provenance flag. Business identity is
+// never duplicated (§35): both ends anchor the same KnowledgeUnit/CurrentEvent.
+//
+// Uniqueness is service-enforced (the event-anchored ContentItem precedent):
+// one ACTIVE link per (source, language) — a second Hindi translation of the
+// same English item is the §7/§11 duplication rule — and one ACTIVE link per
+// target (a target's declared source is singular). RETIRED rows never block
+// a fresh pairing; history stays auditable via the §30 trail.
+model Translation {
+  id                   String                @id @default(cuid())
+  sourceContentType    TranslationSourceType
+  // Polymorphic source ref (the EditorialTask pattern): resolved and guarded
+  // by the service on every operation.
+  sourceContentId      String
+  targetContentType    TranslationSourceType
+  // The representation carrying the translated fields (§35).
+  targetContentId      String
+  // §6 "language" — the TARGET language (the source's own language lives on
+  // the source representation).
+  languageId           String
+  // The source revision the target was synced to at its last publish (the
+  // revision it started from while DRAFT). Drift rule: the source's live
+  // revision number above this ⇒ OUTDATED.
+  sourceRevisionNumber Int
+  status               TranslationStatus     @default(DRAFT)
+  // §26 AI-provenance: true when the target's working copy was machine-drafted
+  // (the LLM translation assist). Never silently publishable — the §19 review
+  // gates apply regardless of origin.
+  aiAssisted           Boolean               @default(false)
+  notes                String?
+  createdById          String?
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  language  Language @relation(fields: [languageId], references: [id])
+  createdBy User?    @relation("TranslationCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([sourceContentType, sourceContentId])
+  @@index([targetContentType, targetContentId])
+  @@index([status])
+  @@index([languageId, status])
 }

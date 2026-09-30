@@ -34,6 +34,7 @@ import { getPublicTopic, getTopicIdentity, TaxonomyError } from '@/modules/taxon
 
 import { materializeDueScheduledContent } from './content-service'
 import { getPublicQnaLayer, getPublicPracticeLayer } from '@/modules/assessment'
+import { getStaleTranslationsForItems } from '@/modules/translations' // P9-S1 §35/§36 staleness join
 import type { ContentFormatPublic } from './content-types'
 import { KnowledgeError } from './service'
 import { getPublicSourcesForItem } from './source-service'
@@ -396,11 +397,21 @@ export async function getKnowledgePage(
       publishedRevisionId: { not: null },
       languageId: { in: [...countryLanguageIds.values()] },
     },
-    select: { languageId: true },
+    select: { id: true, languageId: true },
   })
   const unitLanguageCodes = new Set(
     translationRows.map((row) => languageCodeById.get(row.languageId)).filter((code): code is string => !!code)
   )
+  // P9-S1 §36: the per-representation staleness join — a published
+  // translation whose tracked source moved past the sync point carries the
+  // honest "the original has been updated" signal (never a visibility flag).
+  const staleByTarget = await getStaleTranslationsForItems(translationRows.map((row) => row.id))
+  const staleByLanguage = new Map<string, { stale: boolean; sourceLanguageCode: string | null }>()
+  for (const row of translationRows) {
+    const code = languageCodeById.get(row.languageId)
+    if (!code) continue
+    staleByLanguage.set(code, staleByTarget.get(row.id) ?? { stale: false, sourceLanguageCode: null })
+  }
   const translations = country.languages
     .filter((ref) => unitLanguageCodes.has(ref.code))
     .map((ref) => ({
@@ -414,6 +425,8 @@ export async function getKnowledgePage(
         topicDetail.node.slug,
         unit.slug
       ),
+      stale: staleByLanguage.get(ref.code)?.stale ?? false,
+      sourceLanguageCode: staleByLanguage.get(ref.code)?.sourceLanguageCode ?? null,
     }))
     .sort((a, b) => a.code.localeCompare(b.code))
 

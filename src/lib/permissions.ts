@@ -52,6 +52,7 @@ export type Permission =
   | 'feedback:manage' // P8-S3 (§25): triage and resolve content feedback reports — the editorial quality loop's queue: ADMIN (platform) + COUNTRY_ADMIN (own workspace, §38)
   | 'analytics:read' // P8-S4 (§32): the product-analytics read — the six product families over the aggregate event stores: ADMIN only (platform scope, like audit:read — §38's workspace split applies to editorial surfaces, not to the product's cross-market families)
   | 'seo:ingest' // P8-S5 (§32/§16): the engine-side SEO observation import (Search Console-shaped daily rows, path-guarded against the sitemap census): ADMIN only — the whole public surface's census, the search:manage precedent
+  | 'translations:manage' // P9-S1 (§6/§18/§35): the translation/localisation framework — create/retire translation links + the §26 AI-draft action (the §18 Translator/Localiser class riding WRITER with the target-language scope, the qna:manage precedent); reads share the permission (the list is an editorial working surface, never public)
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
@@ -119,6 +120,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'mocktest:manage',
     'mocktest:publish',
     'feedback:manage',
+    'translations:manage',
     'analytics:read',
     'seo:ingest',
   ],
@@ -143,6 +145,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'mocktest:manage',
     'mocktest:publish',
     'feedback:manage',
+    'translations:manage',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -150,7 +153,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
   // (source:manage, platform-level per §24) and work the editorial board in
   // scope. P7-S1: QnA authoring rides the WRITER class — the §18
   // Question/Test Author role consolidated into v1's four-role model.
-  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'mocktest:manage', 'sessions:manage-own'],
+  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'mocktest:manage', 'translations:manage', 'sessions:manage-own'],
   READER: ['sessions:manage-own'],
 }
 
@@ -171,6 +174,7 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'mocktest:manage',
   'mocktest:publish',
   'feedback:manage',
+  'translations:manage',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -180,6 +184,7 @@ const WRITER_NARROWED: ReadonlySet<Permission> = new Set([
   'qna:manage',
   'question:manage',
   'mocktest:manage',
+  'translations:manage',
 ])
 
 /**
@@ -270,6 +275,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'feedback:manage': 'Triage and resolve content feedback reports (§25)',
   'analytics:read': 'Read the §32 product analytics (platform surface)',
   'seo:ingest': 'Import engine-side SEO observations (the §16 census-guarded daily rows)',
+  'translations:manage': 'Manage translations (own scope — the §18 Translator/Localiser class, §35)',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
   'audit:read': 'Read audit trail',

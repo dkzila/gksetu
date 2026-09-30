@@ -192,7 +192,15 @@ export interface KnowledgePageData {
     | { available: false; note: string }
     | { available: true; requirements: UnitExamRequirementRow[]; examCount: number }
   language: { code: string; name: string; nativeName: string | null }
-  translations: { code: string; name: string; nativeName: string | null; canonicalPath: string }[]
+  translations: {
+    code: string
+    name: string
+    nativeName: string | null
+    canonicalPath: string
+    /** P9-S1 §36 drift honesty — the source moved past this translation's sync point. */
+    stale: boolean
+    sourceLanguageCode: string | null
+  }[]
   canonicalPath: string
   /** §16 SEO block (P4-S4) — canonical, hreflang cluster, robots, lastmod. */
   seo: {
@@ -633,10 +641,19 @@ export function KnowledgePageView({
               type="button"
               onClick={() => onSwitchLanguage(entry.code)}
               className="inline-flex min-h-[32px] items-center gap-1 rounded-full border border-zinc-200 bg-white px-3 font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
-              aria-label={`Read this page in ${entry.nativeName ?? entry.name}`}
+              aria-label={`Read this page in ${entry.nativeName ?? entry.name}${entry.stale ? ' (the original has been updated since this translation)' : ''}`}
+              title={entry.stale ? `The ${entry.sourceLanguageCode ?? 'original'} version has been updated since this translation (§36) — still published, pending a refresh.` : undefined}
             >
               <Sparkles className="h-3 w-3" aria-hidden="true" />
               {entry.nativeName ?? entry.name}
+              {entry.stale && (
+                <span
+                  className="ml-0.5 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-1.5 py-0.5 text-[10px] font-medium text-orange-700"
+                  title="The original has been updated since this translation (§36)"
+                >
+                  updated since
+                </span>
+              )}
             </button>
           ))}
         </div>

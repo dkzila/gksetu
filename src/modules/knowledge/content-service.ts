@@ -69,6 +69,7 @@ import type {
 } from './content-validation'
 import { bodyFitsFormat } from './content-validation'
 import { wireContentWorkflow, type ContentWorkflowEvent } from '@/modules/editorial'
+import { onRepresentationPublished } from '@/modules/translations' // P9-S1 §36 drift/sync hook
 
 // ---------- Typed domain errors (mapped to HTTP by route handlers) ----------
 
@@ -1230,6 +1231,14 @@ export async function transitionContentItem(
         action: 'publish',
         actorId: actor.userId,
         item: workflowItemOf(item),
+      })
+      // P9-S1 §36 translation wiring (same transaction): if this item is a
+      // SOURCE with synced translations they go OUTDATED (drift); if it is a
+      // TARGET its link re-syncs to the source's current live revision.
+      await onRepresentationPublished(tx, {
+        type: 'CONTENT_ITEM',
+        id: item.id,
+        revisionNumber,
       })
       return revisionNumber
     })

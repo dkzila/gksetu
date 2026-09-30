@@ -194,6 +194,14 @@ export interface KnowledgePage {
     nativeName: string | null
     /** §16 canonical path of this page rendered in that language. */
     canonicalPath: string
+    /** P9-S1 §36 drift honesty: this published translation's source moved
+     * past the sync point — the original has been updated since this
+     * translation. Still published, still public (§35); never a visibility
+     * flag — an editorial freshness signal surfaced to the reader. */
+    stale: boolean
+    /** The tracked source's language when this translation carries an active
+     * link (null = untracked representation). */
+    sourceLanguageCode: string | null
   }[]
   /** §16 — canonical URL of THIS page (country + language + object identity). */
   canonicalPath: string

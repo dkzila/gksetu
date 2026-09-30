@@ -41,6 +41,7 @@ import {
 import { getTopicIdentity } from '@/modules/taxonomy'
 import { onUnitChanged } from '@/modules/search'
 import { wireQnaWorkflow } from '@/modules/editorial'
+import { onRepresentationPublished } from '@/modules/translations' // P9-S1 §36 drift/sync hook
 
 import type {
   AdminQnaEntry,
@@ -961,6 +962,14 @@ export async function transitionQna(
         action: 'publish',
         actorId: actor.userId,
         qna: workflowQnaOf(qna),
+      })
+      // P9-S1 §36 translation wiring (same transaction): if this QnA is a
+      // SOURCE with synced translations they go OUTDATED (drift); if it is a
+      // TARGET its link re-syncs to the source's current live revision.
+      await onRepresentationPublished(tx, {
+        type: 'QNA',
+        id: qna.id,
+        revisionNumber,
       })
       return revisionNumber
     })

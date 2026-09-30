@@ -26,6 +26,7 @@ import { notifyEditorialAssignment } from '@/modules/notifications'
 // the same direction as the notify import — content-quality never imports
 // editorial, so no cycle).
 import { onFeedbackTaskCancelled, onFeedbackTaskResolved, onFeedbackTaskStarted } from '@/modules/content-quality'
+import { findActiveTargetLink } from '@/modules/translations' // P9-S1 §19 step-5 gate lookup
 import {
   AUDIT_ACTIONS,
   AUDIT_OBJECT_TYPES,
@@ -824,6 +825,51 @@ export async function wireContentWorkflow(
         metadata: { auto: 'submit_review', item: objectLabel },
       }).catch(() => undefined)
     }
+
+    // P9-S1 §19 step 5 — the localisation review gate: a submitted
+    // translation target opens a LOCALISATION_REVIEW task alongside the
+    // editorial review (one per cycle, the same double-submit guard). The
+    // language dimension is the TARGET's language — the reviewer checks the
+    // translation against its source (terminology, completeness, the §26
+    // AI-draft provenance).
+    const translationLink = await findActiveTargetLink(tx, 'CONTENT_ITEM', item.id)
+    if (translationLink) {
+      const existingLocalisation = await tx.editorialTask.findFirst({
+        where: {
+          objectType: 'ContentItem',
+          objectId: item.id,
+          type: 'LOCALISATION_REVIEW',
+          status: { in: ['OPEN', 'IN_PROGRESS'] },
+        },
+        select: { id: true },
+      })
+      if (!existingLocalisation) {
+        const created = await tx.editorialTask.create({
+          data: {
+            type: 'LOCALISATION_REVIEW',
+            status: 'OPEN',
+            priority: 'HIGH', // §19 step 5 rides the same cycle — never a silent afterthought
+            countryId: item.countryId,
+            languageId: item.languageId,
+            objectType: 'ContentItem',
+            objectId: item.id,
+            objectLabel,
+            title: `Localisation review — ${item.title}`,
+            notes: `Translation target (${translationLink.languageCode}) — check terminology, completeness and structural fidelity against the source before publish (§19 step 5 / §35).`,
+            createdById: event.actorId,
+          },
+        })
+        void recordAudit({
+          actor: null,
+          action: AUDIT_ACTIONS.editorialTaskCreate,
+          objectType: AUDIT_OBJECT_TYPES.editorialTask,
+          objectId: created.id,
+          objectLabel: created.title,
+          after: { type: created.type, status: created.status, countryId: item.countryId },
+          metadata: { auto: 'submit_review', item: objectLabel, translationLink: translationLink.id },
+        }).catch(() => undefined)
+      }
+    }
     return
   }
 
@@ -926,6 +972,47 @@ export async function wireQnaWorkflow(
         after: { type: created.type, status: created.status, countryId: qna.countryId },
         metadata: { auto: 'submit_review', qna: objectLabel },
       }).catch(() => undefined)
+    }
+
+    // P9-S1 §19 step 5 — the same localisation review gate for QnA
+    // translation targets (the wireContentWorkflow precedent).
+    const translationLink = await findActiveTargetLink(tx, 'QNA', qna.id)
+    if (translationLink) {
+      const existingLocalisation = await tx.editorialTask.findFirst({
+        where: {
+          objectType: 'QNA',
+          objectId: qna.id,
+          type: 'LOCALISATION_REVIEW',
+          status: { in: ['OPEN', 'IN_PROGRESS'] },
+        },
+        select: { id: true },
+      })
+      if (!existingLocalisation) {
+        const created = await tx.editorialTask.create({
+          data: {
+            type: 'LOCALISATION_REVIEW',
+            status: 'OPEN',
+            priority: 'HIGH', // §19 step 5 rides the same cycle — never a silent afterthought
+            countryId: qna.countryId,
+            languageId: qna.languageId,
+            objectType: 'QNA',
+            objectId: qna.id,
+            objectLabel,
+            title: `Localisation review — ${qna.questionText.slice(0, 120)}`,
+            notes: `Translation target (${translationLink.languageCode}) — check terminology and completeness against the source QnA before publish (§19 step 5 / §35).`,
+            createdById: event.actorId,
+          },
+        })
+        void recordAudit({
+          actor: null,
+          action: AUDIT_ACTIONS.editorialTaskCreate,
+          objectType: AUDIT_OBJECT_TYPES.editorialTask,
+          objectId: created.id,
+          objectLabel: created.title,
+          after: { type: created.type, status: created.status, countryId: qna.countryId },
+          metadata: { auto: 'submit_review', qna: objectLabel, translationLink: translationLink.id },
+        }).catch(() => undefined)
+      }
     }
     return
   }

@@ -215,6 +215,13 @@ export const AUDIT_ACTIONS = {
   /** P6-S5: one summary entry per applied sweep (applied/skipped counts in
    *  metadata — the freshness overview's "last sweep" reads this). */
   freshnessSweep: 'currentaffairs.freshness.sweep',
+  /** P9-S1 translations (§6/§26/§35/§36 — every link mutation is audited;
+   *  drift/sync are system-recorded inside the publish transactions). */
+  translationCreate: 'translation.create',
+  translationAiDraft: 'translation.ai.draft',
+  translationRetire: 'translation.retire',
+  translationDrift: 'translation.drift',
+  translationSync: 'translation.sync',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -257,5 +264,7 @@ export const AUDIT_OBJECT_TYPES = {
   notificationPreference: 'NotificationPreference',
   /** P8-S3 (§25): the content feedback / quality-loop rows. */
   contentFeedback: 'ContentFeedback',
+  /** P9-S1 (§6/§35): the translation provenance links. */
+  translation: 'Translation',
   permission: 'Permission',
 } as const

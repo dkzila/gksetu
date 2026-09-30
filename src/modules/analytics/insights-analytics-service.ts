@@ -23,6 +23,7 @@ import { db } from '@/lib/db'
 import type { Actor } from '@/lib/permissions'
 import { listSitemapSegments, ROBOTS_DISALLOW } from '@/modules/seo'
 import { publicSearch } from '@/modules/search'
+import { translationInsightMetrics } from '@/modules/translations' // P9-S1 §32 editorial-family localisation metrics
 
 import {
   AnalyticsError,
@@ -217,6 +218,11 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
       })
     : 0
 
+  // P9-S1: the localisation half of editorial work (§18 Translator/Localiser
+  // — §35/§36). Windowless stock counts (the framework is young); the
+  // tracked-vs-fact pair is the adoption honesty.
+  const translations = await translationInsightMetrics()
+
   const metrics: AnalyticsMetric[] = [
     {
       key: 'timeToPublish',
@@ -238,6 +244,13 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
       value: medianCorrection ?? 'no corrections resolved in window',
       unit: 'minutes',
       derivation: `Median minutes from ContentFeedback report to resolution over the ${reportCycles.length} resolution(s) landed in the ${window.label} (§25/§44 — the same loop the product Content family reads; ${correctionTasks.length} CORRECTION task(s) resolved with them). §36's never-a-silent-edit check: ${correctionDrivenRevisions} revision(s) published in the window on corrected items.`,
+    },
+    {
+      key: 'translationCoverage',
+      label: 'Translation coverage & drift',
+      value: `${translations.byStatus.PUBLISHED} tracked / ${translations.publishedCrossLanguagePairs} in fact`,
+      unit: 'text',
+      derivation: `${translations.derivation} In fact: ${translations.publishedCrossLanguagePairs} published cross-language pair(s) exist (same anchor + format, ≥2 languages, §35); the framework tracks ${translations.activeLinks} active link(s) — ${translations.byStatus.PUBLISHED} PUBLISHED, ${translations.byStatus.OUTDATED} OUTDATED (the source moved past the sync point; the target stays public), ${translations.byStatus.DRAFT} in draft, ${translations.stalePublished} drifted by live-revision derivation. ${translations.aiAssistedActive} AI-assisted (§26 provenance; every one human-gated before publish).`,
     },
   ]
 

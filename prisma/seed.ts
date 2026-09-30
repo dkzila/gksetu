@@ -4220,6 +4220,264 @@ async function main() {
     landingEventsSeeded = 14
   }
 
+  // ---------- P9-S1: Translation links (Master Plan §6/§18/§26/§35/§45) ----------
+  // Five links over the existing multilingual fixtures — every §36 lifecycle
+  // state represented, drift demonstrated on REAL correction history:
+  //   1. FR EN explainer → HI explainer: the HI published 2025-07-01 against
+  //      EN revision 1; the EN §25 correction (revision 2, the Article 359
+  //      precision fix) landed after → OUTDATED (drift demo #1, unit anchor).
+  //   2. Chandrayaan-3 EN event update → HI update: the HI published
+  //      2023-08-24 06:00 between EN rev 1 (08-23 20:00) and the EN §36
+  //      correction rev 2 (08-24 09:30) → OUTDATED (drift demo #2, event
+  //      anchor). The Hindi answer's own update path is the normal §19
+  //      correction cycle — never a silent edit.
+  //   3. National Space Day EN update → the existing HI DRAFT (never
+  //      published, no revisions) → DRAFT link (work in progress).
+  //   4. NEW English source QnA ("Why is Article 32 called the heart and
+  //      soul…", PUBLISHED rev 1) → the existing HI QnA (published
+  //      2025-07-02) → PUBLISHED link synced at rev 1 (the QNA source-type
+  //      demo, in sync — and the HI answer's परमादेश/उत्प्रेषण writ term is
+  //      exactly the §25 open report's subject: the queue row now carries
+  //      framework context).
+  //   5. NEW Hindi DRAFT FACT_CARD on the Kalinga War unit (aiAssisted=true,
+  //      the §26 machine-drafted candidate) + DRAFT aiAssisted link —
+  //      provenance recorded, awaiting the full §19 gates (incl. the step-5
+  //      localisation review). Never silently published.
+  // Seed writes never overwrite live link edits (§36).
+  let translationLinksSeeded = 0
+  let translationQnaSourceSeeded = 0
+  let translationAiDraftSeeded = 0
+
+  const chandrayaanEvent = await prisma.currentEvent.findUnique({
+    where: { slug: 'chandrayaan-3-vikram-landing' },
+    select: { id: true },
+  })
+  const spaceDayEvent = await prisma.currentEvent.findUnique({
+    where: { slug: 'national-space-day-notification' },
+    select: { id: true },
+  })
+  const enId = languageIdByCode.get('en')
+  const hiId = languageIdByCode.get('hi')
+
+  async function ensureTranslationLink(input: {
+    sourceContentType: 'CONTENT_ITEM' | 'QNA'
+    sourceContentId: string
+    targetContentType: 'CONTENT_ITEM' | 'QNA'
+    targetContentId: string
+    languageId: string
+    sourceRevisionNumber: number
+    status: 'DRAFT' | 'PUBLISHED' | 'OUTDATED' | 'RETIRED'
+    aiAssisted?: boolean
+    notes?: string
+    createdById: string
+  }): Promise<boolean> {
+    const existing = await prisma.translation.findFirst({
+      where: {
+        sourceContentType: input.sourceContentType,
+        sourceContentId: input.sourceContentId,
+        languageId: input.languageId,
+      },
+      select: { id: true },
+    })
+    if (existing) return false
+    await prisma.translation.create({ data: {
+      sourceContentType: input.sourceContentType,
+      sourceContentId: input.sourceContentId,
+      targetContentType: input.targetContentType,
+      targetContentId: input.targetContentId,
+      languageId: input.languageId,
+      sourceRevisionNumber: input.sourceRevisionNumber,
+      status: input.status,
+      aiAssisted: input.aiAssisted ?? false,
+      notes: input.notes ?? null,
+      createdById: input.createdById,
+    } })
+    return true
+  }
+
+  if (frUnit && enId && hiId) {
+    // 1 — the FR explainer pair (drift demo #1, synced at EN rev 1, now rev 2).
+    const enExplainer = await prisma.contentItem.findUnique({
+      where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: frUnit.id, languageId: enId, format: 'EXPLAINER' } },
+      select: { id: true },
+    })
+    const hiExplainer = await prisma.contentItem.findUnique({
+      where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: frUnit.id, languageId: hiId, format: 'EXPLAINER' } },
+      select: { id: true },
+    })
+    if (enExplainer && hiExplainer) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'CONTENT_ITEM',
+        sourceContentId: enExplainer.id,
+        targetContentType: 'CONTENT_ITEM',
+        targetContentId: hiExplainer.id,
+        languageId: hiId,
+        sourceRevisionNumber: 1,
+        status: 'OUTDATED',
+        notes: 'The English original\'s Article 359 correction (revision 2) landed after the Hindi translation — a refresh rides the normal §19 correction cycle.',
+        createdById: admin.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+
+    // 4 — the QnA pair: the new English source + the existing HI translation.
+    const heartAndSoulQuestion = "Why is Article 32 called the 'heart and soul' of the Constitution?"
+    const existingSourceQna = await prisma.qnA.findFirst({
+      where: { knowledgeUnitId: frUnit.id, languageId: enId, questionText: heartAndSoulQuestion },
+      select: { id: true },
+    })
+    let sourceQnaId = existingSourceQna?.id
+    if (!sourceQnaId) {
+      const createdQna = await prisma.qnA.create({
+        data: {
+          knowledgeUnitId: frUnit.id,
+          languageId: enId,
+          status: 'PUBLISHED',
+          questionText: heartAndSoulQuestion,
+          answerBody:
+            'Dr B R Ambedkar called Article 32 (the right to constitutional remedies) the "heart and soul" of the Constitution because rights are meaningless without a remedy: under Article 32 a citizen may move the Supreme Court directly to enforce the Fundamental Rights, and the Court issues the five writs — habeas corpus, mandamus, prohibition, certiorari and quo warranto.',
+          createdById: admin.id,
+        },
+      })
+      const revision = await prisma.qnARevision.create({
+        data: {
+          qnaId: createdQna.id,
+          revisionNumber: 1,
+          questionText: heartAndSoulQuestion,
+          answerBody:
+            'Dr B R Ambedkar called Article 32 (the right to constitutional remedies) the "heart and soul" of the Constitution because rights are meaningless without a remedy: under Article 32 a citizen may move the Supreme Court directly to enforce the Fundamental Rights, and the Court issues the five writs — habeas corpus, mandamus, prohibition, certiorari and quo warranto.',
+          publishedById: admin.id,
+          publishedAt: new Date('2025-06-11T09:10:00Z'),
+        },
+      })
+      await prisma.qnA.update({
+        where: { id: createdQna.id },
+        data: { publishedRevisionId: revision.id },
+      })
+      sourceQnaId = createdQna.id
+      translationQnaSourceSeeded = 1
+    }
+    const hiQna = await prisma.qnA.findFirst({
+      where: { knowledgeUnitId: frUnit.id, languageId: hiId },
+      select: { id: true, questionText: true },
+    })
+    if (sourceQnaId && hiQna) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'QNA',
+        sourceContentId: sourceQnaId,
+        targetContentType: 'QNA',
+        targetContentId: hiQna.id,
+        languageId: hiId,
+        sourceRevisionNumber: 1,
+        status: 'PUBLISHED',
+        notes: 'In sync — the Hindi entry published against English revision 1 (the standard Hindi legal terminology pass is the §25 open report on the writ term).',
+        createdById: admin.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+  }
+
+  if (chandrayaanEvent && enId && hiId) {
+    // 2 — the Chandrayaan-3 event pair (drift demo #2: HI between the EN revs).
+    // Event-anchored items carry a NULL knowledgeUnitId, so the compound
+    // unique does not apply (the service-enforced case) — resolved by anchor.
+    const enEventUpdate = await prisma.contentItem.findFirst({
+      where: { currentEventId: chandrayaanEvent.id, languageId: enId, format: 'CURRENT_EVENT_UPDATE' },
+      select: { id: true },
+    })
+    const hiEventUpdate = await prisma.contentItem.findFirst({
+      where: { currentEventId: chandrayaanEvent.id, languageId: hiId, format: 'CURRENT_EVENT_UPDATE' },
+      select: { id: true },
+    })
+    if (enEventUpdate && hiEventUpdate) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'CONTENT_ITEM',
+        sourceContentId: enEventUpdate.id,
+        targetContentType: 'CONTENT_ITEM',
+        targetContentId: hiEventUpdate.id,
+        languageId: hiId,
+        sourceRevisionNumber: 1,
+        status: 'OUTDATED',
+        notes: 'The Hindi update published between the English revision 1 and the revision-2 correction — the §36 drift the framework tracks.',
+        createdById: admin.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+  }
+
+  if (spaceDayEvent && enId && hiId) {
+    // 3 — the National Space Day pair: the existing HI DRAFT (in progress).
+    const enUpdate = await prisma.contentItem.findFirst({
+      where: { currentEventId: spaceDayEvent.id, languageId: enId, format: 'CURRENT_EVENT_UPDATE' },
+      select: { id: true },
+    })
+    const hiDraft = await prisma.contentItem.findFirst({
+      where: { currentEventId: spaceDayEvent.id, languageId: hiId, format: 'CURRENT_EVENT_UPDATE' },
+      select: { id: true },
+    })
+    if (enUpdate && hiDraft) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'CONTENT_ITEM',
+        sourceContentId: enUpdate.id,
+        targetContentType: 'CONTENT_ITEM',
+        targetContentId: hiDraft.id,
+        languageId: hiId,
+        sourceRevisionNumber: 1,
+        status: 'DRAFT',
+        notes: 'Work in progress — the Hindi update rides the §19 workflow (incl. the step-5 localisation review) before it can go live.',
+        createdById: writerHi.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+  }
+
+  // 5 — the §26 AI-draft candidate: a Hindi FACT_CARD on the Kalinga War unit.
+  if (ashokaUnit && enId && hiId) {
+    const enCard = await prisma.contentItem.findUnique({
+      where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: ashokaUnit.id, languageId: enId, format: 'FACT_CARD' } },
+      select: { id: true },
+    })
+    const hiCard = await prisma.contentItem.findUnique({
+      where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: ashokaUnit.id, languageId: hiId, format: 'FACT_CARD' } },
+      select: { id: true },
+    })
+    let hiCardId = hiCard?.id
+    if (!hiCardId) {
+      const createdCard = await prisma.contentItem.create({
+        data: {
+          knowledgeUnitId: ashokaUnit.id,
+          languageId: hiId,
+          format: 'FACT_CARD',
+          status: 'DRAFT',
+          title: 'कलिंग युद्ध (261 ई.पू.) — तथ्य कार्ड',
+          body: 'सम्राट अशोक के तीसरे राज्याभिषेक वर्ष (लगभग 261 ई.पू.) लड़ा गया कलिंग युद्ध मौर्य इतिहास का निर्णायक मोड़ था। तेरहवीं शिलालेख के अनुसार एक लाख मारे गए और डेढ़ लाख बंदी बनाए गए। इस पश्चाताप से अशोक बौद्ध धर्म की ओर मुड़े और युद्ध के स्थान पर "धम्म विजय" अपनाया। कलिंग आज का तटीय ओडिशा है। परीक्षा-सूत्र: तिथि, शिलालेख, धम्म-परिवर्तन।',
+          // §26 provenance: the working copy was machine-drafted (the AI
+          // translation assist) — the flag freezes onto revision 1 at publish
+          // time; the §19 gates (incl. localisation review) stand ahead.
+          aiAssisted: true,
+          createdById: writerHi.id,
+        },
+      })
+      hiCardId = createdCard.id
+      translationAiDraftSeeded = 1
+    }
+    if (enCard && hiCardId) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'CONTENT_ITEM',
+        sourceContentId: enCard.id,
+        targetContentType: 'CONTENT_ITEM',
+        targetContentId: hiCardId,
+        languageId: hiId,
+        sourceRevisionNumber: 1,
+        status: 'DRAFT',
+        aiAssisted: true,
+        notes: '§26 AI-assisted draft — provenance recorded on the target and the link; awaiting the full §19 review gates before anything goes live.',
+        createdById: writerHi.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -4233,7 +4491,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | translation links: ${translationLinksSeeded} (P9-S1 §6/§45: 2 OUTDATED drift demos over real correction history + the in-progress HI draft + the in-sync QnA pair${translationQnaSourceSeeded ? ' (with its new EN source QnA)' : ''}${translationAiDraftSeeded ? ' + the §26 AI-drafted Kalinga card' : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 
