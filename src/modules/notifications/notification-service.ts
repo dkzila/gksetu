@@ -36,6 +36,7 @@
  * precedent the sharing module set (one implementation per summary lives
  * in follow-save; a reverse fan-out query is this module's own).
  */
+import type { Prisma } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
   AUDIT_ACTIONS,
@@ -184,11 +185,12 @@ async function topicLabelIn(
  */
 async function enabledChannelsByUser(
   userIds: string[],
-  category: string
+  category: string,
+  tx: Prisma.TransactionClient = db
 ): Promise<Map<string, NotificationChannel[]>> {
   const result = new Map<string, NotificationChannel[]>()
   if (userIds.length === 0) return result
-  const rows = await db.notificationPreference.findMany({
+  const rows = await tx.notificationPreference.findMany({
     where: { userId: { in: userIds }, category },
     select: { userId: true, channel: true, enabled: true },
   })
@@ -223,7 +225,8 @@ async function fanOut(
   triggerType: NotificationTriggerType,
   objectType: NotificationObjectType,
   objectRef: string,
-  recipients: FanoutRecipient[]
+  recipients: FanoutRecipient[],
+  tx: Prisma.TransactionClient = db
 ): Promise<number> {
   const active = recipients.filter(
     (recipient, index) =>
@@ -233,7 +236,8 @@ async function fanOut(
   const category = categoryOfTrigger(triggerType)
   const channelsByUser = await enabledChannelsByUser(
     active.map((recipient) => recipient.userId),
-    category
+    category,
+    tx
   )
   const rows: Array<{
     userId: string
@@ -261,7 +265,7 @@ async function fanOut(
     }
   }
   if (rows.length === 0) return 0
-  await db.notificationEvent.createMany({
+  await tx.notificationEvent.createMany({
     data: rows.map((row) => ({ ...row, contextJson: row.contextJson as object })),
   })
   return rows.length
@@ -635,49 +639,63 @@ export async function notifyEditorialAssignment(
 /**
  * Ensures the user has AT MOST ONE unread revision-due digest: created
  * lazily when units are due and no unread digest exists (idempotent — the
- * §22 lazy-materialisation precedent). The counts are honest at creation
- * time; the live queue always lives on the dashboard.
+ * §22 lazy-materialisation precedent). The check-then-create runs inside a
+ * transaction under a per-user advisory lock, so concurrent feed reads (the
+ * center mount + the bell's store refresh) can never double-create. The
+ * counts are honest at creation time; the live queue always lives on the
+ * dashboard.
  */
 export async function ensureRevisionDueNotification(userId: string): Promise<boolean> {
-  const unread = await db.notificationEvent.findFirst({
-    where: { userId, triggerType: 'REVISION_DUE', status: { not: 'READ' } },
-    select: { id: true },
+  return db.$transaction(async (tx) => {
+    // The lazy ensure runs on EVERY feed read, and the center's mount + the
+    // bell's store refresh can land concurrently (observed in verification:
+    // two digests 38ms apart). An advisory xact lock — held to COMMIT — makes
+    // the check-then-create atomic per user: the loser of the race re-checks
+    // only after the winner's rows are visible, so the at-most-one-unread
+    // rule holds even across server instances (§27; the applyMasteryFromAttempt
+    // transaction precedent, §22).
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`globiq:notify:revision:${userId}`}))`
+
+    const unread = await tx.notificationEvent.findFirst({
+      where: { userId, triggerType: 'REVISION_DUE', status: { not: 'READ' } },
+      select: { id: true },
+    })
+    if (unread) return false
+
+    const due = await tx.masteryState.findMany({
+      where: { userId, nextReviewAt: { lte: new Date() } },
+      orderBy: { nextReviewAt: 'asc' },
+      take: 25,
+      include: { knowledgeUnit: { select: { canonicalName: true } } },
+    })
+    if (due.length === 0) return false
+
+    const sample = due
+      .slice(0, 3)
+      .map((row) => row.knowledgeUnit.canonicalName)
+      .join(' · ')
+    const context: NotificationContext = {
+      title: `${due.length} ${due.length === 1 ? 'unit is' : 'units are'} due for revision`,
+      reason: `Your spaced-review schedule (§22) — ${due.length} ${
+        due.length === 1 ? 'unit has' : 'units have'
+      } reached the next review date.`,
+      body:
+        due.length > 3
+          ? `${sample} · +${due.length - 3} more`
+          : sample.length > 0
+            ? sample
+            : null,
+      objectLabel: 'Your revision queue',
+      canonicalPath: null, // the dashboard is a private surface — no §16 public path
+      appPath: '#/dashboard',
+      actionLabel: 'Open your revision queue',
+      matchedFollows: [],
+      matchedSave: null,
+    }
+
+    await fanOut('REVISION_DUE', 'USER_MASTERY', userId, [{ userId, context }], tx)
+    return true
   })
-  if (unread) return false
-
-  const due = await db.masteryState.findMany({
-    where: { userId, nextReviewAt: { lte: new Date() } },
-    orderBy: { nextReviewAt: 'asc' },
-    take: 25,
-    include: { knowledgeUnit: { select: { canonicalName: true } } },
-  })
-  if (due.length === 0) return false
-
-  const sample = due
-    .slice(0, 3)
-    .map((row) => row.knowledgeUnit.canonicalName)
-    .join(' · ')
-  const context: NotificationContext = {
-    title: `${due.length} ${due.length === 1 ? 'unit is' : 'units are'} due for revision`,
-    reason: `Your spaced-review schedule (§22) — ${due.length} ${
-      due.length === 1 ? 'unit has' : 'units have'
-    } reached the next review date.`,
-    body:
-      due.length > 3
-        ? `${sample} · +${due.length - 3} more`
-        : sample.length > 0
-          ? sample
-          : null,
-    objectLabel: 'Your revision queue',
-    canonicalPath: null, // the dashboard is a private surface — no §16 public path
-    appPath: '#/dashboard',
-    actionLabel: 'Open your revision queue',
-    matchedFollows: [],
-    matchedSave: null,
-  }
-
-  await fanOut('REVISION_DUE', 'USER_MASTERY', userId, [{ userId, context }])
-  return true
 }
 
 // ---------- Dispatch (§27 queued → sent/failed; §39 the held channel) ----------
