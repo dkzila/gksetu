@@ -234,6 +234,9 @@ export const AUDIT_ACTIONS = {
   /** P9-S3: object-level provisioning denials — the §20 signal (a cross-market
    *  probe is a security event, recorded like the qnaDenied precedent). */
   staffDenied: 'staff.denied',
+  /** P9-S4: market-scope denials on the SEO operations surfaces (the §20
+   *  signal on the per-market reads — the staffDenied precedent). */
+  seoDenied: 'seo.denied',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */

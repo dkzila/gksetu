@@ -27,6 +27,9 @@ export type SeoErrorCode =
   | 'SEO_OBSERVATION_UNKNOWN_MARKET'
   | 'SEO_OBSERVATION_UNKNOWN_PATH'
   | 'SEO_OBSERVATION_FUTURE_DATE'
+  // P9-S4 — the country-specific operations views
+  | 'SEO_MARKET_NOT_FOUND'
+  | 'SEO_MARKET_OUT_OF_SCOPE'
 
 const ERROR_STATUS: Record<SeoErrorCode, number> = {
   COUNTRY_NOT_FOUND: 404,
@@ -48,6 +51,8 @@ const ERROR_STATUS: Record<SeoErrorCode, number> = {
   SEO_OBSERVATION_UNKNOWN_MARKET: 400,
   SEO_OBSERVATION_UNKNOWN_PATH: 400,
   SEO_OBSERVATION_FUTURE_DATE: 400,
+  SEO_MARKET_NOT_FOUND: 404,
+  SEO_MARKET_OUT_OF_SCOPE: 403,
 }
 
 export class SeoError extends Error {

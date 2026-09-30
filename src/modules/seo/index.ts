@@ -103,6 +103,21 @@ export type {
 export { recordLanding } from './landing-service'
 export { ingestSeoObservations } from './observation-service'
 export type { SeoObservationIngestResult } from './observation-service'
+export {
+  getMarketSeoOverview,
+  listMarketSeoSummaries,
+  MARKET_SEO_CONTRACT,
+} from './market-ops-service'
+export type {
+  MarketSeoCheck,
+  MarketSeoCountryRef,
+  MarketSeoHreflangView,
+  MarketSeoObservationsView,
+  MarketSeoOverview,
+  MarketSeoSegmentRow,
+  MarketSeoSummary,
+  MarketSeoSummariesResult,
+} from './market-ops-service'
 
 export type {
   CountryHomepage,

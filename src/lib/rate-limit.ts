@@ -123,4 +123,5 @@ export const RATE_LIMITS = {
   countryLifecycleWrite: { limit: 30, windowMs: 60 * 1000 }, // announce/launch/pause transitions per IP (P9-S2 §43 — ADMIN-gated, the editorialWrite precedent)
   workspaceRead: { limit: 60, windowMs: 60 * 1000 }, // workspace list/detail reads per IP (P9-S3 §38 — staff-class reads, the editorialRead precedent)
   staffWrite: { limit: 30, windowMs: 60 * 1000 }, // §20 staff provisioning mutations per IP (P9-S3 — invite/adjust/suspend/reset, the editorialWrite precedent)
+  seoOpsRead: { limit: 60, windowMs: 60 * 1000 }, // market-ops reads per IP (P9-S4 §38 — staff-class reads, the workspaceRead precedent)
 } as const

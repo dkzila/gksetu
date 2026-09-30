@@ -331,7 +331,11 @@ export function SeoSection() {
                   Structured data — the live composition samples (JSON-LD per view)
                 </p>
                 <div className="overflow-hidden rounded-lg border border-zinc-200">
-                  <div className="max-h-56 overflow-y-auto">
+                  {/* P9-S4 verification-found fix: the §16 path column cannot
+                      wrap (no break opportunities in a path) — the container
+                      scrolls horizontally on narrow viewports instead of
+                      pushing the page wide (the B3 precedent). */}
+                  <div className="max-h-56 overflow-auto">
                     <table className="w-full text-left text-xs">
                       <thead className="sticky top-0 bg-zinc-50 text-[11px] uppercase tracking-wide text-zinc-500">
                         <tr>

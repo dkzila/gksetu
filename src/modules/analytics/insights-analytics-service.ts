@@ -362,6 +362,32 @@ async function seoFamily(since: Date | null, window: AnalyticsWindow): Promise<A
     }
   }
 
+  // P9-S4: the market footprint (windowless stock — the marketReadiness
+  // precedent): per-market indexable counts + which markets the engine-side
+  // observations have reached at all (all-time distinct pages per market —
+  // the P8-S5 indexStatus pending note said this lands with the P9-S4
+  // country operations; this metric is that landing).
+  const footprintRows = await db.seoObservation.findMany({
+    select: { countryIso: true, pagePath: true },
+  })
+  const indexableByMarket = segments.reduce<Map<string, number>>((counts, segment) => {
+    counts.set(segment.country, (counts.get(segment.country) ?? 0) + segment.urlCount)
+    return counts
+  }, new Map())
+  const observedPagesByMarket = new Map<string, Set<string>>()
+  for (const row of footprintRows) {
+    const pages = observedPagesByMarket.get(row.countryIso) ?? new Set<string>()
+    pages.add(row.pagePath)
+    observedPagesByMarket.set(row.countryIso, pages)
+  }
+  const censusMarkets = [...indexableByMarket.keys()].sort()
+  const observedMarkets = censusMarkets.filter((market) => (observedPagesByMarket.get(market)?.size ?? 0) > 0)
+  const marketLines = censusMarkets.map(
+    (market) =>
+      `${market}: ${indexableByMarket.get(market) ?? 0} indexable, ${observedPagesByMarket.get(market)?.size ?? 0} observed`
+  )
+  const unobservedMarkets = censusMarkets.filter((market) => !observedMarkets.includes(market))
+
   const metrics: AnalyticsMetric[] = [
     {
       key: 'indexedPages',
@@ -375,7 +401,7 @@ async function seoFamily(since: Date | null, window: AnalyticsWindow): Promise<A
       label: 'Impressions / clicks (engine-side)',
       value: `${impressions} · ${clicks}`,
       unit: 'text',
-      derivation: `Sum of the ${observationRows.length} imported SeoObservation row(s) in the ${window.label} — CTR ${pct(clicks, impressions)}%, impression-weighted avg position ${avgPosition ?? '—'}. Search Console-shaped daily rows (page × query × day); the present rows are the §45 dev fixture until a real feed lands (the P9-S4 country ops).`,
+      derivation: `Sum of the ${observationRows.length} imported SeoObservation row(s) in the ${window.label} — CTR ${pct(clicks, impressions)}%, impression-weighted avg position ${avgPosition ?? '—'}. Search Console-shaped daily rows (page × query × day) via the vendor-neutral import (POST /api/seo/observations); the present rows are the §45 dev fixtures (IN + the P9-S4 FR market rows) until operators connect a real feed.`,
     },
     {
       key: 'queryCoverage',
@@ -384,16 +410,19 @@ async function seoFamily(since: Date | null, window: AnalyticsWindow): Promise<A
       unit: 'percent',
       derivation: `Platform-side: ${successfulQueries} of ${totalQueries} §17 queries returned ≥ 1 result in the ${window.label} (the Discovery gap list is the same read's honest underside). Engine-side: the live §17 engine satisfies ${satisfied.length} of ${observedQueries.length} distinct engine-observed queries${unsatisfied.length > 0 ? ` — unsatisfied: ${unsatisfied.join(', ')}` : ''} (an engine query the platform's own search cannot satisfy is the coverage gap made visible).`,
     },
+    {
+      key: 'marketSeoFootprint',
+      label: 'Market SEO footprint',
+      value: `${urlTotal} indexable · ${observedMarkets.length}/${censusMarkets.length} markets observed`,
+      unit: 'text',
+      derivation: `Windowless stock (the marketReadiness precedent): by market (indexable census URLs vs pages the engine-side observations have reached, all-time) — ${marketLines.length > 0 ? marketLines.join('; ') : 'no census segments yet'}.${unobservedMarkets.length > 0 ? ` No engine-side observations yet for: ${unobservedMarkets.join(', ')} (§32 honest gap — the census is the platform-side declaration only).` : ''} The per-market operations view (segment inventory, hreflang clusters, per-page league, submission URLs) is the P9-S4 surface: GET /api/seo/market-ops.`,
+    },
   ]
 
   const pending: AnalyticsPending[] = [
     {
-      key: 'indexStatus',
-      text: 'How many census URLs the engine actually indexed needs Search Console index-status data — the census here is the platform-side declaration; verification lands with the P9-S4 country-specific SEO operations.',
-    },
-    {
-      key: 'perPageLeague',
-      text: 'No per-page CTR league table yet — deliberately aggregate-first; per-page editorial reads land when operators need them (P9-S4), always §9-derived.',
+      key: 'engineDiagnostics',
+      text: 'The true engine index-status diagnostics (crawl errors, page-experience, indexing reasons) are vendor-side data the Search Console-shaped import does not carry — the observed-vs-census coverage per market (marketSeoFootprint + the P9-S4 market-ops views) is the platform-side honest form.',
     },
   ]
 
