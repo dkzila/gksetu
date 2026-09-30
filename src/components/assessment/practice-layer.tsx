@@ -31,6 +31,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { SaveButton } from '@/components/saves/save-button'
+import { ReportButton } from '@/components/feedback/report-button'
 import { ShareButton } from '@/components/shares/share-button'
 
 import type { PagePracticeLayer, PagePracticeQuestion } from '@/components/reader/knowledge-page-view'
@@ -119,6 +120,16 @@ function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onS
           <ShareButton
             path={`${unitSharePath}?q=${entry.id}`}
             title={entry.question}
+            iconOnly
+            className="h-9 w-9 px-0"
+          />
+          {/* P8-S3 §25: report this question (id = §37 identity) — a wrong
+              answer key or distorted option is exactly a factual error. */}
+          <ReportButton
+            objectType="QUESTION"
+            objectRef={entry.id}
+            objectName={entry.question}
+            languageCode={entry.language.code}
             iconOnly
             className="h-9 w-9 px-0"
           />

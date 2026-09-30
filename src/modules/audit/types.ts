@@ -175,6 +175,10 @@ export const AUDIT_ACTIONS = {
   /** P8-S2 (§27): the batch dispatch sweep (ensure revision digests + deliver
    *  queued rows — the freshness-sweep precedent, counts in metadata). */
   notificationsDispatch: 'notifications.dispatch',
+  /** P8-S3 (§25): public feedback reports (submission + every editorial
+   *  transition — every report auditable to resolution, §44). */
+  feedbackReportCreate: 'feedback.report.create',
+  feedbackReportTransition: 'feedback.report.transition',
   /** P5-S3 profile & explicit goals (§6/§9/§31 — self-service, user-controlled). */
   profileUpdate: 'user.profile.update',
   goalSet: 'user.goal.set',
@@ -251,5 +255,7 @@ export const AUDIT_OBJECT_TYPES = {
   /** P8-S2 (§27): notification rows + preference rows. */
   notificationEvent: 'NotificationEvent',
   notificationPreference: 'NotificationPreference',
+  /** P8-S3 (§25): the content feedback / quality-loop rows. */
+  contentFeedback: 'ContentFeedback',
   permission: 'Permission',
 } as const

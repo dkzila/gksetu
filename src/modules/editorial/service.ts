@@ -22,6 +22,10 @@ import type { Prisma } from '@prisma/client'
 import { db } from '@/lib/db'
 import { can, type Actor } from '@/lib/permissions'
 import { notifyEditorialAssignment } from '@/modules/notifications'
+// P8-S3 §25: the task→report cascades (one-way: editorial → content-quality,
+// the same direction as the notify import — content-quality never imports
+// editorial, so no cycle).
+import { onFeedbackTaskCancelled, onFeedbackTaskResolved, onFeedbackTaskStarted } from '@/modules/content-quality'
 import {
   AUDIT_ACTIONS,
   AUDIT_OBJECT_TYPES,
@@ -731,6 +735,29 @@ export async function transitionEditorialTask(
     ip: meta.ip ?? null,
     userAgent: meta.userAgent ?? null,
   })
+
+  // P8-S3 §25: a ContentFeedback-keyed task closing closes its report (and
+  // starting it marks the report in review) — the quality loop always closes
+  // on both sides. Best-effort by contract: a cascade failure never fails
+  // the task transition. One-way module direction (editorial →
+  // content-quality, the same direction as the notify imports).
+  if (task.objectType === 'ContentFeedback') {
+    try {
+      if (input.action === 'start' || (input.action === 'claim' && target === 'IN_PROGRESS')) {
+        await onFeedbackTaskStarted(task.id)
+      } else if (input.action === 'resolve' && target === 'RESOLVED') {
+        await onFeedbackTaskResolved(
+          task.id,
+          input.resolutionNote?.trim() || 'Resolved without a note',
+          actor.userId
+        )
+      } else if (input.action === 'cancel' || (input.action === 'resolve' && target === 'CANCELLED')) {
+        await onFeedbackTaskCancelled(task.id)
+      }
+    } catch (cascadeError) {
+      console.error('[editorial:transition] feedback cascade failed (task stands):', cascadeError)
+    }
+  }
 
   return toTaskDto(actor, updated)
 }

@@ -101,7 +101,7 @@ const TRIGGER_ROWS: Array<{
     trigger: 'FEEDBACK_REPORT_RECEIVED',
     label: 'Feedback report',
     category: 'editorial',
-    fired: 'Modeled (§27) — wired when the public feedback loop lands (P8-S3)',
+    fired: 'Wired (P8-S3 §25) — every submitted ContentFeedback report fans out to the owning workspace\u2019s editors (COUNTRY_ADMINs for country content, ADMINs for global)',
     icon: ShieldCheck,
   },
 ]

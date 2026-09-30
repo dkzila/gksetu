@@ -62,6 +62,7 @@ import { SharedCollectionView } from '@/components/shares/shared-collection-view
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
 import { NotificationsView } from '@/components/notifications/notifications-view'
+import { MyFeedbackView } from '@/components/feedback/my-feedback-view'
 import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
@@ -519,6 +520,7 @@ export default function GlobIQApp() {
             route.view === 'dashboard' ||
             route.view === 'personalisation' ||
             route.view === 'notifications' ||
+            route.view === 'feedback' ||
             route.view === 'quick-mock'
               ? 'home'
               : route.view,
@@ -606,7 +608,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
               >
-                Phase 8 · Session 2 — Notifications
+                Phase 8 · Session 3 — Feedback / Quality Loop
               </Badge>
               <HeaderAuth />
             </div>
@@ -802,6 +804,8 @@ export default function GlobIQApp() {
           />
         ) : route.view === 'notifications' ? (
           <NotificationsView onOpenPath={openPath} onGoHome={goHome} onSignIn={goSignIn} />
+        ) : route.view === 'feedback' ? (
+          <MyFeedbackView onOpenPath={openPath} onGoHome={goHome} onSignIn={goSignIn} />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}

@@ -634,6 +634,63 @@ export async function notifyEditorialAssignment(
   )
 }
 
+// ---------- Trigger: FEEDBACK_REPORT_RECEIVED (§27/§25 — wired P8-S3) ----------
+
+/** The loaded report shape the feedback trigger needs (P8-S3 handoff). */
+export interface FeedbackNotificationReport {
+  id: string
+  objectLabel: string
+  feedbackType: string
+  feedbackTypeLabel: string
+  description: string
+  /** The routed CORRECTION task's workspace scope (null countryId = platform). */
+  taskCountryId: string | null
+  /** The reporter (null = anonymous) — never notified about their own report. */
+  reporterUserId: string | null
+}
+
+/**
+ * A ContentFeedback report arrived (§25): the owning workspace's editors
+ * hear about it — ADMINs for platform (global-anchor) reports, the country's
+ * COUNTRY_ADMINs for country-workspace reports (the §38 workspace split).
+ * The reporter is never a recipient (the self-notification honesty rule).
+ * Best-effort by contract: a notification failure never fails the report.
+ */
+export async function notifyFeedbackReceived(report: FeedbackNotificationReport): Promise<number> {
+  const editors = await db.user.findMany({
+    where: {
+      status: 'ACTIVE',
+      ...(report.taskCountryId
+        ? { role: 'COUNTRY_ADMIN', countryId: report.taskCountryId }
+        : { role: 'ADMIN' }),
+      id: report.reporterUserId ? { not: report.reporterUserId } : undefined,
+    },
+    select: { id: true },
+  })
+  if (editors.length === 0) return 0
+
+  const excerpt =
+    report.description.length > 160
+      ? `${report.description.slice(0, 157)}\u2026`
+      : report.description
+  const recipients = editors.map((editor) => ({
+    userId: editor.id,
+    context: {
+      title: `Feedback report: ${report.objectLabel}`,
+      reason: `A reader reported a ${report.feedbackTypeLabel.toLowerCase()} on ${report.objectLabel} (§25) \u2014 routed into the editorial workflow as a correction task.`,
+      body: excerpt,
+      objectLabel: `Feedback report \u00b7 ${report.feedbackTypeLabel}`,
+      canonicalPath: null, // the editorial workspace is the console — an in-app surface
+      appPath: '#/console',
+      actionLabel: 'Open the editorial workspace',
+      matchedFollows: [],
+      matchedSave: null,
+    } satisfies NotificationContext,
+  }))
+
+  return fanOut('FEEDBACK_REPORT_RECEIVED', 'CONTENT_FEEDBACK', report.id, recipients)
+}
+
 // ---------- Trigger: REVISION_DUE (§27/§22 — the spaced-review digest) ----------
 
 /**

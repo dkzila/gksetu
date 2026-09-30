@@ -59,7 +59,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'quick-mock' | 'collection' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -171,6 +171,12 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   // market-independent (a notification is user data, not market content).
   if (segments[0] === 'notifications') {
     return { ...fallback, view: 'notifications', scrollTo: null }
+  }
+
+  // P8-S3 §25/§31: the reporter's own reports surface — market-independent
+  // (a report is user data, not market content).
+  if (segments[0] === 'feedback') {
+    return { ...fallback, view: 'feedback', scrollTo: null }
   }
 
   // P8-S1 §21: the public unlisted shared-collection view — market-
@@ -390,6 +396,8 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'dashboard') return '#/dashboard'
   if (route.view === 'personalisation') return '#/personalisation'
   if (route.view === 'notifications') return '#/notifications'
+  // P8-S3 §25/§31 — the reporter's own reports surface, market-independent.
+  if (route.view === 'feedback') return '#/feedback'
   // P8-S1 §21: the public unlisted shared-collection view — market-independent.
   if (route.view === 'collection' && route.collectionId) {
     return `#/collections/${route.collectionId}/`

@@ -52,6 +52,7 @@ export {
   notifyUnitVerified,
   notifyCorrectionPublished,
   notifyEditorialAssignment,
+  notifyFeedbackReceived,
   ensureRevisionDueNotification,
   dispatchUserNotifications,
   dispatchAllNotifications,
@@ -61,6 +62,6 @@ export {
   setMyNotificationPreference,
   getMyNotificationStats,
 } from './notification-service'
-export type { EditorialAssignmentTask } from './notification-service'
+export type { EditorialAssignmentTask, FeedbackNotificationReport } from './notification-service'
 export { markReadSchema, notificationPreferenceSchema } from './notification-validation'
 export type { MarkReadInput, NotificationPreferenceInput } from './notification-validation'

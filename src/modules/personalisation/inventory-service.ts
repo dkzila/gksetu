@@ -390,6 +390,11 @@ export async function getMyPersonalisation(
       // like attempts) and preferences are account settings (kept, like the
       // profile) — both managed on #/notifications, never by this reset.
       'Your notifications and their preferences — history and settings (§27), managed on the notifications surface',
+      // P8-S3 §25/§31: feedback reports are a quality signal on CONTENT, not
+      // personalisation state — the loop outlives the reset (and anonymous
+      // reports never had an account link to reset anyway). Managed on
+      // #/feedback, never here.
+      'Your content feedback reports — a quality signal on the content (§25), followed on the your-reports surface',
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],

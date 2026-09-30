@@ -13,7 +13,7 @@ import { ArrowLeft } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { ShareButton } from '@/components/shares/share-button'
-
+import { ReportButton } from '@/components/feedback/report-button'
 import { EventPageView } from '@/components/current-affairs/event-page-view'
 
 export interface EventViewProps {
@@ -54,6 +54,13 @@ export function EventView({
             #/current-affairs/{eventSlug}/
           </p>
           <ShareButton path={`#/current-affairs/${eventSlug}/`} title={eventSlug} className="h-9 px-2.5" />
+          {/* P8-S3 §25: report this event's coverage (slug = §16 identity). */}
+          <ReportButton
+            objectType="CURRENT_EVENT"
+            objectRef={eventSlug}
+            objectName={eventSlug}
+            languageCode={language}
+          />
         </div>
       </div>
 

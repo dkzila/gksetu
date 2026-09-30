@@ -424,8 +424,9 @@ export function EditorialSection() {
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Task board</CardTitle>
           <CardDescription>
-            Scheduled releases publish automatically at their time (§19 step 7); corrections route
-            here as CORRECTION tasks once the public feedback loop lands (P8-S3).
+            Scheduled releases publish automatically at their time (§19 step 7); public feedback
+            reports route here as CORRECTION tasks (§25, wired P8-S3) — resolving one closes its
+            report with the same note.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">

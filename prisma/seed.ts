@@ -3778,6 +3778,180 @@ async function main() {
   }
   const notificationPreferencesSeeded = await prisma.notificationPreference.count()
 
+  // ---------- P8-S3: Content Feedback — §25 fixtures (the quality loop, end to end) ----------
+  // §45: "One sample ContentFeedback report, to exercise the quality-loop
+  // workflow end-to-end." Two fixtures, both honestly grounded in the seeded
+  // §36 history:
+  //   1. The RESOLVED loop — the anonymous reader report behind the FR
+  //      explainer's revision-2 correction (the changeSummary already says
+  //      "flagged by a reader for precision"): reported 2d ago, corrected
+  //      and resolved 1d ago with the note that names revision 2, its
+  //      CORRECTION task resolved with it. This IS the seeded correction's
+  //      provenance, made first-class.
+  //   2. The OPEN queue demo — a translation issue on the seeded Hindi QnA
+  //      entry (mandamus rendered as परमादेश where standard Hindi legal
+  //      terminology is उत्प्रेषण), filed by the platform admin while
+  //      reading, routed into the IN workspace (Polity is country-scoped)
+  //      with its CORRECTION task awaiting triage — and the §27
+  //      FEEDBACK_REPORT_RECEIVED notification to the workspace's editors
+  //      (the IN admin; the reporter-admin is never a recipient).
+  // Report+task rows are count-guarded in total (the share-event precedent);
+  // the notification fixture is guarded per-trigger-type.
+  let feedbackReportsSeeded = 0
+  let feedbackTasksSeeded = 0
+  let feedbackNotificationsSeeded = 0
+  const existingFeedback = await prisma.contentFeedback.count()
+  if (existingFeedback === 0) {
+    const frUnit = await prisma.knowledgeUnit.findUnique({
+      where: { slug: 'fundamental-rights-articles-12-35' },
+      select: { id: true, canonicalName: true, status: true },
+    })
+    const frExplainer = frUnit
+      ? await prisma.contentItem.findFirst({
+          where: {
+            knowledgeUnitId: frUnit.id,
+            language: { code: 'en' },
+            format: 'EXPLAINER',
+            status: 'PUBLISHED',
+          },
+          select: { id: true, format: true },
+        })
+      : null
+    const hindiQna = frUnit
+      ? await prisma.qnA.findFirst({
+          where: { knowledgeUnitId: frUnit.id, language: { code: 'hi' }, status: 'PUBLISHED' },
+          select: { id: true },
+        })
+      : null
+
+    const reportedAt = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+    const resolvedAt = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)
+
+    // --- 1. The closed loop (the §45 end-to-end fixture) ---
+    if (frUnit && frExplainer) {
+      const resolvedReport = await prisma.contentFeedback.create({
+        data: {
+          userId: null, // an anonymous reader — exactly what the §25 changeSummary says
+          objectType: 'CONTENT_ITEM',
+          objectId: frExplainer.id,
+          objectLabel: `${frUnit.canonicalName} · en/${frExplainer.format}`,
+          languageCode: 'en',
+          feedbackType: 'FACTUAL_ERROR',
+          description:
+            'The suspension sentence says fundamental rights "can be suspended during an Emergency" without the constitutional precision: suspension requires an Article 359 proclamation, and Articles 20–21 are never suspendable. Please make the exception explicit.',
+          status: 'RESOLVED',
+          resolutionNote:
+            'Corrected in revision 2 — the sentence now names the Article 359 Emergency-proclamation requirement and the Articles 20–21 carve-out (§25).',
+          resolvedById: inAdmin.id,
+          resolvedAt,
+          createdAt: reportedAt,
+        },
+      })
+      const resolvedTask = await prisma.editorialTask.create({
+        data: {
+          type: 'CORRECTION',
+          status: 'RESOLVED',
+          priority: 'HIGH',
+          countryId: india.id,
+          languageId: en.id,
+          objectType: 'ContentFeedback',
+          objectId: resolvedReport.id,
+          objectLabel: `${resolvedReport.objectLabel} · Factual error`,
+          title: `Correction report: ${frUnit.canonicalName}`,
+          notes: 'Reported by an anonymous reader: the Emergency-suspension sentence needs Article 359 precision.',
+          resolutionNote:
+            'Corrected in revision 2 — the sentence now names the Article 359 Emergency-proclamation requirement and the Articles 20–21 carve-out (§25).',
+          resolvedById: inAdmin.id,
+          createdAt: reportedAt,
+          startedAt: new Date(reportedAt.getTime() + 3 * 60 * 60 * 1000),
+          resolvedAt,
+        },
+      })
+      await prisma.contentFeedback.update({
+        where: { id: resolvedReport.id },
+        data: { taskId: resolvedTask.id },
+      })
+      feedbackReportsSeeded += 1
+      feedbackTasksSeeded += 1
+    }
+
+    // --- 2. The open queue demo (+ the §27 notification to the IN workspace) ---
+    if (frUnit && hindiQna) {
+      const openReport = await prisma.contentFeedback.create({
+        data: {
+          userId: admin.id, // the platform admin, reading the Hindi surface
+          objectType: 'QNA',
+          objectId: hindiQna.id,
+          objectLabel: 'QnA: अनुच्छेद 32 को संविधान का “हृदय और आत्मा” क्यों कहा गया?',
+          languageCode: 'hi',
+          feedbackType: 'TRANSLATION_ISSUE',
+          description:
+            'The answer renders the writ of mandamus as “परमादेश”, but the standard Hindi constitutional term is “उत्प्रेषण” (परमादेश is the usual rendering of injunction). Please align the five writ names with standard Hindi legal terminology.',
+          status: 'OPEN',
+          createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
+        },
+      })
+      const openTask = await prisma.editorialTask.create({
+        data: {
+          type: 'CORRECTION',
+          status: 'OPEN',
+          priority: 'MEDIUM',
+          countryId: india.id,
+          languageId: hi.id,
+          objectType: 'ContentFeedback',
+          objectId: openReport.id,
+          objectLabel: 'QnA: अनुच्छेद 32 · hi · Translation issue',
+          title: 'Correction report: FR Article 32 QnA (hi)',
+          notes: 'Reported by admin@globiq.dev: the writ of mandamus needs the standard Hindi term उत्प्रेषण.',
+          createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
+        },
+      })
+      await prisma.contentFeedback.update({
+        where: { id: openReport.id },
+        data: { taskId: openTask.id },
+      })
+      feedbackReportsSeeded += 1
+      feedbackTasksSeeded += 1
+
+      // The §27 FEEDBACK_REPORT_RECEIVED fixture — the IN workspace's
+      // editors (the IN admin; the reporter-admin never receives their own
+      // report). SENT: the seeded demo state is post-dispatch.
+      const existingFeedbackNotifications = await prisma.notificationEvent.count({
+        where: { triggerType: 'FEEDBACK_REPORT_RECEIVED' },
+      })
+      if (existingFeedbackNotifications === 0) {
+        const batchId = crypto.randomUUID()
+        const context = {
+          title: `Feedback report: ${openReport.objectLabel}`,
+          reason:
+            'A reader reported a translation issue on QnA: अनुच्छेद 32 को संविधान का “हृदय और आत्मा” क्यों कहा गया? (§25) — routed into the editorial workflow as a correction task.',
+          body: 'The answer renders the writ of mandamus as “परमादेश”, but the standard Hindi constitutional term is “उत्प्रेषण” …',
+          objectLabel: 'Feedback report · Translation issue',
+          canonicalPath: null,
+          appPath: '#/console',
+          actionLabel: 'Open the editorial workspace',
+          matchedFollows: [],
+          matchedSave: null,
+        }
+        await prisma.notificationEvent.createMany({
+          data: (['EMAIL', 'WEB_PUSH'] as const).map((channel) => ({
+            userId: inAdmin.id,
+            batchId,
+            triggerType: 'FEEDBACK_REPORT_RECEIVED' as const,
+            objectType: 'CONTENT_FEEDBACK' as const,
+            objectRef: openReport.id,
+            channel,
+            status: 'SENT' as const,
+            contextJson: context,
+            sentAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+            createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
+          })),
+        })
+        feedbackNotificationsSeeded = 2
+      }
+    }
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -3791,7 +3965,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

@@ -49,6 +49,7 @@ export type Permission =
   | 'entities:manage' // manage the Entity reference registry (P6-S3 §6/§12 step 3): ADMIN + COUNTRY_ADMIN — canonical records like taxonomy; event LINKS ride current-affairs:manage on the event
   | 'search:manage' // platform-wide index rebuild + stats (P4-S1 §38 admin console): ADMIN only — the index is a derived projection of every country's data
   | 'notifications:dispatch' // P8-S2 (§27): the platform-wide notification dispatch sweep (revision digests + queued delivery — the freshness-sweep precedent): ADMIN only — it processes every user's rows
+  | 'feedback:manage' // P8-S3 (§25): triage and resolve content feedback reports — the editorial quality loop's queue: ADMIN (platform) + COUNTRY_ADMIN (own workspace, §38)
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
@@ -115,6 +116,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'question:publish',
     'mocktest:manage',
     'mocktest:publish',
+    'feedback:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -136,6 +138,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'question:publish',
     'mocktest:manage',
     'mocktest:publish',
+    'feedback:manage',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -163,6 +166,7 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'question:publish',
   'mocktest:manage',
   'mocktest:publish',
+  'feedback:manage',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -259,6 +263,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'entities:manage': 'Manage the entity registry — persons, places, organisations, concepts (own country + global read)',
   'search:manage': 'Rebuild & inspect the search index',
   'notifications:dispatch': 'Run the notification dispatch sweep (§27)',
+  'feedback:manage': 'Triage and resolve content feedback reports (§25)',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
   'audit:read': 'Read audit trail',

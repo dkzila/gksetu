@@ -110,4 +110,7 @@ export const RATE_LIMITS = {
   shareWrite: { limit: 30, windowMs: 60 * 1000 }, // share-event records per IP (P8-S1 §21/§32 — anonymous allowed, object-guarded)
   notificationsRead: { limit: 60, windowMs: 60 * 1000 }, // private notification feed/preferences/stats reads per IP (P8-S2 §27 — owner-scoped, auth-gated)
   notificationsWrite: { limit: 30, windowMs: 60 * 1000 }, // mark-read + preference mutations + the admin dispatch sweep per IP (P8-S2 §27)
+  feedbackWrite: { limit: 10, windowMs: 60 * 1000 }, // PUBLIC feedback submissions per IP (P8-S3 §25 — anonymous-friendly, object-guarded, duplicate-folded; reports are heavier than shares so the cap is tighter)
+  feedbackRead: { limit: 60, windowMs: 60 * 1000 }, // editorial queue reads + own-report reads per IP (P8-S3 §25/§31)
+  feedbackManage: { limit: 30, windowMs: 60 * 1000 }, // editorial transitions per IP (P8-S3 §44 — auth-gated queue actions, the notificationsWrite precedent; separate from the tighter public-submission cap)
 } as const

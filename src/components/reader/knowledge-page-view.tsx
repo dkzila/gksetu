@@ -45,6 +45,7 @@ import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
 import { SaveButton } from '@/components/saves/save-button'
+import { ReportButton } from '@/components/feedback/report-button'
 import { PracticeLayer } from '@/components/assessment/practice-layer'
 import { MasteryStrip } from '@/components/assessment/mastery-strip'
 
@@ -358,7 +359,9 @@ function RevisionNoteView({ body }: { body: string }) {
   )
 }
 
-function RepresentationCard({ item }: { item: PageRepresentation }) {
+/** P8-S3 §25: languageCode rides in from the page (the representation's own
+ * language — the translation-issue signal). */
+function RepresentationCard({ item, languageCode }: { item: PageRepresentation; languageCode: string }) {
   const meta = FORMAT_META[item.format] ?? {
     label: item.format,
     icon: FileText,
@@ -385,8 +388,20 @@ function RepresentationCard({ item }: { item: PageRepresentation }) {
             </div>
             <CardTitle className="mt-2 text-lg leading-snug">{item.title}</CardTitle>
           </div>
-          <span className="shrink-0 text-xs text-zinc-400">
-            Rev {item.revision.number} · {formatDate(item.revision.publishedAt)}
+          <span className="flex shrink-0 items-center gap-1.5">
+            <span className="text-xs text-zinc-400">
+              Rev {item.revision.number} · {formatDate(item.revision.publishedAt)}
+            </span>
+            {/* P8-S3 §25: report this specific representation (id = §7
+                identity: unit × language × format). */}
+            <ReportButton
+              objectType="CONTENT_ITEM"
+              objectRef={item.id}
+              objectName={item.title}
+              languageCode={languageCode}
+              iconOnly
+              className="h-7 w-7 px-0"
+            />
           </span>
         </div>
         {item.revision.changeSummary && (
@@ -573,13 +588,23 @@ export function KnowledgePageView({
               <p className="text-sm text-zinc-500">{page.quickFact.title}</p>
             )}
           </div>
-          {/* P5-S2: the §10 retrieval affordance — saves the canonical unit
-              (stable across representation updates), default "Saved" collection. */}
-          <SaveButton
-            objectType="KNOWLEDGE_UNIT"
-            objectRef={page.unit.slug}
-            objectName={page.unit.canonicalName}
-          />
+          <div className="flex shrink-0 items-center gap-2">
+            {/* P5-S2: the §10 retrieval affordance — saves the canonical unit
+                (stable across representation updates), default "Saved" collection. */}
+            <SaveButton
+              objectType="KNOWLEDGE_UNIT"
+              objectRef={page.unit.slug}
+              objectName={page.unit.canonicalName}
+            />
+            {/* P8-S3 §25: the quality loop's inbound action — report the
+                knowledge page itself (canonical, language-less). */}
+            <ReportButton
+              objectType="KNOWLEDGE_UNIT"
+              objectRef={page.unit.slug}
+              objectName={page.unit.canonicalName}
+              languageCode={page.language.code}
+            />
+          </div>
         </div>
       </header>
 
@@ -634,7 +659,7 @@ export function KnowledgePageView({
             Learn — deeper explanation
           </h4>
           {page.representations.map((item) => (
-            <RepresentationCard key={item.id} item={item} />
+            <RepresentationCard key={item.id} item={item} languageCode={page.language.code} />
           ))}
         </div>
       ) : (
@@ -681,8 +706,16 @@ export function KnowledgePageView({
                         {entry.question}
                       </span>
                     </button>
-                    <span className="shrink-0">
+                    <span className="flex shrink-0 items-center gap-1.5">
                       <SaveButton objectType="QNA" objectRef={entry.id} objectName={entry.question} />
+                      {/* P8-S3 §25: report this QnA entry (id = §37 identity). */}
+                      <ReportButton
+                        objectType="QNA"
+                        objectRef={entry.id}
+                        objectName={entry.question}
+                        iconOnly
+                        className="h-9 w-9 px-0"
+                      />
                     </span>
                   </div>
                   {expanded && (

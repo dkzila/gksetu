@@ -40,6 +40,7 @@ export type NotificationObjectType =
   | 'KNOWLEDGE_UNIT'
   | 'EDITORIAL_TASK'
   | 'USER_MASTERY'
+  | 'CONTENT_FEEDBACK'
 
 // ---------- The §27 category vocabulary (the preference surface's rows) ----------
 
@@ -85,7 +86,7 @@ export const NOTIFICATION_CATEGORIES: readonly NotificationCategory[] = [
     key: 'editorial',
     label: 'Editorial workflow',
     description:
-      'Work items assigned to you and reviews requested of you (§19). Feedback reports join here once the public feedback loop lands (P8-S3).',
+      'Work items assigned to you, reviews requested of you, and feedback reports on your workspace’s content (§19/§25) — the quality loop’s inbound side.',
     triggers: [
       'EDITORIAL_TASK_ASSIGNED',
       'EDITORIAL_REVIEW_REQUESTED',
