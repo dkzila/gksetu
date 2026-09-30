@@ -237,6 +237,9 @@ export const AUDIT_ACTIONS = {
   /** P9-S4: market-scope denials on the SEO operations surfaces (the §20
    *  signal on the per-market reads — the staffDenied precedent). */
   seoDenied: 'seo.denied',
+  /** P10-S4: the §26 AI assist calls (classification/mapping/dedup —
+   *  suggestions only, never applied; the translationAiDraft precedent). */
+  aiAssist: 'ai.assist',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */

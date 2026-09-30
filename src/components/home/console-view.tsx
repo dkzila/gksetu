@@ -56,6 +56,7 @@ import { ReaderSection } from '@/components/reader/reader-section'
 import { SearchSection } from '@/components/search/search-section'
 import { SeoSection } from '@/components/seo/seo-section'
 import { MarketOpsSection } from '@/components/seo/market-ops-section'
+import { AiAssistSection } from '@/components/ai-assist/ai-assist-section'
 import { FollowsSection } from '@/components/follows/follows-section'
 import { SavesSection } from '@/components/saves/saves-section'
 import { PersonalisationSection } from '@/components/personalisation/personalisation-section'
@@ -379,6 +380,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Country SEO operations — §16/§32 per-market indexing ops (P9-S4) ---------- */}
       <MarketOpsSection />
 
+      {/* ---------- AI assist — §26 classification/mapping/dedup suggestions (P10-S4) ---------- */}
+      <AiAssistSection />
+
       {/* ---------- Follows — §9/§10 personalisation signal APIs (P5-S1) ---------- */}
       <FollowsSection />
 
@@ -480,7 +484,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P10-S3 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P10-S4 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

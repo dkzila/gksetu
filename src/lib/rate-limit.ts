@@ -124,4 +124,5 @@ export const RATE_LIMITS = {
   workspaceRead: { limit: 60, windowMs: 60 * 1000 }, // workspace list/detail reads per IP (P9-S3 §38 — staff-class reads, the editorialRead precedent)
   staffWrite: { limit: 30, windowMs: 60 * 1000 }, // §20 staff provisioning mutations per IP (P9-S3 — invite/adjust/suspend/reset, the editorialWrite precedent)
   seoOpsRead: { limit: 60, windowMs: 60 * 1000 }, // market-ops reads per IP (P9-S4 §38 — staff-class reads, the workspaceRead precedent)
+  aiAssistWrite: { limit: 10, windowMs: 60 * 1000 }, // §26 assist model calls per IP (P10-S4 — a model call per request, the translationAiDraft precedent)
 } as const

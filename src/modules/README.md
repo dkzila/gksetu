@@ -1,7 +1,7 @@
 # GlobIQ — Modular Monolith (src/modules)
 
 The platform is one well-bounded deployable application (Master Plan §28) with
-**19 logical modules**. Each module receives its implementation in the session
+**20 logical modules**. Each module receives its implementation in the session
 scheduled by the Master Plan (§43) — see the registry in `index.ts`.
 
 ## Rules
