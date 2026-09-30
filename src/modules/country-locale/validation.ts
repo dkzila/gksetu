@@ -50,6 +50,13 @@ export const countryStatusSchema = z.enum(['ACTIVE', 'COMING_SOON', 'INACTIVE'])
 export const languageStatusSchema = z.enum(['ACTIVE', 'INACTIVE'])
 export const directionSchema = z.enum(['LTR', 'RTL'])
 
+/** P9-S2: the optional operator note carried by launch lifecycle transitions
+ *  (announce/launch/pause) — recorded in the audit trail (§30 provenance). */
+export const lifecycleNoteSchema = z
+  .string()
+  .trim()
+  .max(500, 'Note must be at most 500 characters')
+
 /** POST /api/countries */
 export const createCountrySchema = z.object({
   isoCode: isoSchema,

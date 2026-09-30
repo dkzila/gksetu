@@ -74,6 +74,10 @@ export const AUDIT_ACTIONS = {
   countryCreate: 'country.create',
   countryUpdate: 'country.update',
   countryLanguagesSet: 'country.languages.set',
+  /** P9-S2 country launch lifecycle (§43 Phase 9 — announce/launch/pause). */
+  countryAnnounce: 'country.announce',
+  countryLaunch: 'country.launch',
+  countryPause: 'country.pause',
   languageCreate: 'language.create',
   languageUpdate: 'language.update',
   topicCreate: 'taxonomy.topic.create',

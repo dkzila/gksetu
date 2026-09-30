@@ -39,6 +39,8 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 
+import { LaunchPanel } from './launch-panel'
+
 // ---------- Types (mirror /api/countries + /api/locale/resolve contracts) ----------
 
 interface LanguageRef {
@@ -310,6 +312,9 @@ export function LocaleSection() {
 
       {/* ---------- URL path playground (§16 middleware contract) ---------- */}
       <PathPlayground />
+
+      {/* ---------- P9-S2: the market launch lifecycle panel (§43) ---------- */}
+      <LaunchPanel />
 
       {/* ---------- Country grid ---------- */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

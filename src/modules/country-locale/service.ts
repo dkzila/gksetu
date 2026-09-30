@@ -57,6 +57,12 @@ export type LocaleErrorCode =
   | 'DEFAULT_LANGUAGE_REQUIRED'
   | 'DEFAULT_LANGUAGE_NOT_CONFIGURED'
   | 'LANGUAGE_IN_USE'
+  // P9-S2 launch lifecycle (launch-service shares these via import)
+  | 'STATUS_TRANSITION_REQUIRES_LIFECYCLE'
+  | 'COUNTRY_ALREADY_LIVE'
+  | 'COUNTRY_ALREADY_ANNOUNCED'
+  | 'COUNTRY_ALREADY_PAUSED'
+  | 'LAUNCH_BLOCKS'
 
 const ERROR_STATUS: Record<LocaleErrorCode, number> = {
   COUNTRY_NOT_FOUND: 404,
@@ -72,6 +78,11 @@ const ERROR_STATUS: Record<LocaleErrorCode, number> = {
   DEFAULT_LANGUAGE_REQUIRED: 400,
   DEFAULT_LANGUAGE_NOT_CONFIGURED: 400,
   LANGUAGE_IN_USE: 409,
+  STATUS_TRANSITION_REQUIRES_LIFECYCLE: 409,
+  COUNTRY_ALREADY_LIVE: 409,
+  COUNTRY_ALREADY_ANNOUNCED: 409,
+  COUNTRY_ALREADY_PAUSED: 409,
+  LAUNCH_BLOCKS: 409,
 }
 
 export class LocaleError extends Error {
@@ -134,6 +145,16 @@ export async function listPublicCountries(): Promise<PublicCountry[]> {
   return snapshot.countries
     .filter((country) => country.status !== 'INACTIVE')
     .map(toPublicCountry)
+}
+
+/**
+ * P9-S2 admin variant (country-config:manage at the route): every market
+ * incl. INACTIVE — the launch console must see the market a pause just hid
+ * (staging/relaunch is exactly its job). Sorted default-first.
+ */
+export async function listAdminCountries(): Promise<PublicCountry[]> {
+  const snapshot = await getSnapshot()
+  return snapshot.countries.map(toPublicCountry)
 }
 
 /** Accepts ISO code or slug. Returns null when unknown or INACTIVE. */
@@ -454,6 +475,16 @@ export async function updateCountry(
   const existing = await db.country.findUnique({ where: { isoCode: iso.toUpperCase() } })
   if (!existing) throw new LocaleError('COUNTRY_NOT_FOUND', `Unknown country "${iso}"`)
   const before = await getCountryIncludingInactive(iso)
+
+  // P9-S2: the launch lifecycle is the ONLY way status changes — a raw
+  // PATCH must never flip a market live/paused around the readiness gate,
+  // the launchedAt stamp and the lifecycle audit trail.
+  if (input.status !== undefined) {
+    throw new LocaleError(
+      'STATUS_TRANSITION_REQUIRES_LIFECYCLE',
+      'Country status is managed by the launch lifecycle endpoints (POST /api/countries/{iso}/announce, /launch, /pause) — never by a raw configuration update'
+    )
+  }
 
   // The default root market's identity is frozen (India at "/" — §14/§16).
   if (existing.isDefault && (input.slug !== undefined || input.status !== undefined)) {

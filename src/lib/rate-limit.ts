@@ -119,4 +119,6 @@ export const RATE_LIMITS = {
   translationsRead: { limit: 60, windowMs: 60 * 1000 }, // translation-workspace list reads per IP (P9-S1 §18/§38 — staff-gated)
   translationsWrite: { limit: 30, windowMs: 60 * 1000 }, // translation link mutations per IP (P9-S1 — create/retire; the AI draft rides its own tighter cap below)
   translationAiDraft: { limit: 10, windowMs: 60 * 1000 }, // §26 machine-draft generations per IP (P9-S1 — a model call per request, the quickMockWrite precedent)
+  geoHintRead: { limit: 60, windowMs: 60 * 1000 }, // the §15.1 first-visit routing hint per IP (P9-S2 — anonymous, nothing stored §31, the discoveryRead precedent)
+  countryLifecycleWrite: { limit: 30, windowMs: 60 * 1000 }, // announce/launch/pause transitions per IP (P9-S2 §43 — ADMIN-gated, the editorialWrite precedent)
 } as const

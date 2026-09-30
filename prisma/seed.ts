@@ -101,6 +101,12 @@ async function main() {
   })
 
   // ---------- Countries ----------
+  // P9-S2 (§43 country launch configuration): the root market is live by
+  // definition (§14) — its launchedAt anchors the platform start (a fixed
+  // date, idempotent across re-seeds). UK/France stay COMING_SOON: the
+  // announced pre-launch state; P9-S5 launches the second country through
+  // the lifecycle endpoints.
+  const ROOT_MARKET_LAUNCHED_AT = new Date('2025-01-01T00:00:00.000Z')
   const india = await prisma.country.upsert({
     where: { isoCode: 'IN' },
     update: {
@@ -110,6 +116,7 @@ async function main() {
       status: 'ACTIVE',
       isDefault: true,
       defaultLanguageId: en.id,
+      launchedAt: ROOT_MARKET_LAUNCHED_AT,
     },
     create: {
       isoCode: 'IN',
@@ -119,6 +126,7 @@ async function main() {
       status: 'ACTIVE',
       isDefault: true,
       defaultLanguageId: en.id,
+      launchedAt: ROOT_MARKET_LAUNCHED_AT,
     },
   })
 
@@ -4488,7 +4496,7 @@ async function main() {
 
   console.log(
     `Seed complete → languages: ${[en.code, hi.code, fr.code].join(', ')} | countries: ${[
-      `${india.isoCode} (default)`,
+      `${india.isoCode} (default, live since ${ROOT_MARKET_LAUNCHED_AT.toISOString().slice(0, 10)})`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
     ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | translation links: ${translationLinksSeeded} (P9-S1 §6/§45: 2 OUTDATED drift demos over real correction history + the in-progress HI draft + the in-sync QnA pair${translationQnaSourceSeeded ? ' (with its new EN source QnA)' : ''}${translationAiDraftSeeded ? ' + the §26 AI-drafted Kalinga card' : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`

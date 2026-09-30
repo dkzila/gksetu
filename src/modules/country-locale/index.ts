@@ -7,6 +7,7 @@ export {
   LocaleError,
   toLocaleErrorResponse,
   listPublicCountries,
+  listAdminCountries,
   getPublicCountry,
   resolveLocaleContext,
   resolveFromPath,
@@ -21,6 +22,25 @@ export {
   updateLanguage,
 } from './service'
 export type { LocaleRequestMeta } from './service'
+// P9-S2 (§43): the country launch lifecycle + §15.1 geo routing signal.
+export {
+  getLaunchReadiness,
+  announceCountry,
+  launchCountry,
+  pauseCountry,
+  getGeoHint,
+  extractGeoCountry,
+  marketInsightMetrics,
+} from './launch-service'
+export type {
+  LaunchAction,
+  LaunchCheck,
+  LaunchCheckState,
+  LaunchReadiness,
+  GeoHint,
+  MarketInsightMetrics,
+} from './launch-service'
+export { lifecycleNoteSchema } from './validation'
 export { buildCanonicalUrl } from './url'
 export { RESERVED_SLUGS } from './validation'
 export {

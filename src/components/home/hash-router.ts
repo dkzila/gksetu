@@ -199,6 +199,14 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
     )
     if (bySlug) {
       country = bySlug
+      // P9-S2 fix (found by browser verification of the live France market):
+      // entering a non-default market RESETS the language to THAT market's
+      // default — the language variable was seeded from the default market
+      // ('en') and never reset, so #/fr/ resolved to {FR, en} and the API
+      // honestly 404'd ("English is not available in France"). buildHash
+      // never emits a language segment for a market's default language, so
+      // this is the only place the reset can live.
+      language = bySlug.defaultLanguage.code
       index = 1
     } else if (defaultMarketLanguage) {
       language = defaultMarketLanguage.code

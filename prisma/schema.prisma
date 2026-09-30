@@ -790,6 +790,12 @@ model Country {
   status            CountryStatus @default(ACTIVE)
   isDefault         Boolean       @default(false) // exactly one root market (India)
   defaultLanguageId String? // primary language; omitted from URLs (§35)
+  // P9-S2 (§43 country launch configuration): the market's FIRST go-live
+  // moment, stamped by the launch lifecycle transition (never by a raw
+  // status edit). Null = never launched. Pausing/relaunching never rewrites
+  // it — launch history is honest (§36 spirit; the audit trail carries each
+  // transition, this column carries the market's age anchor for §32).
+  launchedAt        DateTime?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 

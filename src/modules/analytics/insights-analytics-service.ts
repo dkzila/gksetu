@@ -24,6 +24,7 @@ import type { Actor } from '@/lib/permissions'
 import { listSitemapSegments, ROBOTS_DISALLOW } from '@/modules/seo'
 import { publicSearch } from '@/modules/search'
 import { translationInsightMetrics } from '@/modules/translations' // P9-S1 §32 editorial-family localisation metrics
+import { marketInsightMetrics } from '@/modules/country-locale' // P9-S2 §32 editorial-family market-launch metrics
 
 import {
   AnalyticsError,
@@ -223,6 +224,11 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
   // tracked-vs-fact pair is the adoption honesty.
   const translations = await translationInsightMetrics()
 
+  // P9-S2: the market-launch half of editorial/ops work (§43 Phase 9) —
+  // country launch state as an all-time stock, the translationCoverage
+  // precedent (config state in the editorial family, windowless).
+  const markets = await marketInsightMetrics()
+
   const metrics: AnalyticsMetric[] = [
     {
       key: 'timeToPublish',
@@ -251,6 +257,13 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
       value: `${translations.byStatus.PUBLISHED} tracked / ${translations.publishedCrossLanguagePairs} in fact`,
       unit: 'text',
       derivation: `${translations.derivation} In fact: ${translations.publishedCrossLanguagePairs} published cross-language pair(s) exist (same anchor + format, ≥2 languages, §35); the framework tracks ${translations.activeLinks} active link(s) — ${translations.byStatus.PUBLISHED} PUBLISHED, ${translations.byStatus.OUTDATED} OUTDATED (the source moved past the sync point; the target stays public), ${translations.byStatus.DRAFT} in draft, ${translations.stalePublished} drifted by live-revision derivation. ${translations.aiAssistedActive} AI-assisted (§26 provenance; every one human-gated before publish).`,
+    },
+    {
+      key: 'marketReadiness',
+      label: 'Market launch state',
+      value: `${markets.live} live · ${markets.announced} announced · ${markets.paused} paused`,
+      unit: 'text',
+      derivation: `${markets.derivation} Launched market(s): ${markets.markets.length > 0 ? markets.markets.map((market) => `${market.name} (${market.languages} lang, ${market.publishedPages} pages, ${market.activeExams} exams, ${market.publishedEvents} event items${market.launchedAt ? `, live since ${new Date(market.launchedAt).toISOString().slice(0, 10)}` : ''})`).join('; ') : 'none beside the root market'}. Readiness derivations are the same ones the launch checklist uses (§34) — launching with warnings is an operator decision the launch response records, never a silent one.`,
     },
   ]
 

@@ -49,6 +49,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { PLATFORM } from '@/config/platform'
 import { HeaderAuth } from '@/components/auth/header-auth'
 import { useAuth } from '@/stores/auth'
+import { useToast } from '@/hooks/use-toast'
 import { ConsoleView } from '@/components/home/console-view'
 import { EventView } from '@/components/home/event-view'
 import { ExamView } from '@/components/home/exam-view'
@@ -74,6 +75,33 @@ export default function GlobIQApp() {
   // ---------- Locale configuration (§35 — the switchers' source of truth) ----------
   const [config, setConfig] = useState<ApiCountry[] | null>(null)
   const [configError, setConfigError] = useState(false)
+  const { toast } = useToast()
+
+  // ---------- P9-S2 §15.1: the first-visit geo routing signal ----------
+  // Once per browser: a FIRST visit to the root asks the server for a geo
+  // hint (§15 — a routing/default-context signal, never a wall) and, when it
+  // suggests a LIVE non-default market, routes there and explains itself.
+  // The stored choice is a CLIENT-side browsing preference only (§31 — it
+  // never reaches the server, exactly like the theme); the deliberate
+  // switcher overwrites it and stays always available (§15.2).
+  // Ref-driven by design: the flow never renders anything — it navigates,
+  // toasts and writes localStorage — so no state, no cascading renders.
+  type MarketChoice = { iso: string; origin: 'geo' | 'user' | 'default' | 'link' }
+  const MARKET_CHOICE_KEY = 'globiq-market'
+  const storeMarketChoice = useCallback((choice: MarketChoice) => {
+    try {
+      window.localStorage.setItem(MARKET_CHOICE_KEY, JSON.stringify(choice))
+    } catch {
+      // Storage unavailable (private mode) — the flow simply re-checks next load.
+    }
+  }, [MARKET_CHOICE_KEY])
+  // Ref-driven except the phase: the hint resolves asynchronously AFTER the
+  // config/route effects may have already settled — a ref flip would never
+  // re-trigger the apply effect (the B1 race found by browser verification:
+  // the default-choice write was lost whenever the hint resolved last).
+  // Phase STATE closes the race in both orders (config-first and hint-first).
+  const [geoPhase, setGeoPhase] = useState<'idle' | 'hint-ready' | 'deep-link'>('idle')
+  const geoHint = useRef<{ isoCode: string; name: string; languageCode: string } | null>(null)
 
   // P5-S1: identity bootstrap in the app shell — a persisted token (zustand
   // persists ONLY the token, §20/§30) must revalidate against /api/auth/me on
@@ -83,7 +111,7 @@ export default function GlobIQApp() {
     void useAuth.getState().initialize()
   }, [])
 
-  useEffect(() => {
+  const loadConfig = useCallback(() => {
     fetch('/api/countries', { cache: 'no-store' })
       .then((response) => response.json())
       .then((payload: Envelope<{ countries: ApiCountry[] }>) => {
@@ -95,6 +123,20 @@ export default function GlobIQApp() {
       })
       .catch(() => setConfigError(true))
   }, [])
+
+  useEffect(() => {
+    loadConfig()
+  }, [loadConfig])
+
+  // P9-S2 B3 (found by browser verification): a lifecycle transition changes
+  // market statuses — the shell's config (the switchers' source of truth)
+  // refetches when the launch console announces a change, so the header
+  // switcher reflects live/paused markets without a full page reload.
+  useEffect(() => {
+    const handler = () => loadConfig()
+    window.addEventListener('globiq:locale-config-changed', handler)
+    return () => window.removeEventListener('globiq:locale-config-changed', handler)
+  }, [loadConfig])
 
   // P8-S5 §32/§31: the ARRIVAL beacon — ONE fetch per page load, for the
   // anonymous growth census. Unlike the share beacon below (which waits for
@@ -165,6 +207,97 @@ export default function GlobIQApp() {
       pageLoadHash.current = window.location.hash || '#/'
     }
   }, [])
+
+  // P9-S2 §15.1 — step 1 (mount): has this browser already chosen a market?
+  // A stored choice means the first visit already happened — the geo flow
+  // never re-routes a returning visitor. A deep-link arrival is explicit
+  // intent (a share URL, a search result): the link chose, no geo fetch.
+  // All phase transitions happen inside the async closure (never as
+  // synchronous setState in the effect body — the react-hooks rule).
+  const geoFlowStarted = useRef(false)
+  useEffect(() => {
+    if (geoFlowStarted.current) return
+    geoFlowStarted.current = true
+    void (async () => {
+      if (window.localStorage.getItem(MARKET_CHOICE_KEY)) return // returning visitor
+      const initialHash = pageLoadHash.current ?? '#/'
+      const isRoot = initialHash === '#/' || initialHash === '' || initialHash === '#'
+      if (!isRoot) {
+        setGeoPhase('deep-link')
+        return
+      }
+      try {
+        const response = await fetch('/api/locale/geo-hint', { cache: 'no-store' })
+        const payload = (await response.json()) as
+          | {
+              status: 'ok'
+              data: {
+                geoHint: {
+                  suggestion: {
+                    isoCode: string
+                    name: string
+                    defaultLanguage: { code: string }
+                  } | null
+                }
+              }
+            }
+          | { status: 'error' }
+        if (payload.status === 'ok' && payload.data.geoHint.suggestion) {
+          geoHint.current = {
+            isoCode: payload.data.geoHint.suggestion.isoCode,
+            name: payload.data.geoHint.suggestion.name,
+            languageCode: payload.data.geoHint.suggestion.defaultLanguage.code,
+          }
+        }
+        // No geo signal (local dev, no edge headers) or the detected market
+        // is not live → no suggestion → the root default IS the right home.
+        setGeoPhase('hint-ready')
+      } catch {
+        setGeoPhase('hint-ready')
+      }
+    })()
+  }, [MARKET_CHOICE_KEY])
+
+  // P9-S2 §15.1 — step 2 (config/route/phase settled): apply the outcome
+  // exactly once. A suggestion navigates to that market's home + explains
+  // itself (the §15.2 guarantee made visible); every outcome records the
+  // client-side choice so the flow never runs twice for the same browser.
+  const geoApplied = useRef(false)
+  useEffect(() => {
+    if (!config || geoApplied.current || geoPhase === 'idle') return
+    if (geoPhase === 'deep-link') {
+      if (!route) return // wait one more pass for the route to exist
+      geoApplied.current = true
+      storeMarketChoice({ iso: route.countryIso, origin: 'link' })
+      return
+    }
+    geoApplied.current = true
+    const hint = geoHint.current
+    const market = hint ? config.find((entry) => entry.isoCode === hint.isoCode) : undefined
+    if (hint && market && !market.isDefault) {
+      navigateHash(
+        {
+          view: 'home',
+          countryIso: market.isoCode,
+          language: hint.languageCode,
+          topicSlug: null,
+          unitSlug: null,
+        },
+        config
+      )
+      storeMarketChoice({ iso: market.isoCode, origin: 'geo' })
+      toast({
+        title: `Welcome to the ${hint.name} edition`,
+        description:
+          'Switched based on your location (§15) — pick any country from the switcher in the header at any time; nothing about this is stored server-side.',
+      })
+      return
+    }
+    // No hint, or a stale one (the market left the live set since the hint
+    // was built — never route to a non-live market): the default root home.
+    const defaultMarket = config.find((entry) => entry.isDefault) ?? config[0]
+    storeMarketChoice({ iso: defaultMarket?.isoCode ?? 'IN', origin: 'default' })
+  }, [config, route, geoPhase, toast, storeMarketChoice])
   useEffect(() => {
     if (!route || landingBeaconFired.current) return
     const shareable =
@@ -594,7 +727,9 @@ export default function GlobIQApp() {
       if (!config || !route) return
       const target = config.find((entry) => entry.isoCode === iso)
       if (!target) return
-      // §15: deliberate country switching lands on that country's homepage.
+      // §15.2: deliberate country switching lands on that country's homepage
+      // and overwrites the client-side market choice (§31 — client-only).
+      storeMarketChoice({ iso: target.isoCode, origin: 'user' })
       navigateHash(
         {
           view: 'home',
@@ -606,7 +741,7 @@ export default function GlobIQApp() {
         config
       )
     },
-    [config, route]
+    [config, route, storeMarketChoice]
   )
 
   const goConsole = useCallback(() => {
@@ -656,7 +791,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
               >
-                Phase 8 · Session 5 — Editorial/SEO Analytics &amp; Growth
+                Phase 9 · Session 2 — Country Launch Configuration
               </Badge>
               <HeaderAuth />
             </div>
