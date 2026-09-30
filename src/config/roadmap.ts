@@ -25,6 +25,6 @@ export const PHASES: Phase[] = [
   { id: 'P7', title: 'Assessment & Mastery', scope: 'QnA, questions, mock tests, revision', sessions: 5, status: 'done' },
   { id: 'P8', title: 'Sharing, Notifications & Quality', scope: 'Sharing, notifications, feedback loop, analytics', sessions: 5, status: 'done' },
   { id: 'P9', title: 'Multilingual & Country Launch', scope: 'Translation framework, second country', sessions: 5, status: 'current' },
-  { id: 'P10', title: 'Scale & Advanced AI', scope: 'Performance, search infra, AI assistance', sessions: 5, status: 'upcoming' },
+  { id: 'P10', title: 'Scale & Advanced AI', scope: 'Performance, search infra, AI assistance', sessions: 5, status: 'done' },
   { id: 'P11', title: 'Mobile Apps', scope: 'Native apps on existing APIs (future)', sessions: 0, status: 'future' },
 ]
