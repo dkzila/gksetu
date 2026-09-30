@@ -34,6 +34,10 @@ import {
   type AuditRequestMeta,
 } from '@/modules/audit'
 import { resolveLocaleContext } from '@/modules/country-locale'
+// P8-S5 §25: the queue's traffic/importance weighting — the analytics
+// module's per-object aggregate read (share actions + landings + search
+// appearances). Cross-module service import (the notifications precedent).
+import { getObjectTrafficScores } from '@/modules/analytics'
 import { notifyFeedbackReceived } from '@/modules/notifications'
 
 import {
@@ -318,7 +322,11 @@ function minutesBetween(from: Date, to: Date): number {
   return Math.max(0, Math.round((to.getTime() - from.getTime()) / 60000))
 }
 
-function toReportDto(row: FeedbackRow, objectPath: string | null): FeedbackReport {
+function toReportDto(
+  row: FeedbackRow,
+  objectPath: string | null,
+  traffic: FeedbackReport['traffic']
+): FeedbackReport {
   const type = row.feedbackType as FeedbackTypePublic
   const status = row.status as FeedbackStatusPublic
   return {
@@ -347,6 +355,7 @@ function toReportDto(row: FeedbackRow, objectPath: string | null): FeedbackRepor
     resolvedAt: row.resolvedAt?.toISOString() ?? null,
     resolvedByLabel: row.resolvedBy ? row.resolvedBy.name ?? row.resolvedBy.email : null,
     minutesToResolution: row.resolvedAt ? minutesBetween(row.createdAt, row.resolvedAt) : null,
+    traffic,
   }
 }
 
@@ -626,10 +635,32 @@ export async function getFeedbackQueue(
   // Live §16 paths for the queue's jump-offs (one read per row, capped).
   const paths = await Promise.all(rows.map((row) => liveObjectPath(row.objectType, row.objectId)))
 
-  // Work-first ordering: OPEN before IN_REVIEW before terminal states.
+  // P8-S5 §25: the traffic/importance weighting — per-object share actions +
+  // share landings + search appearances over the last 30 days (the analytics
+  // module's aggregate read; unit-anchored objects roll up to the unit page).
+  const trafficScores = await getObjectTrafficScores(
+    rows.map((row) => ({ objectType: row.objectType, objectId: row.objectId }))
+  )
+  const trafficOf = (objectType: string, objectId: string): FeedbackReport['traffic'] =>
+    trafficScores.get(`${objectType}:${objectId}`) ?? {
+      shareActions: 0,
+      shareLandings: 0,
+      searchAppearances: 0,
+      total: 0,
+      note: 'no canonical page resolution — honestly zero traffic weight',
+    }
+
+  // Work-first ordering (§25: "prioritised by content traffic/importance"):
+  // OPEN before IN_REVIEW before terminal states, then — within a status —
+  // the busier object first, then newest first.
   const reports = rows
-    .map((row, index) => toReportDto(row, paths[index]))
-    .sort((a, b) => (STATUS_ORDER[a.status] ?? 9) - (STATUS_ORDER[b.status] ?? 9) || b.createdAt.localeCompare(a.createdAt))
+    .map((row, index) => toReportDto(row, paths[index], trafficOf(row.objectType, row.objectId)))
+    .sort(
+      (a, b) =>
+        (STATUS_ORDER[a.status] ?? 9) - (STATUS_ORDER[b.status] ?? 9) ||
+        b.traffic.total - a.traffic.total ||
+        b.createdAt.localeCompare(a.createdAt)
+    )
 
   const stats = buildStats(statusCounts, typeCounts, reports)
   return { reports, stats }
@@ -664,7 +695,7 @@ function buildStats(
     dismissed: statusMap.get('DISMISSED') ?? 0,
     byType,
     medianMinutesToResolution: median,
-    note: 'Priority seeds from the report reason (§25). The §32 product analytics are live (P8-S4 — the platform-wide volume/time-to-correct read over this same store); the traffic/importance weighting joins with the P8-S5 editorial analytics, which is where per-object traffic gets measured honestly. Time-to-correct is computed over the reports currently in the queue\u2019s window.',
+    note: 'Priority seeds from the report reason (§25); the traffic/importance weighting is live (P8-S5): within a status, the busier object sorts first — share actions + share landings on the object\u2019s page + logged §17 queries surfacing it, over the last 30 days (the analytics module\u2019s aggregate read; every number §9-derived on the row). The §32 analytics are live (P8-S4 product / P8-S5 editorial+SEO+growth). Time-to-correct is computed over the reports currently in the queue\u2019s window.',
   }
 }
 
@@ -784,7 +815,18 @@ export async function transitionFeedback(
   })
 
   const objectPath = await liveObjectPath(updated.objectType, updated.objectId)
-  return toReportDto(updated, objectPath)
+  // The transition receipt carries the object's current traffic weight too
+  // (the P8-S5 §25 input — same derivation as the queue rows).
+  const [trafficScore] = await getObjectTrafficScores([
+    { objectType: updated.objectType, objectId: updated.objectId },
+  ]).then((scores) => [scores.get(`${updated.objectType}:${updated.objectId}`)])
+  return toReportDto(updated, objectPath, trafficScore ?? {
+    shareActions: 0,
+    shareLandings: 0,
+    searchAppearances: 0,
+    total: 0,
+    note: 'no canonical page resolution — honestly zero traffic weight',
+  })
 }
 
 // ---------- 5. The task→report cascades (§19 → §25, one-way boundary) ----------

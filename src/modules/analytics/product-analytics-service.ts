@@ -147,11 +147,11 @@ export async function getProductAnalytics(
     families,
     upcoming: {
       editorial:
-        'P8-S5 — time to publish, review cycle, correction cycle: the §19/§25 workflow timings from the audit trail (the §44 resolution moments this session already indexes).',
+        'Live in P8-S5 — time to publish, review cycle, correction cycle: the §19/§25 workflow timings from the audit trail (read them at GET /api/analytics/insights).',
       seo:
-        'P8-S5 — indexed pages, impressions, clicks, query coverage: the sitemap census plus Search Console inputs; the zero-result list in Discovery above is the honest query-coverage seed.',
+        'Live in P8-S5 — indexed pages, impressions, clicks, query coverage: the sitemap census plus the engine-side observation import (read them at GET /api/analytics/insights).',
       growthReferral:
-        'P8-S5 — growth and referral measurement: arrival attribution (the ShareEvent landings are the in-platform half; referrer halves land with real traffic).',
+        'Live in P8-S5 — growth and referral measurement: the anonymous arrival census with the ShareEvent landings as the in-platform referral half (read them at GET /api/analytics/insights).',
     },
     sources: [
       'search → SearchQueryLog (written by the §17 public surface since P8-S4)',

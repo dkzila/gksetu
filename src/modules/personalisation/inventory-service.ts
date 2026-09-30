@@ -399,6 +399,11 @@ export async function getMyPersonalisation(
       // all — there is nothing to reset. The line exists so the §9 inventory
       // states the stance (the keeps list is the honesty contract).
       'Your searches — never recorded against your account at all (§31/§32): anonymous-only by design, nothing to reset',
+      // P8-S5 §32/§31: landing arrivals carry the same anonymous-only
+      // stance — and go further: the referrer is classified IN your browser
+      // (search/social/direct/other), so the raw referring URL never leaves
+      // your device at all.
+      'Your landing arrivals — anonymous-only like searches (§31/§32): the referrer is classified in your browser and only the class is recorded, never tied to your account, nothing to reset',
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],

@@ -270,8 +270,19 @@ function resultPath(
  * Runs one search in a country + language context (§14/§15/§35) and returns
  * the §37 envelope payload: deterministic results with §16 canonical paths
  * (in the reader's language), §17 explanations, and index health.
+ *
+ * Logging contract (§32 — every logged query is an intent-bearing reader
+ * action): reader-driven surfaces (GET /api/search) log every call to
+ * SearchQueryLog — the default `logQuery: true`, the unchanged P8-S4
+ * behaviour. Machine-to-machine re-runs (the analytics module's
+ * engine-satisfaction and appearance joins) pass `{ logQuery: false }` so a
+ * census never fabricates reader intent: a query no reader typed is not a
+ * Discovery "search query" (§32/§31).
  */
-export async function publicSearch(query: SearchQueryInput): Promise<SearchResponse> {
+export async function publicSearch(
+  query: SearchQueryInput,
+  options?: { logQuery?: boolean }
+): Promise<SearchResponse> {
   const startedAt = Date.now()
 
   // ---------- Locale (§35: only languages the country configures) ----------
@@ -469,21 +480,25 @@ export async function publicSearch(query: SearchQueryInput): Promise<SearchRespo
   // Best-effort, AFTER the response is fully built (the P8-S3 notification
   // precedent: an analytics write must never fail or delay the product
   // surface it measures). Deliberately anonymous — see SearchQueryLog's
-  // schema comment: no identity is recorded, ever.
-  try {
-    await db.searchQueryLog.create({
-      data: {
-        queryText: query.q,
-        resultCount: total,
-        topResultType: results[0]?.objectType ?? null,
-        countryIso: resolution.country.isoCode,
-        languageCode: readerLanguage,
-        typeFilter: query.type === 'all' ? null : query.type,
-        examRef: examFilter?.slug ?? null,
-      },
-    })
-  } catch (logError) {
-    console.error('[search] query-log write failed (search stands):', logError)
+  // schema comment: no identity is recorded, ever. Reader-driven calls only
+  // (the default): machine-to-machine re-runs pass { logQuery: false } and
+  // skip the write — a census must not fabricate reader queries (§32/§31).
+  if (options?.logQuery !== false) {
+    try {
+      await db.searchQueryLog.create({
+        data: {
+          queryText: query.q,
+          resultCount: total,
+          topResultType: results[0]?.objectType ?? null,
+          countryIso: resolution.country.isoCode,
+          languageCode: readerLanguage,
+          typeFilter: query.type === 'all' ? null : query.type,
+          examRef: examFilter?.slug ?? null,
+        },
+      })
+    } catch (logError) {
+      console.error('[search] query-log write failed (search stands):', logError)
+    }
   }
 
   return response

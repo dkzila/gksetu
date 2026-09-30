@@ -133,6 +133,16 @@ export interface FeedbackReport {
   /** Minutes from submission to resolution (null while open) — the §32
    * time-to-correct input, computed per report. */
   minutesToResolution: number | null
+  /** P8-S5 §25: the object's traffic weight — share actions + share
+   * landings + search appearances over the last 30 days (the queue's
+   * importance input; unit-anchored objects roll up to the unit page). */
+  traffic: {
+    shareActions: number
+    shareLandings: number
+    searchAppearances: number
+    total: number
+    note: string
+  }
 }
 
 /** A report in the REPORTER's own view (§31 own-data visibility) — the
@@ -179,7 +189,8 @@ export interface FeedbackStats {
   /** Median minutes from submission to resolution across resolved reports
    * (null when none resolved yet). */
   medianMinutesToResolution: number | null
-  /** Honest note: traffic/importance weighting lands with §32 analytics. */
+  /** Honest note: the §32 analytics wiring + the traffic/importance
+   * weighting formula (P8-S5 — live). */
   note: string
 }
 

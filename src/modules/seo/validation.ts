@@ -97,3 +97,67 @@ export const sitemapQuerySchema = z
   )
 
 export type SitemapQuery = z.infer<typeof sitemapQuerySchema>
+
+// ---------- The arrival census + the observation import (P8-S5) ----------
+
+/** The beacon's path — the app's own hash string, exactly as mounted (§16). */
+const landingPathSchema = z
+  .string()
+  .trim()
+  .min(1, 'A landing path is required')
+  .max(512, 'That path is too long')
+  .refine((value) => !/^https?:\/\//i.test(value), {
+    message: 'Send the path after the hash (e.g. /gk/{topic}/{unit}/), never an absolute URL',
+  })
+
+/** POST /api/seo/landings — one anonymous arrival per page load. */
+export const landingEventSchema = z.object({
+  path: landingPathSchema,
+  // §31: the referrer CLASS only — classified in the browser, the raw URL
+  // never crosses the wire.
+  referrerClass: z.enum(['DIRECT', 'SEARCH', 'SOCIAL', 'OTHER'], {
+    message: 'The referrer class is one of direct, search, social or other (§31)',
+  }),
+})
+
+export type LandingEventInput = z.infer<typeof landingEventSchema>
+
+/** One Search Console-shaped daily row (page × query × day). */
+export const seoObservationRowSchema = z.object({
+  observedAt: z.coerce.date({ message: 'observedAt must be an ISO date (the observed day)' }),
+  countryIso: z.string().trim().length(2, 'countryIso is a 2-letter §35 market code'),
+  pagePath: z
+    .string()
+    .trim()
+    .min(1, 'A §16 canonical pagePath is required')
+    .max(512, 'That pagePath is too long'),
+  queryText: z.string().trim().min(1, 'A queryText is required').max(256, 'That query is too long'),
+  impressions: z
+    .number({ message: 'impressions must be a number' })
+    .int('impressions must be a whole number')
+    .min(0, 'impressions cannot be negative')
+    .max(1_000_000_000, 'impressions is implausibly large'),
+  clicks: z
+    .number({ message: 'clicks must be a number' })
+    .int('clicks must be a whole number')
+    .min(0, 'clicks cannot be negative'),
+  avgPosition: z
+    .number({ message: 'avgPosition must be a number' })
+    .min(1, 'Position 1 is the best — positions start at 1.0')
+    .max(100, 'avgPosition beyond 100 is not a position anyone reads')
+    .nullable()
+    .optional(),
+})
+
+/** POST /api/seo/observations — the batch import (ADMIN, §38). */
+export const seoObservationBatchSchema = z
+  .object({
+    rows: z.array(seoObservationRowSchema).min(1, 'At least one observation row is required').max(500, 'At most 500 rows per batch'),
+  })
+  .refine(
+    (batch) => batch.rows.every((row) => row.clicks <= row.impressions),
+    { message: 'A click without an impression is impossible — check the row (§9 honesty)' }
+  )
+
+export type SeoObservationInput = z.infer<typeof seoObservationRowSchema>
+export type SeoObservationBatchInput = z.infer<typeof seoObservationBatchSchema>

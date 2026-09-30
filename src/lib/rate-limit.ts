@@ -114,4 +114,6 @@ export const RATE_LIMITS = {
   feedbackRead: { limit: 60, windowMs: 60 * 1000 }, // editorial queue reads + own-report reads per IP (P8-S3 §25/§31)
   feedbackManage: { limit: 30, windowMs: 60 * 1000 }, // editorial transitions per IP (P8-S3 §44 — auth-gated queue actions, the notificationsWrite precedent; separate from the tighter public-submission cap)
   analyticsRead: { limit: 60, windowMs: 60 * 1000 }, // product-analytics reads per IP (P8-S4 §32 — ADMIN-gated aggregate reads, the auditRead precedent)
+  seoIngest: { limit: 10, windowMs: 60 * 1000 }, // SEO observation batches per IP (P8-S5 §16/§32 — ADMIN-gated platform ingestion, the reindexWrite precedent)
+  landingWrite: { limit: 30, windowMs: 60 * 1000 }, // arrival-census beacons per IP (P8-S5 §32 — anonymous best-effort rows, the shareEventWrite precedent)
 } as const

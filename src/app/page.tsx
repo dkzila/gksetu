@@ -96,6 +96,54 @@ export default function GlobIQApp() {
       .catch(() => setConfigError(true))
   }, [])
 
+  // P8-S5 §32/§31: the ARRIVAL beacon — ONE fetch per page load, for the
+  // anonymous growth census. Unlike the share beacon below (which waits for
+  // a shareable surface to resolve), this records EVERY page load: the
+  // surface + market are classified SERVER-SIDE from the mount-time hash,
+  // and the referrer is classified HERE, in the browser — the raw referrer
+  // URL never crosses the wire (§31: a referrer can carry personal data;
+  // only the class does). Best-effort, like every §32 beacon.
+  const arrivalBeaconFired = useRef(false)
+  useEffect(() => {
+    if (arrivalBeaconFired.current) return
+    arrivalBeaconFired.current = true
+    const classifyReferrer = (): 'DIRECT' | 'SEARCH' | 'SOCIAL' | 'OTHER' => {
+      const referrer = typeof document !== 'undefined' ? document.referrer : ''
+      if (!referrer) return 'DIRECT'
+      try {
+        const url = new URL(referrer)
+        if (url.origin === window.location.origin) return 'DIRECT'
+        const host = url.hostname.replace(/^www\./, '').toLowerCase()
+        const searchHosts = [
+          'google.com', 'bing.com', 'duckduckgo.com', 'search.yahoo.com',
+          'ecosia.org', 'search.brave.com', 'yandex.com', 'baidu.com',
+        ]
+        const socialHosts = [
+          'facebook.com', 'x.com', 'twitter.com', 'linkedin.com', 'instagram.com',
+          'reddit.com', 't.me', 'web.whatsapp.com', 'youtube.com', 'pinterest.com',
+          'threads.net',
+        ]
+        const known = (hosts: string[]) => hosts.some((known) => host === known || host.endsWith(`.${known}`))
+        if (known(searchHosts)) return 'SEARCH'
+        if (known(socialHosts)) return 'SOCIAL'
+        return 'OTHER'
+      } catch {
+        return 'DIRECT'
+      }
+    }
+    void fetch('/api/seo/landings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        path: window.location.hash || '#/',
+        referrerClass: classifyReferrer(),
+      }),
+      keepalive: true,
+    }).catch(() => {
+      // Best-effort census (§32) — never a user-facing error.
+    })
+  }, [])
+
   const route = useHashRoute(config)
 
   // P8-S1 §21/§32: the landing beacon — ONE fetch per page load when the
@@ -608,7 +656,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
               >
-                Phase 8 · Session 4 — Product Analytics
+                Phase 8 · Session 5 — Editorial/SEO Analytics &amp; Growth
               </Badge>
               <HeaderAuth />
             </div>

@@ -51,6 +51,7 @@ export type Permission =
   | 'notifications:dispatch' // P8-S2 (§27): the platform-wide notification dispatch sweep (revision digests + queued delivery — the freshness-sweep precedent): ADMIN only — it processes every user's rows
   | 'feedback:manage' // P8-S3 (§25): triage and resolve content feedback reports — the editorial quality loop's queue: ADMIN (platform) + COUNTRY_ADMIN (own workspace, §38)
   | 'analytics:read' // P8-S4 (§32): the product-analytics read — the six product families over the aggregate event stores: ADMIN only (platform scope, like audit:read — §38's workspace split applies to editorial surfaces, not to the product's cross-market families)
+  | 'seo:ingest' // P8-S5 (§32/§16): the engine-side SEO observation import (Search Console-shaped daily rows, path-guarded against the sitemap census): ADMIN only — the whole public surface's census, the search:manage precedent
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
@@ -119,6 +120,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'mocktest:publish',
     'feedback:manage',
     'analytics:read',
+    'seo:ingest',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -267,6 +269,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'notifications:dispatch': 'Run the notification dispatch sweep (§27)',
   'feedback:manage': 'Triage and resolve content feedback reports (§25)',
   'analytics:read': 'Read the §32 product analytics (platform surface)',
+  'seo:ingest': 'Import engine-side SEO observations (the §16 census-guarded daily rows)',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
   'audit:read': 'Read audit trail',

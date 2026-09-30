@@ -2135,3 +2135,91 @@ model SearchQueryLog {
   // The zero-result gap list (resultCount = 0, newest first).
   @@index([resultCount, createdAt])
 }
+
+// ---------- P8-S5: SEO + growth instrumentation (§32 SEO family, §33, §16, §31) ----------
+
+// Both stores below are owned by the SEO module (§28): it owns the public
+// acquisition measurement — the sitemap census (P4-S4) and now the arrival
+// census (LandingEvent) and the engine-side observation import
+// (SeoObservation). The analytics module only READS them (the P8-S4 rule:
+// the producing module owns its event store).
+
+// The anonymous arrival census. ONE row per page load, written best-effort
+// by the app-shell beacon (POST /api/seo/landings) after the surface is
+// classified SERVER-SIDE from the §16 path. Deliberately ANONYMOUS-ONLY —
+// the SearchQueryLog stance (no userId column exists at all): an arrival
+// can never become a profile, and the §31 reset never needs to touch it.
+// The referrer is classified IN THE BROWSER (search / social / direct /
+// other) — the raw referrer URL never leaves the device (§31: a referrer
+// can carry personal data; only the class crosses the wire).
+enum LandingSurface {
+  HOME // #/ — the country homepage (§34)
+  TOPIC // …/gk/{topic}/ — the §33 topic hub
+  KNOWLEDGE // …/gk/{topic}/{unit}/ — the §22 knowledge page
+  QUESTION // a unit page with the ?q= practice focus (§22, P8-S1)
+  CURRENT_AFFAIRS // …/current-affairs/{slug}/ (§12/§16)
+  EXAM // …/exams/{exam}/ (§16)
+  SYLLABUS // …/exams/{exam}/syllabus/{topic}/ (§16)
+  MOCK_TEST // the §22 runner (app-gated page, still a real arrival)
+  COLLECTION // the §21 unlisted shared-collection landing
+  APP // every in-app/private view (dashboard, console, profile…) — an
+       // arrival is an arrival; the census records it honestly
+}
+
+enum LandingReferrer {
+  DIRECT // no referrer or same-origin
+  SEARCH // a known search-engine host
+  SOCIAL // a known social/messaging host
+  OTHER // any other external referrer — never the URL itself
+}
+
+model LandingEvent {
+  id            String          @id @default(cuid())
+  surface       LandingSurface
+  referrerClass LandingReferrer
+  // The §35 market the path resolved to (server-side, the §16 rules).
+  countryIso    String
+  createdAt     DateTime        @default(now())
+
+  // Time-windowed §32 growth reads.
+  @@index([createdAt])
+  // The channel-mix read (referrer classes over time).
+  @@index([referrerClass, createdAt])
+  // The surface-mix read (which surfaces acquire).
+  @@index([surface, createdAt])
+}
+
+// The engine-side observation import — Search Console-shaped daily rows
+// (page × query × day: impressions, clicks, average position). The domain
+// model stays vendor-neutral (§17's search-vendor rule applied to SEO
+// data): the ingestion API (POST /api/seo/observations) accepts any feed
+// that speaks this shape; P9-S4 wires the country-specific operations.
+// pagePath is guarded against the LIVE §16 sitemap census — observations
+// only ever land for paths the platform declares indexable (never a dead
+// link, never a private surface). The unique key makes re-imports honest:
+// re-pulling a day upserts that day's row (Search Console's own revision
+// semantics), it never double-counts. No userId anywhere — this is a
+// public-traffic census, anonymous by nature.
+model SeoObservation {
+  id          String   @id @default(cuid())
+  // The observed day (Search Console granularity; the time component is
+  // meaningless and normalized away on ingest).
+  observedAt  DateTime
+  countryIso  String
+  // A §16 canonical path present in the live sitemap census.
+  pagePath    String
+  // The query as the ENGINE saw it (public search behavior, anonymous).
+  queryText   String
+  impressions Int
+  clicks      Int
+  // Average ranking position for the day (1.0 = first); null when the
+  // feed omits it.
+  avgPosition Float?
+  createdAt   DateTime @default(now())
+
+  @@unique([observedAt, countryIso, pagePath, queryText])
+  // Windowed §32 SEO reads (impressions/clicks/CTR by day).
+  @@index([observedAt])
+  // Per-page reads (which pages earn the engine's traffic).
+  @@index([pagePath, observedAt])
+}

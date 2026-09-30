@@ -86,6 +86,24 @@ export type {
   SeoValidationSurface,
 } from './validation-service'
 
+// P8-S5: the §32 SEO/growth instrumentation — the anonymous arrival census
+// (LandingEvent) and the vendor-neutral engine-side observation import
+// (SeoObservation). Owned here per §28 (the SEO module owns public-surface
+// measurement); the analytics module only reads them.
+export {
+  landingEventSchema,
+  seoObservationBatchSchema,
+  seoObservationRowSchema,
+} from './validation'
+export type {
+  LandingEventInput,
+  SeoObservationBatchInput,
+  SeoObservationInput,
+} from './validation'
+export { recordLanding } from './landing-service'
+export { ingestSeoObservations } from './observation-service'
+export type { SeoObservationIngestResult } from './observation-service'
+
 export type {
   CountryHomepage,
   CountryStatusPublic,

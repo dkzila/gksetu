@@ -3955,11 +3955,13 @@ async function main() {
   // ---------- P8-S4: SearchQueryLog — §32 Discovery fixtures (the §45 demo depth) ----------
   // Historical depth for the windowed Discovery reads. Every row is HONEST
   // against the seeded index: the resultCounts and topResultTypes were
-  // verified against the live §17 engine over the 43 seeded documents, and
+  // verified against the live §17 engine over the seeded documents, and
   // the zero-result rows are real content gaps (no physics unit, no sports
   // taxonomy branch, no NDA exam) — the gap list the P8-S5 query-coverage
   // read starts from. Count-guarded like the share events; live queries from
-  // E2E runs coexist with the fixtures.
+  // E2E runs coexist with the fixtures. The P8-S5 Kalinga War fact card
+  // (below) joins the index without matching any seeded query — every
+  // resultCount here stays honest.
   let searchQueriesSeeded = 0
   const existingQueryLogs = await prisma.searchQueryLog.count()
   if (existingQueryLogs === 0) {
@@ -3985,6 +3987,239 @@ async function main() {
     searchQueriesSeeded = 15
   }
 
+  // ---------- P8-S5: Editorial/SEO/growth fixtures (§32/§45 — the second analytics half) ----------
+  // Five honest fixture groups, each guarded like the share events (a fresh
+  // DB gets them; re-running the seed adds nothing):
+  //   1. The publish-cycle history — every seeded item whose createdAt
+  //      defaulted to seed-time gets a deterministic DRAFT PERIOD before its
+  //      first revision (the §19 steps 1–7 demo the time-to-publish metric
+  //      reads); only rows where createdAt > firstPublishedAt are touched,
+  //      so live-edited items and the fixture below are never rewritten.
+  //   2. The Kalinga War fact card — the §19 end-to-end publish demo:
+  //      drafted 3d+300min ago, first published 3d ago (a 300-minute cycle,
+  //      the only first publish inside the 7/30-day windows; the content
+  //      matches NO seeded query, so every P8-S4 resultCount stays honest —
+  //      the card joins the index without touching a seeded count).
+  //   3. Two resolved §19 review tasks with real cycles (an editorial review
+  //      resolved in 1440 min, a fact-check in 2880 min) — the review-cycle
+  //      demo depth the board never had.
+  //   4. SeoObservation rows — Search Console-shaped daily aggregates over
+  //      REAL §16 census paths (verified against the live sitemap), incl.
+  //      the honest coverage gap: 'nda syllabus' surfaced the exams page on
+  //      the engine while the §17 engine honestly finds nothing.
+  //   5. LandingEvent rows — the anonymous arrival census mix, spread d1–d9
+  //      (two rows outside the 7-day window for the windowed read).
+  const MINUTE = 60 * 1000
+  const HOUR = 60 * MINUTE
+  const DAY = 24 * HOUR
+
+  // --- 1. The publish-cycle history (deterministic draft periods) ---
+  const publishedItems = await prisma.contentItem.findMany({
+    where: { status: 'PUBLISHED', publishedRevisionId: { not: null } },
+    select: {
+      id: true,
+      createdAt: true,
+      knowledgeUnit: { select: { slug: true } },
+      currentEvent: { select: { slug: true } },
+      language: { select: { code: true } },
+      revisions: { select: { publishedAt: true }, orderBy: { publishedAt: 'asc' }, take: 1 },
+    },
+  })
+  const DRAFT_PERIODS_MIN = [180, 360, 720, 1080, 1440, 2160, 2880, 4320, 540, 900, 1620, 2340, 3060, 3780]
+  const backdatable = publishedItems
+    .filter((item) => item.revisions[0] && item.createdAt > item.revisions[0].publishedAt)
+    .sort((a, b) =>
+      `${a.knowledgeUnit?.slug ?? `~${a.currentEvent?.slug ?? ''}`}/${a.language.code}`.localeCompare(
+        `${b.knowledgeUnit?.slug ?? `~${b.currentEvent?.slug ?? ''}`}/${b.language.code}`
+      )
+    )
+  for (const [index, item] of backdatable.entries()) {
+    const firstPublishedAt = item.revisions[0]!.publishedAt
+    const draftMinutes = DRAFT_PERIODS_MIN[index % DRAFT_PERIODS_MIN.length]!
+    await prisma.contentItem.update({
+      where: { id: item.id },
+      data: { createdAt: new Date(firstPublishedAt.getTime() - draftMinutes * MINUTE) },
+    })
+  }
+  let publishCyclesBackdated = backdatable.length
+
+  // --- 2. The Kalinga War fact card (the §19 publish demo, en/FACT_CARD) ---
+  let publishDemoSeeded = 0
+  const ashokaUnit = await prisma.knowledgeUnit.findUnique({
+    where: { slug: 'ashoka-kalinga-war-261-bce' },
+    select: { id: true, slug: true, scope: true, countryId: true },
+  })
+  const englishId = languageIdByCode.get('en')
+  if (ashokaUnit && englishId) {
+    const existingCard = await prisma.contentItem.findUnique({
+      where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: ashokaUnit.id, languageId: englishId, format: 'FACT_CARD' } },
+      select: { id: true },
+    })
+    if (!existingCard) {
+      const firstPublishedAt = new Date(Date.now() - 3 * DAY)
+      const card = await prisma.contentItem.create({
+        data: {
+          knowledgeUnitId: ashokaUnit.id,
+          languageId: englishId,
+          format: 'FACT_CARD',
+          status: 'PUBLISHED',
+          title: 'The Kalinga War (261 BCE) — Fact Card',
+          body: 'Fought c. 261 BCE in the third regnal year of Emperor Ashoka, the Kalinga War is the decisive turn of Mauryan history. The 13th Rock Edict records 100,000 killed and 150,000 deported. The remorse led Ashoka to Buddhism and to "conquest by Dhamma" (Dhamma Vijaya) in place of war. Kalinga is present-day coastal Odisha. Exam anchors: the date, the edict, the Dhamma turn.',
+          createdById: admin.id,
+          // The honest draft period: drafted 300 minutes before first publish.
+          createdAt: new Date(firstPublishedAt.getTime() - 300 * MINUTE),
+        },
+      })
+      const revision = await prisma.contentRevision.create({
+        data: {
+          contentItemId: card.id,
+          revisionNumber: 1,
+          title: 'The Kalinga War (261 BCE) — Fact Card',
+          body: 'Fought c. 261 BCE in the third regnal year of Emperor Ashoka, the Kalinga War is the decisive turn of Mauryan history. The 13th Rock Edict records 100,000 killed and 150,000 deported. The remorse led Ashoka to Buddhism and to "conquest by Dhamma" (Dhamma Vijaya) in place of war. Kalinga is present-day coastal Odisha. Exam anchors: the date, the edict, the Dhamma turn.',
+          publishedById: inAdmin.id,
+          publishedAt: firstPublishedAt,
+        },
+      })
+      await prisma.contentItem.update({
+        where: { id: card.id },
+        data: { publishedRevisionId: revision.id },
+      })
+      publishDemoSeeded = 1
+      publishCyclesBackdated += 1 // the card's own cycle (300 min) joins the metric
+    }
+  }
+
+  // --- 3. Two resolved review tasks with real cycles ---
+  let reviewTasksSeeded = 0
+  const ashokaCardItem = ashokaUnit
+    ? await prisma.contentItem.findUnique({
+        where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: ashokaUnit.id, languageId: languageIdByCode.get('en') ?? '', format: 'FACT_CARD' } },
+        select: { id: true },
+      })
+    : null
+  if (ashokaCardItem) {
+    const existing = await prisma.editorialTask.findFirst({
+      where: { objectType: 'ContentItem', objectId: ashokaCardItem.id, type: 'EDITORIAL_REVIEW', title: 'Editorial review — the Kalinga War fact card' },
+      select: { id: true },
+    })
+    if (!existing) {
+      await prisma.editorialTask.create({
+        data: {
+          type: 'EDITORIAL_REVIEW',
+          status: 'RESOLVED',
+          priority: 'HIGH',
+          countryId: ashokaUnit!.scope === 'COUNTRY' ? ashokaUnit!.countryId : null,
+          languageId: languageIdByCode.get('en') ?? null,
+          objectType: 'ContentItem',
+          objectId: ashokaCardItem.id,
+          objectLabel: 'ashoka-kalinga-war-261-bce/en/FACT_CARD',
+          title: 'Editorial review — the Kalinga War fact card',
+          notes: 'First publish review: edict casualty figures against the 13th Rock Edict reading, Dhamma Vijaya phrasing, exam-anchor precision (§19 step 2).',
+          assigneeId: inAdmin.id,
+          createdById: admin.id,
+          createdAt: new Date(Date.now() - 4 * DAY),
+          startedAt: new Date(Date.now() - 4 * DAY + 120 * MINUTE),
+          resolvedAt: new Date(Date.now() - 3 * DAY), // created → resolved: 1440 min
+          resolvedById: inAdmin.id,
+          resolutionNote: 'Approved for first publish — figures and phrasing verified; the card went live the same day.',
+        },
+      })
+      reviewTasksSeeded += 1
+    }
+  }
+  const unscProfile = await prisma.contentItem.findFirst({
+    where: {
+      knowledgeUnit: { slug: 'un-security-council-permanent-members' },
+      language: { code: 'en' },
+      format: 'PROFILE',
+    },
+    select: { id: true },
+  })
+  if (unscProfile) {
+    const existing = await prisma.editorialTask.findFirst({
+      where: { objectType: 'ContentItem', objectId: unscProfile.id, type: 'FACT_CHECK', title: 'Fact-check the UNSC permanent-members profile' },
+      select: { id: true },
+    })
+    if (!existing) {
+      await prisma.editorialTask.create({
+        data: {
+          type: 'FACT_CHECK',
+          status: 'RESOLVED',
+          priority: 'MEDIUM',
+          countryId: null, // GLOBAL unit → platform task (ADMIN board, §38)
+          languageId: languageIdByCode.get('en') ?? null,
+          objectType: 'ContentItem',
+          objectId: unscProfile.id,
+          objectLabel: 'un-security-council-permanent-members/en/PROFILE',
+          title: 'Fact-check the UNSC permanent-members profile',
+          notes: 'P5 roster, veto mechanics (Chapter V) and the two-year non-permanent terms against the UN Charter (§19 step 3, §24).',
+          assigneeId: admin.id,
+          createdById: admin.id,
+          createdAt: new Date(Date.now() - 5 * DAY),
+          startedAt: new Date(Date.now() - 4 * DAY),
+          resolvedAt: new Date(Date.now() - 3 * DAY), // created → resolved: 2880 min
+          resolvedById: admin.id,
+          resolutionNote: 'Charter cross-checked; the reform-debate framing stays attributed to the IGN process.',
+        },
+      })
+      reviewTasksSeeded += 1
+    }
+  }
+
+  // --- 4. SeoObservation rows (Search Console-shaped, real census paths) ---
+  let seoObservationsSeeded = 0
+  const existingObservations = await prisma.seoObservation.count()
+  if (existingObservations === 0) {
+    const utcDay = (daysAgo: number) => {
+      const d = new Date(Date.now() - daysAgo * DAY)
+      return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()))
+    }
+    await prisma.seoObservation.createMany({
+      data: [
+        { observedAt: utcDay(3), countryIso: india.isoCode, pagePath: '/gk/fundamental-rights/fundamental-rights-articles-12-35/', queryText: 'fundamental rights articles', impressions: 120, clicks: 8, avgPosition: 4.2 },
+        { observedAt: utcDay(2), countryIso: india.isoCode, pagePath: '/gk/fundamental-rights/fundamental-rights-articles-12-35/', queryText: 'fundamental rights articles', impressions: 140, clicks: 11, avgPosition: 3.8 },
+        { observedAt: utcDay(1), countryIso: india.isoCode, pagePath: '/gk/fundamental-rights/fundamental-rights-articles-12-35/', queryText: 'fundamental rights articles', impressions: 150, clicks: 9, avgPosition: 4.1 },
+        { observedAt: utcDay(2), countryIso: india.isoCode, pagePath: '/gk/fundamental-rights/fundamental-rights-articles-12-35/', queryText: 'article 32 writs', impressions: 60, clicks: 3, avgPosition: 6.5 },
+        { observedAt: utcDay(3), countryIso: india.isoCode, pagePath: '/gk/united-nations/un-security-council-permanent-members/', queryText: 'un security council permanent members', impressions: 45, clicks: 2, avgPosition: 7.2 },
+        { observedAt: utcDay(2), countryIso: india.isoCode, pagePath: '/gk/isro-programmes/chandrayaan-3-landing-2023/', queryText: 'chandrayaan 3 landing date', impressions: 90, clicks: 6, avgPosition: 3.1 },
+        { observedAt: utcDay(1), countryIso: india.isoCode, pagePath: '/exams/upsc-civil-services/', queryText: 'upsc syllabus', impressions: 200, clicks: 12, avgPosition: 5.0 },
+        // The honest coverage gap: the engine surfaced the exams page for a
+        // query the platform's own §17 engine cannot satisfy (no NDA exam is
+        // seeded — the P8-S4 gap list says so, and this row makes the SEO
+        // cost of that gap visible).
+        { observedAt: utcDay(1), countryIso: india.isoCode, pagePath: '/exams/ssc-cgl/', queryText: 'nda syllabus', impressions: 40, clicks: 3, avgPosition: 9.4 },
+      ],
+    })
+    seoObservationsSeeded = 8
+  }
+
+  // --- 5. LandingEvent rows (the anonymous arrival mix) ---
+  let landingEventsSeeded = 0
+  const existingLandings = await prisma.landingEvent.count()
+  if (existingLandings === 0) {
+    await prisma.landingEvent.createMany({
+      data: [
+        // Inside the 7-day window (12 rows): SEARCH 5 · DIRECT 4 · SOCIAL 2 · OTHER 1
+        { surface: 'HOME', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 1 * DAY) },
+        { surface: 'HOME', referrerClass: 'DIRECT', countryIso: india.isoCode, createdAt: new Date(Date.now() - 1 * DAY - 6 * HOUR) },
+        { surface: 'KNOWLEDGE', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 2 * DAY) },
+        { surface: 'TOPIC', referrerClass: 'DIRECT', countryIso: india.isoCode, createdAt: new Date(Date.now() - 2 * DAY - 4 * HOUR) },
+        { surface: 'EXAM', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 3 * DAY) },
+        { surface: 'HOME', referrerClass: 'DIRECT', countryIso: india.isoCode, createdAt: new Date(Date.now() - 3 * DAY - 9 * HOUR) },
+        { surface: 'CURRENT_AFFAIRS', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 4 * DAY) },
+        { surface: 'KNOWLEDGE', referrerClass: 'SOCIAL', countryIso: india.isoCode, createdAt: new Date(Date.now() - 4 * DAY - 2 * HOUR) },
+        { surface: 'HOME', referrerClass: 'DIRECT', countryIso: india.isoCode, createdAt: new Date(Date.now() - 5 * DAY) },
+        { surface: 'KNOWLEDGE', referrerClass: 'OTHER', countryIso: india.isoCode, createdAt: new Date(Date.now() - 5 * DAY - 5 * HOUR) },
+        { surface: 'KNOWLEDGE', referrerClass: 'SOCIAL', countryIso: india.isoCode, createdAt: new Date(Date.now() - 5 * DAY - 7 * HOUR) },
+        { surface: 'EXAM', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 6 * DAY) },
+        // Outside the 7-day window (2 rows) — the windowed read excludes them forever.
+        { surface: 'HOME', referrerClass: 'DIRECT', countryIso: india.isoCode, createdAt: new Date(Date.now() - 8 * DAY) },
+        { surface: 'KNOWLEDGE', referrerClass: 'SEARCH', countryIso: india.isoCode, createdAt: new Date(Date.now() - 9 * DAY) },
+      ],
+    })
+    landingEventsSeeded = 14
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -3998,7 +4233,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 
