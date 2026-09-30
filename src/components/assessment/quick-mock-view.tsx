@@ -272,7 +272,7 @@ export function QuickMockView({
       } else if (response.status === 401) {
         toast({
           title: 'Sign in to continue',
-          description: 'Quick mocks are tied to your account — the score is yours (§6).',
+          description: 'Quick mocks are tied to your account — the score is yours.',
         })
         onSignIn()
       } else {
@@ -342,9 +342,8 @@ export function QuickMockView({
               Quick mock — combined-exam mode
             </CardTitle>
             <CardDescription>
-              A timed mock test scoped to everything relevant across YOUR exams — one question
-              per topic (§11), scored server-side, feeding your mastery and revision schedule
-              (§22).
+              A timed mock test scoped to everything relevant across your exams — one question
+              per topic, scored server-side, feeding your mastery and revision schedule.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-3">
@@ -446,9 +445,6 @@ export function QuickMockView({
             <Zap className="mr-1 h-3 w-3" aria-hidden="true" />
             Combined-exam mode
           </Badge>
-          <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-600">
-            §22 · §11
-          </Badge>
         </div>
 
         <h1 id="quickmock-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -456,9 +452,9 @@ export function QuickMockView({
         </h1>
         <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
           A timed mock test generated from the published pool, scoped to{' '}
-          <em>everything relevant across your exams</em> — or just one of them (§11). Each topic
+          <em>everything relevant across your exams</em> — or just one of them. Each topic
           appears once, at its deepest requirement, with the covering exams on record. The same
-          server-enforced clock, scoring and mastery fold as an editorial mock test (§22).
+          server-enforced clock, scoring and mastery fold as an editorial mock test.
         </p>
 
         <div className="grid gap-2 sm:grid-cols-2">
@@ -564,8 +560,8 @@ export function QuickMockView({
                   </p>
                   <p className="mt-0.5 text-xs text-zinc-500">
                     {selectedCard && selectedCard.availableQuestions < (questionCount ?? 0)
-                      ? `This scope has ${selectedCard.availableQuestions} — the mock will be shorter (§36 honest sizing).`
-                      : 'One question per topic, in the combined queue’s own order (§11).'}
+                      ? `This scope has ${selectedCard.availableQuestions} — the mock will be shorter.`
+                      : 'One question per topic, in the combined queue’s own order.'}
                   </p>
                   <div className="mt-3 flex flex-wrap items-center gap-1.5" role="group" aria-label="Question count">
                     {countChoices.map((count) => (
@@ -610,8 +606,8 @@ export function QuickMockView({
               No scope yet
             </CardTitle>
             <CardDescription>
-              A quick mock is scoped to your exams — follow an exam or declare a goal first (§22),
-              then this surface lights up.
+              A quick mock is scoped to your exams — follow an exam or set a goal first, then
+              this page lights up.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">

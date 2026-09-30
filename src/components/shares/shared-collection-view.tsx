@@ -132,9 +132,6 @@ export function SharedCollectionView({ collectionId, onOpenPath, onGoHome }: Sha
               <Link2 className="h-3 w-3" aria-hidden="true" />
               Shared collection
             </Badge>
-            <span className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
-              #/collections/{collectionId}/
-            </span>
           </div>
           {collection ? (
             <h1 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">{collection.name}</h1>
@@ -170,7 +167,7 @@ export function SharedCollectionView({ collectionId, onOpenPath, onGoHome }: Sha
           <p className="font-medium">{error.message}</p>
           <p className="mt-1 text-[13px] leading-relaxed">
             Ask the person who shared this link with you — they may have stopped sharing the collection
-            (their choice, reversible anytime — §31).
+            (their choice, reversible anytime).
           </p>
           <Button variant="outline" size="sm" className="mt-3 gap-2" onClick={retry}>
             <Loader2 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -204,7 +201,7 @@ export function SharedCollectionView({ collectionId, onOpenPath, onGoHome }: Sha
                         {item.detail && <span className="text-xs text-zinc-500">{item.detail}</span>}
                         {statusTone && (
                           <Badge variant="outline" className={`text-[10px] font-normal ${statusTone}`}>
-                            {item.status === 'RETIRED' ? 'Retired' : item.status === 'ARCHIVED' ? 'Archived' : 'Flagged for correction'} (§36)
+                            {item.status === 'RETIRED' ? 'Retired' : item.status === 'ARCHIVED' ? 'Archived' : 'Flagged for correction'}
                           </Badge>
                         )}
                       </span>

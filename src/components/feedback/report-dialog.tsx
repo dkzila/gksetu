@@ -113,7 +113,7 @@ export function ReportDialog({
         toast({
           title: payload.data.created ? 'Reported — thank you' : 'You already have an open report on this',
           description: payload.data.created
-            ? 'It routed into the editorial quality loop (§25) — an editor takes it from here.'
+            ? 'It reached our editorial team — an editor takes it from here.'
             : 'The editorial queue already holds your open report — no duplicate was filed.',
         })
         onOpenChange(false)
@@ -146,9 +146,9 @@ export function ReportDialog({
             Report an issue
           </DialogTitle>
           <DialogDescription>
-            On <span className="font-medium text-zinc-700">{objectName}</span>. Reports go to the editorial
-            quality loop (§25) — an editor reviews, corrects through the normal workflow, and the outcome is
-            auditable. Never shown publicly as ratings.
+            On <span className="font-medium text-zinc-700">{objectName}</span>. Reports go straight to our
+            editorial team — an editor reviews, corrects it through the normal workflow, and you can
+            follow the outcome. Never shown publicly as ratings.
           </DialogDescription>
         </DialogHeader>
 

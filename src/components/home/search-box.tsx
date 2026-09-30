@@ -12,7 +12,7 @@
  * foundation console's SearchSection.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Loader2, Search, X } from 'lucide-react'
+import { ArrowRight, Loader2, Search, X } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -200,27 +200,22 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
                         className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
                       >
                         {item.objectType === 'KNOWLEDGE_UNIT'
-                          ? 'unit'
+                          ? 'page'
                           : item.objectType === 'CURRENT_EVENT'
-                            ? 'event'
-                            : item.objectType.toLowerCase()}
+                            ? 'story'
+                            : item.objectType === 'EXAM'
+                              ? 'exam'
+                              : 'topic'}
                       </Badge>
                       <p className="truncate text-sm font-medium text-zinc-900">{item.title}</p>
                     </div>
-                    <p className="mt-0.5 truncate font-mono text-[11px] text-zinc-400">
-                      {item.urlPath}
-                    </p>
+                    {item.exams.length > 0 && (
+                      <p className="mt-0.5 truncate text-[11px] text-zinc-400">
+                        Useful for {item.exams.map((exam) => exam.name).join(', ')}
+                      </p>
+                    )}
                   </div>
-                  {item.exams.length > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="hidden shrink-0 font-normal sm:inline-flex"
-                      title={item.exams.map((exam) => exam.name).join(', ')}
-                    >
-                      {item.exams[0].name}
-                      {item.exams.length > 1 ? ` +${item.exams.length - 1}` : ''}
-                    </Badge>
-                  )}
+                  <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300" aria-hidden="true" />
                 </div>
               )
               return (

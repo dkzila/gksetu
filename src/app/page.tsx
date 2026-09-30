@@ -28,35 +28,21 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import {
-  ArrowUpRight,
-  Globe,
-  Languages,
-  MapPin,
-  SquareTerminal,
-} from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Skeleton } from '@/components/ui/skeleton'
-import { PLATFORM } from '@/config/platform'
 import { HeaderAuth } from '@/components/auth/header-auth'
 import { useAuth } from '@/stores/auth'
 import { useToast } from '@/hooks/use-toast'
+import { AppSidebar } from '@/components/home/app-sidebar'
 import { ConsoleView } from '@/components/home/console-view'
 import { EventView } from '@/components/home/event-view'
 import { ExamView } from '@/components/home/exam-view'
 import { HomepageView } from '@/components/home/homepage-view'
+import { SiteFooter } from '@/components/home/site-footer'
+import { SiteHeader } from '@/components/home/site-header'
 import { SyllabusView } from '@/components/home/syllabus-view'
 import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
+import { SignInView } from '@/components/auth/sign-in-view'
 import { TestRunnerView } from '@/components/assessment/test-runner-view'
 import { QuickMockView } from '@/components/assessment/quick-mock-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
@@ -69,12 +55,14 @@ import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
 import { ControlsView } from '@/components/personalisation/controls-view'
 import { navigateHash, useHashRoute } from '@/components/home/hash-router'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
 export default function GlobIQApp() {
-  // ---------- Locale configuration (§35 — the switchers' source of truth) ----------
+  // ---------- Locale configuration (the switchers' source of truth) ----------
   const [config, setConfig] = useState<ApiCountry[] | null>(null)
   const [configError, setConfigError] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const { toast } = useToast()
 
   // ---------- P9-S2 §15.1: the first-visit geo routing signal ----------
@@ -289,7 +277,7 @@ export default function GlobIQApp() {
       toast({
         title: `Welcome to the ${hint.name} edition`,
         description:
-          'Switched based on your location (§15) — pick any country from the switcher in the header at any time; nothing about this is stored server-side.',
+          'Switched based on your location — pick any country from the switcher in the header at any time; nothing about this is stored server-side.',
       })
       return
     }
@@ -688,12 +676,13 @@ export default function GlobIQApp() {
       if (!config || !route) return
       navigateHash(
         {
-          // Language switching on market-independent surfaces (console,
-          // following, saved, onboarding, profile, dashboard, personalisation,
-          // notifications, quick-mock) lands on the home view — the console
-          // precedent.
+          // Language switching on market-independent surfaces (sign-in,
+          // console, following, saved, onboarding, profile, dashboard,
+          // personalisation, notifications, feedback, quick-mock) lands on
+          // the home view — the console precedent.
           view:
             route.view === 'console' ||
+            route.view === 'signin' ||
             route.view === 'following' ||
             route.view === 'saved' ||
             route.view === 'onboarding' ||
@@ -752,11 +741,55 @@ export default function GlobIQApp() {
     )
   }, [config, route])
 
-  // The homepage's Sign-in CTA routes to the console's account section —
-  // the same '#account' anchor the header uses (§38: one auth surface).
+  // The homepage's Sign-in CTA routes to the public sign-in page — the
+  // one user-facing authentication surface.
   const goSignIn = useCallback(() => {
-    window.location.hash = '#account'
+    window.location.hash = '#/signin'
   }, [])
+
+  // ---------- Primary navigation (header + sidebar + footer) ----------
+
+  // "Current Affairs" opens the market's current-affairs hub.
+  const openCurrentAffairs = useCallback(() => {
+    if (!config || !route) return
+    navigateHash(
+      {
+        view: 'topic',
+        countryIso: route.countryIso,
+        language: route.language,
+        topicSlug: 'current-affairs',
+        unitSlug: null,
+      },
+      config
+    )
+  }, [config, route])
+
+  // "Exams" lands on the homepage's exam directory (navigating home
+  // first when needed, then scrolling to the section). The homepage's
+  // data loads asynchronously — the scroll retries until the section
+  // actually renders (bounded, so it can never loop forever).
+  const goExams = useCallback(() => {
+    let attempts = 0
+    const scrollToExams = () => {
+      const target = document.getElementById('home-exams')
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      } else if (attempts < 40) {
+        attempts += 1
+        window.setTimeout(scrollToExams, 200)
+      }
+    }
+    if (!config || !route) return
+    if (route.view !== 'home') {
+      navigateHash(
+        { view: 'home', countryIso: route.countryIso, language: route.language, topicSlug: null, unitSlug: null },
+        config
+      )
+      window.setTimeout(scrollToExams, 350)
+    } else {
+      scrollToExams()
+    }
+  }, [config, route])
 
   // ---------- Header switcher data ----------
 
@@ -765,108 +798,43 @@ export default function GlobIQApp() {
     [config, route]
   )
 
+  // The focused surfaces hide the product sidebar: the staff console (an
+  // internal tool) and the timed mock-test runner (distraction-free).
+  const focusedView = route?.view === 'console' || route?.view === 'test'
+
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 text-zinc-900">
       {/* ---------- Header ---------- */}
-      <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/85 backdrop-blur">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="flex h-16 items-center justify-between gap-3">
-            <button
-              type="button"
-              onClick={goHome}
-              className="flex min-h-[44px] items-center gap-3 text-left"
-              aria-label="GlobIQ home"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-600" aria-hidden="true">
-                <Globe className="h-5 w-5 text-white" />
-              </span>
-              <span className="leading-tight">
-                <span className="block text-lg font-semibold tracking-tight">GlobIQ</span>
-                <span className="hidden text-xs text-zinc-500 sm:block">{PLATFORM.tagline}</span>
-              </span>
-            </button>
+      <SiteHeader
+        config={config}
+        route={route}
+        onGoHome={goHome}
+        onOpenCurrentAffairs={openCurrentAffairs}
+        onGoExams={goExams}
+        onGoQuickMock={() => goQuickMock()}
+        onSwitchCountry={switchCountry}
+        onSwitchLanguage={switchLanguage}
+        onOpenNav={() => setMobileNavOpen(true)}
+      />
 
-            <div className="flex items-center gap-2">
-              <Badge
-                variant="outline"
-                className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
-              >
-                Phase 9 · Session 2 — Country Launch Configuration
-              </Badge>
-              <HeaderAuth />
-            </div>
-          </div>
+      {/* ---------- Sidebar + main ---------- */}
+      <div className="mx-auto flex w-full max-w-7xl flex-1">
+        {!focusedView && (
+          <AppSidebar
+            route={route}
+            config={config}
+            open={mobileNavOpen}
+            onOpenChange={setMobileNavOpen}
+            onGoHome={goHome}
+            onOpenCurrentAffairs={openCurrentAffairs}
+            onGoExams={goExams}
+            onGoQuickMock={() => goQuickMock()}
+            onSwitchCountry={switchCountry}
+            onSwitchLanguage={switchLanguage}
+          />
+        )}
 
-          {/* §15/§35 switchers + console link — always available */}
-          <div className="flex flex-wrap items-center gap-2 pb-3">
-            <div className="flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-              <span className="sr-only">Country</span>
-              <Select
-                value={route?.countryIso ?? ''}
-                onValueChange={switchCountry}
-                disabled={!config}
-              >
-                <SelectTrigger
-                  className="h-9 w-[150px] border-zinc-200 bg-white text-sm font-medium"
-                  aria-label="Switch country"
-                >
-                  <SelectValue placeholder={config ? 'Country' : 'Loading…'} />
-                </SelectTrigger>
-                <SelectContent>
-                  {(config ?? []).map((entry) => (
-                    <SelectItem key={entry.isoCode} value={entry.isoCode} className="text-sm">
-                      {entry.name}
-                      {entry.status === 'COMING_SOON' && (
-                        <span className="ml-1.5 text-[10px] uppercase tracking-wide text-amber-600">
-                          soon
-                        </span>
-                      )}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex items-center gap-1.5">
-              <Languages className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-              <span className="sr-only">Language</span>
-              <Select
-                value={route?.language ?? ''}
-                onValueChange={switchLanguage}
-                disabled={!currentCountry}
-              >
-                <SelectTrigger
-                  className="h-9 w-[150px] border-zinc-200 bg-white text-sm font-medium"
-                  aria-label="Switch language"
-                >
-                  <SelectValue placeholder={currentCountry ? 'Language' : '—'} />
-                </SelectTrigger>
-                <SelectContent>
-                  {(currentCountry?.languages ?? []).map((entry) => (
-                    <SelectItem key={entry.code} value={entry.code} className="text-sm">
-                      {entry.nativeName ?? entry.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              className="ml-auto h-9 gap-2 px-2.5 text-zinc-500 hover:text-zinc-900"
-              onClick={goConsole}
-            >
-              <SquareTerminal className="h-4 w-4" aria-hidden="true" />
-              Console
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* ---------- Main (§34/§33/§22 views + console) ---------- */}
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+        <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 sm:py-10">
         {configError ? (
           <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-sm text-red-700">
             Could not load the country configuration. Refresh the page to retry.
@@ -887,6 +855,8 @@ export default function GlobIQApp() {
           </div>
         ) : route.view === 'console' ? (
           <ConsoleView onBackHome={goHome} />
+        ) : route.view === 'signin' ? (
+          <SignInView onGoHome={goHome} />
         ) : route.view === 'topic' && route.topicSlug ? (
           <TopicLandingView
             key={`${route.countryIso}:${route.language}:${route.topicSlug}`}
@@ -1046,37 +1016,17 @@ export default function GlobIQApp() {
             onSignIn={goSignIn}
           />
         )}
-      </main>
+        </main>
+      </div>
 
-      {/* ---------- Footer (sticky bottom, §16 build reference) ---------- */}
-      <footer className="mt-auto border-t border-zinc-200 bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-3 px-4 py-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:px-6">
-          <div className="text-sm text-zinc-500">
-            <span className="font-semibold text-zinc-900">GlobIQ</span> · © 2025 dkzila · Built per{' '}
-            <span className="font-medium text-zinc-700">GlobIQ_Master_Plan.md v2.0</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-9 gap-1.5 px-2 text-zinc-500 hover:text-zinc-900"
-              onClick={goConsole}
-            >
-              <SquareTerminal className="h-4 w-4" aria-hidden="true" />
-              Foundation console
-            </Button>
-            <a
-              href="https://github.com/dkzila/globiq"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-800"
-            >
-              GitHub Repository
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      {/* ---------- Footer (sticky bottom) ---------- */}
+      <SiteFooter
+        onGoHome={goHome}
+        onOpenCurrentAffairs={openCurrentAffairs}
+        onGoExams={goExams}
+        onGoQuickMock={() => goQuickMock()}
+        onGoConsole={goConsole}
+      />
     </div>
   )
 }

@@ -200,7 +200,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
   const goToExams = useCallback(() => {
     setStepError(null)
     if (!countryIso.trim()) {
-      setStepError('Pick your home country — GlobIQ personalises by your market (§14).')
+      setStepError('Pick your home country — GlobIQ personalises by your market.')
       return
     }
     setStep(2)
@@ -216,7 +216,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     if (!token || !profile) return
     setStepError(null)
     if (!countryIso.trim()) {
-      setStepError('Pick your home country — GlobIQ personalises by your market (§14).')
+      setStepError('Pick your home country — GlobIQ personalises by your market.')
       return
     }
     // PATCH only what changed (§37 — no needless writes).
@@ -345,7 +345,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
             </CardTitle>
             <CardDescription>
               Tell GlobIQ which exams and subjects you are preparing for — the explicit goal behind
-              your personalised feed (§9). Sign in to start.
+              your personalised feed. Sign in to start.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
@@ -354,8 +354,8 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
               Sign in to continue
             </Button>
             <p className="text-xs text-zinc-500">
-              Your goal is an explicit personalisation signal — never proof you will sit an exam
-              (§9), and changeable or removable anytime (§31).
+              Your goal is an explicit personalisation signal — never proof you will sit an exam,
+              and changeable or removable anytime.
             </p>
           </CardContent>
         </Card>
@@ -390,8 +390,8 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
         </h1>
         <p className="max-w-2xl text-sm text-zinc-600">
           Four quick steps — your market, the exams you are preparing for, the subjects you care
-          about, and how you like to study. Everything here is an explicit signal you control (§9)
-          and can change or remove anytime (§31).
+          about, and how you like to study. Everything here is an explicit signal you control
+          and can change or remove anytime.
         </p>
       </div>
 
@@ -440,10 +440,10 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                 {step === 4 && 'Step 4 — Your level & pace'}
               </CardTitle>
               <CardDescription>
-                {step === 1 && 'Your market decides which exams and languages GlobIQ offers you (§14/§35).'}
+                {step === 1 && 'Your market decides which exams and languages GlobIQ offers you.'}
                 {step === 2 && `Active exams in ${currentCountry?.name ?? 'your market'} — pick any number (or none yet).`}
-                {step === 3 && `The canonical taxonomy (§13) — GLOBAL subjects and your market's own. Up to ${MAX_TOPICS}.`}
-                {step === 4 && 'Optional — a self-declared level and pace helps GlobIQ shape difficulty later (§9).'}
+                {step === 3 && `Global subjects and your country's own. Up to ${MAX_TOPICS}.`}
+                {step === 4 && 'Optional — a self-declared level and pace helps GlobIQ shape difficulty later.'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -485,7 +485,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                         </SelectContent>
                       </Select>
                       <p className="text-xs text-zinc-500">
-                        Goal exams must belong to your home market (§14).
+                        Goal exams must belong to your home market.
                       </p>
                     </div>
                     <div className="space-y-2">
@@ -569,7 +569,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                   )}
                   <p className="text-xs text-zinc-500">
                     {selectedExams.size} selected — a goal exam is an intent signal for
-                    personalisation, never proof you will sit the exam (§9).
+                    personalisation, never proof you will sit the exam.
                   </p>
                 </div>
               )}
@@ -626,7 +626,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                   )}
                   <p className="text-xs text-zinc-500">
                     {selectedTopics.size}/{MAX_TOPICS} selected — selecting a domain covers the
-                    domain itself; children stay selectable for narrower focus (§13).
+                    domain itself; children stay selectable for narrower focus.
                   </p>
                 </div>
               )}

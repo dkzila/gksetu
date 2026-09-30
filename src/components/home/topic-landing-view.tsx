@@ -136,7 +136,7 @@ export function TopicLandingView({
             title: `${landing.topic.label} — GK topic hub | GlobIQ`,
             description:
               landing.topic.description ??
-              `${landing.topic.label}: ${landing.stats.unitCount} knowledge units, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,
+              `${landing.topic.label}: ${landing.stats.unitCount} knowledge pages, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,
             seo: landing.seo,
             language,
             countryIso,
@@ -172,8 +172,8 @@ export function TopicLandingView({
             Topic not available here
           </CardTitle>
           <CardDescription>
-            “{slug}” does not exist, or is not available in the selected country. Country scope is
-            enforced server-side — browse the homepage categories for what this market offers.
+            “{slug}” does not exist, or is not available in the selected country — browse the
+            homepage categories for what this market offers.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -264,12 +264,9 @@ export function TopicLandingView({
           </Badge>
           {landing.topic.scope === 'COUNTRY' && (
             <Badge variant="outline" className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500">
-              {landing.topic.countryIso ?? ''}-scoped
+              {landing.topic.countryIso ?? ''} only
             </Badge>
           )}
-          <Badge variant="outline" className="border-zinc-200 bg-white font-mono text-xs font-normal text-zinc-400">
-            {landing.canonicalPath}
-          </Badge>
           {/* P8-S1 §21: the topic hub's share action — the §16 path is server truth. */}
           <ShareButton
             path={`#${landing.canonicalPath}`}
@@ -287,7 +284,7 @@ export function TopicLandingView({
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
             <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             <strong className="font-semibold">{landing.stats.unitCount}</strong>
-            <span className="text-zinc-500">units in scope</span>
+            <span className="text-zinc-500">knowledge pages</span>
           </span>
           {landing.stats.topicCount > 0 && (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
@@ -313,8 +310,7 @@ export function TopicLandingView({
             objectName={landing.topic.label}
           />
           <span className="text-xs text-zinc-400">
-            Following a topic keeps it in your personalisation signals (§9) — review and unfollow
-            at
+            Following a topic keeps it in your personalisation signals — review and unfollow at
             <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
               #/following
             </a>
@@ -344,11 +340,8 @@ export function TopicLandingView({
                   <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all group-hover:translate-x-0.5 group-hover:text-emerald-600" aria-hidden="true" />
                 </div>
                 <p className="text-xs text-zinc-500">
-                  {child.unitCount} {child.unitCount === 1 ? 'unit' : 'units'}
+                  {child.unitCount} {child.unitCount === 1 ? 'knowledge page' : 'knowledge pages'}
                   {child.topicCount > 0 ? ` · ${child.topicCount} subtopics` : ''}
-                </p>
-                <p className="mt-auto pt-1 font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
-                  {child.canonicalPath}
                 </p>
               </button>
             ))}
@@ -359,7 +352,7 @@ export function TopicLandingView({
       {/* ---------- Units directly on this topic ---------- */}
       <section aria-labelledby="units-heading" className="space-y-4">
         <h2 id="units-heading" className="text-xl font-semibold tracking-tight">
-          Knowledge units
+          Knowledge pages
         </h2>
         {pagination.total === 0 ? (
           <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
@@ -367,8 +360,8 @@ export function TopicLandingView({
               <Layers className="mt-0.5 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
               <p className="text-sm text-zinc-600">
                 {landing.children.length > 0
-                  ? 'Units live in the subtopics above — open one to read its knowledge.'
-                  : 'No knowledge units are published for this topic yet.'}
+                  ? 'Knowledge pages live in the subtopics above — open one to read it.'
+                  : 'No knowledge pages are published for this topic yet.'}
               </p>
             </CardContent>
           </Card>
@@ -385,9 +378,9 @@ export function TopicLandingView({
               ))}
             </div>
             {pagination.totalPages > 1 && (
-              <nav aria-label="Units pagination" className="flex items-center justify-between gap-3">
+              <nav aria-label="Knowledge pages pagination" className="flex items-center justify-between gap-3">
                 <p className="text-xs text-zinc-500">
-                  Page {pagination.page} of {pagination.totalPages} · {pagination.total} units
+                  Page {pagination.page} of {pagination.totalPages} · {pagination.total} knowledge pages
                 </p>
                 <div className="flex items-center gap-2">
                   <Button
@@ -474,11 +467,8 @@ export function TopicLandingView({
                   <CardContent className="space-y-1">
                     <p className="text-xs text-zinc-500">
                       <strong className="font-semibold text-zinc-700">{exam.mappedUnitCount}</strong>{' '}
-                      {exam.mappedUnitCount === 1 ? 'unit' : 'units'} from this topic in the current
-                      syllabus
-                    </p>
-                    <p className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
-                      {exam.canonicalPath}
+                      {exam.mappedUnitCount === 1 ? 'knowledge page' : 'knowledge pages'} from this
+                      topic in the current syllabus
                     </p>
                   </CardContent>
                 </button>
@@ -574,7 +564,7 @@ function TopicMockTests({
           Mock tests for this topic
         </h2>
         <p className="text-xs text-zinc-400">
-          Timed, scored assemblies of published questions (§22/§6)
+          Timed, scored practice from real exam questions
         </p>
       </div>
 
@@ -596,7 +586,7 @@ function TopicMockTests({
               <ClipboardCheck className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
               <span>
                 No mock tests for this topic yet — timed practice tests appear here the moment
-                they are published (§22).
+                they are published.
               </span>
             </p>
           </CardContent>
@@ -604,12 +594,6 @@ function TopicMockTests({
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {tests.map((test) => {
-            const pathHint =
-              test.scope.type === 'TOPIC' && test.scope.topic
-                ? `/gk/${test.scope.topic.slug}/mock-tests/${test.slug}/`
-                : test.scope.exam
-                  ? `/exams/${test.scope.exam.slug}/mock-tests/${test.slug}/`
-                  : ''
             return (
               <Card
                 key={test.id}
@@ -646,7 +630,7 @@ function TopicMockTests({
                       <Badge
                         variant="outline"
                         className="border-emerald-200 bg-emerald-50 text-[10px] font-normal text-emerald-700"
-                        title="The score needed to pass (§6)"
+                        title="The score needed to pass"
                       >
                         pass {test.passPercent}%
                       </Badge>
@@ -654,7 +638,7 @@ function TopicMockTests({
                         <Badge
                           variant="outline"
                           className="border-fuchsia-200 bg-fuchsia-50 text-[10px] font-normal text-fuchsia-700"
-                          title="§24/§26 — AI-assisted provenance on the live revision"
+                          title="AI-assisted draft, editorially reviewed"
                         >
                           AI-assisted
                         </Badge>
@@ -675,12 +659,6 @@ function TopicMockTests({
                         Start test
                         <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                       </span>
-                    </p>
-                    <p
-                      className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500"
-                      title={`#${pathHint}`}
-                    >
-                      {pathHint}
                     </p>
                   </CardContent>
                 </button>
@@ -744,9 +722,6 @@ function UnitCard({
               </Badge>
             )}
           </div>
-          <p className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
-            {unit.canonicalPath}
-          </p>
         </CardContent>
       </button>
     </Card>

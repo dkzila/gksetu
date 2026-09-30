@@ -733,14 +733,14 @@ export function ControlsView({
                 Notifications — outputs, not signals
               </CardTitle>
               <CardDescription>
-                Every notification says why you get it, with a one-tap mute (§27)
+                Every notification says why you get it, with a one-tap mute
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap items-center justify-between gap-3">
               <p className="max-w-xl text-xs leading-relaxed text-zinc-500">
                 Notifications never feed your queue, ranking or reasons — they are outputs of your
                 signals, not inputs. Their history and per-category × per-channel preferences are
-                yours alone (§31) and are kept by this reset.
+                yours alone and are kept by this reset.
               </p>
               <a
                 href="#/notifications"
@@ -760,14 +760,14 @@ export function ControlsView({
                 Feedback reports — quality signals, not personalisation
               </CardTitle>
               <CardDescription>
-                Reports you file make the content better for everyone (§25)
+                Reports you file make the content better for everyone
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap items-center justify-between gap-3">
               <p className="max-w-xl text-xs leading-relaxed text-zinc-500">
                 A report is a quality signal on the content — it never feeds your queue, ranking or
                 reasons, and it is never shown publicly as a rating. Your reports and their
-                outcomes are yours alone (§31) and are kept by this reset.
+                outcomes are yours alone and are kept by this reset.
               </p>
               <a
                 href="#/feedback"

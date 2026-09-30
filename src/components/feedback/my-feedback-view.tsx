@@ -92,8 +92,8 @@ export function MyFeedbackView({ onOpenPath, onGoHome, onSignIn }: MyFeedbackVie
           <h1 className="text-2xl font-semibold tracking-tight">Your reports</h1>
         </div>
         <p className="mt-3 text-sm text-zinc-600">
-          Reports you file are yours to follow (§31) — sign in to see their outcomes. Filing a
-          report itself never needs an account (§25).
+          Reports you file are yours to follow — sign in to see their outcomes. Filing a
+          report itself never needs an account.
         </p>
         <div className="mt-6 flex gap-2">
           <Button type="button" onClick={onSignIn}>
@@ -115,7 +115,7 @@ export function MyFeedbackView({ onOpenPath, onGoHome, onSignIn }: MyFeedbackVie
       </div>
       <p className="mt-3 text-sm text-zinc-600">
         Every report you file, with its honest outcome — resolved reports carry the editor&rsquo;s
-        note; dismissed ones carry the reason. Reports are a quality signal (§25), never shown
+        note; dismissed ones carry the reason. Reports are a quality signal, never shown
         publicly as ratings.
       </p>
 

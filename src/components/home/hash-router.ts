@@ -59,7 +59,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -125,6 +125,13 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   }
   if (segments[0] === 'account') {
     return { ...fallback, view: 'console', scrollTo: 'account' }
+  }
+
+  // The public sign-in page — the ONE user-facing authentication surface
+  // (the console's account section stays for staff, but every product
+  // sign-in CTA routes here).
+  if (segments[0] === 'signin') {
+    return { ...fallback, view: 'signin', scrollTo: null }
   }
 
   // P5-S1: the private following surface (§31) — market-independent.
@@ -397,6 +404,7 @@ export interface RouteInput {
 /** Builds the §16-shaped hash for a route (defaults omitted, §16). */
 export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'console') return '#/console'
+  if (route.view === 'signin') return '#/signin'
   if (route.view === 'following') return '#/following'
   if (route.view === 'saved') return '#/saved'
   if (route.view === 'onboarding') return '#/onboarding'

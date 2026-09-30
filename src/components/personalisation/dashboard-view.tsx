@@ -173,22 +173,22 @@ const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; 
   EMERGING: {
     label: 'Emerging',
     tone: 'border-amber-200 bg-amber-50 text-amber-800',
-    note: 'Breaking coverage — facts may still develop (§12).',
+    note: 'Breaking coverage — facts may still develop.',
   },
   DEVELOPING: {
     label: 'Developing',
     tone: 'border-sky-200 bg-sky-50 text-sky-800',
-    note: 'More sources and context are accumulating — corrections expected (§12).',
+    note: 'More sources and context are accumulating — corrections expected.',
   },
   STABLE: {
     label: 'Stable',
     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-    note: 'The established canonical understanding of this event (§12).',
+    note: 'The established understanding of this event.',
   },
   ARCHIVED: {
     label: 'Archived',
     tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
-    note: 'End-of-life for updates — kept as permanent historical reference (§36).',
+    note: 'No further updates — kept as permanent historical reference.',
   },
 }
 
@@ -296,7 +296,7 @@ export function DashboardView({
             </CardTitle>
             <CardDescription>
               Your combined-exam queue, followed subjects and recent saves — built from your
-              declared goal and follows (§9), always explainable and reversible (§31).
+              declared goal and follows, always explainable and reversible.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-3">
@@ -359,7 +359,7 @@ export function DashboardView({
             </strong>{' '}
             · queue computed in your home market (
             <strong className="font-medium text-zinc-700">{data?.user.homeCountryIso ?? '—'}</strong>
-            , §14)
+            )
           </span>
           {data && !data.market.isHomeMarket && (
             <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-800">
@@ -414,7 +414,7 @@ export function DashboardView({
                   <h2 className="text-base font-semibold tracking-tight">Make it yours</h2>
                   <p className="max-w-xl text-sm text-zinc-600">
                     Nothing personalised yet. Declare a goal (exams, subjects, level, pace) or follow
-                    exams and topics — your combined-exam queue builds itself from those signals (§9).
+                    exams and topics — your combined-exam queue builds itself from those signals.
                   </p>
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-2">
@@ -483,7 +483,7 @@ export function DashboardView({
                     {data.goal && data.goal.exams.length > 0 && (
                       <div className="space-y-1.5">
                         <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
-                          Goal exams — never proof you will sit them (§9)
+                          Goal exams — never proof you will sit them
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {data.goal.exams.map((exam) => (
@@ -530,7 +530,7 @@ export function DashboardView({
                   <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
                     <p className="text-sm text-zinc-600">
                       No goal declared. A goal sets your exam scope, subjects, level and pace — the
-                      strongest personalisation signal (§9).
+                      strongest personalisation signal.
                     </p>
                     <Button asChild size="sm" className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
                       <a href="#/onboarding">
@@ -685,7 +685,7 @@ export function DashboardView({
                     </p>
                     <p className="text-xs text-zinc-400">
                       Units due for revision rise to the top once you have submitted attempts —
-                      try a mock test from an exam page or topic hub (§22).
+                      try a mock test from an exam page or topic hub.
                     </p>
                   </div>
                 ) : (
@@ -756,10 +756,6 @@ export function DashboardView({
                                 )}
                               </p>
                             )}
-
-                            <p className="mt-1.5 truncate font-mono text-[10px] text-zinc-300" title={entry.unit.canonicalPath}>
-                              {entry.unit.canonicalPath}
-                            </p>
                           </button>
                         </li>
                       )
@@ -804,7 +800,7 @@ export function DashboardView({
                   <div className="space-y-2 rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-500">
                     <p>{data.mastery.note ?? 'No mastery yet — the revision queue builds from your submitted mock tests.'}</p>
                     <p className="text-xs text-zinc-400">
-                      Attempt a mock test and every unit it touched starts a spaced-review schedule (§22) —
+                      Attempt a mock test and every unit it touched starts a spaced-review schedule —
                       due units then rise to the top of your learning queue.
                     </p>
                   </div>
@@ -844,7 +840,7 @@ export function DashboardView({
                                     <p className="mt-0.5 text-xs text-zinc-500">
                                       {item.unit.topicLabel}
                                       {item.unit.status === 'RETIRED' && (
-                                        <span className="ml-1.5 font-medium text-amber-700">(unit retired — kept as history, §36)</span>
+                                        <span className="ml-1.5 font-medium text-amber-700">(unit retired — kept as history)</span>
                                       )}
                                     </p>
                                   </div>
@@ -866,9 +862,6 @@ export function DashboardView({
                                   </span>
                                 </div>
                                 <p className="mt-2 text-xs text-zinc-500">{item.reason}</p>
-                                <p className="mt-1.5 truncate font-mono text-[10px] text-zinc-300" title={item.unit.canonicalPath}>
-                                  {item.unit.canonicalPath}
-                                </p>
                               </button>
                             </li>
                           ))}
@@ -932,7 +925,7 @@ export function DashboardView({
                     {/* §9 transparency: the stated §22 rules, on demand */}
                     <details className="group rounded-md border border-zinc-200 bg-zinc-50/60 px-3 py-2">
                       <summary className="cursor-pointer list-none text-xs font-medium text-zinc-600 group-open:text-zinc-900">
-                        How this schedule works (§22)
+                        How this schedule works
                       </summary>
                       <p className="mt-2 text-xs leading-relaxed text-zinc-500">{data.mastery.rules}</p>
                     </details>
@@ -992,7 +985,7 @@ export function DashboardView({
                     </div>
                   )}
                   <p className="text-xs text-zinc-400">
-                    Followed subjects re-rank your queue and explain its units (§9) — manage them in{' '}
+                    Followed subjects re-rank your queue and explain its units — manage them in{' '}
                     <a href="#/following" className="font-medium text-emerald-700 hover:text-emerald-800">
                       Following
                     </a>
@@ -1024,7 +1017,7 @@ export function DashboardView({
                 {data.saves.items.length === 0 ? (
                   <p className="text-sm text-zinc-500">
                     Nothing saved yet. Save knowledge from any page — saves are pure retrieval and
-                    never influence this dashboard&apos;s recommendations (§10).
+                    never influence this dashboard&apos;s recommendations.
                   </p>
                 ) : (
                   <ul className="space-y-2" aria-label="Your most recent saves">
@@ -1051,16 +1044,13 @@ export function DashboardView({
                               {save.object.status.toLowerCase()}
                             </Badge>
                           </div>
-                          <p className="mt-0.5 truncate font-mono text-[10px] text-zinc-300" title={save.object.canonicalPath}>
-                            {save.object.canonicalPath}
-                          </p>
                         </button>
                       </li>
                     ))}
                   </ul>
                 )}
                 <p className="mt-3 text-xs text-zinc-400">
-                  Retrieval only (§10) — a save is a bookmark, never a recommendation signal.
+                  A save is a bookmark, never a recommendation signal.
                 </p>
               </CardContent>
             </Card>
@@ -1068,9 +1058,7 @@ export function DashboardView({
 
           {/* ---------- §22 honest P7 note ---------- */}
           <p className="text-center text-xs text-zinc-400">
-            Due revisions, mastery state and weak-topic feedback join the dashboard with the
-            assessment system (§22, Phase 7). Your personalisation data stays reviewable and
-            reversible (§31) —{' '}
+            Your personalisation data stays reviewable and reversible —{' '}
             <a href="#/profile" className="font-medium text-emerald-700 hover:text-emerald-800">
               review it in your profile
             </a>
@@ -1254,7 +1242,7 @@ function CurrentAffairsRail({
                           <Badge
                             variant="outline"
                             className={`text-[10px] font-normal ${FEED_FRESHNESS_META[item.freshness.tier].tone}`}
-                            title={`${item.freshness.label} — the §17 freshness verdict, computed from the event date`}
+                            title={`${item.freshness.label} — based on the event date`}
                           >
                             {item.freshness.label}
                           </Badge>
@@ -1270,12 +1258,6 @@ function CurrentAffairsRail({
                             aria-hidden="true"
                           />
                           <span>{item.reason}</span>
-                        </p>
-                        <p
-                          className="mt-1.5 truncate font-mono text-[10px] text-zinc-300"
-                          title={item.canonicalPath}
-                        >
-                          {item.canonicalPath}
                         </p>
                       </button>
                     </li>

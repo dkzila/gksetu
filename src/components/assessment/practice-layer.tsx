@@ -97,7 +97,7 @@ function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onS
             <Badge
               variant="outline"
               className={`text-[10px] font-medium ${DIFFICULTY_STYLE[entry.difficulty]}`}
-              title="How hard this question is classified (§6 difficulty)"
+              title="How hard this question is classified"
             >
               {entry.difficulty}
             </Badge>
@@ -105,7 +105,7 @@ function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onS
               <Badge
                 variant="outline"
                 className="gap-1 border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
-                title={`Authored for ${entry.examAnchor.exam.name} — ${entry.examAnchor.versionLabel} (§6 exam anchor)`}
+                title={`Authored for ${entry.examAnchor.exam.name} — ${entry.examAnchor.versionLabel}`}
               >
                 <GraduationCap className="h-3 w-3" aria-hidden="true" />
                 For {entry.examAnchor.exam.code.replace('-', ' ')}
@@ -232,7 +232,7 @@ function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onS
               Check answer
             </Button>
             <span className="text-xs text-zinc-400">
-              One attempt per view — scored server-side (§22), the key never ships in the page.
+              One attempt per view — scored on the server; the answer key is never included in the page.
             </span>
           </div>
         )}

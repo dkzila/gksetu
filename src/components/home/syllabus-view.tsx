@@ -114,7 +114,7 @@ export function SyllabusView({
       page
         ? {
             title: `${page.topic.label} — ${page.exam.name} syllabus | GlobIQ`,
-            description: `${page.topic.label} in the ${page.exam.name} syllabus: ${page.stats.placementCount} placement(s), ${page.stats.requirementCount} requirement(s) with the full §8 vocabulary — the evergreen topic hub link included.`,
+            description: `${page.topic.label} in the ${page.exam.name} syllabus: ${page.stats.placementCount} placement(s), ${page.stats.requirementCount} requirement(s) — with links to the full topic guides.`,
             seo: page.seo,
             language: page.language.code,
             countryIso,
@@ -252,21 +252,13 @@ export function SyllabusView({
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
             {page.version.label}
           </Badge>
-          <Badge
-            variant="outline"
-            className="max-w-full truncate border-zinc-200 bg-white font-mono text-xs font-normal text-zinc-400"
-            title={page.canonicalPath}
-          >
-            {page.canonicalPath}
-          </Badge>
         </div>
         <h1 id="syllabus-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
           {page.topic.label}
         </h1>
         {page.topic.label !== page.topic.canonicalName && (
           <p className="text-sm text-zinc-500">
-            Canonical topic: {page.topic.canonicalName} (label resolved in{' '}
-            {page.topic.labelLanguage === 'canonical' ? 'English' : page.topic.labelLanguage})
+            Standard name: {page.topic.canonicalName}
           </p>
         )}
         <div className="flex flex-wrap items-center gap-2 text-sm" role="status">
@@ -274,14 +266,14 @@ export function SyllabusView({
             <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             <strong className="font-semibold">{page.stats.unitCount}</strong>
             <span className="text-zinc-500">
-              {page.stats.unitCount === 1 ? 'unit' : 'units'} required
+              {page.stats.unitCount === 1 ? 'knowledge page' : 'knowledge pages'} required
             </span>
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
             <ListTree className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             <strong className="font-semibold">{page.stats.placementCount}</strong>
             <span className="text-zinc-500">
-              {page.stats.placementCount === 1 ? 'placement' : 'placements'} in the syllabus
+              {page.stats.placementCount === 1 ? 'place' : 'places'} in the syllabus
             </span>
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 font-mono text-xs text-zinc-400">
@@ -318,7 +310,8 @@ export function SyllabusView({
                     {placement.node.name}
                   </p>
                   <span className="text-xs text-zinc-500">
-                    {placement.unitCount} mapped {placement.unitCount === 1 ? 'unit' : 'units'}
+                    {placement.unitCount} mapped{' '}
+                    {placement.unitCount === 1 ? 'knowledge page' : 'knowledge pages'}
                   </span>
                 </div>
               </CardContent>
@@ -330,20 +323,20 @@ export function SyllabusView({
       {/* ---------- Requirement rows (§8 vocabulary + §22 quick facts) ---------- */}
       <section aria-labelledby="requirements-heading" className="space-y-4">
         <h2 id="requirements-heading" className="text-xl font-semibold tracking-tight">
-          Knowledge units required
+          Knowledge pages required
         </h2>
         {page.requirements.length === 0 ? (
           <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
             <CardContent className="p-5">
               <p className="flex items-center gap-2 text-sm text-zinc-600">
                 <FolderTree className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-                This syllabus section is part of the exam, but no canonical units are mapped to it
-                yet — the rows appear as editors map them (§12).
+                This syllabus section is part of the exam, but no knowledge pages are mapped to
+                it yet — the rows appear as editors link them.
               </p>
             </CardContent>
           </Card>
         ) : (
-          <ul className="space-y-3" aria-label="Units required under this topic">
+          <ul className="space-y-3" aria-label="Knowledge pages required under this topic">
             {page.requirements.map((row, index) => {
               const unit = row.unit
               const canonicalFallback =
@@ -414,9 +407,6 @@ export function SyllabusView({
                           </Badge>
                         )}
                       </div>
-                      <code className="break-all rounded bg-zinc-100 px-2 py-1 text-[11px] text-zinc-600 sm:break-normal">
-                        {unit.canonicalPath}
-                      </code>
                     </div>
                   </button>
                 </li>
@@ -441,10 +431,9 @@ export function SyllabusView({
                 Explore the evergreen topic hub
               </p>
               <p className="max-w-xl text-sm text-zinc-600">
-                Everything on {page.topic.label} across the whole knowledge base — clusters,
-                units and the other exams that need it.
+                Everything on {page.topic.label} across the whole knowledge base — subtopics,
+                knowledge pages and the other exams that need it.
               </p>
-              <p className="font-mono text-[10px] text-zinc-400">{page.topicHubPath}</p>
             </div>
             <Button
               size="sm"

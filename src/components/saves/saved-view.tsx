@@ -75,12 +75,12 @@ function formatSavedAt(iso: string): string {
  * the collection never silently corrupts or loses rows without explanation.
  */
 const TOMBSTONE_NOTES: Record<string, { label: string; className: string }> = {
-  RETIRED: { label: 'Withdrawn — kept as a tombstone (§10)', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  ARCHIVED: { label: 'Archived — end-of-life (§36)', className: 'border-amber-200 bg-amber-50 text-amber-800' },
+  RETIRED: { label: 'Withdrawn — kept as a record', className: 'border-amber-200 bg-amber-50 text-amber-800' },
+  ARCHIVED: { label: 'Archived — kept for reference', className: 'border-amber-200 bg-amber-50 text-amber-800' },
   OUTDATED: { label: 'Flagged for correction', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
   DRAFT: { label: 'Not public anymore', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
   IN_REVIEW: { label: 'Not public anymore', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
-  SCHEDULED: { label: 'Scheduled — not live yet (§19)', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
+  SCHEDULED: { label: 'Scheduled — not live yet', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
 }
 
 // ---------- Component ----------
@@ -170,7 +170,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
               : save.object.kind === 'QNA' || save.object.kind === 'QUESTION'
                 ? save.object.question
                 : save.object.title
-          toast({ title: `Removed “${name}”`, description: 'Out of your collections (§31 — reversible).' })
+          toast({ title: `Removed “${name}”`, description: 'Removed from your collections — you can re-save it anytime.' })
           await fetchList()
         } else {
           toast({
@@ -201,7 +201,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
         const payload = (await response.json()) as SaveEnvelope<{ save: ApiSave }>
         if (payload.status === 'ok') {
           const target = collectionById.get(collectionId)
-          toast({ title: `Moved to “${target?.name ?? 'collection'}”`, description: 'Re-organising is a move, never a copy (§10).' })
+          toast({ title: `Moved to “${target?.name ?? 'collection'}”`, description: 'Re-organising moves the item — it is never duplicated.' })
           await fetchList()
         } else {
           toast({
@@ -231,7 +231,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
       })
       const payload = (await response.json()) as SaveEnvelope<{ collection: ApiCollection }>
       if (payload.status === 'ok' && payload.data) {
-        toast({ title: `Collection “${name}” created`, description: 'Move saved items into it below (§10).' })
+        toast({ title: `Collection “${name}” created`, description: 'Move saved items into it below.' })
         setNewName('')
         await fetchList()
         setActiveCollection(payload.data.collection.id)
@@ -293,7 +293,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
           title: `Collection “${payload.data.name}” deleted`,
           description:
             payload.data.movedItems > 0
-              ? `${payload.data.movedItems} saved ${payload.data.movedItems === 1 ? 'item' : 'items'} moved back to “Saved” — saves are never destroyed (§31).`
+              ? `${payload.data.movedItems} saved ${payload.data.movedItems === 1 ? 'item' : 'items'} moved back to “Saved” — saves are never destroyed.`
               : 'It was empty. Your saves are untouched.',
         })
         setActiveCollection(null)
@@ -324,9 +324,9 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
             Your collections live behind sign-in
           </CardTitle>
           <CardDescription>
-            Saving keeps any knowledge page or published representation in your personal
-            collections — the default “Saved”, or your own (§10). Retrieval only: saves never
-            feed recommendations.
+            Saving keeps any knowledge page or published content in your personal
+            collections — the default “Saved”, or one of your own. Saves are just
+            bookmarks: they never feed recommendations.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap items-center gap-3">
@@ -376,7 +376,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Collections</Badge>
           <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
-            §10 — retrieval, never a recommendation signal
+            Personal bookmarks — never used for recommendations
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -385,9 +385,9 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
               Saved
             </h1>
             <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              Your bookmarks across GlobIQ — knowledge pages and published representations,
-              organised into collections. Saved rows keep pointing at the canonical object, so
-              content updates never duplicate them (§10).
+              Your bookmarks across GlobIQ — knowledge pages and published content,
+              organised into collections. Saved rows keep pointing at the same content, so
+              updates never create duplicates.
             </p>
           </div>
           <Button
@@ -410,11 +410,11 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
               <strong className="font-semibold">{data.counts.KNOWLEDGE_UNIT}</strong>
-              <span className="text-zinc-500">knowledge units</span>
+              <span className="text-zinc-500">knowledge pages</span>
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
               <strong className="font-semibold">{data.counts.CONTENT_ITEM}</strong>
-              <span className="text-zinc-500">representations</span>
+              <span className="text-zinc-500">content items</span>
             </span>
             {data.counts.CURRENT_EVENT > 0 && (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
@@ -565,7 +565,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                     {collection.visibility === 'LINK' && (
                       <Link2
                         className={`h-3 w-3 ${active ? 'text-emerald-100' : 'text-emerald-600'}`}
-                        aria-label="Shared via link (§21)"
+                        aria-label="Shared via link"
                       />
                     )}
                   </button>
@@ -689,7 +689,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                 <CardDescription>
                   Open any knowledge page and press “Save” — the page joins your default
                   “Saved” collection, and you can organise it into custom collections here.
-                  Saves are pure retrieval (§10): they never influence recommendations.
+                  Saves are just bookmarks: they never influence recommendations.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -783,7 +783,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                                 <Badge
                                   variant="outline"
                                   className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500"
-                                  title="The live revision's frozen classification (§36)"
+                                  title="The difficulty from the revision you saved"
                                 >
                                   {object.difficulty}
                                 </Badge>
@@ -822,8 +822,6 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                             <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                               <CalendarClock className="h-3 w-3" aria-hidden="true" />
                               <span>saved {formatSavedAt(save.savedAt)}</span>
-                              <span aria-hidden="true">·</span>
-                              <span className="font-mono">{object.canonicalPath}</span>
                               {collection && (
                                 <>
                                   <span aria-hidden="true">·</span>
@@ -895,7 +893,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
           {data.counts.total > 0 && (
             <p className="flex items-start gap-2 text-xs text-zinc-400">
               <Bookmark className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              Saves are retrieval bookmarks (§10) — they never feed feed, notifications or
+              Saves are retrieval bookmarks — they never feed your feed, notifications or
               recommendations. Following exams/topics (the personalisation half) lives at #/following.
             </p>
           )}

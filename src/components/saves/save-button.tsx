@@ -5,7 +5,7 @@
  * Master Plan §10 (Save is an explicit retrieval/bookmark action — it NEVER
  * feeds recommendations; the mirror affordance to Follow on content objects),
  * §31 (reversible — unsave anytime), §38 (one auth surface: signed-out clicks
- * route to #account).
+ * route to #/signin).
  *
  * The button state is fetched per view via GET /api/saves/state (truthful per
  * object, never client-guessed) and toggled via POST /api/saves and DELETE
@@ -90,9 +90,9 @@ export function SaveButton({
   const signInPrompt = useCallback(() => {
     toast({
       title: 'Sign in to save',
-      description: `Create a free account to keep ${objectName} in your collections — saves are your personal bookmarks (§10).`,
+      description: `Create a free account to keep ${objectName} in your collections — saves are your personal bookmarks.`,
     })
-    window.location.hash = '#account'
+    window.location.hash = '#/signin'
   }, [objectName, toast])
 
   const onSave = useCallback(async () => {
@@ -121,7 +121,7 @@ export function SaveButton({
         }
         toast({
           title: `Saved ${objectName}`,
-          description: 'Kept in your “Saved” collection — organise it at #/saved (retrieval, §10).',
+          description: 'Kept in your “Saved” collection — organise it at #/saved.',
         })
       } else {
         // The server's honest §36 explanation (retired/scheduled/not public…).
@@ -164,7 +164,7 @@ export function SaveButton({
         }
         toast({
           title: `Removed ${objectName}`,
-          description: 'Out of your collections (§31 — reversible anytime).',
+          description: 'Removed from your collections — you can re-save it anytime.',
         })
       } else {
         toast({

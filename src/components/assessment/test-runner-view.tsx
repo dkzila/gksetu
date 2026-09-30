@@ -314,7 +314,7 @@ export function TestRunnerView({
         ? {
             title: 'Quick mock — combined-exam mode | GlobIQ',
             description:
-              'A timed quick mock generated from your followed exams — one question per topic, scored server-side, feeding your mastery and revision schedule (§22).',
+              'A timed quick mock generated from your followed exams — one question per topic, scored server-side, feeding your mastery and revision schedule.',
             language,
             countryIso,
           }
@@ -527,7 +527,7 @@ export function TestRunnerView({
       } else if (payload.error?.code === 'UNAUTHORIZED' || response.status === 401) {
         toast({
           title: 'Sign in to start',
-          description: 'Attempts are tied to your account — the score is yours (§6).',
+          description: 'Attempts are tied to your account — the score is yours.',
         })
         onSignIn()
       } else {
@@ -574,7 +574,7 @@ export function TestRunnerView({
         setSubmitDialog(false)
         toast({
           title: 'The deadline passed',
-          description: 'The server clock is the judge (§37) — start a fresh attempt to retry.',
+          description: 'The timer is judged by the server clock — start a fresh attempt to retry.',
           variant: 'destructive',
         })
       } else if (payload.error?.code === 'ATTEMPT_ALREADY_SUBMITTED') {
@@ -657,9 +657,9 @@ export function TestRunnerView({
           </CardTitle>
           <CardDescription className={notFound || notPublished || attemptMissing ? '' : 'text-red-700'}>
             {notFound
-              ? `“${testSlug}” does not exist in this market — check the mock-test lists on the exam and topic pages (§16).`
+              ? `“${testSlug}” does not exist in this market — check the mock-test lists on the exam and topic pages.`
               : notPublished
-                ? 'This test was withdrawn or is not published right now (§19/§36) — saved copies keep an honest tombstone.'
+                ? 'This test was withdrawn or is not published right now — your saved copy keeps its record.'
                 : (detailError.message ?? 'Could not load this mock test.')}
           </CardDescription>
         </CardHeader>
@@ -717,12 +717,6 @@ export function TestRunnerView({
       : scope?.type === 'TOPIC' && scope.topic
         ? scope.topic.canonicalName
         : 'General knowledge'
-  const scopePath =
-    !quickMode && detail && scope?.type === 'EXAM' && scope.exam
-      ? `#/exams/${scope.exam.slug}/mock-tests/${detail.slug}/`
-      : !quickMode && detail && scope?.topic
-        ? `#/gk/${scope.topic.slug}/mock-tests/${detail.slug}/`
-        : ''
 
   // ---------- Shared header pieces ----------
 
@@ -787,7 +781,7 @@ export function TestRunnerView({
       <Badge
         variant="outline"
         className="gap-1 border-zinc-200 bg-white font-normal text-zinc-600"
-        title="§22 — a combined mock test scoped to your followed exams (or one of them)"
+        title="A combined mock test from your followed exams (or just one)"
       >
         {quickGenerated?.mode === 'EXAM' ? (
           <GraduationCap className="h-3 w-3" aria-hidden="true" />
@@ -811,7 +805,7 @@ export function TestRunnerView({
       <Badge
         variant="outline"
         className="gap-1 border-zinc-200 bg-white font-normal text-zinc-600"
-        title={`Scoped to ${scopeLabel} (§6 — the test's scope is part of its identity)`}
+        title={`Scoped to ${scopeLabel}`}
       >
         {scope?.type === 'EXAM' ? (
           <GraduationCap className="h-3 w-3" aria-hidden="true" />
@@ -827,7 +821,7 @@ export function TestRunnerView({
         <Badge
           variant="outline"
           className="gap-1 border-fuchsia-200 bg-fuchsia-50 font-normal text-fuchsia-700"
-          title="§24/§26 — AI-assisted provenance, frozen on the live revision"
+          title="AI-assisted draft, editorially reviewed"
         >
           <Bot className="h-3 w-3" aria-hidden="true" />
           AI-assisted
@@ -881,7 +875,7 @@ export function TestRunnerView({
             <Timer className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             <span>
               The clock reached zero — submit now: the server keeps a short grace window and its
-              deadline is the judge (§37). Unanswered questions score as incorrect.
+              deadline is the judge. Unanswered questions score as incorrect.
             </span>
           </p>
         )}
@@ -894,7 +888,7 @@ export function TestRunnerView({
                 The deadline passed — this attempt can no longer be scored
               </CardTitle>
               <CardDescription className="text-amber-800">
-                Mock tests are timed server-side (§6/§37): once the server&apos;s deadline passes,
+                Mock tests are timed server-side: once the server&apos;s deadline passes,
                 the attempt is closed. Attempts are immutable — nothing was recorded for this run.
                 Start a fresh attempt whenever you are ready.
               </CardDescription>
@@ -932,7 +926,7 @@ export function TestRunnerView({
                     <Badge
                       variant="outline"
                       className={`text-[10px] font-medium ${DIFFICULTY_STYLE[question.difficulty]}`}
-                      title="How hard this question is classified (§6 difficulty)"
+                      title="How hard this question is classified"
                     >
                       {question.difficulty}
                     </Badge>
@@ -1008,7 +1002,7 @@ export function TestRunnerView({
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-zinc-500">
               Answered {answeredCount} of {attempt.questionCount} — unanswered questions score as
-              incorrect (§6 exam semantics).
+              incorrect.
             </p>
             <Button className="gap-2" onClick={() => setSubmitDialog(true)} disabled={submitting}>
               {submitting ? (
@@ -1030,10 +1024,10 @@ export function TestRunnerView({
                 {answeredCount < attempt.questionCount
                   ? `You answered ${answeredCount} of ${attempt.questionCount} questions — the remaining ${
                       attempt.questionCount - answeredCount
-                    } score as incorrect (§6 exam semantics).`
+                    } score as incorrect.`
                   : `All ${attempt.questionCount} questions answered.`}{' '}
-                Submitting freezes your answers and the server scores them immediately — attempts
-                are immutable (§6), so this cannot be undone.
+                Submitting freezes your answers and the server scores them immediately — this
+                cannot be undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -1116,7 +1110,7 @@ export function TestRunnerView({
                 </p>
                 <p className="flex items-start gap-1.5">
                   <Clock8 className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                  Attempts are immutable (§6) — this score is frozen forever. A retake starts a
+                  Attempts are immutable — this score is frozen forever. A retake starts a
                   fresh attempt.
                 </p>
               </div>
@@ -1142,9 +1136,8 @@ export function TestRunnerView({
             Question-by-question review
           </h2>
           <p className="text-sm text-zinc-500">
-            The answer key ships only now — your pick against the correct answer, the teaching
-            explanation, and a link back to the knowledge behind each question (§22 learn →
-            practice → revise).
+            The answer key is revealed only now — your pick against the correct answer, the
+            teaching explanation, and a link back to the knowledge behind each question.
           </p>
           <ol className="space-y-3">
             {result.questions.map((question, index) => (
@@ -1252,7 +1245,7 @@ export function TestRunnerView({
                   </ul>
                   {question.selected === null && (
                     <p className="text-xs text-amber-700">
-                      You left this one unanswered — unanswered questions score as incorrect (§6).
+                      You left this one unanswered — unanswered questions score as incorrect.
                     </p>
                   )}
                   <div
@@ -1266,8 +1259,8 @@ export function TestRunnerView({
                     </p>
                     <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-zinc-500">
                       <span>
-                        Rev {question.revisionNumber} — the live snapshot this question was served
-                        from (§36)
+                        Rev {question.revisionNumber} — the live version this question was
+                        served from
                       </span>
                       {question.unit && unitTopics[question.unit.slug] !== undefined && (
                         <Button
@@ -1278,7 +1271,7 @@ export function TestRunnerView({
                           disabled={unitTopics[question.unit.slug] === null}
                           title={
                             unitTopics[question.unit.slug]
-                              ? `Open the §22 knowledge page for ${question.unit.canonicalName}`
+                              ? `Open the knowledge page for ${question.unit.canonicalName}`
                               : 'The knowledge page link could not be resolved'
                           }
                           onClick={() => {
@@ -1347,14 +1340,13 @@ export function TestRunnerView({
           {detail.revision.changeSummary && (
             <span className="italic">Corrected: “{detail.revision.changeSummary}”</span>
           )}
-          {scopePath && <span className="font-mono">{scopePath}</span>}
         </p>
 
         <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
           One timed run: the clock starts when you press Start and the server enforces the
-          deadline. Answer every question — unanswered ones score as incorrect (§6 exam
-          semantics). Your score, the answer key and the explanations unlock the moment you
-          submit, and every attempt is frozen forever (§6 immutable attempts).
+          deadline. Answer every question — unanswered ones score as incorrect. Your score,
+          the answer key and the explanations unlock the moment you submit, and every attempt
+          is frozen forever.
         </p>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -1416,7 +1408,7 @@ export function TestRunnerView({
             </CardTitle>
             <CardDescription>
               Sign in to start this timed test — your attempts, scores and retakes are saved to
-              your account (§6). The test itself is free to preview above.
+              your account. The test itself is free to preview above.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap items-center gap-3">

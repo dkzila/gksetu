@@ -6,7 +6,7 @@
  * semantics — feed/notifications/recommendations context, not a bookmark),
  * §14 (country rules enforced by the server — the button shows the server's
  * honest explanation on a rejected follow), §38 (one auth surface: signed-out
- * clicks route to #account).
+ * clicks route to #/signin).
  *
  * The button state is fetched per view via GET /api/follows/state (truthful
  * per object, never client-guessed) and toggled via POST /api/follows and
@@ -90,7 +90,7 @@ export function FollowButton({
       title: 'Sign in to follow',
       description: `Create a free account to follow ${objectName} — follows shape your personal GlobIQ feed.`,
     })
-    window.location.hash = '#account'
+    window.location.hash = '#/signin'
   }, [objectName, toast])
 
   const onFollow = useCallback(async () => {
@@ -119,7 +119,7 @@ export function FollowButton({
         }
         toast({
           title: `Following ${objectName}`,
-          description: 'It will shape your feed and dashboard (personalisation, §9).',
+          description: 'It will shape your feed and dashboard.',
         })
       } else {
         // The server's honest §14/§36 explanation (country scope, status…).
@@ -162,7 +162,7 @@ export function FollowButton({
               : current
           )
         }
-        toast({ title: `Unfollowed ${objectName}`, description: 'Personalisation updated (§9 — reversible anytime).' })
+        toast({ title: `Unfollowed ${objectName}`, description: 'Personalisation updated — you can change this anytime.' })
       } else {
         toast({
           title: 'Could not unfollow',

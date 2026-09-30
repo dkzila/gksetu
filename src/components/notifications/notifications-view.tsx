@@ -196,7 +196,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
   useSeoHead({
     title: 'Your notifications | GlobIQ',
     description:
-      'Your GlobIQ notifications — each says why you get it, with a one-tap mute for the follow that caused it (noindex, §16).',
+      'Your GlobIQ notifications — each says why you get it, with a one-tap mute for the follow that caused it.',
     noindex: true,
   })
 
@@ -305,7 +305,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
       if (!token || mutingId) return
       if (
         !window.confirm(
-          `Stop following ${follow.label}? This is the one-tap mute (§27) — it removes the follow, so nothing it matches reaches you again. You can re-follow anytime.`
+          `Stop following ${follow.label}? This is the one-tap mute — it removes the follow, so nothing it matches reaches you again. You can re-follow anytime.`
         )
       ) {
         return
@@ -344,7 +344,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
       if (!token || mutingId) return
       if (
         !window.confirm(
-          `Remove ${save.label} from your saved items? You will no longer be notified when it is corrected (§27).`
+          `Remove ${save.label} from your saved items? You will no longer be notified when it is corrected.`
         )
       ) {
         return
@@ -454,7 +454,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
           <h1 className="text-2xl font-bold tracking-tight">Your notifications</h1>
           <p className="text-sm text-zinc-600">
             Sign in to see what changed on your followed exams and subjects — each notification
-            says why you get it, and you control every category and channel (§27).
+            says why you get it, and you control every category and channel.
           </p>
         </div>
         <div className="flex justify-center gap-3">
@@ -479,7 +479,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     if (sent === 0 && failed === 0 && held === 0) return null
     const parts: string[] = []
     if (sent > 0) parts.push(`${sent} delivered`)
-    if (held > 0) parts.push(`${held} held for the mobile app (§39)`)
+    if (held > 0) parts.push(`${held} coming to the mobile app`)
     if (failed > 0) parts.push(`${failed} failed — retrying on the next sweep`)
     return `This visit dispatched your queue: ${parts.join(' · ')}.`
   })()
@@ -502,7 +502,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
             </div>
             <p className="mt-1 max-w-2xl text-sm text-zinc-600">
               Each notification says why you get it, with a one-tap mute for the follow that
-              caused it (§27). Categories and channels are controlled separately below — never
+              caused it. Categories and channels are controlled separately below — never
               all-or-nothing.
             </p>
           </div>
@@ -563,7 +563,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                 <p className="font-medium">Nothing yet</p>
                 <p className="mt-1 max-w-md text-sm text-zinc-500">
                   Follow an exam or subject and its coverage reaches you here — current affairs
-                  first (§12), new syllabus units and your spaced-review reminders next (§22).
+                  first, new syllabus units and your spaced-review reminders next.
                 </p>
               </div>
               <Button variant="outline" size="sm" className="border-zinc-200" asChild>
@@ -614,7 +614,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                                   className={`text-[10px] font-normal ${badge.className}`}
                                   title={
                                     channel.channel === 'MOBILE_PUSH' && channel.status === 'QUEUED'
-                                      ? 'Held for the mobile app (§39) — no transport exists yet'
+                                      ? 'Coming to the mobile app'
                                       : undefined
                                   }
                                 >
@@ -658,7 +658,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                             className="h-auto min-h-8 max-w-full whitespace-normal border-zinc-200 px-3 py-1 text-left text-xs font-normal leading-snug text-zinc-500 hover:border-amber-300 hover:text-amber-700 sm:text-sm"
                             onClick={() => void muteFollow(follow)}
                             disabled={mutingId === follow.id}
-                            aria-label={`Mute — stop following ${follow.label} (§27 one-tap mute)`}
+                            aria-label={`Mute — stop following ${follow.label}`}
                           >
                             {mutingId === follow.id ? (
                               <Loader2 className="h-3.5 w-3.5 shrink-0 animate-spin" aria-hidden="true" />

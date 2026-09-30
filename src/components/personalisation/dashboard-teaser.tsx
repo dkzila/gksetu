@@ -118,7 +118,7 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
                   )}
                 </>
               ) : (
-                'Declare a goal or follow exams — your combined-exam queue builds itself from your signals (§9).'
+                'Declare a goal or follow exams — your combined-exam queue builds itself from your signals.'
               )}
             </p>
           </div>

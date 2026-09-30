@@ -170,22 +170,22 @@ const LIFECYCLE_META: Record<Lifecycle, { label: string; tone: string; note: str
   EMERGING: {
     label: 'Emerging',
     tone: 'border-amber-200 bg-amber-50 text-amber-800',
-    note: 'Breaking coverage — facts may still develop (§12).',
+    note: 'Breaking coverage — facts may still develop.',
   },
   DEVELOPING: {
     label: 'Developing',
     tone: 'border-sky-200 bg-sky-50 text-sky-800',
-    note: 'More sources and context are accumulating — corrections expected (§12).',
+    note: 'More sources and context are accumulating — corrections expected.',
   },
   STABLE: {
     label: 'Stable',
     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-    note: 'The established canonical understanding of this event (§12).',
+    note: 'The established understanding of this event.',
   },
   ARCHIVED: {
     label: 'Archived',
     tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
-    note: 'End-of-life for updates — kept as permanent historical reference (§36).',
+    note: 'No further updates — kept as permanent historical reference.',
   },
 }
 
@@ -404,7 +404,7 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
           <Badge
             variant="outline"
             className={`gap-1 ${FRESHNESS_META[page.event.freshness.tier].tone}`}
-            title="The §17 freshness verdict — computed from the event date (P6-S5 rules)"
+            title="How fresh this story is — based on the event date"
           >
             <Hourglass className="h-3 w-3" aria-hidden="true" />
             {page.event.freshness.label}
@@ -449,9 +449,9 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
             <CardContent className="py-6">
               <p className="text-sm leading-relaxed text-zinc-600">
                 No published coverage in <span className="font-medium">{page.language.name}</span> yet
-                — the canonical record above is the reference. This page becomes a full read the
-                moment an update publishes in this language (§35 — never a machine-translated
-                placeholder).
+                — the record above is the reference. This page becomes a full read the
+                moment an update publishes in this language — never a machine-translated
+                placeholder.
               </p>
               {page.translations.length > 0 && (
                 <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -526,8 +526,8 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
             Evidence
           </h2>
           <p className="text-sm text-zinc-500">
-            Aggregated from the shared evidence registry (§24) — the same record whatever the number
-            of publishers covering this event (§12).
+            Aggregated from the shared evidence registry — the same record whatever the number
+            of publishers covering this event.
           </p>
           <ul className="space-y-2.5">
             {page.sources.map((source) => (
@@ -576,11 +576,11 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
       {page.knowledgeUnits.length > 0 && (
         <section aria-labelledby="event-units" className="space-y-3">
           <h2 id="event-units" className="text-lg font-semibold tracking-tight text-zinc-900">
-            Canonical knowledge
+            Related knowledge pages
           </h2>
           <p className="text-sm text-zinc-500">
             This event points at the established knowledge it touches — the facts live once, in the
-            linked units (§7), and every exam syllabus flows through them (§8).
+            linked knowledge pages, and every exam syllabus flows through them.
           </p>
           <ul className="grid gap-3 sm:grid-cols-2">
             {page.knowledgeUnits.map((unit) => (
@@ -618,7 +618,7 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
             People, places &amp; organisations
           </h2>
           <p className="text-sm text-zinc-500">
-            The canonical reference records this event involves (§12) — one registry entry whatever the
+            The reference records this event involves — one record whatever the
             number of stories that mention them.
           </p>
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -635,7 +635,7 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
                         </Badge>
                         {entity.status === 'RETIRED' && (
                           <Badge variant="outline" className="border-zinc-300 bg-zinc-100 font-normal text-zinc-500">
-                            Retired — kept as history (§36)
+                            Retired — kept as history
                           </Badge>
                         )}
                         {entity.countryIso && (
@@ -671,7 +671,7 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
           </h2>
           <p className="text-sm text-zinc-500">
             This event feeds the live syllabi below — each exam anchors it through a linked
-            syllabus topic (§13) or a mapped canonical unit (§8).
+            syllabus topic or a related knowledge page.
           </p>
           <ul className="space-y-2.5" aria-label="Exams whose syllabi this event feeds">
             {page.examRelevance.exams.map((exam) => (
@@ -688,17 +688,11 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
                       className="max-w-full border-zinc-200 bg-zinc-50 text-[11px] font-normal text-zinc-600"
                       title={`${anchor.nodeName} — anchored via ${
                         anchor.matchVia === 'TOPIC'
-                          ? 'a syllabus-topic link (§13)'
-                          : 'a mapped canonical unit (§8)'
+                          ? 'a syllabus topic'
+                          : 'a related knowledge page'
                       }`}
                     >
                       {anchor.nodeName}
-                      {anchor.unitSlug && (
-                        <span className="font-mono text-[10px] text-zinc-400">
-                          {' '}
-                          · via {anchor.unitSlug}
-                        </span>
-                      )}
                     </Badge>
                   ))}
                 </div>

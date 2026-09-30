@@ -50,9 +50,6 @@ export function EventView({
           Back to current affairs
         </Button>
         <div className="flex items-center gap-2">
-          <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
-            #/current-affairs/{eventSlug}/
-          </p>
           <ShareButton path={`#/current-affairs/${eventSlug}/`} title={eventSlug} className="h-9 px-2.5" />
           {/* P8-S3 §25: report this event's coverage (slug = §16 identity). */}
           <ReportButton

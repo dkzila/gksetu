@@ -51,12 +51,12 @@ export function CollectionShareControl({ collection, onUpdated }: CollectionShar
             toast({
               title: `“${collection.name}” is now shareable via link`,
               description:
-                'Anyone with the link sees this collection’s public content — never your identity (§21). Stop sharing anytime.',
+                'Anyone with the link sees this collection’s public content — never your identity. Stop sharing anytime.',
             })
           } else {
             toast({
               title: `Stopped sharing “${collection.name}”`,
-              description: 'The link no longer opens — your saved items are untouched (§31).',
+              description: 'The link no longer opens — your saved items are untouched.',
             })
           }
           setConfirmRevoke(false)
@@ -98,7 +98,7 @@ export function CollectionShareControl({ collection, onUpdated }: CollectionShar
         ) : (
           <>
             <strong className="text-zinc-900">“{collection.name}”</strong> stays private until you
-            explicitly make it shareable (§21)
+            explicitly make it shareable
           </>
         )}
       </p>

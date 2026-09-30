@@ -85,9 +85,6 @@ export function UnitView({
           Back to the topic hub
         </Button>
         <div className="flex items-center gap-2">
-          <p className="font-mono text-[11px] text-zinc-400" aria-label="Canonical path">
-            #/gk/{topicSlug}/{unitSlug}/
-          </p>
           <ShareButton
             path={`#/gk/${topicSlug}/${unitSlug}/`}
             title={unitSlug}

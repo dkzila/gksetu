@@ -154,7 +154,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
       await recordEvent('WEB_SHARE')
       toast({
         title: 'Shared',
-        description: 'The link left through your device’s share sheet (§21).',
+        description: 'The link left through your device’s share sheet.',
       })
       onOpenChange(false)
     } catch (shareError) {
@@ -162,7 +162,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
       if (shareError instanceof DOMException && shareError.name === 'AbortError') return
       toast({
         title: 'Could not open the share sheet',
-        description: 'Copy the link instead — the same stable URL (§21).',
+        description: 'Copy the link instead — the same stable URL.',
         variant: 'destructive',
       })
     } finally {
@@ -192,7 +192,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
       }
       setCopied(true)
       await recordEvent('COPY_LINK')
-      toast({ title: 'Link copied', description: 'A stable share URL — it opens this exact page (§16).' })
+      toast({ title: 'Link copied', description: 'A stable link — it opens this exact page.' })
     } catch {
       toast({
         title: 'Could not copy',
@@ -213,7 +213,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
             Share this page
           </DialogTitle>
           <DialogDescription>
-            A stable canonical link (§16) — it opens this exact page for anyone, signed in or not.
+            A stable link — it opens this exact page for anyone, signed in or not.
           </DialogDescription>
         </DialogHeader>
 
@@ -254,7 +254,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
               </p>
               {!card.robots.index && (
                 <p className="mt-2 text-[11px] leading-relaxed text-zinc-400">
-                  Unlisted surface — reachable via this link, never listed or indexed (§16/§21).
+                  Unlisted — reachable via this link, never listed or indexed.
                 </p>
               )}
             </div>
@@ -280,7 +280,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
             {/* ---------- §31/§36 honesty note ---------- */}
             <p className="flex items-start gap-2 text-[11px] leading-relaxed text-zinc-400">
               <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              Share actions are recorded as anonymous-friendly product analytics (§32) — never posted to
+              Share actions are recorded as anonymous product analytics — never posted to
               social networks on your behalf, and never tied to your recommendations.
             </p>
           </div>

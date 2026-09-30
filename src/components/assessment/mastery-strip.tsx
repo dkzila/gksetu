@@ -135,7 +135,7 @@ export function MasteryStrip({ unitSlug }: MasteryStripProps) {
       ) : (
         <p className="mt-2 text-xs text-zinc-500">
           {state.note ??
-            'Not tracked yet — attempt a mock test that covers this unit and the §22 spaced-review schedule starts.'}
+            'Not tracked yet — attempt a mock test that covers this page and your revision schedule starts.'}
         </p>
       )}
     </section>

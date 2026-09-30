@@ -211,7 +211,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
         setProfile((current) => (current ? { ...current, goal: null } : current))
         toast({
           title: 'Goal removed',
-          description: 'Your declared goal is gone. Follows and saves are untouched (§31).',
+          description: 'Your declared goal is gone. Follows and saves are untouched.',
         })
       } else {
         toast({
@@ -245,8 +245,8 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
               Your profile
             </CardTitle>
             <CardDescription>
-              Profile basics, your declared learning goal and your personalisation data controls
-              (§31). Sign in to manage them.
+              Profile basics, your declared learning goal and your personalisation data controls.
+              Sign in to manage them.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -280,7 +280,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
             {user.name ?? user.email}
           </h1>
           <p className="text-sm text-zinc-600">
-            {user.email} · personalisation data you control (§31) — review, change or remove
+            {user.email} · personalisation data you control — review, change or remove
             anything below.
           </p>
         </div>
@@ -312,8 +312,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Profile basics
               </CardTitle>
               <CardDescription>
-                Your name, home market and preferred language — the same §35 rules registration
-                enforces, editable anytime.
+                Your name, home market and preferred language — editable anytime.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -369,8 +368,8 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-xs text-zinc-500">
                   Changing your home country never deletes data — goal exams from another market
-                  stay listed with an honest note (§31/§36), and future goal edits follow the new
-                  market (§14).
+                  stay listed with an honest note, and future goal edits follow the new
+                  market.
                 </p>
                 <Button
                   size="sm"
@@ -393,7 +392,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Your learning goal
               </CardTitle>
               <CardDescription>
-                The explicit signal behind your personalisation (§9) — declared exams, subjects,
+                The explicit signal behind your personalisation — declared exams, subjects,
                 level and pace. A goal drives personalisation only; it is never proof you will sit
                 an exam.
               </CardDescription>
@@ -522,7 +521,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <p className="text-xs text-zinc-500">
                       Declared {formatWhen(goal.declaredAt)} · updated {formatWhen(goal.updatedAt)} ·
-                      goal edits replace it wholesale (§9).
+                      goal edits replace the whole goal.
                     </p>
                     <div className="flex items-center gap-2">
                       <Button
@@ -622,7 +621,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Your personalisation data
               </CardTitle>
               <CardDescription>
-                Everything GlobIQ stores about you is reviewable and reversible (§31) — every
+                Everything GlobIQ stores about you is reviewable and reversible — every
                 signal, its effect and its control lives on one page.
               </CardDescription>
             </CardHeader>

@@ -41,7 +41,6 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSeoHead } from '@/components/home/seo-head'
 import { SaveButton } from '@/components/saves/save-button'
@@ -624,7 +623,7 @@ export function KnowledgePageView({
           </span>
           <div className="min-w-0">
             <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
-              Quick fact {page.quickFact.source === 'CANONICAL_SUMMARY' && '· from the canonical record'}
+              Quick fact {page.quickFact.source === 'CANONICAL_SUMMARY' && '· from the trusted record'}
             </p>
             <p className="mt-1 text-[15px] leading-relaxed text-zinc-800">{page.quickFact.body}</p>
           </div>
@@ -642,14 +641,14 @@ export function KnowledgePageView({
               onClick={() => onSwitchLanguage(entry.code)}
               className="inline-flex min-h-[32px] items-center gap-1 rounded-full border border-zinc-200 bg-white px-3 font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
               aria-label={`Read this page in ${entry.nativeName ?? entry.name}${entry.stale ? ' (the original has been updated since this translation)' : ''}`}
-              title={entry.stale ? `The ${entry.sourceLanguageCode ?? 'original'} version has been updated since this translation (§36) — still published, pending a refresh.` : undefined}
+              title={entry.stale ? `The ${entry.sourceLanguageCode ?? 'original'} version has been updated since this translation — still published, pending a refresh.` : undefined}
             >
               <Sparkles className="h-3 w-3" aria-hidden="true" />
               {entry.nativeName ?? entry.name}
               {entry.stale && (
                 <span
                   className="ml-0.5 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-1.5 py-0.5 text-[10px] font-medium text-orange-700"
-                  title="The original has been updated since this translation (§36)"
+                  title="The original has been updated since this translation"
                 >
                   updated since
                 </span>
@@ -663,8 +662,8 @@ export function KnowledgePageView({
       {page.scheduledCount > 0 && (
         <p className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs text-zinc-600">
           <Clock className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-          {page.scheduledCount} reviewed {page.scheduledCount === 1 ? 'representation is' : 'representations are'} scheduled
-          to go live automatically (§19) — refresh after the scheduled time.
+          {page.scheduledCount} reviewed {page.scheduledCount === 1 ? 'update is' : 'updates are'} scheduled
+          to go live automatically — refresh after the scheduled time.
         </p>
       )}
 
@@ -683,8 +682,8 @@ export function KnowledgePageView({
         <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-5 text-sm text-zinc-600" role="status">
           <p className="font-medium text-zinc-800">Not yet published in {page.language.nativeName ?? page.language.name}</p>
           <p className="mt-1">
-            The canonical record above is always available. A published {page.language.name} representation of this
-            knowledge will appear here once the editorial workflow (§19) releases it.
+            The trusted record above is always available. A published {page.language.name} version of this
+            page will appear here once our editors release it.
           </p>
         </div>
       )}
@@ -833,7 +832,8 @@ export function KnowledgePageView({
           </ul>
         ) : (
           <p className="rounded-lg border border-zinc-200 bg-white p-3 text-xs text-zinc-500">
-            No evidence links on the displayed representations (§24 — provenance attaches per representation).
+            No evidence links on the displayed content yet — sources attach to each published
+            version.
           </p>
         )}
       </div>
@@ -870,7 +870,7 @@ export function KnowledgePageView({
                       read in {unit.availableLanguages.join(' · ')}
                     </span>
                   ) : (
-                    <span className="text-[10px] text-zinc-400">canonical record only</span>
+                    <span className="text-[10px] text-zinc-400">not yet translated</span>
                   )}
                 </div>
               </button>
@@ -896,7 +896,7 @@ export function KnowledgePageView({
           )}
         </h4>
         {page.examCoverage.available ? (
-          <ul className="space-y-2" aria-label="Exams requiring this unit">
+          <ul className="space-y-2" aria-label="Exams requiring this page">
             {page.examCoverage.requirements.map((requirement, index) => (
               <li
                 key={`${requirement.exam.slug}-${index}`}
@@ -909,7 +909,7 @@ export function KnowledgePageView({
                   <span className="text-sm font-semibold leading-snug text-zinc-800">
                     {requirement.exam.name}
                   </span>
-                  <span className="text-xs text-zinc-400" title="The exam's current version (§36)">
+                  <span className="text-xs text-zinc-400" title="The exam's current version">
                     {requirement.version.label}
                   </span>
                 </div>
@@ -920,7 +920,7 @@ export function KnowledgePageView({
                       <Badge
                         variant="outline"
                         className="border-teal-200 bg-teal-50 text-[10px] font-normal text-teal-700"
-                        title={`§35 topic label (resolved in ${requirement.node.topic.labelLanguage}) — ${requirement.node.topic.canonicalName}`}
+                        title={`Topic — ${requirement.node.topic.canonicalName}`}
                       >
                         {requirement.node.topic.label}
                       </Badge>
@@ -928,7 +928,7 @@ export function KnowledgePageView({
                   <Badge
                     variant="outline"
                     className={`font-semibold ${EXAM_DEPTH_STYLE[requirement.requiredDepth] ?? ''}`}
-                    title="How deep this exam expects you to know this unit (§8)"
+                    title="How deeply this exam expects you to know this page"
                   >
                     {EXAM_DEPTH_LABEL[requirement.requiredDepth] ?? requirement.requiredDepth}
                   </Badge>
@@ -962,13 +962,7 @@ export function KnowledgePageView({
                     {requirement.expectedScope}
                   </p>
                 )}
-                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                  <code
-                    className="inline-block break-all rounded bg-zinc-100 px-2 py-1 text-[11px] text-zinc-600 sm:break-normal"
-                    title="§16 canonical exam-page path"
-                  >
-                    {requirement.examPath}
-                  </code>
+                <div className="mt-2 flex flex-wrap items-center justify-end gap-2">
                   {onOpenExam && (
                     <button
                       type="button"
@@ -987,22 +981,13 @@ export function KnowledgePageView({
           <div className="rounded-lg border border-dashed border-zinc-300 bg-zinc-50 p-4">
             <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
               <ScrollText className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-              No exam requires this unit yet
+              No exam requires this page yet
             </p>
             <p className="mt-1 text-xs leading-relaxed text-zinc-500">{page.examCoverage.note}</p>
           </div>
         )}
       </div>
 
-      <Separator />
-
-      {/* ---------- §16 canonical path ---------- */}
-      <p className="flex flex-wrap items-center gap-2 font-mono text-[11px] text-zinc-400">
-        <Link2 className="h-3 w-3" aria-hidden="true" />
-        <span className="uppercase tracking-wide">Canonical (§16):</span>
-        <span className="rounded bg-zinc-100 px-1.5 py-0.5 text-zinc-600">{page.canonicalPath}</span>
-        <span className="font-sans text-zinc-400">— one stable URL per representation; real routes land in P4.</span>
-      </p>
     </article>
   )
 }

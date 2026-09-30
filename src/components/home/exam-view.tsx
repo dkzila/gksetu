@@ -34,7 +34,6 @@ import {
   History,
   Info,
   Languages,
-  Link2,
   ListChecks,
   ListOrdered,
   Newspaper,
@@ -171,22 +170,22 @@ const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; 
   EMERGING: {
     label: 'Emerging',
     tone: 'border-amber-200 bg-amber-50 text-amber-800',
-    note: 'Breaking coverage — facts may still develop (§12).',
+    note: 'Breaking coverage — facts may still develop.',
   },
   DEVELOPING: {
     label: 'Developing',
     tone: 'border-sky-200 bg-sky-50 text-sky-800',
-    note: 'More sources and context are accumulating — corrections expected (§12).',
+    note: 'More sources and context are accumulating — corrections expected.',
   },
   STABLE: {
     label: 'Stable',
     tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-    note: 'The established canonical understanding of this event (§12).',
+    note: 'The established, verified understanding of this event.',
   },
   ARCHIVED: {
     label: 'Archived',
     tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
-    note: 'End-of-life for updates — kept as permanent historical reference (§36).',
+    note: 'No longer updated — kept as a permanent historical reference.',
   },
 }
 
@@ -264,7 +263,7 @@ export function ExamView({
             title: `${page.exam.name} (${page.exam.code}) — syllabus & study guide | GlobIQ`,
             description:
               page.exam.description ??
-              `${page.exam.name} by ${page.exam.organiser}: ${page.coverage.unitCount} mapped units, ${page.coverage.mappingCount} requirements on the current syllabus.`,
+              `${page.exam.name} by ${page.exam.organiser}: ${page.coverage.unitCount} mapped knowledge pages, ${page.coverage.mappingCount} requirements on the current syllabus.`,
             seo: page.seo,
             language: page.language.code,
             countryIso: page.exam.countryIso,
@@ -302,8 +301,7 @@ export function ExamView({
           </CardTitle>
           <CardDescription>
             “{examSlug}” does not exist, is not active, or belongs to another market — exam pages
-            are country-scoped and enforced server-side (§14). Browse the homepage directory for
-            this market&rsquo;s exams.
+            are country-specific. Browse the homepage directory for this market&rsquo;s exams.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -387,13 +385,6 @@ export function ExamView({
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
             {page.exam.countryName}
           </Badge>
-          <Badge
-            variant="outline"
-            className="max-w-full truncate border-zinc-200 bg-white font-mono text-xs font-normal text-zinc-400"
-            title={page.canonicalPath}
-          >
-            {page.canonicalPath}
-          </Badge>
           {/* P8-S1 §21: the exam page's share action — the §16 path is server truth. */}
           <ShareButton
             path={`#${page.canonicalPath}`}
@@ -428,10 +419,10 @@ export function ExamView({
             <Badge
               variant="outline"
               className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700"
-              title="§12 step 5 — current-affairs knowledge attaches to live syllabi the moment it is mapped"
+              title="Current-affairs knowledge is linked to this syllabus the moment it is mapped"
             >
               <Radio className="mr-1 h-3 w-3" aria-hidden="true" />
-              Live — mappings keep flowing (§12)
+              Live — mappings keep flowing
             </Badge>
           )}
         </div>
@@ -443,12 +434,12 @@ export function ExamView({
               isHistorical ? 'bg-amber-600' : 'bg-zinc-900'
             }`}
           >
-            {isHistorical ? 'Historical read (§36)' : 'Current coverage'}
+            {isHistorical ? 'Historical read' : 'Current coverage'}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
             <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
             <strong className="font-semibold">{page.coverage.unitCount}</strong>
-            <span className="text-zinc-500">units</span>
+            <span className="text-zinc-500">knowledge pages</span>
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
             <ClipboardList className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
@@ -475,7 +466,7 @@ export function ExamView({
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
           <span className="text-xs text-zinc-400">
-            Follows shape your combined-exam queue and dashboard (§11) — manageable anytime from
+            Follows shape your combined-exam queue and dashboard — manageable anytime from
             <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
               #/following
             </a>
@@ -517,8 +508,8 @@ export function ExamView({
         <p className="flex items-start gap-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-800">
           <History className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           <span>
-            Historical window (§36): requirements exactly as this superseded version defined them —
-            read-only history, never mixed into today&rsquo;s coverage or the §11 queue.
+            Historical window: requirements exactly as this superseded version defined them —
+            read-only history, never mixed into today&rsquo;s coverage or your study queue.
           </span>
         </p>
       )}
@@ -530,7 +521,7 @@ export function ExamView({
             What to study
           </h2>
           <p className="text-xs text-zinc-400">
-            Ranked by priority, question likelihood and freshness (§11 base order)
+            Ranked by priority, question likelihood and freshness
           </p>
         </div>
         {!page.version ? (
@@ -538,8 +529,8 @@ export function ExamView({
             <CardContent className="p-5">
               <p className="flex items-center gap-2 text-sm text-zinc-600">
                 <CalendarRange className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-                The study list fills the moment a version&rsquo;s window starts (§36) — mappings
-                are always version-pinned.
+                The study list fills the moment a version&rsquo;s window starts — each version
+                keeps its own mappings.
               </p>
             </CardContent>
           </Card>
@@ -548,8 +539,8 @@ export function ExamView({
             <CardContent className="p-5">
               <p className="flex items-center gap-2 text-sm text-zinc-600">
                 <ClipboardList className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-                No verified units mapped on this version&rsquo;s branches yet — the list fills as
-                editors map canonical units (§12).
+                No knowledge pages are mapped to this version&rsquo;s branches yet — the list
+                fills as editors link them.
               </p>
             </CardContent>
           </Card>
@@ -567,7 +558,7 @@ export function ExamView({
             </div>
             {page.units.total > page.units.items.length && (
               <p className="text-xs text-zinc-400">
-                Showing {page.units.items.length} of {page.units.total} mapped units — the full
+                Showing {page.units.items.length} of {page.units.total} mapped knowledge pages — the full
                 requirement set lives in the coverage tree below.
               </p>
             )}
@@ -587,8 +578,8 @@ export function ExamView({
           <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
             <CardContent className="p-5">
               <p className="text-sm text-zinc-600">
-                No syllabus version in effect yet — coverage appears with the first started window
-                (§36).
+                No syllabus version in effect yet — coverage appears with the first started
+                window.
               </p>
             </CardContent>
           </Card>
@@ -596,8 +587,8 @@ export function ExamView({
           <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
             <CardContent className="p-5">
               <p className="text-sm text-zinc-600">
-                No mapping-bearing branches on this version yet — the tree fills as editors map
-                canonical units to syllabus nodes.
+                No syllabus sections have mapped knowledge pages yet — the tree fills as editors
+                link them.
               </p>
             </CardContent>
           </Card>
@@ -620,11 +611,10 @@ export function ExamView({
             <p className="flex items-start gap-2 rounded-md bg-zinc-50 p-3 text-xs leading-relaxed text-zinc-500">
               <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               <span>
-                Every row is one canonical unit anchored to this syllabus node (§13) — the same
-                unit may appear under several exams at different depths without ever being
-                duplicated (§8). This page&rsquo;s ranked list is the §11 engine in single-exam
-                mode; the combined queue across your followed exams arrives with personalisation
-                (P5).
+                Every row is one knowledge page anchored to this syllabus section — the same page
+                may appear under several exams at different depths without ever being duplicated.
+                This page&rsquo;s ranked list covers this one exam; the combined queue across your
+                followed exams lives in your dashboard.
               </span>
             </p>
           </div>
@@ -721,9 +711,6 @@ function StudyCard({
                 </Badge>
               )}
             </div>
-            <p className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
-              {unit.canonicalPath}
-            </p>
           </div>
         </CardContent>
       </button>
@@ -753,18 +740,18 @@ function CoverageBranch({
             type="button"
             onClick={() => onOpenExamSyllabus(examSlug, node.topic!.slug)}
             className="inline-flex min-h-[28px] items-center rounded-full border border-teal-200 bg-teal-50 px-2 py-0.5 text-[10px] font-normal text-teal-700 transition-colors hover:border-teal-400 hover:text-teal-800"
-            title={`§16 syllabus-topic page — ${node.topic.canonicalName} (label resolved in ${node.topic.labelLanguage})`}
+            title={`${node.topic.canonicalName} — syllabus topic`}
           >
             {node.topic.label}
             <ArrowRight className="ml-1 h-3 w-3" aria-hidden="true" />
           </button>
         )}
         <span className="text-[11px] text-zinc-400">
-          {node.mappings.length} unit{node.mappings.length === 1 ? '' : 's'}
+          {node.mappings.length} knowledge page{node.mappings.length === 1 ? '' : 's'}
         </span>
       </div>
       {node.mappings.length > 0 && (
-        <ul className="mt-2 space-y-2" aria-label={`Units required under ${node.name}`}>
+        <ul className="mt-2 space-y-2" aria-label={`Knowledge pages required under ${node.name}`}>
           {node.mappings.map((mapping) => {
             // §16 grammar: /{prefix}/gk/{topic}/{unit}/ — the topic segment
             // drives in-app navigation (lenient, like the search box).
@@ -808,9 +795,6 @@ function CoverageBranch({
                     )}
                   </div>
                   <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                    <code className="break-all rounded bg-zinc-100 px-2 py-1 text-[11px] text-zinc-600 sm:break-normal">
-                      {mapping.canonicalPath}
-                    </code>
                     <span className="text-[11px] text-zinc-400">
                       {mapping.unit.type} · {mapping.unit.difficulty.toLowerCase()}
                     </span>
@@ -888,10 +872,6 @@ function RelatedExamCard({
           ) : (
             <p className="text-xs text-zinc-400">No syllabus version in effect yet.</p>
           )}
-          <p className="flex items-center gap-1 font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500">
-            <Link2 className="h-3 w-3" aria-hidden="true" />
-            {exam.canonicalPath}
-          </p>
         </CardContent>
       </button>
     </Card>
@@ -955,7 +935,7 @@ function ExamMockTests({
           Mock tests for this exam
         </h2>
         <p className="text-xs text-zinc-400">
-          Timed, scored assemblies of published questions (§22/§6)
+          Timed, scored practice from real exam questions
         </p>
       </div>
 
@@ -977,7 +957,7 @@ function ExamMockTests({
               <ClipboardCheck className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
               <span>
                 No mock tests for this exam yet — timed practice tests appear here the moment
-                they are published (§22).
+                they are published.
               </span>
             </p>
           </CardContent>
@@ -990,7 +970,7 @@ function ExamMockTests({
           <a
             href={`#/quick-mock/${examSlug}/`}
             className="group flex min-w-0 flex-col rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
-            aria-label={`Generate a quick mock scoped to this exam`}
+            aria-label={`Generate a quick mock for this exam`}
           >
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100" aria-hidden="true">
@@ -999,8 +979,8 @@ function ExamMockTests({
               <span className="text-sm font-semibold text-emerald-800">Quick mock for this exam</span>
             </div>
             <p className="mt-2 flex-1 text-xs leading-relaxed text-emerald-800/80">
-              A timed test generated from the published pool for this exam's scope — one question
-              per topic (§11), the same scoring and mastery fold (§22).
+              A timed test generated from this exam's published questions — one question per
+              topic, with the same scoring and pass mark.
             </p>
             <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 group-hover:gap-1.5">
               Open Quick mock
@@ -1023,13 +1003,6 @@ function ExamMockTests({
 // ---------- P7-S3: one mock-test card (§22 overview row) ----------
 
 function MockTestCard({ test, onOpen }: { test: ExamMockTestCard; onOpen: () => void }) {
-  // The §16 path hint from the test's own scope (the card's own identity).
-  const pathHint =
-    test.scope.type === 'EXAM' && test.scope.exam
-      ? `/exams/${test.scope.exam.slug}/mock-tests/${test.slug}/`
-      : test.scope.topic
-        ? `/gk/${test.scope.topic.slug}/mock-tests/${test.slug}/`
-        : ''
   return (
     <Card className="group flex min-w-0 flex-col border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md">
       <button
@@ -1060,7 +1033,7 @@ function MockTestCard({ test, onOpen }: { test: ExamMockTestCard; onOpen: () => 
             <Badge
               variant="outline"
               className="border-emerald-200 bg-emerald-50 text-[10px] font-normal text-emerald-700"
-              title="The score needed to pass (§6)"
+              title="The score needed to pass"
             >
               pass {test.passPercent}%
             </Badge>
@@ -1068,7 +1041,7 @@ function MockTestCard({ test, onOpen }: { test: ExamMockTestCard; onOpen: () => 
               <Badge
                 variant="outline"
                 className="border-fuchsia-200 bg-fuchsia-50 text-[10px] font-normal text-fuchsia-700"
-                title="§24/§26 — AI-assisted provenance on the live revision"
+                title="AI-assisted draft, editorially reviewed"
               >
                 AI-assisted
               </Badge>
@@ -1089,12 +1062,6 @@ function MockTestCard({ test, onOpen }: { test: ExamMockTestCard; onOpen: () => 
               Start test
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </span>
-          </p>
-          <p
-            className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500"
-            title={`#${pathHint}`}
-          >
-            {pathHint}
           </p>
         </CardContent>
       </button>
@@ -1169,7 +1136,7 @@ function ExamCurrentAffairs({
           <Newspaper className="h-5 w-5 text-emerald-600" aria-hidden="true" />
           Current affairs for this exam
         </h2>
-        <p className="text-xs text-zinc-400">Live events anchored to this syllabus (§12 step 5)</p>
+        <p className="text-xs text-zinc-400">Live events anchored to this syllabus</p>
       </div>
 
       {loading ? (
@@ -1194,7 +1161,7 @@ function ExamCurrentAffairs({
               <Newspaper className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
               <span>
                 {feed?.note ??
-                  'No current affairs mapped to this exam’s syllabus yet — events appear here the moment editorial links them (§12).'}
+                  'No current affairs mapped to this exam’s syllabus yet — events appear here the moment editorial links them.'}
               </span>
             </p>
           </CardContent>
@@ -1204,7 +1171,7 @@ function ExamCurrentAffairs({
           {isHistorical && (
             <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
               Current affairs anchor to the current syllabus version — never to this historical
-              window (§36).
+              window.
             </p>
           )}
           <div className="grid gap-4 md:grid-cols-2">
@@ -1275,7 +1242,7 @@ function FeedEventCard({
             <Badge
               variant="outline"
               className={`text-[10px] font-normal ${FEED_FRESHNESS_META[item.freshness.tier].tone}`}
-              title={`${item.freshness.label} — the §17 freshness verdict, computed from the event date`}
+              title={`${item.freshness.label} — freshness computed from the event date`}
             >
               {item.freshness.label}
             </Badge>
@@ -1312,12 +1279,6 @@ function FeedEventCard({
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </span>
           </div>
-          <p
-            className="font-mono text-[10px] text-zinc-300 group-hover:text-emerald-500"
-            title={item.canonicalPath}
-          >
-            {item.canonicalPath}
-          </p>
         </CardContent>
       </button>
     </Card>

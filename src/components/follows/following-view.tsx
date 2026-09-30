@@ -207,7 +207,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
           </CardTitle>
           <CardDescription>
             Following exams and topics is how GlobIQ learns what to surface for you — the combined
-            queue, feeds and dashboard all build on your follows (§9/§10/§11).
+            queue, feeds and dashboard all build on your follows.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap items-center gap-3">
@@ -241,7 +241,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Personalisation</Badge>
           <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
-            §9 — explicit signals, reversible
+            Explicit signals — reversible anytime
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -250,8 +250,8 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
               Following
             </h1>
             <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              The exams and topics you follow — the signals that will drive your combined-exam
-              queue and dashboard (§11; the personalised feed lands in P5-S4).
+              The exams and topics you follow — the signals that shape your combined-exam
+              queue and dashboard.
             </p>
           </div>
           <Button
@@ -329,7 +329,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             <CardDescription>
               Open an exam page (e.g. UPSC Civil Services) or any GK topic hub and press
               “Follow”. Follows are personalisation signals — they shape what GlobIQ surfaces
-              for you, and you can unfollow anytime (§9).
+              for you, and you can unfollow anytime.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -383,8 +383,6 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                         <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                           <CalendarClock className="h-3 w-3" aria-hidden="true" />
                           <span>followed {formatFollowedAt(follow.followedAt)}</span>
-                          <span aria-hidden="true">·</span>
-                          <span className="font-mono">{exam.canonicalPath}</span>
                         </div>
                         {statusNote && (
                           <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
@@ -454,15 +452,13 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                           {topic.labelLanguage === 'canonical' && (
                             <>
                               <span aria-hidden="true">·</span>
-                              <span>canonical name</span>
+                              <span>official name</span>
                             </>
                           )}
                         </div>
                         <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                           <CalendarClock className="h-3 w-3" aria-hidden="true" />
                           <span>followed {formatFollowedAt(follow.followedAt)}</span>
-                          <span aria-hidden="true">·</span>
-                          <span className="font-mono">{topic.canonicalPath}</span>
                         </div>
                         {statusNote && (
                           <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
@@ -506,8 +502,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
           </h2>
           <p className="text-sm text-zinc-500">
             Persons, places, organisations and concepts — the reference records behind current
-            affairs (§6). Their pages arrive with the entity hub; the follow already shapes your
-            feed context (§10).
+            affairs. Following one already shapes your feed context.
           </p>
           <ul className="space-y-3">
             {entities.map((follow) => {
@@ -540,8 +535,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                           <CalendarClock className="h-3 w-3" aria-hidden="true" />
                           <span>followed {formatFollowedAt(follow.followedAt)}</span>
                           <span aria-hidden="true">·</span>
-                          <span className="font-mono">/entities/{entity.slug}</span>
-                          <span className="text-zinc-300">(page upcoming)</span>
+                          <span className="text-zinc-300">dedicated page coming soon</span>
                         </div>
                         {statusNote && (
                           <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
@@ -579,8 +573,8 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
       {data && data.counts.total > 0 && (
         <p className="flex items-start gap-2 text-xs text-zinc-400">
           <BellRing className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          Follows are personalisation signals (feed, notifications, recommendations — §10), not
-          bookmarks: saving into collections arrives in P5-S2 as a deliberately separate concept.
+          Follows are personalisation signals (feed, notifications, recommendations), not
+          bookmarks: saving into collections is a separate, deliberate action.
         </p>
       )}
     </div>
