@@ -50,6 +50,7 @@ export type Permission =
   | 'search:manage' // platform-wide index rebuild + stats (P4-S1 §38 admin console): ADMIN only — the index is a derived projection of every country's data
   | 'notifications:dispatch' // P8-S2 (§27): the platform-wide notification dispatch sweep (revision digests + queued delivery — the freshness-sweep precedent): ADMIN only — it processes every user's rows
   | 'feedback:manage' // P8-S3 (§25): triage and resolve content feedback reports — the editorial quality loop's queue: ADMIN (platform) + COUNTRY_ADMIN (own workspace, §38)
+  | 'analytics:read' // P8-S4 (§32): the product-analytics read — the six product families over the aggregate event stores: ADMIN only (platform scope, like audit:read — §38's workspace split applies to editorial surfaces, not to the product's cross-market families)
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
@@ -117,6 +118,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'mocktest:manage',
     'mocktest:publish',
     'feedback:manage',
+    'analytics:read',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -264,6 +266,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'search:manage': 'Rebuild & inspect the search index',
   'notifications:dispatch': 'Run the notification dispatch sweep (§27)',
   'feedback:manage': 'Triage and resolve content feedback reports (§25)',
+  'analytics:read': 'Read the §32 product analytics (platform surface)',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
   'audit:read': 'Read audit trail',

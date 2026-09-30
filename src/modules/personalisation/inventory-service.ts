@@ -395,6 +395,10 @@ export async function getMyPersonalisation(
       // reports never had an account link to reset anyway). Managed on
       // #/feedback, never here.
       'Your content feedback reports — a quality signal on the content (§25), followed on the your-reports surface',
+      // P8-S4 §32/§31: searches are NEVER recorded against an account at
+      // all — there is nothing to reset. The line exists so the §9 inventory
+      // states the stance (the keeps list is the honesty contract).
+      'Your searches — never recorded against your account at all (§31/§32): anonymous-only by design, nothing to reset',
       'Your account settings — name, home country and preferred language (manage them in your profile)',
       'A security-trail record of this reset (counts only, admin-visible)',
     ],

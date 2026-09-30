@@ -608,7 +608,7 @@ export default function GlobIQApp() {
                 variant="outline"
                 className="hidden shrink-0 border-emerald-200 bg-emerald-50 text-emerald-700 2xl:inline-flex"
               >
-                Phase 8 · Session 3 — Feedback / Quality Loop
+                Phase 8 · Session 4 — Product Analytics
               </Badge>
               <HeaderAuth />
             </div>

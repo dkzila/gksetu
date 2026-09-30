@@ -664,7 +664,7 @@ function buildStats(
     dismissed: statusMap.get('DISMISSED') ?? 0,
     byType,
     medianMinutesToResolution: median,
-    note: 'Priority seeds from the report reason (§25); traffic/importance weighting joins with the §32 analytics (P8-S4/S5). Time-to-correct is computed over the reports currently in the queue\u2019s window.',
+    note: 'Priority seeds from the report reason (§25). The §32 product analytics are live (P8-S4 — the platform-wide volume/time-to-correct read over this same store); the traffic/importance weighting joins with the P8-S5 editorial analytics, which is where per-object traffic gets measured honestly. Time-to-correct is computed over the reports currently in the queue\u2019s window.',
   }
 }
 

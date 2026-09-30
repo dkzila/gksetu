@@ -3952,6 +3952,39 @@ async function main() {
     }
   }
 
+  // ---------- P8-S4: SearchQueryLog — §32 Discovery fixtures (the §45 demo depth) ----------
+  // Historical depth for the windowed Discovery reads. Every row is HONEST
+  // against the seeded index: the resultCounts and topResultTypes were
+  // verified against the live §17 engine over the 43 seeded documents, and
+  // the zero-result rows are real content gaps (no physics unit, no sports
+  // taxonomy branch, no NDA exam) — the gap list the P8-S5 query-coverage
+  // read starts from. Count-guarded like the share events; live queries from
+  // E2E runs coexist with the fixtures.
+  let searchQueriesSeeded = 0
+  const existingQueryLogs = await prisma.searchQueryLog.count()
+  if (existingQueryLogs === 0) {
+    await prisma.searchQueryLog.createMany({
+      data: [
+        { queryText: 'fundamental rights', resultCount: 3, topResultType: 'TOPIC', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000) },
+        { queryText: 'chandrayaan', resultCount: 5, topResultType: 'KNOWLEDGE_UNIT', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 22 * 24 * 60 * 60 * 1000) },
+        { queryText: 'quantum physics', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000) },
+        { queryText: 'मौलिक अधिकार', resultCount: 3, topResultType: 'KNOWLEDGE_UNIT', countryIso: india.isoCode, languageCode: 'hi', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 19 * 24 * 60 * 60 * 1000) },
+        { queryText: 'article 32', resultCount: 4, topResultType: 'KNOWLEDGE_UNIT', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000) },
+        { queryText: 'sports gk', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000) },
+        { queryText: 'upsc', resultCount: 2, topResultType: 'EXAM', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000) },
+        { queryText: 'un security council', resultCount: 1, topResultType: 'KNOWLEDGE_UNIT', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000) },
+        { queryText: 'nda syllabus', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+        { queryText: 'isro programmes', resultCount: 5, topResultType: 'TOPIC', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
+        { queryText: 'cricket', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
+        { queryText: 'space exploration', resultCount: 1, topResultType: 'CURRENT_EVENT', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+        { queryText: 'gst rates', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+        { queryText: 'quantum physics', resultCount: 0, topResultType: null, countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
+        { queryText: 'fundamental rights', resultCount: 3, topResultType: 'TOPIC', countryIso: india.isoCode, languageCode: 'en', typeFilter: null, examRef: null, createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+      ],
+    })
+    searchQueriesSeeded = 15
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -3965,7 +3998,7 @@ async function main() {
       `${india.isoCode} (default)`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

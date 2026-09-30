@@ -1755,6 +1755,13 @@ model TestAttempt {
   @@index([userId, mockTestId, status])
   @@index([mockTestId, status])
   @@index([userId, status])
+  // P8-S4 §32 Learning: the platform-wide completion read (attempt status
+  // distribution — the ShareEvent [createdAt] precedent of adding the read
+  // the analytics family needs, without touching earlier semantics).
+  @@index([status])
+  // P8-S4 §32 Learning: windowed flow reads (submitted attempts in a time
+  // window; submittedAt is null while IN_PROGRESS so the index skips them).
+  @@index([submittedAt])
 }
 
 // ---------- P7-S4: MasteryState (Master Plan §6 row, §22, §9/§31) ----------
@@ -2078,4 +2085,53 @@ model ContentFeedback {
   @@index([userId, createdAt])
   // The type-priority triage read (§26 severity triage).
   @@index([feedbackType, status])
+  // P8-S4 §32 Content: the windowed time-to-correct read (resolved reports
+  // in a time window — resolvedAt is the §44 resolution moment; null rows
+  // skip the index, exactly like submittedAt on TestAttempt).
+  @@index([resolvedAt])
+}
+
+// ---------- P8-S4: product analytics (Master Plan §32) ----------
+
+// §32 Discovery ("search success"): one row per completed §17 public search
+// query, written by the search service when the response is built (P8-S4's
+// ONLY new instrumentation — every other §32 product family reads stores
+// earlier sessions already write: ShareEvent, NotificationEvent,
+// ContentFeedback, TestAttempt/MasteryState, UserFollow/SavedItem, sources).
+//
+// Deliberately ANONYMOUS-ONLY — a stronger §31 stance than ShareEvent (which
+// attributes when a token rides the request): search is a per-QUERY surface
+// (§17 explains every match on its own merits), so no userId column exists
+// at all. A row can never become a search profile, the §31 reset never needs
+// to touch it, and a failed search says nothing about who failed — that is
+// the point. resultCount is the honest success input (§32 "search success"
+// = the share of queries with ≥ 1 result); zero-result rows are KEPT — they
+// are the honest gap list (the P8-S5 query-coverage input). topResultType
+// snapshots what the first hit was (null on zero results). Append-only like
+// ShareEvent: no natural unique key, never updated, counts via indexed reads.
+model SearchQueryLog {
+  id            String   @id @default(cuid())
+  // The submitted q, exactly as the reader typed it (schema-validated).
+  queryText     String
+  // The §17 pagination.total of the completed query.
+  resultCount   Int
+  // The first hit's objectType — the "what did they find" snapshot.
+  topResultType String?
+  // The §35 market the query ran in (always IN today; the P9 launch
+  // countries extend this without schema change — data-driven per §35).
+  countryIso    String
+  // The reader's resolved language (hi→hindi config etc., §17/§35).
+  languageCode  String
+  // The §17 type filter active on the query (null = the default 'all').
+  typeFilter    String?
+  // The §8 exam filter's slug (null when none was active).
+  examRef       String?
+  createdAt     DateTime @default(now())
+
+  // Time-windowed §32 reads (the ShareEvent [createdAt] precedent).
+  @@index([createdAt])
+  // The per-market discovery read (§35 markets served).
+  @@index([countryIso, createdAt])
+  // The zero-result gap list (resultCount = 0, newest first).
+  @@index([resultCount, createdAt])
 }

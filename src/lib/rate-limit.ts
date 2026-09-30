@@ -113,4 +113,5 @@ export const RATE_LIMITS = {
   feedbackWrite: { limit: 10, windowMs: 60 * 1000 }, // PUBLIC feedback submissions per IP (P8-S3 §25 — anonymous-friendly, object-guarded, duplicate-folded; reports are heavier than shares so the cap is tighter)
   feedbackRead: { limit: 60, windowMs: 60 * 1000 }, // editorial queue reads + own-report reads per IP (P8-S3 §25/§31)
   feedbackManage: { limit: 30, windowMs: 60 * 1000 }, // editorial transitions per IP (P8-S3 §44 — auth-gated queue actions, the notificationsWrite precedent; separate from the tighter public-submission cap)
+  analyticsRead: { limit: 60, windowMs: 60 * 1000 }, // product-analytics reads per IP (P8-S4 §32 — ADMIN-gated aggregate reads, the auditRead precedent)
 } as const

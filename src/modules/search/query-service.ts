@@ -443,7 +443,7 @@ export async function publicSearch(query: SearchQueryInput): Promise<SearchRespo
   // ---------- Index health (§29 engine identity on every response) ----------
   const [documents, lastIndexed] = await Promise.all([countSearchDocuments(), lastIndexedAt()])
 
-  return {
+  const response: SearchResponse = {
     query: {
       q: query.q,
       country: { isoCode: resolution.country.isoCode, name: resolution.country.name },
@@ -464,4 +464,27 @@ export async function publicSearch(query: SearchQueryInput): Promise<SearchRespo
       tookMs: Date.now() - startedAt,
     },
   }
+
+  // ---------- §32 search-success instrumentation (P8-S4) ----------
+  // Best-effort, AFTER the response is fully built (the P8-S3 notification
+  // precedent: an analytics write must never fail or delay the product
+  // surface it measures). Deliberately anonymous — see SearchQueryLog's
+  // schema comment: no identity is recorded, ever.
+  try {
+    await db.searchQueryLog.create({
+      data: {
+        queryText: query.q,
+        resultCount: total,
+        topResultType: results[0]?.objectType ?? null,
+        countryIso: resolution.country.isoCode,
+        languageCode: readerLanguage,
+        typeFilter: query.type === 'all' ? null : query.type,
+        examRef: examFilter?.slug ?? null,
+      },
+    })
+  } catch (logError) {
+    console.error('[search] query-log write failed (search stands):', logError)
+  }
+
+  return response
 }
