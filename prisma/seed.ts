@@ -121,16 +121,21 @@ async function main() {
   // announced pre-launch state; P9-S5 launches the second country through
   // the lifecycle endpoints.
   const ROOT_MARKET_LAUNCHED_AT = new Date('2025-01-01T00:00:00.000Z')
+  // P9-S5 verification-found fix: the country upserts NEVER write lifecycle
+  // state on update — status/launchedAt are the P9-S2 lifecycle's property
+  // alone ("the lifecycle is the ONLY status path"); a re-seed after a real
+  // launch must not reset the market (found live: a seed re-run between the
+  // France launch and the E2E silently set FR back to COMING_SOON). Identity
+  // fields stay (name/slug/timezone/default); the initial status is
+  // create-only.
   const india = await prisma.country.upsert({
     where: { isoCode: 'IN' },
     update: {
       name: 'India',
       slug: 'in',
       timezone: 'Asia/Kolkata',
-      status: 'ACTIVE',
       isDefault: true,
       defaultLanguageId: en.id,
-      launchedAt: ROOT_MARKET_LAUNCHED_AT,
     },
     create: {
       isoCode: 'IN',
@@ -150,7 +155,6 @@ async function main() {
       name: 'United Kingdom',
       slug: 'uk',
       timezone: 'Europe/London',
-      status: 'COMING_SOON',
       isDefault: false,
       defaultLanguageId: en.id,
     },
@@ -171,7 +175,6 @@ async function main() {
       name: 'France',
       slug: 'fr',
       timezone: 'Europe/Paris',
-      status: 'COMING_SOON',
       isDefault: false,
       defaultLanguageId: fr.id,
     },
@@ -936,6 +939,39 @@ async function main() {
       title: 'Chandrayaan programme — key milestones',
       body: '22 October 2008 — Chandrayaan-1 launches; the Moon Impact Probe strikes near Shackleton crater.\n15 July 2019 — Chandrayaan-2 launches; its orbiter continues high-resolution mapping.\n14 July 2023 — Chandrayaan-3 launches on LVM3-M4.\n23 August 2023 — Vikram soft-lands near the lunar south pole (Shiv Shakti Point); India becomes the fourth country to soft-land on the Moon.\n23 August 2024 — the first National Space Day commemorates the landing anniversary.',
       revisions: [],
+    },
+    {
+      // P9-S5 §45 — the FR vertical slice: French explainers on the GLOBAL
+      // units visible in the FR market (§14/§15). Same canonical anchors as
+      // the English representations (§6/§7 — never duplicated identity); the
+      // P9-S1 link block tracks the UNSC pair as a translation.
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'fr',
+      format: 'EXPLAINER',
+      status: 'PUBLISHED',
+      revisions: [
+        {
+          title: 'Le Conseil de sécurité de l\u2019ONU et les P5 — explication',
+          body: 'Le Conseil de sécurité des Nations Unies est l\u2019organe principal chargé du maintien de la paix et de la sécurité internationales, institué par le chapitre V de la Charte des Nations Unies en 1945. Il compte 15 membres : les cinq membres permanents (les P5 — la Chine, la France, la Russie, le Royaume-Uni et les États-Unis), qui disposent d\u2019un droit de veto sur les résolutions de fond, et dix membres non permanents élus pour deux ans sans rééligibilité immédiate. Une résolution de fond requiert neuf voix favorables sans veto d\u2019aucun P5. Les débats de réforme — notamment la candidature de longue date de l\u2019Inde à un siège permanent, soutenue par le G4 (Brésil, Allemagne, Inde, Japon) — se déroulent dans le cadre des Négociations intergouvernementales (IGN). Pour les concours, retenir : 15 membres, 5 permanents, 10 élus, 9 voix requises, un seul veto bloque.',
+          publishedAt: new Date('2025-11-20T10:00:00Z'),
+        },
+      ],
+    },
+    {
+      // P9-S5 §45 — the second French unit page (the world-history GLOBAL
+      // unit): the FR market's vertical slice carries more than one topic
+      // family, both indexable under /fr/gk/world-history/.
+      unitSlug: 'fall-of-the-berlin-wall-1989',
+      languageCode: 'fr',
+      format: 'EXPLAINER',
+      status: 'PUBLISHED',
+      revisions: [
+        {
+          title: 'La chute du mur de Berlin (1989) — explication',
+          body: 'Le mur de Berlin, érigé le 13 août 1961 par la République démocratique allemande pour stopper l\u2019exode vers l\u2019Ouest, est tombé le 9 novembre 1989 au soir, après que Günter Schabowski, porte-parole du gouvernement est-allemand, a annoncé par erreur l\u2019ouverture immédiate des points de passage. En quelques heures, des dizaines de milliers de Berlinois ont franchi le mur ; la réunification allemande a suivi le 3 octobre 1990.\n\nLa chute du mur est l\u2019événement-symbole de la fin de la guerre froide : elle précède de quelques semaines la révolution de velours à Prague (novembre-décembre 1989) et la dissolution de l\u2019URSS (décembre 1991). Pour les concours, ancrer les trois dates : 13 août 1961 (construction), 9 novembre 1989 (chute), 3 octobre 1990 (réunification) — et la formule « Mur de la honte » popularisée par Willy Brandt.',
+          publishedAt: new Date('2025-11-20T10:30:00Z'),
+        },
+      ],
     },
   ]
 
@@ -2491,9 +2527,31 @@ async function main() {
         },
       ],
     },
-    // Deliberately NO representation for un-security-council-reform-ign-round:
-    // the EMERGING no-publication state — the event exists for editors (§12
-    // step 1+2), its public page 404s until the first update publishes (§19/§35).
+    // NOTE (P9-S5): the deliberate no-representation state for
+    // un-security-council-reform-ign-round was superseded by the P9-S5
+    // vertical slice — its FIRST publication is the French update below (the
+    // FR market's current-affairs surface). The event's topic (united-nations)
+    // is GLOBAL-visible, so the page serves in every market that reads French;
+    // for IN/en readers the page still 404s honestly (no English
+    // representation — §35: the page goes live per language).
+    {
+      // P9-S5 §45 — the FR vertical slice's current-affairs half: the French
+      // update on the GLOBAL UNSC-reform event (topic united-nations —
+      // visible in FR per §13/§14; the space-topic events deliberately NOT
+      // used: their IN-scoped topics make the pages unservable in FR, found
+      // live in verification — the sitemap now enforces the same rule).
+      eventSlug: 'un-security-council-reform-ign-round',
+      languageCode: 'fr',
+      format: 'CURRENT_EVENT_UPDATE',
+      status: 'PUBLISHED',
+      revisions: [
+        {
+          title: 'Réforme du Conseil de sécurité : un nouveau cycle de négociations intergouvernementales',
+          body: 'Un nouveau cycle de Négociations intergouvernementales (IGN) sur la réforme du Conseil de sécurité s\u2019est ouvert à l\u2019Assemblée générale des Nations Unies, les États membres déposant de nouvelles positions sur l\u2019élargissement du Conseil et l\u2019usage du veto.\n\nLa réforme du Conseil — la composition des P5, l\u2019extension des membres permanents et non permanents, la limitation du veto — est un sujet récurrent des relations internationales : la candidature de longue date de l\u2019Inde à un siège permanent, soutenue par le G4 (Brésil, Allemagne, Inde, Japon), en est l\u2019axe le plus suivi.\n\nPour les concours : IGN = le cadre des négociations à l\u2019AG ; G4 = le groupe qui porte les candidatures permanentes ; toute réforme exige un amendement de la Charte (deux tiers de l\u2019AG + ratification par les P5).',
+          publishedAt: new Date('2025-11-20T11:00:00Z'),
+        },
+      ],
+    },
   ]
 
   let eventItemsSeeded = 0
@@ -2723,6 +2781,22 @@ async function main() {
           answerBody:
             'The 13th Major Rock Edict records Ashoka\'s remorse after the Kalinga War (261 BCE, his eighth–ninth regnal year): 100,000 killed, 150,000 deported and many more perished in the aftermath. The grief of the slaughter moved him to abandon military conquest (bheri-ghosha, the drum of war) in favour of Dhamma conquest (dhamma-ghosha) — the pivotal turn toward Buddhism and his policy of Dhamma Vijaya. Kalinga corresponds to present-day coastal Odisha.',
           publishedAt: new Date('2025-06-18T09:00:00Z'),
+        },
+      ],
+    },
+    {
+      // P9-S5 §45 — the FR vertical slice's learning half: one French QnA on
+      // the UNSC unit (the §22 knowledge-page Q&A layer in the launched
+      // market's language, §35).
+      unitSlug: 'un-security-council-permanent-members',
+      languageCode: 'fr',
+      status: 'PUBLISHED',
+      questionText: 'Pourquoi la France est-elle membre permanent du Conseil de sécurité ?',
+      revisions: [
+        {
+          answerBody:
+            'La France est membre permanent du Conseil de sécurité depuis la création de l\u2019ONU en 1945 : les cinq membres permanents (P5) sont les vainqueurs principaux de la Seconde Guerre mondiale — la Chine, la France, le Royaume-Uni, l\u2019URSS (aujourd\u2019hui la Russie) et les États-Unis — inscrits à ce titre par la Charte des Nations Unies (chapitre V). Le statut confère le droit de veto sur toute résolution de fond : une seule voix négative d\u2019un P5 bloque l\u2019adoption, même si les quatorze autres membres votent pour. Pour les concours, retenir : P5 = vainqueurs de 1945 ; 15 membres au total ; 9 voix requises ; le veto est individuel et absolu.',
+          publishedAt: new Date('2025-11-20T12:00:00Z'),
         },
       ],
     },
@@ -4579,6 +4653,43 @@ async function main() {
     }
   }
 
+  // ---------- P9-S5: the FR vertical slice's translation link (§6/§45) ----------
+  // The new French UNSC explainer tracked as a translation of its English
+  // source — the P9-S1 framework over the launched market's own content:
+  // both published, the link in sync at the source's revision 1.
+  {
+    const unscUnit = await prisma.knowledgeUnit.findUnique({
+      where: { slug: 'un-security-council-permanent-members' },
+      select: { id: true },
+    })
+    const enExplainer = unscUnit
+      ? await prisma.contentItem.findUnique({
+          where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: unscUnit.id, languageId: en.id, format: 'EXPLAINER' } },
+          select: { id: true },
+        })
+      : null
+    const frExplainer = unscUnit
+      ? await prisma.contentItem.findUnique({
+          where: { knowledgeUnitId_languageId_format: { knowledgeUnitId: unscUnit.id, languageId: fr.id, format: 'EXPLAINER' } },
+          select: { id: true },
+        })
+      : null
+    if (enExplainer && frExplainer) {
+      const created = await ensureTranslationLink({
+        sourceContentType: 'CONTENT_ITEM',
+        sourceContentId: enExplainer.id,
+        targetContentType: 'CONTENT_ITEM',
+        targetContentId: frExplainer.id,
+        languageId: fr.id,
+        sourceRevisionNumber: 1,
+        status: 'PUBLISHED',
+        notes: 'P9-S5 vertical slice: the FR market\'s UNSC explainer tracked against its English source — in sync at revision 1 (§6/§35).',
+        createdById: writerFr.id,
+      })
+      if (created) translationLinksSeeded += 1
+    }
+  }
+
   // ---------- P4-S1: build the search index over the seeded public surface ----------
   // §17 indexing pipeline: project every public object (VERIFIED units with
   // published representations, ACTIVE topics, ACTIVE exams) into the
@@ -4590,8 +4701,8 @@ async function main() {
   console.log(
     `Seed complete → languages: ${[en.code, hi.code, fr.code].join(', ')} | countries: ${[
       `${india.isoCode} (default, live since ${ROOT_MARKET_LAUNCHED_AT.toISOString().slice(0, 10)})`,
-      `${uk.isoCode} (coming soon)`,
-      `${france.isoCode} (coming soon)`,
+      `${uk.isoCode} (${uk.status === 'ACTIVE' ? 'live' : 'coming soon'})`,
+      `${france.isoCode} (${france.status === 'ACTIVE' ? `live since ${france.launchedAt ? new Date(france.launchedAt).toISOString().slice(0, 10) : '—'}` : france.status === 'COMING_SOON' ? 'coming soon' : france.status.toLowerCase()}) — the P9-S5 vertical slice market`,
     ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | P9-S3 workspaces: ${frAdmin.email} (COUNTRY_ADMIN) + ${writerFr.email} (French-scoped WRITER) for FR, ${ukAdmin.email} (COUNTRY_ADMIN) for GB — the thin announced-market workspace | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} (P8-S5 §32/§45: the nda-syllabus coverage gap + the P9-S4 FR market rows — 4 observed pages over the announced-market census, GB honestly none) + landings: ${existingLandings + landingEventsSeeded} (P8-S5, incl. the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | translation links: ${translationLinksSeeded} (P9-S1 §6/§45: 2 OUTDATED drift demos over real correction history + the in-progress HI draft + the in-sync QnA pair${translationQnaSourceSeeded ? ' (with its new EN source QnA)' : ''}${translationAiDraftSeeded ? ' + the §26 AI-drafted Kalinga card' : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }

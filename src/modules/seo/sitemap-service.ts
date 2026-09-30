@@ -198,6 +198,13 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
         language: { code: language.code },
         currentEvent: {
           topic: { status: 'ACTIVE' },
+          // P9-S5 verification-found fix: the event's topic must be VISIBLE
+          // in this market (§13/§14) — the public event page gates on the
+          // same visibility (getPublicTopic), so the census must never
+          // declare an event URL the page would 404 (§16 one-truth; found
+          // live: the GLOBAL space events ride an IN-scoped topic, so their
+          // /uk/ and /fr/ pages never served despite being listed).
+          topicId: { in: topicIds },
           OR: [
             { scope: 'GLOBAL' },
             { scope: 'COUNTRY', countryId: countryRow.id },
