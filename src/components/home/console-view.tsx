@@ -71,6 +71,7 @@ import { QuestionsSection } from '@/components/assessment/questions-section'
 import { MockTestsSection } from '@/components/assessment/mock-tests-section'
 import { TaxonomySection } from '@/components/taxonomy/taxonomy-section'
 import { TranslationsSection } from '@/components/translations/translations-section'
+import { WorkspaceSection } from '@/components/workspaces/workspace-section'
 
 // ---------- Types (mirrors /api/health contract) ----------
 
@@ -419,6 +420,9 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
       {/* ---------- Translations — §6/§18/§26/§35 localisation framework (P9-S1) ---------- */}
       <TranslationsSection />
 
+      {/* ---------- Editorial workspaces — §14/§18/§20 country-specific per-market staff (P9-S3) ---------- */}
+      <WorkspaceSection />
+
       {/* ---------- Audit trail (P1-S5, ADMIN only) ---------- */}
       <AuditSection />
 
@@ -472,7 +476,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         </div>
         <p className="text-sm text-zinc-600">
           One chat = one session (§41). Currently executing{' '}
-          <strong className="text-zinc-900">P9-S2 of 55 sessions</strong> in the vertical slice.
+          <strong className="text-zinc-900">P9-S3 of 55 sessions</strong> in the vertical slice.
         </p>
         <ol className="flex flex-wrap gap-2">
           {PHASES.map((phase) => (

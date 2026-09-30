@@ -367,6 +367,23 @@ export async function findActiveCountryByIso(iso: string): Promise<{ id: string;
   return { id: country.id, isoCode: country.isoCode }
 }
 
+/**
+ * P9-S3 (§20): a CONFIGURED market — any lifecycle status (live, announced,
+ * paused). This is the STAFF-scope resolver: an editor's country scope is the
+ * market the account is homed in, and its launch status never changes it —
+ * announced-market staff prepare content before launch (the §34 readiness
+ * counts exactly that), a paused market's staff keep their workspace (the
+ * relaunch view precedent). The public self-service surfaces (registration,
+ * profile home-market change) keep findActiveCountryByIso — homing into a
+ * not-yet-live market is a reader-surface decision, this is not (§15.5 spirit).
+ */
+export async function findConfiguredCountryByIso(iso: string): Promise<{ id: string; isoCode: string } | null> {
+  const snapshot = await getSnapshot()
+  const country = snapshot.countries.find((c) => c.isoCode === iso.toUpperCase())
+  if (!country) return null
+  return { id: country.id, isoCode: country.isoCode }
+}
+
 export async function findActiveLanguageByCode(code: string): Promise<{ id: string; code: string } | null> {
   const snapshot = await getSnapshot()
   const language = snapshot.languages.find((l) => l.code === code.toLowerCase())

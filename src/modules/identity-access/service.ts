@@ -18,6 +18,7 @@ import {
 } from '@/modules/audit'
 import {
   findActiveCountryByIso,
+  findConfiguredCountryByIso,
   findActiveLanguageByCode,
   isLanguageConfiguredForCountry,
 } from '@/modules/country-locale'
@@ -127,10 +128,14 @@ export interface AuthRequestMeta {
   ip?: string | null
 }
 
-/** Builds the shared permission actor (P1-S5): role + resolved home country. */
+/** Builds the shared permission actor (P1-S5; P9-S3 scope fix): role +
+ * resolved home country. The staff scope resolves against the CONFIGURED
+ * market registry (any lifecycle status — §20): an announced market's editor
+ * works before launch (§34 readiness counts exactly that), a paused market's
+ * staff keep their workspace. */
 export async function actorFromUser(user: PublicUser): Promise<Actor> {
   const iso = user.homeCountry?.isoCode
-  const country = iso ? await findActiveCountryByIso(iso) : null
+  const country = iso ? await findConfiguredCountryByIso(iso) : null
   // §18/§20: resolve the explicit staff language scope (null = no narrowing).
   let languageScopeId: string | null = null
   if (user.languageScope?.code) {

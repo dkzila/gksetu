@@ -55,6 +55,10 @@ export type Permission =
   | 'translations:manage' // P9-S1 (§6/§18/§35): the translation/localisation framework — create/retire translation links + the §26 AI-draft action (the §18 Translator/Localiser class riding WRITER with the target-language scope, the qna:manage precedent); reads share the permission (the list is an editorial working surface, never public)
   | 'country-config:manage' // platform country configuration (ADMIN only — §14/§38)
   | 'language:manage' // platform language registry (ADMIN only — §35)
+  | 'staff:manage' // P9-S3 (§20): create/invite workspace staff accounts with explicit
+  // country + language scopes, adjust scopes, suspend/reactivate, reset
+  // credentials — ADMIN (any market) + COUNTRY_ADMIN (own market, §38);
+  // NEVER WRITER (staff provisioning is an operator capability)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
   | 'sessions:manage-own' // list/revoke own sessions (any active account)
 
@@ -123,6 +127,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'translations:manage',
     'analytics:read',
     'seo:ingest',
+    'staff:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -146,6 +151,10 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'mocktest:publish',
     'feedback:manage',
     'translations:manage',
+    // §20: "Country Admin creates or invites staff accounts" — the workspace
+    // provisioning capability, country-narrowed like every other staff-class
+    // write. WRITER never holds it (a writer cannot mint colleagues).
+    'staff:manage',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -175,6 +184,7 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'mocktest:publish',
   'feedback:manage',
   'translations:manage',
+  'staff:manage',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -278,6 +288,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'translations:manage': 'Manage translations (own scope — the §18 Translator/Localiser class, §35)',
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
+  'staff:manage': 'Manage workspace staff — invite, scope, suspend, reset credentials (own market, §20)',
   'audit:read': 'Read audit trail',
   'sessions:manage-own': 'Manage own sessions',
 }

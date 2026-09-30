@@ -12,6 +12,7 @@ export {
   resolveLocaleContext,
   resolveFromPath,
   findActiveCountryByIso,
+  findConfiguredCountryByIso,
   findActiveLanguageByCode,
   isLanguageConfiguredForCountry,
   createCountry,

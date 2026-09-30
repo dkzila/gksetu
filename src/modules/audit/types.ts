@@ -226,6 +226,14 @@ export const AUDIT_ACTIONS = {
   translationRetire: 'translation.retire',
   translationDrift: 'translation.drift',
   translationSync: 'translation.sync',
+  /** P9-S3 workspace staff provisioning (§20 — every staff mutation is
+   *  audited: invite, scope/role/status changes, credential resets; the
+   *  suspension row carries revokedSessions in metadata). */
+  staffCreate: 'staff.create',
+  staffUpdate: 'staff.update',
+  /** P9-S3: object-level provisioning denials — the §20 signal (a cross-market
+   *  probe is a security event, recorded like the qnaDenied precedent). */
+  staffDenied: 'staff.denied',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */

@@ -61,6 +61,20 @@ const DEV_WRITER_IN_EMAIL = 'writer-in@globiq.dev'
 const DEV_WRITER_IN_PASSWORD = 'GlobIQ-Dev-Writer-1'
 const DEV_WRITER_HI_EMAIL = 'writer-hi@globiq.dev'
 const DEV_WRITER_HI_PASSWORD = 'GlobIQ-Dev-Writer-Hi-1'
+// P9-S3 (§43 Phase 9 Session 3 — §45 "sample editorial users with scoped
+// roles" for the second/third markets): the FR workspace exercises the full
+// country-specific shape (owner + language-scoped writer); GB is the honest
+// THIN workspace — an owner with no writer yet, so its market-language
+// (GB/en) surfaces as unstaffed in the §32 coverage read and its launch
+// readiness carries the warning. Nothing here is provisioned by API — the
+// seed is the §45 dev fixture; production staff provisioning rides the §20
+// surface (POST /api/workspaces/[iso]/staff with one-time credentials).
+const DEV_FR_ADMIN_EMAIL = 'fr-admin@globiq.dev'
+const DEV_FR_ADMIN_PASSWORD = 'GlobIQ-Dev-Fr-Admin-1'
+const DEV_WRITER_FR_EMAIL = 'writer-fr@globiq.dev'
+const DEV_WRITER_FR_PASSWORD = 'GlobIQ-Dev-Writer-Fr-1'
+const DEV_UK_ADMIN_EMAIL = 'uk-admin@globiq.dev'
+const DEV_UK_ADMIN_PASSWORD = 'GlobIQ-Dev-Uk-Admin-1'
 
 async function main() {
   // ---------- Languages ----------
@@ -256,6 +270,56 @@ async function main() {
       homeCountryId: india.id,
       preferredLanguageId: hi.id,
       languageScopeId: hi.id, // §20 explicit language scope — Hindi only
+    },
+  })
+
+  // ---------- P9-S3: country-specific editorial workspaces (§14/§18/§20/§45) ----------
+  // FR: the full second-market workspace — a COUNTRY_ADMIN owner (whole
+  // workspace, no language scope — §18: scopes are the WRITER class) + one
+  // French-scoped writer. GB: the thin announced-market workspace (owner
+  // only — its market-language stays honestly unstaffed until P9-S5's
+  // vertical slice or a §20 invite fills it).
+  const frAdmin = await prisma.user.upsert({
+    where: { email: DEV_FR_ADMIN_EMAIL },
+    update: {},
+    create: {
+      email: DEV_FR_ADMIN_EMAIL,
+      name: 'Dev France Admin',
+      passwordHash: await hashPassword(DEV_FR_ADMIN_PASSWORD),
+      role: 'COUNTRY_ADMIN',
+      status: 'ACTIVE',
+      emailVerifiedAt: new Date(),
+      homeCountryId: france.id,
+      preferredLanguageId: fr.id,
+    },
+  })
+  const writerFr = await prisma.user.upsert({
+    where: { email: DEV_WRITER_FR_EMAIL },
+    update: {},
+    create: {
+      email: DEV_WRITER_FR_EMAIL,
+      name: 'Dev Writer (FR, French-scoped)',
+      passwordHash: await hashPassword(DEV_WRITER_FR_PASSWORD),
+      role: 'WRITER',
+      status: 'ACTIVE',
+      emailVerifiedAt: new Date(),
+      homeCountryId: france.id,
+      preferredLanguageId: fr.id,
+      languageScopeId: fr.id, // §20 explicit language scope — French only
+    },
+  })
+  const ukAdmin = await prisma.user.upsert({
+    where: { email: DEV_UK_ADMIN_EMAIL },
+    update: {},
+    create: {
+      email: DEV_UK_ADMIN_EMAIL,
+      name: 'Dev UK Admin',
+      passwordHash: await hashPassword(DEV_UK_ADMIN_PASSWORD),
+      role: 'COUNTRY_ADMIN',
+      status: 'ACTIVE',
+      emailVerifiedAt: new Date(),
+      homeCountryId: uk.id,
+      preferredLanguageId: en.id,
     },
   })
 
@@ -4499,7 +4563,7 @@ async function main() {
       `${india.isoCode} (default, live since ${ROOT_MARKET_LAUNCHED_AT.toISOString().slice(0, 10)})`,
       `${uk.isoCode} (coming soon)`,
       `${france.isoCode} (coming soon)`,
-    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | translation links: ${translationLinksSeeded} (P9-S1 §6/§45: 2 OUTDATED drift demos over real correction history + the in-progress HI draft + the in-sync QnA pair${translationQnaSourceSeeded ? ' (with its new EN source QnA)' : ''}${translationAiDraftSeeded ? ' + the §26 AI-drafted Kalinga card' : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
+    ].join(', ')} | dev admin: ${admin.email} (ADMIN) | dev IN admin: ${inAdmin.email} (COUNTRY_ADMIN) | dev writers: ${writerIn.email} + ${writerHi.email} (Hindi-scoped) | P9-S3 workspaces: ${frAdmin.email} (COUNTRY_ADMIN) + ${writerFr.email} (French-scoped WRITER) for FR, ${ukAdmin.email} (COUNTRY_ADMIN) for GB — the thin announced-market workspace | taxonomy: ${topicIdBySlug.size} nodes | knowledge units: ${knowledgeSeeded} | content items: ${contentSeeded} | sources: ${sourceIdByUrl.size} (${linksSeeded} links${aiDraftSeeded ? ', +1 AI-assisted draft update' : ''}) | editorial tasks: ${tasksSeeded} | exams: ${examsSeeded} (${examVersionsSeeded} versions${syllabusNodesSeeded > 0 ? `, ${syllabusNodesSeeded} syllabus nodes` : ''}${mappingsSeeded > 0 ? `, ${mappingsSeeded} exam mappings` : ''}) | current events: ${eventsSeeded} (${eventSourcesSeeded} aggregated sources, ${eventUnitsSeeded} unit links, ${eventEntitiesSeeded} entity links, ${eventTopicsSeeded} cross-filings) | entity registry: ${entitiesSeeded} records (${entityAliasesSeeded} aliases, P6-S3) | event representations: ${eventItemsSeeded} (P6-S2 §12 step 4) | Q&A entries: ${qnasSeeded} (P7-S1 §22/§45) | practice questions: ${questionsSeeded} (P7-S2 §22/§45) | mock tests: ${mockTestsSeeded} + ${attemptsSeeded} sample attempt${attemptsSeeded === 1 ? '' : 's'} (P7-S3 §22/§45, incl. ${quickMocksSeeded} generated quick mock${quickMocksSeeded === 1 ? '' : 's'} — P7-S5 §22/§45) | mastery states: ${masteryStatesSeeded} (P7-S4 §22/§45) | share events: ${existingShareEvents + shareEventsSeeded} (P8-S1 §21/§45) | notification follows: ${followsSeeded} seeded + notifications: ${existingNotifications + notificationsSeeded} (P8-S2 §27/§45) + ${notificationPreferencesSeeded} preference row${notificationPreferencesSeeded === 1 ? '' : 's'} | feedback reports: ${existingFeedback + feedbackReportsSeeded} (P8-S3 §25/§45, incl. the closed revision-2 loop + the open hi QnA translation queue) + ${feedbackTasksSeeded} correction task${feedbackTasksSeeded === 1 ? '' : 's'} + ${feedbackNotificationsSeeded} editor notification${feedbackNotificationsSeeded === 1 ? '' : 's'} | search queries: ${existingQueryLogs + searchQueriesSeeded} (P8-S4 §32/§45, incl. the honest zero-result gap list) | SEO observations: ${existingObservations + seoObservationsSeeded} + landings: ${existingLandings + landingEventsSeeded} (P8-S5 §32/§45, incl. the nda-syllabus coverage gap + the publish-cycle history: ${publishCyclesBackdated} cycle${publishCyclesBackdated === 1 ? '' : 's'} (${publishDemoSeeded} new fact card) + ${reviewTasksSeeded} resolved review task${reviewTasksSeeded === 1 ? '' : 's'}) | translation links: ${translationLinksSeeded} (P9-S1 §6/§45: 2 OUTDATED drift demos over real correction history + the in-progress HI draft + the in-sync QnA pair${translationQnaSourceSeeded ? ' (with its new EN source QnA)' : ''}${translationAiDraftSeeded ? ' + the §26 AI-drafted Kalinga card' : ''}) | search index: ${searchStats.documents} documents (${reindex.unitsIndexed} units, ${reindex.topicsIndexed} topics, ${reindex.examsIndexed} exams, ${reindex.eventsIndexed} events; engine ${searchStats.engine}, configs ${searchStats.ftsConfigs.map((config) => `${config.languageCode}→${config.config}`).join('/')})`
   )
 }
 

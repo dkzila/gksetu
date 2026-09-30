@@ -25,6 +25,7 @@ import { listSitemapSegments, ROBOTS_DISALLOW } from '@/modules/seo'
 import { publicSearch } from '@/modules/search'
 import { translationInsightMetrics } from '@/modules/translations' // P9-S1 §32 editorial-family localisation metrics
 import { marketInsightMetrics } from '@/modules/country-locale' // P9-S2 §32 editorial-family market-launch metrics
+import { workspaceInsightMetrics } from '@/modules/workspaces' // P9-S3 §32 editorial-family workspace-coverage metrics
 
 import {
   AnalyticsError,
@@ -229,6 +230,11 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
   // precedent (config state in the editorial family, windowless).
   const markets = await marketInsightMetrics()
 
+  // P9-S3: the workspace-coverage half (§43 Phase 9 — country-specific
+  // editorial workspaces): staffed markets + per-market language coverage,
+  // the same windowless-stock precedent.
+  const workspaces = await workspaceInsightMetrics()
+
   const metrics: AnalyticsMetric[] = [
     {
       key: 'timeToPublish',
@@ -264,6 +270,13 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
       value: `${markets.live} live · ${markets.announced} announced · ${markets.paused} paused`,
       unit: 'text',
       derivation: `${markets.derivation} Launched market(s): ${markets.markets.length > 0 ? markets.markets.map((market) => `${market.name} (${market.languages} lang, ${market.publishedPages} pages, ${market.activeExams} exams, ${market.publishedEvents} event items${market.launchedAt ? `, live since ${new Date(market.launchedAt).toISOString().slice(0, 10)}` : ''})`).join('; ') : 'none beside the root market'}. Readiness derivations are the same ones the launch checklist uses (§34) — launching with warnings is an operator decision the launch response records, never a silent one.`,
+    },
+    {
+      key: 'workspaceCoverage',
+      label: 'Workspace coverage',
+      value: `${workspaces.staffedMarkets}/${workspaces.marketsConfigured} markets staffed · ${workspaces.languagesStaffed}/${workspaces.languagesConfigured} market-languages`,
+      unit: 'text',
+      derivation: `${workspaces.derivation} Unstaffed market-language(s): ${workspaces.unstaffedLanguages.length > 0 ? workspaces.unstaffedLanguages.join(', ') : 'none'} — every configured market-language currently has ≥1 active staff member able to work it. Staff by class: ${workspaces.byRole.writer} WRITER + ${workspaces.byRole.countryAdmin} COUNTRY_ADMIN (+ ${workspaces.byRole.platformAdmin} platform ADMIN outside the coverage read); ${workspaces.suspended} suspended (reversible — §36 spirit, nothing deleted).`,
     },
   ]
 
