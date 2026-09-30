@@ -19,7 +19,7 @@ import { getKnowledgePage } from '@/modules/knowledge'
 import {
   getSeoStatus,
   getSeoValidation,
-  loadSitemapInventory,
+  loadSitemapInventoryCached,
   resolveSiteOrigin,
   type KnowledgeSampleInput,
 } from '@/modules/seo'
@@ -100,7 +100,7 @@ export async function GET(request: Request) {
     // sitemap inventory share nothing; the Mumbai pooler multiplexes both).
     const [knowledgeSample, inventory] = await Promise.all([
       pickKnowledgeSample(),
-      loadSitemapInventory(),
+      loadSitemapInventoryCached(),
     ])
     const [status, validation] = await Promise.all([
       getSeoStatus(origin, inventory.segments),

@@ -113,11 +113,17 @@ export async function getInsightsAnalytics(
     label: WINDOW_LABELS[String(input.days)] ?? `${input.days} days`,
   }
 
-  const families: AnalyticsFamily[] = [
-    await editorialFamily(since, window),
-    await seoFamily(since, window),
-    await growthFamily(since, window),
-  ]
+  // P10-S1: the three families are independent reads — loaded together
+  // (measured over the Supabase pooler the sequential load was the module's
+  // dominant cost: ~17.5s median; the parallel load bounds it by the slowest
+  // family, the §29-justified fix).
+  const [editorial, seo, growth] = await Promise.all([
+    editorialFamily(since, window),
+    seoFamily(since, window),
+    growthFamily(since, window),
+  ])
+
+  const families: AnalyticsFamily[] = [editorial, seo, growth]
 
   return {
     principle: PRINCIPLE,
@@ -220,20 +226,17 @@ async function editorialFamily(since: Date | null, window: AnalyticsWindow): Pro
       })
     : 0
 
-  // P9-S1: the localisation half of editorial work (§18 Translator/Localiser
-  // — §35/§36). Windowless stock counts (the framework is young); the
+  // P9-S1: the translation half (tracked links, drift, AI share) + the P9-S2
+  // market-launch half + the P9-S3 workspace half — §43 Phase 9's editorial
+  // metrics, windowless stock counts (the framework is young); the
   // tracked-vs-fact pair is the adoption honesty.
-  const translations = await translationInsightMetrics()
-
-  // P9-S2: the market-launch half of editorial/ops work (§43 Phase 9) —
-  // country launch state as an all-time stock, the translationCoverage
-  // precedent (config state in the editorial family, windowless).
-  const markets = await marketInsightMetrics()
-
-  // P9-S3: the workspace-coverage half (§43 Phase 9 — country-specific
-  // editorial workspaces): staffed markets + per-market language coverage,
-  // the same windowless-stock precedent.
-  const workspaces = await workspaceInsightMetrics()
+  // P10-S1: the three §32 metric helpers are independent — loaded together
+  // (the same parallelization as the families themselves).
+  const [translations, markets, workspaces] = await Promise.all([
+    translationInsightMetrics(),
+    marketInsightMetrics(),
+    workspaceInsightMetrics(),
+  ])
 
   const metrics: AnalyticsMetric[] = [
     {
@@ -344,23 +347,27 @@ async function seoFamily(since: Date | null, window: AnalyticsWindow): Promise<A
   // Cross-store join: the engine-side queries (what surfaced the site on the
   // engine) re-run against the live §17 engine — the honest coverage gap:
   // an engine query the platform's own search cannot satisfy.
+  // P10-S1: the re-runs are independent reads — issued together (each engine
+  // call measured ~1s over the pooler; the sequential loop was the family's
+  // dominant cost after the families themselves were parallelized).
   const observedQueries = [...new Set(observationRows.map((row) => row.queryText.trim().toLowerCase()))]
-  const satisfied: string[] = []
-  const unsatisfied: string[] = []
-  for (const query of observedQueries) {
-    try {
-      // Machine re-run, never logged — a census must not fabricate reader
-      // queries (§32/§31).
-      const result = await publicSearch(
-        { q: query, type: 'all', page: 1, pageSize: 50 },
-        { logQuery: false }
-      )
-      if (result.pagination.total > 0) satisfied.push(query)
-      else unsatisfied.push(query)
-    } catch {
-      unsatisfied.push(query) // an engine error is honestly an unsatisfied query
-    }
-  }
+  const engineResults = await Promise.all(
+    observedQueries.map(async (query) => {
+      try {
+        // Machine re-run, never logged — a census must not fabricate reader
+        // queries (§32/§31).
+        const result = await publicSearch(
+          { q: query, type: 'all', page: 1, pageSize: 50 },
+          { logQuery: false }
+        )
+        return { query, satisfied: result.pagination.total > 0 }
+      } catch {
+        return { query, satisfied: false } // an engine error is honestly an unsatisfied query
+      }
+    })
+  )
+  const satisfied = engineResults.filter((entry) => entry.satisfied).map((entry) => entry.query)
+  const unsatisfied = engineResults.filter((entry) => !entry.satisfied).map((entry) => entry.query)
 
   // P9-S4: the market footprint (windowless stock — the marketReadiness
   // precedent): per-market indexable counts + which markets the engine-side

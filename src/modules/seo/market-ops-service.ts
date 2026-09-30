@@ -50,7 +50,7 @@ import { LocaleError, resolveFromPath } from '@/modules/country-locale'
 
 import { SeoError } from './errors'
 import { getCountryHomepage } from './homepage-service'
-import { ROBOTS_DISALLOW, loadSitemapInventory, segmentUrl, type SitemapType } from './sitemap-service'
+import { ROBOTS_DISALLOW, loadSitemapInventoryCached, segmentUrl, type SitemapType } from './sitemap-service'
 
 // ---------- Public shapes (§37 — client-agnostic DTOs) ----------
 
@@ -233,7 +233,8 @@ interface MarketCensusSlice {
 }
 
 async function loadMarketCensus(isoCode: string): Promise<MarketCensusSlice> {
-  const inventory = await loadSitemapInventory()
+  // P10-S1: the read paths ride the shared 60s census cache (§29).
+  const inventory = await loadSitemapInventoryCached()
   const segments: MarketCensusSlice['segments'] = []
   for (const segment of inventory.segments) {
     if (segment.country !== isoCode) continue
@@ -256,22 +257,29 @@ async function deriveHreflangView(slice: MarketCensusSlice): Promise<MarketSeoHr
   const marketLanguages = [...new Set(slice.segments.map((segment) => segment.language))].sort()
   const clusterByPath = new Map<string, Set<string>>()
   let parseFailures = 0
-  for (const segment of slice.segments) {
-    for (const path of segment.paths) {
+  // P10-S1: the per-path resolutions are independent (snapshot reads) —
+  // issued together; the sequential loop was measured as the overview's
+  // second-largest cost over the pooler (§29).
+  const allPaths = slice.segments.flatMap((segment) => segment.paths)
+  const resolutions = await Promise.all(
+    allPaths.map(async (path) => {
       try {
-        const resolution = await resolveFromPath(path)
-        const key = resolution.remainingPath ?? '/'
-        const languages = clusterByPath.get(key) ?? new Set<string>()
-        languages.add(resolution.language.code)
-        clusterByPath.set(key, languages)
+        return { path, resolution: await resolveFromPath(path) }
       } catch (error) {
         if (error instanceof LocaleError) {
           parseFailures += 1 // honest: a census path the grammar cannot resolve
-          continue
+          return null
         }
         throw error
       }
-    }
+    })
+  )
+  for (const entry of resolutions) {
+    if (!entry) continue
+    const key = entry.resolution.remainingPath ?? '/'
+    const languages = clusterByPath.get(key) ?? new Set<string>()
+    languages.add(entry.resolution.language.code)
+    clusterByPath.set(key, languages)
   }
   const multi = [...clusterByPath.entries()]
     .filter(([, languages]) => languages.size >= 2)
@@ -533,7 +541,7 @@ export async function listMarketSeoSummaries(actor: Actor): Promise<MarketSeoSum
       : snapshot.countries.filter((country) => country.id === actor.countryId)
 
   const [inventory, observationAggregates] = await Promise.all([
-    loadSitemapInventory(),
+    loadSitemapInventoryCached(),
     db.seoObservation.groupBy({
       by: ['countryIso', 'pagePath', 'queryText'],
       _sum: { impressions: true, clicks: true },

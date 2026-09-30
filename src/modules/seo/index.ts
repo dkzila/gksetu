@@ -71,6 +71,7 @@ export {
   getSeoStatus,
   listSitemapSegments,
   loadSitemapInventory,
+  loadSitemapInventoryCached,
   renderSitemapIndex,
   renderSitemapUrlSet,
   ROBOTS_DISALLOW,

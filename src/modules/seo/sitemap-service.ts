@@ -138,32 +138,64 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     }
   }
 
-  // ---------- Knowledge pages per language (§35 published-only rule) ----------
-  const unitsByLanguage = new Map<
-    string,
-    Array<{ slug: string; topicSlug: string; lastModified: Date | null }>
-  >()
-  for (const language of languages) {
-    const published = await db.contentItem.findMany({
-      where: {
-        status: 'PUBLISHED',
-        publishedRevisionId: { not: null },
-        language: { code: language.code },
-        knowledgeUnit: {
-          status: 'VERIFIED',
-          topicId: { in: topicIds },
-          OR: [{ scope: 'GLOBAL' }, { countryId: countryRow.id }],
-        },
-      },
-      select: {
-        knowledgeUnit: { select: { slug: true, topic: { select: { slug: true } } } },
-        publishedRevision: { select: { publishedAt: true } },
-      },
+  // ---------- Knowledge + event pages per language (§35 published-only) ----------
+  // P10-S1: the per-language queries are independent — issued together (the
+  // sequential per-language loops cost 2×languages round-trips over the
+  // pooler; measured, then batched — §29).
+  type UnitEntries = Array<{ slug: string; topicSlug: string; lastModified: Date | null }>
+  type EventEntries = Array<{ slug: string; lastModified: Date | null }>
+  const languageLoads = await Promise.all(
+    languages.map(async (language) => {
+      const [published, publishedEvents] = await Promise.all([
+        db.contentItem.findMany({
+          where: {
+            status: 'PUBLISHED',
+            publishedRevisionId: { not: null },
+            language: { code: language.code },
+            knowledgeUnit: {
+              status: 'VERIFIED',
+              topicId: { in: topicIds },
+              OR: [{ scope: 'GLOBAL' }, { countryId: countryRow.id }],
+            },
+          },
+          select: {
+            knowledgeUnit: { select: { slug: true, topic: { select: { slug: true } } } },
+            publishedRevision: { select: { publishedAt: true } },
+          },
+        }),
+        db.contentItem.findMany({
+          where: {
+            status: 'PUBLISHED',
+            publishedRevisionId: { not: null },
+            language: { code: language.code },
+            currentEvent: {
+              topic: { status: 'ACTIVE' },
+              // P9-S5 verification-found fix: the event's topic must be VISIBLE
+              // in this market (§13/§14) — the public event page gates on the
+              // same visibility (getPublicTopic), so the census must never
+              // declare an event URL the page would 404 (§16 one-truth; found
+              // live: the GLOBAL space events ride an IN-scoped topic, so their
+              // /uk/ and /fr/ pages never served despite being listed).
+              topicId: { in: topicIds },
+              OR: [
+                { scope: 'GLOBAL' },
+                { scope: 'COUNTRY', countryId: countryRow.id },
+              ],
+            },
+          },
+          select: {
+            currentEvent: { select: { slug: true } },
+            publishedRevision: { select: { publishedAt: true } },
+          },
+        }),
+      ])
+      return { language, published, publishedEvents }
     })
-    const byUnit = new Map<
-      string,
-      { slug: string; topicSlug: string; lastModified: Date | null }
-    >()
+  )
+
+  const unitsByLanguage = new Map<string, UnitEntries>()
+  for (const { language, published } of languageLoads) {
+    const byUnit = new Map<string, { slug: string; topicSlug: string; lastModified: Date | null }>()
     for (const row of published) {
       const at = row.publishedRevision?.publishedAt ?? null
       if (!row.knowledgeUnit) continue // P6-S2: event representations are not unit pages
@@ -189,33 +221,8 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
   // carries a PUBLISHED representation in that language — the same honesty as
   // knowledge pages. GLOBAL events are browsable in every market (§15);
   // COUNTRY events only in their own.
-  const eventsByLanguage = new Map<string, Array<{ slug: string; lastModified: Date | null }>>()
-  for (const language of languages) {
-    const publishedEvents = await db.contentItem.findMany({
-      where: {
-        status: 'PUBLISHED',
-        publishedRevisionId: { not: null },
-        language: { code: language.code },
-        currentEvent: {
-          topic: { status: 'ACTIVE' },
-          // P9-S5 verification-found fix: the event's topic must be VISIBLE
-          // in this market (§13/§14) — the public event page gates on the
-          // same visibility (getPublicTopic), so the census must never
-          // declare an event URL the page would 404 (§16 one-truth; found
-          // live: the GLOBAL space events ride an IN-scoped topic, so their
-          // /uk/ and /fr/ pages never served despite being listed).
-          topicId: { in: topicIds },
-          OR: [
-            { scope: 'GLOBAL' },
-            { scope: 'COUNTRY', countryId: countryRow.id },
-          ],
-        },
-      },
-      select: {
-        currentEvent: { select: { slug: true } },
-        publishedRevision: { select: { publishedAt: true } },
-      },
-    })
+  const eventsByLanguage = new Map<string, EventEntries>()
+  for (const { language, publishedEvents } of languageLoads) {
     const byEvent = new Map<string, { slug: string; lastModified: Date | null }>()
     for (const row of publishedEvents) {
       if (!row.currentEvent) continue
@@ -333,6 +340,62 @@ async function loadModels(): Promise<CountrySitemapModel[]> {
   return models.filter((model): model is CountrySitemapModel => model !== null)
 }
 
+// ---------- P10-S1: the shared census cache (§29 "repeated expensive reads") ----------
+//
+// loadSitemapInventory feeds /sitemap.xml, /api/seo/status and BOTH market-ops
+// routes — measured over the Supabase session pooler every walk costs ~14
+// queries × ~240ms RTT ≈ 3.5s (the P10-S1 baseline). The census changes only
+// on publish/reindex/launch — a 60s TTL is the locale-snapshot precedent.
+// globalThis + epoch guard = the P9-S2 per-route-bundle isolation pattern.
+// The OBSERVATION IMPORT GUARD keeps the UNCACHED read (a census guard must
+// see the freshest truth, never a 60s-stale one).
+
+const CENSUS_CACHE_TTL_MS = 60_000
+
+interface CensusCacheStore {
+  inventory: SitemapInventory | null
+  at: number
+  loading: Promise<SitemapInventory> | null
+  epoch: number
+}
+
+const censusGlobal = globalThis as typeof globalThis & { __globiqCensusCacheStore?: CensusCacheStore }
+const censusStore: CensusCacheStore = (censusGlobal.__globiqCensusCacheStore ??= {
+  inventory: null,
+  at: 0,
+  loading: null,
+  epoch: 0,
+})
+
+/** The cached inventory for READ paths (60s TTL, single-flight). */
+export async function loadSitemapInventoryCached(): Promise<SitemapInventory> {
+  if (censusStore.inventory !== null && Date.now() - censusStore.at <= CENSUS_CACHE_TTL_MS) {
+    return censusStore.inventory
+  }
+  if (censusStore.loading) return censusStore.loading
+  const epoch = censusStore.epoch
+  censusStore.loading = loadSitemapInventory()
+    .then((inventory) => {
+      // A newer epoch (dev route reload) drops this result — the next read
+      // rebuilds (the P9-S2 cache precedent).
+      if (censusStore.epoch !== epoch) return loadSitemapInventory()
+      censusStore.inventory = inventory
+      censusStore.at = Date.now()
+      return inventory
+    })
+    .finally(() => {
+      censusStore.loading = null
+    })
+  return censusStore.loading
+}
+
+/** Test/dev hook: drop the cached census (called never in production paths). */
+export function invalidateCensusCache(): void {
+  censusStore.epoch += 1
+  censusStore.inventory = null
+  censusStore.at = 0
+}
+
 /**
  * The sitemap index input: every non-empty (country × language × type)
  * segment with its URL count and newest lastmod. Segments are ordered
@@ -340,28 +403,10 @@ async function loadModels(): Promise<CountrySitemapModel[]> {
  * in the fixed home → topics → units → exams → syllabus order.
  */
 export async function listSitemapSegments(): Promise<SitemapSegmentInfo[]> {
-  const models = await loadModels()
-  const segments: SitemapSegmentInfo[] = []
-  for (const model of models) {
-    for (const language of [...model.languages].sort((a, b) => a.code.localeCompare(b.code))) {
-      for (const type of SITEMAP_TYPES) {
-        const entries = segmentEntries(model, language.code, type)
-        if (entries.length === 0) continue
-        const newestLastMod = entries.reduce<Date | null>((newest, entry) => {
-          if (!entry.lastModified) return newest
-          return !newest || entry.lastModified > newest ? entry.lastModified : newest
-        }, null)
-        segments.push({
-          country: model.isoCode,
-          language: language.code,
-          type,
-          urlCount: entries.length,
-          lastModified: newestLastMod ? newestLastMod.toISOString() : null,
-        })
-      }
-    }
-  }
-  return segments
+  // P10-S1: the segment list IS the cached inventory's segment list (the
+  // same deterministic walk, one shared read — the §29 cache trigger).
+  const inventory = await loadSitemapInventoryCached()
+  return inventory.segments
 }
 
 /** One segment's URL entries; typed 404 when the segment doesn't exist. */
@@ -370,6 +415,14 @@ export async function buildSitemapSegment(input: {
   language: string
   type: SitemapType
 }): Promise<SitemapUrlEntry[]> {
+  // P10-S1: non-empty segments serve from the cached census (the §29
+  // trigger); the direct model load stays for the miss path (empty-but-valid
+  // segments + the typed §35/404 errors carry the same semantics as before).
+  const cached = await loadSitemapInventoryCached()
+  const cachedEntries = cached.entriesBySegment.get(
+    `${input.country.toUpperCase()}:${input.language}:${input.type}`
+  )
+  if (cachedEntries) return cachedEntries
   const model = await loadCountryModel(input.country.toUpperCase())
   if (!model) {
     throw new SeoError('SITEMAP_SEGMENT_NOT_FOUND', 'No sitemap segment for this country')

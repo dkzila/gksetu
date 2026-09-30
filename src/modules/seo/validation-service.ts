@@ -35,7 +35,7 @@ import { getExamPage } from './exam-page-service'
 import { getSyllabusTopicPage } from './syllabus-topic-service'
 import {
   buildRobotsTxt,
-  loadSitemapInventory,
+  loadSitemapInventoryCached,
   renderSitemapIndex,
   renderSitemapUrlSet,
   ROBOTS_DISALLOW,
@@ -392,7 +392,7 @@ export async function getSeoValidation(
   origin: string,
   options: { inventory?: SitemapInventory; knowledgeSample?: KnowledgeSampleInput | null } = {}
 ): Promise<SeoValidationReport> {
-  const inventory = options.inventory ?? (await loadSitemapInventory())
+  const inventory = options.inventory ?? (await loadSitemapInventoryCached())
   const samples = await loadSurfaceSamples(inventory, options.knowledgeSample ?? null)
   const available = samples.filter((sample) => !sample.unavailableReason)
   const unavailable = samples.filter((sample) => sample.unavailableReason)
