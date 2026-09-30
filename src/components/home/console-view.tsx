@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P8-S4)
+ * GlobIQ — Foundation Console (P1-S1 → P9-S3)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -171,7 +171,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Foundation console</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
-            P1-S1 → P8-S5
+            P1-S1 → P9-S3
           </Badge>
         </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
