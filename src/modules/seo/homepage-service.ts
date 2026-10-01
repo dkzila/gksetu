@@ -17,6 +17,7 @@
  * (deterministic §37) until product analytics (P8) can rank by real usage.
  */
 import { db } from '@/lib/db'
+import { cachedPayload } from '@/lib/payload-cache'
 import { getPublicTopic, getPublicTree, TaxonomyError } from '@/modules/taxonomy'
 
 import {
@@ -61,6 +62,17 @@ const EXAM_LIMIT = 8
  * legitimately visible (§15 — data scoping, not network blocking).
  */
 export async function getCountryHomepage(input: {
+  country?: string
+  language?: string
+}): Promise<CountryHomepage> {
+  // §29: public + user-independent → 60s in-memory TTL (the census-cache
+  // precedent — see src/lib/payload-cache.ts). The homepage walk is 10+
+  // sequential queries; high-latency environments would pay it on every hit.
+  const cacheKey = `seo:homepage:${input.country ?? 'default'}:${input.language ?? 'default'}`
+  return cachedPayload(cacheKey, () => loadCountryHomepage(input))
+}
+
+async function loadCountryHomepage(input: {
   country?: string
   language?: string
 }): Promise<CountryHomepage> {
@@ -218,7 +230,14 @@ export async function getCountryHomepage(input: {
   const stats = {
     topics: flat.length,
     units: totalVisibleUnits,
-    exams: exams.available ? exams.items.length : 0,
+    // The TOTAL ACTIVE exams of the market — not the capped card count (the
+    // India corpus is 135+; the §34 stat feeds the "All N exams" directory
+    // link and the structured-data description).
+    exams: exams.available
+      ? await db.exam.count({
+          where: { countryId: context.countryRow.id, status: 'ACTIVE' },
+        })
+      : 0,
   }
   const structuredData = buildHomeGraph({
     siteName: SITE_NAME,

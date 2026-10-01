@@ -332,7 +332,7 @@ export function ExamPageSection() {
     if (!selectedCountry) return
     setLanguage(selectedCountry.defaultLanguage.code)
     let cancelled = false
-    fetch(`/api/exams?country=${countryIso}&pageSize=50`, { cache: 'no-store' })
+    fetch(`/api/exams?country=${countryIso}&pageSize=300`, { cache: 'no-store' })
       .then((response) => response.json())
       .then((payload: Envelope<{ exams: PublicExamRef[] }>) => {
         if (cancelled) return

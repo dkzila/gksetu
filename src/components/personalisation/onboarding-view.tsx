@@ -169,7 +169,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
   const loadExams = useCallback(async (iso: string) => {
     setExamLoading(true)
     try {
-      const params = new URLSearchParams({ country: iso, pageSize: '50' })
+      const params = new URLSearchParams({ country: iso, pageSize: '300' })
       const response = await fetch(`/api/exams?${params.toString()}`, { cache: 'no-store' })
       const payload = (await response.json()) as Envelope<{ exams: ApiExamOption[] }>
       setExamOptions(payload.status === 'ok' && payload.data ? payload.data.exams : [])

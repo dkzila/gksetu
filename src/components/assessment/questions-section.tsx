@@ -343,7 +343,7 @@ export function QuestionsSection() {
     let cancelled = false
     async function run() {
       try {
-        const response = await fetch('/api/exams?country=IN&pageSize=50', { cache: 'no-store' })
+        const response = await fetch('/api/exams?country=IN&pageSize=300', { cache: 'no-store' })
         const payload = (await response.json()) as Envelope<{
           exams: Array<{
             slug: string

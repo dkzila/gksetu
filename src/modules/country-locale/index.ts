@@ -13,6 +13,7 @@ export {
   resolveFromPath,
   findActiveCountryByIso,
   findConfiguredCountryByIso,
+  findConfiguredCountryStatusByIso,
   findActiveLanguageByCode,
   isLanguageConfiguredForCountry,
   createCountry,

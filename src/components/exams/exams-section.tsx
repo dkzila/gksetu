@@ -275,7 +275,7 @@ export function ExamsSection() {
   const fetchPublic = useCallback(async (country: string) => {
     setPublicLoading(true)
     try {
-      const response = await fetch(`/api/exams?country=${country}&pageSize=50`, { cache: 'no-store' })
+      const response = await fetch(`/api/exams?country=${country}&pageSize=300`, { cache: 'no-store' })
       const payload = (await response.json()) as Envelope<PublicListResult>
       if (payload.status === 'ok' && payload.data) setPublicResult(payload.data)
       else setPublicResult(null)

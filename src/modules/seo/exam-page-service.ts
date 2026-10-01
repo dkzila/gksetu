@@ -22,6 +22,7 @@
  * §34 exam-card directory.
  */
 import { db } from '@/lib/db'
+import { cachedPayload } from '@/lib/payload-cache'
 import {
   ExamError,
   getPublicExam,
@@ -163,8 +164,18 @@ function countBranches(nodes: PublicCoverageNode[]): number {
  * current (or explicitly requested started) version's mapping-bearing
  * coverage tree with the full §8 vocabulary, the ranked single-exam study
  * list, and §33 related-exam internal links.
+ *
+ * §29: public + user-independent → 60s in-memory TTL per (ref, market,
+ * language, window) — the census-cache precedent; see
+ * src/lib/payload-cache.ts. The composition chains detail + coverage +
+ * related + study-list walks (10+ sequential queries on one page).
  */
 export async function getExamPage(ref: string, query: ExamPageQuery): Promise<ExamPage> {
+  const cacheKey = `seo:exam-page:${ref.toLowerCase()}:${query.country ?? 'default'}:${query.language ?? 'default'}:${query.version ?? 'current'}`
+  return cachedPayload(cacheKey, () => loadExamPage(ref, query))
+}
+
+async function loadExamPage(ref: string, query: ExamPageQuery): Promise<ExamPage> {
   // ---------- Reader context (§14/§35 — server-side resolution) ----------
   const context = await resolveReaderContext(query)
 

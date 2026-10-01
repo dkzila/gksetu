@@ -63,7 +63,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -355,6 +355,25 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
   // P7-S3 mock-test branch …/exams/{exam}/mock-tests/{slug}/ (§16).
   if (segments[index] === 'exams') {
     const examSlug = segments[index + 1] ?? null
+    if (!examSlug) {
+      // The public exam directory — every ACTIVE exam of the resolved market.
+      return {
+        view: 'exam-directory',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        eventSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: null,
+        collectionId: null,
+        page: 1,
+        versionId: null,
+        focusQuestionId: null,
+        scrollTo: null,
+      }
+    }
     if (examSlug && segments[index + 2] === 'mock-tests' && segments[index + 3]) {
       return {
         view: 'test',
@@ -474,6 +493,8 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
     segments.push('current-affairs', route.eventSlug)
   } else if (route.view === 'exam' && route.examSlug) {
     segments.push('exams', route.examSlug)
+  } else if (route.view === 'exam-directory') {
+    segments.push('exams')
   } else if (route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug) {
     segments.push('exams', route.examSlug, 'syllabus', route.syllabusTopicSlug)
   }

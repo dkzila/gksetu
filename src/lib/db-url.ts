@@ -1,5 +1,5 @@
 /**
- * GKSetu — the runtime database-URL adapter (DEPLOY-S2).
+ * GKSetu — the runtime database-URL adapter (DEPLOY-S2, refined INDIA-CORPUS).
  *
  * The discovery, live on the first Vercel deployment: Supabase's SESSION
  * pooler (port 5432) allows only **15 client connections per project**
@@ -23,13 +23,23 @@
  *     mode; and idempotent no-ops on the live database.
  *   - no LISTEN/NOTIFY, no session-level SQL state anywhere.
  *
- * The adapter therefore rewrites any *.pooler.supabase.com URL to the
- * transaction port with `pgbouncer=true` (Prisma's prepared-statement
- * handling for transaction pooling) and, on Vercel, a small per-function
- * pool cap so bursts queue instead of multiplying. The Prisma CLI
- * (migrate/db:push) reads `GKSETU_DATABASE_URL` straight from the
- * environment, untouched by this adapter — schema work keeps the session
- * URL exactly as documented.
+ * INDIA-CORPUS REFINEMENT — MODE FOLLOWS THE RUNTIME SHAPE: a long-running
+ * dev server is the OPPOSITE of the serverless burst — ONE process with ONE
+ * capped pool (≤3 connections) can never exhaust the 15-client session
+ * ceiling, and per-query it is ~3× faster than transaction routing (every
+ * public surface walks 5-15 sequential queries; measured live from the
+ * sandbox: ~220ms session vs ~657ms transaction per query). So:
+ *   - serverless (VERCEL) → transaction pooler 6543 + pgbouncer + small
+ *     per-function caps (the DEPLOY-S2 decision, unchanged);
+ *   - long-running (dev) → SESSION pooler 5432 as the environment variable
+ *     documents it (.env.example: "session pooler is recommended for
+ *     development"), with connection_limit=3 as the ceiling guard;
+ *   - an operator-set explicit 6543 is respected as a deliberate choice
+ *     (pgbouncer=true added — transaction mode requires it).
+ *
+ * The Prisma CLI (migrate/db:push) reads `GKSETU_DATABASE_URL` straight
+ * from the environment, untouched by this adapter — schema work keeps the
+ * session URL exactly as documented.
  */
 
 /** The shape the runtime actually connects with. */
@@ -71,16 +81,32 @@ export function adaptDatabaseUrl(raw: string | undefined): RuntimeDatabaseUrl {
 
   // Merge params: keep any the operator set, add the required set.
   const params = new URLSearchParams(match[6] ? match[6].slice(1) : '')
-  params.set('pgbouncer', 'true')
   const isServerless = process.env.VERCEL === '1' || process.env.VERCEL === 'true'
+  const explicitTransaction = match[4] === '6543'
+  if (isServerless || explicitTransaction) {
+    params.set('pgbouncer', 'true')
+  }
   if (isServerless) {
     if (!params.has('connection_limit')) params.set('connection_limit', '2')
     if (!params.has('pool_timeout')) params.set('pool_timeout', '30')
+  } else if (!params.has('connection_limit')) {
+    // A long-running server still gets a hard pool cap — the 15-client
+    // session ceiling is safe against ONE process with ≤3 connections.
+    params.set('connection_limit', '3')
   }
   if (!params.has('connect_timeout')) params.set('connect_timeout', '15')
 
-  // Session (5432 or absent) → transaction (6543); an explicit 6543 stays.
-  const port = !match[4] || match[4] === '5432' ? '6543' : match[4]
+  // Mode follows the runtime shape (see the file header):
+  //   serverless → transaction (6543); long-running → session (5432);
+  //   an explicit operator-set 6543 is a deliberate choice and stays.
+  let port: string
+  if (explicitTransaction) {
+    port = '6543'
+  } else if (isServerless) {
+    port = '6543'
+  } else {
+    port = '5432'
+  }
   const path = match[5] ?? ''
   const adapted = `${match[1]}${match[2] ?? ''}${host}:${port}${path}?${params.toString()}`
 

@@ -100,13 +100,15 @@ export const updateExamVersionSchema = z.object({
 
 export type UpdateExamVersionInput = z.infer<typeof updateExamVersionSchema>
 
-/** Public directory: country-scoped ACTIVE exams (§38). */
+/** Public directory: country-scoped ACTIVE exams (§38). pageSize cap sized
+ * for the India exam corpus (136+ exams) so the directory and the goal
+ * pickers can fetch the full list in one request. */
 export const publicExamListQuerySchema = z.object({
   country: z.string().trim().min(2).max(8).optional(),
   language: z.string().trim().min(2).max(8).optional(),
   q: z.string().trim().min(1).max(200).optional(),
   page: z.coerce.number().int().min(1).default(1),
-  pageSize: z.coerce.number().int().min(1).max(50).default(20),
+  pageSize: z.coerce.number().int().min(1).max(300).default(20),
 })
 
 export type PublicExamListQuery = z.infer<typeof publicExamListQuerySchema>

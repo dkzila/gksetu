@@ -480,7 +480,7 @@ export function SyllabusSection() {
     if (!selectedCountry) return
     setPublicLanguage(selectedCountry.defaultLanguage.code)
     let cancelled = false
-    fetch(`/api/exams?country=${publicCountry}&pageSize=50`, { cache: 'no-store' })
+    fetch(`/api/exams?country=${publicCountry}&pageSize=300`, { cache: 'no-store' })
       .then((response) => response.json())
       .then((payload: Envelope<{ exams: PublicExamRef[] }>) => {
         if (cancelled) return

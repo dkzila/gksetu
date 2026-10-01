@@ -249,6 +249,10 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
       include: { versions: { select: { id: true, effectiveFrom: true, effectiveTo: true } } },
       orderBy: [{ name: 'asc' }, { slug: 'asc' }], // deterministic (§37)
     })
+    // Resolve current windows first, then ONE batched node query for all of
+    // them — the India exam corpus is 135+ exams and a per-exam query made
+    // the sitemap a 30s+ N+1 walk through the pooler.
+    const currentByExamSlug = new Map<string, { id: string; effectiveFrom: Date }>()
     for (const exam of examRows) {
       // NB: never pass windowContains directly to .filter — filter's index
       // arg would land in its `now` parameter.
@@ -256,17 +260,27 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
         .filter((version) => windowContains(version))
         .sort((a, b) => b.effectiveFrom.getTime() - a.effectiveFrom.getTime())[0]
       exams.push({ slug: exam.slug, lastModified: current?.effectiveFrom ?? null })
-      if (current) {
-        const nodes = await db.syllabusNode.findMany({
-          where: { examVersionId: current.id, topicId: { not: null } },
-          include: { topic: { select: { slug: true } } },
-        })
-        const topicSlugsSet = new Set(
-          nodes.map((node) => node.topic?.slug).filter((slug): slug is string => !!slug)
-        )
-        for (const slug of [...topicSlugsSet].sort((a, b) => a.localeCompare(b))) {
-          syllabus.push({ examSlug: exam.slug, topicSlug: slug, lastModified: current.effectiveFrom })
-        }
+      if (current) currentByExamSlug.set(exam.slug, current)
+    }
+    const nodeRows = await db.syllabusNode.findMany({
+      where: {
+        examVersionId: { in: [...currentByExamSlug.values()].map((version) => version.id) },
+        topicId: { not: null },
+      },
+      include: { topic: { select: { slug: true } } },
+    })
+    const topicSlugsByVersion = new Map<string, Set<string>>()
+    for (const node of nodeRows) {
+      if (!node.topic?.slug) continue
+      const bucket = topicSlugsByVersion.get(node.examVersionId)
+      if (bucket) bucket.add(node.topic.slug)
+      else topicSlugsByVersion.set(node.examVersionId, new Set([node.topic.slug]))
+    }
+    for (const [examSlug, version] of currentByExamSlug) {
+      for (const slug of [...(topicSlugsByVersion.get(version.id) ?? [])].sort((a, b) =>
+        a.localeCompare(b)
+      )) {
+        syllabus.push({ examSlug, topicSlug: slug, lastModified: version.effectiveFrom })
       }
     }
   }

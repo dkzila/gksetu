@@ -384,6 +384,24 @@ export async function findConfiguredCountryByIso(iso: string): Promise<{ id: str
   return { id: country.id, isoCode: country.isoCode }
 }
 
+/**
+ * {id, status} for any CONFIGURED market, SNAPSHOT-SERVED (no live query).
+ * The discovery surfaces' context resolver uses this on every composition —
+ * a live per-request findUnique was fine at 3 exams, but the exam-page
+ * composition resolves its context three times and high-latency pooler
+ * round-trips made each page pay for immutable configuration data the
+ * snapshot already carries (the §29 same-truth rule: the snapshot IS the
+ * configuration).
+ */
+export async function findConfiguredCountryStatusByIso(
+  iso: string
+): Promise<{ id: string; status: string } | null> {
+  const snapshot = await getSnapshot()
+  const country = snapshot.countries.find((c) => c.isoCode === iso.toUpperCase())
+  if (!country) return null
+  return { id: country.id, status: country.status }
+}
+
 export async function findActiveLanguageByCode(code: string): Promise<{ id: string; code: string } | null> {
   const snapshot = await getSnapshot()
   const language = snapshot.languages.find((l) => l.code === code.toLowerCase())

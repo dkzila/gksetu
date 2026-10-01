@@ -68,6 +68,8 @@ export interface HomepageViewProps {
   onOpenTopic: (slug: string) => void
   onOpenUnit: (topicSlug: string, unitSlug: string) => void
   onOpenExam: (slug: string) => void
+  /** Opens the full exam directory (…/exams/) — the India exam corpus surface. */
+  onBrowseExams: () => void
   /** Opens any canonical path inside the app (the dashboard teaser). */
   onOpenPath: (path: string) => void
   onSwitchLanguage: (code: string) => void
@@ -82,6 +84,7 @@ export function HomepageView({
   onOpenTopic,
   onOpenUnit,
   onOpenExam,
+  onBrowseExams,
   onOpenPath,
   onSwitchLanguage,
   onSignIn,
@@ -461,6 +464,16 @@ export function HomepageView({
           <h2 id="exams-heading" className="text-xl font-semibold tracking-tight">
             Prepare for your exam
           </h2>
+          {homepage.exams.available && homepage.stats.exams > 0 && (
+            <button
+              type="button"
+              onClick={onBrowseExams}
+              className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+            >
+              All {homepage.stats.exams} exams
+              <span aria-hidden="true">→</span>
+            </button>
+          )}
           {!comingSoon && homepage.exams.items.length > 0 && (
             <p className="hidden text-xs text-zinc-400 sm:block">
               Latest syllabi, linked to knowledge you can learn

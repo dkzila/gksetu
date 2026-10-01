@@ -23,6 +23,7 @@
 import type { Prisma, Exam, ExamVersion } from '@prisma/client'
 
 import { db } from '@/lib/db'
+import { cachedPayload } from '@/lib/payload-cache'
 import { assertCan, can, type Actor } from '@/lib/permissions'
 import {
   AUDIT_ACTIONS,
@@ -394,8 +395,16 @@ async function toAdminDetail(exam: ExamRow): Promise<AdminExamDetail> {
 
 // ---------- Public reads (§38 public app; §14/§15 server-side scope) ----------
 
-/** Country exam directory: ACTIVE exams of one ACTIVE country (§38). */
+/** Country exam directory: ACTIVE exams of one ACTIVE country (§38).
+ * §29: public + user-independent → 60s in-memory TTL (the census-cache
+ * precedent; see src/lib/payload-cache.ts for the two environments it
+ * serves — the India corpus made this walk expensive enough to matter). */
 export async function getPublicExams(query: PublicExamListQuery): Promise<PublicExamListResult> {
+  const cacheKey = `exams:public-list:${query.country ?? 'default'}:${query.language ?? 'default'}:${query.q ?? ''}:${query.page}:${query.pageSize}`
+  return cachedPayload(cacheKey, () => loadPublicExams(query))
+}
+
+async function loadPublicExams(query: PublicExamListQuery): Promise<PublicExamListResult> {
   const { countryRow, country, languageCode } = await resolvePublicContext(query)
 
   const where: Prisma.ExamWhereInput = {

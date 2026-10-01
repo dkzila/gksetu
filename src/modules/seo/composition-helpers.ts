@@ -15,6 +15,7 @@ import type { KnowledgeUnit } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
   buildCanonicalUrl,
+  findConfiguredCountryStatusByIso,
   getPublicCountry,
   LocaleError,
   resolveLocaleContext,
@@ -64,10 +65,10 @@ export async function resolveReaderContext(input: {
 
   const [publicCountry, countryRow] = await Promise.all([
     getPublicCountry(resolution.country.isoCode),
-    db.country.findUnique({
-      where: { isoCode: resolution.country.isoCode },
-      select: { id: true, status: true },
-    }),
+    // §29: snapshot-served {id, status} — the live findUnique paid a pooler
+    // round-trip for immutable configuration data on EVERY composition
+    // (three times per exam page); the snapshot is the same truth.
+    findConfiguredCountryStatusByIso(resolution.country.isoCode),
   ])
   if (!publicCountry || !countryRow) {
     throw new SeoError('COUNTRY_NOT_FOUND', 'Country not available')

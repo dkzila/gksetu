@@ -35,6 +35,7 @@ import { useToast } from '@/hooks/use-toast'
 import { AppSidebar } from '@/components/home/app-sidebar'
 import { ConsoleView } from '@/components/home/console-view'
 import { EventView } from '@/components/home/event-view'
+import { ExamDirectoryView } from '@/components/home/exam-directory-view'
 import { ExamView } from '@/components/home/exam-view'
 import { HomepageView } from '@/components/home/homepage-view'
 import { SiteFooter } from '@/components/home/site-footer'
@@ -404,6 +405,23 @@ export default function GKSetuApp() {
     },
     [config, route]
   )
+
+  // The public exam directory (…/exams/) — the India exam corpus surface.
+  const openExamDirectory = useCallback(() => {
+    if (!config || !route) return
+    navigateRoute(
+      {
+        view: 'exam-directory',
+        countryIso: route.countryIso,
+        language: route.language,
+        topicSlug: null,
+        unitSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+      },
+      config
+    )
+  }, [config, route])
 
   // §16 current-affairs event page (…/current-affairs/{slug}/) — P6-S2.
   const openEvent = useCallback(
@@ -966,6 +984,14 @@ export default function GKSetuApp() {
           <NotificationsView onOpenPath={openPath} onGoHome={goHome} onSignIn={goSignIn} />
         ) : route.view === 'feedback' ? (
           <MyFeedbackView onOpenPath={openPath} onGoHome={goHome} onSignIn={goSignIn} />
+        ) : route.view === 'exam-directory' ? (
+          <ExamDirectoryView
+            key={`${route.countryIso}:${route.language}`}
+            countryIso={route.countryIso}
+            language={route.language}
+            onOpenExam={openExam}
+            onGoHome={goHome}
+          />
         ) : route.view === 'exam' && route.examSlug ? (
           <ExamView
             key={`${route.countryIso}:${route.language}:${route.examSlug}`}
@@ -1018,6 +1044,7 @@ export default function GKSetuApp() {
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
             onOpenExam={openExam}
+            onBrowseExams={openExamDirectory}
             onOpenPath={openPath}
             onSwitchLanguage={switchLanguage}
             onSignIn={goSignIn}
