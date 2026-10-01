@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Workspaces module: public types (P9-S3)
+ * GKSetu — Workspaces module: public types (P9-S3)
  *
  * Master Plan §43 Phase 9 Session 3 — "country-specific editorial
  * workspaces". §37 client-agnostic DTOs only — wire types stay internal.

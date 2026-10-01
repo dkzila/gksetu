@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §21 collection share control (P8-S1)
+ * GKSetu — the §21 collection share control (P8-S1)
  * Master Plan §21: "Do not expose private saved collections unless explicitly
  * made shareable by the owner" — THIS is the explicit opt-in. PRIVATE → LINK
  * (PATCH /api/collections/{id} { visibility }, one audited operation per

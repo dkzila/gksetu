@@ -1,5 +1,5 @@
 /**
- * GlobIQ — In-memory rate limiting (Master Plan §30: rate limiting).
+ * GKSetu — In-memory rate limiting (Master Plan §30: rate limiting).
  *
  * Deliberately simple sliding-window counters keyed by route + client IP.
  * Sufficient for the single-instance dev/preview stage; §29 (Infrastructure

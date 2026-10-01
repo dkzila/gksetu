@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Taxonomy module: input validation
+ * GKSetu — Taxonomy module: input validation
  * Master Plan §13 (node fields), §37 (explicit validation errors).
  *
  * Slugs are immutable and URL-stable (§16/§36) — they are validated strictly

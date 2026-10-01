@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ dev daemon — detached, self-healing dev server (the documented
+# GKSetu dev daemon — detached, self-healing dev server (the documented
 # P5-S3/P9-S3-followup pattern: a supervisor loop that survives tool-call
 # exits and respawns `next dev` whenever the port goes idle).
 #

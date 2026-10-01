@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P5-S2 phase 2: §10 tombstone fixture + audit rows + follow regression
+# GKSetu — P5-S2 phase 2: §10 tombstone fixture + audit rows + follow regression
 # The tombstone case cannot be produced via the API (retired objects are
 # correctly not savable anymore) — the fixture simulates a PRE-retirement save
 # by inserting the row the API would have written, then asserting the honest

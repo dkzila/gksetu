@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — client auth state (P1-S2)
+ * GKSetu — client auth state (P1-S2)
  *
  * The website consumes the exact same token-based /api/auth endpoints a future
  * mobile app will use (Master Plan §4, §37, §39). The Bearer token is kept in
@@ -199,7 +199,7 @@ export const useAuth = create<AuthStore>()(
       clearError: () => set({ error: null }),
     }),
     {
-      name: 'globiq-auth',
+      name: 'gksetu-auth',
       // Persist only the token — everything else is re-verified server-side.
       partialize: (state) => ({ token: state.token }),
     }

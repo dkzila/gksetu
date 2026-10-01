@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module: the §26 AI-draft service (P9-S1, SERVER-ONLY)
+ * GKSetu — Translations module: the §26 AI-draft service (P9-S1, SERVER-ONLY)
  *
  * This file is imported EXCLUSIVELY by its API route — it is deliberately
  * NEVER re-exported through the module barrel. Client components reach the

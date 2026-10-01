@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: the indexing pipeline (P4-S1)
+ * GKSetu — Search module: the indexing pipeline (P4-S1)
  * Master Plan §17 (search strategy — the pipeline's job is to project public
  * canonical objects into the vendor-neutral index format), §7 (the index
  * holds REPRESENTATIONS of canonical records — unit documents are keyed by

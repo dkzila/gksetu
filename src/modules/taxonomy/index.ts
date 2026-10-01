@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Taxonomy module (Master Plan §28, §43 P1-S4)
+ * GKSetu — Taxonomy module (Master Plan §28, §43 P1-S4)
  *
  * Public interface. Other modules and route handlers import from here only.
  */

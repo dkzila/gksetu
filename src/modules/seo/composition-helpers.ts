@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: shared composition helpers (P4-S2/P4-S3, internal)
+ * GKSetu — SEO module: shared composition helpers (P4-S2/P4-S3, internal)
  *
  * The primitives the discovery compositions (§34 homepage, §33 topic
  * landing, P4-S3 §16 exam page + syllabus-topic page) share: reader-context

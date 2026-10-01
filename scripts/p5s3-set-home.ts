@@ -1,5 +1,5 @@
 /**
- * GlobIQ — P5-S3 suite helper: set a user's home country directly (SQL).
+ * GKSetu — P5-S3 suite helper: set a user's home country directly (SQL).
  * GB is COMING_SOON (§36) so /api/profile refuses it (ACTIVE-only §35 guard
  * — verified separately); the §14 goal-market guard needs a non-IN home to
  * exercise, so the suite flips the test user's homeCountryId here.
@@ -8,9 +8,9 @@
 import { readFileSync } from 'node:fs'
 import { PrismaClient } from '@prisma/client'
 
-const url = readFileSync('.env', 'utf8').match(/GLOBIQ_DATABASE_URL=["']?([^"'\n]+)["']?/)?.[1]
+const url = readFileSync('.env', 'utf8').match(/GKSETU_DATABASE_URL=["']?([^"'\n]+)["']?/)?.[1]
 if (!url) {
-  console.error('GLOBIQ_DATABASE_URL missing')
+  console.error('GKSETU_DATABASE_URL missing')
   process.exit(1)
 }
 const prisma = new PrismaClient({ datasources: { db: { url } } })

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — saves client types (P5-S2)
+ * GKSetu — saves client types (P5-S2)
  *
  * Client mirrors of the /api/saves + /api/collections contracts (§37 — the
  * same payloads a future mobile client consumes, §39). Hand-written so the

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save: domain service (P5-S1 — the FOLLOW half)
+ * GKSetu — Follow & Save: domain service (P5-S1 — the FOLLOW half)
  * Master Plan §6 (UserFollow), §9 (explicit personalisation signal — never
  * proof of intent beyond personalisation), §10 (follow vs save separation),
  * §11 (followed exams are the union engine's future input), §14 (personalised

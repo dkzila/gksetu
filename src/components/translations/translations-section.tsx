@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Translations section (P9-S1)
+ * GKSetu — Translations section (P9-S1)
  *
  * The console's §18 Translator/Localiser working surface: the translation
  * links with their two resolved ends and the §36 drift derivation (synced

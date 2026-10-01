@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save module: SAVE-half input validation (P5-S2)
+ * GKSetu — Follow & Save module: SAVE-half input validation (P5-S2)
  * Master Plan §10 (savable object vocabulary — content objects, NOT exams/
  * topics: those are follows), §37 (explicit field errors), §39 (the mobile
  * client sends the same shapes).

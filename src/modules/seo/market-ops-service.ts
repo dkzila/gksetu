@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: country-specific SEO/indexing operations (P9-S4)
+ * GKSetu — SEO module: country-specific SEO/indexing operations (P9-S4)
  *
  * Master Plan §43 Phase 9 Session 4 — "Implement country-specific
  * SEO/indexing operations", over:

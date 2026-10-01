@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge: canonical reading-page service (P2-S5; the §22
+ * GKSetu — Knowledge: canonical reading-page service (P2-S5; the §22
  * exam-coverage layer filled in P3-S5)
  * Master Plan §22 (the knowledge page assembles: quick fact + deeper
  * explanation + related concepts + sources + exam coverage), §7 (the page is

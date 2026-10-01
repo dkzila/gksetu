@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: ContentItem + revision DTOs (P2-S2)
+ * GKSetu — Knowledge module: ContentItem + revision DTOs (P2-S2)
  * Master Plan §6 (ContentItem row: knowledge_unit_id, language, format, title,
  * body, status), §7 (representation of a canonical record — never re-entered
  * facts), §19 (published content immutable at the revision level), §22

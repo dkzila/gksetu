@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Freshness rules section (P6-S5)
+ * GKSetu — Freshness rules section (P6-S5)
  *
  * The console's surface for the automated freshness/archive rules (Master
  * Plan §12 step 6 — the lifecycle machine's automated direction; §17 —

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale: domain service
+ * GKSetu — Country & Locale: domain service
  * Master Plan §14 (country first-class, India default root market), §15 (geo
  * is a routing signal; data scoping happens server-side), §16 (canonical URL
  * generation), §35 (per-country language exposure, data-driven i18n), §37

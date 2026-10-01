@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Following view (P5-S1, #/following)
+ * GKSetu — the Following view (P5-S1, #/following)
  * Master Plan §9 (explicit signals, reversible), §10 (follow vs save),
  * §11 note (followed exams feed the combined queue from P5-S4), §31 (the
  * account-control surface over followed data — review and unfollow), §16
@@ -108,8 +108,8 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Following | GlobIQ',
-    description: 'Your followed exams and topics — the personalisation signals behind your GlobIQ feed.',
+    title: 'Following | GKSetu',
+    description: 'Your followed exams and topics — the personalisation signals behind your GKSetu feed.',
     noindex: true,
   })
 
@@ -206,7 +206,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             Your follows live behind sign-in
           </CardTitle>
           <CardDescription>
-            Following exams and topics is how GlobIQ learns what to surface for you — the combined
+            Following exams and topics is how GKSetu learns what to surface for you — the combined
             queue, feeds and dashboard all build on your follows.
           </CardDescription>
         </CardHeader>
@@ -216,7 +216,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             Sign in to see your follows
           </Button>
           <Button variant="ghost" size="sm" className="gap-2 text-zinc-500" onClick={onGoHome}>
-            Browse GlobIQ instead
+            Browse GKSetu instead
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </CardContent>
@@ -328,7 +328,7 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             </CardTitle>
             <CardDescription>
               Open an exam page (e.g. UPSC Civil Services) or any GK topic hub and press
-              “Follow”. Follows are personalisation signals — they shape what GlobIQ surfaces
+              “Follow”. Follows are personalisation signals — they shape what GKSetu surfaces
               for you, and you can unfollow anytime.
             </CardDescription>
           </CardHeader>

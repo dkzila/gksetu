@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save module: public DTOs
+ * GKSetu — Follow & Save module: public DTOs
  * Master Plan §6 (UserFollow row), §9 (explicit personalisation signals),
  * §10 (Follow and Save — deliberately separate concepts), §11 (the union
  * engine's input signal), §14 (country scoping), §37 (client-agnostic

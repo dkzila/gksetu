@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P5-S5 HTTP assertion suite (personalisation explanations & controls)
+# GKSetu — P5-S5 HTTP assertion suite (personalisation explanations & controls)
 # Master Plan §9 (layered, explainable, reversible — the inventory IS the
 # explanation surface), §10 (saves quarantined from signals), §31 (the
 # account-control surface incl. the explicit reset), §35 (labels), §36
@@ -131,7 +131,7 @@ check "inventory after unfollow → total 8 (§31 live shrink)" "8" "$(printf '%
 
 # ---------- §36 honest statuses: deactivate a goal exam, read the inventory ----------
 ADMIN_LOGIN=$(curl -s -X POST "$BASE/api/auth/login" -H 'Content-Type: application/json' \
-  -d '{"email":"admin@globiq.dev","password":"GlobIQ-Dev-Admin-1"}')
+  -d '{"email":"admin@gksetu.dev","password":"GKSetu-Dev-Admin-1"}')
 ADMIN_TOKEN=$(printf '%s' "$ADMIN_LOGIN" | json "d['data']['grant']['token']")
 if [ -n "$ADMIN_TOKEN" ]; then
   AUTH_ADMIN="Authorization: Bearer $ADMIN_TOKEN"

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: Question input validation (P7-S2)
+ * GKSetu — Assessment module: Question input validation (P7-S2)
  * Master Plan §23 ("each type has its own schema and validation rules"), §35
  * (language is a code, validated against the country-locale module in the
  * service), §36 (changeSummary provenance on corrections), §37 (explicit

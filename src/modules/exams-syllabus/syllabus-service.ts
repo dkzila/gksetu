@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exams & Syllabus module: SyllabusNode tree service (P3-S2)
+ * GKSetu — Exams & Syllabus module: SyllabusNode tree service (P3-S2)
  * Master Plan §6 (SyllabusNode row: exam_version_id, parent_id, topic_id,
  * depth, priority, notes), §11 (step 3 anchor — the tree ExamMapping expands
  * into canonical KnowledgeUnits once P3-S3 lands), §13 (exams reach the

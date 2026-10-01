@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Market launch lifecycle panel (P9-S2, Master Plan §43 Phase 9
+ * GKSetu — Market launch lifecycle panel (P9-S2, Master Plan §43 Phase 9
  * Session 2 — "country launch configuration").
  *
  * The admin console's launch surface (§38 — platform config management):
@@ -226,7 +226,7 @@ export function LaunchPanel() {
           // B3: tell the app shell to refetch its /api/countries config —
           // the header switcher must reflect the new market state without a
           // full page reload (the shell listens for this event).
-          window.dispatchEvent(new CustomEvent('globiq:locale-config-changed'))
+          window.dispatchEvent(new CustomEvent('gksetu:locale-config-changed'))
           // Refresh the market list (statuses changed).
           const listResponse = await fetch('/api/countries?include=inactive', {
             cache: 'no-store',

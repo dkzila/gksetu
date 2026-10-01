@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: the mastery + revision-queue service (P7-S4)
+ * GKSetu — Assessment module: the mastery + revision-queue service (P7-S4)
  * Master Plan §6 (the MasteryState row), §22 ("Mastery state per Knowledge
  * Unit/topic, derived from TestAttempt history" + "Revision queue using
  * spaced-review principles"), §9 (implicit signal — explainable via the

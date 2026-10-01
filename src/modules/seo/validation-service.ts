@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: the SEO validation layer (P4-S5)
+ * GKSetu — SEO module: the SEO validation layer (P4-S5)
  * Master Plan §43 ("metadata/structured data and SEO validation"), §16 (the
  * URL/SEO architecture this layer polices), §37 (deterministic, explicit
  * results). Every check runs against the REAL services and artifacts — the

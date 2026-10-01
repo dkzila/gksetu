@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §22 scored practice layer (P7-S2, extended P8-S1)
+ * GKSetu — the §22 scored practice layer (P7-S2, extended P8-S1)
  *
  * Master Plan §22 "learn → practice → revise": after the explanatory Q&A
  * layer comes the SCORED half of practice — one-shot MCQ questions rendered

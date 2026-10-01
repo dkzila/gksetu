@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access: password hashing
+ * GKSetu — Identity & Access: password hashing
  * Master Plan §30 (Security): secure authentication without native dependencies.
  *
  * Uses Node's built-in scrypt (memory-hard KDF, OWASP-approved) — no external

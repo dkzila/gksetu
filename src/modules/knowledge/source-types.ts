@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: Source & provenance DTOs (P2-S3)
+ * GKSetu — Knowledge module: Source & provenance DTOs (P2-S3)
  * Master Plan §6 (Source row: id, publisher, URL, publication date, source
  * type), §24 (Source and Trust Model — publisher/name, URL, publication date,
  * retrieved/verified date, source category, editor verification state,
@@ -67,7 +67,7 @@ export interface PublicSourceRef {
   verification: SourceVerificationPublic
   /** When the underlying material was published (null = undated source). */
   publishedAt: string | null
-  /** When GlobIQ editors retrieved it (§24 retrieved/verified date). */
+  /** When GKSetu editors retrieved it (§24 retrieved/verified date). */
   retrievedAt: string
   /** When an editor verified it (null = not currently verified). */
   verifiedAt: string | null

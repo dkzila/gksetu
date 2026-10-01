@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access: bearer token utilities
+ * GKSetu — Identity & Access: bearer token utilities
  * Master Plan §4/§39 (token-based from Phase 1 — apps cannot rely on cookies).
  *
  * Design: opaque high-entropy tokens (not JWTs). Only the SHA-256 hash is
@@ -9,13 +9,13 @@
  */
 import { createHash, randomBytes } from 'node:crypto'
 
-/** Prefix makes GlobIQ tokens recognizable in logs and credential scanners. */
-export const TOKEN_PREFIX = 'globiq_'
+/** Prefix makes GKSetu tokens recognizable in logs and credential scanners. */
+export const TOKEN_PREFIX = 'gksetu_'
 
 /** Session lifetime. Refresh/renewal strategy is intentionally deferred (§41). */
 export const SESSION_TTL_DAYS = 30
 
-/** Generates a new raw token, e.g. `globiq_9f3a…` (256 bits of entropy). */
+/** Generates a new raw token, e.g. `gksetu_9f3a…` (256 bits of entropy). */
 export function generateToken(): string {
   return TOKEN_PREFIX + randomBytes(32).toString('base64url')
 }

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale: admin write validation
+ * GKSetu — Country & Locale: admin write validation
  * Master Plan §37 (explicit validation errors), §16 (URL space is reserved —
  * slugs may never collide with route words or the default market's languages).
  */

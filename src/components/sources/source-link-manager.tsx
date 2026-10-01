@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Source Link Manager (P2-S3)
+ * GKSetu — Source Link Manager (P2-S3)
  *
  * Attach/detach evidence on a content item (§24 claim/content-level
  * attribution). Item scope follows content:manage on the owning unit's

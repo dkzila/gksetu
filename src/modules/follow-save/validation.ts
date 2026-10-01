@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save module: input validation (P5-S1)
+ * GKSetu — Follow & Save module: input validation (P5-S1)
  * Master Plan §9 (explicit signals), §10 (followable object vocabulary),
  * §37 (explicit field errors), §39 (the mobile client sends the same shapes).
  *

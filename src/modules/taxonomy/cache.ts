@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Taxonomy: snapshot cache
+ * GKSetu — Taxonomy: snapshot cache
  * Master Plan §29 (infrastructure evolution): local memory caching now,
  * swappable for a shared store later. The taxonomy is small but read on every
  * country/language-aware surface — reads go through one immutable snapshot and

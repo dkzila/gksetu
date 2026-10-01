@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — App Shell (P4-S2, extended P4-S3)
+ * GKSetu — App Shell (P4-S2, extended P4-S3)
  *
  * The public product surface (§38): the §34 country homepage at the §16 root
  * default, the §33 topic landing pages, the §22 knowledge pages, and — from
@@ -58,7 +58,7 @@ import { navigateHash, useHashRoute } from '@/components/home/hash-router'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
-export default function GlobIQApp() {
+export default function GKSetuApp() {
   // ---------- Locale configuration (the switchers' source of truth) ----------
   const [config, setConfig] = useState<ApiCountry[] | null>(null)
   const [configError, setConfigError] = useState(false)
@@ -75,7 +75,7 @@ export default function GlobIQApp() {
   // Ref-driven by design: the flow never renders anything — it navigates,
   // toasts and writes localStorage — so no state, no cascading renders.
   type MarketChoice = { iso: string; origin: 'geo' | 'user' | 'default' | 'link' }
-  const MARKET_CHOICE_KEY = 'globiq-market'
+  const MARKET_CHOICE_KEY = 'gksetu-market'
   const storeMarketChoice = useCallback((choice: MarketChoice) => {
     try {
       window.localStorage.setItem(MARKET_CHOICE_KEY, JSON.stringify(choice))
@@ -122,8 +122,8 @@ export default function GlobIQApp() {
   // switcher reflects live/paused markets without a full page reload.
   useEffect(() => {
     const handler = () => loadConfig()
-    window.addEventListener('globiq:locale-config-changed', handler)
-    return () => window.removeEventListener('globiq:locale-config-changed', handler)
+    window.addEventListener('gksetu:locale-config-changed', handler)
+    return () => window.removeEventListener('gksetu:locale-config-changed', handler)
   }, [loadConfig])
 
   // P8-S5 §32/§31: the ARRIVAL beacon — ONE fetch per page load, for the
@@ -840,7 +840,7 @@ export default function GlobIQApp() {
             Could not load the country configuration. Refresh the page to retry.
           </div>
         ) : !config || !route ? (
-          <div className="space-y-6" aria-busy="true" aria-label="Loading GlobIQ">
+          <div className="space-y-6" aria-busy="true" aria-label="Loading GKSetu">
             <div className="space-y-3">
               <Skeleton className="h-6 w-64" />
               <Skeleton className="h-10 w-full max-w-xl" />

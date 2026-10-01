@@ -1,5 +1,5 @@
 /**
- * GlobIQ — AI assist module: the §26 model-call layer (P10-S4, SERVER-ONLY)
+ * GKSetu — AI assist module: the §26 model-call layer (P10-S4, SERVER-ONLY)
  *
  * The standing AI constraints (found live in P9-S1/P9-S3, twice): the z-ai
  * SDK is backend-only and this file is imported EXCLUSIVELY by the assist

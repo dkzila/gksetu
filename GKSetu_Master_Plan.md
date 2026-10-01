@@ -1,8 +1,14 @@
-# Next-Gen Global GK & Current Affairs Platform "GlobIQ"
+# Next-Gen Global GK & Current Affairs Platform "GKSetu"
 ## Master Product, Domain, Architecture, SEO & Execution Specification
 
 **Version 2.0 — Final, Consolidated Plan**
-**Platform Name:** GlobIQ
+**Platform Name:** GKSetu
+
+> **Rename note (REBRAND-S1):** the platform was renamed GlobIQ → **GKSetu**
+> (gksetu.com). This file was renamed with it; every § section reference in
+> the codebase points into this same document. The body below is the
+> historical plan record — it reads as authored; its wording is not rewritten
+> (the rename changed the platform's name, not its history).
 
 **Purpose:** A unified global platform that replaces fragmented GK books, magazines, generic current-affairs feeds and exam-specific repetition with one structured, multilingual, personalised knowledge system — for both general knowledge-seekers and exam aspirants, accessible first as a website and later as native apps built on the same APIs.
 

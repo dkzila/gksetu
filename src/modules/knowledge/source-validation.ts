@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: Source input validation (P2-S3)
+ * GKSetu — Knowledge module: Source input validation (P2-S3)
  * Master Plan §24 (provenance fields: publisher, URL, publication date,
  * retrieved/verified date, category; claim/content-level attribution), §37
  * (explicit validation errors), §30 (URL sanity — http(s) only).
@@ -57,7 +57,7 @@ export const createSourceSchema = z.object({
   type: z.enum(SOURCE_TYPES),
   /** When the underlying material was published (§24) — optional (undated data sources exist). */
   publishedAt: dateLike.optional(),
-  /** When GlobIQ editors retrieved it (§24) — defaults to now in the service. */
+  /** When GKSetu editors retrieved it (§24) — defaults to now in the service. */
   retrievedAt: dateLike.optional(),
   notes: z.string().trim().max(2000).optional(),
 })

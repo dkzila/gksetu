@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Personalisation controls view (P5-S5, #/personalisation)
+ * GKSetu — the Personalisation controls view (P5-S5, #/personalisation)
  * Master Plan §9 (personalisation must be layered, EXPLAINABLE and
  * reversible — this page IS the explanation surface: every signal, its
  * effect sentence and its control), §31 (the account-control surface over
@@ -201,9 +201,9 @@ export function ControlsView({
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Your personalisation controls | GlobIQ',
+    title: 'Your personalisation controls | GKSetu',
     description:
-      'Why your GlobIQ looks the way it does — every personalisation signal, its effect, and its control.',
+      'Why your GKSetu looks the way it does — every personalisation signal, its effect, and its control.',
     noindex: true,
   })
 
@@ -248,7 +248,7 @@ export function ControlsView({
         })
         const payload = (await response.json()) as Envelope<unknown>
         if (payload.status === 'ok') {
-          toast({ title: 'Signal removed', description: `${signal.label} no longer shapes your GlobIQ.` })
+          toast({ title: 'Signal removed', description: `${signal.label} no longer shapes your GKSetu.` })
           await fetchInventory()
         } else {
           toast({ title: 'Could not remove', description: payload.error?.message, variant: 'destructive' })
@@ -345,7 +345,7 @@ export function ControlsView({
               Your personalisation
             </CardTitle>
             <CardDescription>
-              Why your GlobIQ looks the way it does — every signal with its effect and its control,
+              Why your GKSetu looks the way it does — every signal with its effect and its control,
               reviewable and reversible at any time.
             </CardDescription>
           </CardHeader>
@@ -414,7 +414,7 @@ export function ControlsView({
           )}
         </div>
         <p className="max-w-3xl text-sm leading-relaxed text-zinc-600">
-          Personalisation on GlobIQ is layered, explainable and reversible. This page lists every
+          Personalisation on GKSetu is layered, explainable and reversible. This page lists every
           signal you have declared, shows exactly what each one does to your dashboard, and gives
           you a control for each — plus one reset that clears everything at once.
         </p>
@@ -439,7 +439,7 @@ export function ControlsView({
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2 text-base">
                 <Layers className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                How your GlobIQ is built
+                How your GKSetu is built
               </CardTitle>
               <CardDescription>
                 The standing rules — computed fresh on every visit, never stored.

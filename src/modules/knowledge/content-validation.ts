@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: ContentItem input validation (P2-S2, extended
+ * GKSetu — Knowledge module: ContentItem input validation (P2-S2, extended
  * P6-S2 for event representations)
  * Master Plan §23 ("each type has its own schema and validation rules — avoid
  * a single unstructured blob"), §35 (language is a code, validated against

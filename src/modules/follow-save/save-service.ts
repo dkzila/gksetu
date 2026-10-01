@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save: the SAVE-half domain service (P5-S2)
+ * GKSetu — Follow & Save: the SAVE-half domain service (P5-S2)
  * Master Plan §6 (SavedItem/Collection rows), §7 (one canonical record, many
  * representations — the save points at the canonical object so updates never
  * duplicate), §10 (Save is retrieval/bookmarking, NEVER a recommendation

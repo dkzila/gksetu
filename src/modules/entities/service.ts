@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Entities domain service (P6-S3)
+ * GKSetu — Entities domain service (P6-S3)
  * Master Plan §6 (Entity row: id, type, canonical name, aliases, country),
  * §12 step 3 (attach entities to CurrentEvents — the attach/detach lives in
  * the current-affairs service on the event; this module owns the registry),

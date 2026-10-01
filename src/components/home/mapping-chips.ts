@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — §8 vocabulary chips shared by the P4-S3 exam/syllabus views
+ * GKSetu — §8 vocabulary chips shared by the P4-S3 exam/syllabus views
  * (the same labels/styles the console's exam page uses — one vocabulary,
  * every surface). Depth ladder, priority, question likelihood, relevance
  * and the §8 effective period rendered consistently.

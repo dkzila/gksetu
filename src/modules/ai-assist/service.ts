@@ -1,5 +1,5 @@
 /**
- * GlobIQ — AI assist: the §26 service (P10-S4, SERVER-ONLY)
+ * GKSetu — AI assist: the §26 service (P10-S4, SERVER-ONLY)
  *
  * Imported EXCLUSIVELY by /api/ai-assist/[task] — pulls the z-ai SDK through
  * ./ai-model (the off-barrel constraint). Three assists, all judgment-over-
@@ -75,7 +75,7 @@ export async function classifyAssist(
   const candidateLines = candidates.map((c, i) => `${i + 1}. ${c.path} (slug: ${c.slug})`).join('\n')
   const reply = await completeJson(
     [
-      'You are an editorial assistant for GlobIQ, an exam-preparation knowledge platform.',
+      'You are an editorial assistant for GKSetu, an exam-preparation knowledge platform.',
       'Task: rank the BEST taxonomy topic nodes for the draft content below.',
       'Hard rules:',
       '1. Choose ONLY from the numbered candidate nodes — never invent a node.',
@@ -149,7 +149,7 @@ export async function mappingAssist(
   const candidateLines = candidates.map((c, i) => `${i + 1}. ${c.path} (slug: ${c.slug})`).join('\n')
   const reply = await completeJson(
     [
-      'You are an editorial assistant for GlobIQ, an exam-preparation knowledge platform.',
+      'You are an editorial assistant for GKSetu, an exam-preparation knowledge platform.',
       'Task: suggest which syllabus topics of this exam the knowledge unit should map to (§8 — exam mapping is a relationship with a required depth).',
       'Hard rules:',
       '1. Choose ONLY from the numbered syllabus nodes — never invent a node.',
@@ -237,7 +237,7 @@ export async function dedupAssist(
     .join('\n')
   const reply = await completeJson(
     [
-      'You are an editorial assistant for GlobIQ. Task: judge which existing knowledge units are likely DUPLICATES of a proposed new unit (§7 — one canonical unit per piece of knowledge; duplicates fragment mappings and mastery).',
+      'You are an editorial assistant for GKSetu. Task: judge which existing knowledge units are likely DUPLICATES of a proposed new unit (§7 — one canonical unit per piece of knowledge; duplicates fragment mappings and mastery).',
       'Hard rules:',
       '1. Judge ONLY the numbered existing units — never invent one.',
       '2. A likely duplicate means the same underlying knowledge (not merely the same broad topic).',

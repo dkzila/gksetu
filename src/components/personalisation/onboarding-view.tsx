@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Onboarding view (P5-S3, #/onboarding)
+ * GKSetu — the Onboarding view (P5-S3, #/onboarding)
  * Master Plan §6 (User personalisation dimensions + UserGoal/Profile), §9
  * (explicit signals — declared goals/subjects, changeable at any time), §13/
  * §14 (home-market exams; GLOBAL topics any market), §31 (skipping is a
@@ -110,9 +110,9 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Set up your learning profile | GlobIQ',
+    title: 'Set up your learning profile | GKSetu',
     description:
-      'Tell GlobIQ which exams and subjects you are preparing for — the explicit goal behind your personalised feed.',
+      'Tell GKSetu which exams and subjects you are preparing for — the explicit goal behind your personalised feed.',
     noindex: true,
   })
 
@@ -200,7 +200,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
   const goToExams = useCallback(() => {
     setStepError(null)
     if (!countryIso.trim()) {
-      setStepError('Pick your home country — GlobIQ personalises by your market.')
+      setStepError('Pick your home country — GKSetu personalises by your market.')
       return
     }
     setStep(2)
@@ -216,7 +216,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     if (!token || !profile) return
     setStepError(null)
     if (!countryIso.trim()) {
-      setStepError('Pick your home country — GlobIQ personalises by your market.')
+      setStepError('Pick your home country — GKSetu personalises by your market.')
       return
     }
     // PATCH only what changed (§37 — no needless writes).
@@ -289,7 +289,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
       await useAuth.getState().refreshUser()
       toast({
         title: 'Learning profile ready',
-        description: `${selectedExams.size} exam(s) · ${selectedTopics.size} subject(s) — your goal drives what GlobIQ surfaces.`,
+        description: `${selectedExams.size} exam(s) · ${selectedTopics.size} subject(s) — your goal drives what GKSetu surfaces.`,
       })
       onDone()
     } catch {
@@ -344,7 +344,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
               Set up your learning profile
             </CardTitle>
             <CardDescription>
-              Tell GlobIQ which exams and subjects you are preparing for — the explicit goal behind
+              Tell GKSetu which exams and subjects you are preparing for — the explicit goal behind
               your personalised feed. Sign in to start.
             </CardDescription>
           </CardHeader>
@@ -386,7 +386,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
           </button>
         </div>
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          {profile?.goal ? 'Update your learning profile' : 'Tell GlobIQ your goal'}
+          {profile?.goal ? 'Update your learning profile' : 'Tell GKSetu your goal'}
         </h1>
         <p className="max-w-2xl text-sm text-zinc-600">
           Four quick steps — your market, the exams you are preparing for, the subjects you care
@@ -440,10 +440,10 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                 {step === 4 && 'Step 4 — Your level & pace'}
               </CardTitle>
               <CardDescription>
-                {step === 1 && 'Your market decides which exams and languages GlobIQ offers you.'}
+                {step === 1 && 'Your market decides which exams and languages GKSetu offers you.'}
                 {step === 2 && `Active exams in ${currentCountry?.name ?? 'your market'} — pick any number (or none yet).`}
                 {step === 3 && `Global subjects and your country's own. Up to ${MAX_TOPICS}.`}
-                {step === 4 && 'Optional — a self-declared level and pace helps GlobIQ shape difficulty later.'}
+                {step === 4 && 'Optional — a self-declared level and pace helps GKSetu shape difficulty later.'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -650,7 +650,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                         {LEVEL_LABELS.ADVANCED}
                       </label>
                     </RadioGroup>
-                    <p className="text-xs text-zinc-500">Optional — leave unset and GlobIQ stays neutral.</p>
+                    <p className="text-xs text-zinc-500">Optional — leave unset and GKSetu stays neutral.</p>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-3">

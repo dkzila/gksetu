@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Workspaces module (Master Plan §28, §43 P9-S3)
+ * GKSetu — Workspaces module (Master Plan §28, §43 P9-S3)
  *
  * Public interface — the CLIENT-SAFE face: reads (list/detail) + §32 metrics
  * + validation + types. The §20 provisioning (createStaff/updateStaff) is

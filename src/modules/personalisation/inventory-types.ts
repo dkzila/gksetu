@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation: explanations & controls DTOs (P5-S5)
+ * GKSetu — Personalisation: explanations & controls DTOs (P5-S5)
  * Master Plan §9 (personalisation must be layered, EXPLAINABLE and reversible
  * — this inventory IS the explanation surface: every signal with its effect
  * sentence and its control), §10 (saves are retrieval, NEVER a signal — the

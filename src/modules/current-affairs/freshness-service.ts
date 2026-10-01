@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs: the freshness/archive rule service (P6-S5)
+ * GKSetu — Current Affairs: the freshness/archive rule service (P6-S5)
  * Master Plan §12 step 6 (the lifecycle machine gains its AUTOMATED
  * direction: age windows drive emerging → developing → stable → archived —
  * the exact "P6-S5's automated freshness rules will drive the → ARCHIVED

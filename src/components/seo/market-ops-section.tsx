@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Country-specific SEO operations section (P9-S4)
+ * GKSetu — Country-specific SEO operations section (P9-S4)
  *
  * The §16/§32 operations surface: per-market indexable inventory (the SAME
  * census the public sitemap serves — one truth), the hreflang cluster view,

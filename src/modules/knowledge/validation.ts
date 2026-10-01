@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: input validation
+ * GKSetu — Knowledge module: input validation
  * Master Plan §6 (fields), §11 (dedup by canonical identity), §14 (explicit
  * country scope), §23 (content types), §36 (immutable slug — URL-stable),
  * §37 (explicit validation errors).

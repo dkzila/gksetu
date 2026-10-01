@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Workspaces: §20 staff provisioning (P9-S3)
+ * GKSetu — Workspaces: §20 staff provisioning (P9-S3)
  *
  * The HEAVY half of the module — deliberately OFF the module barrel and
  * imported ONLY by the provisioning routes (the P9-S1 ai-service precedent):
@@ -40,7 +40,7 @@ const ONE_TIME_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz234567
  */
 function generateOneTimePassword(): string {
   const body = Array.from({ length: 12 }, () => ONE_TIME_ALPHABET[randomInt(ONE_TIME_ALPHABET.length)]).join('')
-  return `GlobIQ-${body}9`
+  return `GKSetu-${body}9`
 }
 
 // ---------- §20 denial audit (the qnaDenied precedent) ----------

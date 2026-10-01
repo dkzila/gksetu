@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation module: public DTOs (P5-S3)
+ * GKSetu — Personalisation module: public DTOs (P5-S3)
  * Master Plan §6 (UserGoal/Profile row: user_id, exam_ids, topics, level,
  * language, preferences), §9 (explicit personalisation signal — declared
  * goals drive personalisation ONLY, never legal/commercial consequence),

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Knowledge Explorer (P2-S1)
+ * GKSetu — Knowledge Explorer (P2-S1)
  *
  * Public browse surface for VERIFIED units under one canonical topic (Master
  * Plan §5 hierarchy, §7 canonical record, §14/§15 server-side country scoping,
@@ -196,7 +196,7 @@ export function KnowledgeExplorer({ country, language, topic, topics, onTopicCha
               {detail.canonicalSummary}
             </p>
           )}
-          <div className="globiq-scroll mt-4 max-h-72 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-zinc-700">
+          <div className="gksetu-scroll mt-4 max-h-72 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-zinc-700">
             {detail.canonicalBody}
           </div>
           <p className="mt-4 text-xs text-zinc-400">

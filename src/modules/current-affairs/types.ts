@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs module: DTOs (P6-S1)
+ * GKSetu — Current Affairs module: DTOs (P6-S1)
  * Master Plan §6 (CurrentEvent row: id, event_date, location, entities→P6-S3,
  * summary, significance, lifecycle_state), §12 (Current Affairs Architecture —
  * event-centric, not article-centric), §14 (GLOBAL/COUNTRY scope), §16 (the

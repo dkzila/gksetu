@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Content Admin Console (P2-S2)
+ * GKSetu — Content Admin Console (P2-S2)
  *
  * Privileged surface for ContentItem CRUD + lifecycle + revisions (Master Plan
  * §7 one rendering per unit×language×format, §19 published content immutable
@@ -825,7 +825,7 @@ export function ContentAdmin({ unit, event, countryLanguages }: AdminProps) {
                 Live revision — what the public sees (rev {selected.liveRevision.revisionNumber})
               </p>
               <p className="mt-1.5 text-sm font-medium">{selected.liveRevision.title}</p>
-              <div className="globiq-scroll mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
+              <div className="gksetu-scroll mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
                 {selected.liveRevision.body}
               </div>
               <p className="mt-2 text-[10px] text-zinc-400">
@@ -1095,7 +1095,7 @@ export function ContentAdmin({ unit, event, countryLanguages }: AdminProps) {
                               Change note: {revision.changeSummary}
                             </p>
                           )}
-                          <div className="globiq-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
+                          <div className="gksetu-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
                             {revision.body}
                           </div>
                           <p className="mt-1.5 text-[10px] text-zinc-400">

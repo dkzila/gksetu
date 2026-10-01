@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Follows section (P5-S1)
+ * GKSetu — Follows section (P5-S1)
  *
  * The console's verification surface for the follow half of the Follow & Save
  * module: documents the /api/follows contract (§37 — the same endpoints a

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — document head management (P4-S4, extended P4-S5)
+ * GKSetu — document head management (P4-S4, extended P4-S5)
  * Master Plan §16: canonical tags prevent duplicate parameter pages;
  * `hreflang` between equivalent language pages; search/console/private
  * surfaces are noindex. The hook mirrors the ACTIVE view's server-built §16
@@ -16,7 +16,7 @@
  * the same contract as the hreflang links), and <html lang> tracking the
  * rendered language.
  *
- * Managed elements are marked data-globiq-seo so nothing outside this module
+ * Managed elements are marked data-gksetu-seo so nothing outside this module
  * is ever touched (Next.js's own metadata stays untouched — SSR-rendered
  * metas are adopted, never duplicated, and restored on view switch).
  */
@@ -48,10 +48,10 @@ export interface SeoHeadInput {
   jsonLd?: ApiJsonLdNode[] | null
 }
 
-const MANAGED = 'data-globiq-seo'
+const MANAGED = 'data-gksetu-seo'
 
 /** The site-wide social card (§16 metadata asset; og:image fallback everywhere). */
-const OG_IMAGE = { path: '/og.png', width: 1216, height: 640, alt: 'GlobIQ — one canonical knowledge system' }
+const OG_IMAGE = { path: '/og.png', width: 1216, height: 640, alt: 'GKSetu — one canonical knowledge system' }
 
 /** JSON-LD keys whose string values are §16 paths → resolved against the origin. */
 const PATH_KEYS = new Set(['url', '@id', 'item', 'image'])
@@ -161,7 +161,7 @@ function upsertJsonLd(graph: ApiJsonLdNode[], origin: string) {
   })
 }
 
-/** Removes every GlobIQ-managed head element; adopted SSR elements are
+/** Removes every GKSetu-managed head element; adopted SSR elements are
  * restored to their original attributes (React keeps ownership of them). */
 function clearManaged() {
   document.querySelectorAll(`[${MANAGED}]`).forEach((element) => {
@@ -219,7 +219,7 @@ export function useSeoHead(input: SeoHeadInput | null) {
         if (input.description) upsertMeta('property', 'og:description', input.description)
         upsertMeta('property', 'og:type', input.ogType ?? 'website')
         upsertMeta('property', 'og:url', `${origin}${seo.canonicalPath}`)
-        upsertMeta('property', 'og:site_name', 'GlobIQ')
+        upsertMeta('property', 'og:site_name', 'GKSetu')
         upsertMeta('property', 'og:locale', ogLocale(input.language, territory))
         upsertMetaMulti(
           'property',

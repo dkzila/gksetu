@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Workspaces: country-specific editorial workspaces (P9-S3)
+ * GKSetu — Workspaces: country-specific editorial workspaces (P9-S3)
  *
  * Master Plan §43 Phase 9 Session 3 — "Implement country-specific editorial
  * workspaces", over:

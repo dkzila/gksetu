@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Exams & Versions section (P3-S1)
+ * GKSetu — Exams & Versions section (P3-S1)
  *
  * Master Plan §6 (Exam/ExamVersion), §14 (every exam belongs to exactly one
  * country — scope enforced server-side, this UI only renders server truth),
@@ -668,7 +668,7 @@ export function ExamsSection() {
                 <Skeleton className="h-16 w-full" />
               </div>
             ) : result && result.exams.length > 0 ? (
-              <div className="max-h-96 space-y-2 overflow-y-auto pr-1 globiq-scroll" role="list" aria-label="Exams">
+              <div className="max-h-96 space-y-2 overflow-y-auto pr-1 gksetu-scroll" role="list" aria-label="Exams">
                 {result.exams.map((exam) => (
                   <button
                     key={exam.id}

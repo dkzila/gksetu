@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module: public types (P9-S1)
+ * GKSetu — Translations module: public types (P9-S1)
  * Master Plan §6 (Translation row), §18 (Translator/Localiser), §19 step 5
  * (localisation review), §26 (AI-assisted drafts with provenance + review
  * gates), §35 (translations reference canonical content, never duplicate

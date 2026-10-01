@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Phase Roadmap
+ * GKSetu — Phase Roadmap
  * Derived from Master Plan §40 (Phase Plan) and §43 (Detailed Session Roadmap).
  * P0 outputs are frozen inside the Master Plan document itself (v2.0).
  */

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Notifications: DTOs (P8-S2)
+ * GKSetu — Notifications: DTOs (P8-S2)
  * Master Plan §27 (the expanded notifications contract): channel-agnostic
  * triggers (email, web-push, mobile-push — the last modeled now, implemented
  * once the app exists, §39), trigger types covering the four reader moments

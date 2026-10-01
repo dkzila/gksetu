@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Profile view (P5-S3, #/profile)
+ * GKSetu — the Profile view (P5-S3, #/profile)
  * Master Plan §6 (User personalisation dimensions + UserGoal/Profile), §9
  * (explicit signals, changeable at any time), §31 (the account-control
  * surface over personal data — review, edit, remove; no silent destruction),
@@ -100,7 +100,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Your profile | GlobIQ',
+    title: 'Your profile | GKSetu',
     description: 'Your profile, declared learning goal and personalisation data controls.',
     noindex: true,
   })
@@ -403,7 +403,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                   <Target className="mx-auto h-6 w-6 text-zinc-300" aria-hidden="true" />
                   <p className="mt-2 text-sm font-medium text-zinc-700">No goal declared yet</p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Declare which exams and subjects you are preparing for — GlobIQ personalises
+                    Declare which exams and subjects you are preparing for — GKSetu personalises
                     around it.
                   </p>
                   <Button
@@ -594,7 +594,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                   <span className="text-zinc-500"> · {formatWhen(profile.user.onboardingCompletedAt)}</span>
                 )}
                 {onboarding === 'SKIPPED' && 'Setup skipped — declare a goal whenever you are ready.'}
-                {onboarding === 'PENDING' && 'Setup pending — a two-minute guided flow personalises GlobIQ for you.'}
+                {onboarding === 'PENDING' && 'Setup pending — a two-minute guided flow personalises GKSetu for you.'}
                 {onboarding === 'IN_PROGRESS' && 'Setup in progress — pick up where you left off.'}
               </p>
               <Button
@@ -621,7 +621,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Your personalisation data
               </CardTitle>
               <CardDescription>
-                Everything GlobIQ stores about you is reviewable and reversible — every
+                Everything GKSetu stores about you is reviewable and reversible — every
                 signal, its effect and its control lives on one page.
               </CardDescription>
             </CardHeader>

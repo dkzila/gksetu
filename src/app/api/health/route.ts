@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic'
  * follows the environment — Supabase pooler or the local sandbox Postgres).
  */
 function databaseHost(): string {
-  const url = process.env.GLOBIQ_DATABASE_URL ?? ''
+  const url = process.env.GKSETU_DATABASE_URL ?? ''
   if (url.includes('supabase')) return 'Supabase'
   if (/^postgres(ql)?:\/\//.test(url)) return 'PostgreSQL (local)'
   return 'PostgreSQL'

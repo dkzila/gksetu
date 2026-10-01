@@ -1,5 +1,5 @@
 // ============================================================================
-// GlobIQ — Content Feedback / Quality Loop (P8-S3, Master Plan §25)
+// GKSetu — Content Feedback / Quality Loop (P8-S3, Master Plan §25)
 // ----------------------------------------------------------------------------
 // "No knowledge platform can guarantee zero errors at scale — the trust model
 // must include a way for users and editors to catch and correct them quickly."

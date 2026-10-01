@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P6-S2 HTTP assertion suite (current-affairs publishing & revisions)
+# GKSetu — P6-S2 HTTP assertion suite (current-affairs publishing & revisions)
 # Master Plan §12 step 4 (language-specific ContentItems for events), §7 (one
 # rendering per anchor × language × format), §19 (the review workflow rides the
 # same ContentItem machinery; scheduled releases materialize), §24 (item-level
@@ -36,10 +36,10 @@ check_http() { # check_http <label> <expected> <method> <url> [curl args…]
 json() { python3 -c "import json,sys;d=json.load(sys.stdin);print(eval(sys.argv[1], {'d': d}))" "$1" 2>/dev/null; }
 
 # ---------- Fixtures (seeded Supabase data) ----------
-ADMIN_EMAIL="admin@globiq.dev";        ADMIN_PASS="GlobIQ-Dev-Admin-1"
-IN_ADMIN_EMAIL="in-admin@globiq.dev";  IN_ADMIN_PASS="GlobIQ-Dev-INAdmin-1"
-WRITER_EMAIL="writer-in@globiq.dev";   WRITER_PASS="GlobIQ-Dev-Writer-1"
-WRITER_HI_EMAIL="writer-hi@globiq.dev"; WRITER_HI_PASS="GlobIQ-Dev-Writer-Hi-1"
+ADMIN_EMAIL="admin@gksetu.dev";        ADMIN_PASS="GKSetu-Dev-Admin-1"
+IN_ADMIN_EMAIL="in-admin@gksetu.dev";  IN_ADMIN_PASS="GKSetu-Dev-INAdmin-1"
+WRITER_EMAIL="writer-in@gksetu.dev";   WRITER_PASS="GKSetu-Dev-Writer-1"
+WRITER_HI_EMAIL="writer-hi@gksetu.dev"; WRITER_HI_PASS="GKSetu-Dev-Writer-Hi-1"
 CHANDRAYAAN="chandrayaan-3-vikram-landing"     # GLOBAL/STABLE — en (2 revs) + hi published
 SPACE_DAY="national-space-day-notification"    # COUNTRY/IN DEVELOPING — en published, hi DRAFT
 G20="g20-new-delhi-leaders-declaration"        # COUNTRY/IN ARCHIVED — en published (historical page)

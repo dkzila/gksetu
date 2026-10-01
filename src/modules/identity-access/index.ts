@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access module (Master Plan §28, §43 P1-S2; profile
+ * GKSetu — Identity & Access module (Master Plan §28, §43 P1-S2; profile
  * self-service added in P5-S3)
  *
  * Public interface of the module. Other modules and route handlers import

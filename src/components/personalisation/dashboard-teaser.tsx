@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the homepage's personalised entry (P5-S4, §34)
+ * GKSetu — the homepage's personalised entry (P5-S4, §34)
  *
  * "The authenticated homepage progressively becomes personalised
  * (combined-exam queue, followed topics, due revisions) without losing the

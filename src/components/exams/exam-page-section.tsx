@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Exam Page Section (P3-S5)
+ * GKSetu — Exam Page Section (P3-S5)
  *
  * The exam-facing page (Master Plan §43 P3-S5 "exam-facing pages and coverage
  * display"; §16's `/{country-or-root}/{language?}/exams/{exam-slug}/` pattern
@@ -765,7 +765,7 @@ export function ExamPageSection() {
                   </p>
                 )}
                 <ul
-                  className="globiq-scroll max-h-[36rem] space-y-4 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 p-3 pr-3 sm:p-4"
+                  className="gksetu-scroll max-h-[36rem] space-y-4 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 p-3 pr-3 sm:p-4"
                   aria-label="Syllabus coverage tree"
                 >
                   {coverage.nodes.map((node, index) => (

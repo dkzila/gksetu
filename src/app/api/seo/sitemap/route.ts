@@ -5,7 +5,7 @@
  * the full triple ?country={iso}&language={code}&type={kind} → that segment's
  * URL set. Served at /sitemap.xml via a next.config rewrite (the standard
  * crawler location); absolute URLs resolve against the request origin (or
- * GLOBIQ_PUBLIC_BASE_URL when configured).
+ * GKSETU_PUBLIC_BASE_URL when configured).
  */
 import { errors } from '@/lib/api/response'
 import { checkRateLimit, clientIp, RATE_LIMITS } from '@/lib/rate-limit'

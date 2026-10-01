@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale module: public DTOs
+ * GKSetu — Country & Locale module: public DTOs
  * Master Plan §14 (country first-class), §16 (URL architecture), §35 (i18n).
  *
  * Every country exposes ONLY its own configured languages — there is no

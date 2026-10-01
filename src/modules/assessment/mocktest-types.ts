@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: MockTest + TestAttempt DTOs + lifecycle (P7-S3)
+ * GKSetu — Assessment module: MockTest + TestAttempt DTOs + lifecycle (P7-S3)
  * Master Plan §6 (MockTest row: title, scope (topic/exam/syllabus_node),
  * question_ids[], duration_minutes, pass_criteria, exam_version_id optional,
  * status; TestAttempt row: user_id, mock_test_id, started_at, submitted_at,

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Syllabus Topic View (P4-S3, Master Plan §16/§33)
+ * GKSetu — Syllabus Topic View (P4-S3, Master Plan §16/§33)
  *
  * The indexable syllabus-topic page at …/exams/{exam}/syllabus/{topic}/,
  * rendered from GET /api/exams/{ref}/syllabus/{topic}: where a canonical
@@ -113,7 +113,7 @@ export function SyllabusView({
     () =>
       page
         ? {
-            title: `${page.topic.label} — ${page.exam.name} syllabus | GlobIQ`,
+            title: `${page.topic.label} — ${page.exam.name} syllabus | GKSetu`,
             description: `${page.topic.label} in the ${page.exam.name} syllabus: ${page.stats.placementCount} placement(s), ${page.stats.requirementCount} requirement(s) — with links to the full topic guides.`,
             seo: page.seo,
             language: page.language.code,

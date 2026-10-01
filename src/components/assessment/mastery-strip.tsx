@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §22 knowledge-page mastery strip (P7-S4)
+ * GKSetu — the §22 knowledge-page mastery strip (P7-S4)
  *
  * The "your mastery" layer of the §22 learn → practice → revise flow: on the
  * knowledge page, beside the QnA + practice layers, the signed-in reader

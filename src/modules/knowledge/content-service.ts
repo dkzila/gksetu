@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge: ContentItem + revision domain service (P2-S2)
+ * GKSetu — Knowledge: ContentItem + revision domain service (P2-S2)
  * Master Plan §6 (ContentItem row), §7 (representation of a canonical record —
  * the fact is NEVER re-entered, only rendered), §19 (published content is
  * immutable at the revision level; corrections create new revisions), §22

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Content Feedback: input validation (P8-S3)
+ * GKSetu — Content Feedback: input validation (P8-S3)
  * Master Plan §37 (explicit validation errors, stable contracts). Inputs:
  * the public report submission (§25: object + reason + what's wrong —
  * anonymous-friendly, the §21 ShareEvent precedent), the editorial queue

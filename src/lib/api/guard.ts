@@ -1,5 +1,5 @@
 /**
- * GlobIQ — API auth guards (Master Plan §20, §30, §37, §38)
+ * GKSetu — API auth guards (Master Plan §20, §30, §37, §38)
  *
  * Thin helpers that bridge identity-access authentication and the shared
  * permission layer with the API error envelope. Route handlers call these

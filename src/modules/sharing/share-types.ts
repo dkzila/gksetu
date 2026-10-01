@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Sharing: DTOs (P8-S1)
+ * GKSetu — Sharing: DTOs (P8-S1)
  * Master Plan §21 (a share action on every shareable canonical page; stable
  * share URLs; share cards identify the content title, topic and platform
  * branding; private collections only when the owner explicitly opts in;

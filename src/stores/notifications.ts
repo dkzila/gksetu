@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — client notification-count state (P8-S2)
+ * GKSetu — client notification-count state (P8-S2)
  *
  * The header bell's lean source: the PURE /api/notifications/stats read
  * (never the delivering GET /api/notifications — refreshing the badge must

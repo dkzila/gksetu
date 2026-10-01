@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Taxonomy Explorer (P1-S4)
+ * GKSetu — Taxonomy Explorer (P1-S4)
  *
  * Public surface for the taxonomy module (Master Plan §13): the living tree
  * with localised labels and country-scope badges, topic search across names,
@@ -295,7 +295,7 @@ export function TaxonomyExplorer({ country, language }: TaxonomyExplorerProps) {
                   Nothing matched in {country.name}. Try another term.
                 </p>
               ) : (
-                <ul className="mt-2 max-h-64 space-y-1 overflow-y-auto globiq-scroll">
+                <ul className="mt-2 max-h-64 space-y-1 overflow-y-auto gksetu-scroll">
                   {results.map((result) => (
                     <li key={result.slug}>
                       <button
@@ -338,7 +338,7 @@ export function TaxonomyExplorer({ country, language }: TaxonomyExplorerProps) {
                   No taxonomy branches visible in this market yet.
                 </p>
               ) : (
-                <ul role="tree" aria-label="Taxonomy tree" className="max-h-[28rem] overflow-y-auto globiq-scroll">
+                <ul role="tree" aria-label="Taxonomy tree" className="max-h-[28rem] overflow-y-auto gksetu-scroll">
                   {tree?.map((node) => (
                     <TreeRow
                       key={node.slug}
@@ -455,7 +455,7 @@ export function TaxonomyExplorer({ country, language }: TaxonomyExplorerProps) {
                 {detail.children.length === 0 ? (
                   <p className="mt-1 text-xs text-zinc-400">Leaf node</p>
                 ) : (
-                  <ul className="mt-1.5 max-h-40 space-y-1 overflow-y-auto globiq-scroll">
+                  <ul className="mt-1.5 max-h-40 space-y-1 overflow-y-auto gksetu-scroll">
                     {detail.children.map((child) => (
                       <li key={child.slug}>
                         <button

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §21 share action button (P8-S1)
+ * GKSetu — the §21 share action button (P8-S1)
  * Master Plan §21: "a share action must exist on every shareable canonical
  * page" — this button is that action, one per surface (knowledge page,
  * current-affairs item, topic hub, exam page, practice question, eligible

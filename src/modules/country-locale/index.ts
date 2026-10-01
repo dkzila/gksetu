@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale module (Master Plan §28, §43 P1-S3)
+ * GKSetu — Country & Locale module (Master Plan §28, §43 P1-S3)
  *
  * Public interface. Other modules and route handlers import from here only.
  */

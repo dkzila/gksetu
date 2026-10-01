@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save module (Master Plan §28, §43 P5-S1…S2)
+ * GKSetu — Follow & Save module (Master Plan §28, §43 P5-S1…S2)
  *
  * Public interface. Other modules and route handlers import from here only.
  * Internal files may change without notice (modular monolith rule, §28).

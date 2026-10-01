@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Workspaces: request validation (P9-S3)
+ * GKSetu — Workspaces: request validation (P9-S3)
  *
  * Master Plan §37 (explicit validation errors, client-agnostic).
  * The §35 market×language rule and the §20 scope guards are enforced in the

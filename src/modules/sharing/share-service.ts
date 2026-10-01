@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Sharing: the §21 domain service (P8-S1)
+ * GKSetu — Sharing: the §21 domain service (P8-S1)
  * Master Plan §21 (sharing system): a share action on every shareable
  * canonical page; stable share URLs; share cards identifying the content
  * title, topic and platform branding; the Web Share API + copy-link contract
@@ -710,7 +710,7 @@ export async function getSharedCollection(id: string): Promise<SharedCollection>
     name: collection.name,
     itemCount: collection._count.items,
     items,
-    note: `A collection its owner chose to share via link — public GlobIQ content only. The owner can stop sharing anytime (§31); saved items stay theirs alone (§21).`,
+    note: `A collection its owner chose to share via link — public GKSetu content only. The owner can stop sharing anytime (§31); saved items stay theirs alone (§21).`,
   }
 }
 

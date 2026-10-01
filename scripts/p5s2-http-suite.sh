@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P5-S2 HTTP assertion suite (saves & collections)
+# GKSetu — P5-S2 HTTP assertion suite (saves & collections)
 # English-only per user directive. Run with the dev server on :3000.
 set -u
 BASE="http://localhost:3000"
@@ -28,9 +28,9 @@ REG_NOC=$(curl -s -X POST "$BASE/api/auth/register" -H 'Content-Type: applicatio
   -d "{\"email\":\"p5s2-noc-$SUFFIX@test.dev\",\"password\":\"TestPass-123\",\"name\":\"P5S2 Countryless Reader\"}")
 NOC_TOKEN=$(printf '%s' "$REG_NOC" | json "d['data']['grant']['token']")
 check "register IN reader" "ok" "$(printf '%s' "$REG_IN" | json "d['status']")"
-check "IN token extracted" "globiq" "$(printf '%s' "$IN_TOKEN" | cut -c1-6)"
+check "IN token extracted" "gksetu" "$(printf '%s' "$IN_TOKEN" | cut -c1-6)"
 check "register countryless reader" "ok" "$(printf '%s' "$REG_NOC" | json "d['status']")"
-check "countryless token extracted" "globiq" "$(printf '%s' "$NOC_TOKEN" | cut -c1-6)"
+check "countryless token extracted" "gksetu" "$(printf '%s' "$NOC_TOKEN" | cut -c1-6)"
 
 CHANDRA_UNIT="chandrayaan-3-landing-2023"
 CHANDRA_FACT="cmuhwu7k50040j16uvg9x98va"     # PUBLISHED FACT_CARD

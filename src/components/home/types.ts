@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — discovery surface client types (P4-S2)
+ * GKSetu — discovery surface client types (P4-S2)
  *
  * Client mirrors of the public API contracts (§37 — the same payloads a
  * future mobile client consumes, §39). Kept hand-written (not imported from

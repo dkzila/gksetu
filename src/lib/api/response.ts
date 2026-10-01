@@ -1,5 +1,5 @@
 /**
- * GlobIQ — API Response Conventions
+ * GKSetu — API Response Conventions
  * Master Plan §37 (API Principles): client-agnostic, explicit validation errors,
  * stable envelope. All /api routes use these helpers so the future mobile app
  * can consume identical responses (§4, §39).

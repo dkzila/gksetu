@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §22 mock-test runner (P7-S3)
+ * GKSetu — the §22 mock-test runner (P7-S3)
  *
  * Master Plan §6/§22: a MockTest is a timed, scoped, composed assembly of
  * published Questions; the TestAttempt engine runs it — start → timed run →
@@ -236,7 +236,7 @@ function formatCountdown(remainingMs: number): string {
 
 /** The per-test sessionStorage slot for the last attempt id (refresh restore). */
 function attemptStorageKey(testSlug: string): string {
-  return `globiq-mocktest-attempt:${testSlug}`
+  return `gksetu-mocktest-attempt:${testSlug}`
 }
 
 // ---------- Props ----------
@@ -312,7 +312,7 @@ export function TestRunnerView({
     () =>
       quickMode
         ? {
-            title: 'Quick mock — combined-exam mode | GlobIQ',
+            title: 'Quick mock — combined-exam mode | GKSetu',
             description:
               'A timed quick mock generated from your followed exams — one question per topic, scored server-side, feeding your mastery and revision schedule.',
             language,
@@ -320,7 +320,7 @@ export function TestRunnerView({
           }
         : detail
           ? {
-              title: `${detail.title} — mock test | GlobIQ`,
+              title: `${detail.title} — mock test | GKSetu`,
               description: `A timed ${detail.durationMinutes}-minute mock test: ${detail.questionCount} questions, pass mark ${detail.passPercent}%. ${
                 detail.scope.type === 'EXAM'
                   ? `Scoped to ${detail.scope.exam?.name ?? 'its exam'} (${detail.scope.exam?.versionLabel ?? ''}).`
@@ -1417,7 +1417,7 @@ export function TestRunnerView({
               Sign in to start
             </Button>
             <Button variant="ghost" size="sm" className="gap-2 text-zinc-500" onClick={onGoHome}>
-              Browse GlobIQ instead
+              Browse GKSetu instead
               <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             </Button>
           </CardContent>

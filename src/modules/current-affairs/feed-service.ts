@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs: the exam-aware feed service (P6-S4)
+ * GKSetu — Current Affairs: the exam-aware feed service (P6-S4)
  * Master Plan §12 step 5 (current affairs flows "into a followed exam's
  * combined queue the moment it's mapped" — this service is that flow's feed
  * surface: events matched to exams through the SAME §13 syllabus-node topic

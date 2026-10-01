@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — AI assist section (P10-S4)
+ * GKSetu — AI assist section (P10-S4)
  *
  * The §26 assist console: classification (rank taxonomy nodes for a draft),
  * exam mapping (rank syllabus nodes for a unit), dedup (near-duplicate unit

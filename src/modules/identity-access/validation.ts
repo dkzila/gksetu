@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access: request validation
+ * GKSetu — Identity & Access: request validation
  * Master Plan §37 (API Principles): explicit validation errors, client-agnostic.
  */
 import { z } from 'zod'

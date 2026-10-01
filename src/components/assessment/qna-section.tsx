@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — QnA section (P7-S1)
+ * GKSetu — QnA section (P7-S1)
  *
  * The console's workspace surface for the QnA learning layer (Master Plan
  * §6 QnA row, §7 a Q&A is a REPRESENTATION of a canonical KnowledgeUnit —
@@ -523,7 +523,7 @@ export function QnaSection() {
               <ShieldAlert className="mx-auto mb-2 h-5 w-5 text-zinc-400" aria-hidden="true" />
               Managing Q&amp;A requires an editorial role (ADMIN / COUNTRY_ADMIN / WRITER — the
               qna:manage permission, §38). Sign in as{' '}
-              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@globiq.dev</code> to
+              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@gksetu.dev</code> to
               exercise the workflow.
             </p>
           ) : (
@@ -822,7 +822,7 @@ export function QnaSection() {
                         <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                         Live revision — what the public sees (rev {selected.liveRevision.revisionNumber})
                       </p>
-                      <div className="globiq-scroll mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
+                      <div className="gksetu-scroll mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
                         {selected.liveRevision.answerBody}
                       </div>
                       <p className="mt-2 text-[10px] text-zinc-400">
@@ -1090,7 +1090,7 @@ export function QnaSection() {
                                       Change note: {revision.changeSummary}
                                     </p>
                                   )}
-                                  <div className="globiq-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
+                                  <div className="gksetu-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
                                     {revision.answerBody}
                                   </div>
                                   <p className="mt-1.5 text-[10px] text-zinc-400">

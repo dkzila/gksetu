@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Dashboard view (P5-S4, #/dashboard)
+ * GKSetu — the Dashboard view (P5-S4, #/dashboard)
  * Master Plan §22 (the dashboard: what matters now — the combined-exam
  * queue; due revisions/weak-topic feedback arrive with the P7 assessment
  * system and stay honest quiet states), §9 (layered, explainable,
@@ -236,7 +236,7 @@ export function DashboardView({
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Your dashboard | GlobIQ',
+    title: 'Your dashboard | GKSetu',
     description: 'What matters now: your combined-exam queue, followed subjects and recent saves.',
     noindex: true,
   })

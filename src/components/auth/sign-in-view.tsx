@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the sign-in / create-account page (#/signin).
+ * GKSetu — the sign-in / create-account page (#/signin).
  *
  * The ONE public authentication surface: a clean, focused page that
  * replaces the old "console → account section" journey for users.
@@ -164,7 +164,7 @@ export function SignInView({ onGoHome }: SignInViewProps) {
                   <a href="#/dashboard">Go to your dashboard</a>
                 </Button>
                 <Button asChild variant="outline">
-                  <a href="#/">Browse GlobIQ</a>
+                  <a href="#/">Browse GKSetu</a>
                 </Button>
               </div>
             </CardContent>
@@ -242,7 +242,7 @@ export function SignInView({ onGoHome }: SignInViewProps) {
           {/* Forms panel */}
           <div className="p-6 sm:p-10">
             <h1 className="text-xl font-bold tracking-tight text-zinc-900">
-              Welcome to GlobIQ
+              Welcome to GKSetu
             </h1>
             <p className="mt-1 text-sm text-zinc-500">
               Sign in to continue — or create a free account in seconds.
@@ -357,7 +357,7 @@ export function SignInView({ onGoHome }: SignInViewProps) {
             </Tabs>
 
             <p className="mt-6 text-center text-xs leading-relaxed text-zinc-400">
-              By continuing you agree to use GlobIQ honestly — one account per
+              By continuing you agree to use GKSetu honestly — one account per
               learner. Your email is never shared.
             </p>
           </div>

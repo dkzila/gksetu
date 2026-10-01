@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — SEO infrastructure section (P4-S4, extended P4-S5)
+ * GKSetu — SEO infrastructure section (P4-S4, extended P4-S5)
  *
  * The §16 verification surface: the live robots.txt + sitemap index (fetched
  * from their standard crawler locations — the next.config rewrites), the
@@ -407,7 +407,7 @@ export function SeoSection() {
                   {status.origin}
                 </p>
                 <p className="text-[11px] text-zinc-500">
-                  request-derived (or GLOBIQ_PUBLIC_BASE_URL)
+                  request-derived (or GKSETU_PUBLIC_BASE_URL)
                 </p>
               </div>
             </div>

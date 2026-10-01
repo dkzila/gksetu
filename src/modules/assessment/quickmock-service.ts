@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: the §22 combined-exam quick mock (P7-S5)
+ * GKSetu — Assessment module: the §22 combined-exam quick mock (P7-S5)
  *
  * "A combined mock test can be scoped to 'everything relevant across my
  * followed exams'" (§22) — implemented as a GENERATED attempt: the §11 union

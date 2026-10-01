@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §25 "Report an issue" action (P8-S3)
+ * GKSetu — the §25 "Report an issue" action (P8-S3)
  * Master Plan §25: "Every public content object has a lightweight 'Report an
  * issue' action" — this button is that action, anchored wherever readers
  * meet the five reportable object types (knowledge unit, content

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale: canonical URL builder (§16)
+ * GKSetu — Country & Locale: canonical URL builder (§16)
  *
  * The router must generate canonical URLs from country + language + object
  * identity — never by concatenating arbitrary user input (§16). These pure

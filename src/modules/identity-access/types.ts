@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access: public DTOs
+ * GKSetu — Identity & Access: public DTOs
  * Master Plan §37: client-agnostic shapes; never leak internal secrets
  * (passwordHash, tokenHash) or raw tokens in user/session payloads.
  */

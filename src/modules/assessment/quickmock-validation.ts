@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: combined-exam quick-mock validation (P7-S5)
+ * GKSetu — Assessment module: combined-exam quick-mock validation (P7-S5)
  * Master Plan §37 (explicit, typed validation errors — the same zod
  * discipline as every module), §39 (the contract a mobile client codes
  * against). The start body carries the §11 scope choice (COMBINED vs one

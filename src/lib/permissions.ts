@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Shared permission layer (Master Plan §18, §20, §30, §37, §38)
+ * GKSetu — Shared permission layer (Master Plan §18, §20, §30, §37, §38)
  *
  * The single place that answers "may actor X do action Y on object Z".
  * Route guards and module services both funnel through these functions, so

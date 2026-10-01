@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation: domain service (P5-S3 — goals & onboarding)
+ * GKSetu — Personalisation: domain service (P5-S3 — goals & onboarding)
  * Master Plan §6 (UserGoal/Profile: user_id, exam_ids, topics, level,
  * language, preferences; User.onboarding state), §9 (explicit signals —
  * declared goals/subjects; changeable at any time; NEVER proof the user

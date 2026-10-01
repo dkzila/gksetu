@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Analytics module: the §32 read-model contracts (P8-S4/P8-S5)
+ * GKSetu — Analytics module: the §32 read-model contracts (P8-S4/P8-S5)
  * Master Plan §32 (Analytics — "Measure whether the product solves
  * relevance, not merely pageviews"), §28 (module ownership: this module is a
  * READ-ONLY aggregator — every store it reads is owned and written by the

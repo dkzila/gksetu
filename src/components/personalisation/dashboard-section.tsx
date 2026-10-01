@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Dashboard section (P5-S4)
+ * GKSetu — Dashboard section (P5-S4)
  *
  * The console's verification surface for the dashboard/feed half of the
  * Personalisation module: documents the /api/dashboard contract (§37/§39),

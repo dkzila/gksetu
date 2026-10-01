@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module (Master Plan §28, §43 P4-S1)
+ * GKSetu — Search module (Master Plan §28, §43 P4-S1)
  *
  * Public interface. Other modules and route handlers import from here only.
  *

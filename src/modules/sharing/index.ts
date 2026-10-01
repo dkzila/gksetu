@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Sharing module (Master Plan §28, §43 P8-S1)
+ * GKSetu — Sharing module (Master Plan §28, §43 P8-S1)
  *
  * Public interface. Route handlers and other modules import from here only.
  * Master Plan §21 (sharing system): share actions, stable share URLs, share

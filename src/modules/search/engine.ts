@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: the engine abstraction (P4-S1)
+ * GKSetu — Search module: the engine abstraction (P4-S1)
  * Master Plan §17 ("a dedicated search engine may be introduced when scale
  * requires it — the domain model must NOT depend on a specific search
  * vendor") and §29 (initial approach: "Application search or managed search

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Entities registry console section (P6-S3)
+ * GKSetu — Entities registry console section (P6-S3)
  *
  * The §38 console surface for the Entity reference registry (§6 Entity row:
  * person/place/organisation/concept — canonical records, never content).

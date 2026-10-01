@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Identity & Access: domain service
+ * GKSetu — Identity & Access: domain service
  * Master Plan §6 (User), §20 (login & access), §30 (security), §37 (API
  * principles), §39 (token-based from Phase 1), §43 (P1-S2 scope).
  *
@@ -207,7 +207,7 @@ export async function updateMyProfile(
       const iso = input.homeCountryIso.toUpperCase()
       const country = await findActiveCountryByIso(iso)
       if (!country) {
-        throw new AuthError('INVALID_COUNTRY', `Country "${iso}" is not available on GlobIQ yet`)
+        throw new AuthError('INVALID_COUNTRY', `Country "${iso}" is not available on GKSetu yet`)
       }
       data.homeCountryId = country.id
       homeCountryId = country.id
@@ -288,7 +288,7 @@ export async function registerUser(
     const iso = input.homeCountryIso.toUpperCase()
     const country = await findActiveCountryByIso(iso)
     if (!country) {
-      throw new AuthError('INVALID_COUNTRY', `Country "${iso}" is not available on GlobIQ yet`)
+      throw new AuthError('INVALID_COUNTRY', `Country "${iso}" is not available on GKSetu yet`)
     }
     homeCountryId = country.id
   }
@@ -432,7 +432,7 @@ const THROTTLE_LAST_USED_MS = 60_000
 export async function authenticateRequest(request: Request): Promise<AuthContext | null> {
   const header = request.headers.get('authorization') ?? ''
   const [scheme, token] = header.split(' ')
-  if (scheme?.toLowerCase() !== 'bearer' || !token?.startsWith('globiq_')) return null
+  if (scheme?.toLowerCase() !== 'bearer' || !token?.startsWith('gksetu_')) return null
 
   const session = await db.authSession.findUnique({
     where: { tokenHash: hashToken(token) },

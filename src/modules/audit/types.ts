@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Audit module: public DTOs
+ * GKSetu — Audit module: public DTOs
  * Master Plan §6 (AuditLog), §19, §30, §36, §37 (client-agnostic shapes).
  */
 

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Analytics module (P8-S4/S5 per the §43 roadmap)
+ * GKSetu — Analytics module (P8-S4/S5 per the §43 roadmap)
  * Master Plan §28 module registry entry: "Relevance & learning metrics,
  * editorial analytics". P8-S4 delivered the §32 PRODUCT half — the six
  * product families (Discovery, Relevance, Learning, Retention, Content,

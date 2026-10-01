@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: combined-exam quick-mock DTOs (P7-S5)
+ * GKSetu — Assessment module: combined-exam quick-mock DTOs (P7-S5)
  * Master Plan §22 ("Combined-exam mode with deduplication (Section 11),
  * applied identically to the learning queue and the mock-test scope — e.g. a
  * combined mock test can be scoped to 'everything relevant across my followed

@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P5-S4 HTTP assertion suite (personalised dashboard/feed)
+# GKSetu — P5-S4 HTTP assertion suite (personalised dashboard/feed)
 # Master Plan §9 (layered, explainable signals), §10 (saves = retrieval only),
 # §11 (combined queue via the union engine, home market §14), §16 (paths),
 # §35 (labels), §36 (honest statuses), §37 (envelope), §46.3 (computed, never stored).
@@ -157,7 +157,7 @@ check "countryless dashboard → isHomeMarket false" "False" "$(printf '%s' "$DN
 
 # ---------- §36 honest read: an exam going INACTIVE leaves the queue, stays in signals ----------
 ADMIN_LOGIN=$(curl -s -X POST "$BASE/api/auth/login" -H 'Content-Type: application/json' \
-  -d '{"email":"admin@globiq.dev","password":"GlobIQ-Dev-Admin-1"}')
+  -d '{"email":"admin@gksetu.dev","password":"GKSetu-Dev-Admin-1"}')
 ADMIN_TOKEN=$(printf '%s' "$ADMIN_LOGIN" | json "d['data']['grant']['token']")
 check "admin login" "ok" "$(printf '%s' "$ADMIN_LOGIN" | json "d['status']")"
 AUTH_ADMIN="Authorization: Bearer $ADMIN_TOKEN"

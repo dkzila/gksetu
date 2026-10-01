@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Modular Monolith Module Registry
+ * GKSetu — Modular Monolith Module Registry
  * Master Plan §28 (Recommended Technical Boundary): 19 logical modules with
  * explicit interfaces and clear ownership, starting in one deployable app.
  *

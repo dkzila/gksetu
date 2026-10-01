@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the save toggle button (P5-S2)
+ * GKSetu — the save toggle button (P5-S2)
  * Master Plan §10 (Save is an explicit retrieval/bookmark action — it NEVER
  * feeds recommendations; the mirror affordance to Follow on content objects),
  * §31 (reversible — unsave anytime), §38 (one auth surface: signed-out clicks

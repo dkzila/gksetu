@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Analytics module: the §32 editorial/SEO/growth service (P8-S5)
+ * GKSetu — Analytics module: the §32 editorial/SEO/growth service (P8-S5)
  *
  * The second half of the §32 table: the Editorial family (time to publish,
  * review cycle, correction cycle — the §19/§25 audit trail), the SEO family

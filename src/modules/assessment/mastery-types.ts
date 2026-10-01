@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: mastery + revision-queue DTOs (P7-S4)
+ * GKSetu — Assessment module: mastery + revision-queue DTOs (P7-S4)
  * Master Plan §6 (the MasteryState row: "Per-user, per-Knowledge-Unit/topic
  * proficiency — user_id, knowledge_unit_id, mastery_score, last_reviewed_at,
  * next_review_at"), §22 ("Mastery state per Knowledge Unit/topic, derived

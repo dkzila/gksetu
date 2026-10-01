@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: per-page SEO block (P4-S4)
+ * GKSetu — SEO module: per-page SEO block (P4-S4)
  * Master Plan §16: one canonical URL per indexable representation, generated
  * from country + language + object identity (never from user input);
  * `hreflang` between equivalent language pages; canonical tags prevent
@@ -70,7 +70,7 @@ export function buildPageSeo(input: {
 
 /** Resolves the public site origin for absolute sitemap/robots URLs. */
 export function resolveSiteOrigin(request: Request): string {
-  const configured = process.env.GLOBIQ_PUBLIC_BASE_URL
+  const configured = process.env.GKSETU_PUBLIC_BASE_URL
   if (configured) return configured.replace(/\/+$/, '')
 
   const host =

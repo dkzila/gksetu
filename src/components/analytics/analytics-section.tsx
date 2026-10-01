@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Analytics section (P8-S4 + P8-S5 — the complete §32 table)
+ * GKSetu — Analytics section (P8-S4 + P8-S5 — the complete §32 table)
  *
  * The console's §32 surface in two reads over one shared window:
  * the six product families (P8-S4 — Discovery, Relevance, Learning,

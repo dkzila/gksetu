@@ -1,5 +1,5 @@
 /**
- * GlobIQ — P1-S1 + P1-S2 + P1-S4 + P2-S1 + P2-S2 + P2-S3 Seed
+ * GKSetu — P1-S1 + P1-S2 + P1-S4 + P2-S1 + P2-S2 + P2-S3 Seed
  * Master Plan §45 (Seed Data Strategy): intentionally small but structurally rich.
  *
  * P1-S1 scope: languages + countries (India = default root market, English default).
@@ -52,15 +52,15 @@ import { QUICK_MOCK_PASS_PERCENT } from '../src/modules/assessment/quickmock-typ
 const prisma = new PrismaClient()
 
 // Dev-only admin credentials (documented in docs/sessions/P1-S2.md).
-const DEV_ADMIN_EMAIL = 'admin@globiq.dev'
-const DEV_ADMIN_PASSWORD = 'GlobIQ-Dev-Admin-1'
-const DEV_IN_ADMIN_EMAIL = 'in-admin@globiq.dev'
-const DEV_IN_ADMIN_PASSWORD = 'GlobIQ-Dev-INAdmin-1'
+const DEV_ADMIN_EMAIL = 'admin@gksetu.dev'
+const DEV_ADMIN_PASSWORD = 'GKSetu-Dev-Admin-1'
+const DEV_IN_ADMIN_EMAIL = 'in-admin@gksetu.dev'
+const DEV_IN_ADMIN_PASSWORD = 'GKSetu-Dev-INAdmin-1'
 // P2-S4 (§18/§20): dev WRITER accounts — one all-language, one Hindi-scoped.
-const DEV_WRITER_IN_EMAIL = 'writer-in@globiq.dev'
-const DEV_WRITER_IN_PASSWORD = 'GlobIQ-Dev-Writer-1'
-const DEV_WRITER_HI_EMAIL = 'writer-hi@globiq.dev'
-const DEV_WRITER_HI_PASSWORD = 'GlobIQ-Dev-Writer-Hi-1'
+const DEV_WRITER_IN_EMAIL = 'writer-in@gksetu.dev'
+const DEV_WRITER_IN_PASSWORD = 'GKSetu-Dev-Writer-1'
+const DEV_WRITER_HI_EMAIL = 'writer-hi@gksetu.dev'
+const DEV_WRITER_HI_PASSWORD = 'GKSetu-Dev-Writer-Hi-1'
 // P9-S3 (§43 Phase 9 Session 3 — §45 "sample editorial users with scoped
 // roles" for the second/third markets): the FR workspace exercises the full
 // country-specific shape (owner + language-scoped writer); GB is the honest
@@ -69,12 +69,12 @@ const DEV_WRITER_HI_PASSWORD = 'GlobIQ-Dev-Writer-Hi-1'
 // readiness carries the warning. Nothing here is provisioned by API — the
 // seed is the §45 dev fixture; production staff provisioning rides the §20
 // surface (POST /api/workspaces/[iso]/staff with one-time credentials).
-const DEV_FR_ADMIN_EMAIL = 'fr-admin@globiq.dev'
-const DEV_FR_ADMIN_PASSWORD = 'GlobIQ-Dev-Fr-Admin-1'
-const DEV_WRITER_FR_EMAIL = 'writer-fr@globiq.dev'
-const DEV_WRITER_FR_PASSWORD = 'GlobIQ-Dev-Writer-Fr-1'
-const DEV_UK_ADMIN_EMAIL = 'uk-admin@globiq.dev'
-const DEV_UK_ADMIN_PASSWORD = 'GlobIQ-Dev-Uk-Admin-1'
+const DEV_FR_ADMIN_EMAIL = 'fr-admin@gksetu.dev'
+const DEV_FR_ADMIN_PASSWORD = 'GKSetu-Dev-Fr-Admin-1'
+const DEV_WRITER_FR_EMAIL = 'writer-fr@gksetu.dev'
+const DEV_WRITER_FR_PASSWORD = 'GKSetu-Dev-Writer-Fr-1'
+const DEV_UK_ADMIN_EMAIL = 'uk-admin@gksetu.dev'
+const DEV_UK_ADMIN_PASSWORD = 'GKSetu-Dev-Uk-Admin-1'
 
 async function main() {
   // ---------- Languages ----------
@@ -4048,7 +4048,7 @@ async function main() {
           objectId: openReport.id,
           objectLabel: 'QnA: अनुच्छेद 32 · hi · Translation issue',
           title: 'Correction report: FR Article 32 QnA (hi)',
-          notes: 'Reported by admin@globiq.dev: the writ of mandamus needs the standard Hindi term उत्प्रेषण.',
+          notes: 'Reported by admin@gksetu.dev: the writ of mandamus needs the standard Hindi term उत्प्रेषण.',
           createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000),
         },
       })

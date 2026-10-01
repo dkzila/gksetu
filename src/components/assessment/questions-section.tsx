@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Questions section (P7-S2)
+ * GKSetu — Questions section (P7-S2)
  *
  * The console's workspace surface for the §22 SCORED practice layer (Master
  * Plan §6 Question row: options / correct_answer / explanation /
@@ -737,7 +737,7 @@ export function QuestionsSection() {
               <ShieldAlert className="mx-auto mb-2 h-5 w-5 text-zinc-400" aria-hidden="true" />
               Managing questions requires an editorial role (ADMIN / COUNTRY_ADMIN / WRITER — the
               question:manage permission, §38). Sign in as{' '}
-              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@globiq.dev</code> to
+              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@gksetu.dev</code> to
               exercise the workflow.
             </p>
           ) : (
@@ -1231,7 +1231,7 @@ export function QuestionsSection() {
                           </li>
                         ))}
                       </ul>
-                      <div className="globiq-scroll mt-2 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
+                      <div className="gksetu-scroll mt-2 max-h-28 overflow-y-auto whitespace-pre-wrap rounded bg-white p-2 text-xs leading-relaxed text-zinc-600">
                         {selected.liveRevision.explanation}
                       </div>
                       <p className="mt-2 text-[10px] text-zinc-400">
@@ -1616,7 +1616,7 @@ export function QuestionsSection() {
                                       </li>
                                     ))}
                                   </ul>
-                                  <div className="globiq-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
+                                  <div className="gksetu-scroll max-h-40 overflow-y-auto whitespace-pre-wrap rounded bg-zinc-50 p-2 text-xs leading-relaxed text-zinc-600">
                                     {revision.explanation}
                                   </div>
                                   <p className="mt-1.5 text-[10px] text-zinc-400">

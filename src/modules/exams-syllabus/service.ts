@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exams & Syllabus: domain service (P3-S1)
+ * GKSetu — Exams & Syllabus: domain service (P3-S1)
  * Master Plan §6 (Exam/ExamVersion rows), §8 (the requirement layer this
  * anchors — ExamMapping arrives P3-S3), §11 (step 2: resolve each exam to its
  * active ExamVersion — `currentVersion` is that resolution), §14/§15 (every

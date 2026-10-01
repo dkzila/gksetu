@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — production site header.
+ * GKSetu — production site header.
  *
  * The public shell's top bar: the brand, the primary product navigation
  * (Home, Current Affairs, Exams, Mock Tests), the country/language
@@ -10,7 +10,7 @@
  * current affairs and exam preparation, not for platform internals.
  */
 
-import { Globe, Languages, MapPin, Menu } from 'lucide-react'
+import { Languages, MapPin, Menu } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -93,18 +93,29 @@ export function SiteHeader({
           <Menu className="h-5 w-5" aria-hidden="true" />
         </Button>
 
-        {/* Brand */}
+        {/* Brand — GKSetu wordmark (REBRAND-S1): "GK" and "Setu" set together
+            as one word in two tones; the badge carries a bridge mark (setu =
+            bridge) over the platform's emerald. */}
         <button
           type="button"
           onClick={onGoHome}
           className="flex min-h-[44px] shrink-0 items-center gap-2.5 text-left"
-          aria-label="GlobIQ home"
+          aria-label="GKSetu home"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500 shadow-sm" aria-hidden="true">
-            <Globe className="h-5 w-5 text-white" />
+            <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M4 15.5h16" />
+              <path d="M6 15.5c1.6-7.4 10.4-7.4 12 0" />
+              <path d="M7.5 15.5v3.5" />
+              <path d="M16.5 15.5v3.5" />
+              <path d="M12 10.5v8.5" />
+            </svg>
           </span>
           <span className="leading-tight">
-            <span className="block text-lg font-bold tracking-tight text-zinc-900">GlobIQ</span>
+            <span className="block text-lg font-extrabold tracking-tight">
+              <span className="text-emerald-700">GK</span>
+              <span className="text-zinc-900">Setu</span>
+            </span>
             <span className="hidden text-[11px] font-medium text-zinc-500 sm:block">
               GK · Current Affairs · Exams
             </span>

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module (P9-S1)
+ * GKSetu — Translations module (P9-S1)
  * Master Plan §6 (the Translation row: source, language, status), §18 (the
  * Translator/Localiser class — manage translations, scope-limited by country
  * + target language), §19 step 5 (the localisation review gate rides the

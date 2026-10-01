@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Taxonomy Admin Console (P1-S4)
+ * GKSetu — Taxonomy Admin Console (P1-S4)
  *
  * Privileged surface for taxonomy CRUD (Master Plan §43 P1-S4, §38 scoped
  * roles, §36 migration-safe changes): the admin tree with all statuses, node
@@ -674,7 +674,7 @@ export function TaxonomyAdmin() {
                 {treeError}
               </p>
             ) : (
-              <ul role="tree" aria-label="Admin taxonomy tree" className="max-h-[32rem] overflow-y-auto globiq-scroll">
+              <ul role="tree" aria-label="Admin taxonomy tree" className="max-h-[32rem] overflow-y-auto gksetu-scroll">
                 {tree?.map((node) => (
                   <AdminTreeRow
                     key={node.id}

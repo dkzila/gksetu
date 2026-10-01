@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 /**
- * GlobIQ — Next.js configuration
+ * GKSetu — Next.js configuration
  *
  * P-SEC (security-audit session): production security headers added. The
  * split is deliberate:

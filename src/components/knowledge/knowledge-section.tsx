@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Knowledge Section (P2-S1)
+ * GKSetu — Knowledge Section (P2-S1)
  *
  * Section shell for the knowledge module on the foundation page: locale bar
  * (country → language, §35) + canonical topic picker (from the public taxonomy

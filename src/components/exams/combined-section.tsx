@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Combined-Exam Engine section (P3-S4)
+ * GKSetu — Combined-Exam Engine section (P3-S4)
  *
  * Master Plan §11 (the multi-exam combination engine — the mechanism that
  * solves "RRB Group D + MP Police Constable at the same time"), §46.3 (a

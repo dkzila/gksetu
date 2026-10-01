@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — My reports view (P8-S3, #/feedback)
+ * GKSetu — My reports view (P8-S3, #/feedback)
  * Master Plan §25/§31: the reporter's side of the quality loop — their own
  * reports with honest outcomes ("resolved — here's how", "dismissed —
  * here's why"). Own-data visibility only: a reporter never sees another

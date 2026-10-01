@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Notifications section (P8-S2)
+ * GKSetu — Notifications section (P8-S2)
  *
  * The console's surface for the §27 notifications engine: documents the API
  * contract (§37/§39), the trigger → category routing (the engine's shared

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Editorial module: EditorialTask DTOs (P2-S4)
+ * GKSetu — Editorial module: EditorialTask DTOs (P2-S4)
  * Master Plan §6 (EditorialTask row: "id, country, language, type, object_id,
  * assignee, status"), §18 (editorial roles — writers work, editors manage),
  * §19 (workflow — every transition audited), §20 (explicit country/language

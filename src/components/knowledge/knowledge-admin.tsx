@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Knowledge Admin Console (P2-S1)
+ * GKSetu — Knowledge Admin Console (P2-S1)
  *
  * Privileged surface for KnowledgeUnit CRUD + lifecycle (Master Plan §6/§7/§11
  * dedup, §36 lifecycle + no silent edits, §38 scoped roles): status-filtered
@@ -484,7 +484,7 @@ export function KnowledgeAdmin() {
           <p className="mb-2 text-xs font-medium text-zinc-500" aria-live="polite">
             {result ? `${result.pagination.total} unit${result.pagination.total === 1 ? '' : 's'}` : '…'}
           </p>
-          <div className="globiq-scroll max-h-[26rem] space-y-2 overflow-y-auto pr-1">
+          <div className="gksetu-scroll max-h-[26rem] space-y-2 overflow-y-auto pr-1">
             {loading && !result ? (
               <>
                 <Skeleton className="h-16 w-full" />
@@ -596,7 +596,7 @@ export function KnowledgeAdmin() {
                   <Textarea
                     id="ku-edit-body" value={body} onChange={(e) => setBody(e.target.value)}
                     disabled={!selectedEditable || !contentEditable}
-                    className="globiq-scroll min-h-32 bg-white text-xs leading-relaxed"
+                    className="gksetu-scroll min-h-32 bg-white text-xs leading-relaxed"
                   />
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

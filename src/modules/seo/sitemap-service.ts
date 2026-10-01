@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: segmented XML sitemap + robots.txt (P4-S4)
+ * GKSetu — SEO module: segmented XML sitemap + robots.txt (P4-S4)
  * Master Plan §16: XML sitemaps segmented by country/language/content type;
  * robots rules prevent admin/editor/private URLs from indexing; one canonical
  * URL per indexable representation (every entry built by buildCanonicalUrl —
@@ -359,8 +359,8 @@ interface CensusCacheStore {
   epoch: number
 }
 
-const censusGlobal = globalThis as typeof globalThis & { __globiqCensusCacheStore?: CensusCacheStore }
-const censusStore: CensusCacheStore = (censusGlobal.__globiqCensusCacheStore ??= {
+const censusGlobal = globalThis as typeof globalThis & { __gksetuCensusCacheStore?: CensusCacheStore }
+const censusStore: CensusCacheStore = (censusGlobal.__gksetuCensusCacheStore ??= {
   inventory: null,
   at: 0,
   loading: null,
@@ -542,7 +542,7 @@ export const ROBOTS_DISALLOW: readonly string[] = [
 
 export function buildRobotsTxt(origin: string): string {
   return [
-    '# GlobIQ — robots.txt (Master Plan §16)',
+    '# GKSetu — robots.txt (Master Plan §16)',
     '# Admin/editor/private surfaces are never indexed; public discovery stays crawlable.',
     'User-agent: *',
     'Allow: /',

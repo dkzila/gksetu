@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge: domain service
+ * GKSetu — Knowledge: domain service
  * Master Plan §6 (KnowledgeUnit row), §7 (canonical semantic record — stored
  * once; representations arrive P2-S2+), §11 (dedup strictly by canonical
  * identity), §14/§15 (explicit country scope, enforced server-side on every

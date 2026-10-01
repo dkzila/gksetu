@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Foundation Console (P1-S1 → P9-S3)
+ * GKSetu — Foundation Console (P1-S1 → P9-S3)
  *
  * The build-verification surface: every capability demo from the prior
  * sessions lives on, reachable behind the app's "Console" link (and the
@@ -158,7 +158,7 @@ export function ConsoleView({ onBackHome }: ConsoleViewProps) {
 
   // §16 (P4-S4): the console is a private verification surface — never indexed.
   useSeoHead({
-    title: 'Foundation console | GlobIQ',
+    title: 'Foundation console | GKSetu',
     description:
       'The build verification surface — every module demo from the session history (noindex, §16).',
     noindex: true,

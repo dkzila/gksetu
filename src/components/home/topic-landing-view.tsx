@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Topic Landing View (P4-S2, Master Plan §33/§16)
+ * GKSetu — Topic Landing View (P4-S2, Master Plan §33/§16)
  *
  * The indexable topic hub at …/gk/{topic-slug}/, rendered from
  * GET /api/topics/{slug}: breadcrumb, header, §33 cluster children, the
@@ -133,7 +133,7 @@ export function TopicLandingView({
     () =>
       landing
         ? {
-            title: `${landing.topic.label} — GK topic hub | GlobIQ`,
+            title: `${landing.topic.label} — GK topic hub | GKSetu`,
             description:
               landing.topic.description ??
               `${landing.topic.label}: ${landing.stats.unitCount} knowledge pages, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,

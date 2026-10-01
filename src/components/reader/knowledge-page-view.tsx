@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Knowledge Page View (P2-S5; the exam-coverage layer filled P3-S5)
+ * GKSetu — Knowledge Page View (P2-S5; the exam-coverage layer filled P3-S5)
  *
  * The §22 reading experience assembled from the canonical model: quick fact →
  * deeper explanation (format-aware, §23) → sources (§24) → related concepts →
@@ -516,7 +516,7 @@ export function KnowledgePageView({
     () =>
       seoInDocument && page
         ? {
-            title: `${page.unit.canonicalName} | GlobIQ`,
+            title: `${page.unit.canonicalName} | GKSetu`,
             description: page.quickFact.body.slice(0, 160),
             seo: page.seo,
             language: page.language.code,

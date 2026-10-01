@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Saved view (P5-S2, #/saved)
+ * GKSetu — the Saved view (P5-S2, #/saved)
  * Master Plan §10 (Save = retrieval into user-defined collections; default
  * "Saved"; tombstones for withdrawn content), §31 (the account-control
  * surface over saved data — review, move, remove, organise), §16 (private
@@ -104,8 +104,8 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
 
   // §16: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Saved | GlobIQ',
-    description: 'Your saved knowledge and content, organised into collections — your personal GlobIQ bookmarks.',
+    title: 'Saved | GKSetu',
+    description: 'Your saved knowledge and content, organised into collections — your personal GKSetu bookmarks.',
     noindex: true,
   })
 
@@ -335,7 +335,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
             Sign in to see your collections
           </Button>
           <Button variant="ghost" size="sm" className="gap-2 text-zinc-500" onClick={onGoHome}>
-            Browse GlobIQ instead
+            Browse GKSetu instead
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </CardContent>
@@ -385,7 +385,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
               Saved
             </h1>
             <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              Your bookmarks across GlobIQ — knowledge pages and published content,
+              Your bookmarks across GKSetu — knowledge pages and published content,
               organised into collections. Saved rows keep pointing at the same content, so
               updates never create duplicates.
             </p>

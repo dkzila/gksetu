@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module: public DTOs (P3-S3/P3-S4/P3-S5)
+ * GKSetu — Exam Mapping module: public DTOs (P3-S3/P3-S4/P3-S5)
  * Master Plan §6 (ExamMapping row), §8 (the requirement layer: relevance,
  * priority, required_depth, expected_scope, question_likelihood, source_basis,
  * effective_period, notes), §11 (step 3: expand a version's tree into its

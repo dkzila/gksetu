@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: public-surface DTOs (P4-S2/P4-S3)
+ * GKSetu — SEO module: public-surface DTOs (P4-S2/P4-S3)
  * Master Plan §33 (SEO landing pages — country GK hubs, evergreen topic
  * pages, topic clusters + internal links; P4-S3: exam pages and syllabus
  * pages), §34 (Homepage Strategy — each country homepage is that country's

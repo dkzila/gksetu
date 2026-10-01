@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the Notifications view (P8-S2, #/notifications)
+ * GKSetu — the Notifications view (P8-S2, #/notifications)
  * Master Plan §27 (the notification center + the preferences surface): every
  * notification carries its EXPLAINABLE reason ("You're getting this because
  * you follow …") with a one-tap mute for the specific follow that caused it
@@ -194,9 +194,9 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
 
   // §16 (P8-S2): the notification center is a private surface — noindex.
   useSeoHead({
-    title: 'Your notifications | GlobIQ',
+    title: 'Your notifications | GKSetu',
     description:
-      'Your GlobIQ notifications — each says why you get it, with a one-tap mute for the follow that caused it.',
+      'Your GKSetu notifications — each says why you get it, with a one-tap mute for the follow that caused it.',
     noindex: true,
   })
 

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Editorial Section (P2-S4)
+ * GKSetu — Editorial Section (P2-S4)
  *
  * The §19 editorial workspace on the foundation page: the EditorialTask board
  * (§6) with server-driven affordances (§20), the §18 role rules made visible
@@ -637,7 +637,7 @@ export function EditorialSection() {
                           <p className="text-xs text-zinc-400">No matching content items.</p>
                         )}
                         {itemPicks && itemPicks.length > 0 && (
-                          <div className="globiq-scroll max-h-36 space-y-1 overflow-y-auto rounded-md border border-zinc-200 bg-white p-1">
+                          <div className="gksetu-scroll max-h-36 space-y-1 overflow-y-auto rounded-md border border-zinc-200 bg-white p-1">
                             {itemPicks.map((pick) => (
                               <button
                                 key={pick.id}

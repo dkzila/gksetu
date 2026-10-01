@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: country homepage composition (P4-S2)
+ * GKSetu — SEO module: country homepage composition (P4-S2)
  * Master Plan §34 (Homepage Strategy — the country's GK/current-affairs
  * index and discovery hub; India is the root default, other countries under
  * their §16 directory; anonymous-first, progressively personalised from P5),

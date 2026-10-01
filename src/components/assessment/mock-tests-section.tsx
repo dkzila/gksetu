@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Mock Tests section (P7-S3)
+ * GKSetu — Mock Tests section (P7-S3)
  *
  * The console's workspace surface for the §22 timed assessment engine (Master
  * Plan §6 MockTest row: a timed, scoped, composed assembly of published
@@ -319,7 +319,7 @@ function QuestionPicker({
         </p>
       ) : (
         <ul
-          className="globiq-scroll max-h-72 space-y-1.5 overflow-y-auto rounded-md border border-zinc-200 bg-white p-1.5"
+          className="gksetu-scroll max-h-72 space-y-1.5 overflow-y-auto rounded-md border border-zinc-200 bg-white p-1.5"
           aria-label="Published questions picker"
           role="list"
         >
@@ -940,7 +940,7 @@ export function MockTestsSection() {
               <ShieldAlert className="mx-auto mb-2 h-5 w-5 text-zinc-400" aria-hidden="true" />
               Managing mock tests requires an editorial role (ADMIN / COUNTRY_ADMIN / WRITER — the
               mocktest:manage permission, §38). Sign in as{' '}
-              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@globiq.dev</code> to
+              <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@gksetu.dev</code> to
               exercise the workflow.
             </p>
           ) : (

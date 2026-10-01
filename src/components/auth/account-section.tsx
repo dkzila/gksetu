@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Account section (P1-S2)
+ * GKSetu — Account section (P1-S2)
  *
  * Consumes the same /api/auth endpoints a future mobile app will use
  * (Master Plan §4, §37, §39): register/login → Bearer token → authenticated
@@ -343,7 +343,7 @@ function AuthenticatedView({ onSignOut }: { onSignOut: () => Promise<void> }) {
           ) : !sessions || sessions.length === 0 ? (
             <p className="py-6 text-center text-sm text-zinc-500">No active sessions.</p>
           ) : (
-            <ul className="max-h-96 space-y-2 overflow-y-auto pr-1 globiq-scroll" role="list">
+            <ul className="max-h-96 space-y-2 overflow-y-auto pr-1 gksetu-scroll" role="list">
               {sessions.map((s) => (
                 <li
                   key={s.id}
@@ -470,7 +470,7 @@ function UnauthenticatedView({
     <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
       <Card className="border-zinc-200 shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base">Sign in to GlobIQ</CardTitle>
+          <CardTitle className="text-base">Sign in to GKSetu</CardTitle>
           <CardDescription>
             Accounts unlock personalisation, saved items and exam queues in later phases.
           </CardDescription>

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Audit: domain service
+ * GKSetu — Audit: domain service
  * Master Plan §6 (AuditLog model: actor/action/object/timestamp/before/after),
  * §19 (every privileged transition audited), §30 (audit logging for privileged
  * operations, data minimisation), §36 (taxonomy changes audited), §37

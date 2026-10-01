@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: input validation (P4-S1)
+ * GKSetu — Search module: input validation (P4-S1)
  * Master Plan §17 (search strategy), §37 (explicit validation errors,
  * pagination), §14/§15 (country/language context resolution delegated to the
  * country-locale module — the same parameters every public read accepts).

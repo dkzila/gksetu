@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Source Section (P2-S3)
+ * GKSetu — Source Section (P2-S3)
  *
  * Section shell for the §24 Source & Trust Model on the foundation page:
  * the evidence Registry (source:manage — records, verification workflow) and

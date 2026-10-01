@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Notifications: input validation (P8-S2)
+ * GKSetu — Notifications: input validation (P8-S2)
  * Master Plan §37 (explicit validation errors, stable contracts). Three
  * inputs exist: the mark-read body (one batch or all), the preference
  * upsert (exactly one channel × category × enabled per request — one

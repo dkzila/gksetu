@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §21 share dialog (P8-S1)
+ * GKSetu — the §21 share dialog (P8-S1)
  * Master Plan §21: the share card preview identifies the content title, the
  * topic and the platform branding (never the sharer's identity — §31 private
  * user data never appears in share metadata); the STABLE SHARE URL is the §16

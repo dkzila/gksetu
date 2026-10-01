@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation module: input validation (P5-S3)
+ * GKSetu — Personalisation module: input validation (P5-S3)
  * Master Plan §6 (UserGoal fields), §9 (explicit signals), §30 (sanity caps),
  * §35 (study language), §37 (explicit field errors), §39 (the mobile client
  * sends the same shapes).

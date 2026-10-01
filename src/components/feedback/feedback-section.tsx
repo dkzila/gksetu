@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Feedback section (P8-S3)
+ * GKSetu — Feedback section (P8-S3)
  *
  * The console's editorial surface for the §25 quality loop: the report queue
  * (work-first ordering, §38 workspace-scoped server-side), the §32 content

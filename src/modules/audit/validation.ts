@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Audit module: query validation
+ * GKSetu — Audit module: query validation
  * Master Plan §37 (explicit validation errors, pagination, deterministic sort).
  */
 import { z } from 'zod'

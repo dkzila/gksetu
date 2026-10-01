@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Unit View (P4-S2, extended P4-S3, P8-S1)
+ * GKSetu — Unit View (P4-S2, extended P4-S3, P8-S1)
  *
  * The in-app §22 knowledge page: the existing P2-S5/P3-S5 reader component
  * (KnowledgePageView) wrapped in the app chrome — a back-to-topic bar, the

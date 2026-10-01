@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — header auth area.
+ * GKSetu — header auth area.
  *
  * The compact account surface: the notifications bell with its unread
  * badge, and an avatar dropdown carrying the personal links (dashboard,

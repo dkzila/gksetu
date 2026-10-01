@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module: the §11 Multi-Exam Combination Engine (P3-S4)
+ * GKSetu — Exam Mapping module: the §11 Multi-Exam Combination Engine (P3-S4)
  *
  * The central mechanism that solves the "student preparing for RRB Group D
  * and MP Police Constable at the same time" problem (§11): a COMPUTED view,

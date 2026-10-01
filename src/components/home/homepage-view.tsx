@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Country Homepage View (Master Plan §34)
+ * GKSetu — Country Homepage View (Master Plan §34)
  *
  * The country's GK/current-affairs index and discovery hub, rendered from
  * GET /api/home: the search entry, the latest current affairs, GK
@@ -121,7 +121,7 @@ export function HomepageView({
     () =>
       homepage
         ? {
-            title: `${homepage.country.name} — GK, Current Affairs & Exam Preparation | GlobIQ`,
+            title: `${homepage.country.name} — GK, Current Affairs & Exam Preparation | GKSetu`,
             description: `GK, daily current affairs and exam preparation for ${homepage.country.name}: ${homepage.stats.topics} topics, ${homepage.stats.units} knowledge pages, ${homepage.stats.exams} exams — in your language.`,
             seo: homepage.seo,
             language: homepage.language.code,
@@ -216,7 +216,7 @@ export function HomepageView({
         </h1>
         <p className="max-w-2xl text-base text-zinc-600 sm:text-lg">
           {comingSoon
-            ? `GlobIQ launches in ${homepage.country.name} soon. Until then, explore the global knowledge library — every topic below is open to browse today.`
+            ? `GKSetu launches in ${homepage.country.name} soon. Until then, explore the global knowledge library — every topic below is open to browse today.`
             : `Everything you need in one place: evergreen GK, daily current affairs with exam context, and complete syllabi for every major exam — searchable, in your language.`}
         </p>
 
@@ -477,7 +477,7 @@ export function HomepageView({
                   {homepage.country.name} exams arrive at launch
                 </p>
                 <p className="text-sm text-amber-800">
-                  Exam pages and full syllabi for this country publish when GlobIQ launches here.
+                  Exam pages and full syllabi for this country publish when GKSetu launches here.
                   The global knowledge library is open to browse today.
                 </p>
               </div>

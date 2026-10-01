@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs domain service (P6-S1)
+ * GKSetu — Current Affairs domain service (P6-S1)
  * Master Plan §12 (Current Affairs Architecture — event-centric, not
  * article-centric: create ONE CurrentEvent for the real-world event, attach
  * one or more Source records, attach relevant KnowledgeUnits, keep lifecycle

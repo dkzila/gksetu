@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — SyllabusNode trees section (P3-S2)
+ * GKSetu — SyllabusNode trees section (P3-S2)
  *
  * Master Plan §6 (SyllabusNode row), §11 (the tree the combination engine
  * expands via ExamMapping in P3-S3), §13 (topic links are the ONLY exam →
@@ -754,7 +754,7 @@ export function SyllabusSection() {
                     </span>
                   </div>
 
-                  <div className="max-h-96 overflow-y-auto globiq-scroll rounded-lg border border-zinc-200 bg-white p-2" role="tree" aria-label="Syllabus tree">
+                  <div className="max-h-96 overflow-y-auto gksetu-scroll rounded-lg border border-zinc-200 bg-white p-2" role="tree" aria-label="Syllabus tree">
                     {tree.tree.length === 0 ? (
                       <p className="p-4 text-sm text-zinc-500">
                         Empty tree — add the first node or import an outline{staged ? ' below' : ''}.
@@ -941,7 +941,7 @@ export function SyllabusSection() {
                     {syllabus.nodeCount} node{syllabus.nodeCount === 1 ? '' : 's'} · {syllabus.language.name}
                   </span>
                 </div>
-                <div className="max-h-96 overflow-y-auto globiq-scroll rounded-lg border border-zinc-200 bg-white p-2" role="tree" aria-label="Public syllabus tree">
+                <div className="max-h-96 overflow-y-auto gksetu-scroll rounded-lg border border-zinc-200 bg-white p-2" role="tree" aria-label="Public syllabus tree">
                   {syllabus.nodes.length === 0 ? (
                     <p className="p-4 text-sm text-zinc-500">No syllabus published for this exam yet.</p>
                   ) : (

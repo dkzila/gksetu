@@ -121,21 +121,21 @@
   }
 }
 
-/* GlobIQ — slim scrollbars for long lists (sessions, module maps, …) */
+/* GKSetu — slim scrollbars for long lists (sessions, module maps, …) */
 @layer utilities {
-  .globiq-scroll {
+  .gksetu-scroll {
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
-  .globiq-scroll::-webkit-scrollbar {
+  .gksetu-scroll::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
-  .globiq-scroll::-webkit-scrollbar-thumb {
+  .gksetu-scroll::-webkit-scrollbar-thumb {
     border-radius: 9999px;
     background-color: var(--border);
   }
-  .globiq-scroll::-webkit-scrollbar-track {
+  .gksetu-scroll::-webkit-scrollbar-track {
     background: transparent;
   }
 }

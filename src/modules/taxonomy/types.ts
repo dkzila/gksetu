@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Taxonomy module: public DTOs
+ * GKSetu — Taxonomy module: public DTOs
  * Master Plan §6 (Topic model), §13 (one global framework + country
  * extensions), §35 (labels are rendering dimensions), §37 (API DTOs).
  */

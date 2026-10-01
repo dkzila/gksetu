@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Audit Section (P1-S5)
+ * GKSetu — Audit Section (P1-S5)
  *
  * Admin-only view of the accountability trail (Master Plan §6 AuditLog, §19,
  * §30, §38): who did what, to which object, when — with before/after state
@@ -364,7 +364,7 @@ export function AuditSection() {
                   id="audit-actor"
                   value={actorInput}
                   onChange={(event) => setActorInput(event.target.value)}
-                  placeholder="admin@globiq.dev"
+                  placeholder="admin@gksetu.dev"
                   className="h-9 pl-8"
                   autoComplete="off"
                 />
@@ -374,7 +374,7 @@ export function AuditSection() {
 
           {/* Table */}
           <div className="overflow-hidden rounded-lg border border-zinc-200">
-            <div className="globiq-scroll max-h-[28rem] overflow-x-auto overflow-y-auto">
+            <div className="gksetu-scroll max-h-[28rem] overflow-x-auto overflow-y-auto">
               <Table>
                 <TableHeader className="sticky top-0 z-10 bg-zinc-50">
                   <TableRow className="hover:bg-zinc-50">
@@ -445,7 +445,7 @@ export function AuditSection() {
                                     <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                                       Before
                                     </p>
-                                    <pre className="globiq-scroll max-h-56 overflow-auto rounded-md border border-zinc-200 bg-red-50/50 p-3 font-mono text-[11px] leading-relaxed text-zinc-700">
+                                    <pre className="gksetu-scroll max-h-56 overflow-auto rounded-md border border-zinc-200 bg-red-50/50 p-3 font-mono text-[11px] leading-relaxed text-zinc-700">
                                       {formatJson(item.before)}
                                     </pre>
                                   </div>
@@ -454,7 +454,7 @@ export function AuditSection() {
                                       After
                                       <ArrowRight className="h-3 w-3 text-emerald-600" aria-hidden="true" />
                                     </p>
-                                    <pre className="globiq-scroll max-h-56 overflow-auto rounded-md border border-zinc-200 bg-emerald-50/50 p-3 font-mono text-[11px] leading-relaxed text-zinc-700">
+                                    <pre className="gksetu-scroll max-h-56 overflow-auto rounded-md border border-zinc-200 bg-emerald-50/50 p-3 font-mono text-[11px] leading-relaxed text-zinc-700">
                                       {formatJson(item.after)}
                                     </pre>
                                   </div>
@@ -463,7 +463,7 @@ export function AuditSection() {
                                   <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                                     Metadata
                                   </p>
-                                  <pre className="globiq-scroll max-h-40 overflow-auto rounded-md border border-zinc-200 bg-white p-3 font-mono text-[11px] leading-relaxed text-zinc-600">
+                                  <pre className="gksetu-scroll max-h-40 overflow-auto rounded-md border border-zinc-200 bg-white p-3 font-mono text-[11px] leading-relaxed text-zinc-600">
                                     {formatJson(item.metadata)}
                                   </pre>
                                 </div>

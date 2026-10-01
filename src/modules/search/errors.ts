@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: typed errors (P4-S1)
+ * GKSetu — Search module: typed errors (P4-S1)
  * Master Plan §37 (explicit, actionable errors; client-agnostic mapping) —
  * the same pattern every module follows.
  */

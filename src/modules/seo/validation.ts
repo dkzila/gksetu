@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: read query schemas (P4-S2/P4-S3)
+ * GKSetu — SEO module: read query schemas (P4-S2/P4-S3)
  * Master Plan §37 (validate at the boundary), §14/§35 (country/language are
  * optional routing hints — the server resolves and scopes), §16 (object
  * identity by immutable slug), §36 (explicit `?version=` historical reads

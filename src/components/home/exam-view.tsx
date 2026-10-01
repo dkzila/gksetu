@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Exam View (P4-S3, Master Plan §16/§33/§22)
+ * GKSetu — Exam View (P4-S3, Master Plan §16/§33/§22)
  *
  * The indexable exam page at …/exams/{exam-slug}/, rendered from
  * GET /api/exams/{ref}/page: the §22 exam overview — "what this exam needs
@@ -260,7 +260,7 @@ export function ExamView({
     () =>
       page
         ? {
-            title: `${page.exam.name} (${page.exam.code}) — syllabus & study guide | GlobIQ`,
+            title: `${page.exam.name} (${page.exam.code}) — syllabus & study guide | GKSetu`,
             description:
               page.exam.description ??
               `${page.exam.name} by ${page.exam.organiser}: ${page.coverage.unitCount} mapped knowledge pages, ${page.coverage.mappingCount} requirements on the current syllabus.`,
@@ -595,7 +595,7 @@ export function ExamView({
         ) : (
           <div className="space-y-3">
             <ul
-              className="globiq-scroll max-h-[36rem] space-y-4 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 p-3 pr-3 sm:p-4"
+              className="gksetu-scroll max-h-[36rem] space-y-4 overflow-y-auto rounded-lg border border-zinc-200 bg-zinc-50 p-3 pr-3 sm:p-4"
               aria-label="Syllabus coverage tree"
             >
               {page.coverage.nodes.map((node, index) => (

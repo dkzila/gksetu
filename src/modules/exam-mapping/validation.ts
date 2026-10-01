@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module: input validation (P3-S3)
+ * GKSetu — Exam Mapping module: input validation (P3-S3)
  * Master Plan §6 (ExamMapping field row), §8 (requirement-layer semantics),
  * §14 (unit scope is enforced in the service — it needs DB state), §37
  * (explicit field errors), §36 (effective_period: day-granular, inclusive).

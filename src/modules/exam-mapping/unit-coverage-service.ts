@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module: per-unit exam coverage (P3-S5)
+ * GKSetu — Exam Mapping module: per-unit exam coverage (P3-S5)
  *
  * The unit-side mirror of `getPublicExamCoverage` (Master Plan §22 "Knowledge
  * page: … + exam coverage"; §43 P3-S5 "exam-facing pages and coverage

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment: QnA domain service (P7-S1)
+ * GKSetu — Assessment: QnA domain service (P7-S1)
  * Master Plan §6 (QnA row), §7 (a QnA REPRESENTS a canonical KnowledgeUnit —
  * the fact is never re-entered, only rendered as question + explanatory
  * answer), §19 (the editorial workflow: submit → review → publish/schedule,

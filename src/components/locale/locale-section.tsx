@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Country & language configuration section (P1-S3)
+ * GKSetu — Country & language configuration section (P1-S3)
  *
  * Demonstrates the locale system end-to-end on the foundation page
  * (Master Plan §14–§16, §35):

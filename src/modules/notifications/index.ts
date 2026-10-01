@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Notifications module (Master Plan §28, §43 P8-S2)
+ * GKSetu — Notifications module (Master Plan §28, §43 P8-S2)
  *
  * Public interface. Other modules and route handlers import from here only.
  * Internal files may change without notice (modular monolith rule, §28).

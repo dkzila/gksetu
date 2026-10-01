@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: the public query service (P4-S1)
+ * GKSetu — Search module: the public query service (P4-S1)
  * Master Plan §17 (Search Strategy — every clause implemented here):
  *   exact + prefix matching (§17.1)  → EXACT/PREFIX tiers on title & aliases
  *   typo tolerance (§17.2)           → pg_trigm similarity tiers

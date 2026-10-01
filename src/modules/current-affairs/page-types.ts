@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs module: the public event-page DTOs (P6-S2)
+ * GKSetu — Current Affairs module: the public event-page DTOs (P6-S2)
  * Master Plan §12 (the event is the canonical record; its representations
  * render it), §16 (the /current-affairs/{slug}/ canonical page), §22 (the
  * reading experience: what happened, why it matters, the sources, the

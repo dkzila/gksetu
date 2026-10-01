@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: schema.org structured-data builders (P4-S5)
+ * GKSetu — SEO module: schema.org structured-data builders (P4-S5)
  * Master Plan §16 ("structured data generated where valid: Article, FAQPage
  * where eligible, BreadcrumbList, WebSite, WebPage, Quiz/educational schema
  * types where applicable"), §33 (metadata + semantic surfaces on every
@@ -26,7 +26,7 @@ import type { JsonLdNode } from './types'
 // ---------- Shared constants ----------
 
 /** The site-level identity used across every graph (§16 WebSite/Organization). */
-export const SITE_NAME = 'GlobIQ'
+export const SITE_NAME = 'GKSetu'
 
 // ---------- Shared identity nodes ----------
 

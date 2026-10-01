@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ — P6-S1 HTTP assertion suite (CurrentEvent + source aggregation)
+# GKSetu — P6-S1 HTTP assertion suite (CurrentEvent + source aggregation)
 # Master Plan §12 (event-centric architecture: steps 1–3, 6–7), §6
 # (CurrentEvent row), §7 (VERIFIED-unit links), §11 (evidence URL dedup),
 # §14/§20 (GLOBAL admin-only + own-country scoping, WRITER exclusion),
@@ -28,9 +28,9 @@ check_http() { # check_http <label> <expected> <method> <url> [curl args…]
 json() { python3 -c "import json,sys;d=json.load(sys.stdin);print(eval(sys.argv[1], {'d': d}))" "$1" 2>/dev/null; }
 
 # ---------- Fixtures (seeded Supabase data) ----------
-ADMIN_EMAIL="admin@globiq.dev";        ADMIN_PASS="GlobIQ-Dev-Admin-1"
-IN_ADMIN_EMAIL="in-admin@globiq.dev";  IN_ADMIN_PASS="GlobIQ-Dev-INAdmin-1"
-WRITER_EMAIL="writer-in@globiq.dev";   WRITER_PASS="GlobIQ-Dev-Writer-1"
+ADMIN_EMAIL="admin@gksetu.dev";        ADMIN_PASS="GKSetu-Dev-Admin-1"
+IN_ADMIN_EMAIL="in-admin@gksetu.dev";  IN_ADMIN_PASS="GKSetu-Dev-INAdmin-1"
+WRITER_EMAIL="writer-in@gksetu.dev";   WRITER_PASS="GKSetu-Dev-Writer-1"
 ISRO_URL="https://www.isro.gov.in/Chandrayaan3.html"                 # VERIFIED registry record
 UNRELIABLE_URL="https://spaceinsider-daily.example.com/india-third-country-moon-landing"  # UNRELIABLE record
 G20_SLUG="g20-new-delhi-leaders-declaration"                          # seeded ARCHIVED event

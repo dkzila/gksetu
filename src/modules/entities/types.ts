@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Entities module: DTOs (P6-S3)
+ * GKSetu — Entities module: DTOs (P6-S3)
  * Master Plan §6 (Entity row: "Person/place/org/concept etc. — id, type,
  * canonical name, aliases, country"), §12 step 3 (attach entities to
  * CurrentEvents), §13 (the canonical-reference philosophy: stable ids,

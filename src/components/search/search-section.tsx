@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Search section (P4-S1)
+ * GKSetu — Search section (P4-S1)
  *
  * Master Plan §17 ("Search is a first-class product, not merely database text
  * search" — this section exercises every §17 clause against the live index),

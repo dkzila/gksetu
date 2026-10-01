@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exams & Syllabus module: public DTOs (P3-S1)
+ * GKSetu — Exams & Syllabus module: public DTOs (P3-S1)
  * Master Plan §6 (Exam/ExamVersion rows), §8 (the requirement layer — mappings
  * arrive P3-S3), §11 (engine resolves each exam to its active ExamVersion),
  * §14 (every exam belongs to exactly one country), §16 (canonical exam URLs),

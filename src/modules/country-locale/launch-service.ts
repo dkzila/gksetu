@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale: launch lifecycle (P9-S2)
+ * GKSetu — Country & Locale: launch lifecycle (P9-S2)
  *
  * Master Plan §43 Phase 9 Session 2 — "country launch configuration": the
  * controlled, auditable state machine that takes a market from configuration

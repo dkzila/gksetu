@@ -1,5 +1,5 @@
 /**
- * GlobIQ — AI assist: types + error mapping (P10-S4)
+ * GKSetu — AI assist: types + error mapping (P10-S4)
  *
  * The barrel stays CLIENT-SAFE: it re-exports types and the error mapper
  * only. The service (./service.ts) pulls the z-ai SDK through ./ai-model.ts

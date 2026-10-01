@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: canonical reading-page DTOs (P2-S5; the
+ * GKSetu — Knowledge module: canonical reading-page DTOs (P2-S5; the
  * exam-coverage layer filled in P3-S5)
  * Master Plan §22 (knowledge page: quick fact + deeper explanation + related
  * concepts + sources + exam coverage), §7 (one canonical record, many

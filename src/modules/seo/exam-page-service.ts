@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: exam page composition (P4-S3)
+ * GKSetu — SEO module: exam page composition (P4-S3)
  * Master Plan §16 (the country-specific exam page `…/exams/{exam-slug}/`
  * generated from country + language + object identity), §33 (exam pages as
  * indexable landing pages with internal links), §22 ("Exam overview:

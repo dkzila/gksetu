@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation: explanations & controls service (P5-S5)
+ * GKSetu — Personalisation: explanations & controls service (P5-S5)
  * Master Plan §9 (personalisation must be layered, explainable and
  * reversible — the inventory renders every explicit signal WITH its effect
  * sentence and its control; the reset makes "reversible" one click), §31

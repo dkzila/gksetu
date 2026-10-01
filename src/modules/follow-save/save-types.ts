@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Follow & Save module: the SAVE half public DTOs (P5-S2)
+ * GKSetu — Follow & Save module: the SAVE half public DTOs (P5-S2)
  * Master Plan §6 (SavedItem/Collection rows), §7 (one canonical record, many
  * representations — saving the record survives representation updates),
  * §10 (Save is a retrieval/bookmark action, NEVER a recommendation or

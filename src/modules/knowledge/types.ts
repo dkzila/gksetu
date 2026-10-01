@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: public DTOs
+ * GKSetu — Knowledge module: public DTOs
  * Master Plan §6 (KnowledgeUnit row), §7 (canonical semantic record),
  * §11 (dedup by canonical identity), §14/§15 (explicit country scope,
  * server-side enforcement), §22 (knowledge page: quick fact + deeper

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: typed errors (P4-S2/P4-S3)
+ * GKSetu — SEO module: typed errors (P4-S2/P4-S3)
  * Master Plan §37 (explicit, actionable errors with stable codes — mapped to
  * HTTP by the route handlers). The composition services surface locale,
  * taxonomy and exam failures as SEO-scoped codes so a public client never

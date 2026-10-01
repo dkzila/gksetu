@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Event View (P6-S2, extended P8-S1)
+ * GKSetu — Event View (P6-S2, extended P8-S1)
  *
  * The in-app §16 current-affairs page: the P6-S2 reader component
  * (EventPageView) wrapped in the app chrome — a back-to-home bar, the §16

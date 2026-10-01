@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module (Master Plan §28, §43 P3-S3…S5)
+ * GKSetu — Exam Mapping module (Master Plan §28, §43 P3-S3…S5)
  *
  * Public interface. Other modules and route handlers import from here only.
  * Internal files may change without notice (modular monolith rule, §28).

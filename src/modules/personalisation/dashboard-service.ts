@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation: the dashboard/feed service (P5-S4)
+ * GKSetu — Personalisation: the dashboard/feed service (P5-S4)
  * Master Plan §9 (layered, explainable, reversible personalisation), §10
  * (follows drive the feed; saves are retrieval — never a signal), §11 (the
  * combined-exam queue: union by canonical unit id, MAX required depth, the

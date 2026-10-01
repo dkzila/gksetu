@@ -1,4 +1,4 @@
-# GlobIQ — Modular Monolith (src/modules)
+# GKSetu — Modular Monolith (src/modules)
 
 The platform is one well-bounded deployable application (Master Plan §28) with
 **20 logical modules**. Each module receives its implementation in the session

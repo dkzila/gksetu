@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Personalisation client types (P5-S3)
+ * GKSetu — Personalisation client types (P5-S3)
  * Mirrors the /api/profile, /api/goal and /api/onboarding contracts (§37).
  */
 

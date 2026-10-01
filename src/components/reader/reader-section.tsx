@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Reader Section (P2-S5)
+ * GKSetu — Reader Section (P2-S5)
  *
  * The public READING surface on the foundation page (§38): pick a country +
  * language (§35 — only what the country configures), pick a canonical topic,

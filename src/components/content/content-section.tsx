@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Content Section (P2-S2, extended P6-S2)
+ * GKSetu — Content Section (P2-S2, extended P6-S2)
  *
  * Section shell for the ContentItem layer on the foundation page: the anchor
  * dimension (P6-S2: a representation renders a KnowledgeUnit §7 OR a

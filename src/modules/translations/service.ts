@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module: domain service (P9-S1)
+ * GKSetu — Translations module: domain service (P9-S1)
  * Master Plan §6 (the Translation row), §18 (Translator/Localiser — manage
  * translations, scope-limited by country + target language), §19 step 5
  * (the localisation review gate rides the workflow), §26 (AI-assisted

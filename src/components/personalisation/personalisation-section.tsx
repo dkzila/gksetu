@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Personalisation section (P5-S3)
+ * GKSetu — Personalisation section (P5-S3)
  *
  * The console's verification surface for the goal/onboarding half of the
  * Personalisation module: documents the /api/profile + /api/goal +

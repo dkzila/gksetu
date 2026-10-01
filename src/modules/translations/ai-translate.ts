@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module: the §26 AI translation assist (P9-S1)
+ * GKSetu — Translations module: the §26 AI translation assist (P9-S1)
  *
  * Master Plan §26: "AI may assist … Translate/localise drafts." — and the
  * hard rule rides every call: AI must NEVER silently invent facts or alter
@@ -66,7 +66,7 @@ function systemPrompt(target: AiTranslateTarget): string {
     ? `${target.languageName} (${target.nativeName})`
     : target.languageName
   return [
-    `You are a professional translator producing a DRAFT ${language} translation of published educational exam-preparation content for the GlobIQ platform.`,
+    `You are a professional translator producing a DRAFT ${language} translation of published educational exam-preparation content for the GKSetu platform.`,
     'Hard rules:',
     '1. Translate faithfully — every fact, name, date, number, article reference and quotation must survive exactly. Never invent, never omit, never "correct" facts.',
     '2. Translate IDs, dates in Latin numerals, and internationally standard symbols as-is.',

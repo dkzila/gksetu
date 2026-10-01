@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Country & Locale: snapshot cache
+ * GKSetu — Country & Locale: snapshot cache
  * Master Plan §29 (infrastructure evolution): local memory caching now,
  * swappable for a shared store at scale.
  *
@@ -52,8 +52,8 @@ interface SnapshotStore {
   /** Bumped by invalidateSnapshot — a load racing an invalidation must not stick. */
   epoch: number
 }
-const globalRef = globalThis as typeof globalThis & { __globiqLocaleSnapshotStore?: SnapshotStore }
-const store: SnapshotStore = (globalRef.__globiqLocaleSnapshotStore ??= { snapshot: null, loading: null, epoch: 0 })
+const globalRef = globalThis as typeof globalThis & { __gksetuLocaleSnapshotStore?: SnapshotStore }
+const store: SnapshotStore = (globalRef.__gksetuLocaleSnapshotStore ??= { snapshot: null, loading: null, epoch: 0 })
 
 async function loadSnapshot(): Promise<LocaleSnapshot> {
   const [countries, links, languages] = await Promise.all([

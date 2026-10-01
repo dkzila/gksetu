@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: the anonymous arrival census (P8-S5)
+ * GKSetu — SEO module: the anonymous arrival census (P8-S5)
  *
  * Master Plan §32 (the growth/referral half the P8-S4 handoff names —
  * "arrival attribution: the ShareEvent landings are the in-platform half;

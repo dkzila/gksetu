@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Event Page View (P6-S2)
+ * GKSetu — Event Page View (P6-S2)
  *
  * The §22-style reading experience for the §16 current-affairs event page:
  * the event record (what happened, when, where, why it matters) → the
@@ -306,7 +306,7 @@ export function EventPageView({ eventRef, country, language, onOpenUnit, onOpenT
   useSeoHead(
     page
       ? {
-          title: `${page.event.title} — GlobIQ Current Affairs`,
+          title: `${page.event.title} — GKSetu Current Affairs`,
           description: page.event.summary,
           seo: page.seo,
           language: page.language.code,

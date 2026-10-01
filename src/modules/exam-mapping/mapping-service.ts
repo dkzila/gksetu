@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exam Mapping module: domain service (P3-S3)
+ * GKSetu — Exam Mapping module: domain service (P3-S3)
  * Master Plan §6 (ExamMapping row: knowledge_unit_id, exam_version_id,
  * syllabus_node_id, relevance, priority, required_depth, expected_scope,
  * question_likelihood, source_basis, effective_period, notes), §8 (the

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Source Registry (P2-S3)
+ * GKSetu — Source Registry (P2-S3)
  *
  * The §24 evidence registry: filterable list of Source records with the
  * verification summary, evidence registration (one canonical record per

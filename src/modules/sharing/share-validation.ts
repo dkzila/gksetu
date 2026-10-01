@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Sharing: input validation (P8-S1)
+ * GKSetu — Sharing: input validation (P8-S1)
  * Master Plan §37 (explicit validation errors, stable contracts). Two inputs
  * exist: the metadata query (a §16 path — the share URL IS the path) and the
  * event body (a share action or a landing visit). Both accept the SAME path

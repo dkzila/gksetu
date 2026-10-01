@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: QnA DTOs + lifecycle (P7-S1)
+ * GKSetu — Assessment module: QnA DTOs + lifecycle (P7-S1)
  * Master Plan §6 (QnA row: knowledge_unit_id, language, question_text,
  * answer_body, status), §7 (a QnA is a REPRESENTATION of a canonical
  * KnowledgeUnit — the fact is never re-entered, only rendered as a

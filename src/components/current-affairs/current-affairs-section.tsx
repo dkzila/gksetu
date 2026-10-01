@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Current Affairs section (P6-S1)
+ * GKSetu — Current Affairs section (P6-S1)
  *
  * The console's verification surface for the event-centric current-affairs
  * foundation (§12): documents the admin API contract (§37 — the same
@@ -685,7 +685,7 @@ export function CurrentAffairsSection() {
               <p className="rounded-md border border-dashed border-zinc-300 px-3 py-6 text-center text-sm text-zinc-500">
                 <ShieldAlert className="mx-auto mb-2 h-5 w-5 text-zinc-400" aria-hidden="true" />
                 Managing current events requires an editorial role (ADMIN / COUNTRY_ADMIN — the canonical-record
-                permission model). Sign in as <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@globiq.dev</code> to
+                permission model). Sign in as <code className="rounded bg-zinc-100 px-1 py-0.5 text-xs">admin@gksetu.dev</code> to
                 exercise the workflow.
               </p>
             </div>

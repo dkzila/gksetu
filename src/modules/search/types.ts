@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Search module: public contract types (P4-S1)
+ * GKSetu — Search module: public contract types (P4-S1)
  * Master Plan §17 (Search Strategy), §29 (vendor-neutral abstraction), §16
  * (canonical URLs from identity — never concatenated), §37 (client-agnostic
  * DTOs, deterministic ordering, explicit errors).

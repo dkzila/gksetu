@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: topic landing page composition (P4-S2)
+ * GKSetu — SEO module: topic landing page composition (P4-S2)
  * Master Plan §16 (the stable canonical topic page …/gk/{topic-slug}/), §33
  * (evergreen GK topic pages as indexable landing surfaces — topic clusters,
  * internal links, units, exams), §13 (one global taxonomy; the landing is

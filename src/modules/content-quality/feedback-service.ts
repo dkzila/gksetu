@@ -1,5 +1,5 @@
 // ============================================================================
-// GlobIQ — Content Feedback service (P8-S3, Master Plan §25)
+// GKSetu — Content Feedback service (P8-S3, Master Plan §25)
 // ----------------------------------------------------------------------------
 // The §25 quality loop, end to end:
 //   1. SUBMIT — a public "Report an issue" action on any of the five §25

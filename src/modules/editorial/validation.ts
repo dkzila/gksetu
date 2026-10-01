@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Editorial module: input validation (P2-S4, §37)
+ * GKSetu — Editorial module: input validation (P2-S4, §37)
  * zod schemas for the workspace API surface. Scope rules (which country/
  * language an actor may touch) are enforced in the service layer on EVERY
  * operation (§20) — never by hiding UI elements.

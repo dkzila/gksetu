@@ -1,6 +1,6 @@
 // ============================================================
-// GlobIQ — Prisma Schema
-// Governing spec: GlobIQ_Master_Plan.md (v2.0) — Sections 6, 14, 35
+// GKSetu — Prisma Schema
+// Governing spec: GKSetu_Master_Plan.md (v2.0) — Sections 6, 14, 35
 //
 // P1-S1 scope (this file): database switch to PostgreSQL (Supabase) +
 // foundation models: Language, Country, CountryLanguage, base User.
@@ -16,10 +16,10 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // Named GLOBIQ_DATABASE_URL (not DATABASE_URL) deliberately: the deployment
+  // Named GKSETU_DATABASE_URL (not DATABASE_URL) deliberately: the deployment
   // environment may inject a stale DATABASE_URL — this variable is always
   // sourced from .env (dev) or the hosting dashboard (Vercel).
-  url      = env("GLOBIQ_DATABASE_URL")
+  url      = env("GKSETU_DATABASE_URL")
 }
 
 // ---------- Enums ----------
@@ -333,7 +333,7 @@ model Source {
   type         SourceType
   verification SourceVerification @default(UNVERIFIED)
   publishedAt  DateTime? // when the underlying material was published (§24)
-  retrievedAt  DateTime // when GlobIQ editors retrieved it (§24)
+  retrievedAt  DateTime // when GKSetu editors retrieved it (§24)
   verifiedAt   DateTime? // when an editor verified it (§24 — set on 'verify')
   notes        String? // internal editorial notes
   createdById  String?

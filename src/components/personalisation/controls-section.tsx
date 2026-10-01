@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Personalisation controls section (P5-S5)
+ * GKSetu — Personalisation controls section (P5-S5)
  *
  * The console's verification surface for the explanations & controls half of
  * the Personalisation module: documents the /api/personalisation contract

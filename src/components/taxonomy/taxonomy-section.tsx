@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Taxonomy Section (P1-S4)
+ * GKSetu — Taxonomy Section (P1-S4)
  *
  * Section shell for the taxonomy module on the foundation page: locale bar
  * (country → one of its configured languages, §35) + Explorer/Admin tabs.

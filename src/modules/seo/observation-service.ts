@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: the engine-side observation import (P8-S5)
+ * GKSetu — SEO module: the engine-side observation import (P8-S5)
  *
  * Master Plan §32 (the SEO family's impressions/clicks inputs), §16 (the
  * sitemap census guards every pagePath — observations only ever land for

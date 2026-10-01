@@ -1,5 +1,5 @@
 /**
- * GlobIQ — shared validation helpers (§37: explicit validation errors).
+ * GKSetu — shared validation helpers (§37: explicit validation errors).
  * Used by every module's zod schemas and API routes.
  */
 import type { z } from 'zod'

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs module: input validation (P6-S1)
+ * GKSetu — Current Affairs module: input validation (P6-S1)
  * Master Plan §12 (event-centric workflow), §14 (explicit scope), §16 (slug
  * hygiene — the router must never concatenate arbitrary user input), §24
  * (source provenance fields on aggregation), §30 (URL sanity), §37 (explicit

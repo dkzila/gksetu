@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — app sidebar.
+ * GKSetu — app sidebar.
  *
  * The persistent product navigation: one rail on desktop (lg+) and a
  * drawer on mobile (opened from the header's menu button). Sections map
@@ -240,7 +240,7 @@ export function AppSidebar({
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-600 to-teal-500" aria-hidden="true">
                 <Compass className="h-4 w-4 text-white" />
               </span>
-              GlobIQ
+              GKSetu
             </SheetTitle>
             <SheetDescription className="text-left">
               GK, current affairs and exam preparation

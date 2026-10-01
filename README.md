@@ -1,8 +1,8 @@
-# GlobIQ
+# GKSetu
 
 **Next-Gen Global GK & Current Affairs Platform** — one unified, multilingual, personalised knowledge system for general learners and exam aspirants. Built to replace GK books, current-affairs magazines and GK-only coaching.
 
-> **Governing specification:** [`GlobIQ_Master_Plan.md`](./GlobIQ_Master_Plan.md) (v2.0)
+> **Governing specification:** [`GKSetu_Master_Plan.md`](./GKSetu_Master_Plan.md) (v2.0)
 > All development follows its phase/session roadmap — **one chat = one session** (§41–§43).
 
 ## Current Status
@@ -28,7 +28,7 @@ Knowledge is canonical (`KnowledgeUnit`) and stored once; country, language, exa
 
 ```bash
 bun install
-cp .env.example .env    # set GLOBIQ_DATABASE_URL to your Supabase Postgres string
+cp .env.example .env    # set GKSETU_DATABASE_URL to your Supabase Postgres string
 bun run db:generate     # generate Prisma client
 bun run db:push         # create tables
 bun run db:seed         # seed languages + countries (India default, en + hi)
@@ -67,10 +67,10 @@ All internal APIs return the envelope `{ status, data | error, meta }` (Master P
 ## Deployment (Vercel)
 
 1. Import this repository in Vercel (auto-detects Next.js).
-2. Set the environment variable `GLOBIQ_DATABASE_URL` to your Supabase Postgres **direct** connection string (Supabase → Project Settings → Database).
+2. Set the environment variable `GKSETU_DATABASE_URL` to your Supabase Postgres **direct** connection string (Supabase → Project Settings → Database).
 3. Deploy.
 
-> Note: the variable is deliberately named `GLOBIQ_DATABASE_URL` (not `DATABASE_URL`) so injected/stale environment values can never override the intended connection.
+> Note: the variable is deliberately named `GKSETU_DATABASE_URL` (not `DATABASE_URL`) so injected/stale environment values can never override the intended connection.
 
 ## Development Protocol
 
@@ -81,4 +81,4 @@ One chat/session = one unit of work (Master Plan §41–§48):
 
 ---
 
-© 2025 dkzila · GlobIQ
+© 2025 dkzila · GKSetu

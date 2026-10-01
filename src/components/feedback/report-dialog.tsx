@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §25 report dialog (P8-S3)
+ * GKSetu — the §25 report dialog (P8-S3)
  * The lightweight "what's wrong?" surface: §25's four reasons with their
  * honest one-line meanings, a description the reporter owns, and an honest
  * receipt — the report routes into the §19 editorial workflow (a CORRECTION

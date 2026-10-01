@@ -1,5 +1,5 @@
 #!/bin/bash
-# GlobIQ post-build step (the P-SEC audit fix).
+# GKSetu post-build step (the P-SEC audit fix).
 #
 # The problem it fixes: package.json's "build" previously chained
 #   next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/

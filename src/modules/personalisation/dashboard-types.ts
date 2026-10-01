@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Personalisation module: dashboard/feed DTOs (P5-S4)
+ * GKSetu — Personalisation module: dashboard/feed DTOs (P5-S4)
  * Master Plan §9 (layered, explainable, reversible personalisation — the
  * recommendation output carries its reasons), §10 (follows drive the feed;
  * saves are retrieval, NEVER a signal), §11 (the combined-exam queue —

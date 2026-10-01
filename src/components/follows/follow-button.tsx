@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the follow toggle button (P5-S1)
+ * GKSetu — the follow toggle button (P5-S1)
  * Master Plan §9 (explicit, reversible personalisation signal), §10 (follow
  * semantics — feed/notifications/recommendations context, not a bookmark),
  * §14 (country rules enforced by the server — the button shows the server's
@@ -88,7 +88,7 @@ export function FollowButton({
   const signInPrompt = useCallback(() => {
     toast({
       title: 'Sign in to follow',
-      description: `Create a free account to follow ${objectName} — follows shape your personal GlobIQ feed.`,
+      description: `Create a free account to follow ${objectName} — follows shape your personal GKSetu feed.`,
     })
     window.location.hash = '#/signin'
   }, [objectName, toast])

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the §16-mirroring hash router (P4-S2, extended P4-S3)
+ * GKSetu — the §16-mirroring hash router (P4-S2, extended P4-S3)
  *
  * The public URL space (Master Plan §16 / Appendix B) is:
  *   India default English   /                       → #/

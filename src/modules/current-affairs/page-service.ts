@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs: the public event page service (P6-S2)
+ * GKSetu — Current Affairs: the public event page service (P6-S2)
  * Master Plan §12 (event-centric: one event = one page, whatever the number
  * of publishers; the §12 step 4 representations render it per language), §16
  * (the canonical /current-affairs/{slug}/ page — paths built ONLY via

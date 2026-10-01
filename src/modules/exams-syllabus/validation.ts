@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Exams module: input validation (P3-S1)
+ * GKSetu — Exams module: input validation (P3-S1)
  * Master Plan §6 (Exam/ExamVersion field rows), §14 (country required — an
  * exam is never global), §16 (URL-stable slug), §36 (version windows:
  * day-granular, non-overlapping; effectiveTo inclusive), §37 (explicit errors).

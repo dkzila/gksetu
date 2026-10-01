@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Notifications: the §27 domain engine (P8-S2)
+ * GKSetu — Notifications: the §27 domain engine (P8-S2)
  * Master Plan §27 (the expanded notifications contract): channel-agnostic
  * fan-out (one NotificationEvent row per enabled channel, batched by a
  * per-notification batchId), the four reader triggers + the editorial pair
@@ -711,7 +711,7 @@ export async function ensureRevisionDueNotification(userId: string): Promise<boo
     // only after the winner's rows are visible, so the at-most-one-unread
     // rule holds even across server instances (§27; the applyMasteryFromAttempt
     // transaction precedent, §22).
-    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`globiq:notify:revision:${userId}`}))`
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`gksetu:notify:revision:${userId}`}))`
 
     const unread = await tx.notificationEvent.findFirst({
       where: { userId, triggerType: 'REVISION_DUE', status: { not: 'READ' } },

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Entities module: input validation (P6-S3)
+ * GKSetu — Entities module: input validation (P6-S3)
  * Master Plan §6 (Entity row), §13 (canonical reference discipline), §14
  * (GLOBAL/COUNTRY scope — explicit country iff COUNTRY), §37 (explicit
  * field errors), §39 (the mobile client sends the same shapes).

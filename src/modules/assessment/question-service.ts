@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment: Question domain service (P7-S2)
+ * GKSetu — Assessment: Question domain service (P7-S2)
  * Master Plan §6 (Question row: knowledge_unit_id, exam_version_id,
  * difficulty, type, options, correct_answer, explanation), §7 (a Question
  * REPRESENTS a canonical KnowledgeUnit — the fact is never re-entered, only

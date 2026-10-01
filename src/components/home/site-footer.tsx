@@ -1,15 +1,13 @@
 'use client'
 
 /**
- * GlobIQ — site footer.
+ * GKSetu — site footer.
  *
  * User-facing footer: brand, the product's discovery links, personal
  * library links and support links. The staff console is reachable only
  * from a deliberately quiet link here — it is an internal tool, never a
  * primary navigation item.
  */
-
-import { Globe } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -59,13 +57,23 @@ export function SiteFooter({
     <footer className="mt-auto border-t border-zinc-200 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
+          {/* Brand — the GKSetu wordmark (REBRAND-S1): "GK" and "Setu"
+              together, two tones; the badge carries the bridge (setu) mark. */}
           <div className="space-y-3">
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500" aria-hidden="true">
-                <Globe className="h-5 w-5 text-white" />
+                <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 15.5h16" />
+                  <path d="M6 15.5c1.6-7.4 10.4-7.4 12 0" />
+                  <path d="M7.5 15.5v3.5" />
+                  <path d="M16.5 15.5v3.5" />
+                  <path d="M12 10.5v8.5" />
+                </svg>
               </span>
-              <span className="text-lg font-bold tracking-tight text-zinc-900">GlobIQ</span>
+              <span className="text-lg font-extrabold tracking-tight">
+                <span className="text-emerald-700">GK</span>
+                <span className="text-zinc-900">Setu</span>
+              </span>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
               Daily GK, current affairs with exam context, and complete exam
@@ -123,7 +131,7 @@ export function SiteFooter({
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-zinc-100 pt-6 pb-[max(0,env(safe-area-inset-bottom))] sm:flex-row sm:items-center">
           <p className="text-sm text-zinc-400">
-            © {year} GlobIQ. All rights reserved.
+            © {year} GKSetu. All rights reserved.
           </p>
           <p className="text-sm text-zinc-400">
             Made for learners and aspirants everywhere.

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Exam Mapping section (P3-S3)
+ * GKSetu — Exam Mapping section (P3-S3)
  *
  * Master Plan §6 (ExamMapping row), §8 (the requirement layer: relevance,
  * priority, required_depth, expected_scope, question_likelihood, source_basis,
@@ -862,7 +862,7 @@ export function MappingSection() {
 
                   {/* Node tree — pick a node to manage its mappings */}
                   <div
-                    className="max-h-72 overflow-y-auto globiq-scroll rounded-lg border border-zinc-200 bg-white p-2"
+                    className="max-h-72 overflow-y-auto gksetu-scroll rounded-lg border border-zinc-200 bg-white p-2"
                     role="tree"
                     aria-label="Syllabus nodes"
                   >
@@ -1119,7 +1119,7 @@ export function MappingSection() {
                                 ) : null}
                               </div>
                               {unitQuery.trim().length >= 2 ? (
-                                <div className="max-h-48 overflow-y-auto globiq-scroll rounded-md border border-zinc-200 bg-white">
+                                <div className="max-h-48 overflow-y-auto gksetu-scroll rounded-md border border-zinc-200 bg-white">
                                   {unitResults.length === 0 ? (
                                     <p className="p-3 text-sm text-zinc-500">
                                       No country-visible units match &quot;{unitQuery.trim()}&quot;.
@@ -1372,7 +1372,7 @@ export function MappingSection() {
                       : 'This exam has no syllabus version in effect yet.'}
                   </p>
                 ) : (
-                  <div className="max-h-96 overflow-y-auto globiq-scroll rounded-lg border border-zinc-100 bg-zinc-50/50 p-2">
+                  <div className="max-h-96 overflow-y-auto gksetu-scroll rounded-lg border border-zinc-100 bg-zinc-50/50 p-2">
                     <ul>{coverage.nodes.map(renderPublicNode)}</ul>
                   </div>
                 )}

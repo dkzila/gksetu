@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Entities module (P6-S3)
+ * GKSetu — Entities module (P6-S3)
  * Master Plan §6 (Entity row), §12 step 3 (event-entity linking), §13, §14,
  * §17, §36, §37, §38. The registry behind current-affairs entity linking:
  * persons/places/organisations/concepts as canonical reference records with

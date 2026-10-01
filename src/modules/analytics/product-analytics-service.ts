@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Analytics module: the §32 product-analytics service (P8-S4)
+ * GKSetu — Analytics module: the §32 product-analytics service (P8-S4)
  *
  * One aggregate read over the stores earlier sessions already write. This
  * module OWNS no data — §28's ownership rule: the producing module owns its

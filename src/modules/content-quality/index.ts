@@ -1,5 +1,5 @@
 // ============================================================================
-// GlobIQ — Content Feedback / Quality Loop module (P8-S3, Master Plan §25)
+// GKSetu — Content Feedback / Quality Loop module (P8-S3, Master Plan §25)
 // ----------------------------------------------------------------------------
 // The module boundary (§28): this module owns the ContentFeedback store and
 // its §19 routing; it imports FROM notifications (the wired

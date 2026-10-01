@@ -1,5 +1,5 @@
 /**
- * GlobIQ — §22 combined-exam quick mock: the setup surface (P7-S5)
+ * GKSetu — §22 combined-exam quick mock: the setup surface (P7-S5)
  * Master Plan §22 ("Combined-exam mode with deduplication (Section 11),
  * applied identically to the learning queue and the mock-test scope — e.g. a
  * combined mock test can be scoped to 'everything relevant across my followed
@@ -169,7 +169,7 @@ export function QuickMockView({
 
   // §16/§31: a private authenticated surface — never indexed.
   useSeoHead({
-    title: 'Quick mock — combined-exam mode | GlobIQ',
+    title: 'Quick mock — combined-exam mode | GKSetu',
     description:
       'A timed quick mock scoped to everything relevant across your followed exams — one question per topic, scored server-side, feeding your revision schedule.',
     noindex: true,

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module (Master Plan §28, §43 P4-S2…S5)
+ * GKSetu — SEO module (Master Plan §28, §43 P4-S2…S5)
  *
  * Public interface. Other modules and route handlers import from here only.
  * Internal files may change without notice (modular monolith rule, §28).

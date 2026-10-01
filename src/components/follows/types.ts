@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — follows client types (P5-S1)
+ * GKSetu — follows client types (P5-S1)
  *
  * Client mirrors of the /api/follows contracts (§37 — the same payloads a
  * future mobile client consumes, §39). Hand-written so the client bundle

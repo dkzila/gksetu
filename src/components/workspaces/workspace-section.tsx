@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Workspace Section (P9-S3)
+ * GKSetu — Workspace Section (P9-S3)
  *
  * The country-specific editorial workspaces on the console (§43 Phase 9
  * Session 3): one workspace per configured market — roster, §20 language

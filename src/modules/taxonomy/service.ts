@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Taxonomy: domain service
+ * GKSetu — Taxonomy: domain service
  * Master Plan §6 (Topic model), §13 (one global framework + country-specific
  * extensions; configurable domains — never hard-coded), §14 (explicit country
  * scope), §36 (taxonomy changes migration-safe: immutable slugs, soft retire,

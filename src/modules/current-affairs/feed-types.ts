@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Current Affairs module: the exam-aware feed DTOs (P6-S4)
+ * GKSetu — Current Affairs module: the exam-aware feed DTOs (P6-S4)
  * Master Plan §12 step 5 (current-affairs knowledge flows "into a followed
  * exam's combined queue the moment it's mapped" — these DTOs are that
  * flow's feed surface), §9 (explainable: every item carries a reason

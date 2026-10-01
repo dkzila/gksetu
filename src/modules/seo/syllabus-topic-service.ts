@@ -1,5 +1,5 @@
 /**
- * GlobIQ — SEO module: syllabus-topic page composition (P4-S3)
+ * GKSetu — SEO module: syllabus-topic page composition (P4-S3)
  * Master Plan §16 (the syllabus-topic pattern `…/exams/{exam}/syllabus/{topic}/`
  * — "indexable when valuable"), §33 (syllabus pages as indexable landing
  * surfaces with internal links to the exam's other syllabus topics and the

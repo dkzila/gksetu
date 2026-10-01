@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Placeholder only — prisma generate/validate never connects to a database.
-      GLOBIQ_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+      GKSETU_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
     steps:
       - name: Checkout
         uses: actions/checkout@v4

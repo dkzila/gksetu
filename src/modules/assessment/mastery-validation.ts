@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Assessment module: mastery query validation (P7-S4)
+ * GKSetu — Assessment module: mastery query validation (P7-S4)
  * Master Plan §37 (explicit, typed validation errors — the same zod
  * discipline as every module), §39 (the query contract a mobile client
  * codes against). `unit` scopes the response to the §22 knowledge-page

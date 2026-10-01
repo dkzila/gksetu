@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge: Source & provenance domain service (P2-S3)
+ * GKSetu — Knowledge: Source & provenance domain service (P2-S3)
  * Master Plan §6 (Source row), §24 (Source and Trust Model — every factual
  * content object carries provenance: publisher, URL, publication date,
  * retrieved/verified date, source category, editor verification state,

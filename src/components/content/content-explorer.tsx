@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Content Explorer (P2-S2)
+ * GKSetu — Content Explorer (P2-S2)
  *
  * Public browse surface for the representations of one knowledge unit (Master
  * Plan §7: one canonical record, many renderings; §22 knowledge-page layers;
@@ -207,7 +207,7 @@ export function ContentExplorer({ country, language, unit }: ExplorerProps) {
             </Badge>
           </div>
           <h3 className="mt-3 text-lg font-semibold tracking-tight">{detail.title}</h3>
-          <div className="globiq-scroll mt-4 max-h-80 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-zinc-700">
+          <div className="gksetu-scroll mt-4 max-h-80 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-zinc-700">
             {detail.body}
           </div>
 

@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Knowledge module: ContentItem anchor helpers (P6-S2)
+ * GKSetu — Knowledge module: ContentItem anchor helpers (P6-S2)
  * Master Plan §12 step 4 (an event's language-specific explanations are
  * ContentItems — "create language-specific ContentItems for explanation"),
  * §7 (a representation always belongs to exactly ONE canonical record), §14

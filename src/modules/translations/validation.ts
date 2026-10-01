@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Translations module: input validation (P9-S1, §37)
+ * GKSetu — Translations module: input validation (P9-S1, §37)
  * zod schemas shared by the API routes; the service re-validates its
  * invariants (defense in depth).
  */

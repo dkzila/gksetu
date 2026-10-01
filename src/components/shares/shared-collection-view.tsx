@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — the public shared-collection view (P8-S1 §21)
+ * GKSetu — the public shared-collection view (P8-S1 §21)
  * Master Plan §21: the unlisted landing surface a LINK-visibility collection
  * opens at (#/collections/{id}/) — "Do not expose private saved collections
  * unless explicitly made shareable by the owner": anything else answers the
@@ -85,10 +85,10 @@ export function SharedCollectionView({ collectionId, onOpenPath, onGoHome }: Sha
 
   // §16: unlisted surface — never indexed, honestly declared.
   useSeoHead({
-    title: collection ? `${collection.name} — a shared collection | GlobIQ` : 'Shared collection | GlobIQ',
+    title: collection ? `${collection.name} — a shared collection | GKSetu` : 'Shared collection | GKSetu',
     description: collection
-      ? `A shared collection of ${collection.itemCount} saved items on GlobIQ — public content only.`
-      : 'A collection shared via its stable link on GlobIQ.',
+      ? `A shared collection of ${collection.itemCount} saved items on GKSetu — public content only.`
+      : 'A collection shared via its stable link on GKSetu.',
     noindex: true,
   })
 
@@ -140,7 +140,7 @@ export function SharedCollectionView({ collectionId, onOpenPath, onGoHome }: Sha
           )}
           {collection && (
             <p className="mt-1 text-sm text-zinc-600">
-              {collection.itemCount} saved {collection.itemCount === 1 ? 'item' : 'items'} — public GlobIQ content,
+              {collection.itemCount} saved {collection.itemCount === 1 ? 'item' : 'items'} — public GKSetu content,
               opened by anyone with this link.
             </p>
           )}

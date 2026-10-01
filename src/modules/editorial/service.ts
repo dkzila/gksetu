@@ -1,5 +1,5 @@
 /**
- * GlobIQ — Editorial module: domain service (P2-S4)
+ * GKSetu — Editorial module: domain service (P2-S4)
  * Master Plan §6 (EditorialTask row), §18 (roles: writers work assigned
  * content, editors manage the board; writers never publish), §19 (workflow —
  * review tasks open on submit, resolve on publish/schedule, cancel on retire;

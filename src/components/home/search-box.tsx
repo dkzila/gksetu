@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — homepage search box (P4-S2, extended P4-S3)
+ * GKSetu — homepage search box (P4-S2, extended P4-S3)
  *
  * The §34 homepage's search entry: the compact §17 product surface. Queries
  * GET /api/search in the reader's country/language, shows the top results
@@ -143,7 +143,7 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search topics, knowledge, exams…"
-            aria-label="Search GlobIQ"
+            aria-label="Search GKSetu"
             className="h-11 rounded-lg border-zinc-200 bg-white pl-9 pr-9 text-base shadow-sm focus-visible:ring-emerald-500"
           />
           {query.length > 0 && (

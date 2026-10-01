@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * GlobIQ — Saves section (P5-S2)
+ * GKSetu — Saves section (P5-S2)
  *
  * The console's verification surface for the save half of the Follow & Save
  * module: documents the /api/saves + /api/collections contracts (§37 — the
