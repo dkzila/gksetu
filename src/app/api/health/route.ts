@@ -1,9 +1,17 @@
 /**
  * GET /api/health — Platform & database health (P1-S1 foundation check).
  * Returns service identity, database connectivity, seed snapshot and latency.
+ *
+ * DEPLOY-S1: on failure the response names the CAUSE (missing variable,
+ * quoted/placeholder value, IPv6-only direct host, unreachable database) —
+ * the first Vercel deployment showed a bare "Database connection failed"
+ * answers four completely different dashboard fixes. See
+ * src/lib/api/database-diagnostics.ts; the connection string itself never
+ * leaves the server.
  */
 import { db } from '@/lib/db'
-import { ok, errors } from '@/lib/api/response'
+import { ok, fail } from '@/lib/api/response'
+import { diagnoseDatabaseUrl } from '@/lib/api/database-diagnostics'
 import { PLATFORM } from '@/config/platform'
 
 export const dynamic = 'force-dynamic'
@@ -14,6 +22,7 @@ export const dynamic = 'force-dynamic'
  */
 function databaseHost(): string {
   const url = process.env.GKSETU_DATABASE_URL ?? ''
+  if (url.includes('pooler.supabase.com')) return 'Supabase (session pooler)'
   if (url.includes('supabase')) return 'Supabase'
   if (/^postgres(ql)?:\/\//.test(url)) return 'PostgreSQL (local)'
   return 'PostgreSQL'
@@ -77,6 +86,7 @@ export async function GET() {
       latencyMs: Date.now() - startedAt,
     })
   } catch {
-    return errors.serviceUnavailable('Database connection failed')
+    const diagnosis = diagnoseDatabaseUrl(process.env.GKSETU_DATABASE_URL)
+    return fail(diagnosis.message, diagnosis.code, 503, diagnosis.details)
   }
 }

@@ -3,7 +3,10 @@
 (Written by the P-SEC audit session; updated by REBRAND-S1 — the platform
 rename GlobIQ → GKSetu changed the env-var names to `GKSETU_*`, the repo to
 `dkzila/gksetu`, and the domain plan to `gksetu.vercel.app` (free subdomain,
-now) → `gksetu.com` (custom domain, when attached). Everything here was
+now) → `gksetu.com` (custom domain, when attached). Updated by DEPLOY-S1 —
+the first live deployment failed with `Database connection failed`; §5 is
+the troubleshooting playbook for exactly that, and `/api/health` now names
+the cause. Everything here was
 verified against the live codebase — every variable the app actually reads,
 nothing copied from a template. `docs/sessions/P-SEC.md` is the audit this
 accompanies.)
@@ -122,7 +125,8 @@ For completeness — the full manual list, so you can add anything by hand:
    this is the P-SEC fix (the old unconditional `cp` chain would have failed
    every Vercel build).
 6. **Post-deploy verification:**
-   - `GET /api/health` → `database.connected: true, host: "Supabase"`.
+   - `GET /api/health` → `database.connected: true, host: "Supabase (session pooler)"`.
+     (If it fails, the response now names the cause — see §5.)
    - `GET /robots.txt` and `/sitemap.xml` (rewrites onto the seo module).
    - One knowledge page + one exam page render.
    - Response headers now show the production variant: HSTS,
@@ -148,3 +152,63 @@ For completeness — the full manual list, so you can add anything by hand:
 - **Secrets:** the DB password lives only in the Supabase dashboard /
   Vercel env — never in git (`.gitignore` covers `.env`; verified by the
   audit).
+
+---
+
+## 5. Troubleshooting the first deployment (DEPLOY-S1 — seen live)
+
+### 5.1 The symptom
+
+The site loads at `gksetu.vercel.app` (header, footer, styling all fine) but
+the content area shows:
+
+> Could not load the country configuration. Refresh the page to retry.
+
+and `GET /api/health` answers `503` with a database error. **This is always a
+database-configuration problem, not a code problem** — the page shell is
+static and loads regardless; the moment its JavaScript asks `/api/countries`
+for data, the API needs `GKSETU_DATABASE_URL` and the call fails. (Verified
+live: the same deployment, once the variable reaches it, serves everything.)
+
+### 5.2 The checklist — in order of how often each is the cause
+
+1. **Redeploy after changing environment variables.** Vercel variables apply
+   only to deployments **created after the change** — the running deployment
+   never picks them up. After adding or editing a variable:
+   Project → **Deployments** → latest deployment → **⋯ → Redeploy**.
+   This is the most commonly missed step.
+2. **Environment scope.** The variable must exist for **Production** (that is
+   the environment `gksetu.vercel.app` serves). When adding it, check
+   *Production* (Preview/Development optional). A variable added only as
+   Preview/Development leaves production broken.
+3. **Exact name and raw value.** `GKSETU_DATABASE_URL` — no quotes around the
+   value (Vercel stores it literally), no `[YOUR-PASSWORD]` placeholder from
+   the Supabase dashboard left in.
+4. **The right host.** Use the **session pooler**:
+   `postgresql://postgres.kbezlaqsvvlmgllkvszn:<DB-PASSWORD>@aws-0-ap-south-1.pooler.supabase.com:5432/postgres`
+   — not the direct host `db.kbezlaqsvvlmgllkvszn.supabase.co` (IPv6-only;
+   serverless connects over IPv4) and not port `6543` (transaction mode;
+   the app needs session mode for advisory locks).
+5. **Verify:** open `https://gksetu.vercel.app/api/health` — the expected
+   response has `"status": "ok"` and
+   `"database": { "connected": true, "host": "Supabase (session pooler)" }`.
+
+### 5.3 What the health endpoint says when it fails
+
+Since DEPLOY-S1, `/api/health` names the cause instead of a bare
+`Database connection failed` (deployments built before DEPLOY-S1 always show
+the generic message — redeploy to get the diagnostics):
+
+| `error.code` / `details.hint` | Meaning | Fix |
+|---|---|---|
+| `DATABASE_NOT_CONFIGURED` / `missing-env-var` | The variable never reached this deployment — missing, empty, wrong scope, or no redeploy since adding it | Add for Production, redeploy (§5.2 steps 1–2) |
+| `DATABASE_MISCONFIGURED` / `quoted-value` | Value wrapped in quotes | Re-paste without quotes, redeploy |
+| `DATABASE_MISCONFIGURED` / `password-placeholder` | `[YOUR-PASSWORD]` still in the string | Replace with the real password, redeploy |
+| `DATABASE_MISCONFIGURED` / `unparseable-url` | Not a valid connection string | Re-copy from §1.1 |
+| `DATABASE_MISCONFIGURED` / `supabase-direct-ipv6` | Direct host `db.<ref>.supabase.co` — IPv6-only | Switch to the session pooler URL (§1.1) |
+| `DATABASE_MISCONFIGURED` / `supabase-transaction-pooler` | Port 6543 (transaction mode) | Switch to port 5432 (session mode) |
+| `DATABASE_UNREACHABLE` / `supabase-pooler-unreachable` | URL shape is right, connection still failed — wrong password, or the Supabase project paused (free tier pauses after ~1 week idle) | Verify the DB password in Supabase → Settings → Database; if paused, restore from the Supabase dashboard |
+| `DATABASE_UNREACHABLE` / `connection-failed` | Other host, connection failed | Verify host/port/password |
+
+The connection string itself is never echoed in any response — only the
+matched pattern (the hint) and the fix.
