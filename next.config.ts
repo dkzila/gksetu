@@ -1,8 +1,70 @@
 import type { NextConfig } from "next";
 
+/**
+ * GlobIQ — Next.js configuration
+ *
+ * P-SEC (security-audit session): production security headers added. The
+ * split is deliberate:
+ *  - development (the sandbox preview): the essential hardening headers only —
+ *    no frame restrictions (the preview panel may frame the app cross-origin)
+ *    and no HSTS (the platform edge terminates TLS its own way).
+ *  - production (Vercel builds run NODE_ENV=production): the full set —
+ *    CSP, frame-ancestors 'self', HSTS, and Permissions-Policy lock-down.
+ *
+ * CSP is the pragmatic Next.js form: 'unsafe-inline' on script/style (Next's
+ * bootstrap + client-side JSON-LD injection need it; there is no nonce
+ * infrastructure and none is warranted at this scale — the win is the
+ * default-src/connect-src 'self' closure: no exfiltration channel even if
+ * an XSS lands, which matters because the §4 bearer token lives in
+ * localStorage on the client by design).
+ */
+
+const isProd = process.env.NODE_ENV === "production";
+
+const productionHeaders = [
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob:",
+      "font-src 'self' data:",
+      "connect-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+    ].join("; "),
+  },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+];
+
+const developmentHeaders = [
+  // Dev: CSP without frame-ancestors/XFO (the sandbox preview panel may frame
+  // the app cross-origin); 'unsafe-eval' for React Fast Refresh.
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob:",
+      "font-src 'self' data:",
+      "connect-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join("; "),
+  },
+];
+
 const nextConfig: NextConfig = {
   // No `output: "standalone"` — Vercel manages builds itself (P1-S1 decision).
   reactStrictMode: true,
+  // Don't advertise the framework in responses.
+  poweredByHeader: false,
   typescript: {
     // Fail builds on type errors — quality is enforced by `bun run type-check` in CI.
     ignoreBuildErrors: false,
@@ -14,6 +76,22 @@ const nextConfig: NextConfig = {
     return [
       { source: "/robots.txt", destination: "/api/seo/robots" },
       { source: "/sitemap.xml", destination: "/api/seo/sitemap" },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+          },
+          ...(isProd ? productionHeaders : developmentHeaders),
+        ],
+      },
     ];
   },
 };
