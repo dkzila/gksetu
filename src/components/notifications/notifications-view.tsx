@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the Notifications view (P8-S2, #/notifications)
  * Master Plan §27 (the notification center + the preferences surface): every
@@ -436,7 +438,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
   const open = useCallback(
     (item: ApiNotification) => {
       if (item.canonicalPath) onOpenPath(item.canonicalPath)
-      else if (item.appPath) window.location.hash = item.appPath
+      else if (item.appPath) navigateToPath(item.appPath)
       if (!item.isRead) void markRead(item.batchId)
     },
     [onOpenPath, markRead]
@@ -567,7 +569,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                 </p>
               </div>
               <Button variant="outline" size="sm" className="border-zinc-200" asChild>
-                <a href="#/following">Manage your follows</a>
+                <a href="/following">Manage your follows</a>
               </Button>
             </CardContent>
           </Card>

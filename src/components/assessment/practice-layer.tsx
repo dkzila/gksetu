@@ -410,7 +410,7 @@ export function PracticeLayer({ practice, unitSharePath, focusQuestionId = null 
               answer={answers[entry.id] ?? null}
               busy={busyId === entry.id}
               error={errors[entry.id] ?? null}
-              unitSharePath={unitSharePath ?? '#/'}
+              unitSharePath={unitSharePath ?? '/'}
               onSelect={(optionKey) =>
                 setSelections((current) => ({ ...current, [entry.id]: optionKey }))
               }

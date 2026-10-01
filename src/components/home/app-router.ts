@@ -1,55 +1,59 @@
 'use client'
 
 /**
- * GKSetu — the §16-mirroring hash router (P4-S2, extended P4-S3)
+ * GKSetu — the §16-mirroring PATH router (P4-S2/P4-S3 lineage; DEPLOY-S2
+ * moved the canonical URL space from after-the-hash to real URL paths —
+ * the user's direct request: no stray '#' in the address bar).
  *
- * The public URL space (Master Plan §16 / Appendix B) is:
- *   India default English   /                       → #/
- *   India non-default lang  /{language}/            → #/hi/
- *   Other country default   /{country}/             → #/uk/
- *   Other country + lang    /{country}/{language}/  → #/fr/… (per config)
- *   Topic hub               …/gk/{topic}/           → #/hi/gk/polity-governance/
- *   Knowledge page          …/gk/{topic}/{unit}/    → #/gk/fundamental-rights/article-32/
- *   Current-affairs page    …/current-affairs/{slug}/ → #/current-affairs/chandrayaan-3-vikram-landing/
- *   Exam page               …/exams/{exam}/         → #/exams/upsc-civil-services/
+ * The public URL space (Master Plan §16 / Appendix B) is unchanged, only
+ * now real paths:
+ *   India default English   /
+ *   India non-default lang  /{language}/            → /hi/
+ *   Other country default   /{country}/             → /uk/
+ *   Other country + lang    /{country}/{language}/  → /fr/… (per config)
+ *   Topic hub               …/gk/{topic}/           → /gk/polity-governance/
+ *   Knowledge page          …/gk/{topic}/{unit}/    → /gk/fundamental-rights/article-32/
+ *   Current-affairs page    …/current-affairs/{slug}/
+ *   Exam page               …/exams/{exam}/         → /exams/upsc-civil-services/
  *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
- *                                                   → #/exams/upsc-civil-services/syllabus/constitutional-framework/
- *   Mock test (exam-scoped)  …/exams/{exam}/mock-tests/{slug}/
- *                                                   → #/exams/upsc-civil-services/mock-tests/upsc-cse-polity-world-gk-mini-mock-test/
- *   Mock test (topic-scoped) …/gk/{topic}/mock-tests/{slug}/
- *                                                   → #/gk/fundamental-rights/mock-tests/fundamental-rights-warm-up-drill/
+ *   Mock test (exam-scoped) …/exams/{exam}/mock-tests/{slug}/
+ *   Mock test (topic-scoped)…/gk/{topic}/mock-tests/{slug}/
  *
- * Inside this sandbox the browser path must stay `/`, so the canonical URL
- * space is mirrored AFTER the hash — the same segment grammar, the same
- * build rules as the server's buildCanonicalUrl (§16: country + language +
- * object identity, defaults omitted), driven by the live country/language
- * configuration from GET /api/countries (§35 — only what each country
- * actually configures). Parsing is lenient: unknown segments fall back to
- * the default market, never an error page.
+ * The app renders through the optional catch-all route
+ * (src/app/[[...slug]]/page.tsx) — every path serves the same shell and
+ * this router parses the PATHNAME (History API navigation via pushState;
+ * back/forward arrive as popstate). The segment grammar, the build rules
+ * and the lenient parsing are the same as the server's buildCanonicalUrl
+ * (§16: country + language + object identity, defaults omitted), driven by
+ * the live country/language configuration from GET /api/countries (§35).
+ * Unknown segments fall back to the default market, never an error page.
  *
- * `#account` (the header Sign-in anchor) maps to the foundation console
- * scrolled to the account section — the console keeps every verification
- * surface from P1→P4 reachable. `#/following` (P5-S1) is the private
- * personalisation management surface (§31) — market-independent, noindex —
- * and `#/saved` (P5-S2) its collections counterpart (§10) — likewise
- * market-independent and never indexed. `#/onboarding` and `#/profile`
- * (P5-S3) are the private goal/onboarding surfaces — same rules. `#/dashboard`
- * (P5-S4) is the personalised dashboard/feed (§22/§34) — same rules.
- * `#/personalisation` (P5-S5) is the explanations & controls surface
- * (§9/§31) — same rules. `#/notifications` (P8-S2 §27) is the private
- * notification center + preferences surface — same rules.
- * `#/collections/{id}/` (P8-S1 §21) is the PUBLIC unlisted landing view for a
- * LINK-visibility shared collection — the one collections route that is not
- * #/saved (noindex, reachable only via the share link).
+ * LEGACY HASH URLS KEEP WORKING: every share link minted before DEPLOY-S2
+ * (…/#/gk/…) parses to the same route — currentAppPath() prefers the hash
+ * when one is present, and useAppRoute upgrades the address bar to the
+ * clean path via replaceState (no reload). '#account' (the header Sign-in
+ * anchor) maps to the console scrolled to the account section.
  *
- * Addressable state derives from the hash (never duplicated in component
- * state): `?page=N` for topic-unit pagination, `?version={id}` for the exam
- * page's §36 historical window — the browser back button walks both, and
- * every topic/exam switch starts clean. The §22 mock-test runner (P7-S3)
- * lives at the two shapes above — the test's scope (exam or topic) is part
- * of its §16 identity, so the URL carries it. `?q={id}` (P8-S1 §21) focuses
- * the unit page's practice layer on one question — the question share link's
- * addressable state.
+ * `/account` keeps that mapping as a path. `/following` (P5-S1) is the
+ * private personalisation management surface (§31) — market-independent,
+ * noindex — and `/saved` (P5-S2) its collections counterpart (§10) —
+ * likewise market-independent and never indexed. `/onboarding` and
+ * `/profile` (P5-S3) are the private goal/onboarding surfaces — same
+ * rules. `/dashboard` (P5-S4) is the personalised dashboard/feed
+ * (§22/§34) — same rules. `/personalisation` (P5-S5) is the explanations
+ * & controls surface (§9/§31) — same rules. `/notifications` (P8-S2 §27)
+ * is the private notification center + preferences surface — same rules.
+ * `/collections/{id}/` (P8-S1 §21) is the PUBLIC unlisted landing view
+ * for a LINK-visibility shared collection.
+ *
+ * Addressable state derives from the URL (never duplicated in component
+ * state): `?page=N` for topic-unit pagination, `?version={id}` for the
+ * exam page's §36 historical window, `?q={id}` (P8-S1 §21) to focus the
+ * unit page's practice layer on one question — the browser back button
+ * walks all of them, and every topic/exam switch starts clean. The §22
+ * mock-test runner (P7-S3) lives at the two shapes above — the test's
+ * scope (exam or topic) is part of its §16 identity, so the URL carries
+ * it.
  */
 import { useEffect, useState } from 'react'
 
@@ -84,8 +88,36 @@ export interface AppRoute {
   scrollTo: string | null
 }
 
-/** Parses a §16-shaped hash into an app route (lenient — defaults on unknown). */
-export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
+/** The current app path — the URL pathname + query (legacy-hash aware). */
+export function currentAppPath(): string {
+  if (typeof window === 'undefined') return '/'
+  const hash = window.location.hash
+  // A pre-DEPLOY-S2 hash route ('#/gk/…', '#account') still resolves.
+  if (/^#(\/|account)/.test(hash)) return hash === '#' ? '/' : hash
+  return window.location.pathname + window.location.search
+}
+
+/** True when the path is the market-default home ('/', plus legacy forms). */
+export function isRootAppPath(path: string): boolean {
+  return path === '/' || path === '' || path === '#/' || path === '#'
+}
+
+/**
+ * Normalises any in-app path value — a clean path ('/signin'), a legacy
+ * hash string ('#/console') or a server-built canonical path ('/gk/…/') —
+ * to the clean URL form pushState accepts.
+ */
+export function normalizeAppPath(rawPath: string): string {
+  const withoutHash = rawPath.trim().replace(/^#+/, '')
+  const [pathPart, queryPart] = withoutHash.split('?')
+  // Preserve the §16 trailing slash when present ('/gk/…/'); '' → '/'.
+  let cleanPath = pathPart ?? ''
+  if (!cleanPath.startsWith('/')) cleanPath = `/${cleanPath}`
+  return queryPart ? `${cleanPath}?${queryPart}` : cleanPath
+}
+
+/** Parses a §16-shaped path (or legacy '#…' hash string) into an app route. */
+export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
   const defaultCountry = config.find((country) => country.isDefault) ?? config[0]
   const fallback: AppRoute = {
     view: 'home',
@@ -107,7 +139,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
 
   // Addressable query after the path (?page=N topic units, ?version= exam
   // windows, ?q= the P8-S1 §21 practice-question focus on unit pages).
-  const [pathPart, queryPart] = hash.split('?')
+  const [pathPart, queryPart] = path.split('?')
   const queryParams = new URLSearchParams(queryPart ?? '')
   const pageRaw = Number.parseInt(queryParams.get('page') ?? '1', 10)
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1
@@ -116,10 +148,11 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   const focusParam = queryParams.get('q') ?? ''
   const focusQuestionId = VERSION_PATTERN.test(focusParam) ? focusParam : null
 
-  const segments = pathPart.replace(/^#\/?/, '').split('/').filter(Boolean)
+  // Accept both real paths ('/fr/gk/…') and legacy hash strings ('#/fr/gk/…').
+  const segments = pathPart.replace(/^[#/]+/, '').split('/').filter(Boolean)
   if (segments.length === 0) return fallback
 
-  // Console + anchors (the foundation console keeps #account working).
+  // Console + anchors (the foundation console keeps /account working).
   if (segments[0] === 'console') {
     return { ...fallback, view: 'console', scrollTo: null }
   }
@@ -209,8 +242,8 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
       // P9-S2 fix (found by browser verification of the live France market):
       // entering a non-default market RESETS the language to THAT market's
       // default — the language variable was seeded from the default market
-      // ('en') and never reset, so #/fr/ resolved to {FR, en} and the API
-      // honestly 404'd ("English is not available in France"). buildHash
+      // ('en') and never reset, so /fr/ resolved to {FR, en} and the API
+      // honestly 404'd ("English is not available in France"). buildPath
       // never emits a language segment for a market's default language, so
       // this is the only place the reset can live.
       language = bySlug.defaultLanguage.code
@@ -381,7 +414,7 @@ export function parseHash(hash: string, config: ApiCountry[]): AppRoute {
   return { ...fallback, countryIso: country.isoCode, language }
 }
 
-/** The route shape buildHash/navigateHash accept (view + addressable state). */
+/** The route shape buildPath/navigateRoute accept (view + addressable state). */
 export interface RouteInput {
   view: AppRoute['view']
   countryIso: string
@@ -401,29 +434,29 @@ export interface RouteInput {
   focusQuestionId?: string | null
 }
 
-/** Builds the §16-shaped hash for a route (defaults omitted, §16). */
-export function buildHash(route: RouteInput, config: ApiCountry[]): string {
-  if (route.view === 'console') return '#/console'
-  if (route.view === 'signin') return '#/signin'
-  if (route.view === 'following') return '#/following'
-  if (route.view === 'saved') return '#/saved'
-  if (route.view === 'onboarding') return '#/onboarding'
-  if (route.view === 'profile') return '#/profile'
-  if (route.view === 'dashboard') return '#/dashboard'
-  if (route.view === 'personalisation') return '#/personalisation'
-  if (route.view === 'notifications') return '#/notifications'
+/** Builds the §16-shaped URL path for a route (defaults omitted, §16). */
+export function buildPath(route: RouteInput, config: ApiCountry[]): string {
+  if (route.view === 'console') return '/console'
+  if (route.view === 'signin') return '/signin'
+  if (route.view === 'following') return '/following'
+  if (route.view === 'saved') return '/saved'
+  if (route.view === 'onboarding') return '/onboarding'
+  if (route.view === 'profile') return '/profile'
+  if (route.view === 'dashboard') return '/dashboard'
+  if (route.view === 'personalisation') return '/personalisation'
+  if (route.view === 'notifications') return '/notifications'
   // P8-S3 §25/§31 — the reporter's own reports surface, market-independent.
-  if (route.view === 'feedback') return '#/feedback'
+  if (route.view === 'feedback') return '/feedback'
   // P8-S1 §21: the public unlisted shared-collection view — market-independent.
   if (route.view === 'collection' && route.collectionId) {
-    return `#/collections/${route.collectionId}/`
+    return `/collections/${route.collectionId}/`
   }
   // P7-S5 §22 — the quick-mock setup (an exam slug deep-links its scope card).
   if (route.view === 'quick-mock') {
-    return route.examSlug ? `#/quick-mock/${route.examSlug}/` : '#/quick-mock'
+    return route.examSlug ? `/quick-mock/${route.examSlug}/` : '/quick-mock'
   }
   const country = config.find((entry) => entry.isoCode === route.countryIso)
-  if (!country) return '#/'
+  if (!country) return '/'
 
   const segments: string[] = []
   if (!country.isDefault) segments.push(country.slug)
@@ -445,7 +478,7 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
     segments.push('exams', route.examSlug, 'syllabus', route.syllabusTopicSlug)
   }
 
-  const path = segments.length === 0 ? '#/' : `#/${segments.join('/')}/`
+  const path = segments.length === 0 ? '/' : `/${segments.join('/')}/`
 
   // Addressable state — only when explicitly beyond the defaults.
   const params = new URLSearchParams()
@@ -455,7 +488,7 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'exam' && route.versionId && VERSION_PATTERN.test(route.versionId)) {
     params.set('version', route.versionId)
   }
-  // P8-S1 §21: the question focus rides the unit view's hash (?q={id}).
+  // P8-S1 §21: the question focus rides the unit view's path (?q={id}).
   if (route.view === 'unit' && route.focusQuestionId && VERSION_PATTERN.test(route.focusQuestionId)) {
     params.set('q', route.focusQuestionId)
   }
@@ -463,27 +496,53 @@ export function buildHash(route: RouteInput, config: ApiCountry[]): string {
   return query ? `${path}?${query}` : path
 }
 
-/** Programmatic navigation — sets the hash; the hashchange listener re-parses. */
-export function navigateHash(route: RouteInput, config: ApiCountry[]): void {
-  const next = buildHash(route, config)
-  if (window.location.hash === next) {
-    // Same hash never fires hashchange — force a re-parse (idempotent nav).
-    window.dispatchEvent(new HashChangeEvent('hashchange'))
+/** pushState + the re-parse event (pushState fires no event of its own). */
+function pushAppPath(next: string): void {
+  if (currentAppPath() === next) {
+    // Same URL — never a popstate — force a re-parse (idempotent nav).
+    window.dispatchEvent(new PopStateEvent('popstate'))
     return
   }
-  window.location.hash = next
+  window.history.pushState({}, '', next)
+  window.dispatchEvent(new PopStateEvent('popstate'))
 }
 
-/** Subscribes to hash changes; returns null until the config has loaded. */
-export function useHashRoute(config: ApiCountry[] | null): AppRoute | null {
+/** Programmatic navigation by route object — pushState; the listener re-parses. */
+export function navigateRoute(route: RouteInput, config: ApiCountry[]): void {
+  pushAppPath(buildPath(route, config))
+}
+
+/**
+ * Programmatic navigation by path string — accepts clean paths ('/signin'),
+ * legacy hash strings ('#/console') and server-built canonical paths
+ * ('/gk/…/') alike.
+ */
+export function navigateToPath(rawPath: string): void {
+  pushAppPath(normalizeAppPath(rawPath))
+}
+
+/** Subscribes to URL changes; returns null until the config has loaded. */
+export function useAppRoute(config: ApiCountry[] | null): AppRoute | null {
   const [route, setRoute] = useState<AppRoute | null>(null)
 
   useEffect(() => {
     if (!config) return
-    const apply = () => setRoute(parseHash(window.location.hash, config))
+    const apply = () => {
+      const raw = currentAppPath()
+      // One-time upgrade: a legacy hash URL ('…/#/gk/…') becomes the clean
+      // path in the address bar — same document, no reload, same route.
+      if (raw.startsWith('#')) {
+        try {
+          window.history.replaceState({}, '', normalizeAppPath(raw))
+        } catch {
+          // A replaceState failure must never break routing — parse anyway.
+        }
+      }
+      setRoute(parseRoute(raw, config))
+    }
     apply()
-    window.addEventListener('hashchange', apply)
-    return () => window.removeEventListener('hashchange', apply)
+    window.addEventListener('popstate', apply)
+    return () => window.removeEventListener('popstate', apply)
   }, [config])
 
   return route

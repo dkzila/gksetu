@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the follow toggle button (P5-S1)
  * Master Plan §9 (explicit, reversible personalisation signal), §10 (follow
@@ -90,7 +92,7 @@ export function FollowButton({
       title: 'Sign in to follow',
       description: `Create a free account to follow ${objectName} — follows shape your personal GKSetu feed.`,
     })
-    window.location.hash = '#/signin'
+    navigateToPath('/signin')
   }, [objectName, toast])
 
   const onFollow = useCallback(async () => {

@@ -182,7 +182,7 @@ export interface NotificationContext {
   objectLabel: string
   /** The §16 canonical path to reopen the object (null for private surfaces). */
   canonicalPath: string | null
-  /** In-app path for private surfaces (e.g. '#/dashboard' for revision). */
+  /** In-app path for private surfaces (e.g. '/dashboard' for revision). */
   appPath: string | null
   /** The open-action's label (e.g. "Open the event"). */
   actionLabel: string

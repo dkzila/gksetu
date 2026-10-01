@@ -3,9 +3,10 @@
  * Returns service identity, database connectivity, seed snapshot and latency.
  *
  * DEPLOY-S1: on failure the response names the CAUSE (missing variable,
- * quoted/placeholder value, IPv6-only direct host, unreachable database) —
- * the first Vercel deployment showed a bare "Database connection failed"
- * answers four completely different dashboard fixes. See
+ * quoted/placeholder value, IPv6-only direct host, auth failure, the
+ * connection-pool ceiling, unreachable database) — the first Vercel
+ * deployment showed a bare "Database connection failed" answers several
+ * completely different dashboard fixes. See
  * src/lib/api/database-diagnostics.ts; the connection string itself never
  * leaves the server.
  */
@@ -85,8 +86,8 @@ export async function GET() {
       },
       latencyMs: Date.now() - startedAt,
     })
-  } catch {
-    const diagnosis = diagnoseDatabaseUrl(process.env.GKSETU_DATABASE_URL)
+  } catch (error) {
+    const diagnosis = diagnoseDatabaseUrl(process.env.GKSETU_DATABASE_URL, error)
     return fail(diagnosis.message, diagnosis.code, 503, diagnosis.details)
   }
 }

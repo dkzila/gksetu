@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the sign-in / create-account page (#/signin).
  *
@@ -96,7 +98,7 @@ export function SignInView({ onGoHome }: SignInViewProps) {
       title: `Welcome, ${name ?? 'learner'}!`,
       description: 'You are signed in — your dashboard is ready.',
     })
-    window.location.assign('#/dashboard')
+    navigateToPath('/dashboard')
   }
 
   async function handleSignIn(values: SignInValues) {
@@ -161,10 +163,10 @@ export function SignInView({ onGoHome }: SignInViewProps) {
               </div>
               <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
                 <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700">
-                  <a href="#/dashboard">Go to your dashboard</a>
+                  <a href="/dashboard">Go to your dashboard</a>
                 </Button>
                 <Button asChild variant="outline">
-                  <a href="#/">Browse GKSetu</a>
+                  <a href="/">Browse GKSetu</a>
                 </Button>
               </div>
             </CardContent>

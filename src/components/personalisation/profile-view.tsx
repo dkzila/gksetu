@@ -627,7 +627,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
             </CardHeader>
             <CardContent className="grid gap-3 sm:grid-cols-2">
               <a
-                href="#/personalisation"
+                href="/personalisation"
                 className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50/50 p-4 transition-colors hover:border-emerald-400"
               >
                 <Settings2 className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
@@ -639,7 +639,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 </span>
               </a>
               <a
-                href="#/following"
+                href="/following"
                 className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
               >
                 <Rss className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
@@ -651,7 +651,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 </span>
               </a>
               <a
-                href="#/saved"
+                href="/saved"
                 className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
               >
                 <Bookmark className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />

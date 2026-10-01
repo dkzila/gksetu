@@ -529,7 +529,7 @@ export function ControlsView({
                     No goal declared yet — a two-minute guided flow personalises your dashboard.
                   </p>
                   <a
-                    href="#/onboarding"
+                    href="/onboarding"
                     className="mt-3 inline-flex h-9 items-center gap-2 rounded-md bg-emerald-600 px-4 text-sm font-medium text-white hover:bg-emerald-700"
                   >
                     <GraduationCap className="h-4 w-4" aria-hidden="true" />
@@ -581,7 +581,7 @@ export function ControlsView({
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <a
-                        href="#/onboarding"
+                        href="/onboarding"
                         className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
                       >
                         <Pencil className="h-4 w-4" aria-hidden="true" />
@@ -661,7 +661,7 @@ export function ControlsView({
                 ))}
               </ul>
               <a
-                href="#/dashboard"
+                href="/dashboard"
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-rose-300 hover:text-rose-700"
               >
                 <TrendingUp className="h-4 w-4" aria-hidden="true" />
@@ -716,7 +716,7 @@ export function ControlsView({
             <CardContent className="flex flex-wrap items-center justify-between gap-3">
               <p className="max-w-xl text-xs leading-relaxed text-zinc-500">{data.saves.note}</p>
               <a
-                href="#/saved"
+                href="/saved"
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
               >
                 <Bookmark className="h-4 w-4" aria-hidden="true" />
@@ -743,7 +743,7 @@ export function ControlsView({
                 yours alone and are kept by this reset.
               </p>
               <a
-                href="#/notifications"
+                href="/notifications"
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
               >
                 <Bell className="h-4 w-4" aria-hidden="true" />
@@ -770,7 +770,7 @@ export function ControlsView({
                 outcomes are yours alone and are kept by this reset.
               </p>
               <a
-                href="#/feedback"
+                href="/feedback"
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
               >
                 <MessageSquareWarning className="h-4 w-4" aria-hidden="true" />
@@ -795,7 +795,7 @@ export function ControlsView({
                 </Badge>
               )}
               <a
-                href="#/onboarding"
+                href="/onboarding"
                 className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 hover:border-emerald-300 hover:text-emerald-700"
               >
                 <GraduationCap className="h-4 w-4" aria-hidden="true" />

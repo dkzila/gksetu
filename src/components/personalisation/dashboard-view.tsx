@@ -422,13 +422,13 @@ export function DashboardView({
                     asChild
                     className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
                   >
-                    <a href="#/onboarding">
+                    <a href="/onboarding">
                       <Target className="h-4 w-4" aria-hidden="true" />
                       Declare a goal
                     </a>
                   </Button>
                   <Button asChild variant="outline" className="gap-2 border-zinc-200 bg-white">
-                    <a href="#/following">
+                    <a href="/following">
                       <Rss className="h-4 w-4" aria-hidden="true" />
                       Follow something
                     </a>
@@ -447,7 +447,7 @@ export function DashboardView({
               </h2>
               {data.goal && (
                 <Button asChild variant="ghost" size="sm" className="gap-1.5 text-zinc-500 hover:text-emerald-700">
-                  <a href="#/onboarding" aria-label="Edit your goal">
+                  <a href="/onboarding" aria-label="Edit your goal">
                     <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
                     Edit goal
                   </a>
@@ -533,7 +533,7 @@ export function DashboardView({
                       strongest personalisation signal.
                     </p>
                     <Button asChild size="sm" className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
-                      <a href="#/onboarding">
+                      <a href="/onboarding">
                         <Target className="h-4 w-4" aria-hidden="true" />
                         Declare a goal
                       </a>
@@ -574,7 +574,7 @@ export function DashboardView({
                 </button>
                 {/* P5-S5: the §9 explanations surface — every signal behind this queue, with its control. */}
                 <a
-                  href="#/personalisation"
+                  href="/personalisation"
                   className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-zinc-200 bg-white px-2.5 text-xs font-medium text-zinc-600 transition-colors hover:border-emerald-300 hover:text-emerald-700"
                 >
                   <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
@@ -986,7 +986,7 @@ export function DashboardView({
                   )}
                   <p className="text-xs text-zinc-400">
                     Followed subjects re-rank your queue and explain its units — manage them in{' '}
-                    <a href="#/following" className="font-medium text-emerald-700 hover:text-emerald-800">
+                    <a href="/following" className="font-medium text-emerald-700 hover:text-emerald-800">
                       Following
                     </a>
                     .
@@ -1005,7 +1005,7 @@ export function DashboardView({
               </h2>
               {data.saves.total > 0 && (
                 <Button asChild variant="ghost" size="sm" className="gap-1.5 text-zinc-500 hover:text-emerald-700">
-                  <a href="#/saved">
+                  <a href="/saved">
                     All {data.saves.total} saves
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </a>
@@ -1059,7 +1059,7 @@ export function DashboardView({
           {/* ---------- §22 honest P7 note ---------- */}
           <p className="text-center text-xs text-zinc-400">
             Your personalisation data stays reviewable and reversible —{' '}
-            <a href="#/profile" className="font-medium text-emerald-700 hover:text-emerald-800">
+            <a href="/profile" className="font-medium text-emerald-700 hover:text-emerald-800">
               review it in your profile
             </a>
             .

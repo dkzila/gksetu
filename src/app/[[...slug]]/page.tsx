@@ -54,11 +54,18 @@ import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
 import { ControlsView } from '@/components/personalisation/controls-view'
-import { navigateHash, useHashRoute } from '@/components/home/hash-router'
+import { currentAppPath, isRootAppPath, navigateRoute, navigateToPath, useAppRoute } from '@/components/home/app-router'
+import { useAppRouteLinks } from '@/components/home/app-router-links'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
 export default function GKSetuApp() {
+  // ---------- SPA link handling (DEPLOY-S2) ----------
+  // Plain <a href="/…"> links (sidebar, footer, dashboard cards…) navigate
+  // through the router — pushState + re-parse — instead of a full document
+  // reload. Modifier clicks, new tabs and downloads keep the browser default.
+  useAppRouteLinks()
+
   // ---------- Locale configuration (the switchers' source of truth) ----------
   const [config, setConfig] = useState<ApiCountry[] | null>(null)
   const [configError, setConfigError] = useState(false)
@@ -165,7 +172,7 @@ export default function GKSetuApp() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        path: window.location.hash || '#/',
+        path: currentAppPath(),
         referrerClass: classifyReferrer(),
       }),
       keepalive: true,
@@ -174,7 +181,7 @@ export default function GKSetuApp() {
     })
   }, [])
 
-  const route = useHashRoute(config)
+  const route = useAppRoute(config)
 
   // P8-S1 §21/§32: the landing beacon — ONE fetch per page load when the
   // load STARTS on a shareable canonical surface (a §16 knowledge page,
@@ -185,14 +192,14 @@ export default function GKSetuApp() {
   // app started there). The record is anonymous-friendly (POST
   // /api/share/events attaches identity only when signed in) and best-effort
   // — a failed beacon never blocks the page.
-  const pageLoadHash = useRef<string | null>(null)
+  const pageLoadPath = useRef<string | null>(null)
   const landingBeaconFired = useRef(false)
   useEffect(() => {
     // Capture once on mount (the page-load URL — the whole definition of a
     // landing). Declared BEFORE the beacon effect: effects run in order, and
     // the beacon can only fire once a route exists (config arrives async).
-    if (pageLoadHash.current === null) {
-      pageLoadHash.current = window.location.hash || '#/'
+    if (pageLoadPath.current === null) {
+      pageLoadPath.current = currentAppPath()
     }
   }, [])
 
@@ -208,8 +215,8 @@ export default function GKSetuApp() {
     geoFlowStarted.current = true
     void (async () => {
       if (window.localStorage.getItem(MARKET_CHOICE_KEY)) return // returning visitor
-      const initialHash = pageLoadHash.current ?? '#/'
-      const isRoot = initialHash === '#/' || initialHash === '' || initialHash === '#'
+      const initialPath = pageLoadPath.current ?? '/'
+      const isRoot = isRootAppPath(initialPath)
       if (!isRoot) {
         setGeoPhase('deep-link')
         return
@@ -263,7 +270,7 @@ export default function GKSetuApp() {
     const hint = geoHint.current
     const market = hint ? config.find((entry) => entry.isoCode === hint.isoCode) : undefined
     if (hint && market && !market.isDefault) {
-      navigateHash(
+      navigateRoute(
         {
           view: 'home',
           countryIso: market.isoCode,
@@ -297,12 +304,12 @@ export default function GKSetuApp() {
     if (!shareable) return
     // The route only counts as a landing while the URL is STILL the one the
     // page loaded with — any in-app navigation before this point disqualifies.
-    if ((window.location.hash || '#/') !== pageLoadHash.current) return
+    if (currentAppPath() !== pageLoadPath.current) return
     landingBeaconFired.current = true
     const path =
       route.view === 'collection' && route.collectionId
-        ? `#/collections/${route.collectionId}/`
-        : window.location.hash || '#/'
+        ? `/collections/${route.collectionId}/`
+        : currentAppPath()
     void fetch('/api/share/events', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -330,7 +337,7 @@ export default function GKSetuApp() {
 
   const goHome = useCallback(() => {
     if (!config || !route) return
-    navigateHash(
+    navigateRoute(
       { view: 'home', countryIso: route.countryIso, language: route.language, topicSlug: null, unitSlug: null },
       config
     )
@@ -341,7 +348,7 @@ export default function GKSetuApp() {
   const goQuickMock = useCallback(
     (examSlug?: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'quick-mock',
           countryIso: route.countryIso,
@@ -359,7 +366,7 @@ export default function GKSetuApp() {
   const openTopic = useCallback(
     (slug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         { view: 'topic', countryIso: route.countryIso, language: route.language, topicSlug: slug, unitSlug: null },
         config
       )
@@ -370,7 +377,7 @@ export default function GKSetuApp() {
   const openUnit = useCallback(
     (topicSlug: string, unitSlug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         { view: 'unit', countryIso: route.countryIso, language: route.language, topicSlug, unitSlug },
         config
       )
@@ -382,7 +389,7 @@ export default function GKSetuApp() {
   const openExam = useCallback(
     (slug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'exam',
           countryIso: route.countryIso,
@@ -402,7 +409,7 @@ export default function GKSetuApp() {
   const openEvent = useCallback(
     (slug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'event',
           countryIso: route.countryIso,
@@ -421,7 +428,7 @@ export default function GKSetuApp() {
   const openExamSyllabus = useCallback(
     (examSlug: string, syllabusTopicSlug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'syllabus',
           countryIso: route.countryIso,
@@ -442,7 +449,7 @@ export default function GKSetuApp() {
   const openExamTest = useCallback(
     (examSlug: string, testSlug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'test',
           countryIso: route.countryIso,
@@ -463,7 +470,7 @@ export default function GKSetuApp() {
   const openTopicTest = useCallback(
     (topicSlug: string, testSlug: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'test',
           countryIso: route.countryIso,
@@ -485,7 +492,7 @@ export default function GKSetuApp() {
       if (!config || !route) return
       const market = config.find((entry) => entry.isoCode === countryIso)
       if (!market) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'exam',
           countryIso: market.isoCode,
@@ -507,7 +514,7 @@ export default function GKSetuApp() {
     (slug: string, countryIso: string | null) => {
       if (!config || !route) return
       const market = countryIso ? config.find((entry) => entry.isoCode === countryIso) : null
-      navigateHash(
+      navigateRoute(
         {
           view: 'topic',
           countryIso: market?.isoCode ?? route.countryIso,
@@ -545,7 +552,7 @@ export default function GKSetuApp() {
           }
         }
       }
-      navigateHash(
+      navigateRoute(
         {
           view: 'unit',
           countryIso,
@@ -599,22 +606,22 @@ export default function GKSetuApp() {
       }
 
       if (segments[index] === 'gk' && segments[index + 1] && segments[index + 2]) {
-        navigateHash(
+        navigateRoute(
           { view: 'unit', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: segments[index + 2]! },
           config
         )
       } else if (segments[index] === 'gk' && segments[index + 1]) {
-        navigateHash(
+        navigateRoute(
           { view: 'topic', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: null },
           config
         )
       } else if (segments[index] === 'current-affairs' && segments[index + 1]) {
-        navigateHash(
+        navigateRoute(
           { view: 'event', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null, eventSlug: segments[index + 1]! },
           config
         )
       } else if (segments[index] === 'exams' && segments[index + 1]) {
-        navigateHash(
+        navigateRoute(
           {
             view: 'exam',
             countryIso: country.isoCode,
@@ -634,7 +641,7 @@ export default function GKSetuApp() {
   const switchExamVersion = useCallback(
     (versionId: string | null) => {
       if (!config || !route || !route.examSlug) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'exam',
           countryIso: route.countryIso,
@@ -656,7 +663,7 @@ export default function GKSetuApp() {
   const goTopicPage = useCallback(
     (page: number) => {
       if (!config || !route || !route.topicSlug) return
-      navigateHash(
+      navigateRoute(
         {
           view: 'topic',
           countryIso: route.countryIso,
@@ -674,7 +681,7 @@ export default function GKSetuApp() {
   const switchLanguage = useCallback(
     (code: string) => {
       if (!config || !route) return
-      navigateHash(
+      navigateRoute(
         {
           // Language switching on market-independent surfaces (sign-in,
           // console, following, saved, onboarding, profile, dashboard,
@@ -719,7 +726,7 @@ export default function GKSetuApp() {
       // §15.2: deliberate country switching lands on that country's homepage
       // and overwrites the client-side market choice (§31 — client-only).
       storeMarketChoice({ iso: target.isoCode, origin: 'user' })
-      navigateHash(
+      navigateRoute(
         {
           view: 'home',
           countryIso: target.isoCode,
@@ -735,7 +742,7 @@ export default function GKSetuApp() {
 
   const goConsole = useCallback(() => {
     if (!config || !route) return
-    navigateHash(
+    navigateRoute(
       { view: 'console', countryIso: route.countryIso, language: route.language, topicSlug: null, unitSlug: null },
       config
     )
@@ -744,7 +751,7 @@ export default function GKSetuApp() {
   // The homepage's Sign-in CTA routes to the public sign-in page — the
   // one user-facing authentication surface.
   const goSignIn = useCallback(() => {
-    window.location.hash = '#/signin'
+    navigateToPath('/signin')
   }, [])
 
   // ---------- Primary navigation (header + sidebar + footer) ----------
@@ -752,7 +759,7 @@ export default function GKSetuApp() {
   // "Current Affairs" opens the market's current-affairs hub.
   const openCurrentAffairs = useCallback(() => {
     if (!config || !route) return
-    navigateHash(
+    navigateRoute(
       {
         view: 'topic',
         countryIso: route.countryIso,
@@ -781,7 +788,7 @@ export default function GKSetuApp() {
     }
     if (!config || !route) return
     if (route.view !== 'home') {
-      navigateHash(
+      navigateRoute(
         { view: 'home', countryIso: route.countryIso, language: route.language, topicSlug: null, unitSlug: null },
         config
       )
@@ -910,11 +917,11 @@ export default function GKSetuApp() {
             onSignIn={goSignIn}
           />
         ) : route.view === 'onboarding' ? (
-          <OnboardingView onDone={goHome} onGoProfile={() => window.location.assign('#/profile')} onSignIn={goSignIn} />
+          <OnboardingView onDone={goHome} onGoProfile={() => navigateToPath('/profile')} onSignIn={goSignIn} />
         ) : route.view === 'profile' ? (
           <ProfileView
             onGoHome={goHome}
-            onGoOnboarding={() => window.location.assign('#/onboarding')}
+            onGoOnboarding={() => navigateToPath('/onboarding')}
             onSignIn={goSignIn}
             onOpenExam={openFollowedExam}
             onOpenTopic={openFollowedTopic}
@@ -934,7 +941,7 @@ export default function GKSetuApp() {
             countryIso={route.countryIso}
             language={route.language}
             initialExamSlug={route.examSlug}
-            onOpenDashboard={() => window.location.assign('#/dashboard')}
+            onOpenDashboard={() => navigateToPath('/dashboard')}
             onGoHome={goHome}
             onOpenExam={openExam}
             onOpenUnit={openUnit}

@@ -620,7 +620,7 @@ export async function notifyEditorialAssignment(
     body: task.notes,
     objectLabel: `Editorial task · ${task.type.replaceAll('_', ' ').toLowerCase()}`,
     canonicalPath: null, // the editorial workspace is the console — an in-app surface
-    appPath: '#/console',
+    appPath: '/console',
     actionLabel: 'Open the editorial workspace',
     matchedFollows: [],
     matchedSave: null,
@@ -681,7 +681,7 @@ export async function notifyFeedbackReceived(report: FeedbackNotificationReport)
       body: excerpt,
       objectLabel: `Feedback report \u00b7 ${report.feedbackTypeLabel}`,
       canonicalPath: null, // the editorial workspace is the console — an in-app surface
-      appPath: '#/console',
+      appPath: '/console',
       actionLabel: 'Open the editorial workspace',
       matchedFollows: [],
       matchedSave: null,
@@ -744,7 +744,7 @@ export async function ensureRevisionDueNotification(userId: string): Promise<boo
             : null,
       objectLabel: 'Your revision queue',
       canonicalPath: null, // the dashboard is a private surface — no §16 public path
-      appPath: '#/dashboard',
+      appPath: '/dashboard',
       actionLabel: 'Open your revision queue',
       matchedFollows: [],
       matchedSave: null,

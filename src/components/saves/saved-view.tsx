@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the Saved view (P5-S2, #/saved)
  * Master Plan §10 (Save = retrieval into user-defined collections; default
@@ -352,7 +354,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
     } else if (save.object.kind === 'MOCK_TEST') {
       // P7-S3 §10/§16 — the test's own runner page is the retrieval surface;
       // canonicalPath is the server-built §16 URL, mirrored after the hash.
-      window.location.hash = `#${save.object.canonicalPath}`
+      navigateToPath(save.object.canonicalPath)
     } else {
       // The item's own language market — the summary resolved it (§35).
       // P7-S1: saved Q&A rows reopen the unit's §22 page (the Practice —

@@ -41,7 +41,7 @@ import { Separator } from '@/components/ui/separator'
 import { useNotificationCount } from '@/stores/notifications'
 
 import type { ApiCountry } from './types'
-import type { AppRoute } from './hash-router'
+import type { AppRoute } from './app-router'
 
 // ---------- Props ----------
 

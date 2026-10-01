@@ -76,7 +76,7 @@ export function HeaderAuth() {
           asChild
         >
           <a
-            href="#/notifications"
+            href="/notifications"
             aria-label={`Your notifications${unreadCount > 0 ? ` — ${unreadCount} unread` : ''}`}
           >
             <Bell className="h-5 w-5" aria-hidden="true" />
@@ -115,19 +115,19 @@ export function HeaderAuth() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <a href="#/dashboard" className="cursor-pointer">
+                <a href="/dashboard" className="cursor-pointer">
                   <LineChart className="mr-2 h-4 w-4" aria-hidden="true" />
                   Dashboard
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="#/saved" className="cursor-pointer">
+                <a href="/saved" className="cursor-pointer">
                   <Bookmark className="mr-2 h-4 w-4" aria-hidden="true" />
                   Saved items
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="#/following" className="cursor-pointer">
+                <a href="/following" className="cursor-pointer">
                   <Rss className="mr-2 h-4 w-4" aria-hidden="true" />
                   Following
                 </a>
@@ -136,19 +136,19 @@ export function HeaderAuth() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <a href="#/profile" className="cursor-pointer">
+                <a href="/profile" className="cursor-pointer">
                   <UserRound className="mr-2 h-4 w-4" aria-hidden="true" />
                   Profile
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="#/personalisation" className="cursor-pointer">
+                <a href="/personalisation" className="cursor-pointer">
                   <Settings className="mr-2 h-4 w-4" aria-hidden="true" />
                   Settings
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="#/feedback" className="cursor-pointer">
+                <a href="/feedback" className="cursor-pointer">
                   <FileQuestion className="mr-2 h-4 w-4" aria-hidden="true" />
                   Feedback
                 </a>
@@ -157,7 +157,7 @@ export function HeaderAuth() {
             <DropdownMenuSeparator />
             {setupPending && (
               <DropdownMenuItem asChild>
-                <a href="#/onboarding" className="cursor-pointer text-emerald-700 focus:text-emerald-700">
+                <a href="/onboarding" className="cursor-pointer text-emerald-700 focus:text-emerald-700">
                   <span className="mr-2 h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-emerald-500" aria-hidden="true" />
                   Finish setting up your profile
                 </a>
@@ -182,7 +182,7 @@ export function HeaderAuth() {
       size="sm"
       className="h-10 gap-2 bg-emerald-600 px-4 text-white hover:bg-emerald-700"
     >
-      <a href="#/signin">
+      <a href="/signin">
         <LogIn className="h-4 w-4" aria-hidden="true" />
         Sign in
       </a>

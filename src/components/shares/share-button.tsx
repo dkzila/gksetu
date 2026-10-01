@@ -18,7 +18,7 @@ import { Button } from '@/components/ui/button'
 import { ShareDialog } from './share-dialog'
 
 export interface ShareButtonProps {
-  /** The §16 path after the hash, exactly as the app renders it (with ?q= when focused). */
+  /** The §16 URL path, exactly as the app renders it (with ?q= when focused). */
   path: string
   /** Fallback title while the card loads (the surface's honest label). */
   title: string

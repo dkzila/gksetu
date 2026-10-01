@@ -155,7 +155,7 @@ For completeness — the full manual list, so you can add anything by hand:
 
 ---
 
-## 5. Troubleshooting the first deployment (DEPLOY-S1 — seen live)
+## 5. Troubleshooting the first deployment (DEPLOY-S1 — seen live; DEPLOY-S2 found the real cause of the intermittent form)
 
 ### 5.1 The symptom
 
@@ -167,8 +167,12 @@ the content area shows:
 and `GET /api/health` answers `503` with a database error. **This is always a
 database-configuration problem, not a code problem** — the page shell is
 static and loads regardless; the moment its JavaScript asks `/api/countries`
-for data, the API needs `GKSETU_DATABASE_URL` and the call fails. (Verified
-live: the same deployment, once the variable reaches it, serves everything.)
+for data, the API needs `GKSETU_DATABASE_URL` and the call fails.
+
+DEPLOY-S1 diagnosed the steady form (the variable never reaching the
+deployment). DEPLOY-S2 then reproduced and fixed the **intermittent** form
+the user hit live — India loaded once, then the France switch failed and
+everything after it too: **connection-pool exhaustion** (see §5.4).
 
 ### 5.2 The checklist — in order of how often each is the cause
 
@@ -195,9 +199,9 @@ live: the same deployment, once the variable reaches it, serves everything.)
 
 ### 5.3 What the health endpoint says when it fails
 
-Since DEPLOY-S1, `/api/health` names the cause instead of a bare
-`Database connection failed` (deployments built before DEPLOY-S1 always show
-the generic message — redeploy to get the diagnostics):
+Since DEPLOY-S1, `/api/health` names the cause; DEPLOY-S2 added the
+auth/exhaustion split (deployments built before each change show the older,
+less specific messages — redeploy to get the current diagnostics):
 
 | `error.code` / `details.hint` | Meaning | Fix |
 |---|---|---|
@@ -207,8 +211,44 @@ the generic message — redeploy to get the diagnostics):
 | `DATABASE_MISCONFIGURED` / `unparseable-url` | Not a valid connection string | Re-copy from §1.1 |
 | `DATABASE_MISCONFIGURED` / `supabase-direct-ipv6` | Direct host `db.<ref>.supabase.co` — IPv6-only | Switch to the session pooler URL (§1.1) |
 | `DATABASE_MISCONFIGURED` / `supabase-transaction-pooler` | Port 6543 (transaction mode) | Switch to port 5432 (session mode) |
-| `DATABASE_UNREACHABLE` / `supabase-pooler-unreachable` | URL shape is right, connection still failed — wrong password, or the Supabase project paused (free tier pauses after ~1 week idle) | Verify the DB password in Supabase → Settings → Database; if paused, restore from the Supabase dashboard |
+| `DATABASE_AUTH_FAILED` / `auth-failed` | The database rejected the credentials (wrong password, or username not in the `postgres.<project-ref>` pooler form) | Fix the value per §1.1, redeploy |
+| `DATABASE_POOL_EXHAUSTED` / `pool-exhausted` | The database refused NEW connections — the free-tier 60-connection ceiling was hit (see §5.4) | Redeploy from the latest main (region + pool caps); check for idle dev servers holding slots |
+| `DATABASE_UNREACHABLE` / `supabase-pooler-unreachable` | URL shape is right, connection still failed — Supabase project paused (free tier pauses after ~1 week idle) or the network path is blocked | Restore the project from the Supabase dashboard |
 | `DATABASE_UNREACHABLE` / `connection-failed` | Other host, connection failed | Verify host/port/password |
 
 The connection string itself is never echoed in any response — only the
 matched pattern (the hint) and the fix.
+
+### 5.4 The intermittent form: connection-pool exhaustion (DEPLOY-S2 — reproduced live)
+
+**What was observed:** the user's first deployment served India once, then
+the France switch failed and India failed after it. A burst test of 12
+parallel `/api/home` calls against the live deployment returned **9 × 500**.
+
+**The arithmetic:** the Supabase free tier caps the database at
+**60 connections** (`SHOW max_connections`, verified live). On Vercel,
+EVERY API route runs as its own serverless function, each with its own
+Prisma client pool (default: CPUs × 2 + 1 ≈ 3 connections). The deployment
+was also running in the default **US region (iad1)** against a **Mumbai**
+database — ~200ms per query — so a single `/api/home` held its connections
+for ~9 seconds. One market switch = 5–6 concurrent functions × 3 connections
+× 9s hold ≈ the ceiling. New connections get refused until idle ones time
+out — which is why everything recovered by itself later.
+
+**The fixes (all in the repo — a redeploy from the latest `main` applies them):**
+
+1. **Function region → Mumbai (`bom1`)** via `vercel.json` → `regions` — next
+   to the database; queries drop from ~200ms to ~2–5ms and connections are
+   held for milliseconds instead of seconds. (Manual path if ever needed:
+   Vercel → Project → Settings → Functions → Region → Mumbai.) Verify after
+   deploy: `curl -sI https://gksetu.vercel.app/api/health | grep -i x-vercel-id`
+   → should contain `bom1` (not `iad1`).
+2. **Per-function pool cap** in `src/lib/db.ts` — on Vercel each Prisma
+   client is capped at `connection_limit=2` with `pool_timeout=30`: burst
+   traffic queues instead of exhausting the shared database.
+3. **Health diagnostics** name the exhaustion (`DATABASE_POOL_EXHAUSTED`)
+   instead of the misleading generic "verify the password".
+
+If exhaustion ever recurs after these fixes, look for long-lived clients
+holding idle slots (a local `next dev` server pointed at the same Supabase
+project holds up to 5) — restart them.

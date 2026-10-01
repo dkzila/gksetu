@@ -58,7 +58,7 @@ interface ApiShareCard {
 }
 
 export interface ShareDialogProps {
-  /** The §16 path the button sits on (with the leading '#', as the app renders it). */
+  /** The §16 URL path the button sits on (e.g. /gk/{topic}/{unit}/). */
   path: string
   /** Fallback label while the card loads / when it fails (the honest degradation). */
   title: string
@@ -172,7 +172,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
 
   const onCopyLink = useCallback(async () => {
     if (!card) return
-    const url = `${window.location.origin}/#${card.sharePath}`
+    const url = `${window.location.origin}${card.sharePath}`
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(url)
@@ -202,7 +202,7 @@ export function ShareDialog({ path, title, open, onOpenChange }: ShareDialogProp
     }
   }, [card, recordEvent, toast])
 
-  const shareUrl = card ? `${typeof window !== 'undefined' ? window.location.origin : ''}/#${card.sharePath}` : ''
+  const shareUrl = card ? `${typeof window !== 'undefined' ? window.location.origin : ''}${card.sharePath}` : ''
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

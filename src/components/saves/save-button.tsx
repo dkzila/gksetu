@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the save toggle button (P5-S2)
  * Master Plan §10 (Save is an explicit retrieval/bookmark action — it NEVER
@@ -92,7 +94,7 @@ export function SaveButton({
       title: 'Sign in to save',
       description: `Create a free account to keep ${objectName} in your collections — saves are your personal bookmarks.`,
     })
-    window.location.hash = '#/signin'
+    navigateToPath('/signin')
   }, [objectName, toast])
 
   const onSave = useCallback(async () => {

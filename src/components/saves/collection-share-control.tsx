@@ -105,7 +105,7 @@ export function CollectionShareControl({ collection, onUpdated }: CollectionShar
 
       {shared ? (
         <span className="flex flex-wrap items-center gap-2">
-          <ShareButton path={`#/collections/${collection.id}/`} title={collection.name} />
+          <ShareButton path={`/collections/${collection.id}/`} title={collection.name} />
           {confirmRevoke ? (
             <>
               <Button

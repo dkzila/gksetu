@@ -467,7 +467,7 @@ export function ExamView({
           <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
           <span className="text-xs text-zinc-400">
             Follows shape your combined-exam queue and dashboard — manageable anytime from
-            <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
+            <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
               #/following
             </a>
             .

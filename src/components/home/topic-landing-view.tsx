@@ -311,7 +311,7 @@ export function TopicLandingView({
           />
           <span className="text-xs text-zinc-400">
             Following a topic keeps it in your personalisation signals — review and unfollow at
-            <a href="#/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
+            <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
               #/following
             </a>
             .

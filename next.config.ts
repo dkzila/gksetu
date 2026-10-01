@@ -65,6 +65,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Don't advertise the framework in responses.
   poweredByHeader: false,
+  // DEPLOY-S2: the §16 URL space is real paths now (no '#'), documented
+  // with trailing slashes (/{country}/, /gk/{topic}/{unit}/ …). Serving
+  // BOTH forms directly (no 308 redirects) keeps every client fetch('/api/…')
+  // single-hop — the trailing-slash redirect would have doubled every API
+  // call — while share links and canonicals keep their §16 shape.
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   typescript: {
     // Fail builds on type errors — quality is enforced by `bun run type-check` in CI.
     ignoreBuildErrors: false,
@@ -72,11 +79,20 @@ const nextConfig: NextConfig = {
   // P4-S4 (§16): serve robots.txt and sitemap.xml at their standard crawler
   // locations — rewrites onto the seo module's API routes (no extra route
   // files; the gateway sees one app).
+  //
+  // DEPLOY-S2: BEFORE-FILES — the app shell is now an optional catch-all
+  // ([[...slug]]), so an afterFiles rewrite would never run (the catch-all
+  // page matches /robots.txt first). beforeFiles rewrites ahead of the
+  // filesystem, keeping the crawler endpoints on the API routes.
   async rewrites() {
-    return [
-      { source: "/robots.txt", destination: "/api/seo/robots" },
-      { source: "/sitemap.xml", destination: "/api/seo/sitemap" },
-    ];
+    return {
+      beforeFiles: [
+        { source: "/robots.txt", destination: "/api/seo/robots" },
+        { source: "/sitemap.xml", destination: "/api/seo/sitemap" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
   },
   async headers() {
     return [

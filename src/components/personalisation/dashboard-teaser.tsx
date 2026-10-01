@@ -1,5 +1,7 @@
 'use client'
 
+import { navigateToPath } from '@/components/home/app-router'
+
 /**
  * GKSetu — the homepage's personalised entry (P5-S4, §34)
  *
@@ -123,7 +125,7 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
             </p>
           </div>
           <Button asChild className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
-            <a href="#/dashboard">
+            <a href="/dashboard">
               <Layers className="h-4 w-4" aria-hidden="true" />
               Open dashboard
             </a>
@@ -178,7 +180,7 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
             {data.plan ? (
               <button
                 type="button"
-                onClick={() => (window.location.hash = '#/onboarding')}
+                onClick={() => navigateToPath('/onboarding')}
                 className="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-white/80 bg-white/70 px-3 py-1 font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
               >
                 <Target className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
@@ -188,7 +190,7 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
             ) : (
               <button
                 type="button"
-                onClick={() => (window.location.hash = '#/onboarding')}
+                onClick={() => navigateToPath('/onboarding')}
                 className="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-emerald-200 bg-white px-3 py-1 font-medium text-emerald-700 transition-colors hover:bg-emerald-50"
               >
                 <Target className="h-3.5 w-3.5" aria-hidden="true" />
@@ -205,7 +207,7 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
             </span>
             {data.saves.total > 0 && (
               <a
-                href="#/saved"
+                href="/saved"
                 className="inline-flex min-h-[32px] items-center rounded-full border border-white/80 bg-white/70 px-3 py-1 font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
               >
                 {data.saves.total} saved
