@@ -26,7 +26,7 @@ verified by scanning every `process.env` read in `src/`, `prisma/`,
 | What it is | The PostgreSQL connection string. Prisma's datasource is wired to this exact name (`prisma/schema.prisma` → `url = env("GKSETU_DATABASE_URL")`). |
 | Where it's read | Every database call in the app (via `src/lib/db.ts` → `@prisma/client`); `/api/health` also displays its host. |
 | Value on Vercel (Production) | `postgresql://postgres.kbezlaqsvvlmgllkvszn:<DB-PASSWORD>@aws-0-ap-south-1.pooler.supabase.com:5432/postgres` |
-| Why the session pooler | The direct host `db.kbezlaqsvvlmgllkvszn.supabase.co:5432` is IPv6-only. The app requires **session mode** (port 5432, username `postgres.<project-ref>`) — NOT the transaction pooler (port 6543) — because the revision-digest ensure (P8-S2 follow-up) holds advisory locks that must stay on one connection. The same URL is already proven live from this build (the sandbox runs it against Supabase). |
+| Why this exact URL | **The runtime adapter (`src/lib/db-url.ts`, DEPLOY-S2) rewrites Supabase pooler URLs to the TRANSACTION pooler (port 6543) with `pgbouncer=true`** before the Prisma client connects — the session pooler's per-project ceiling of 15 clients was exhausted live by serverless bursts (§5.4). The value above (session form) is still the right thing to PASTE: it also serves the Prisma CLI (`db:push`/migrate), which must not go through pgbouncer. Either port works in the env var — the adapter normalizes at runtime. The direct host `db.<ref>.supabase.co` stays wrong (IPv6-only). |
 | Security | The password never enters git (`.env` is gitignored); on Vercel it lives only in the dashboard. |
 
 ### 1.2 `GKSETU_PUBLIC_BASE_URL` — strongly recommended, add manually
@@ -226,7 +226,11 @@ the France switch failed and India failed after it. A burst test of 12
 parallel `/api/home` calls against the live deployment returned **9 × 500**.
 
 **The arithmetic:** the Supabase free tier caps the database at
-**60 connections** (`SHOW max_connections`, verified live). On Vercel,
+**60 connections** (`SHOW max_connections`, verified live) — but the wall
+that actually triggers is far lower: **the session pooler allows only 15
+client connections per project** (`FATAL: (EMAXCONNSESSION) max clients
+reached in session mode - max clients are limited to pool_size: 15` —
+captured live when the sandbox itself was refused). On Vercel,
 EVERY API route runs as its own serverless function, each with its own
 Prisma client pool (default: CPUs × 2 + 1 ≈ 3 connections). The deployment
 was also running in the default **US region (iad1)** against a **Mumbai**
@@ -243,11 +247,23 @@ out — which is why everything recovered by itself later.
    Vercel → Project → Settings → Functions → Region → Mumbai.) Verify after
    deploy: `curl -sI https://gksetu.vercel.app/api/health | grep -i x-vercel-id`
    → should contain `bom1` (not `iad1`).
-2. **Per-function pool cap** in `src/lib/db.ts` — on Vercel each Prisma
+2. **The TRANSACTION pooler at runtime** (`src/lib/db-url.ts`) — the adapter
+   rewrites Supabase pooler URLs to port 6543 with `pgbouncer=true`, which
+   multiplexes ~200 clients over the same 15 server connections: the wall
+   stops existing for serverless. The session-mode dependency was audited
+   before switching: the platform's only advisory lock is
+   `pg_advisory_xact_lock` INSIDE a Prisma transaction (transaction-scoped;
+   transaction pooling pins one server connection per transaction, so the
+   lock's atomicity holds — verified live through 6543), and the search
+   engine's readiness DDL is single-statement `CREATE INDEX IF NOT EXISTS`
+   (no CONCURRENTLY). The Prisma CLI keeps the session URL (schema work
+   never goes through the adapter).
+3. **Per-function pool cap** in `src/lib/db.ts` — on Vercel each Prisma
    client is capped at `connection_limit=2` with `pool_timeout=30`: burst
-   traffic queues instead of exhausting the shared database.
-3. **Health diagnostics** name the exhaustion (`DATABASE_POOL_EXHAUSTED`)
-   instead of the misleading generic "verify the password".
+   traffic queues instead of multiplying connections.
+4. **Health diagnostics** name the exhaustion (`DATABASE_POOL_EXHAUSTED` —
+   the Supavisor `max clients`/`pool_size` message is matched) instead of
+   the misleading generic "verify the password".
 
 If exhaustion ever recurs after these fixes, look for long-lived clients
 holding idle slots (a local `next dev` server pointed at the same Supabase

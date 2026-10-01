@@ -120,11 +120,60 @@ follow-button, save-button, saved-view, collection-share-control,
 share-button, share-dialog), `src/modules/notifications/notification-service.ts`
 (+ types comment), `docs/vercel-deployment.md` (§5.3 table + §5.4).
 
+
+## 7. Addendum — the burst re-test on the bom1 build found the REAL wall: the 15-client session pool (same session, same day)
+
+After the first DEPLOY-S2 push went live (verified: `x-vercel-id` → `bom1`,
+`/fr/` → 200, `/api/home` 8.7s → 0.68s), the burst re-test still returned
+2×500 out of 12 — and minutes later even `/api/health` went 503 with the
+sandbox ITSELF refused at connect time:
+
+```
+FATAL: (EMAXCONNSESSION) max clients reached in session mode
+       - max clients are limited to pool_size: 15
+```
+
+**The real ceiling is not the database's 60 connections — it is Supavisor's
+per-project SESSION-mode client limit of 15.** Warm serverless instances
+(each holding their pool) plus the sandbox dev server's idle pool had filled
+all 15 slots.
+
+**The structural fix (this addendum's commit): the runtime now connects
+through the TRANSACTION pooler.** `src/lib/db-url.ts` (new) rewrites any
+`*.pooler.supabase.com` URL to port 6543 with `pgbouncer=true` (+ per-function
+`connection_limit=2` on Vercel); `src/lib/db.ts` connects through the adapter.
+Transaction mode multiplexes ~200 clients over the same 15 server
+connections — the wall stops existing for serverless.
+
+**The session-mode dependency was audited before switching (and verified
+live through 6543):** the platform's ONLY advisory lock is
+`pg_advisory_xact_lock` inside `db.$transaction` (notification-service) —
+transaction-scoped, and transaction pooling pins one server connection per
+transaction, so the check-then-create atomicity holds (tested live: the
+exact call through 6543 + pgbouncer). The search engine's readiness DDL is
+single-statement `CREATE INDEX IF NOT EXISTS` (no CONCURRENTLY — safe;
+idempotent no-ops on the live DB). No LISTEN/NOTIFY, no session SQL state.
+The Prisma CLI (db:push/migrate) reads the env var directly — schema work
+keeps the session URL, untouched by the adapter.
+
+Also: `DATABASE_POOL_EXHAUSTED` now matches the Supavisor message
+(`max clients` / `pool_size` / `EMAXCONN`), the "transaction pooler =
+misconfigured" branch was removed (6543 is now the app's own runtime
+choice), and `/api/health` reports the RUNTIME host
+("Supabase (transaction pooler)") via the adapter.
+
+Verified locally on transaction mode: health 200 with the new label,
+`/api/home?country=FR` 200, France switch through the UI (`/fr/`, FR
+content, zero console errors), a real sign-in (the advisory-lock path)
+→ `/dashboard`, adapter unit cases (session→transaction, no-port, 6543
+kept, existing params preserved, local Postgres untouched), lint + tsc
+clean.
+
 ## 6. Honest state at session close
 
-The Vercel deployment still runs the pre-DEPLOY-S2 build at session close —
-the fixes go live with the next deploy from `main` (automatic on push). The
-burst failure (9/12 × 500) is proven on the OLD build; the region + pool-cap
-fixes are verified in code and locally, but their effect on Vercel can only
-be confirmed after the user's next deployment (the verification steps are in
-§4 above).
+The first DEPLOY-S2 push went live mid-session (bom1 verified, latency
+13× better, burst 9×500 → 2×500); the §7 addendum's transaction-pooler fix
+addresses the remaining 15-client wall and goes live with THIS push. The
+final live verification (health ok + the 12-parallel burst all-200) is the
+acceptance gate recorded below; the verification steps for the operator stay
+in §4.

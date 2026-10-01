@@ -11,6 +11,7 @@
  * leaves the server.
  */
 import { db } from '@/lib/db'
+import { adaptDatabaseUrl } from '@/lib/db-url'
 import { ok, fail } from '@/lib/api/response'
 import { diagnoseDatabaseUrl } from '@/lib/api/database-diagnostics'
 import { PLATFORM } from '@/config/platform'
@@ -18,15 +19,12 @@ import { PLATFORM } from '@/config/platform'
 export const dynamic = 'force-dynamic'
 
 /**
- * Server-side-only host label derived from the connection string (the label
- * follows the environment — Supabase pooler or the local sandbox Postgres).
+ * Server-side-only host label derived from the RUNTIME connection (the
+ * adapter reports what the Prisma client actually connects to — DEPLOY-S2:
+ * the Supabase transaction pooler — not the raw environment value).
  */
 function databaseHost(): string {
-  const url = process.env.GKSETU_DATABASE_URL ?? ''
-  if (url.includes('pooler.supabase.com')) return 'Supabase (session pooler)'
-  if (url.includes('supabase')) return 'Supabase'
-  if (/^postgres(ql)?:\/\//.test(url)) return 'PostgreSQL (local)'
-  return 'PostgreSQL'
+  return adaptDatabaseUrl(process.env.GKSETU_DATABASE_URL).hostLabel
 }
 
 export async function GET() {

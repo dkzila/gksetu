@@ -36,9 +36,11 @@ const PLACEHOLDER_PATTERN = /\[(your-)?(db-)?password\]|<[^>]*password[^>]*>/i
 /** Supabase direct hosts are IPv6-only: db.<project-ref>.supabase.co */
 const SUPABASE_DIRECT_HOST = /^db\.[a-z0-9-]+\.supabase\.co$/i
 
-/** Postgres's exhaustion messages (and Supavisor's variants). */
+/** Postgres's and Supavisor's exhaustion messages (DEPLOY-S2 caught the
+ * Supavisor form live: "FATAL: (EMAXCONNSESSION) max clients reached in
+ * session mode - max clients are limited to pool_size: 15"). */
 const POOL_EXHAUSTED_PATTERN =
-  /too many clients|too many connections|connection limit|remaining connection slots|at connection limit|all server connections|cannot get a connection/i
+  /too many clients|too many connections|connection limit|remaining connection slots|at connection limit|all server connections|cannot get a connection|max clients|pool_size|EMAXCONN/i
 
 function parseHostPort(raw: string): { host: string; port: string } | null {
   try {
@@ -115,18 +117,10 @@ export function diagnoseDatabaseUrl(rawUrl: string | undefined, error?: unknown)
   }
 
   if (parsed.host.endsWith('.pooler.supabase.com')) {
-    if (parsed.port === '6543') {
-      return {
-        code: 'DATABASE_MISCONFIGURED',
-        message:
-          'GKSETU_DATABASE_URL uses the transaction pooler (port 6543). ' +
-          'The platform requires the session pooler (port 5432) — the revision pipeline holds ' +
-          'advisory locks that must stay on one connection.',
-        details: { hint: 'supabase-transaction-pooler' },
-      }
-    }
-
-    // The URL shape is right — classify by the actual failure.
+    // DEPLOY-S2: BOTH pooler ports are valid — the app's runtime adapter
+    // (src/lib/db-url.ts) puts the Prisma client on the transaction pooler
+    // (6543) with pgbouncer mode; the raw env var may carry either form.
+    // Classify by the actual failure:
     const err = error as { code?: unknown; message?: unknown } | undefined
     const prismaCode = typeof err?.code === 'string' ? err.code : ''
     const message = typeof err?.message === 'string' ? err.message : ''
@@ -146,11 +140,11 @@ export function diagnoseDatabaseUrl(rawUrl: string | undefined, error?: unknown)
       return {
         code: 'DATABASE_POOL_EXHAUSTED',
         message:
-          'The database refused new connections — the Supabase free tier allows 60 concurrent ' +
-          'connections and they were exhausted (serverless bursts or idle clients holding slots). ' +
-          'GKSetu pins its Vercel region to Mumbai (bom1, next to the database) and caps each ' +
-          "function's connection pool — redeploy from the latest main if this deployment predates that. " +
-          'Also check that no long-running dev servers are holding idle connections.',
+          'The database refused new connections — the connection pool was exhausted ' +
+          '(the Supabase session pooler allows only 15 clients per project; the database ' +
+          'itself 60). GKSetu runs on the transaction pooler with per-function pool caps — ' +
+          'redeploy from the latest main if this deployment predates that. ' +
+          'Also check that no long-running clients (a local dev server) are holding slots.',
         details: { hint: 'pool-exhausted' },
       }
     }
