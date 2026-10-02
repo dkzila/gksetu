@@ -63,7 +63,7 @@ import type { ApiCountry } from './types'
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -84,8 +84,12 @@ export interface AppRoute {
   versionId: string | null
   /** Addressable §22 practice-layer focus (unit view only — P8-S1 §21 question shares). */
   focusQuestionId: string | null
-  /** Console scroll target (e.g. 'account' for the header Sign-in anchor). */
+  /** Console scroll target (legacy '#account' anchor — now /console/account). */
   scrollTo: string | null
+  /** CONSOLE-S1: the console sub-path ('' = dashboard, 'exams', 'exams/{id}', …). */
+  consolePath: string | null
+  /** CONSOLE-S1: the managed site page slug (/about, /p/{slug}). */
+  pageSlug: string | null
 }
 
 /** The current app path — the URL pathname + query (legacy-hash aware). */
@@ -134,6 +138,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     versionId: null,
     focusQuestionId: null,
     scrollTo: null,
+    consolePath: null,
+    pageSlug: null,
   }
   if (!defaultCountry) return fallback
 
@@ -152,12 +158,31 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
   const segments = pathPart.replace(/^[#/]+/, '').split('/').filter(Boolean)
   if (segments.length === 0) return fallback
 
-  // Console + anchors (the foundation console keeps /account working).
+  // CONSOLE-S1: the operating console — '/console' (dashboard) plus its
+  // sub-pages ('/console/exams', '/console/exams/{id}', …). '/account'
+  // (and the legacy '#account' anchor) maps to the console's account page.
   if (segments[0] === 'console') {
-    return { ...fallback, view: 'console', scrollTo: null }
+    const consolePath = segments.slice(1).join('/') || null
+    return { ...fallback, view: 'console', consolePath, scrollTo: null }
   }
   if (segments[0] === 'account') {
-    return { ...fallback, view: 'console', scrollTo: 'account' }
+    return { ...fallback, view: 'console', consolePath: 'account', scrollTo: 'account' }
+  }
+
+  // CONSOLE-S1: the old single-page Foundation Console, preserved verbatim
+  // as the build-verification surface (never deleted — the user's request).
+  if (segments[0] === 'dev-track') {
+    return { ...fallback, view: 'dev-track', scrollTo: null }
+  }
+
+  // CONSOLE-S1: managed site pages — the reserved top-level set renders at
+  // /{slug}; custom pages at /p/{slug} (both market-independent, indexed).
+  if (segments[0] === 'p' && segments[1]) {
+    return { ...fallback, view: 'site-page', pageSlug: segments[1], scrollTo: null }
+  }
+  const RESERVED_PAGE_SLUGS = ['about', 'contact', 'privacy-policy', 'terms', 'disclaimer']
+  if (segments.length === 1 && RESERVED_PAGE_SLUGS.includes(segments[0])) {
+    return { ...fallback, view: 'site-page', pageSlug: segments[0], scrollTo: null }
   }
 
   // The public sign-in page — the ONE user-facing authentication surface
@@ -287,6 +312,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
     if (topicSlug && unitSlug) {
@@ -306,6 +333,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         // P8-S1 §21: the question share link's addressable focus (?q=).
         focusQuestionId,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
     if (topicSlug) {
@@ -324,6 +353,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
   }
@@ -347,6 +378,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
   }
@@ -372,6 +405,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
     if (examSlug && segments[index + 2] === 'mock-tests' && segments[index + 3]) {
@@ -390,6 +425,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
     if (examSlug && segments[index + 2] === 'syllabus' && segments[index + 3]) {
@@ -408,6 +445,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId: null,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
     if (examSlug) {
@@ -426,6 +465,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         versionId,
         focusQuestionId: null,
         scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
       }
     }
   }
@@ -451,11 +492,24 @@ export interface RouteInput {
   versionId?: string | null
   /** The §22 practice-layer focus (P8-S1 §21 question shares — unit view). */
   focusQuestionId?: string | null
+  /** CONSOLE-S1: the console sub-path (view 'console'). */
+  consolePath?: string | null
+  /** CONSOLE-S1: the managed site page slug (view 'site-page'). */
+  pageSlug?: string | null
 }
 
 /** Builds the §16-shaped URL path for a route (defaults omitted, §16). */
 export function buildPath(route: RouteInput, config: ApiCountry[]): string {
-  if (route.view === 'console') return '/console'
+  // CONSOLE-S1: the operating console + the preserved Foundation Console.
+  if (route.view === 'console') {
+    const sub = (route.consolePath ?? '').replace(/^\/+/, '').replace(/\/+$/, '')
+    return sub ? `/console/${sub}` : '/console'
+  }
+  if (route.view === 'dev-track') return '/dev-track'
+  if (route.view === 'site-page' && route.pageSlug) {
+    const RESERVED_PAGE_SLUGS = ['about', 'contact', 'privacy-policy', 'terms', 'disclaimer']
+    return RESERVED_PAGE_SLUGS.includes(route.pageSlug) ? `/${route.pageSlug}` : `/p/${route.pageSlug}`
+  }
   if (route.view === 'signin') return '/signin'
   if (route.view === 'following') return '/following'
   if (route.view === 'saved') return '/saved'

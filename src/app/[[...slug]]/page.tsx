@@ -34,6 +34,9 @@ import { useAuth } from '@/stores/auth'
 import { useToast } from '@/hooks/use-toast'
 import { AppSidebar } from '@/components/home/app-sidebar'
 import { ConsoleView } from '@/components/home/console-view'
+import { SitePageView } from '@/components/home/site-page-view'
+import { ConsoleShell } from '@/components/console/console-shell'
+import { SiteIntegrations } from '@/components/integrations/site-integrations'
 import { EventView } from '@/components/home/event-view'
 import { ExamDirectoryView } from '@/components/home/exam-directory-view'
 import { ExamView } from '@/components/home/exam-view'
@@ -58,6 +61,7 @@ import { ControlsView } from '@/components/personalisation/controls-view'
 import { currentAppPath, isRootAppPath, navigateRoute, navigateToPath, useAppRoute } from '@/components/home/app-router'
 import { useAppRouteLinks } from '@/components/home/app-router-links'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Button } from '@/components/ui/button'
 import type { ApiCountry, Envelope } from '@/components/home/types'
 
 export default function GKSetuApp() {
@@ -321,16 +325,11 @@ export default function GKSetuApp() {
     })
   }, [route])
 
-  // Scroll behaviour: view changes start at the top; #account lands on the
-  // account section (the header Sign-in anchor keeps working).
+  // Scroll behaviour: view changes start at the top; site pages land at
+  // the top of their article. (The CONSOLE-S1 operating console manages its
+  // own scroll — the legacy '#account' anchor now maps to /console/account.)
   useEffect(() => {
     if (!route) return
-    if (route.view === 'console' && route.scrollTo) {
-      const timer = window.setTimeout(() => {
-        document.getElementById(route.scrollTo ?? '')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 150)
-      return () => window.clearTimeout(timer)
-    }
     window.scrollTo({ top: 0 })
   }, [route])
 
@@ -707,6 +706,8 @@ export default function GKSetuApp() {
           // the home view — the console precedent.
           view:
             route.view === 'console' ||
+            route.view === 'dev-track' ||
+            route.view === 'site-page' ||
             route.view === 'signin' ||
             route.view === 'following' ||
             route.view === 'saved' ||
@@ -823,12 +824,62 @@ export default function GKSetuApp() {
     [config, route]
   )
 
-  // The focused surfaces hide the product sidebar: the staff console (an
-  // internal tool) and the timed mock-test runner (distraction-free).
-  const focusedView = route?.view === 'console' || route?.view === 'test'
+  // The focused surfaces own the ENTIRE viewport: the staff console (an
+  // internal tool with its own header/footer — CONSOLE-S1), the preserved
+  // Foundation Console (dev-track), and the timed mock-test runner
+  // (distraction-free). No public chrome renders for them.
+  const focusedView =
+    route?.view === 'console' || route?.view === 'dev-track' || route?.view === 'test'
 
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 text-zinc-900">
+      {/* CONSOLE-S1: the settings-managed integrations (GA/GTM/FB/custom
+          code) — mounted once, present on every surface. */}
+      <SiteIntegrations />
+
+      {/* ---------- The internal surfaces render standalone ---------- */}
+      {route?.view === 'console' ? (
+        <ConsoleShell consolePath={route.consolePath} />
+      ) : route?.view === 'dev-track' ? (
+        <div className="flex min-h-screen flex-col bg-zinc-50">
+          <header className="sticky top-0 z-30 border-b border-zinc-800 bg-zinc-950 px-4 py-3 sm:px-6">
+            <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500 text-sm font-bold text-zinc-950">G</span>
+                <div>
+                  <p className="text-[13px] font-semibold leading-tight text-white">GKSetu Dev Track</p>
+                  <p className="text-[10px] uppercase tracking-widest text-emerald-400/80">Build-verification surface</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 border-zinc-700 bg-zinc-900 text-[12px] text-zinc-300 hover:border-emerald-500 hover:text-emerald-400"
+                  onClick={() => navigateToPath('/console')}
+                >
+                  Operating console
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 border-zinc-700 bg-zinc-900 text-[12px] text-zinc-300 hover:border-emerald-500 hover:text-emerald-400"
+                  onClick={goHome}
+                >
+                  Public site
+                </Button>
+              </div>
+            </div>
+          </header>
+          <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">
+            <ConsoleView onBackHome={goHome} />
+          </main>
+          <footer className="mt-auto border-t border-zinc-800 bg-zinc-950 py-3 text-center text-[11px] text-zinc-600">
+            The preserved Foundation Console — every module demo from P1–P10. The operating console lives at /console.
+          </footer>
+        </div>
+      ) : (
+        <>
       {/* ---------- Header ---------- */}
       <SiteHeader
         config={config}
@@ -878,8 +929,8 @@ export default function GKSetuApp() {
             </div>
             <Skeleton className="h-48 w-full rounded-xl" />
           </div>
-        ) : route.view === 'console' ? (
-          <ConsoleView onBackHome={goHome} />
+        ) : route.view === 'site-page' && route.pageSlug ? (
+          <SitePageView key={route.pageSlug} slug={route.pageSlug} />
         ) : route.view === 'signin' ? (
           <SignInView onGoHome={goHome} />
         ) : route.view === 'topic' && route.topicSlug ? (
@@ -1061,6 +1112,8 @@ export default function GKSetuApp() {
         onGoQuickMock={() => goQuickMock()}
         onGoConsole={goConsole}
       />
+        </>
+      )}
     </div>
   )
 }

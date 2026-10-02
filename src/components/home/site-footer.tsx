@@ -4,12 +4,18 @@
  * GKSetu — site footer.
  *
  * User-facing footer: brand, the product's discovery links, personal
- * library links and support links. The staff console is reachable only
- * from a deliberately quiet link here — it is an internal tool, never a
- * primary navigation item.
+ * library links, support links and — CONSOLE-S1 — the MANAGED PAGES column
+ * (About, Contact, Privacy Policy + anything the team publishes with
+ * "show in footer"), fetched live from GET /api/pages so publishing a page
+ * in the console adds it here without a redeploy. The staff console stays
+ * reachable only from a deliberately quiet link — it is an internal tool,
+ * never a primary navigation item.
  */
 
+import { useEffect, useState } from 'react'
+
 import { Button } from '@/components/ui/button'
+import { navigateToPath } from '@/components/home/app-router'
 
 // ---------- Props ----------
 
@@ -19,6 +25,52 @@ export interface SiteFooterProps {
   onGoExams: () => void
   onGoQuickMock: () => void
   onGoConsole: () => void
+}
+
+// ---------- The managed-pages column ----------
+
+interface ManagedPageLink {
+  slug: string
+  title: string
+}
+
+/** The fallback set — before the API responds or if it ever fails. */
+const FALLBACK_PAGES: ManagedPageLink[] = [
+  { slug: 'about', title: 'About' },
+  { slug: 'contact', title: 'Contact' },
+  { slug: 'privacy-policy', title: 'Privacy Policy' },
+]
+
+function pagePath(slug: string): string {
+  const RESERVED = ['about', 'contact', 'privacy-policy', 'terms', 'disclaimer']
+  return RESERVED.includes(slug) ? `/${slug}` : `/p/${slug}`
+}
+
+function useManagedPages(): ManagedPageLink[] {
+  const [pages, setPages] = useState<ManagedPageLink[]>(FALLBACK_PAGES)
+
+  useEffect(() => {
+    let cancelled = false
+    void (async () => {
+      try {
+        const response = await fetch('/api/pages', { cache: 'no-store' })
+        if (!response.ok) return
+        const payload = (await response.json()) as
+          | { status: 'ok'; data: { pages: ManagedPageLink[] } }
+          | { status: 'error' }
+        if (!cancelled && payload.status === 'ok' && payload.data.pages.length > 0) {
+          setPages(payload.data.pages)
+        }
+      } catch {
+        // The fallback set keeps the footer complete.
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return pages
 }
 
 // ---------- Component ----------
@@ -31,6 +83,7 @@ export function SiteFooter({
   onGoConsole,
 }: SiteFooterProps) {
   const year = new Date().getFullYear()
+  const managedPages = useManagedPages()
 
   const exploreLinks: Array<{ label: string; onClick: () => void }> = [
     { label: 'Home', onClick: onGoHome },
@@ -40,26 +93,26 @@ export function SiteFooter({
   ]
 
   const libraryLinks = [
-    { label: 'Dashboard', href: '#/dashboard' },
-    { label: 'Saved items', href: '#/saved' },
-    { label: 'Following', href: '#/following' },
-    { label: 'Notifications', href: '#/notifications' },
+    { label: 'Dashboard', href: '/dashboard' },
+    { label: 'Saved items', href: '/saved' },
+    { label: 'Following', href: '/following' },
+    { label: 'Notifications', href: '/notifications' },
   ]
 
   const supportLinks = [
-    { label: 'Send feedback', href: '#/feedback' },
-    { label: 'Settings', href: '#/personalisation' },
-    { label: 'Your profile', href: '#/profile' },
-    { label: 'Sign in', href: '#/signin' },
+    { label: 'Send feedback', href: '/feedback' },
+    { label: 'Settings', href: '/personalisation' },
+    { label: 'Your profile', href: '/profile' },
+    { label: 'Sign in', href: '/signin' },
   ]
 
   return (
     <footer className="mt-auto border-t border-zinc-200 bg-white">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand — the GKSetu wordmark (REBRAND-S1): "GK" and "Setu"
               together, two tones; the badge carries the bridge (setu) mark. */}
-          <div className="space-y-3">
+          <div className="space-y-3 lg:col-span-2">
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-500" aria-hidden="true">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -113,19 +166,39 @@ export function SiteFooter({
             </ul>
           </nav>
 
-          {/* Support */}
-          <nav aria-label="Support">
-            <h3 className="pb-3 text-sm font-semibold text-zinc-900">Support</h3>
-            <ul className="space-y-2.5">
-              {supportLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-sm text-zinc-500 transition-colors hover:text-emerald-700">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="space-y-8">
+            {/* Support */}
+            <nav aria-label="Support">
+              <h3 className="pb-3 text-sm font-semibold text-zinc-900">Support</h3>
+              <ul className="space-y-2.5">
+                {supportLinks.map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href} className="text-sm text-zinc-500 transition-colors hover:text-emerald-700">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Company — the managed pages (CONSOLE-S1, live from the console) */}
+            <nav aria-label="Company">
+              <h3 className="pb-3 text-sm font-semibold text-zinc-900">Company</h3>
+              <ul className="space-y-2.5">
+                {managedPages.map((page) => (
+                  <li key={page.slug}>
+                    <button
+                      type="button"
+                      onClick={() => navigateToPath(pagePath(page.slug))}
+                      className="text-sm text-zinc-500 transition-colors hover:text-emerald-700"
+                    >
+                      {page.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
 
         {/* Bottom bar */}

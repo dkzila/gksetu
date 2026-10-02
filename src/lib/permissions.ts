@@ -59,6 +59,8 @@ export type Permission =
   // country + language scopes, adjust scopes, suspend/reactivate, reset
   // credentials — ADMIN (any market) + COUNTRY_ADMIN (own market, §38);
   // NEVER WRITER (staff provisioning is an operator capability)
+  | 'settings:manage' // CONSOLE-S1: manage the site-settings registry (integrations, ads.txt, robots extras, API keys) — ADMIN only (platform-level rows; the countryId override field is data-modelled for later market scoping)
+  | 'pages:manage' // CONSOLE-S1: manage the static site pages (About/Contact/Privacy + custom) — ADMIN only in v1 (platform-level pages)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
   | 'sessions:manage-own' // list/revoke own sessions (any active account)
 
@@ -128,6 +130,8 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'analytics:read',
     'seo:ingest',
     'staff:manage',
+    'settings:manage',
+    'pages:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -289,6 +293,8 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'country-config:manage': 'Manage country configuration',
   'language:manage': 'Manage languages',
   'staff:manage': 'Manage workspace staff — invite, scope, suspend, reset credentials (own market, §20)',
+  'settings:manage': 'Manage site settings & integration codes (console)',
+  'pages:manage': 'Manage static site pages (About, Contact, Privacy…)',
   'audit:read': 'Read audit trail',
   'sessions:manage-own': 'Manage own sessions',
 }

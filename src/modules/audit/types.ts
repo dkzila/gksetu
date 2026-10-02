@@ -126,6 +126,13 @@ export const AUDIT_ACTIONS = {
   sourceLinkDenied: 'content.item.source.denied',
   /** Route permission-gate denials (requirePermission). */
   accessDenied: 'access.denied',
+  /** CONSOLE-S1 — site settings & managed pages (every mutation audited). */
+  siteSettingUpdate: 'sitesetting.update',
+  siteSettingRemove: 'sitesetting.remove',
+  sitePageCreate: 'sitepage.create',
+  sitePageUpdate: 'sitepage.update',
+  sitePageDelete: 'sitepage.delete',
+  sitePageTransition: 'sitepage.transition',
   /** Object-level taxonomy denials (country/scope mismatch — §20 signal). */
   taxonomyDenied: 'taxonomy.topic.denied',
   /** Object-level knowledge denials (country/scope/state mismatch — §20 signal). */
@@ -285,4 +292,7 @@ export const AUDIT_OBJECT_TYPES = {
   /** P9-S1 (§6/§35): the translation provenance links. */
   translation: 'Translation',
   permission: 'Permission',
+  /** CONSOLE-S1: the settings registry + managed static pages. */
+  siteSetting: 'SiteSetting',
+  sitePage: 'SitePage',
 } as const

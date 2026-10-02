@@ -808,6 +808,7 @@ model Country {
   exams           Exam[]            @relation("ExamCountry") // P3-S1: every exam belongs to exactly one country (§14)
   currentEvents   CurrentEvent[]    @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
   entities        Entity[] // P6-S3: §14 country-scoped entity reference records
+  siteSettings    SiteSetting[] // CONSOLE-S1: this market's settings overrides
 
   @@index([status])
 }
@@ -902,6 +903,9 @@ model User {
   // here) + reports this user resolved as an editor.
   contentFeedbacks           ContentFeedback[]        @relation("UserContentFeedback")
   resolvedContentFeedbacks   ContentFeedback[]        @relation("UserResolvedContentFeedback")
+  // CONSOLE-S1: site settings + managed pages authored by this user.
+  authoredSiteSettings      SiteSetting[]            @relation("SiteSettingAuthor")
+  authoredSitePages         SitePage[]               @relation("SitePageAuthor")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -2309,4 +2313,70 @@ model Translation {
   @@index([targetContentType, targetContentId])
   @@index([status])
   @@index([languageId, status])
+}
+
+// ---------- CONSOLE-S1: managed site settings + static pages ----------
+//
+// The console's Settings surface (docs/console-master-plan.md §4): the
+// integration codes and platform keys the team must be able to change
+// WITHOUT redeploying — GA/GTM ids, Search-Console/Bing verification,
+// Facebook pixel, custom head/body HTML, ads.txt, robots extras, and any
+// private key the team adds (search-engine API keys, third-party tokens).
+// Rows are (countryId?, key) — null country = the platform-global value;
+// a country row overrides it for that market (merged at read).
+
+model SiteSetting {
+  id          String   @id @default(cuid())
+  // null = platform-global; set = that market's override (§14/§35).
+  countryId   String?
+  key         String
+  value       String   @db.Text
+  // Soft-disable without deleting the stored value (e.g. pause GA).
+  isActive    Boolean  @default(true)
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  country   Country? @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  createdBy User?    @relation("SiteSettingAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@unique([countryId, key])
+  @@index([key])
+}
+
+// The managed static pages (About / Contact / Privacy Policy / terms /
+// anything the team creates) — the WordPress-simple page model. `body` is
+// the working copy; publishing snapshots it into publishedBody/publishedTitle
+// (the ContentItem→ContentRevision pattern, collapsed into one row: pages are
+// small, single-section documents with no per-revision provenance needs).
+model SitePage {
+  id        String  @id @default(cuid())
+  // URL slug — the reserved top-level set (about, contact, privacy-policy,
+  // terms, disclaimer) renders at /{slug}; everything else at /p/{slug}.
+  slug      String  @unique
+  title     String
+  // Working copy (the editing state — public reads never touch this).
+  body      String  @db.Text
+  // The live snapshot (null until first publish; the public GET serves this).
+  publishedTitle String? @db.Text
+  publishedBody  String? @db.Text
+  publishedAt    DateTime?
+  status    SitePageStatus @default(DRAFT)
+  // Footer navigation (the public /api/pages list is exactly this set).
+  showInFooter Boolean @default(true)
+  sortOrder    Int     @default(0)
+  seoTitle       String?
+  seoDescription String?
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  createdBy User? @relation("SitePageAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([status, showInFooter])
+}
+
+enum SitePageStatus {
+  DRAFT
+  PUBLISHED
 }
