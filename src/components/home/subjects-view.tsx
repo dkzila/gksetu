@@ -137,23 +137,18 @@ export function SubjectsView({ countryIso, language, onOpenTopic, onGoHome }: Su
   }, [subjects, query])
 
   const countryName = directory?.country.name ?? 'your country'
+  // Directory-level counts for the hero one-liner (Exams pattern — the
+  // payload's per-subject numbers, summed; no extra API call).
+  const totalSubtopics = subjects.reduce((sum, subject) => sum + subject.topicCount, 0)
   const searching = query.trim() !== ''
 
   // ---------- Loading ----------
 
   if (loading && !directory) {
     return (
-      <div className="space-y-6" aria-busy="true" aria-label="Loading subjects">
-        <div className="space-y-3">
-          <Skeleton className="h-4 w-36" />
-          <div className="flex items-start gap-3">
-            <Skeleton className="hidden h-11 w-11 rounded-xl sm:block" />
-            <div className="space-y-2">
-              <Skeleton className="h-8 w-44" />
-              <Skeleton className="h-4 w-full max-w-xl" />
-            </div>
-          </div>
-        </div>
+      <div className="space-y-5" aria-busy="true" aria-label="Loading subjects">
+        <Skeleton className="h-4 w-36" />
+        <Skeleton className="h-28 w-full rounded-xl" />
         <Skeleton className="h-10 w-full max-w-md" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[0, 1, 2, 3, 4, 5].map((index) => (
@@ -196,40 +191,68 @@ export function SubjectsView({ countryIso, language, onOpenTopic, onGoHome }: Su
   // ---------- Render ----------
 
   return (
-    <div className="space-y-6">
-      {/* ---------- Hero (compact — icon tile, H1, one-line description) ---------- */}
+    <div className="space-y-5">
+      {/* ---------- Breadcrumb — tight (text-xs, py-1, gap-1.5 only) ---------- */}
+      <nav aria-label="Breadcrumb" className="py-1 text-xs">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <button
+              type="button"
+              onClick={onGoHome}
+              className="min-h-[32px] text-zinc-500 transition-colors hover:text-emerald-700"
+            >
+              Home
+            </button>
+          </li>
+          <li className="text-zinc-300" aria-hidden="true">/</li>
+          <li aria-current="page" className="font-medium text-zinc-900">
+            Subjects
+          </li>
+        </ol>
+      </nav>
+
+      {/* ---------- Compact hero — icon tile, H1, one-liner with the real
+          counts folded in (the Exams directory pattern — no actions) ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="subjects-heading"
-        className="space-y-2"
+        className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
       >
-        <nav aria-label="Breadcrumb" className="py-1 text-xs text-zinc-400">
-          <button
-            type="button"
-            onClick={onGoHome}
-            className="text-zinc-500 transition-colors hover:text-emerald-700"
-          >
-            Home
-          </button>
-          <span className="mx-1.5 text-zinc-300" aria-hidden="true">/</span>
-          <span aria-current="page" className="font-medium text-zinc-900">Subjects</span>
-        </nav>
         <div className="flex items-start gap-3">
           <span
-            className="mt-0.5 hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 sm:flex"
+            className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
             aria-hidden="true"
           >
             <LayoutGrid className="h-5 w-5" />
           </span>
-          <div className="space-y-1.5">
-            <h1 id="subjects-heading" className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          <div className="min-w-0 space-y-1">
+            <h1 id="subjects-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
               Subjects
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
-              Every subject in the {countryName} GK library — open any subject for its notes,
-              Q&amp;A, practice questions and the exams that need it.
+              Every subject in the {countryName} GK library
+              {subjects.length > 0 ? (
+                <>
+                  {' '}—{' '}
+                  <span className="font-semibold text-zinc-700">{subjects.length} subjects</span>
+                  {totalSubtopics > 0 && (
+                    <>
+                      {' '}and{' '}
+                      <span className="font-semibold text-zinc-700">
+                        {totalSubtopics} subtopics
+                      </span>
+                    </>
+                  )}
+                  , each with its notes, Q&amp;A, practice questions and the exams that need it.
+                </>
+              ) : (
+                <>
+                  {' '}— open any subject for its notes, Q&amp;A, practice questions and the
+                  exams that need it.
+                </>
+              )}
             </p>
           </div>
         </div>

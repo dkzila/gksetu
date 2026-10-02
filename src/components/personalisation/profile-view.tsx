@@ -264,7 +264,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
   const goal: ApiGoal | null = profile?.goal ?? null
 
   return (
-    <div className="mx-auto max-w-3xl space-y-8">
+    <div className="space-y-8">
       {/* ---------- Header ---------- */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
@@ -308,7 +308,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
               <CardDescription>Your name, home country and preferred language.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <div className="space-y-2">
                   <Label htmlFor="profile-name">Name</Label>
                   <Input

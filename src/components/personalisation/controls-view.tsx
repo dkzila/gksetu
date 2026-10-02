@@ -256,7 +256,7 @@ export function ControlsView({
   return (
     <div
       dir={data?.market.direction === 'RTL' ? 'rtl' : 'ltr'}
-      className="mx-auto max-w-3xl space-y-8"
+      className="space-y-8"
     >
       {/* ---------- Header ---------- */}
       <motion.section

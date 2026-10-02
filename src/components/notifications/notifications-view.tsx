@@ -485,7 +485,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
   const unreadCount = feed?.unreadCount ?? 0
 
   return (
-    <div className="mx-auto max-w-3xl space-y-8">
+    <div className="space-y-8">
       {/* ---------- Header ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
@@ -683,7 +683,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
         {!preferences ? (
           <Skeleton className="h-48 w-full rounded-xl" />
         ) : (
-          <div className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {preferences.categories.map((category) => (
               <Card key={category.key} className="border-zinc-200 shadow-sm">
                 <CardContent className="p-4 sm:p-5">

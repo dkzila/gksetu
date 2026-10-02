@@ -457,72 +457,57 @@ export function MockTestView({
   // ---------- The public landing (hero + directory + exam chips + quick mock) ----------
 
   return (
-    <div className="space-y-8">
-      {/* ---------- Public hero (always visible — no sign-in wall) ---------- */}
+    <div className="space-y-5">
+      {/* ---------- Breadcrumb — tight (text-xs, py-1, gap-1.5 only) ---------- */}
+      <nav aria-label="Breadcrumb" className="py-1 text-xs">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <button
+              type="button"
+              onClick={onGoHome}
+              className="min-h-[32px] text-zinc-500 transition-colors hover:text-emerald-700"
+            >
+              Home
+            </button>
+          </li>
+          <li className="text-zinc-300" aria-hidden="true">/</li>
+          <li aria-current="page" className="font-medium text-zinc-900">
+            Mock Tests
+          </li>
+        </ol>
+      </nav>
+
+      {/* ---------- Compact hero (always visible — no sign-in wall): standard
+          tile + H1 + one-liner, the live counts as stat pills, and the
+          quick-mock CTA inline on one action row ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="mocktest-heading"
-        className="space-y-3"
+        className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
       >
-        <nav aria-label="Breadcrumb" className="text-xs text-zinc-400">
-          <button
-            type="button"
-            onClick={onGoHome}
-            className="min-h-[32px] text-zinc-500 transition-colors hover:text-emerald-700"
-          >
-            Home
-          </button>
-          <span className="mx-1.5 text-zinc-300" aria-hidden="true">/</span>
-          <span aria-current="page" className="font-medium text-zinc-900">Mock Test</span>
-        </nav>
-
-        <div className="flex items-start gap-3">
-          <span
-            className="mt-1 hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 sm:flex"
-            aria-hidden="true"
-          >
-            <Timer className="h-5 w-5" />
-          </span>
-          <div className="space-y-2">
-            <h1 id="mocktest-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Mock Test
-            </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-zinc-600 sm:text-base">
-              Free timed mock tests for GK and current affairs — pick an exam or subject, practice
-              with a live clock, and get your score with explanations.
-            </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex min-w-0 items-start gap-3">
+            <span
+              className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
+              aria-hidden="true"
+            >
+              <Timer className="h-5 w-5" />
+            </span>
+            <div className="min-w-0 space-y-1">
+              <h1 id="mocktest-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Mock Tests
+              </h1>
+              <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+                Free timed mock tests for GK and current affairs — pick an exam or subject, practice
+                with a live clock, and get your score with explanations.
+              </p>
+            </div>
           </div>
-        </div>
-
-        {/* Compact stats + CTA row (honest numbers from the live listings) */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-          {publishedLoading ? (
-            <Skeleton className="h-5 w-24" />
-          ) : published && published.length > 0 ? (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-600">
-              <ClipboardCheck className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              {published.length} live {published.length === 1 ? 'test' : 'tests'}
-            </span>
-          ) : null}
-          {publishedLoading ? (
-            <Skeleton className="h-5 w-24" />
-          ) : totalQuestions > 0 ? (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-600">
-              <ListChecks className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              {totalQuestions} timed {totalQuestions === 1 ? 'question' : 'questions'}
-            </span>
-          ) : null}
-          {examsLoading ? (
-            <Skeleton className="h-5 w-24" />
-          ) : examTotal != null && examTotal > 0 ? (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-600">
-              <GraduationCap className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              {examTotal} {examTotal === 1 ? 'exam' : 'exams'} to practice by
-            </span>
-          ) : null}
-          <span className="ml-auto">
+          {/* ONE action row — the quick-mock CTA (nothing on this page is
+              followable, so no Share/Follow) */}
+          <div className="flex shrink-0 items-center gap-2">
             {authed ? (
               <a
                 href="#quick-mock"
@@ -542,7 +527,39 @@ export function MockTestView({
                 Sign in for personalised mocks
               </Button>
             )}
-          </span>
+          </div>
+        </div>
+
+        {/* Stat pills — the honest live numbers, one row (per-stat skeletons
+            while the listings load) */}
+        <div className="mt-3 flex flex-wrap items-center gap-1.5" role="status">
+          {publishedLoading ? (
+            <Skeleton className="h-7 w-24 rounded-full" />
+          ) : published && published.length > 0 ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
+              <ClipboardCheck className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+              <strong className="font-semibold text-zinc-700">{published.length}</strong>
+              {published.length === 1 ? 'live test' : 'live tests'}
+            </span>
+          ) : null}
+          {publishedLoading ? (
+            <Skeleton className="h-7 w-24 rounded-full" />
+          ) : totalQuestions > 0 ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
+              <ListChecks className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+              <strong className="font-semibold text-zinc-700">{totalQuestions}</strong>
+              {totalQuestions === 1 ? 'timed question' : 'timed questions'}
+            </span>
+          ) : null}
+          {examsLoading ? (
+            <Skeleton className="h-7 w-24 rounded-full" />
+          ) : examTotal != null && examTotal > 0 ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
+              <GraduationCap className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+              <strong className="font-semibold text-zinc-700">{examTotal}</strong>
+              {examTotal === 1 ? 'exam to practice by' : 'exams to practice by'}
+            </span>
+          ) : null}
         </div>
       </motion.section>
 

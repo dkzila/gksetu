@@ -26,6 +26,7 @@ import type { SeoHeadInput } from './seo-head'
 import { currentAppPath, parseRoute } from './app-router'
 import type { ApiCountry, Envelope } from './types'
 
+import { ShareButton } from '@/components/shares/share-button'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -268,20 +269,17 @@ export function QnaView({ onGoHome }: QnaViewProps) {
   const activeSubjectLabel = activeSubject
     ? (subjects.find((subject) => subject.slug === activeSubject)?.label ?? activeSubject)
     : null
+  /** The hero one-liner's count — only the UNFILTERED library total is honest there. */
+  const heroTotal = !activeSubject ? (pagination?.total ?? 0) : 0
 
   // ---------- Loading (first paint — mirrors the layout) ----------
 
   if (loading && !practice) {
     return (
-      <div className="mx-auto max-w-3xl space-y-5" aria-busy="true" aria-label="Loading Q&A">
+      <div className="space-y-5" aria-busy="true" aria-label="Loading Q&A">
+        {/* Breadcrumb + hero band + chips + cards — mirrors the loaded layout (CA pattern) */}
         <Skeleton className="h-4 w-36" />
-        <div className="flex items-start gap-3">
-          <Skeleton className="hidden h-11 w-11 rounded-xl sm:block" />
-          <div className="space-y-2">
-            <Skeleton className="h-8 w-40" />
-            <Skeleton className="h-4 w-full max-w-xl" />
-          </div>
-        </div>
+        <Skeleton className="h-28 w-full rounded-xl" />
         <div className="flex items-center gap-2" aria-hidden="true">
           {[0, 1, 2, 3].map((index) => (
             <Skeleton key={index} className="h-8 w-24 rounded-full" />
@@ -300,7 +298,7 @@ export function QnaView({ onGoHome }: QnaViewProps) {
 
   if (marketError || (error && !practice) || (!practice && !loading)) {
     return (
-      <div className="mx-auto max-w-3xl">
+      <div className="space-y-5">
         <Card className="border-red-200 bg-red-50/60">
           <CardContent className="flex flex-col items-start gap-4 p-6">
             <div className="space-y-1">
@@ -330,9 +328,9 @@ export function QnaView({ onGoHome }: QnaViewProps) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl space-y-5">
+    <div className="space-y-5">
       {/* ---------- Breadcrumb — tight (text-xs, py-1, gap-1.5 only) ---------- */}
-      <nav aria-label="Breadcrumb" className="py-1 text-xs text-zinc-400">
+      <nav aria-label="Breadcrumb" className="py-1 text-xs">
         <ol className="flex items-center gap-1.5">
           <li>
             <button
@@ -350,29 +348,50 @@ export function QnaView({ onGoHome }: QnaViewProps) {
         </ol>
       </nav>
 
-      {/* ---------- Compact hero — icon tile, H1, one-line description ---------- */}
+      {/* ---------- Compact hero — emerald band, icon tile, H1, one-liner (CA pattern) ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="qna-heading"
-        className="space-y-2"
+        className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
       >
-        <div className="flex items-start gap-3">
-          <span
-            className="mt-0.5 hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 sm:flex"
-            aria-hidden="true"
-          >
-            <CircleHelp className="h-5 w-5" />
-          </span>
-          <div className="space-y-1.5">
-            <h1 id="qna-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Q&amp;A
-            </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
-              Detailed GK questions and answers — the &ldquo;why&rdquo; behind every fact, written
-              for exam preparation and quick revision.
-            </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex items-start gap-3">
+            <span
+              className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
+              aria-hidden="true"
+            >
+              <CircleHelp className="h-5 w-5" />
+            </span>
+            <div className="space-y-1">
+              <h1 id="qna-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Q&amp;A
+              </h1>
+              <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+                Detailed GK questions and answers
+                {heroTotal > 0 ? (
+                  <>
+                    {' '}—{' '}
+                    <span className="font-semibold text-zinc-700">
+                      {heroTotal} answer{heroTotal === 1 ? '' : 's'}
+                    </span>{' '}
+                    across {subjects.length} subject{subjects.length === 1 ? '' : 's'}. The
+                    &ldquo;why&rdquo; behind every fact, written for exam preparation and quick
+                    revision.
+                  </>
+                ) : (
+                  <>
+                    {' '}— the &ldquo;why&rdquo; behind every fact, written for exam preparation and
+                    quick revision.
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
+          {/* ONE action row — share only (nothing followable on this directory) */}
+          <div className="flex shrink-0 items-center gap-2">
+            <ShareButton path="/qna/" title="Q&amp;A" />
           </div>
         </div>
       </motion.section>
