@@ -317,7 +317,7 @@ export async function getCombinedExamView(query: CombinedQueueQuery): Promise<Co
         { slug: country.slug, isDefault: country.isDefault },
         { code: languageCode },
         country.defaultLanguage.code,
-        ['gk', accumulator.unit.topic.slug, accumulator.unit.slug]
+        [accumulator.unit.topic.slug, accumulator.unit.slug]
       ),
       requiredDepth: REQUIRED_DEPTH_ORDER[maxDepth],
       priority:

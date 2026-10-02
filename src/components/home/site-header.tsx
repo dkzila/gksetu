@@ -1,18 +1,17 @@
 'use client'
 
 /**
- * GKSetu — production site header.
+ * GKSetu — production site header (SITE-S1 redesign).
  *
- * The public shell's top bar: the brand, the primary product navigation
- * (Home, Current Affairs, Exams, Mock Tests), the country/language
- * switchers and the compact account area. Technical surfaces (the staff
- * console) deliberately live ONLY in the footer — users came for GK,
- * current affairs and exam preparation, not for platform internals.
+ * The header is NOT the primary navigation — the left sidebar owns discovery
+ * (the user's decision: the four duplicated desktop nav items are gone).
+ * The header carries the brand, the market switchers and the account area;
+ * below `lg` (where the sidebar rail is hidden) a hamburger opens the full
+ * navigation drawer — mobile AND tablet get complete navigation.
  */
 
 import { Languages, MapPin, Menu } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
@@ -20,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
 
 import { HeaderAuth } from '@/components/auth/header-auth'
 import type { ApiCountry } from './types'
@@ -31,9 +31,6 @@ export interface SiteHeaderProps {
   config: ApiCountry[] | null
   route: AppRoute | null
   onGoHome: () => void
-  onOpenCurrentAffairs: () => void
-  onGoExams: () => void
-  onGoQuickMock: () => void
   onSwitchCountry: (iso: string) => void
   onSwitchLanguage: (code: string) => void
   onOpenNav: () => void
@@ -45,48 +42,21 @@ export function SiteHeader({
   config,
   route,
   onGoHome,
-  onOpenCurrentAffairs,
-  onGoExams,
-  onGoQuickMock,
   onSwitchCountry,
   onSwitchLanguage,
   onOpenNav,
 }: SiteHeaderProps) {
   const currentCountry = config && route ? config.find((entry) => entry.isoCode === route.countryIso) ?? null : null
 
-  const navItems = [
-    {
-      label: 'Home',
-      active: route?.view === 'home',
-      onClick: onGoHome,
-    },
-    {
-      label: 'Current Affairs',
-      active:
-        route?.view === 'event' ||
-        (route?.view === 'topic' && route.topicSlug === 'current-affairs'),
-      onClick: onOpenCurrentAffairs,
-    },
-    {
-      label: 'Exams',
-      active: route?.view === 'exam' || route?.view === 'syllabus',
-      onClick: onGoExams,
-    },
-    {
-      label: 'Mock Tests',
-      active: route?.view === 'quick-mock' || route?.view === 'test',
-      onClick: onGoQuickMock,
-    },
-  ]
-
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4 sm:px-6">
-        {/* Mobile: drawer trigger */}
+        {/* Navigation drawer trigger — mobile AND tablet (the sidebar rail
+            only renders at lg+, so everything below lg navigates from here). */}
         <Button
           variant="ghost"
           size="sm"
-          className="h-10 w-10 shrink-0 p-0 text-zinc-600 sm:hidden"
+          className="h-10 w-10 shrink-0 p-0 text-zinc-600 lg:hidden"
           onClick={onOpenNav}
           aria-label="Open navigation menu"
         >
@@ -121,25 +91,6 @@ export function SiteHeader({
             </span>
           </span>
         </button>
-
-        {/* Primary nav (desktop) */}
-        <nav aria-label="Primary" className="ml-4 hidden items-center gap-1 md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              onClick={item.onClick}
-              aria-current={item.active ? 'page' : undefined}
-              className={`inline-flex min-h-[40px] items-center rounded-lg px-3 text-sm font-medium transition-colors ${
-                item.active
-                  ? 'bg-emerald-50 text-emerald-700'
-                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
 
         <div className="ml-auto flex items-center gap-2">
           {/* Country switcher */}

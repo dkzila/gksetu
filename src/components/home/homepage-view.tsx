@@ -27,7 +27,6 @@ import {
   Newspaper,
   RefreshCw,
   Rocket,
-  Signpost,
   Trophy,
   Users,
 } from 'lucide-react'
@@ -196,19 +195,17 @@ export function HomepageView({
         aria-labelledby="home-heading"
         className="space-y-5"
       >
-        <div className="flex flex-wrap items-center gap-2">
-          {comingSoon ? (
+        {/* SITE-S1 — the market status badge renders ONLY for coming-soon
+            markets (the user's call: "Live in India" says nothing to a reader
+            already on the India homepage; a launch promise does). */}
+        {comingSoon && (
+          <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-800">
               <Rocket className="mr-1 h-3 w-3" aria-hidden="true" />
               Launching soon in {homepage.country.name}
             </Badge>
-          ) : (
-            <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700">
-              <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-              Live in {homepage.country.name}
-            </Badge>
-          )}
-        </div>
+          </div>
+        )}
 
         <h1 id="home-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
           {homepage.country.name}&rsquo;s{' '}
@@ -232,25 +229,6 @@ export function HomepageView({
           onOpenExam={onOpenExam}
           onOpenEvent={(slug) => onOpenPath(`/current-affairs/${slug}/`)}
         />
-
-        {/* What's inside */}
-        <div className="flex flex-wrap items-center gap-2 text-sm" role="status">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-            <Signpost className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-            <strong className="font-semibold">{homepage.stats.topics}</strong>
-            <span className="text-zinc-500">topics</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-            <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-            <strong className="font-semibold">{homepage.stats.units}</strong>
-            <span className="text-zinc-500">knowledge pages</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-            <GraduationCap className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-            <strong className="font-semibold">{homepage.stats.exams}</strong>
-            <span className="text-zinc-500">{comingSoon ? 'exams at launch' : 'exams'}</span>
-          </span>
-        </div>
 
         {/* Language switcher — only this country's languages */}
         {homepage.languages.length > 1 && (
@@ -304,7 +282,7 @@ export function HomepageView({
               variant="ghost"
               size="sm"
               className="gap-1.5 text-emerald-700 hover:text-emerald-800"
-              onClick={() => onOpenTopic('current-affairs')}
+              onClick={() => onOpenPath('/current-affairs/')}
             >
               View all
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -378,9 +356,9 @@ export function HomepageView({
                 variant="outline"
                 size="sm"
                 className="shrink-0 gap-2 border-zinc-300 bg-white hover:border-emerald-300 hover:text-emerald-700"
-                onClick={() => onOpenTopic('current-affairs')}
+                onClick={() => onOpenPath('/current-affairs/')}
               >
-                Browse the category
+                Browse current affairs
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             </CardContent>

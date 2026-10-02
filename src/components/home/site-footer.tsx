@@ -21,9 +21,6 @@ import { navigateToPath } from '@/components/home/app-router'
 
 export interface SiteFooterProps {
   onGoHome: () => void
-  onOpenCurrentAffairs: () => void
-  onGoExams: () => void
-  onGoQuickMock: () => void
   onGoConsole: () => void
 }
 
@@ -77,19 +74,20 @@ function useManagedPages(): ManagedPageLink[] {
 
 export function SiteFooter({
   onGoHome,
-  onOpenCurrentAffairs,
-  onGoExams,
-  onGoQuickMock,
   onGoConsole,
 }: SiteFooterProps) {
   const year = new Date().getFullYear()
   const managedPages = useManagedPages()
 
-  const exploreLinks: Array<{ label: string; onClick: () => void }> = [
-    { label: 'Home', onClick: onGoHome },
-    { label: 'Current Affairs', onClick: onOpenCurrentAffairs },
-    { label: 'Exams', onClick: onGoExams },
-    { label: 'Mock Tests', onClick: onGoQuickMock },
+  // SITE-S1 — Explore mirrors the sidebar's Discover group (real paths).
+  const exploreLinks: Array<{ label: string; href: string }> = [
+    { label: 'Home', href: '/' },
+    { label: 'Current Affairs', href: '/current-affairs/' },
+    { label: 'Exams', href: '/exams/' },
+    { label: 'Subjects', href: '/subjects/' },
+    { label: 'Mock Tests', href: '/mock-test/' },
+    { label: 'MCQ Practice', href: '/mcq/' },
+    { label: 'Q&A', href: '/qna/' },
   ]
 
   const libraryLinks = [
@@ -140,13 +138,19 @@ export function SiteFooter({
             <ul className="space-y-2.5">
               {exploreLinks.map((link) => (
                 <li key={link.label}>
-                  <button
-                    type="button"
-                    onClick={link.onClick}
-                    className="text-sm text-zinc-500 transition-colors hover:text-emerald-700"
-                  >
-                    {link.label}
-                  </button>
+                  {link.href === '/' ? (
+                    <button
+                      type="button"
+                      onClick={onGoHome}
+                      className="text-sm text-zinc-500 transition-colors hover:text-emerald-700"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <a href={link.href} className="text-sm text-zinc-500 transition-colors hover:text-emerald-700">
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

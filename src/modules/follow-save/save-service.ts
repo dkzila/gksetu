@@ -561,7 +561,7 @@ function unitPath(market: MarketShape['country'], languageCode: string, topicSlu
     { slug: market.slug, isDefault: market.isDefault },
     { code: languageCode },
     market.defaultLanguageCode,
-    ['gk', topicSlug, unitSlug]
+    [topicSlug, unitSlug]
   )
 }
 
@@ -661,7 +661,7 @@ function mockTestPath(market: MarketShape['country'], languageCode: string, test
   const segments =
     test.scopeType === 'EXAM' && test.examVersion
       ? ['exams', test.examVersion.exam.slug, 'mock-tests', test.slug]
-      : ['gk', test.topic?.slug ?? 'gk', 'mock-tests', test.slug]
+      : [test.topic?.slug ?? 'mock-test', 'mock-tests', test.slug]
   return buildCanonicalUrl(
     { slug: market.slug, isDefault: market.isDefault },
     { code: languageCode },

@@ -311,7 +311,7 @@ function toUnitItem(row: MasteryStateRow, now: number, market: MasteryMarket, to
         { slug: market.slug, isDefault: market.isDefault },
         { code: market.languageCode },
         market.defaultLanguageCode,
-        ['gk', topic.slug, row.knowledgeUnit.slug]
+        [topic.slug, row.knowledgeUnit.slug]
       ),
     },
     masteryScore,
@@ -408,7 +408,7 @@ export async function getMyMasteryOverview(
           { slug: market.slug, isDefault: market.isDefault },
           { code: market.languageCode },
           market.defaultLanguageCode,
-          ['gk', item.unit.topicSlug]
+          [item.unit.topicSlug]
         ),
       })
     }
@@ -511,7 +511,7 @@ export async function getMyUnitMastery(
         { slug: market.slug, isDefault: market.isDefault },
         { code: market.languageCode },
         market.defaultLanguageCode,
-        ['gk', unit.topic.slug, unit.slug]
+        [unit.topic.slug, unit.slug]
       ),
     },
     state: state

@@ -468,7 +468,7 @@ export function ExamView({
           <span className="text-xs text-zinc-400">
             Follows shape your combined-exam queue and dashboard — manageable anytime from
             <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
-              #/following
+              Following
             </a>
             .
           </span>
@@ -753,11 +753,11 @@ function CoverageBranch({
       {node.mappings.length > 0 && (
         <ul className="mt-2 space-y-2" aria-label={`Knowledge pages required under ${node.name}`}>
           {node.mappings.map((mapping) => {
-            // §16 grammar: /{prefix}/gk/{topic}/{unit}/ — the topic segment
-            // drives in-app navigation (lenient, like the search box).
+            // SITE-S1 grammar v2: /{prefix}/{subject}/{unit}/ — parsed from
+            // the end (lenient across market prefixes and the legacy /gk/
+            // form; the topic is the second-to-last segment).
             const segments = mapping.canonicalPath.split('/').filter(Boolean)
-            const gkIndex = segments.indexOf('gk')
-            const topicSlug = gkIndex !== -1 ? segments[gkIndex + 1] : null
+            const topicSlug = segments.length >= 2 ? segments[segments.length - 2] : null
             return (
               <li key={mapping.unit.slug}>
                 <button
@@ -968,7 +968,7 @@ function ExamMockTests({
               scope card (§11 single-exam mode) — the mock-test surface applies
               the same union the learning queue does. */}
           <a
-            href={`#/quick-mock/${examSlug}/`}
+            href={`/mock-test/${examSlug}/`}
             className="group flex min-w-0 flex-col rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md"
             aria-label={`Generate a quick mock for this exam`}
           >

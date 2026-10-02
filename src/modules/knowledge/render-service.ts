@@ -167,9 +167,7 @@ function knowledgePath(
   topicSlug: string,
   unitSlug: string
 ): string {
-  return buildCanonicalUrl(country, { code: languageCode }, defaultLanguageCode, [
-    'gk',
-    topicSlug,
+  return buildCanonicalUrl(country, { code: languageCode }, defaultLanguageCode, [topicSlug,
     unitSlug,
   ])
 }
@@ -490,7 +488,7 @@ export async function getKnowledgePage(
           { slug: country.slug, isDefault: country.isDefault },
           { code: resolution.language.code },
           country.defaultLanguage.code,
-          ['gk', entry.slug]
+          [entry.slug]
         ),
       })),
       { name: unit.canonicalName, path: null }, // self — closed by the builder

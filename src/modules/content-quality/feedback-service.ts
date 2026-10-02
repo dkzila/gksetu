@@ -134,7 +134,7 @@ async function resolveReportable(input: FeedbackSubmitInput): Promise<ResolvedRe
       objectId: unit.id,
       objectLabel: unit.canonicalName,
       languageCode: input.languageCode ?? null,
-      objectPath: `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`,
+      objectPath: `${prefix}/${unit.topic.slug}/${unit.slug}/`,
       countryId: unit.topic.scope === 'COUNTRY' ? unit.countryId : null,
       languageId: null,
     }
@@ -185,7 +185,7 @@ async function resolveReportable(input: FeedbackSubmitInput): Promise<ResolvedRe
       objectId: item.id,
       objectLabel: `${unit.canonicalName} \u00b7 ${item.language.code}/${item.format}`,
       languageCode: item.language.code,
-      objectPath: `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`,
+      objectPath: `${prefix}/${unit.topic.slug}/${unit.slug}/`,
       countryId: unit.topic.scope === 'COUNTRY' ? unit.countryId : null,
       languageId: item.languageId,
     }
@@ -260,7 +260,7 @@ async function resolveReportable(input: FeedbackSubmitInput): Promise<ResolvedRe
       objectId: qna.id,
       objectLabel: `QnA: ${truncate(qna.publishedRevision.questionText, 90)}`,
       languageCode: qna.language.code,
-      objectPath: `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`,
+      objectPath: `${prefix}/${unit.topic.slug}/${unit.slug}/`,
       countryId: unit.topic.scope === 'COUNTRY' ? unit.countryId : null,
       languageId: qna.languageId,
     }
@@ -300,7 +300,7 @@ async function resolveReportable(input: FeedbackSubmitInput): Promise<ResolvedRe
     unit.topic.scope === 'COUNTRY' ? unit.country?.isoCode : undefined,
     question.language.code
   )
-  const unitPath = `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+  const unitPath = `${prefix}/${unit.topic.slug}/${unit.slug}/`
   return {
     objectType: 'QUESTION',
     objectId: question.id,
@@ -396,7 +396,7 @@ async function liveObjectPath(objectType: string, objectId: string): Promise<str
         unit.topic.scope === 'COUNTRY' ? unit.country?.isoCode : undefined,
         undefined
       )
-      return `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+      return `${prefix}/${unit.topic.slug}/${unit.slug}/`
     }
     if (objectType === 'CURRENT_EVENT') {
       const event = await db.currentEvent.findUnique({
@@ -455,7 +455,7 @@ async function liveObjectPath(objectType: string, objectId: string): Promise<str
       unit.topic.scope === 'COUNTRY' ? unit.country?.isoCode : undefined,
       anchor.language.code
     )
-    const unitPath = `${prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+    const unitPath = `${prefix}/${unit.topic.slug}/${unit.slug}/`
     return objectType === 'QUESTION' ? `${unitPath}?q=${objectId}` : unitPath
   } catch {
     return null

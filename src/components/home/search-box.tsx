@@ -105,14 +105,20 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
   }
 
   const openResult = (item: SearchItem) => {
+    // SITE-S1 — URL grammar v2: subject and knowledge paths live at the root
+    // (/{subject}/, /{subject}/{unit}/). The server-built canonical path is
+    // parsed from the END (lenient across market prefixes and the legacy
+    // /gk/ form): a topic's slug is the last segment, a unit's topic+unit
+    // the last two.
     const segments = item.urlPath.split('/').filter(Boolean)
-    const gkIndex = segments.indexOf('gk')
+    const last = segments[segments.length - 1]
+    const secondLast = segments[segments.length - 2]
     const examsIndex = segments.indexOf('exams')
     const eventsIndex = segments.indexOf('current-affairs')
-    if (item.objectType === 'TOPIC' && gkIndex !== -1 && segments[gkIndex + 1]) {
-      onOpenTopic(segments[gkIndex + 1])
-    } else if (item.objectType === 'KNOWLEDGE_UNIT' && gkIndex !== -1 && segments[gkIndex + 2]) {
-      onOpenUnit(segments[gkIndex + 1], segments[gkIndex + 2])
+    if (item.objectType === 'TOPIC' && last) {
+      onOpenTopic(last)
+    } else if (item.objectType === 'KNOWLEDGE_UNIT' && last && secondLast) {
+      onOpenUnit(secondLast, last)
     } else if (item.objectType === 'CURRENT_EVENT' && eventsIndex !== -1 && segments[eventsIndex + 1]) {
       // §16 event pages — in-app navigation since P6-S2.
       onOpenEvent?.(segments[eventsIndex + 1])

@@ -483,7 +483,7 @@ export async function notifyUnitVerified(unitId: string): Promise<number> {
       unit.topic.scope === 'COUNTRY' && unit.country
         ? await marketPrefix(unit.country.isoCode, user.preferredLanguageCode)
         : await marketPrefix(user.homeCountryIso ?? undefined, user.preferredLanguageCode)
-    const canonicalPath = `${market.prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+    const canonicalPath = `${market.prefix}/${unit.topic.slug}/${unit.slug}/`
     const examName = matchedExams.get(follow.objectId)?.name ?? 'an exam you follow'
     const context: NotificationContext = {
       title: `${unit.canonicalName} joined your syllabus coverage`,
@@ -561,7 +561,7 @@ export async function notifyCorrectionPublished(
       unit.topic.scope === 'COUNTRY' && unit.country
         ? await marketPrefix(unit.country.isoCode, user.preferredLanguageCode)
         : await marketPrefix(user.homeCountryIso ?? undefined, user.preferredLanguageCode)
-    const canonicalPath = `${market.prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+    const canonicalPath = `${market.prefix}/${unit.topic.slug}/${unit.slug}/`
     const context: NotificationContext = {
       title: `Correction published: ${unit.canonicalName}`,
       reason: `Because you saved ${unit.canonicalName} — §25 corrections are never silent, and savers hear first.`,

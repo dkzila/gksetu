@@ -1,25 +1,26 @@
 'use client'
 
 /**
- * GKSetu — app sidebar.
+ * GKSetu — app sidebar (SITE-S1 redesign).
  *
- * The persistent product navigation: one rail on desktop (lg+) and a
- * drawer on mobile (opened from the header's menu button). Sections map
- * to how people actually use the platform — discover (GK, current
- * affairs, exams, mock tests) and personal library (dashboard, saves,
- * follows, notifications) — with the account group below. Technical
- * surfaces stay out of this navigation by design.
+ * The product's ONE primary navigation: a rail on desktop (lg+) and a drawer
+ * on everything below lg (mobile AND tablet — opened from the header's menu
+ * button). The Discover group links the five public content surfaces plus
+ * the two practice surfaces (MCQ, Q&A); My Library and Account follow.
+ * Every item is a real path — no callback indirection, no scroll hacks.
  */
 
 import {
   Bell,
   Bookmark,
-  ClipboardList,
+  CircleHelp,
   Compass,
   FileQuestion,
   GraduationCap,
   Home,
+  LayoutGrid,
   LineChart,
+  ListChecks,
   Newspaper,
   Rss,
   Settings,
@@ -28,7 +29,6 @@ import {
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
@@ -48,13 +48,9 @@ import type { AppRoute } from './app-router'
 export interface AppSidebarProps {
   route: AppRoute | null
   config: ApiCountry[] | null
-  /** Mobile drawer state (the desktop rail is always rendered on lg+). */
+  /** Drawer state (the desktop rail is always rendered on lg+). */
   open: boolean
   onOpenChange: (open: boolean) => void
-  onGoHome: () => void
-  onOpenCurrentAffairs: () => void
-  onGoExams: () => void
-  onGoQuickMock: () => void
   onSwitchCountry: (iso: string) => void
   onSwitchLanguage: (code: string) => void
 }
@@ -66,8 +62,7 @@ interface NavItem {
   label: string
   icon: typeof Home
   active: boolean
-  onClick?: () => void
-  href?: string
+  href: string
   badge?: number
 }
 
@@ -78,10 +73,6 @@ export function AppSidebar({
   config,
   open,
   onOpenChange,
-  onGoHome,
-  onOpenCurrentAffairs,
-  onGoExams,
-  onGoQuickMock,
   onSwitchCountry,
   onSwitchLanguage,
 }: AppSidebarProps) {
@@ -89,54 +80,73 @@ export function AppSidebar({
 
   const currentCountry = config && route ? config.find((entry) => entry.isoCode === route.countryIso) ?? null : null
 
-  const run = (action: () => void) => () => {
-    onOpenChange(false)
-    action()
-  }
-
+  // SITE-S1 — Discover: the platform's content surfaces as real paths.
+  // "Current Affairs" is the dedicated listing (/current-affairs/), "Exams"
+  // the exam directory (/exams/) — never a homepage scroll anchor.
   const discoverItems: NavItem[] = [
-    { key: 'home', label: 'Home', icon: Home, active: route?.view === 'home', onClick: run(onGoHome) },
+    { key: 'home', label: 'Home', icon: Home, active: route?.view === 'home', href: '/' },
     {
       key: 'current-affairs',
       label: 'Current Affairs',
       icon: Newspaper,
-      active: route?.view === 'event' || (route?.view === 'topic' && route.topicSlug === 'current-affairs'),
-      onClick: run(onOpenCurrentAffairs),
+      active: route?.view === 'event' || route?.view === 'current-affairs',
+      href: '/current-affairs/',
     },
     {
       key: 'exams',
       label: 'Exams',
       icon: GraduationCap,
-      active: route?.view === 'exam' || route?.view === 'syllabus',
-      onClick: run(onGoExams),
+      active: route?.view === 'exam' || route?.view === 'syllabus' || route?.view === 'exam-directory',
+      href: '/exams/',
+    },
+    {
+      key: 'subjects',
+      label: 'Subjects',
+      icon: LayoutGrid,
+      active: route?.view === 'subjects' || route?.view === 'topic' || route?.view === 'unit',
+      href: '/subjects/',
     },
     {
       key: 'mock-tests',
       label: 'Mock Tests',
       icon: Timer,
-      active: route?.view === 'quick-mock' || route?.view === 'test',
-      onClick: run(onGoQuickMock),
+      active: route?.view === 'mock-test' || route?.view === 'test',
+      href: '/mock-test/',
+    },
+    {
+      key: 'mcq',
+      label: 'MCQ Practice',
+      icon: ListChecks,
+      active: route?.view === 'mcq',
+      href: '/mcq/',
+    },
+    {
+      key: 'qna',
+      label: 'Q&A',
+      icon: CircleHelp,
+      active: route?.view === 'qna',
+      href: '/qna/',
     },
   ]
 
   const libraryItems: NavItem[] = [
-    { key: 'dashboard', label: 'Dashboard', icon: LineChart, active: route?.view === 'dashboard', href: '#/dashboard' },
-    { key: 'saved', label: 'Saved', icon: Bookmark, active: route?.view === 'saved', href: '#/saved' },
-    { key: 'following', label: 'Following', icon: Rss, active: route?.view === 'following', href: '#/following' },
+    { key: 'dashboard', label: 'Dashboard', icon: LineChart, active: route?.view === 'dashboard', href: '/dashboard' },
+    { key: 'saved', label: 'Saved', icon: Bookmark, active: route?.view === 'saved', href: '/saved' },
+    { key: 'following', label: 'Following', icon: Rss, active: route?.view === 'following', href: '/following' },
     {
       key: 'notifications',
       label: 'Notifications',
       icon: Bell,
       active: route?.view === 'notifications',
-      href: '#/notifications',
+      href: '/notifications',
       badge: unreadCount,
     },
   ]
 
   const accountItems: NavItem[] = [
-    { key: 'profile', label: 'Profile', icon: UserRound, active: route?.view === 'profile', href: '#/profile' },
-    { key: 'settings', label: 'Settings', icon: Settings, active: route?.view === 'personalisation', href: '#/personalisation' },
-    { key: 'feedback', label: 'Feedback', icon: FileQuestion, active: route?.view === 'feedback', href: '#/feedback' },
+    { key: 'profile', label: 'Profile', icon: UserRound, active: route?.view === 'profile', href: '/profile' },
+    { key: 'settings', label: 'Settings', icon: Settings, active: route?.view === 'personalisation', href: '/personalisation' },
+    { key: 'feedback', label: 'Feedback', icon: FileQuestion, active: route?.view === 'feedback', href: '/feedback' },
   ]
 
   const sections: Array<{ key: string; label: string; items: NavItem[] }> = [
@@ -174,15 +184,9 @@ export function AppSidebar({
               }`
               return (
                 <li key={item.key}>
-                  {item.href ? (
-                    <a href={item.href} aria-current={item.active ? 'page' : undefined} className={baseClass} onClick={() => onOpenChange(false)}>
-                      {content}
-                    </a>
-                  ) : (
-                    <button type="button" onClick={item.onClick} aria-current={item.active ? 'page' : undefined} className={`${baseClass} text-left`}>
-                      {content}
-                    </button>
-                  )}
+                  <a href={item.href} aria-current={item.active ? 'page' : undefined} className={baseClass} onClick={() => onOpenChange(false)}>
+                    {content}
+                  </a>
                 </li>
               )
             })}
@@ -190,8 +194,9 @@ export function AppSidebar({
         </div>
       ))}
 
-      {/* Market switchers (mobile drawer only — the header keeps its own on sm+) */}
-      <div className="space-y-2 border-t border-zinc-100 p-3 pt-4 sm:hidden">
+      {/* Market switchers (drawer only, below lg — the header keeps its own
+          switchers from sm+; SITE-S1 widened the drawer to tablets too). */}
+      <div className="space-y-2 border-t border-zinc-100 p-3 pt-4 lg:hidden">
         <p className="px-1 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Market</p>
         <Select value={route?.countryIso ?? ''} onValueChange={(iso) => { onSwitchCountry(iso) }} disabled={!config}>
           <SelectTrigger className="h-10 border-zinc-200 bg-white text-sm font-medium" aria-label="Switch country">
@@ -232,13 +237,13 @@ export function AppSidebar({
         {nav}
       </aside>
 
-      {/* Mobile drawer */}
+      {/* Mobile + tablet drawer */}
       <Sheet open={open} onOpenChange={onOpenChange}>
         <SheetContent side="left" className="w-80 overflow-y-auto p-0">
           <SheetHeader className="border-b border-zinc-100 p-4">
             <SheetTitle className="flex items-center gap-2 text-left">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-600 to-teal-500" aria-hidden="true">
-                <Compass className="h-4 w-4 text-white" />
+                <Compass className="h-4 w-4 text-white" aria-hidden="true" />
               </span>
               GKSetu
             </SheetTitle>

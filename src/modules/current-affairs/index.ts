@@ -52,6 +52,13 @@ export {
 } from './service'
 export { getCurrentEventPage } from './page-service'
 export { getExamAwareFeed, getEventExamRelevance } from './feed-service'
+// SITE-S1: the public /current-affairs/ listing (the events index + topic chips).
+export {
+  currentAffairsListingQuerySchema,
+  getCurrentAffairsListing,
+  LISTING_PAGE_SIZE_DEFAULT,
+  LISTING_PAGE_SIZE_MAX,
+} from './listing-service'
 export { getFreshnessOverview, runFreshnessSweep } from './freshness-service'
 export {
   createCurrentEventSchema,
@@ -108,6 +115,13 @@ export type {
   EventPageTopicRef,
   EventPageUnit,
 } from './page-types'
+// SITE-S1: the public listing DTOs (the /current-affairs/ view + mobile §39).
+export type {
+  CurrentAffairsListing,
+  CurrentAffairsListingEvent,
+  CurrentAffairsListingQuery,
+  CurrentAffairsListingTopic,
+} from './listing-service'
 export type {
   EventExamRelevance,
   ExamAwareFeed,

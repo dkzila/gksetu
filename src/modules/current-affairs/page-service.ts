@@ -306,7 +306,7 @@ export async function getCurrentEventPage(
         { slug: country.slug, isDefault: country.isDefault },
         { code: readerLanguage },
         country.defaultLanguage.code,
-        ['gk', unit.topic.slug, unit.slug]
+        [unit.topic.slug, unit.slug]
       ),
     })
   }
@@ -361,7 +361,7 @@ export async function getCurrentEventPage(
           { slug: country.slug, isDefault: country.isDefault },
           { code: readerLanguage },
           country.defaultLanguage.code,
-          ['gk', entry.slug]
+          [entry.slug]
         ),
       })),
       { name: event.title, path: null }, // self — closed by the builder
@@ -410,7 +410,7 @@ export async function getCurrentEventPage(
           { slug: country.slug, isDefault: country.isDefault },
           { code: readerLanguage },
           country.defaultLanguage.code,
-          ['gk', link.topic.slug]
+          [link.topic.slug]
         ),
       }
     })

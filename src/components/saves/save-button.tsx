@@ -123,7 +123,7 @@ export function SaveButton({
         }
         toast({
           title: `Saved ${objectName}`,
-          description: 'Kept in your “Saved” collection — organise it at #/saved.',
+          description: 'Kept in your “Saved” collection — organise it on the Saved page.',
         })
       } else {
         // The server's honest §36 explanation (retired/scheduled/not public…).

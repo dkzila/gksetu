@@ -121,7 +121,7 @@ function brand(): ShareBrand {
 interface ParsedShareTarget extends ParsedSharePath {
   /** The §16 market prefix for the object's path ('' | '/uk' | '/hi'). */
   marketPrefix: string
-  /** The object's canonical segments (['gk', topic, unit] …) — the §16 truth. */
+  /** The object's canonical segments ([topic, unit] …) — the §16 truth. */
   segments: string[]
   /** The ?q= focus id on a unit path (QUESTION shares) — validated cuid. */
   focusQuestionId: string | null
@@ -186,34 +186,39 @@ export async function parseSharePath(
     }
   }
 
-  // …/gk/{topic}/ — the §33/§16 topic hub.
-  if (segments[0] === 'gk' && segments[1] && segments.length === 2) {
+  // SITE-S1 — URL grammar v2: /{subject}/ and /{subject}/{unit}/ at the
+  // root, with the legacy /gk/… forms still accepted (tolerant parsing).
+  const content = segments[0] === 'gk' ? segments.slice(1) : segments
+  const CONTENT_ROOTS = ['exams', 'current-affairs', 'subjects', 'mcq', 'qna', 'mock-test', 'collections']
+
+  // …/{subject}/ — the §33/§16 subject hub.
+  if (content.length === 1 && content[0] && !CONTENT_ROOTS.includes(content[0])) {
     return {
       objectType: 'TOPIC',
-      objectRef: segments[1].toLowerCase(),
+      objectRef: content[0].toLowerCase(),
       unitPath: null,
       countryIso,
       languageCode,
       marketPrefix,
-      segments,
+      segments: content,
       focusQuestionId: null,
     }
   }
 
-  // …/gk/{topic}/{unit}/ — the §22 knowledge page (…/mock-tests/{slug}/ is
+  // …/{subject}/{unit}/ — the §22 knowledge page (…/mock-tests/{slug}/ is
   // the runner page: app-gated, deliberately NOT a §21 share surface).
-  if (segments[0] === 'gk' && segments[1] && segments[2] && segments.length === 3) {
-    const unitSlug = segments[2].toLowerCase()
+  if (content.length === 2 && content[0] && content[1] && !CONTENT_ROOTS.includes(content[0])) {
+    const unitSlug = content[1].toLowerCase()
     // A QUESTION share: the unit path + the ?q= focus (the practice layer).
     if (focusQuestionId) {
       return {
         objectType: 'QUESTION',
         objectRef: focusQuestionId,
-        unitPath: `${marketPrefix}/gk/${segments[1]}/${unitSlug}/`,
+        unitPath: `${marketPrefix}/${content[0]}/${unitSlug}/`,
         countryIso,
         languageCode,
         marketPrefix,
-        segments,
+        segments: content,
         focusQuestionId,
       }
     }
@@ -224,7 +229,7 @@ export async function parseSharePath(
       countryIso,
       languageCode,
       marketPrefix,
-      segments,
+      segments: content,
       focusQuestionId: null,
     }
   }
@@ -352,7 +357,7 @@ async function resolveUnitCard(parse: ParsedShareTarget): Promise<ResolvedShare>
       : { prefix: parse.marketPrefix, countryIso: parse.countryIso, languageCode: parse.languageCode }
   // Rebuild from the object's own identity — the input topic segment is a
   // routing hint; the unit's true topic is the URL truth (§16).
-  const canonicalPath = `${market.prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+  const canonicalPath = `${market.prefix}/${unit.topic.slug}/${unit.slug}/`
   const label = await topicLabelFor(unit.topic.id, unit.topic.canonicalName, market.languageCode)
   return {
     objectType: 'KNOWLEDGE_UNIT',
@@ -416,7 +421,7 @@ async function resolveQuestionCard(parse: ParsedShareTarget): Promise<ResolvedSh
     unit.topic.scope === 'COUNTRY' && unit.country
       ? await prefixForMarket(unit.country.isoCode, parse.languageCode)
       : { prefix: parse.marketPrefix, countryIso: parse.countryIso, languageCode: parse.languageCode }
-  const unitPath = `${market.prefix}/gk/${unit.topic.slug}/${unit.slug}/`
+  const unitPath = `${market.prefix}/${unit.topic.slug}/${unit.slug}/`
   const sharePath = `${unitPath}?q=${question.id}`
   const label = await topicLabelFor(unit.topic.id, unit.topic.canonicalName, market.languageCode)
   return {
@@ -512,7 +517,7 @@ async function resolveTopicCard(parse: ParsedShareTarget): Promise<ResolvedShare
     topic.scope === 'COUNTRY' && topic.country
       ? await prefixForMarket(topic.country.isoCode, parse.languageCode)
       : { prefix: parse.marketPrefix, countryIso: parse.countryIso, languageCode: parse.languageCode }
-  const canonicalPath = `${market.prefix}/gk/${topic.slug}/`
+  const canonicalPath = `${market.prefix}/${topic.slug}/`
   const label = await topicLabelFor(topic.id, topic.canonicalName, market.languageCode)
   return {
     objectType: 'TOPIC',

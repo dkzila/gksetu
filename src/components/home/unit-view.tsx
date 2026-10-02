@@ -86,7 +86,7 @@ export function UnitView({
         </Button>
         <div className="flex items-center gap-2">
           <ShareButton
-            path={`/gk/${topicSlug}/${unitSlug}/`}
+            path={`/${topicSlug}/${unitSlug}/`}
             title={unitSlug}
             className="h-9 px-2.5"
           />

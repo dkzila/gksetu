@@ -130,7 +130,7 @@ function topicPathOf(country: CountryShape, languageCode: string, topicSlug: str
     { slug: country.slug, isDefault: country.isDefault },
     { code: languageCode },
     country.defaultLanguageCode,
-    ['gk', topicSlug]
+    [topicSlug]
   )
 }
 

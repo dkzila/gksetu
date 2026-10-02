@@ -849,7 +849,7 @@ export async function getPublicExamCoverage(
       { slug: country.slug, isDefault: country.isDefault },
       { code: languageCode },
       country.defaultLanguage.code,
-      ['gk', row.knowledgeUnit.topic.slug, row.knowledgeUnit.slug]
+      [row.knowledgeUnit.topic.slug, row.knowledgeUnit.slug]
     ),
     requiredDepth: row.requiredDepth,
     priority: row.priority,

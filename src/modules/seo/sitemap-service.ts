@@ -313,15 +313,29 @@ function segmentEntries(
 
   switch (type) {
     case 'home':
-      return [{ path: path([]), lastModified: model.homeLastModified }]
+      // SITE-S1 — the structural surfaces of the market: the homepage plus
+      // the indexable listings (current-affairs, exams, subjects, mock-test,
+      // mcq, qna). They exist in every country-configured language (§35
+      // structural rule), so they enumerate like the home URL itself.
+      return [
+        { path: path([]), lastModified: model.homeLastModified },
+        { path: path(['current-affairs']), lastModified: model.homeLastModified },
+        { path: path(['exams']), lastModified: model.homeLastModified },
+        { path: path(['subjects']), lastModified: model.homeLastModified },
+        { path: path(['mock-test']), lastModified: model.homeLastModified },
+        { path: path(['mcq']), lastModified: model.homeLastModified },
+        { path: path(['qna']), lastModified: model.homeLastModified },
+      ]
     case 'topics':
+      // SITE-S1 — URL grammar v2: subjects at the root (/{subject}/).
       return model.topics.map((topic) => ({
-        path: path(['gk', topic.slug]),
+        path: path([topic.slug]),
         lastModified: topic.lastModified,
       }))
     case 'units':
+      // SITE-S1 — URL grammar v2: knowledge pages at /{subject}/{unit}/.
       return (model.unitsByLanguage.get(languageCode) ?? []).map((unit) => ({
-        path: path(['gk', unit.topicSlug, unit.slug]),
+        path: path([unit.topicSlug, unit.slug]),
         lastModified: unit.lastModified,
       }))
     case 'current-affairs':

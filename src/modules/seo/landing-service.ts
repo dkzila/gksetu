@@ -69,12 +69,16 @@ async function parseLandingPath(rawPath: string): Promise<ParsedLanding | null> 
 
   if (segments.length === 0) return { surface: 'HOME', countryIso }
 
-  // …/gk/{topic}/ — the §33 topic hub.
-  if (segments[0] === 'gk' && segments.length === 2) {
+  // SITE-S1 — grammar v2: /{subject}/ and /{subject}/{unit}/ at the root,
+  // with the legacy /gk/… forms still accepted (tolerant parsing).
+  const content = segments[0] === 'gk' ? segments.slice(1) : segments
+  const CONTENT_ROOTS = ['exams', 'current-affairs', 'subjects', 'mcq', 'qna', 'mock-test', 'collections']
+  // …/{subject}/ — the §33 subject hub.
+  if (content.length === 1 && content[0] && !CONTENT_ROOTS.includes(content[0])) {
     return { surface: 'TOPIC', countryIso }
   }
-  // …/gk/{topic}/{unit}/ (+ ?q= focus → the §22 practice layer).
-  if (segments[0] === 'gk' && segments.length === 3) {
+  // …/{subject}/{unit}/ (+ ?q= focus → the §22 practice layer).
+  if (content.length === 2 && content[0] && !CONTENT_ROOTS.includes(content[0])) {
     return { surface: focusRaw ? 'QUESTION' : 'KNOWLEDGE', countryIso }
   }
   // …/current-affairs/{slug}/ (§12/§16).

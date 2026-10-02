@@ -2,22 +2,33 @@
 
 /**
  * GKSetu — the §16-mirroring PATH router (P4-S2/P4-S3 lineage; DEPLOY-S2
- * moved the canonical URL space from after-the-hash to real URL paths —
- * the user's direct request: no stray '#' in the address bar).
+ * moved the canonical URL space from after-the-hash to real URL paths).
  *
- * The public URL space (Master Plan §16 / Appendix B) is unchanged, only
- * now real paths:
+ * SITE-S1 — URL GRAMMAR v2: the platform IS general knowledge, so the old
+ * `/gk/…` prefix said nothing. Subjects now live at the root:
  *   India default English   /
  *   India non-default lang  /{language}/            → /hi/
- *   Other country default   /{country}/             → /uk/
- *   Other country + lang    /{country}/{language}/  → /fr/… (per config)
- *   Topic hub               …/gk/{topic}/           → /gk/polity-governance/
- *   Knowledge page          …/gk/{topic}/{unit}/    → /gk/fundamental-rights/article-32/
+ *   Other country default   /{country}/             → /fr/
+ *   Other country + lang    /{country}/{language}/  → /fr/en/… (per config)
+ *   Subject (topic hub)     …/{subject}/            → /polity-governance/
+ *   Knowledge page          …/{subject}/{unit}/    → /polity-governance/fundamental-rights/
+ *   Current affairs listing …/current-affairs/     (dedicated view — SITE-S1)
  *   Current-affairs page    …/current-affairs/{slug}/
- *   Exam page               …/exams/{exam}/         → /exams/upsc-civil-services/
+ *   Subjects directory      …/subjects/            (SITE-S1)
+ *   MCQ practice            …/mcq/                 (SITE-S1 shell, SITE-S3 content)
+ *   Q&A practice            …/qna/                 (SITE-S1 shell, SITE-S3 content)
+ *   Exam directory          …/exams/
+ *   Exam page               …/exams/{exam}/        → /exams/upsc-civil-services/
  *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
  *   Mock test (exam-scoped) …/exams/{exam}/mock-tests/{slug}/
- *   Mock test (topic-scoped)…/gk/{topic}/mock-tests/{slug}/
+ *   Mock test (topic-scoped)…/{subject}/mock-tests/{slug}/
+ *   Mock test landing       /mock-test/            (was /quick-mock — renamed
+ *                          from the base per the user's instruction; no
+ *                          redirects, pre-launch)
+ *
+ * LEGACY `/gk/…` PATHS KEEP PARSING (tolerant, never built again) — old
+ * shared links still open the right view; the address bar keeps whatever
+ * the reader typed. `/{subject}/` is now the built form.
  *
  * The app renders through the optional catch-all route
  * (src/app/[[...slug]]/page.tsx) — every path serves the same shell and
@@ -62,8 +73,20 @@ import type { ApiCountry } from './types'
 /** §36 version references are canonical ids (cuid). */
 const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
 
+/**
+ * SITE-S1 — the content-tree roots that can follow the market prefix. The
+ * first of these segments is NEVER a country slug or language code, so the
+ * market-prefix resolution skips them.
+ */
+const CONTENT_ROOTS = ['gk', 'exams', 'current-affairs', 'subjects', 'mcq', 'qna'] as const
+
+/** True when a segment is a known content root (never a market marker). */
+export function isContentRoot(segment: string | undefined): boolean {
+  return !!segment && (CONTENT_ROOTS as readonly string[]).includes(segment)
+}
+
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'quick-mock' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'current-affairs' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'mock-test' | 'mcq' | 'qna' | 'subjects' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -216,12 +239,13 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     return { ...fallback, view: 'dashboard', scrollTo: null }
   }
 
-  // P7-S5 §22: the combined-exam quick-mock surface — optionally deep-linked
-  // to one exam's scope (…/quick-mock/{exam}/ → the EXAM card preselected).
-  if (segments[0] === 'quick-mock') {
+  // SITE-S1: the mock-test landing (renamed from /quick-mock — edited from
+  // the base, no redirect) — optionally deep-linked to one exam's scope
+  // (…/mock-test/{exam}/ → the EXAM card preselected).
+  if (segments[0] === 'mock-test') {
     return {
       ...fallback,
-      view: 'quick-mock',
+      view: 'mock-test',
       examSlug: segments[1] ?? null,
       scrollTo: null,
     }
@@ -256,8 +280,9 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
 
   // First segment: a non-default country slug, or the default country's
   // non-default language (§16 — the default market's slug never appears).
+  // A content root is never a market marker (SITE-S1).
   const first = segments[0]
-  if (first !== 'gk' && first !== 'exams' && first !== 'current-affairs') {
+  if (!isContentRoot(first)) {
     const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
     const defaultMarketLanguage = defaultCountry.languages.find(
       (entry) => entry.code === first && entry.code !== defaultCountry.defaultLanguage.code
@@ -281,7 +306,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
 
   // Language segment for the resolved country (non-default only, §35).
   const next = segments[index]
-  if (next && next !== 'gk' && next !== 'exams' && next !== 'current-affairs') {
+  if (next && !isContentRoot(next)) {
     const languageMatch = country.languages.find(
       (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
     )
@@ -291,12 +316,151 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     }
   }
 
-  // Content path: /gk/{topic}/{unit}/ (§16) — with the P7-S3 mock-test
-  // branch …/gk/{topic}/mock-tests/{slug}/ (the topic-scoped §22 runner).
-  if (segments[index] === 'gk') {
-    const topicSlug = segments[index + 1] ?? null
-    const unitSlug = segments[index + 2] ?? null
-    if (topicSlug && segments[index + 2] === 'mock-tests' && segments[index + 3]) {
+  // SITE-S1 — URL grammar v2 content trees. LEGACY `/gk/{topic}/…` paths
+  // keep parsing (tolerant); the built form drops the prefix entirely.
+  // afterRoot skips a KNOWN root (gk/current-affairs/subjects/mcq/qna);
+  // for a subject path the root IS the first content segment (kept).
+  const root = segments[index]
+  const afterRoot = segments.slice(index + (isContentRoot(root) ? 1 : 0))
+
+  // SITE-S1: legacy /gk/current-affairs/ (the old topic hub) opens the new
+  // dedicated listing view — tolerant parsing, same document.
+  if (root === 'gk' && afterRoot[0] === 'current-affairs' && !afterRoot[1]) {
+    return {
+      view: 'current-affairs',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+
+  // Content path: /current-affairs/ (SITE-S1 listing) and
+  // /current-affairs/{slug}/ (§16, P6-S2).
+  if (root === 'current-affairs') {
+    const eventSlug = afterRoot[0] ?? null
+    if (eventSlug) {
+      return {
+        view: 'event',
+        countryIso: country.isoCode,
+        language,
+        topicSlug: null,
+        unitSlug: null,
+        eventSlug,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: null,
+        collectionId: null,
+        page: 1,
+        versionId: null,
+        focusQuestionId: null,
+        scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
+      }
+    }
+    return {
+      view: 'current-affairs',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+
+  // SITE-S1: the subject directory (…/subjects/).
+  if (root === 'subjects') {
+    return {
+      view: 'subjects',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page: 1,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+
+  // SITE-S1: the practice surfaces (…/mcq/ and …/qna/).
+  if (root === 'mcq') {
+    return {
+      view: 'mcq',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page: 1,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+  if (root === 'qna') {
+    return {
+      view: 'qna',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page: 1,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+
+  // Content path: /{subject}/, /{subject}/{unit}/ (§16 v2) and the
+  // P7-S3 mock-test branch /{subject}/mock-tests/{slug}/ — with the legacy
+  // /gk/ prefix still accepted in front (tolerant parsing).
+  {
+    const topicSlug = afterRoot[0] ?? null
+    const unitSlug = afterRoot[1] ?? null
+    if (topicSlug && afterRoot[1] === 'mock-tests' && afterRoot[2]) {
       return {
         view: 'test',
         countryIso: country.isoCode,
@@ -306,7 +470,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         eventSlug: null,
         examSlug: null,
         syllabusTopicSlug: null,
-        testSlug: segments[index + 3],
+        testSlug: afterRoot[2],
         collectionId: null,
         page: 1,
         versionId: null,
@@ -359,33 +523,8 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     }
   }
 
-  // Content path: /current-affairs/{slug}/ (§16, P6-S2).
-  if (segments[index] === 'current-affairs') {
-    const eventSlug = segments[index + 1] ?? null
-    if (eventSlug) {
-      return {
-        view: 'event',
-        countryIso: country.isoCode,
-        language,
-        topicSlug: null,
-        unitSlug: null,
-        eventSlug,
-        examSlug: null,
-        syllabusTopicSlug: null,
-        testSlug: null,
-        collectionId: null,
-        page: 1,
-        versionId: null,
-        focusQuestionId: null,
-        scrollTo: null,
-        consolePath: null,
-        pageSlug: null,
-      }
-    }
-  }
-
-  // Content path: /exams/{exam}/, /exams/{exam}/syllabus/{topic}/ and the
-  // P7-S3 mock-test branch …/exams/{exam}/mock-tests/{slug}/ (§16).
+  // SITE-S1: the exam tree is unchanged (…/exams/…) — the only content root
+  // with a nested grammar.
   if (segments[index] === 'exams') {
     const examSlug = segments[index + 1] ?? null
     if (!examSlug) {
@@ -524,9 +663,10 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
   if (route.view === 'collection' && route.collectionId) {
     return `/collections/${route.collectionId}/`
   }
-  // P7-S5 §22 — the quick-mock setup (an exam slug deep-links its scope card).
-  if (route.view === 'quick-mock') {
-    return route.examSlug ? `/quick-mock/${route.examSlug}/` : '/quick-mock'
+  // SITE-S1 — the mock-test landing (renamed from quick-mock; an exam slug
+  // deep-links its scope card). Market-independent, like its predecessor.
+  if (route.view === 'mock-test') {
+    return route.examSlug ? `/mock-test/${route.examSlug}/` : '/mock-test/'
   }
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '/'
@@ -536,15 +676,28 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
   if (route.language !== country.defaultLanguage.code) segments.push(route.language)
 
   if (route.view === 'topic' && route.topicSlug) {
-    segments.push('gk', route.topicSlug)
+    // SITE-S1 — subjects live at the root: /{subject}/ (no /gk/ prefix).
+    segments.push(route.topicSlug)
   } else if (route.view === 'unit' && route.topicSlug && route.unitSlug) {
-    segments.push('gk', route.topicSlug, route.unitSlug)
+    segments.push(route.topicSlug, route.unitSlug)
   } else if (route.view === 'test' && route.testSlug) {
     // §16/P7-S3 — the runner's scope is part of the test's identity.
     if (route.examSlug) segments.push('exams', route.examSlug, 'mock-tests', route.testSlug)
-    else if (route.topicSlug) segments.push('gk', route.topicSlug, 'mock-tests', route.testSlug)
+    else if (route.topicSlug) segments.push(route.topicSlug, 'mock-tests', route.testSlug)
   } else if (route.view === 'event' && route.eventSlug) {
     segments.push('current-affairs', route.eventSlug)
+  } else if (route.view === 'current-affairs') {
+    // SITE-S1 — the dedicated current-affairs listing.
+    segments.push('current-affairs')
+  } else if (route.view === 'subjects') {
+    // SITE-S1 — the subject directory.
+    segments.push('subjects')
+  } else if (route.view === 'mcq') {
+    // SITE-S1 — the MCQ practice surface (SITE-S3 fills the content).
+    segments.push('mcq')
+  } else if (route.view === 'qna') {
+    // SITE-S1 — the Q&A practice surface (SITE-S3 fills the content).
+    segments.push('qna')
   } else if (route.view === 'exam' && route.examSlug) {
     segments.push('exams', route.examSlug)
   } else if (route.view === 'exam-directory') {
@@ -558,6 +711,10 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
   // Addressable state — only when explicitly beyond the defaults.
   const params = new URLSearchParams()
   if (route.view === 'topic' && route.page && route.page > 1) {
+    params.set('page', String(route.page))
+  }
+  // SITE-S1: the current-affairs listing paginates the same way (?page=N).
+  if (route.view === 'current-affairs' && route.page && route.page > 1) {
     params.set('page', String(route.page))
   }
   if (route.view === 'exam' && route.versionId && VERSION_PATTERN.test(route.versionId)) {

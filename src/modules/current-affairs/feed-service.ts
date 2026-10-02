@@ -587,62 +587,122 @@ export async function resolveExamRelevance(input: {
 
   const exams = await db.exam.findMany({
     where: { status: 'ACTIVE', countryId: input.countryId },
-    include: {
-      versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      code: true,
+      versions: { select: { id: true, effectiveFrom: true, effectiveTo: true } },
     },
     orderBy: [{ name: 'asc' }, { slug: 'asc' }],
   })
 
-  const results = await Promise.all(
-    exams.map(async (exam) => {
-      const version = exam.versions.find((row) => windowContains(row))
-      if (!version) return null // no syllabus in effect — nothing to feed yet (§36)
-      const [nodes, mappings] = await Promise.all([
-        loadVersionNodes(version.id),
-        loadVersionMappings(version.id),
-      ])
+  // SITE-S1 performance fix: the per-version N+1 (2 queries × every ACTIVE
+  // exam — 272 queries over the 136-exam India corpus through the Supabase
+  // pooler) starved the 3-connection dev pool (P2024) and made every event
+  // page a 30-60s walk. Batched: ONE nodes query + ONE mappings query for
+  // all CURRENT versions, grouped in-memory.
+  const currentVersionByExam = new Map<string, { id: string }>()
+  for (const exam of exams) {
+    const version = exam.versions.find((row) => windowContains(row))
+    if (version) currentVersionByExam.set(exam.id, { id: version.id })
+  }
+  const versionIds = [...currentVersionByExam.values()].map((version) => version.id)
 
-      const anchors: EventExamRelevance['exams'][number]['anchors'] = []
-      const anchorSeen = new Set<string>()
-
-      // Topic anchors: nodes whose §13 topic is one of the event's topics.
-      for (const node of nodes) {
-        if (!node.topic || !topicIdSet.has(node.topic.id)) continue
-        const key = `${node.name}|TOPIC|`
-        if (anchorSeen.has(key)) continue
-        anchorSeen.add(key)
-        anchors.push({ nodeName: node.name, matchVia: 'TOPIC', unitSlug: null })
-      }
-
-      // Unit anchors: visible mappings onto the event's VERIFIED-linked units.
-      const nodesById = new Map(nodes.map((node) => [node.id, node]))
-      for (const mapping of mappings) {
-        if (!unitIdSet.has(mapping.knowledgeUnitId)) continue
-        const visible =
-          mapping.knowledgeUnit.status === 'VERIFIED' &&
-          (mapping.knowledgeUnit.scope === 'GLOBAL' ||
-            mapping.knowledgeUnit.countryId === input.countryId) &&
-          mappingInEffect(mapping, false)
-        if (!visible) continue
-        const node = nodesById.get(mapping.syllabusNodeId)
-        if (!node) continue
-        const key = `${node.name}|KNOWLEDGE_UNIT|${mapping.knowledgeUnit.slug}`
-        if (anchorSeen.has(key)) continue
-        anchorSeen.add(key)
-        anchors.push({
-          nodeName: node.name,
-          matchVia: 'KNOWLEDGE_UNIT',
-          unitSlug: mapping.knowledgeUnit.slug,
+  const [allNodes, allMappings] = await Promise.all([
+    versionIds.length > 0
+      ? db.syllabusNode.findMany({
+          where: { examVersionId: { in: versionIds } },
+          include: {
+            topic: { select: { id: true, slug: true, canonicalName: true, countryId: true, scope: true } },
+          },
+          orderBy: [{ priority: 'asc' }, { id: 'asc' }],
         })
-      }
+      : Promise.resolve([]),
+    versionIds.length > 0
+      ? db.examMapping.findMany({
+          where: { syllabusNode: { examVersionId: { in: versionIds } } },
+          include: {
+            syllabusNode: { select: { id: true, name: true, examVersionId: true } },
+            knowledgeUnit: {
+              select: {
+                id: true,
+                slug: true,
+                canonicalName: true,
+                canonicalSummary: true,
+                type: true,
+                difficulty: true,
+                status: true,
+                scope: true,
+                countryId: true,
+                topic: { select: { slug: true } },
+              },
+            },
+          },
+        })
+      : Promise.resolve([]),
+  ])
 
-      if (anchors.length === 0) return null
-      anchors.sort(
-        (a, b) => compareStrings(a.nodeName, b.nodeName) || compareStrings(a.matchVia, b.matchVia)
-      )
-      return { slug: exam.slug, name: exam.name, code: exam.code, anchors }
-    })
-  )
+  const nodesByVersion = new Map<string, typeof allNodes>()
+  for (const node of allNodes) {
+    const bucket = nodesByVersion.get(node.examVersionId) ?? []
+    bucket.push(node)
+    nodesByVersion.set(node.examVersionId, bucket)
+  }
+  const mappingsByVersion = new Map<string, typeof allMappings>()
+  for (const mapping of allMappings) {
+    const versionId = mapping.syllabusNode?.examVersionId
+    if (!versionId) continue
+    const bucket = mappingsByVersion.get(versionId) ?? []
+    bucket.push(mapping)
+    mappingsByVersion.set(versionId, bucket)
+  }
+
+  const results = exams.map((exam) => {
+    const version = currentVersionByExam.get(exam.id)
+    if (!version) return null // no syllabus in effect — nothing to feed yet (§36)
+    const nodes = nodesByVersion.get(version.id) ?? []
+    const mappings = mappingsByVersion.get(version.id) ?? []
+
+    const anchors: EventExamRelevance['exams'][number]['anchors'] = []
+    const anchorSeen = new Set<string>()
+
+    // Topic anchors: nodes whose §13 topic is one of the event's topics.
+    for (const node of nodes) {
+      if (!node.topic || !topicIdSet.has(node.topic.id)) continue
+      const key = `${node.name}|TOPIC|`
+      if (anchorSeen.has(key)) continue
+      anchorSeen.add(key)
+      anchors.push({ nodeName: node.name, matchVia: 'TOPIC', unitSlug: null })
+    }
+
+    // Unit anchors: visible mappings onto the event's VERIFIED-linked units.
+    for (const mapping of mappings) {
+      if (!unitIdSet.has(mapping.knowledgeUnitId)) continue
+      const visible =
+        mapping.knowledgeUnit.status === 'VERIFIED' &&
+        (mapping.knowledgeUnit.scope === 'GLOBAL' ||
+          mapping.knowledgeUnit.countryId === input.countryId) &&
+        mappingInEffect(mapping, false)
+      if (!visible) continue
+      const node = mapping.syllabusNode
+      if (!node) continue
+      const key = `${node.name}|KNOWLEDGE_UNIT|${mapping.knowledgeUnit.slug}`
+      if (anchorSeen.has(key)) continue
+      anchorSeen.add(key)
+      anchors.push({
+        nodeName: node.name,
+        matchVia: 'KNOWLEDGE_UNIT',
+        unitSlug: mapping.knowledgeUnit.slug,
+      })
+    }
+
+    if (anchors.length === 0) return null
+    anchors.sort(
+      (a, b) => compareStrings(a.nodeName, b.nodeName) || compareStrings(a.matchVia, b.matchVia)
+    )
+    return { slug: exam.slug, name: exam.name, code: exam.code, anchors }
+  })
 
   const relevant = results.filter(
     (entry): entry is NonNullable<(typeof results)[number]> => entry != null

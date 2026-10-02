@@ -253,11 +253,13 @@ function resultPath(
   defaultLanguageCode: string,
   candidate: SearchCandidate
 ): string {
+  // SITE-S1 — URL grammar v2: subjects and knowledge pages live at the root
+  // (/{subject}/ and /{subject}/{unit}/); events and exams unchanged.
   const segments =
     candidate.objectType === 'KNOWLEDGE_UNIT'
-      ? ['gk', candidate.topicSlug ?? candidate.ref, candidate.ref]
+      ? [candidate.topicSlug ?? candidate.ref, candidate.ref]
       : candidate.objectType === 'TOPIC'
-        ? ['gk', candidate.ref]
+        ? [candidate.ref]
         : candidate.objectType === 'CURRENT_EVENT'
           ? ['current-affairs', candidate.ref]
           : ['exams', candidate.ref]

@@ -194,7 +194,7 @@ export async function getTopicLanding(
     defaultLanguageCode: context.defaultLanguageCode,
     languageCode: context.languageCode,
     languages: context.publicCountry.languages,
-    pathFor: (code) => localePath(context, code, ['gk', detail.node.slug]),
+    pathFor: (code) => localePath(context, code, [detail.node.slug]), // SITE-S1 — grammar v2
     lastModified: latestSubtreeUnit?._max.updatedAt ?? null,
   })
 

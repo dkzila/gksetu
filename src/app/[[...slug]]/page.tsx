@@ -48,7 +48,11 @@ import { TopicLandingView } from '@/components/home/topic-landing-view'
 import { UnitView } from '@/components/home/unit-view'
 import { SignInView } from '@/components/auth/sign-in-view'
 import { TestRunnerView } from '@/components/assessment/test-runner-view'
-import { QuickMockView } from '@/components/assessment/quick-mock-view'
+import { MockTestView } from '@/components/assessment/mock-test-view'
+import { CurrentAffairsView } from '@/components/home/current-affairs-view'
+import { SubjectsView } from '@/components/home/subjects-view'
+import { McqView } from '@/components/home/mcq-view'
+import { QnaView } from '@/components/home/qna-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
@@ -58,7 +62,7 @@ import { OnboardingView } from '@/components/personalisation/onboarding-view'
 import { ProfileView } from '@/components/personalisation/profile-view'
 import { DashboardView } from '@/components/personalisation/dashboard-view'
 import { ControlsView } from '@/components/personalisation/controls-view'
-import { currentAppPath, isRootAppPath, navigateRoute, navigateToPath, useAppRoute } from '@/components/home/app-router'
+import { currentAppPath, isContentRoot, isRootAppPath, navigateRoute, navigateToPath, useAppRoute } from '@/components/home/app-router'
 import { useAppRouteLinks } from '@/components/home/app-router-links'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
@@ -343,14 +347,14 @@ export default function GKSetuApp() {
     )
   }, [config, route])
 
-  // P7-S5 §22: the combined-exam quick-mock surface — optionally deep-linked
-  // to one exam's scope card (…/quick-mock/{exam}/).
-  const goQuickMock = useCallback(
+  // SITE-S1: the mock-test surface (renamed from quick-mock) — optionally
+  // deep-linked to one exam's scope card (…/mock-test/{exam}/).
+  const goMockTest = useCallback(
     (examSlug?: string) => {
       if (!config || !route) return
       navigateRoute(
         {
-          view: 'quick-mock',
+          view: 'mock-test',
           countryIso: route.countryIso,
           language: route.language,
           topicSlug: null,
@@ -587,6 +591,8 @@ export default function GKSetuApp() {
   // queue units, signal chips and saves all carry server-built paths; this
   // lenient parser (the parseHash grammar) turns a path back into a route,
   // so the dashboard navigates by §16 identity, never by ad-hoc slugs.
+  // SITE-S1 — grammar v2: subjects and knowledge pages at the root; the
+  // legacy /gk/ prefix still parses (tolerant).
   const openPath = useCallback(
     (path: string) => {
       if (!config || !route) return
@@ -598,7 +604,7 @@ export default function GKSetuApp() {
       let index = 0
 
       const first = segments[0]
-      if (first && first !== 'gk' && first !== 'exams' && first !== 'current-affairs') {
+      if (first && !isContentRoot(first)) {
         const bySlug = config.find((entry) => !entry.isDefault && entry.slug === first)
         const defaultMarketLanguage = country.languages.find(
           (entry) => entry.code === first && entry.code !== country.defaultLanguage.code
@@ -612,7 +618,7 @@ export default function GKSetuApp() {
         }
       }
       const next = segments[index]
-      if (next && next !== 'gk' && next !== 'exams' && next !== 'current-affairs') {
+      if (next && !isContentRoot(next)) {
         const languageMatch = country.languages.find(
           (entry) => entry.code === next && entry.code !== country.defaultLanguage.code
         )
@@ -622,22 +628,23 @@ export default function GKSetuApp() {
         }
       }
 
-      if (segments[index] === 'gk' && segments[index + 1] && segments[index + 2]) {
-        navigateRoute(
-          { view: 'unit', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: segments[index + 2]! },
-          config
-        )
-      } else if (segments[index] === 'gk' && segments[index + 1]) {
-        navigateRoute(
-          { view: 'topic', countryIso: country.isoCode, language, topicSlug: segments[index + 1]!, unitSlug: null },
-          config
-        )
-      } else if (segments[index] === 'current-affairs' && segments[index + 1]) {
-        navigateRoute(
-          { view: 'event', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null, eventSlug: segments[index + 1]! },
-          config
-        )
-      } else if (segments[index] === 'exams' && segments[index + 1]) {
+      // The content root (or the legacy gk prefix) + the v2 grammar.
+      // afterRoot skips a KNOWN root; a subject path's root IS the content.
+      const root = segments[index]
+      const afterRoot = segments.slice(index + (isContentRoot(root) ? 1 : 0))
+      if (root === 'current-affairs') {
+        if (afterRoot[0]) {
+          navigateRoute(
+            { view: 'event', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null, eventSlug: afterRoot[0] },
+            config
+          )
+        } else {
+          navigateRoute(
+            { view: 'current-affairs', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
+            config
+          )
+        }
+      } else if (root === 'exams' && afterRoot[0]) {
         navigateRoute(
           {
             view: 'exam',
@@ -645,8 +652,43 @@ export default function GKSetuApp() {
             language,
             topicSlug: null,
             unitSlug: null,
-            examSlug: segments[index + 1]!,
+            examSlug: afterRoot[0],
           },
+          config
+        )
+      } else if (root === 'subjects') {
+        navigateRoute(
+          { view: 'subjects', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
+          config
+        )
+      } else if (root === 'mcq') {
+        navigateRoute(
+          { view: 'mcq', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
+          config
+        )
+      } else if (root === 'qna') {
+        navigateRoute(
+          { view: 'qna', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
+          config
+        )
+      } else if (root === 'mock-test') {
+        navigateRoute(
+          { view: 'mock-test', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
+          config
+        )
+      } else if (afterRoot[0] && afterRoot[1] === 'mock-tests' && afterRoot[2]) {
+        navigateRoute(
+          { view: 'test', countryIso: country.isoCode, language, topicSlug: afterRoot[0], unitSlug: null, testSlug: afterRoot[2] },
+          config
+        )
+      } else if (afterRoot[0] && afterRoot[1]) {
+        navigateRoute(
+          { view: 'unit', countryIso: country.isoCode, language, topicSlug: afterRoot[0], unitSlug: afterRoot[1] },
+          config
+        )
+      } else if (afterRoot[0]) {
+        navigateRoute(
+          { view: 'topic', countryIso: country.isoCode, language, topicSlug: afterRoot[0], unitSlug: null },
           config
         )
       }
@@ -695,6 +737,26 @@ export default function GKSetuApp() {
     [config, route]
   )
 
+  // SITE-S1: addressable pagination for the current-affairs listing — the
+  // same ?page=N contract as the topic view.
+  const goListingPage = useCallback(
+    (page: number) => {
+      if (!config || !route) return
+      navigateRoute(
+        {
+          view: 'current-affairs',
+          countryIso: route.countryIso,
+          language: route.language,
+          topicSlug: null,
+          unitSlug: null,
+          page,
+        },
+        config
+      )
+    },
+    [config, route]
+  )
+
   const switchLanguage = useCallback(
     (code: string) => {
       if (!config || !route) return
@@ -702,7 +764,7 @@ export default function GKSetuApp() {
         {
           // Language switching on market-independent surfaces (sign-in,
           // console, following, saved, onboarding, profile, dashboard,
-          // personalisation, notifications, feedback, quick-mock) lands on
+          // personalisation, notifications, feedback, mock-test) lands on
           // the home view — the console precedent.
           view:
             route.view === 'console' ||
@@ -717,7 +779,7 @@ export default function GKSetuApp() {
             route.view === 'personalisation' ||
             route.view === 'notifications' ||
             route.view === 'feedback' ||
-            route.view === 'quick-mock'
+            route.view === 'mock-test'
               ? 'home'
               : route.view,
           countryIso: route.countryIso,
@@ -773,48 +835,22 @@ export default function GKSetuApp() {
     navigateToPath('/signin')
   }, [])
 
-  // ---------- Primary navigation (header + sidebar + footer) ----------
+  // ---------- Primary navigation (sidebar + footer are path-based) ----------
 
-  // "Current Affairs" opens the market's current-affairs hub.
+  // SITE-S1: "Current Affairs" opens the dedicated /current-affairs/
+  // listing view (was: the /gk/current-affairs/ topic hub).
   const openCurrentAffairs = useCallback(() => {
     if (!config || !route) return
     navigateRoute(
       {
-        view: 'topic',
+        view: 'current-affairs',
         countryIso: route.countryIso,
         language: route.language,
-        topicSlug: 'current-affairs',
+        topicSlug: null,
         unitSlug: null,
       },
       config
     )
-  }, [config, route])
-
-  // "Exams" lands on the homepage's exam directory (navigating home
-  // first when needed, then scrolling to the section). The homepage's
-  // data loads asynchronously — the scroll retries until the section
-  // actually renders (bounded, so it can never loop forever).
-  const goExams = useCallback(() => {
-    let attempts = 0
-    const scrollToExams = () => {
-      const target = document.getElementById('home-exams')
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      } else if (attempts < 40) {
-        attempts += 1
-        window.setTimeout(scrollToExams, 200)
-      }
-    }
-    if (!config || !route) return
-    if (route.view !== 'home') {
-      navigateRoute(
-        { view: 'home', countryIso: route.countryIso, language: route.language, topicSlug: null, unitSlug: null },
-        config
-      )
-      window.setTimeout(scrollToExams, 350)
-    } else {
-      scrollToExams()
-    }
   }, [config, route])
 
   // ---------- Header switcher data ----------
@@ -885,9 +921,6 @@ export default function GKSetuApp() {
         config={config}
         route={route}
         onGoHome={goHome}
-        onOpenCurrentAffairs={openCurrentAffairs}
-        onGoExams={goExams}
-        onGoQuickMock={() => goQuickMock()}
         onSwitchCountry={switchCountry}
         onSwitchLanguage={switchLanguage}
         onOpenNav={() => setMobileNavOpen(true)}
@@ -901,10 +934,6 @@ export default function GKSetuApp() {
             config={config}
             open={mobileNavOpen}
             onOpenChange={setMobileNavOpen}
-            onGoHome={goHome}
-            onOpenCurrentAffairs={openCurrentAffairs}
-            onGoExams={goExams}
-            onGoQuickMock={() => goQuickMock()}
             onSwitchCountry={switchCountry}
             onSwitchLanguage={switchLanguage}
           />
@@ -1000,12 +1029,12 @@ export default function GKSetuApp() {
             countryIso={route.countryIso}
             language={route.language}
             onOpenPath={openPath}
-            onOpenQuickMock={() => goQuickMock()}
+            onOpenQuickMock={() => goMockTest()}
             onGoHome={goHome}
             onSignIn={goSignIn}
           />
-        ) : route.view === 'quick-mock' ? (
-          <QuickMockView
+        ) : route.view === 'mock-test' ? (
+          <MockTestView
             key={route.examSlug ?? 'combined'}
             countryIso={route.countryIso}
             language={route.language}
@@ -1015,6 +1044,35 @@ export default function GKSetuApp() {
             onOpenExam={openExam}
             onOpenUnit={openUnit}
             onSignIn={goSignIn}
+          />
+        ) : route.view === 'current-affairs' ? (
+          <CurrentAffairsView
+            key={`${route.countryIso}:${route.language}`}
+            countryIso={route.countryIso}
+            language={route.language}
+            page={route.page}
+            onPageChange={goListingPage}
+            onOpenPath={openPath}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'subjects' ? (
+          <SubjectsView
+            key={`${route.countryIso}:${route.language}`}
+            countryIso={route.countryIso}
+            language={route.language}
+            onOpenTopic={openTopic}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'mcq' ? (
+          <McqView
+            key={`${route.countryIso}:${route.language}`}
+            route={route}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'qna' ? (
+          <QnaView
+            key={`${route.countryIso}:${route.language}`}
+            onGoHome={goHome}
           />
         ) : route.view === 'collection' && route.collectionId ? (
           <SharedCollectionView
@@ -1071,7 +1129,7 @@ export default function GKSetuApp() {
             onOpenExam={openExam}
             onOpenTopic={openTopic}
             onOpenUnit={openUnit}
-            onExitQuick={() => goQuickMock()}
+            onExitQuick={() => goMockTest()}
             onSignIn={goSignIn}
           />
         ) : route.view === 'syllabus' && route.examSlug && route.syllabusTopicSlug ? (
@@ -1107,9 +1165,6 @@ export default function GKSetuApp() {
       {/* ---------- Footer (sticky bottom) ---------- */}
       <SiteFooter
         onGoHome={goHome}
-        onOpenCurrentAffairs={openCurrentAffairs}
-        onGoExams={goExams}
-        onGoQuickMock={() => goQuickMock()}
         onGoConsole={goConsole}
       />
         </>

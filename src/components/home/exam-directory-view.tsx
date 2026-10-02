@@ -99,10 +99,11 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
   const [level, setLevel] = useState<LevelFilter>('ALL')
 
   useSeoHead({
-    title: 'Exam directory — GKSetu',
+    // SITE-S1 — the directory is real, indexable content (the user's SEO
+    // ask): a meaningful, keyword-bearing title and description.
+    title: 'Exams — Syllabus, GK & Current Affairs Coverage | GKSetu',
     description:
-      'Browse every exam with a General Knowledge & Current Affairs syllabus — UPSC, SSC, banking, railways, defence, police, state PSCs, teaching, law and more.',
-    noindex: true, // a directory surface — no server-built §16 canonical yet
+      'Browse every exam with a real General Knowledge & Current Affairs syllabus — UPSC, SSC, banking, railways, defence, police, state PSCs, teaching, law and more. See what to study for each exam.',
     language,
     countryIso,
   })

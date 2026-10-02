@@ -129,11 +129,16 @@ export function TopicLandingView({
   }, [fetchLanding, reloadKey])
 
   // ---------- §16 document head (P4-S4 — server-built seo block) ----------
+  // SITE-S1 — the subject-hub title template carries the practice keywords
+  // users actually search for (notes, Q&A, mock tests).
   const seoInput = useMemo(
     () =>
       landing
         ? {
-            title: `${landing.topic.label} — GK topic hub | GKSetu`,
+            title:
+              landing.topic.type === 'DOMAIN'
+                ? `${landing.topic.label} GK — Notes, Q&A & Mock Tests | GKSetu`
+                : `${landing.topic.label} — GK topic hub | GKSetu`,
             description:
               landing.topic.description ??
               `${landing.topic.label}: ${landing.stats.unitCount} knowledge pages, ${landing.stats.topicCount} topics, ${landing.stats.examCount} exams — the evergreen topic hub.`,
@@ -312,7 +317,7 @@ export function TopicLandingView({
           <span className="text-xs text-zinc-400">
             Following a topic keeps it in your personalisation signals — review and unfollow at
             <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
-              #/following
+              Following
             </a>
             .
           </span>

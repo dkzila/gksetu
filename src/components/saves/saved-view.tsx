@@ -896,7 +896,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
             <p className="flex items-start gap-2 text-xs text-zinc-400">
               <Bookmark className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               Saves are retrieval bookmarks — they never feed your feed, notifications or
-              recommendations. Following exams/topics (the personalisation half) lives at #/following.
+              recommendations. Following exams and topics (the personalisation half) lives on the Following page.
             </p>
           )}
         </>

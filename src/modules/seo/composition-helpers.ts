@@ -176,11 +176,12 @@ export function localePath(
 }
 
 export function topicHubPath(context: ReaderContext, topicSlug: string): string {
+  // SITE-S1 — URL grammar v2: subjects live at the root (/{subject}/).
   return buildCanonicalUrl(
     { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
     { code: context.languageCode },
     context.defaultLanguageCode,
-    ['gk', topicSlug]
+    [topicSlug]
   )
 }
 
@@ -189,11 +190,12 @@ export function knowledgePath(
   topicSlug: string,
   unitSlug: string
 ): string {
+  // SITE-S1 — URL grammar v2: knowledge pages live at /{subject}/{unit}/.
   return buildCanonicalUrl(
     { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
     { code: context.languageCode },
     context.defaultLanguageCode,
-    ['gk', topicSlug, unitSlug]
+    [topicSlug, unitSlug]
   )
 }
 
