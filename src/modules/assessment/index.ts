@@ -178,6 +178,27 @@ export {
   MOCK_TEST_PUBLISH_GATED_ACTIONS,
   MOCK_TEST_RULES,
 } from './mocktest-types'
+// ---------- SITE-S3: the public practice listings (/mcq/ + /qna/, Task 7) ----------
+export {
+  PracticeListingError,
+  toPracticeListingErrorResponse,
+  getPublicQuestionsPractice,
+  getPublicQnaPractice,
+  questionsPracticeQuerySchema,
+  qnaPracticeQuerySchema,
+  PRACTICE_PAGE_SIZE_DEFAULT,
+  PRACTICE_PAGE_SIZE_MAX,
+} from './practice-listing-service'
+export type {
+  QuestionsPractice,
+  QnaPractice,
+  QuestionsPracticeQuery,
+  QnaPracticeQuery,
+  PracticeQuestionCard,
+  PracticeQnaCard,
+  PracticeSubjectChip,
+  PracticeListingErrorCode,
+} from './practice-listing-service'
 // ---------- P7-S4: mastery tracking + the §22 revision queue ----------
 export {
   computeMasteryTransition,
