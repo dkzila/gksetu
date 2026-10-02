@@ -60,7 +60,14 @@ const developmentHeaders = [
   },
 ];
 
+// CONSOLE-S1 QA: the sandbox's memory cgroup (~2.3GB) OOM-kills the dev
+// server during big route compiles (the /[[...slug]] shell compiles the
+// whole app). Keep Turbopack's allocator under the ceiling (MB).
 const nextConfig: NextConfig = {
+  experimental: {
+    turbopackMemoryLimit: 1600,
+  },
+
   // No `output: "standalone"` — Vercel manages builds itself (P1-S1 decision).
   reactStrictMode: true,
   // Don't advertise the framework in responses.
