@@ -1,29 +1,23 @@
 'use client'
 
 /**
- * GKSetu — the Profile view (P5-S3, #/profile)
- * Master Plan §6 (User personalisation dimensions + UserGoal/Profile), §9
- * (explicit signals, changeable at any time), §31 (the account-control
- * surface over personal data — review, edit, remove; no silent destruction),
- * §36 (honest statuses on every goal object), §16 (private authenticated
- * surface: noindex, never in the sitemap).
+ * GKSetu — the Profile view (P5-S3, redesigned SITE-S4-B).
  *
- * The ongoing management surface: profile basics (name, home country,
- * preferred language — the same §35 rules registration enforces), the
- * declared goal (exams/subjects with §16 paths, level, study language,
- * preferences), the onboarding state, and the personalisation data map
- * (controls, following and saved all one click away — P5-S5).
+ * The user's account surface: profile basics (name, home country, preferred
+ * language), the declared learning goal (level, study language, target year,
+ * daily pace, exams, subjects) with edit/remove, and the personalisation
+ * links (Following / Saved / Settings). Review, change or remove anything —
+ * a private authenticated surface: noindex, signed-out gate.
+ *
+ * SITE-S4 redesign: user-relevant information only — no onboarding badges,
+ * no declared/updated metadata lines; honest statuses on goal objects
+ * collapse to a subtle plain-word note.
  */
 import { useCallback, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
-  BookOpenCheck,
-  CalendarClock,
-  CheckCircle2,
-  Clock,
   GraduationCap,
-  Languages,
   Loader2,
   LogIn,
   MapPin,
@@ -39,18 +33,16 @@ import {
 
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/stores/auth'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { useSeoHead } from '@/components/home/seo-head'
 import type { ApiCountry, Envelope } from '@/components/home/types'
-import { LEVEL_LABELS, ONBOARDING_COPY, type ApiGoal, type ApiProfile } from './types'
+import { LEVEL_LABELS, type ApiGoal, type ApiProfile } from './types'
 
 // ---------- Props ----------
 
@@ -58,7 +50,7 @@ export interface ProfileViewProps {
   onGoHome: () => void
   onGoOnboarding: () => void
   onSignIn: () => void
-  /** Opens the exam page in the exam's own market (§14) — the follow-view precedent. */
+  /** Opens the exam page in the exam's own market — the follow-view precedent. */
   onOpenExam: (slug: string, countryIso: string) => void
   /** Opens the topic hub — countryIso null = GLOBAL topic in the current market. */
   onOpenTopic: (slug: string, countryIso: string | null) => void
@@ -66,15 +58,16 @@ export interface ProfileViewProps {
 
 // ---------- Helpers ----------
 
-function formatWhen(iso: string): string {
-  return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+/** §36 honesty in plain words: non-active goal objects stay listed, quietly noted. */
+const STATUS_NOTES: Record<string, string> = {
+  RETIRED: 'retired',
+  INACTIVE: 'currently unavailable',
+  DRAFT: 'not public yet',
 }
 
-/** §36 honesty: non-active goal objects stay listed with a note. */
-const STATUS_NOTES: Record<string, { label: string; className: string }> = {
-  RETIRED: { label: 'Retired', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  INACTIVE: { label: 'Unavailable', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  DRAFT: { label: 'Not public yet', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
+/** A short label for a goal level value (plain words, no dash tail). */
+function levelLabel(level: string): string {
+  return LEVEL_LABELS[level]?.split(' — ')[0] ?? level
 }
 
 // ---------- Component ----------
@@ -94,11 +87,11 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
   const [savingBasics, setSavingBasics] = useState(false)
   const [basicsError, setBasicsError] = useState<string | null>(null)
 
-  // Goal removal (two-step confirm, §31)
+  // Goal removal (two-step confirm)
   const [confirmingRemoval, setConfirmingRemoval] = useState(false)
   const [removingGoal, setRemovingGoal] = useState(false)
 
-  // §16: a private authenticated surface — never indexed.
+  // A private authenticated surface — never indexed.
   useSeoHead({
     title: 'Your profile | GKSetu',
     description: 'Your profile, declared learning goal and personalisation data controls.',
@@ -152,7 +145,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
   }, [fetchProfile])
 
   // Prefill from the auth store whenever the server-side user changes
-  // (e.g. onboarding completed elsewhere) — §30: the client never guesses.
+  // (e.g. onboarding completed elsewhere) — the client never guesses.
   useEffect(() => {
     if (user && profile) {
       setProfile((current) =>
@@ -228,7 +221,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
     }
   }, [token, toast])
 
-  // ---------- Signed-out prompt ----------
+  // ---------- Signed-out gate ----------
 
   if (status !== 'authenticated' || !user) {
     return (
@@ -239,68 +232,69 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
         className="mx-auto max-w-xl"
       >
         <Card className="border-zinc-200 shadow-sm">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <UserRound className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-              Your profile
-            </CardTitle>
-            <CardDescription>
-              Profile basics, your declared learning goal and your personalisation data controls.
-              Sign in to manage them.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button onClick={onSignIn} className="bg-emerald-600 text-white hover:bg-emerald-700">
-              <LogIn className="mr-2 h-4 w-4" aria-hidden="true" />
-              Sign in to continue
-            </Button>
+          <CardContent className="flex flex-col items-center gap-3 py-8 text-center">
+            <span
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50"
+              aria-hidden="true"
+            >
+              <UserRound className="h-5 w-5 text-emerald-600" />
+            </span>
+            <div className="space-y-1">
+              <h1 className="text-lg font-semibold tracking-tight">Your profile</h1>
+              <p className="mx-auto max-w-sm text-sm text-zinc-500">
+                Your basics, your learning goal and your data controls — sign in to manage them.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2 pt-1">
+              <Button onClick={onSignIn} className="bg-emerald-600 text-white hover:bg-emerald-700">
+                <LogIn className="h-4 w-4" aria-hidden="true" />
+                Sign in
+              </Button>
+              <Button variant="outline" className="border-zinc-200 bg-white" onClick={onGoHome}>
+                Back to the homepage
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </motion.div>
     )
   }
 
-  const onboarding = profile?.user.onboardingStatus ?? user.onboardingStatus
-  const statusCopy = ONBOARDING_COPY[onboarding] ?? ONBOARDING_COPY.PENDING
   const currentCountry = config?.find((entry) => entry.isoCode === countryIso) ?? null
   const goal: ApiGoal | null = profile?.goal ?? null
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-3xl space-y-8">
       {/* ---------- Header ---------- */}
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">Your profile</Badge>
-            <Badge variant="outline" className={statusCopy.className}>
-              {statusCopy.label}
-            </Badge>
-          </div>
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-wrap items-start justify-between gap-3"
+      >
+        <div className="space-y-1">
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             {user.name ?? user.email}
           </h1>
-          <p className="text-sm text-zinc-600">
-            {user.email} · personalisation data you control — review, change or remove
-            anything below.
+          <p className="max-w-2xl text-sm text-zinc-600">
+            {user.email} — review, change or remove anything below.
           </p>
         </div>
         <Button
           variant="outline"
-          size="sm"
-          className="gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700"
+          className="h-9 gap-2 border-zinc-200 bg-white"
           onClick={() => void fetchProfile()}
           disabled={loading}
         >
           <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
           Refresh
         </Button>
-      </div>
+      </motion.div>
 
       {loading && !profile ? (
         <div className="space-y-3" aria-busy="true" aria-label="Loading your profile">
-          <Skeleton className="h-40 w-full rounded-xl" />
+          <Skeleton className="h-44 w-full rounded-xl" />
           <Skeleton className="h-64 w-full rounded-xl" />
-          <Skeleton className="h-32 w-full rounded-xl" />
         </div>
       ) : (
         <>
@@ -311,9 +305,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 <MapPin className="h-4 w-4 text-emerald-600" aria-hidden="true" />
                 Profile basics
               </CardTitle>
-              <CardDescription>
-                Your name, home market and preferred language — editable anytime.
-              </CardDescription>
+              <CardDescription>Your name, home country and preferred language.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-3">
@@ -366,25 +358,23 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 </p>
               )}
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-xs text-zinc-500">
+                <p className="max-w-xl text-xs text-zinc-500">
                   Changing your home country never deletes data — goal exams from another market
-                  stay listed with an honest note, and future goal edits follow the new
-                  market.
+                  stay listed, and future goal edits follow the new market.
                 </p>
                 <Button
-                  size="sm"
                   className="shrink-0 bg-emerald-600 text-white hover:bg-emerald-700"
                   onClick={() => void saveBasics()}
                   disabled={savingBasics}
                 >
                   {savingBasics && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
-                  Save basics
+                  Save
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          {/* ---------- Declared goal ---------- */}
+          {/* ---------- Learning goal ---------- */}
           <Card className="border-zinc-200 shadow-sm">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2 text-base">
@@ -392,22 +382,18 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 Your learning goal
               </CardTitle>
               <CardDescription>
-                The explicit signal behind your personalisation — declared exams, subjects,
-                level and pace. A goal drives personalisation only; it is never proof you will sit
-                an exam.
+                What you&apos;re preparing for — it shapes your dashboard and revision plan.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-5">
               {!goal ? (
                 <div className="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 px-4 py-8 text-center">
                   <Target className="mx-auto h-6 w-6 text-zinc-300" aria-hidden="true" />
                   <p className="mt-2 text-sm font-medium text-zinc-700">No goal declared yet</p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Declare which exams and subjects you are preparing for — GKSetu personalises
-                    around it.
+                    Declare which exams and subjects you are preparing for — it takes two minutes.
                   </p>
                   <Button
-                    size="sm"
                     className="mt-4 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
                     onClick={onGoOnboarding}
                   >
@@ -417,36 +403,37 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                 </div>
               ) : (
                 <>
-                  {/* Meta row */}
-                  <div className="flex flex-wrap items-center gap-2">
+                  {/* One compact line per preference */}
+                  <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
                     {goal.level && (
-                      <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-800">
-                        {LEVEL_LABELS[goal.level]?.split(' — ')[0] ?? goal.level}
-                      </Badge>
+                      <div className="flex items-baseline justify-between gap-3 border-b border-zinc-100 pb-2">
+                        <dt className="text-xs text-zinc-500">Level</dt>
+                        <dd className="text-sm font-medium text-zinc-900">{levelLabel(goal.level)}</dd>
+                      </div>
                     )}
                     {goal.studyLanguage && (
-                      <Badge variant="outline" className="gap-1 border-zinc-200 bg-white text-zinc-600">
-                        <Languages className="h-3 w-3" aria-hidden="true" />
-                        {goal.studyLanguage.name}
-                      </Badge>
+                      <div className="flex items-baseline justify-between gap-3 border-b border-zinc-100 pb-2">
+                        <dt className="text-xs text-zinc-500">Study language</dt>
+                        <dd className="text-sm font-medium text-zinc-900">{goal.studyLanguage.name}</dd>
+                      </div>
                     )}
                     {goal.targetYear && (
-                      <Badge variant="outline" className="gap-1 border-zinc-200 bg-white text-zinc-600">
-                        <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                        Target {goal.targetYear}
-                      </Badge>
+                      <div className="flex items-baseline justify-between gap-3 border-b border-zinc-100 pb-2">
+                        <dt className="text-xs text-zinc-500">Target year</dt>
+                        <dd className="text-sm font-medium text-zinc-900">{goal.targetYear}</dd>
+                      </div>
                     )}
                     {goal.dailyMinutes && (
-                      <Badge variant="outline" className="gap-1 border-zinc-200 bg-white text-zinc-600">
-                        <Clock className="h-3 w-3" aria-hidden="true" />
-                        {goal.dailyMinutes} min/day
-                      </Badge>
+                      <div className="flex items-baseline justify-between gap-3 border-b border-zinc-100 pb-2">
+                        <dt className="text-xs text-zinc-500">Daily pace</dt>
+                        <dd className="text-sm font-medium text-zinc-900">{goal.dailyMinutes} min/day</dd>
+                      </div>
                     )}
-                  </div>
+                  </dl>
 
                   {/* Exams */}
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs font-medium text-zinc-500">
                       Exams ({goal.counts.exams})
                     </p>
                     {goal.exams.length === 0 ? (
@@ -460,22 +447,16 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                               <button
                                 type="button"
                                 onClick={() => onOpenExam(exam.slug, exam.countryIso)}
-                                className="flex w-full items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white p-3 text-left transition-colors hover:border-emerald-300"
+                                className="flex min-h-[44px] w-full items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-white p-3 text-left transition-colors hover:border-emerald-300"
                               >
                                 <span className="min-w-0">
                                   <span className="block truncate text-sm font-semibold">{exam.name}</span>
                                   <span className="mt-0.5 block truncate text-xs text-zinc-500">
-                                    {exam.organiser} · {exam.code}
+                                    {exam.organiser}
+                                    {note && <span className="text-zinc-400"> · {note}</span>}
                                   </span>
                                 </span>
-                                <span className="flex shrink-0 items-center gap-2">
-                                  {note && (
-                                    <Badge variant="outline" className={note.className}>
-                                      {note.label}
-                                    </Badge>
-                                  )}
-                                  <ArrowRight className="h-4 w-4 text-zinc-400" aria-hidden="true" />
-                                </span>
+                                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
                               </button>
                             </li>
                           )
@@ -486,7 +467,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
 
                   {/* Subjects */}
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    <p className="text-xs font-medium text-zinc-500">
                       Subjects ({goal.counts.topics})
                     </p>
                     {goal.topics.length === 0 ? (
@@ -500,14 +481,10 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                               <button
                                 type="button"
                                 onClick={() => onOpenTopic(topic.slug, topic.countryIso)}
-                                className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+                                className="inline-flex min-h-[36px] max-w-full items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
                               >
                                 <span className="truncate">{topic.label}</span>
-                                {note && (
-                                  <span className={`rounded-full border px-1.5 text-[10px] ${note.className}`}>
-                                    {note.label}
-                                  </span>
-                                )}
+                                {note && <span className="font-normal text-zinc-400">· {note}</span>}
                               </button>
                             </li>
                           )
@@ -516,18 +493,14 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                     )}
                   </div>
 
-                  <Separator />
-
-                  <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-100 pt-4">
                     <p className="text-xs text-zinc-500">
-                      Declared {formatWhen(goal.declaredAt)} · updated {formatWhen(goal.updatedAt)} ·
-                      goal edits replace the whole goal.
+                      Editing replaces the whole goal — exams, subjects and preferences together.
                     </p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Button
                         variant="outline"
-                        size="sm"
-                        className="gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700"
+                        className="h-9 gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700"
                         onClick={onGoOnboarding}
                       >
                         <Pencil className="h-4 w-4" aria-hidden="true" />
@@ -537,8 +510,7 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                         <span className="flex items-center gap-2">
                           <Button
                             variant="ghost"
-                            size="sm"
-                            className="text-zinc-500"
+                            className="h-9 text-zinc-500"
                             onClick={() => setConfirmingRemoval(false)}
                             disabled={removingGoal}
                           >
@@ -546,23 +518,20 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
                           </Button>
                           <Button
                             variant="outline"
-                            size="sm"
-                            className="gap-2 border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
+                            className="h-9 gap-2 border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
                             onClick={() => void removeGoal()}
                             disabled={removingGoal}
                           >
                             {removingGoal && (
                               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                             )}
-                            <Trash2 className="h-4 w-4" aria-hidden="true" />
                             Confirm removal
                           </Button>
                         </span>
                       ) : (
                         <Button
                           variant="ghost"
-                          size="sm"
-                          className="gap-2 text-zinc-500 hover:text-red-700"
+                          className="h-9 gap-2 text-zinc-500 hover:text-red-700"
                           onClick={() => setConfirmingRemoval(true)}
                         >
                           <Trash2 className="h-4 w-4" aria-hidden="true" />
@@ -576,90 +545,43 @@ export function ProfileView({ onGoHome, onGoOnboarding, onSignIn, onOpenExam, on
             </CardContent>
           </Card>
 
-          {/* ---------- Onboarding state ---------- */}
+          {/* ---------- Personalisation links ---------- */}
           <Card className="border-zinc-200 shadow-sm">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <GraduationCap className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                Setup status
-              </CardTitle>
+              <CardTitle className="text-base">More of your data</CardTitle>
               <CardDescription>
-                The guided flow stays reachable forever — re-run it whenever your goal changes.
+                Everything else you&apos;ve told GKSetu — each page is reviewable and reversible.
               </CardDescription>
             </CardHeader>
-            <CardContent className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-zinc-600">
-                {onboarding === 'COMPLETED' && 'Setup completed' }
-                {onboarding === 'COMPLETED' && profile?.user.onboardingCompletedAt && (
-                  <span className="text-zinc-500"> · {formatWhen(profile.user.onboardingCompletedAt)}</span>
-                )}
-                {onboarding === 'SKIPPED' && 'Setup skipped — declare a goal whenever you are ready.'}
-                {onboarding === 'PENDING' && 'Setup pending — a two-minute guided flow personalises GKSetu for you.'}
-                {onboarding === 'IN_PROGRESS' && 'Setup in progress — pick up where you left off.'}
-              </p>
-              <Button
-                size="sm"
-                variant={onboarding === 'COMPLETED' ? 'outline' : 'default'}
-                className={
-                  onboarding === 'COMPLETED'
-                    ? 'gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700'
-                    : 'gap-2 bg-emerald-600 text-white hover:bg-emerald-700'
-                }
-                onClick={onGoOnboarding}
-              >
-                <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
-                {onboarding === 'COMPLETED' ? 'Re-run the flow' : 'Open the flow'}
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* ---------- Personalisation data map (§31) ---------- */}
-          <Card className="border-zinc-200 shadow-sm">
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                Your personalisation data
-              </CardTitle>
-              <CardDescription>
-                Everything GKSetu stores about you is reviewable and reversible — every
-                signal, its effect and its control lives on one page.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-3 sm:grid-cols-2">
-              <a
-                href="/personalisation"
-                className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50/50 p-4 transition-colors hover:border-emerald-400"
-              >
-                <Settings2 className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
-                <span>
-                  <span className="block text-sm font-semibold">Personalisation controls</span>
-                  <span className="block text-xs text-zinc-500">
-                    Why you see what you see — review every signal, reset anytime
-                  </span>
-                </span>
-              </a>
+            <CardContent className="grid gap-3 sm:grid-cols-3">
               <a
                 href="/following"
-                className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
+                className="flex min-h-[44px] items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
               >
                 <Rss className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
                 <span>
                   <span className="block text-sm font-semibold">Following</span>
-                  <span className="block text-xs text-zinc-500">
-                    Followed exams and topics — your feed signals
-                  </span>
+                  <span className="block text-xs text-zinc-500">Followed exams and subjects</span>
                 </span>
               </a>
               <a
                 href="/saved"
-                className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
+                className="flex min-h-[44px] items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
               >
                 <Bookmark className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
                 <span>
                   <span className="block text-sm font-semibold">Saved</span>
-                  <span className="block text-xs text-zinc-500">
-                    Bookmarked knowledge and collections — retrieval, never recommendations
-                  </span>
+                  <span className="block text-xs text-zinc-500">Your bookmarked items</span>
+                </span>
+              </a>
+              <a
+                href="/personalisation"
+                className="flex min-h-[44px] items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-emerald-300"
+              >
+                <Settings2 className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                <span>
+                  <span className="block text-sm font-semibold">Settings</span>
+                  <span className="block text-xs text-zinc-500">What shapes your GKSetu</span>
                 </span>
               </a>
             </CardContent>

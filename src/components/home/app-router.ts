@@ -454,75 +454,6 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     }
   }
 
-  // Content path: /{subject}/, /{subject}/{unit}/ (§16 v2) and the
-  // P7-S3 mock-test branch /{subject}/mock-tests/{slug}/ — with the legacy
-  // /gk/ prefix still accepted in front (tolerant parsing).
-  {
-    const topicSlug = afterRoot[0] ?? null
-    const unitSlug = afterRoot[1] ?? null
-    if (topicSlug && afterRoot[1] === 'mock-tests' && afterRoot[2]) {
-      return {
-        view: 'test',
-        countryIso: country.isoCode,
-        language,
-        topicSlug,
-        unitSlug: null,
-        eventSlug: null,
-        examSlug: null,
-        syllabusTopicSlug: null,
-        testSlug: afterRoot[2],
-        collectionId: null,
-        page: 1,
-        versionId: null,
-        focusQuestionId: null,
-        scrollTo: null,
-        consolePath: null,
-        pageSlug: null,
-      }
-    }
-    if (topicSlug && unitSlug) {
-      return {
-        view: 'unit',
-        countryIso: country.isoCode,
-        language,
-        topicSlug,
-        unitSlug,
-        eventSlug: null,
-        examSlug: null,
-        syllabusTopicSlug: null,
-        testSlug: null,
-        collectionId: null,
-        page: 1,
-        versionId: null,
-        // P8-S1 §21: the question share link's addressable focus (?q=).
-        focusQuestionId,
-        scrollTo: null,
-        consolePath: null,
-        pageSlug: null,
-      }
-    }
-    if (topicSlug) {
-      return {
-        view: 'topic',
-        countryIso: country.isoCode,
-        language,
-        topicSlug,
-        unitSlug: null,
-        eventSlug: null,
-        examSlug: null,
-        syllabusTopicSlug: null,
-        testSlug: null,
-        collectionId: null,
-        page,
-        versionId: null,
-        focusQuestionId: null,
-        scrollTo: null,
-        consolePath: null,
-        pageSlug: null,
-      }
-    }
-  }
-
   // SITE-S1: the exam tree is unchanged (…/exams/…) — the only content root
   // with a nested grammar.
   if (segments[index] === 'exams') {
@@ -602,6 +533,79 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         collectionId: null,
         page: 1,
         versionId,
+        focusQuestionId: null,
+        scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
+      }
+    }
+  }
+
+  // SITE-S4-C regression fix: the exam tree MUST run BEFORE the generic
+  // subject fallback — the fallback consumes any root (incl. 'exams') as a
+  // subject slug, which mis-parsed /exams/{exam}/ as a topic page (found by
+  // the SITE-S4-C agent's parse-route harness).
+  // Content path: /{subject}/, /{subject}/{unit}/ (§16 v2) and the
+  // P7-S3 mock-test branch /{subject}/mock-tests/{slug}/ — with the legacy
+  // /gk/ prefix still accepted in front (tolerant parsing).
+  {
+    const topicSlug = afterRoot[0] ?? null
+    const unitSlug = afterRoot[1] ?? null
+    if (topicSlug && afterRoot[1] === 'mock-tests' && afterRoot[2]) {
+      return {
+        view: 'test',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug: null,
+        eventSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: afterRoot[2],
+        collectionId: null,
+        page: 1,
+        versionId: null,
+        focusQuestionId: null,
+        scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
+      }
+    }
+    if (topicSlug && unitSlug) {
+      return {
+        view: 'unit',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug,
+        eventSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: null,
+        collectionId: null,
+        page: 1,
+        versionId: null,
+        // P8-S1 §21: the question share link's addressable focus (?q=).
+        focusQuestionId,
+        scrollTo: null,
+        consolePath: null,
+        pageSlug: null,
+      }
+    }
+    if (topicSlug) {
+      return {
+        view: 'topic',
+        countryIso: country.isoCode,
+        language,
+        topicSlug,
+        unitSlug: null,
+        eventSlug: null,
+        examSlug: null,
+        syllabusTopicSlug: null,
+        testSlug: null,
+        collectionId: null,
+        page,
+        versionId: null,
         focusQuestionId: null,
         scrollTo: null,
         consolePath: null,

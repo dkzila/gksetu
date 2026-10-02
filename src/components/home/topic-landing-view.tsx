@@ -11,24 +11,49 @@
  * router with the same segment grammar.
  * P7-S3: the "Mock tests for this topic" section — published §22 timed
  * assemblies scoped to this topic (…/gk/{topic}/mock-tests/{slug}/).
+ *
+ * SITE-S4-C — the compact-hero standard the Current Affairs page set: tight
+ * breadcrumb (text-xs, py-1, gap-1.5), emerald hero band (per-subject icon
+ * tile + H1 + description + stat pills, with Share and Follow INLINE on one
+ * action row), and tightened section/card spacing. The technical chrome the
+ * plan retires (§0.4) is gone: no "GK category" badge, no ISO-code badge —
+ * a country-scoped subject says "India-focused" in plain words instead.
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   AlertCircle,
   ArrowRight,
+  Atom,
+  Award,
+  BookMarked,
   BookOpen,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
+  CloudRainWind,
+  Cpu,
+  Dna,
+  FileText,
+  FlaskConical,
   FolderTree,
+  Globe2,
   GraduationCap,
+  HandCoins,
   Hash,
+  Landmark,
   Layers,
+  Leaf,
   Link2,
   ListChecks,
+  Map,
+  Microscope,
   RefreshCw,
+  Shield,
+  Sprout,
   Timer,
+  Trophy,
+  Users,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -78,6 +103,41 @@ interface TopicMockTestCard {
   revision: { number: number; publishedAt: string }
   /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
   aiAssisted: boolean
+}
+
+// ---------- SITE-S4-C: the hero's per-subject mark ----------
+
+/** Mirrors the homepage grid's SUBJECT_ICONS (client-local per the mirror
+ * convention — never import server/other-view internals); branches and
+ * unknown slugs fall back to the book. */
+const SUBJECT_ICONS: Record<string, typeof Landmark> = {
+  'polity-governance': Landmark,
+  history: BookOpen,
+  'science-technology': FlaskConical,
+  geography: Map,
+  economy: HandCoins,
+  'environment-ecology': Leaf,
+  biology: Dna,
+  physics: Atom,
+  chemistry: Microscope,
+  'computer-it': Cpu,
+  sports: Trophy,
+  'art-culture': Users,
+  'books-authors': BookMarked,
+  'awards-honours': Award,
+  schemes: FileText,
+  'defence-security': Shield,
+  'international-relations': Globe2,
+  'static-gk': GraduationCap,
+  agriculture: Sprout,
+  'disaster-management': CloudRainWind,
+}
+
+/** Plain-words focus label for COUNTRY-scoped subjects — the ISO-code badge
+ * is retired (§0.4); a reader sees "India-focused", never "IN". */
+const COUNTRY_FOCUS_LABEL: Record<string, string> = {
+  IN: 'India-focused',
+  FR: 'France-focused',
 }
 
 // ---------- Component ----------
@@ -156,10 +216,10 @@ export function TopicLandingView({
 
   if (loading && !landing) {
     return (
-      <div className="space-y-6" aria-busy="true" aria-label="Loading topic">
-        <Skeleton className="h-4 w-64" />
-        <Skeleton className="h-10 w-96" />
-        <div className="grid gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="space-y-5" aria-busy="true" aria-label="Loading topic">
+        <Skeleton className="h-4 w-56" />
+        <Skeleton className="h-40 w-full rounded-xl" />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[0, 1, 2].map((index) => (
             <Skeleton key={index} className="h-40 w-full rounded-xl" />
           ))}
@@ -216,17 +276,21 @@ export function TopicLandingView({
   if (!landing) return null
 
   const { pagination } = landing.units
-  const isDomain = landing.topic.type === 'DOMAIN'
+  const SubjectIcon = SUBJECT_ICONS[landing.topic.slug] ?? BookOpen
+  const focusLabel =
+    landing.topic.scope === 'COUNTRY' && landing.topic.countryIso
+      ? COUNTRY_FOCUS_LABEL[landing.topic.countryIso] ?? null
+      : null
 
   return (
-    <div className="space-y-8">
-      {/* ---------- Breadcrumb (§16 — every crumb is a real path) ---------- */}
-      <nav aria-label="Breadcrumb" className="overflow-x-auto">
-        <ol className="flex flex-wrap items-center gap-1.5 text-sm">
+    <div className="space-y-6">
+      {/* ---------- Breadcrumb (§16 — every crumb is a real path; tight, text-xs) ---------- */}
+      <nav aria-label="Breadcrumb" className="overflow-x-auto py-1 text-xs">
+        <ol className="flex items-center gap-1.5">
           {landing.breadcrumb.map((crumb, index) => {
             const isLast = index === landing.breadcrumb.length - 1
             return (
-              <li key={crumb.slug ?? 'home'} className="flex items-center gap-1.5">
+              <li key={crumb.slug ?? 'home'} className="flex items-center gap-1.5 whitespace-nowrap">
                 {index > 0 && <span className="text-zinc-300" aria-hidden="true">/</span>}
                 {isLast ? (
                   <span aria-current="page" className="font-medium text-zinc-900">
@@ -255,78 +319,87 @@ export function TopicLandingView({
         </ol>
       </nav>
 
-      {/* ---------- Header ---------- */}
+      {/* ---------- Compact hero — the CA pattern: icon tile + H1 + one-liner
+          + stat pills, Share and Follow INLINE on one action row ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="topic-heading"
-        className="space-y-3"
+        className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
       >
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className="border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
-            {isDomain ? 'GK category' : landing.topic.type.toLowerCase()}
-          </Badge>
-          {landing.topic.scope === 'COUNTRY' && (
-            <Badge variant="outline" className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500">
-              {landing.topic.countryIso ?? ''} only
-            </Badge>
-          )}
-          {/* P8-S1 §21: the topic hub's share action — the §16 path is server truth. */}
-          <ShareButton
-            path={`#${landing.canonicalPath}`}
-            title={landing.topic.label}
-            className="h-7 px-2 text-xs"
-          />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex min-w-0 items-start gap-3">
+            <span
+              className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
+              aria-hidden="true"
+            >
+              <SubjectIcon className="h-5 w-5" />
+            </span>
+            <div className="min-w-0 space-y-1">
+              <h1 id="topic-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+                {landing.topic.label}
+              </h1>
+              {landing.topic.description && (
+                <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+                  {landing.topic.description}
+                </p>
+              )}
+            </div>
+          </div>
+          {/* ONE action row — share + follow side by side, never stacked */}
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            {/* P8-S1 §21: the topic hub's share action — the §16 path is server truth. */}
+            <ShareButton path={landing.canonicalPath} title={landing.topic.label} />
+            {/* P5-S1 — the §9/§10 follow action (topic-level, market-aware §14) */}
+            <FollowButton
+              objectType="TOPIC"
+              objectRef={landing.topic.slug}
+              objectName={landing.topic.label}
+            />
+          </div>
         </div>
-        <h1 id="topic-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          {landing.topic.label}
-        </h1>
-        {landing.topic.description && (
-          <p className="max-w-2xl text-base text-zinc-600">{landing.topic.description}</p>
-        )}
-        <div className="flex flex-wrap items-center gap-2 text-sm" role="status">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+
+        {/* Stat pills — the real counts only, in plain words */}
+        <div className="mt-3 flex flex-wrap items-center gap-1.5" role="status">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
             <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-            <strong className="font-semibold">{landing.stats.unitCount}</strong>
-            <span className="text-zinc-500">knowledge pages</span>
+            <strong className="font-semibold text-zinc-700">{landing.stats.unitCount}</strong>
+            knowledge pages
           </span>
           {landing.stats.topicCount > 0 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
               <FolderTree className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              <strong className="font-semibold">{landing.stats.topicCount}</strong>
-              <span className="text-zinc-500">subtopics</span>
+              <strong className="font-semibold text-zinc-700">{landing.stats.topicCount}</strong>
+              subtopics
             </span>
           )}
           {landing.exams.available && landing.stats.examCount > 0 && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
               <GraduationCap className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              <strong className="font-semibold">{landing.stats.examCount}</strong>
-              <span className="text-zinc-500">exams need this</span>
+              <strong className="font-semibold text-zinc-700">{landing.stats.examCount}</strong>
+              exams need this
+            </span>
+          )}
+          {focusLabel && (
+            <span className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
+              {focusLabel}
             </span>
           )}
         </div>
 
-        {/* P5-S1 — the §9/§10 follow action (topic-level, market-aware §14) */}
-        <div className="flex flex-wrap items-center gap-3 pt-1">
-          <FollowButton
-            objectType="TOPIC"
-            objectRef={landing.topic.slug}
-            objectName={landing.topic.label}
-          />
-          <span className="text-xs text-zinc-400">
-            Following a topic keeps it in your personalisation signals — review and unfollow at
-            <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
-              Following
-            </a>
-            .
-          </span>
-        </div>
+        <p className="mt-2 text-xs text-zinc-400">
+          Follow to keep it in your feed —{' '}
+          <a href="/following" className="font-medium text-emerald-700 hover:text-emerald-800">
+            manage in Following
+          </a>
+          .
+        </p>
       </motion.section>
 
       {/* ---------- §33 cluster children ---------- */}
       {landing.children.length > 0 && (
-        <section aria-labelledby="children-heading" className="space-y-4">
+        <section aria-labelledby="children-heading" className="space-y-3">
           <h2 id="children-heading" className="text-xl font-semibold tracking-tight">
             Inside this topic
           </h2>
@@ -355,7 +428,7 @@ export function TopicLandingView({
       )}
 
       {/* ---------- Units directly on this topic ---------- */}
-      <section aria-labelledby="units-heading" className="space-y-4">
+      <section aria-labelledby="units-heading" className="space-y-3">
         <h2 id="units-heading" className="text-xl font-semibold tracking-tight">
           Knowledge pages
         </h2>
@@ -372,7 +445,7 @@ export function TopicLandingView({
           </Card>
         ) : (
           <>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {landing.units.items.map((unit) => (
                 <UnitCard
                   key={unit.slug}
@@ -419,7 +492,7 @@ export function TopicLandingView({
       <TopicMockTests slug={slug} language={language} onOpenTest={onOpenTest} />
 
       {/* ---------- §8 exams needing this topic (computed) ---------- */}
-      <section aria-labelledby="topic-exams-heading" className="space-y-4">
+      <section aria-labelledby="topic-exams-heading" className="space-y-3">
         <h2 id="topic-exams-heading" className="text-xl font-semibold tracking-tight">
           Exams that need this topic
         </h2>
@@ -458,15 +531,17 @@ export function TopicLandingView({
                       <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
                         {exam.name}
                       </CardTitle>
+                      {/* A subtle plain chip — the level in plain words (the
+                          exam code folds into the organiser line, not a badge). */}
                       <Badge
                         variant="outline"
-                        className="shrink-0 border-zinc-200 bg-zinc-50 text-[10px] font-medium uppercase tracking-wide text-zinc-500"
+                        className="shrink-0 border-zinc-200 bg-zinc-50 text-[11px] font-normal text-zinc-500"
                       >
                         {exam.level.toLowerCase()}
                       </Badge>
                     </div>
-                    <CardDescription className="text-xs">
-                      {exam.organiser} · {exam.code}
+                    <CardDescription className="line-clamp-1 text-xs">
+                      {exam.organiser} ({exam.code})
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-1">
@@ -485,7 +560,7 @@ export function TopicLandingView({
 
       {/* ---------- §33 internal links — siblings ---------- */}
       {landing.relatedTopics.length > 0 && (
-        <section aria-labelledby="related-heading" className="space-y-4">
+        <section aria-labelledby="related-heading" className="space-y-3">
           <h2 id="related-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
             <Link2 className="h-5 w-5 text-emerald-600" aria-hidden="true" />
             Related topics
@@ -496,7 +571,7 @@ export function TopicLandingView({
                 key={topic.slug}
                 type="button"
                 onClick={() => onOpenTopic(topic.slug)}
-                className="group inline-flex min-h-[40px] items-center gap-2 rounded-full border border-zinc-200 bg-white px-3.5 py-1.5 text-sm shadow-sm transition-all hover:border-emerald-300 hover:shadow"
+                className="group inline-flex min-h-[40px] items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-sm shadow-sm transition-all hover:border-emerald-300 hover:shadow"
               >
                 <Hash className="h-3.5 w-3.5 text-zinc-300 group-hover:text-emerald-500" aria-hidden="true" />
                 <span className="font-medium text-zinc-800 group-hover:text-emerald-700">
@@ -559,7 +634,7 @@ function TopicMockTests({
   }, [slug, language])
 
   return (
-    <section aria-labelledby="topic-mock-tests-heading" className="space-y-4">
+    <section aria-labelledby="topic-mock-tests-heading" className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2
           id="topic-mock-tests-heading"
@@ -574,7 +649,7 @@ function TopicMockTests({
       </div>
 
       {loading ? (
-        <div className="grid gap-4 md:grid-cols-2" aria-busy="true" aria-label="Loading mock tests for this topic">
+        <div className="grid gap-3 md:grid-cols-2" aria-busy="true" aria-label="Loading mock tests for this topic">
           {[0, 1].map((index) => (
             <Skeleton key={index} className="h-36 w-full rounded-xl" />
           ))}
@@ -597,7 +672,7 @@ function TopicMockTests({
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2">
           {tests.map((test) => {
             return (
               <Card
@@ -639,21 +714,12 @@ function TopicMockTests({
                       >
                         pass {test.passPercent}%
                       </Badge>
-                      {test.aiAssisted && (
-                        <Badge
-                          variant="outline"
-                          className="border-fuchsia-200 bg-fuchsia-50 text-[10px] font-normal text-fuchsia-700"
-                          title="AI-assisted draft, editorially reviewed"
-                        >
-                          AI-assisted
-                        </Badge>
-                      )}
                     </div>
                   </CardHeader>
                   <CardContent className="flex flex-1 flex-col gap-2">
                     <p className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-400">
                       <span>
-                        Rev {test.revision.number} · published{' '}
+                        Published{' '}
                         {new Date(test.revision.publishedAt).toLocaleDateString('en-IN', {
                           day: 'numeric',
                           month: 'short',

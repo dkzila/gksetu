@@ -5,21 +5,28 @@
  *
  * The public /exams/ directory (§16 …/exams/ grammar, §38 public app): every
  * ACTIVE exam of the resolved market in one browsable surface — search, level
- * filters (NATIONAL / STATE), and the full list at once. With the India exam
- * corpus published (135+ exams across UPSC, SSC, banking, railways, defence,
- * police, state PSCs, subordinate services, teaching, law, insurance,
- * regulators and management entrances — every one carrying a real GK /
- * Current Affairs syllabus), the homepage's eight-card section needed a
- * complete directory behind it.
+ * filters (National / State / Regional), and the full list at once. With the
+ * India exam corpus published (135+ exams across UPSC, SSC, banking,
+ * railways, defence, police, state PSCs, subordinate services, teaching,
+ * law, insurance, regulators and management entrances — every one carrying a
+ * real GK / Current Affairs syllabus), the homepage's eight-card section
+ * needed a complete directory behind it.
  *
- * Country-scoped by design (§14): the list is the resolved market's own exams;
- * data comes from GET /api/exams (server-side scope enforcement — the UI only
- * renders server truth).
+ * SITE-S4-C — the compact-hero standard the Current Affairs page set: tight
+ * breadcrumb (text-xs, py-1), emerald hero band (icon tile + H1 + one-line
+ * description, framer-motion fade on the hero only), the tightened search /
+ * level-chip row, and cleaned cards — name, a subtle plain level chip, the
+ * organiser line (the exam code folded in, no mono badge), and the current
+ * syllabus line.
+ *
+ * Country-scoped by design (§14): the list is the resolved market's own
+ * exams; data comes from GET /api/exams (server-side scope enforcement — the
+ * UI only renders server truth).
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   BookOpenCheck,
-  ChevronLeft,
   GraduationCap,
   ListFilter,
   RefreshCw,
@@ -63,12 +70,6 @@ interface DirectoryResult {
 }
 
 // ---------- Presentation helpers ----------
-
-const LEVEL_STYLE: Record<DirectoryExam['level'], string> = {
-  NATIONAL: 'border-teal-200 bg-teal-50 text-teal-700',
-  STATE: 'border-cyan-200 bg-cyan-50 text-cyan-700',
-  REGIONAL: 'border-lime-200 bg-lime-50 text-lime-700',
-}
 
 const LEVEL_LABEL: Record<DirectoryExam['level'], string> = {
   NATIONAL: 'National',
@@ -171,39 +172,112 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
     )
   }, [grouped, visible])
 
+  // ---------- Loading (first paint — mirrors the layout, CA pattern) ----------
+
+  if (loading && !result) {
+    return (
+      <div className="space-y-5" aria-busy="true" aria-label="Loading the exam directory">
+        <Skeleton className="h-4 w-40" />
+        <Skeleton className="h-28 w-full rounded-xl" />
+        <div className="flex items-center gap-2" aria-hidden="true">
+          {[0, 1, 2, 3].map((index) => (
+            <Skeleton key={index} className="h-8 w-24 rounded-full" />
+          ))}
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <Skeleton key={index} className="h-32 w-full rounded-xl" />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // ---------- Error ----------
+
+  if (error && !result) {
+    return (
+      <Card className="border-red-200 bg-red-50/60">
+        <CardHeader>
+          <CardTitle className="text-base text-red-800">Exam directory unavailable</CardTitle>
+          <CardDescription className="text-red-700">{error}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 border-red-200 bg-white text-red-700 hover:bg-red-50"
+              onClick={() => setReloadKey((key) => key + 1)}
+            >
+              <RefreshCw className="h-4 w-4" aria-hidden="true" />
+              Try again
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2" onClick={onGoHome}>
+              Back to the homepage
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
+
   // ---------- Render ----------
 
-  const countryName = result?.country.name ?? 'this market'
+  const countryName = result?.country.name ?? 'your country'
 
   return (
-    <div className="space-y-6">
-      {/* ---------- Header ---------- */}
-      <div className="space-y-3">
-        <nav aria-label="Breadcrumb">
-          <button
-            type="button"
-            onClick={onGoHome}
-            className="inline-flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-emerald-700"
+    <div className="space-y-5">
+      {/* ---------- Breadcrumb — tight (text-xs, py-1, gap-1.5 only) ---------- */}
+      <nav aria-label="Breadcrumb" className="py-1 text-xs">
+        <ol className="flex items-center gap-1.5">
+          <li>
+            <button
+              type="button"
+              onClick={onGoHome}
+              className="min-h-[32px] text-zinc-500 transition-colors hover:text-emerald-700"
+            >
+              Home
+            </button>
+          </li>
+          <li className="text-zinc-300" aria-hidden="true">/</li>
+          <li aria-current="page" className="font-medium text-zinc-900">
+            Exams
+          </li>
+        </ol>
+      </nav>
+
+      {/* ---------- Compact hero — icon tile, H1, one-liner (CA pattern) ---------- */}
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-labelledby="exams-heading"
+        className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
+      >
+        <div className="flex items-start gap-3">
+          <span
+            className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
+            aria-hidden="true"
           >
-            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            Home
-          </button>
-        </nav>
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h1 className="flex items-center gap-2.5 text-2xl font-semibold tracking-tight">
-              <GraduationCap className="h-7 w-7 text-emerald-600" aria-hidden="true" />
-              Exam directory
+            <GraduationCap className="h-5 w-5" />
+          </span>
+          <div className="min-w-0 space-y-1">
+            <h1 id="exams-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Exams
             </h1>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              Every {countryName} exam on GKSetu — each with a real General Knowledge &amp; Current
-              Affairs syllabus, mapped to knowledge you can learn. {exams.length > 0 && (
-                <span className="text-zinc-500">{exams.length} exams published.</span>
+            <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+              Every exam in {countryName} with a real General Knowledge &amp; Current Affairs syllabus
+              {exams.length > 0 && (
+                <>
+                  {' '}— <span className="font-semibold text-zinc-700">{exams.length} exams</span>, from
+                  UPSC to your state PSC.
+                </>
               )}
             </p>
           </div>
         </div>
-      </div>
+      </motion.section>
 
       {/* ---------- Search + level filters ---------- */}
       {exams.length > 0 && (
@@ -253,39 +327,6 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
         </div>
       )}
 
-      {/* ---------- Loading ---------- */}
-      {loading && (
-        <div className="space-y-5" aria-busy="true" aria-label="Loading the exam directory">
-          <Skeleton className="h-9 w-72" />
-          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {[0, 1, 2, 3, 4, 5].map((index) => (
-              <Skeleton key={index} className="h-32 w-full rounded-xl" />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ---------- Error ---------- */}
-      {error && !loading && (
-        <Card className="border-red-200 bg-red-50/60">
-          <CardHeader>
-            <CardTitle className="text-base text-red-800">Exam directory unavailable</CardTitle>
-            <CardDescription className="text-red-700">{error}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 border-red-200 bg-white text-red-700 hover:bg-red-50"
-              onClick={() => setReloadKey((key) => key + 1)}
-            >
-              <RefreshCw className="h-4 w-4" aria-hidden="true" />
-              Try again
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
       {/* ---------- Empty market ---------- */}
       {!loading && !error && exams.length === 0 && (
         <Card className="border-amber-200 bg-amber-50/60">
@@ -323,7 +364,7 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
       {!loading && !error && visible.length > 0 && (
         <>
           {grouped ? (
-            <div className="space-y-8">
+            <div className="space-y-6">
               {groups.map((group) => (
                 <section key={group.key} aria-labelledby={`group-${group.key}`} className="space-y-3">
                   <div className="flex items-center gap-2">
@@ -361,15 +402,15 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
       {!loading && exams.length > 0 && (
         <p className="flex items-start gap-2 text-xs text-zinc-400">
           <BookOpenCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          Every exam carries its General Knowledge &amp; Current Affairs syllabus sections, mapped to
-          the canonical knowledge library — open any exam to see what it needs, topic by topic.
+          Every exam carries its General Knowledge &amp; Current Affairs syllabus, mapped to the
+          knowledge you can learn — open any exam to see what to study, topic by topic.
         </p>
       )}
     </div>
   )
 }
 
-// ---------- One exam card (mirrors the homepage exam-card style) ----------
+// ---------- One exam card (compact — name, subtle level chip, organiser, syllabus) ----------
 
 function ExamCard({ exam, onOpenExam }: { exam: DirectoryExam; onOpenExam: (slug: string) => void }) {
   return (
@@ -385,26 +426,26 @@ function ExamCard({ exam, onOpenExam }: { exam: DirectoryExam; onOpenExam: (slug
             <CardTitle className="text-sm leading-snug group-hover:text-emerald-700">
               {exam.name}
             </CardTitle>
+            {/* A subtle plain chip — the level in plain words, not a shouty badge. */}
             <Badge
               variant="outline"
-              className={`shrink-0 text-[10px] font-medium uppercase tracking-wide ${LEVEL_STYLE[exam.level]}`}
+              className="shrink-0 border-zinc-200 bg-zinc-50 text-[11px] font-normal text-zinc-500"
             >
               {LEVEL_LABEL[exam.level]}
             </Badge>
           </div>
-          <CardDescription className="line-clamp-1 text-xs">{exam.organiser}</CardDescription>
+          <CardDescription className="line-clamp-1 text-xs">
+            {exam.organiser} ({exam.code})
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            {exam.currentVersion ? (
-              <Badge variant="secondary" className="font-normal">
-                {exam.currentVersion.label}
-              </Badge>
-            ) : (
-              <span className="text-zinc-400">Syllabus coming soon.</span>
-            )}
-            <code className="text-[10px] text-zinc-400">{exam.code}</code>
-          </div>
+        <CardContent>
+          {exam.currentVersion ? (
+            <p className="text-xs text-zinc-500">
+              Syllabus: <span className="font-medium text-zinc-600">{exam.currentVersion.label}</span>
+            </p>
+          ) : (
+            <p className="text-xs text-zinc-400">Syllabus coming soon.</p>
+          )}
         </CardContent>
       </button>
     </Card>

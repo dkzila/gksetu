@@ -3,17 +3,17 @@
 import { navigateToPath } from '@/components/home/app-router'
 
 /**
- * GKSetu — the Notifications view (P8-S2, #/notifications)
- * Master Plan §27 (the notification center + the preferences surface): every
- * notification carries its EXPLAINABLE reason ("You're getting this because
- * you follow …") with a one-tap mute for the specific follow that caused it
- * — the §9 inventory's own removal contract, applied to pushes; per-channel
- * lifecycle badges (queued → sent → read, mobile-push honestly held for the
- * app, §39); per-category × per-channel preferences — never all-or-nothing
- * (§27); §31 (a private authenticated surface: noindex, signed-out gate;
- * notification history is the user's own data); §36 (the context is an
- * honest snapshot at trigger time); §16 (public objects reopen through
- * their canonical paths; private surfaces through their in-app paths).
+ * GKSetu — the Notifications view (P8-S2, redesigned SITE-S4-B).
+ *
+ * The user's notification center: every notification carries its plain-English
+ * reason with a one-tap mute for the follow that caused it; unread items are
+ * highlighted and markable read (one or all); per-category × per-channel
+ * preferences stay granular. A private authenticated surface: noindex,
+ * signed-out gate.
+ *
+ * SITE-S4 redesign: user-relevant information only — the delivery-channel
+ * lifecycle badges, the dispatch diagnostics line and the technical feed
+ * notes are gone; each card shows its trigger icon, reason, body and actions.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
@@ -26,7 +26,6 @@ import {
   ClipboardCheck,
   ClipboardList,
   FilePen,
-  Info,
   Loader2,
   LogIn,
   MessageSquareWarning,
@@ -39,10 +38,8 @@ import {
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/stores/auth'
 import { useNotificationCount } from '@/stores/notifications'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 
@@ -57,7 +54,7 @@ export interface NotificationsViewProps {
   onSignIn: () => void
 }
 
-// ---------- API types (mirror GET /api/notifications — §37/§39) ----------
+// ---------- API types (mirror GET /api/notifications) ----------
 
 interface Envelope<T> {
   status: 'ok' | 'error'
@@ -135,27 +132,30 @@ interface ApiPreferences {
 
 // ---------- Presentation helpers ----------
 
-const TRIGGER_META: Record<TriggerType, { label: string; icon: typeof Bell; className: string }> = {
-  CA_ITEM_FOLLOWED: { label: 'Current affairs', icon: Newspaper, className: 'border-sky-200 bg-sky-50 text-sky-700' },
-  UNIT_ADDED_FOLLOWED_EXAM: { label: 'New syllabus unit', icon: BookPlus, className: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
-  REVISION_DUE: { label: 'Revision due', icon: CalendarClock, className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  CORRECTION_PUBLISHED: { label: 'Correction', icon: FilePen, className: 'border-orange-200 bg-orange-50 text-orange-700' },
-  EDITORIAL_TASK_ASSIGNED: { label: 'Task assigned', icon: ClipboardList, className: 'border-violet-200 bg-violet-50 text-violet-700' },
-  EDITORIAL_REVIEW_REQUESTED: { label: 'Review requested', icon: ClipboardCheck, className: 'border-violet-200 bg-violet-50 text-violet-700' },
-  FEEDBACK_REPORT_RECEIVED: { label: 'Feedback report', icon: MessageSquareWarning, className: 'border-rose-200 bg-rose-50 text-rose-700' },
+/** A quiet icon per trigger — colour carries the category, no label badges. */
+const TRIGGER_ICON: Record<TriggerType, { icon: typeof Bell; className: string }> = {
+  CA_ITEM_FOLLOWED: { icon: Newspaper, className: 'border-sky-100 bg-sky-50 text-sky-600' },
+  UNIT_ADDED_FOLLOWED_EXAM: { icon: BookPlus, className: 'border-emerald-100 bg-emerald-50 text-emerald-600' },
+  REVISION_DUE: { icon: CalendarClock, className: 'border-amber-100 bg-amber-50 text-amber-600' },
+  CORRECTION_PUBLISHED: { icon: FilePen, className: 'border-orange-100 bg-orange-50 text-orange-600' },
+  EDITORIAL_TASK_ASSIGNED: { icon: ClipboardList, className: 'border-violet-100 bg-violet-50 text-violet-600' },
+  EDITORIAL_REVIEW_REQUESTED: { icon: ClipboardCheck, className: 'border-violet-100 bg-violet-50 text-violet-600' },
+  FEEDBACK_REPORT_RECEIVED: { icon: MessageSquareWarning, className: 'border-rose-100 bg-rose-50 text-rose-600' },
 }
 
-const CHANNEL_LABEL: Record<Channel, string> = {
-  EMAIL: 'Email',
-  WEB_PUSH: 'Web push',
-  MOBILE_PUSH: 'Mobile push',
+/** Clean, reader-facing copy per category (the API keys are the contract). */
+const CATEGORY_COPY: Record<string, { description: string }> = {
+  current_affairs: { description: 'New current-affairs stories on the exams and subjects you follow.' },
+  learning: { description: 'New study material on your followed exams, plus revision reminders.' },
+  corrections: { description: 'When something you saved gets corrected.' },
+  editorial: { description: 'Tasks and reviews assigned to you, and reports on your work.' },
 }
 
-const STATUS_BADGE: Record<string, { label: string; className: string }> = {
-  SENT: { label: 'sent', className: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
-  QUEUED: { label: 'queued', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  FAILED: { label: 'failed', className: 'border-red-200 bg-red-50 text-red-700' },
-  READ: { label: 'read', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
+/** Clean, reader-facing copy per channel. */
+const CHANNEL_COPY: Record<Channel, string> = {
+  EMAIL: 'Delivered to your email address.',
+  WEB_PUSH: 'Alerts right in your browser.',
+  MOBILE_PUSH: 'Coming with the GKSetu mobile app.',
 }
 
 function timeAgo(iso: string): string {
@@ -194,11 +194,10 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     }
   }, [])
 
-  // §16 (P8-S2): the notification center is a private surface — noindex.
+  // A private surface — noindex.
   useSeoHead({
     title: 'Your notifications | GKSetu',
-    description:
-      'Your GKSetu notifications — each says why you get it, with a one-tap mute for the follow that caused it.',
+    description: 'Your GKSetu notifications — each says why you get it, with a one-tap mute for the follow that caused it.',
     noindex: true,
   })
 
@@ -300,14 +299,14 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     [token, markingAll, markingId, toast, setBellCount]
   )
 
-  // ---------- §27 one-tap mute (the matched follow's removal request) ----------
+  // ---------- One-tap mute (the matched follow's removal request) ----------
 
   const muteFollow = useCallback(
     async (follow: MatchedFollow) => {
       if (!token || mutingId) return
       if (
         !window.confirm(
-          `Stop following ${follow.label}? This is the one-tap mute — it removes the follow, so nothing it matches reaches you again. You can re-follow anytime.`
+          `Stop following ${follow.label}? Nothing it matches will reach you again — you can re-follow anytime.`
         )
       ) {
         return
@@ -340,7 +339,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     [token, mutingId, toast, fetchFeed]
   )
 
-  /** The correction category's control: unsave the corrected item (§10). */
+  /** The correction category's control: unsave the corrected item. */
   const unsaveItem = useCallback(
     async (save: { id: string; label: string; removalPath: string }) => {
       if (!token || mutingId) return
@@ -381,7 +380,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
 
   const toggleCell = useCallback(
     async (categoryKey: string, cell: ApiPreferenceCell) => {
-      if (!token || togglingCell) return
+      if (!token || togglingCell || cell.reserved) return
       setTogglingCell(`${categoryKey}:${cell.channel}`)
       try {
         const response = await fetch('/api/notifications/preferences', {
@@ -415,7 +414,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
               : current
           )
           toast({
-            title: `${CHANNEL_LABEL[cell.channel]} ${payload.data!.preference.enabled ? 'on' : 'off'} for this category`,
+            title: `${cell.label} ${payload.data!.preference.enabled ? 'on' : 'off'} for this category`,
           })
         } else {
           toast({
@@ -433,7 +432,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     [token, togglingCell, toast]
   )
 
-  // ---------- Open action (§16 canonical path, or the private in-app path) ----------
+  // ---------- Open action (canonical path, or the private in-app path) ----------
 
   const open = useCallback(
     (item: ApiNotification) => {
@@ -444,113 +443,107 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
     [onOpenPath, markRead]
   )
 
-  // ---------- Signed-out state (§38: one auth surface) ----------
+  // ---------- Signed-out state ----------
 
   if (status !== 'authenticated' || !user) {
     return (
-      <div className="mx-auto max-w-xl space-y-6 py-10 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50">
-          <Bell className="h-6 w-6 text-emerald-600" aria-hidden="true" />
-        </div>
-        <div className="space-y-2">
-          <h1 className="text-2xl font-bold tracking-tight">Your notifications</h1>
-          <p className="text-sm text-zinc-600">
-            Sign in to see what changed on your followed exams and subjects — each notification
-            says why you get it, and you control every category and channel.
-          </p>
-        </div>
-        <div className="flex justify-center gap-3">
-          <Button onClick={onSignIn} className="bg-emerald-600 text-white hover:bg-emerald-700">
-            <LogIn className="h-4 w-4" aria-hidden="true" />
-            Sign in
-          </Button>
-          <Button variant="outline" onClick={onGoHome} className="border-zinc-200">
-            Back to the homepage
-          </Button>
-        </div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="mx-auto max-w-xl"
+      >
+        <Card className="border-zinc-200 shadow-sm">
+          <CardContent className="flex flex-col items-center gap-3 py-8 text-center">
+            <span
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50"
+              aria-hidden="true"
+            >
+              <Bell className="h-5 w-5 text-emerald-600" />
+            </span>
+            <div className="space-y-1">
+              <h1 className="text-lg font-semibold tracking-tight">Your notifications</h1>
+              <p className="mx-auto max-w-sm text-sm text-zinc-500">
+                Sign in to see what changed on your followed exams and subjects.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2 pt-1">
+              <Button onClick={onSignIn} className="bg-emerald-600 text-white hover:bg-emerald-700">
+                <LogIn className="h-4 w-4" aria-hidden="true" />
+                Sign in
+              </Button>
+              <Button variant="outline" className="border-zinc-200 bg-white" onClick={onGoHome}>
+                Back to the homepage
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
     )
   }
 
   const unreadCount = feed?.unreadCount ?? 0
-  // What this visit's opportunistic dispatch did (§27 honesty — plain
-  // computation, no hook: it sits after the signed-out early return).
-  const dispatchedNote = (() => {
-    if (!feed) return null
-    const { sent, failed, held } = feed.dispatched
-    if (sent === 0 && failed === 0 && held === 0) return null
-    const parts: string[] = []
-    if (sent > 0) parts.push(`${sent} delivered`)
-    if (held > 0) parts.push(`${held} coming to the mobile app`)
-    if (failed > 0) parts.push(`${failed} failed — retrying on the next sweep`)
-    return `This visit dispatched your queue: ${parts.join(' · ')}.`
-  })()
 
   return (
-    <div className="space-y-8">
+    <div className="mx-auto max-w-3xl space-y-8">
       {/* ---------- Header ---------- */}
-      <section aria-labelledby="notifications-heading" className="space-y-3">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 id="notifications-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
-                Your notifications
-              </h1>
-              {unreadCount > 0 && (
-                <Badge className="bg-emerald-600 text-white hover:bg-emerald-600">
-                  {unreadCount} unread
-                </Badge>
-              )}
-            </div>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              Each notification says why you get it, with a one-tap mute for the follow that
-              caused it. Categories and channels are controlled separately below — never
-              all-or-nothing.
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 border-zinc-200"
-              onClick={() => void fetchFeed()}
-              disabled={loading}
-            >
-              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
-              Refresh
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 border-zinc-200"
-              onClick={() => void markRead(null)}
-              disabled={markingAll || unreadCount === 0}
-            >
-              {markingAll ? (
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-              ) : (
-                <CheckCheck className="h-4 w-4" aria-hidden="true" />
-              )}
-              Mark all read
-            </Button>
-          </div>
-        </div>
-        {dispatchedNote && (
-          <p className="rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
-            {dispatchedNote}
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-labelledby="notifications-heading"
+        className="flex flex-wrap items-start justify-between gap-3"
+      >
+        <div className="space-y-1">
+          <h1 id="notifications-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Notifications
+          </h1>
+          <p className="max-w-2xl text-sm text-zinc-600">
+            What changed on your follows — each one says why you get it.
           </p>
-        )}
-      </section>
+        </div>
+        <div className="flex shrink-0 gap-2">
+          <Button
+            variant="outline"
+            className="h-9 gap-2 border-zinc-200 bg-white"
+            onClick={() => void fetchFeed()}
+            disabled={loading}
+          >
+            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
+            Refresh
+          </Button>
+          <Button
+            variant="outline"
+            className="h-9 gap-2 border-zinc-200 bg-white"
+            onClick={() => void markRead(null)}
+            disabled={markingAll || unreadCount === 0}
+          >
+            {markingAll ? (
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            ) : (
+              <CheckCheck className="h-4 w-4" aria-hidden="true" />
+            )}
+            Mark all read
+          </Button>
+        </div>
+      </motion.section>
 
       {/* ---------- Feed ---------- */}
       <section aria-labelledby="notifications-feed" className="space-y-4">
-        <h2 id="notifications-feed" className="sr-only">
-          Notification feed
-        </h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 id="notifications-feed" className="text-base font-semibold tracking-tight">
+            Recent
+          </h2>
+          {unreadCount > 0 && (
+            <p className="text-xs font-medium text-emerald-700" aria-live="polite">
+              {unreadCount} unread
+            </p>
+          )}
+        </div>
         {loading && !feed ? (
           <div className="space-y-3" aria-busy="true" aria-label="Loading your notifications">
             {[0, 1, 2].map((index) => (
-              <Skeleton key={index} className="h-28 w-full rounded-xl" />
+              <Skeleton key={index} className="h-24 w-full rounded-xl" />
             ))}
           </div>
         ) : error ? (
@@ -565,26 +558,21 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                 <p className="font-medium">Nothing yet</p>
                 <p className="mt-1 max-w-md text-sm text-zinc-500">
                   Follow an exam or subject and its coverage reaches you here — current affairs
-                  first, new syllabus units and your spaced-review reminders next.
+                  first, new study material and revision reminders next.
                 </p>
               </div>
-              <Button variant="outline" size="sm" className="border-zinc-200" asChild>
+              <Button variant="outline" className="h-9 border-zinc-200 bg-white" asChild>
                 <a href="/following">Manage your follows</a>
               </Button>
             </CardContent>
           </Card>
         ) : (
           <ul className="space-y-3">
-            {feed.items.map((item, index) => {
-              const meta = TRIGGER_META[item.triggerType]
+            {feed.items.map((item) => {
+              const meta = TRIGGER_ICON[item.triggerType]
               const Icon = meta.icon
               return (
-                <motion.li
-                  key={item.batchId}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: Math.min(index * 0.03, 0.2) }}
-                >
+                <li key={item.batchId}>
                   <Card
                     className={`border-zinc-200 bg-white shadow-sm transition-colors ${
                       item.isRead ? '' : 'border-emerald-200'
@@ -601,53 +589,27 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
                             <p className="font-semibold leading-snug text-zinc-900">{item.title}</p>
-                            <span className="shrink-0 text-xs text-zinc-400">{timeAgo(item.createdAt)}</span>
+                            <span className="flex shrink-0 items-center gap-1.5 pt-0.5 text-xs text-zinc-400">
+                              {!item.isRead && (
+                                <>
+                                  <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
+                                  <span className="sr-only">Unread — </span>
+                                </>
+                              )}
+                              {timeAgo(item.createdAt)}
+                            </span>
                           </div>
-                          <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                            <Badge variant="outline" className={`text-[10px] font-medium ${meta.className}`}>
-                              {meta.label}
-                            </Badge>
-                            {item.channels.map((channel) => {
-                              const badge = STATUS_BADGE[channel.status] ?? STATUS_BADGE.READ!
-                              return (
-                                <Badge
-                                  key={channel.channel}
-                                  variant="outline"
-                                  className={`text-[10px] font-normal ${badge.className}`}
-                                  title={
-                                    channel.channel === 'MOBILE_PUSH' && channel.status === 'QUEUED'
-                                      ? 'Coming to the mobile app'
-                                      : undefined
-                                  }
-                                >
-                                  {CHANNEL_LABEL[channel.channel]} · {badge.label}
-                                </Badge>
-                              )
-                            })}
-                            {!item.isRead && (
-                              <span className="text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
-                                Unread
-                              </span>
-                            )}
-                          </div>
+                          <p className="mt-1 text-sm text-zinc-600">{item.reason}</p>
+                          {item.body && (
+                            <p className="mt-1 text-sm leading-relaxed text-zinc-500">{item.body}</p>
+                          )}
                         </div>
                       </div>
 
-                      {/* §27 explainable reason + body */}
-                      <div className="space-y-1.5 pl-12 sm:pl-[52px]">
-                        <p className="text-sm text-zinc-700">{item.reason}</p>
-                        {item.body && (
-                          <p className="text-sm leading-relaxed text-zinc-500">{item.body}</p>
-                        )}
-                      </div>
-
-                      {/* Actions: open + §27 mute controls (labels wrap on
-                          narrow screens — the aria-labels carry the full
-                          semantics, the visible text may break lines) */}
+                      {/* Actions: open + one-tap mute controls */}
                       <div className="flex min-w-0 flex-wrap items-center gap-2 pl-12 sm:pl-[52px]">
                         <Button
-                          size="sm"
-                          className="h-8 bg-emerald-600 text-white hover:bg-emerald-700"
+                          className="h-9 bg-emerald-600 text-white hover:bg-emerald-700"
                           onClick={() => open(item)}
                         >
                           {item.actionLabel}
@@ -656,8 +618,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                           <Button
                             key={follow.id}
                             variant="outline"
-                            size="sm"
-                            className="h-auto min-h-8 max-w-full whitespace-normal border-zinc-200 px-3 py-1 text-left text-xs font-normal leading-snug text-zinc-500 hover:border-amber-300 hover:text-amber-700 sm:text-sm"
+                            className="h-auto min-h-9 max-w-full whitespace-normal border-zinc-200 bg-white px-3 py-1 text-left text-xs font-normal leading-snug text-zinc-500 hover:border-amber-300 hover:text-amber-700 sm:text-sm"
                             onClick={() => void muteFollow(follow)}
                             disabled={mutingId === follow.id}
                             aria-label={`Mute — stop following ${follow.label}`}
@@ -673,8 +634,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                         {item.matchedSave && (
                           <Button
                             variant="outline"
-                            size="sm"
-                            className="h-auto min-h-8 max-w-full whitespace-normal border-zinc-200 px-3 py-1 text-left text-xs font-normal leading-snug text-zinc-500 hover:border-amber-300 hover:text-amber-700 sm:text-sm"
+                            className="h-auto min-h-9 max-w-full whitespace-normal border-zinc-200 bg-white px-3 py-1 text-left text-xs font-normal leading-snug text-zinc-500 hover:border-amber-300 hover:text-amber-700 sm:text-sm"
                             onClick={() => void unsaveItem(item.matchedSave!)}
                             disabled={mutingId === item.matchedSave.id}
                             aria-label={`Stop saving ${item.matchedSave.label} — no more correction notifications`}
@@ -690,8 +650,7 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                         {!item.isRead && (
                           <Button
                             variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 text-zinc-400 hover:text-zinc-700"
+                            className="h-9 px-2 text-zinc-400 hover:text-zinc-700"
                             onClick={() => void markRead(item.batchId)}
                             disabled={markingId === item.batchId}
                           >
@@ -706,25 +665,19 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
                       </div>
                     </CardContent>
                   </Card>
-                </motion.li>
+                </li>
               )
             })}
           </ul>
         )}
-        {feed && feed.items.length > 0 && (
-          <p className="flex items-start gap-1.5 text-xs text-zinc-400">
-            <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            {feed.note}
-          </p>
-        )}
       </section>
 
-      {/* ---------- Preferences (§27 per-category × per-channel) ---------- */}
+      {/* ---------- Preferences (per-category × per-channel) ---------- */}
       <section aria-labelledby="preferences-heading" className="space-y-4">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-          <h2 id="preferences-heading" className="text-xl font-semibold tracking-tight">
-            Notification preferences
+          <SlidersHorizontal className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+          <h2 id="preferences-heading" className="text-base font-semibold tracking-tight">
+            Preferences
           </h2>
         </div>
         {!preferences ? (
@@ -733,53 +686,47 @@ export function NotificationsView({ onOpenPath, onGoHome, onSignIn }: Notificati
           <div className="space-y-4">
             {preferences.categories.map((category) => (
               <Card key={category.key} className="border-zinc-200 shadow-sm">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base">{category.label}</CardTitle>
-                  <CardDescription>{category.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {category.channels.map((cell) => {
-                    const cellKey = `${category.key}:${cell.channel}`
-                    return (
-                      <div
-                        key={cell.channel}
-                        className="flex items-start justify-between gap-3 rounded-lg border border-zinc-100 bg-zinc-50/60 p-3"
-                      >
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-2">
-                            <p className="text-sm font-medium text-zinc-800">
-                              {cell.label}
+                <CardContent className="p-4 sm:p-5">
+                  <div className="space-y-1">
+                    <h3 className="text-sm font-semibold text-zinc-900">{category.label}</h3>
+                    <p className="text-xs leading-relaxed text-zinc-500">
+                      {CATEGORY_COPY[category.key]?.description ?? category.description}
+                    </p>
+                  </div>
+                  <div className="mt-3 divide-y divide-zinc-100">
+                    {category.channels.map((cell) => {
+                      const cellKey = `${category.key}:${cell.channel}`
+                      return (
+                        <div
+                          key={cell.channel}
+                          className="flex min-h-[44px] items-center justify-between gap-3 py-2.5 first:pt-1 last:pb-0"
+                        >
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <p className="text-sm font-medium text-zinc-800">{cell.label}</p>
                               {cell.reserved && (
-                                <Badge
-                                  variant="outline"
-                                  className="ml-2 border-amber-200 bg-amber-50 text-[10px] font-normal text-amber-800"
-                                >
-                                  reserved
-                                </Badge>
+                                <span className="rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[11px] font-medium text-zinc-500">
+                                  Coming soon
+                                </span>
                               )}
+                            </div>
+                            <p className="mt-0.5 text-xs leading-relaxed text-zinc-500">
+                              {CHANNEL_COPY[cell.channel] ?? cell.deliveryNote}
                             </p>
                           </div>
-                          <p className="mt-0.5 text-xs leading-relaxed text-zinc-500">
-                            {cell.deliveryNote}
-                          </p>
+                          <Switch
+                            checked={cell.enabled}
+                            onCheckedChange={() => void toggleCell(category.key, cell)}
+                            disabled={togglingCell === cellKey || cell.reserved}
+                            aria-label={`${cell.label} notifications for ${category.label}`}
+                          />
                         </div>
-                        <Switch
-                          checked={cell.enabled}
-                          onCheckedChange={() => void toggleCell(category.key, cell)}
-                          disabled={togglingCell === cellKey}
-                          aria-label={`${cell.label} notifications for ${category.label}`}
-                        />
-                      </div>
-                    )
-                  })}
+                      )
+                    })}
+                  </div>
                 </CardContent>
               </Card>
             ))}
-            <Separator />
-            <div className="space-y-1 text-xs text-zinc-500">
-              <p>{preferences.note}</p>
-              <p>{preferences.defaultsNote}</p>
-            </div>
           </div>
         )}
       </section>

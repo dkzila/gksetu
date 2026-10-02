@@ -1,36 +1,35 @@
 'use client'
 
 /**
- * GKSetu — the Following view (P5-S1, #/following)
+ * GKSetu — the Following view (P5-S1, /following; SITE-S4-A redesign)
  * Master Plan §9 (explicit signals, reversible), §10 (follow vs save),
- * §11 note (followed exams feed the combined queue from P5-S4), §31 (the
+ * §11 note (followed exams feed the combined queue), §31 (the
  * account-control surface over followed data — review and unfollow), §16
  * (private authenticated surface: noindex, never in the sitemap).
  *
- * Lists the signed-in user's followed exams and topics with their honest
- * current state (§36 — a RETIRED object stays listed with its status), each
- * linking into the app in its own market (§14), plus one-click unfollow.
+ * SITE-S4-A: one compact redesign — a single header + one-liner, section
+ * headings with live counts, and clean rows: name, the one plain-words
+ * detail line that matters, unfollow. No exam codes, levels, ISO codes or
+ * raw type badges — honest plain-language status notes only.
  */
 import { useCallback, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  ArrowRight,
-  BellOff,
-  BellRing,
   BookOpen,
-  CalendarClock,
+  Building2,
   GraduationCap,
+  Lightbulb,
   Loader2,
   LogIn,
+  MapPin,
   RefreshCw,
   Rss,
   Trash2,
-  Users,
+  User,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/stores/auth'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -66,33 +65,24 @@ const isExamFollow = (item: ApiFollow): item is ExamFollow => item.objectType ==
 const isTopicFollow = (item: ApiFollow): item is TopicFollow => item.objectType === 'TOPIC'
 const isEntityFollow = (item: ApiFollow): item is EntityFollow => item.objectType === 'ENTITY'
 
-/** §6 entity type labels for the chips. */
-const ENTITY_TYPE_LABEL: Record<ApiFollowedEntity['type'], string> = {
-  PERSON: 'Person',
-  PLACE: 'Place',
-  ORGANISATION: 'Organisation',
-  CONCEPT: 'Concept',
+/** §6 entity types — plain words + a plain icon. */
+const ENTITY_TYPE_META: Record<ApiFollowedEntity['type'], { icon: typeof User; label: string }> = {
+  PERSON: { icon: User, label: 'Person' },
+  PLACE: { icon: MapPin, label: 'Place' },
+  ORGANISATION: { icon: Building2, label: 'Organisation' },
+  CONCEPT: { icon: Lightbulb, label: 'Concept' },
 }
 
-// ---------- Helpers ----------
-
-function formatFollowedAt(iso: string): string {
-  const diffMs = Date.now() - new Date(iso).getTime()
-  const minutes = Math.round(diffMs / 60_000)
-  if (minutes < 1) return 'just now'
-  if (minutes < 60) return `${minutes} min ago`
-  const hours = Math.round(minutes / 60)
-  if (hours < 24) return `${hours} h ago`
-  const days = Math.round(hours / 24)
-  if (days < 30) return `${days} d ago`
-  return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+/** Followed topic types — one plain word. */
+function topicTypeWord(type: ApiFollowedTopic['type']): string {
+  return type === 'DOMAIN' ? 'Subject' : 'Topic'
 }
 
-/** §36 honesty: retired/withdrawn followed objects stay listed with a note. */
-const STATUS_NOTES: Record<string, { label: string; className: string }> = {
-  RETIRED: { label: 'Retired — no longer maintained', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  INACTIVE: { label: 'Temporarily unavailable', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  DRAFT: { label: 'Not public yet', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
+/** §36 honesty: retired/withdrawn followed objects stay listed, in plain words. */
+const STATUS_NOTES: Record<string, string> = {
+  RETIRED: 'Retired — kept for your history',
+  INACTIVE: 'Temporarily unavailable',
+  DRAFT: 'Not public yet',
 }
 
 // ---------- Component ----------
@@ -199,28 +189,40 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
 
   if (status !== 'authenticated' || !user) {
     return (
-      <Card className="border-zinc-200 bg-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-base">
-            <Rss className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-            Your follows live behind sign-in
-          </CardTitle>
-          <CardDescription>
-            Following exams and topics is how GKSetu learns what to surface for you — the combined
-            queue, feeds and dashboard all build on your follows.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap items-center gap-3">
-          <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onSignIn}>
-            <LogIn className="h-4 w-4" aria-hidden="true" />
-            Sign in to see your follows
-          </Button>
-          <Button variant="ghost" size="sm" className="gap-2 text-zinc-500" onClick={onGoHome}>
-            Browse GKSetu instead
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Button>
-        </CardContent>
-      </Card>
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-labelledby="following-heading"
+        className="mx-auto max-w-xl"
+      >
+        <Card className="border-zinc-200 bg-white shadow-sm">
+          <CardHeader className="text-center">
+            <span
+              className="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50"
+              aria-hidden="true"
+            >
+              <Rss className="h-5 w-5 text-emerald-600" />
+            </span>
+            <CardTitle id="following-heading" className="text-xl">
+              Following
+            </CardTitle>
+            <CardDescription>
+              Follow the exams and subjects you care about — your feed and study
+              queue build on them.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-3">
+            <Button className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onSignIn}>
+              <LogIn className="h-4 w-4" aria-hidden="true" />
+              Sign in to see your follows
+            </Button>
+            <Button variant="ghost" size="sm" className="text-zinc-500" onClick={onGoHome}>
+              Browse GKSetu instead
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.section>
     )
   }
 
@@ -230,28 +232,20 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
 
   return (
     <div className="space-y-8">
-      {/* ---------- Header ---------- */}
+      {/* ---------- Header — title, one-liner, refresh ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="following-heading"
-        className="space-y-3"
       >
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Personalisation</Badge>
-          <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
-            Explicit signals — reversible anytime
-          </Badge>
-        </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 id="following-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h1 id="following-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
               Following
             </h1>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              The exams and topics you follow — the signals that shape your combined-exam
-              queue and dashboard.
+            <p className="mt-1 text-sm text-zinc-600">
+              The exams and subjects shaping your feed — unfollow anytime.
             </p>
           </div>
           <Button
@@ -265,27 +259,6 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             Refresh
           </Button>
         </div>
-        {data && (
-          <div className="flex flex-wrap items-center gap-2 text-sm" role="status">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-              <GraduationCap className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              <strong className="font-semibold">{data.counts.EXAM}</strong>
-              <span className="text-zinc-500">exams</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-              <BookOpen className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              <strong className="font-semibold">{data.counts.TOPIC}</strong>
-              <span className="text-zinc-500">topics</span>
-            </span>
-            {data.counts.ENTITY > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                <Users className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-                <strong className="font-semibold">{data.counts.ENTITY}</strong>
-                <span className="text-zinc-500">entities</span>
-              </span>
-            )}
-          </div>
-        )}
       </motion.section>
 
       {/* ---------- Loading ---------- */}
@@ -320,22 +293,17 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
 
       {/* ---------- Empty state ---------- */}
       {data && data.counts.total === 0 && (
-        <Card className="border-zinc-200 bg-white">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-base">
-              <BellOff className="h-5 w-5 text-zinc-400" aria-hidden="true" />
-              Nothing followed yet
-            </CardTitle>
-            <CardDescription>
-              Open an exam page (e.g. UPSC Civil Services) or any GK topic hub and press
-              “Follow”. Follows are personalisation signals — they shape what GKSetu surfaces
-              for you, and you can unfollow anytime.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onGoHome}>
-              Browse exams and topics
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+          <CardContent className="flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-zinc-900">Nothing followed yet</p>
+              <p className="mt-0.5 max-w-xl text-sm text-zinc-600">
+                Open an exam page (e.g. UPSC Civil Services) or any subject hub and press “Follow” —
+                what you follow shapes your study queue and feed.
+              </p>
+            </div>
+            <Button size="sm" className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onGoHome}>
+              Browse exams and subjects
             </Button>
           </CardContent>
         </Card>
@@ -349,7 +317,14 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             Followed exams
             <span className="text-sm font-normal text-zinc-400">({exams.length})</span>
           </h2>
-          <ul className="space-y-3">
+          {/* >8 rows: a capped, slim-scrollbar list keeps the page compact */}
+          <ul
+            className={
+              exams.length > 8
+                ? 'gksetu-scroll max-h-[560px] space-y-3 overflow-y-auto pr-1'
+                : 'space-y-3'
+            }
+          >
             {exams.map((follow) => {
               const exam = follow.object
               const statusNote = STATUS_NOTES[exam.status]
@@ -357,38 +332,24 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                 <li key={follow.id}>
                   <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
                     <CardContent className="flex flex-wrap items-center gap-3 p-4">
-                      {/* basis-52 (P5-S2 mobile fix): long names wrap the actions
-                          to their own line instead of overflowing (block
-                          button + truncate needs a width-constrained box). */}
+                      <span
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-100 bg-zinc-50 text-zinc-500"
+                        aria-hidden="true"
+                      >
+                        <GraduationCap className="h-4 w-4" />
+                      </span>
                       <div className="min-w-0 flex-1 basis-52 sm:basis-64">
                         <button
                           type="button"
                           onClick={() => onOpenExam(exam.slug, exam.countryIso)}
-                          className="block w-full min-h-[32px] text-left"
+                          className="flex w-full min-h-[44px] items-center text-left"
                         >
-                          <span className="block truncate font-semibold text-zinc-900 hover:text-emerald-700">
+                          <span className="min-w-0 truncate font-semibold text-zinc-900 hover:text-emerald-700">
                             {exam.name}
                           </span>
                         </button>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-500">
-                          <Badge variant="outline" className="border-zinc-200 bg-white font-mono text-[10px] font-normal text-zinc-500">
-                            {exam.code}
-                          </Badge>
-                          <span className="uppercase tracking-wide">{exam.level.toLowerCase()}</span>
-                          <span aria-hidden="true">·</span>
-                          <span>{exam.organiser}</span>
-                          <span aria-hidden="true">·</span>
-                          <span>{exam.countryIso}</span>
-                        </div>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
-                          <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                          <span>followed {formatFollowedAt(follow.followedAt)}</span>
-                        </div>
-                        {statusNote && (
-                          <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
-                            {statusNote.label}
-                          </Badge>
-                        )}
+                        <p className="mt-0.5 truncate text-xs text-zinc-500">{exam.organiser}</p>
+                        {statusNote && <p className="mt-1 text-xs text-amber-700">{statusNote}</p>}
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
                         <Button
@@ -416,15 +377,22 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
         </section>
       )}
 
-      {/* ---------- Topics ---------- */}
+      {/* ---------- Subjects / topics ---------- */}
       {topics.length > 0 && (
         <section aria-labelledby="following-topics-heading" className="space-y-3">
           <h2 id="following-topics-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
             <BookOpen className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-            Followed topics
+            Followed subjects
             <span className="text-sm font-normal text-zinc-400">({topics.length})</span>
           </h2>
-          <ul className="space-y-3">
+          {/* >8 rows: a capped, slim-scrollbar list keeps the page compact */}
+          <ul
+            className={
+              topics.length > 8
+                ? 'gksetu-scroll max-h-[560px] space-y-3 overflow-y-auto pr-1'
+                : 'space-y-3'
+            }
+          >
             {topics.map((follow) => {
               const topic = follow.object
               const statusNote = STATUS_NOTES[topic.status]
@@ -432,39 +400,24 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
                 <li key={follow.id}>
                   <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
                     <CardContent className="flex flex-wrap items-center gap-3 p-4">
+                      <span
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-100 bg-zinc-50 text-zinc-500"
+                        aria-hidden="true"
+                      >
+                        <BookOpen className="h-4 w-4" />
+                      </span>
                       <div className="min-w-0 flex-1 basis-52 sm:basis-64">
                         <button
                           type="button"
                           onClick={() => onOpenTopic(topic.slug, topic.countryIso)}
-                          className="block w-full min-h-[32px] text-left"
+                          className="flex w-full min-h-[44px] items-center text-left"
                         >
-                          <span className="block truncate font-semibold text-zinc-900 hover:text-emerald-700">
+                          <span className="min-w-0 truncate font-semibold text-zinc-900 hover:text-emerald-700">
                             {topic.label}
                           </span>
                         </button>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-500">
-                          <Badge variant="outline" className="border-zinc-200 bg-white text-[10px] font-normal uppercase tracking-wide text-zinc-500">
-                            {topic.type.toLowerCase()}
-                          </Badge>
-                          <span>
-                            {topic.scope === 'COUNTRY' ? `${topic.countryIso ?? ''}-scoped` : 'global'}
-                          </span>
-                          {topic.labelLanguage === 'canonical' && (
-                            <>
-                              <span aria-hidden="true">·</span>
-                              <span>official name</span>
-                            </>
-                          )}
-                        </div>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
-                          <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                          <span>followed {formatFollowedAt(follow.followedAt)}</span>
-                        </div>
-                        {statusNote && (
-                          <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
-                            {statusNote.label}
-                          </Badge>
-                        )}
+                        <p className="mt-0.5 text-xs text-zinc-500">{topicTypeWord(topic.type)}</p>
+                        {statusNote && <p className="mt-1 text-xs text-amber-700">{statusNote}</p>}
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
                         <Button
@@ -496,52 +449,48 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
       {entities.length > 0 && (
         <section aria-labelledby="following-entities-heading" className="space-y-3">
           <h2 id="following-entities-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-            <Users className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+            <Lightbulb className="h-5 w-5 text-emerald-600" aria-hidden="true" />
             Followed entities
             <span className="text-sm font-normal text-zinc-400">({entities.length})</span>
           </h2>
-          <p className="text-sm text-zinc-500">
-            Persons, places, organisations and concepts — the reference records behind current
-            affairs. Following one already shapes your feed context.
-          </p>
-          <ul className="space-y-3">
+          {/* >8 rows: a capped, slim-scrollbar list keeps the page compact */}
+          <ul
+            className={
+              entities.length > 8
+                ? 'gksetu-scroll max-h-[560px] space-y-3 overflow-y-auto pr-1'
+                : 'space-y-3'
+            }
+          >
             {entities.map((follow) => {
               const entity = follow.object
+              const meta = ENTITY_TYPE_META[entity.type]
+              const EntityIcon = meta.icon
               const statusNote = STATUS_NOTES[entity.status]
+              const aliases = entity.aliases.filter((alias) => alias !== entity.canonicalName)
               return (
                 <li key={follow.id}>
                   <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
                     <CardContent className="flex flex-wrap items-center gap-3 p-4">
+                      <span
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-100 bg-zinc-50 text-zinc-500"
+                        aria-hidden="true"
+                      >
+                        <EntityIcon className="h-4 w-4" />
+                      </span>
                       <div className="min-w-0 flex-1 basis-52 sm:basis-64">
                         <span className="block truncate font-semibold text-zinc-900">
                           {entity.canonicalName}
                         </span>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-500">
-                          <Badge
-                            variant="outline"
-                            className="border-violet-200 bg-violet-50 text-[10px] font-normal uppercase tracking-wide text-violet-700"
-                          >
-                            {ENTITY_TYPE_LABEL[entity.type]}
-                          </Badge>
-                          <span>{entity.scope === 'COUNTRY' ? `${entity.countryIso ?? ''}-scoped` : 'global'}</span>
-                          {entity.aliases.length > 0 && (
+                        <p className="mt-0.5 text-xs text-zinc-500">
+                          {meta.label}
+                          {aliases.length > 0 && (
                             <>
-                              <span aria-hidden="true">·</span>
-                              <span className="truncate">also: {entity.aliases.slice(0, 3).join(', ')}</span>
+                              {' '}· Also known as {aliases.slice(0, 3).join(', ')}
+                              {aliases.length > 3 && ` +${aliases.length - 3}`}
                             </>
                           )}
-                        </div>
-                        <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
-                          <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                          <span>followed {formatFollowedAt(follow.followedAt)}</span>
-                          <span aria-hidden="true">·</span>
-                          <span className="text-zinc-300">dedicated page coming soon</span>
-                        </div>
-                        {statusNote && (
-                          <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
-                            {statusNote.label}
-                          </Badge>
-                        )}
+                        </p>
+                        {statusNote && <p className="mt-1 text-xs text-amber-700">{statusNote}</p>}
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
                         <Button
@@ -567,15 +516,6 @@ export function FollowingView({ onOpenExam, onOpenTopic, onGoHome, onSignIn }: F
             })}
           </ul>
         </section>
-      )}
-
-      {/* ---------- Footer note (§10 boundary) ---------- */}
-      {data && data.counts.total > 0 && (
-        <p className="flex items-start gap-2 text-xs text-zinc-400">
-          <BellRing className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          Follows are personalisation signals (feed, notifications, recommendations), not
-          bookmarks: saving into collections is a separate, deliberate action.
-        </p>
       )}
     </div>
   )

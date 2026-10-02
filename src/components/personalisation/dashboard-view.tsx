@@ -1,50 +1,52 @@
 'use client'
 
 /**
- * GKSetu — the Dashboard view (P5-S4, #/dashboard)
- * Master Plan §22 (the dashboard: what matters now — the combined-exam
- * queue; due revisions/weak-topic feedback arrive with the P7 assessment
- * system and stay honest quiet states), §9 (layered, explainable,
- * reversible — every queue unit carries its reasons), §10 (follows drive
- * the feed; the saves block is retrieval-only), §11 (the queue renders each
- * canonical unit ONCE with its "Covers: Exam A + Exam B" badge), §31/§38
- * (private authenticated surface: noindex, never in the sitemap, signed-out
- * gate), §16 (every object links through its canonical path).
- * P6-S4: the "Current affairs for your exams" rail — the COMBINED-mode
- * exam-aware feed (§12 step 5) built from the same §9 scope as the queue,
- * every item opened through its §16 event path.
+ * GKSetu — the Dashboard view (P5-S4, /dashboard; SITE-S4-A redesign)
+ * Master Plan §22 (the dashboard: what matters now), §9 (layered,
+ * explainable, reversible), §10 (follows drive the feed; saves are
+ * retrieval-only), §11 (each canonical unit renders once), §31/§38 (private
+ * authenticated surface: noindex, signed-out gate), §16 (every object links
+ * through its canonical path).
+ *
+ * SITE-S4-A: one compact redesign — a single "Your study queue" (the former
+ * combined-exam queue merged with the revision queue, due-first ordering,
+ * one card per unit), a one-line plan summary, a compact revision-progress
+ * row, the exam-aware current-affairs rail and the recent saves. Only
+ * learner-facing information; no tier/depth/mode vocabulary, ISO codes or
+ * system badges (the §9 explanations stay one click away in
+ * /personalisation).
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
+  BookOpen,
   Bookmark,
-  CalendarClock,
+  CircleHelp,
   Clock3,
+  FileText,
   GraduationCap,
   Layers,
-  Lightbulb,
   ListChecks,
-  Loader2,
   LogIn,
   Newspaper,
   Pencil,
   RefreshCw,
   Rss,
-  ShieldCheck,
   Sparkles,
   Target,
+  Timer,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/stores/auth'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { useSeoHead } from '@/components/home/seo-head'
-import { LEVEL_LABELS, ONBOARDING_COPY, saveObjectTitle } from './types'
+import { LEVEL_LABELS, saveObjectTitle } from './types'
 import type { ApiDashboard, ApiDashboardQueueUnit, Envelope } from './types'
 
 // ---------- Props ----------
@@ -63,62 +65,110 @@ export interface DashboardViewProps {
 
 // ---------- Presentation helpers ----------
 
-const DEPTH_STYLE: Record<string, string> = {
-  ONE_LINE: 'border-zinc-200 bg-white text-zinc-600',
-  FACT: 'border-sky-200 bg-sky-50 text-sky-700',
-  CONCEPT: 'border-emerald-200 bg-emerald-50 text-emerald-700',
-  DETAILED: 'border-amber-200 bg-amber-50 text-amber-700',
-  ANALYTICAL: 'border-rose-200 bg-rose-50 text-rose-700',
-}
-const DEPTH_LABEL: Record<string, string> = {
-  ONE_LINE: 'One line',
-  FACT: 'Fact',
-  CONCEPT: 'Concept',
-  DETAILED: 'Detailed',
-  ANALYTICAL: 'Analytical',
+/** Whole days from now until the ISO date (negative = overdue). */
+function daysUntil(iso: string): number {
+  return Math.ceil((new Date(iso).getTime() - Date.now()) / 86_400_000)
 }
 
-const TIER_STYLE: Record<ApiDashboardQueueUnit['tier'], { label: string; className: string }> = {
-  REVISION_DUE: { label: 'Due for revision', className: 'border-rose-300 bg-rose-50 text-rose-700' },
-  GOAL_SUBJECT: { label: 'Goal subject', className: 'border-emerald-300 bg-emerald-50 text-emerald-700' },
-  FOLLOWED_SUBJECT: { label: 'Followed subject', className: 'border-teal-300 bg-teal-50 text-teal-700' },
-  EXAM_SCOPE: { label: 'Exam scope', className: 'border-zinc-200 bg-white text-zinc-500' },
-}
-
-/** P7-S4 §22 — the mastery chip's honest colour (score tiers, not vanity). */
-function masteryChipClass(score: number): string {
-  if (score >= 80) return 'border-emerald-200 bg-emerald-50 text-emerald-700'
-  if (score >= 50) return 'border-amber-200 bg-amber-50 text-amber-800'
-  return 'border-rose-200 bg-rose-50 text-rose-700'
-}
-
-/** P7-S4 §22 — the due/overdue badge label. */
+/** The learner-facing due/overdue label (§22 revision states, plain words). */
 function dueLabel(dueInDays: number): string {
   if (dueInDays < 0) return `Overdue ${-dueInDays}${-dueInDays === 1 ? ' day' : ' days'}`
   if (dueInDays === 0) return 'Due today'
-  return `In ${dueInDays} ${dueInDays === 1 ? 'day' : 'days'}`
+  return `Due in ${dueInDays} ${dueInDays === 1 ? 'day' : 'days'}`
 }
 
-const MODE_LABEL: Record<string, string> = {
-  GOAL_AND_FOLLOW: 'Goal + follows',
-  GOAL: 'Declared goal',
-  FOLLOW: 'Follows',
-  NONE: 'No signals yet',
+/** Due-state presentation: overdue rose / due amber / upcoming zinc. */
+type DueTone = 'overdue' | 'due' | 'upcoming'
+const DUE_TONE: Record<DueTone, { border: string; dot: string; label: string }> = {
+  overdue: {
+    border: 'border-l-rose-400',
+    dot: 'bg-rose-500',
+    label: 'text-rose-700',
+  },
+  due: {
+    border: 'border-l-amber-400',
+    dot: 'bg-amber-500',
+    label: 'text-amber-700',
+  },
+  upcoming: {
+    border: 'border-l-zinc-300',
+    dot: 'bg-zinc-400',
+    label: 'text-zinc-600',
+  },
 }
 
-/** §36 honest statuses on signal objects. */
-const STATUS_STYLE: Record<string, string> = {
-  RETIRED: 'border-amber-200 bg-amber-50 text-amber-800',
-  INACTIVE: 'border-amber-200 bg-amber-50 text-amber-800',
-  DRAFT: 'border-zinc-200 bg-zinc-50 text-zinc-500',
+function dueTone(dueInDays: number): DueTone {
+  if (dueInDays < 0) return 'overdue'
+  if (dueInDays === 0) return 'due'
+  return 'upcoming'
+}
+
+/** The mastery bar's honest colour (score tiers, not vanity). */
+function masteryBarClass(score: number): string {
+  if (score >= 80) return 'bg-emerald-500'
+  if (score >= 50) return 'bg-amber-500'
+  return 'bg-rose-500'
+}
+
+/** "45 min/day" / "1 h 30 min/day" — the plan's one-line pace. */
+function formatPace(minutes: number): string {
+  if (minutes < 60) return `${minutes} min/day`
+  const hours = Math.floor(minutes / 60)
+  const rest = minutes % 60
+  return rest === 0 ? `${hours} h/day` : `${hours} h ${rest} min/day`
+}
+
+/** The plan level as one plain word ("Intermediate", not the long form). */
+function levelWord(level: string): string {
+  return LEVEL_LABELS[level]?.split(' — ')[0] ?? level
+}
+
+/** §6 event_date, formatted like the sibling rows (en-IN). */
+function formatFeedDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+/** "Saved 3 d ago" — the same relative format as the Saved page. */
+function formatSavedAt(iso: string): string {
+  const minutes = Math.round((Date.now() - new Date(iso).getTime()) / 60_000)
+  if (minutes < 1) return 'just now'
+  if (minutes < 60) return `${minutes} min ago`
+  const hours = Math.round(minutes / 60)
+  if (hours < 24) return `${hours} h ago`
+  const days = Math.round(hours / 24)
+  if (days < 30) return `${days} d ago`
+  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+/** Honest §36 tombstones in plain words (dashboard saves rail). */
+const SAVE_TOMBSTONE: Record<string, string> = {
+  RETIRED: 'No longer available — kept for your history',
+  ARCHIVED: 'Archived — kept for reference',
+  OUTDATED: 'Being corrected — details may change',
+}
+
+/** The save rail's plain type + icon (no mono badges). */
+function saveTypeMeta(kind: string): { icon: typeof BookOpen; label: string } {
+  switch (kind) {
+    case 'CURRENT_EVENT':
+      return { icon: Newspaper, label: 'Current affairs' }
+    case 'QNA':
+      return { icon: CircleHelp, label: 'Q&A' }
+    case 'QUESTION':
+      return { icon: ListChecks, label: 'MCQ' }
+    case 'MOCK_TEST':
+      return { icon: Timer, label: 'Mock test' }
+    case 'CONTENT_ITEM':
+      return { icon: FileText, label: 'Article' }
+    default:
+      return { icon: BookOpen, label: 'Notes' }
+  }
 }
 
 // ---------- P6-S4: exam-aware current-affairs feed (local API mirror) ----------
 // Mirrors GET /api/current-affairs/feed (COMBINED mode, Bearer-authenticated)
 // — hand-written per the client-mirror convention (never import server
 // modules); the same contract as the exam view's EXAM-mode mirror.
-
-type FeedLifecycle = 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
 
 interface FeedExamRef {
   slug: string
@@ -134,32 +184,20 @@ interface FeedItem {
   location: string | null
   summary: string
   significance: string | null
-  lifecycleState: FeedLifecycle
-  /** P6-S5 §17 — the server-computed freshness verdict (tier + age + label). */
-  freshness: { tier: 'FRESH' | 'RECENT' | 'SETTLED' | 'HISTORICAL'; ageDays: number; label: string }
+  lifecycleState: 'EMERGING' | 'DEVELOPING' | 'STABLE' | 'ARCHIVED'
   scope: 'GLOBAL' | 'COUNTRY'
   countryIso: string | null
   topic: { slug: string; canonicalName: string; label: string }
   matchedExams: FeedExamRef[]
-  syllabusAnchors: Array<{
-    examSlug: string
-    examName: string
-    nodeName: string
-    matchVia: 'TOPIC' | 'KNOWLEDGE_UNIT'
-  }>
-  /** §9 explanation — a complete sentence, rendered verbatim. */
+  canonicalPath: string
   reason: string
-  /** §35: sorted ISO codes of the published representations. */
   languages: string[]
   representationCount: number
-  /** §16 canonical event-page path — the rail's navigation handle. */
-  canonicalPath: string
 }
 
 interface ExamAwareFeed {
   mode: 'EXAM' | 'COMBINED'
   exam: FeedExamRef | null
-  /** COMBINED mode: the contributing exams (goal ∪ follows, §9). */
   exams: FeedExamRef[]
   readerCountryIso: string
   items: FeedItem[]
@@ -168,49 +206,33 @@ interface ExamAwareFeed {
   note: string | null
 }
 
-/** The §12/§36 lifecycle vocabulary — the event page's colour mapping. */
-const FEED_LIFECYCLE_META: Record<FeedLifecycle, { label: string; tone: string; note: string }> = {
-  EMERGING: {
-    label: 'Emerging',
-    tone: 'border-amber-200 bg-amber-50 text-amber-800',
-    note: 'Breaking coverage — facts may still develop.',
-  },
-  DEVELOPING: {
-    label: 'Developing',
-    tone: 'border-sky-200 bg-sky-50 text-sky-800',
-    note: 'More sources and context are accumulating — corrections expected.',
-  },
-  STABLE: {
-    label: 'Stable',
-    tone: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-    note: 'The established understanding of this event.',
-  },
-  ARCHIVED: {
-    label: 'Archived',
-    tone: 'border-zinc-300 bg-zinc-100 text-zinc-600',
-    note: 'No further updates — kept as permanent historical reference.',
-  },
+// ---------- The merged study-queue card (queue row ∪ revision row) ----------
+
+interface StudyCard {
+  slug: string
+  title: string
+  summary: string | null
+  path: string
+  subject: string | null
+  exam: string | null
+  extraExamCount: number
+  masteryScore: number | null
+  dueInDays: number | null
 }
 
-/** §6 event_date, formatted like the sibling rows (en-IN). */
-function formatFeedDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
-}
-
-/** P6-S5 §17 — the freshness tier chip (the exam-view conventions). */
-const FEED_FRESHNESS_META: Record<FeedItem['freshness']['tier'], { tone: string }> = {
-  FRESH: { tone: 'border-emerald-200 bg-emerald-50 text-emerald-700' },
-  RECENT: { tone: 'border-teal-200 bg-teal-50 text-teal-700' },
-  SETTLED: { tone: 'border-amber-200 bg-amber-50 text-amber-700' },
-  HISTORICAL: { tone: 'border-zinc-300 bg-zinc-100 text-zinc-600' },
-}
-
-function formatPace(minutes: number | null): string {
-  if (minutes == null) return 'unset'
-  if (minutes < 60) return `${minutes} min/day`
-  const hours = Math.floor(minutes / 60)
-  const rest = minutes % 60
-  return rest === 0 ? `${hours} h/day` : `${hours} h ${rest} min/day`
+function queueCard(entry: ApiDashboardQueueUnit): StudyCard {
+  const covering = entry.unit.coverings[0]
+  return {
+    slug: entry.unit.unit.slug,
+    title: entry.unit.unit.canonicalName,
+    summary: entry.unit.unit.canonicalSummary,
+    path: entry.unit.canonicalPath,
+    subject: covering?.node.topic?.label ?? null,
+    exam: entry.unit.exams[0]?.name ?? null,
+    extraExamCount: Math.max(0, entry.unit.examCount - 1),
+    masteryScore: entry.mastery?.score ?? null,
+    dueInDays: entry.mastery ? daysUntil(entry.mastery.nextReviewAt) : null,
+  }
 }
 
 // ---------- Component ----------
@@ -223,7 +245,7 @@ export function DashboardView({
   onGoHome,
   onSignIn,
 }: DashboardViewProps) {
-  const { status, token, user } = useAuth()
+  const { status, token } = useAuth()
   const { toast } = useToast()
 
   const [data, setData] = useState<ApiDashboard | null>(null)
@@ -295,8 +317,7 @@ export function DashboardView({
               Your dashboard
             </CardTitle>
             <CardDescription>
-              Your combined-exam queue, followed subjects and recent saves — built from your
-              declared goal and follows, always explainable and reversible.
+              What to study now — your queue, your subjects, your saves.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-3">
@@ -313,7 +334,6 @@ export function DashboardView({
     )
   }
 
-  const firstName = data?.user.name?.split(' ')[0] ?? user?.name?.split(' ')[0]
   const hasSignals =
     (data?.signals.goalExamCount ?? 0) > 0 ||
     (data?.signals.followedExamCount ?? 0) > 0 ||
@@ -325,20 +345,21 @@ export function DashboardView({
       dir={data?.market.direction === 'RTL' ? 'rtl' : 'ltr'}
       className="space-y-8"
     >
-      {/* ---------- Header ---------- */}
+      {/* ---------- Header — title, one-liner, refresh ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         aria-labelledby="dashboard-heading"
-        className="space-y-3"
       >
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <ListChecks className="h-6 w-6 text-emerald-600" aria-hidden="true" />
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
             <h1 id="dashboard-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
-              {firstName ? `${firstName}'s dashboard` : 'Your dashboard'}
+              Your dashboard
             </h1>
+            <p className="mt-1 text-sm text-zinc-600">
+              What to study now — your queue, subjects and saves.
+            </p>
           </div>
           <Button
             variant="outline"
@@ -351,33 +372,12 @@ export function DashboardView({
             Refresh
           </Button>
         </div>
-        <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500">
-          <span>
-            Labels in{' '}
-            <strong className="font-medium text-zinc-700">
-              {data?.market.language.nativeName ?? data?.market.language.name ?? language}
-            </strong>{' '}
-            · queue computed in your home market (
-            <strong className="font-medium text-zinc-700">{data?.user.homeCountryIso ?? '—'}</strong>
-            )
-          </span>
-          {data && !data.market.isHomeMarket && (
-            <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-800">
-              Browsing {data.market.country.name} — labels follow this market
-            </Badge>
-          )}
-          {data && (
-            <Badge variant="outline" className={`font-normal ${ONBOARDING_COPY[data.user.onboardingStatus]?.className ?? ''}`}>
-              {ONBOARDING_COPY[data.user.onboardingStatus]?.label ?? data.user.onboardingStatus}
-            </Badge>
-          )}
-        </div>
       </motion.section>
 
       {/* ---------- Loading ---------- */}
       {loading && !data && (
         <div className="space-y-4" aria-busy="true" aria-label="Loading your dashboard">
-          <Skeleton className="h-28 w-full rounded-xl" />
+          <Skeleton className="h-20 w-full rounded-xl" />
           <Skeleton className="h-64 w-full rounded-xl" />
           <Skeleton className="h-40 w-full rounded-xl" />
         </div>
@@ -406,15 +406,15 @@ export function DashboardView({
 
       {data && (
         <>
-          {/* ---------- Empty state: no §9 signals yet ---------- */}
+          {/* ---------- Empty state: no personalisation signals yet ---------- */}
           {!hasSignals && (
             <Card className="border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-teal-50/50">
-              <CardContent className="flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <CardContent className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
                 <div className="space-y-1">
                   <h2 className="text-base font-semibold tracking-tight">Make it yours</h2>
                   <p className="max-w-xl text-sm text-zinc-600">
                     Nothing personalised yet. Declare a goal (exams, subjects, level, pace) or follow
-                    exams and topics — your combined-exam queue builds itself from those signals.
+                    exams and subjects — your study queue builds itself from those signals.
                   </p>
                 </div>
                 <div className="flex shrink-0 flex-wrap gap-2">
@@ -438,10 +438,10 @@ export function DashboardView({
             </Card>
           )}
 
-          {/* ---------- Your plan (§6/§22) ---------- */}
+          {/* ---------- Your plan (§6/§22) — one compact summary card ---------- */}
           <section aria-labelledby="plan-heading" className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 id="plan-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
+              <h2 id="plan-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
                 <GraduationCap className="h-5 w-5 text-emerald-600" aria-hidden="true" />
                 Your plan
               </h2>
@@ -449,88 +449,77 @@ export function DashboardView({
                 <Button asChild variant="ghost" size="sm" className="gap-1.5 text-zinc-500 hover:text-emerald-700">
                   <a href="/onboarding" aria-label="Edit your goal">
                     <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
-                    Edit goal
+                    Edit
                   </a>
                 </Button>
               )}
             </div>
             <Card className="border-zinc-200 shadow-sm">
-              <CardContent className="space-y-4 p-5 sm:p-6">
+              <CardContent className="p-4 sm:p-5">
                 {data.plan ? (
-                  <>
-                    <div className="flex flex-wrap items-center gap-2">
+                  <div className="space-y-3">
+                    {/* level · target year · pace — one plain line */}
+                    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-zinc-800">
                       {data.plan.level && (
-                        <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-medium text-emerald-700">
-                          {LEVEL_LABELS[data.plan.level] ?? data.plan.level}
-                        </Badge>
+                        <span className="font-semibold text-zinc-900">{levelWord(data.plan.level)}</span>
                       )}
                       {data.plan.targetYear && (
-                        <Badge variant="outline" className="gap-1.5 border-zinc-200 bg-white text-zinc-700">
-                          <CalendarClock className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-                          Target {data.plan.targetYear}
-                        </Badge>
+                        <>
+                          {data.plan.level && <span className="text-zinc-300" aria-hidden="true">·</span>}
+                          <span>Target {data.plan.targetYear}</span>
+                        </>
                       )}
-                      <Badge variant="outline" className="gap-1.5 border-zinc-200 bg-white text-zinc-700">
-                        <Clock3 className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-                        {formatPace(data.plan.dailyMinutes)}
-                      </Badge>
+                      {data.plan.dailyMinutes != null && (
+                        <>
+                          <span className="text-zinc-300" aria-hidden="true">·</span>
+                          <span className="inline-flex items-center gap-1">
+                            <Clock3 className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+                            {formatPace(data.plan.dailyMinutes)}
+                          </span>
+                        </>
+                      )}
                       {data.plan.studyLanguage && (
-                        <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-700">
-                          Studies in {data.plan.studyLanguage.name}
-                        </Badge>
+                        <>
+                          <span className="text-zinc-300" aria-hidden="true">·</span>
+                          <span>Studies in {data.plan.studyLanguage.name}</span>
+                        </>
                       )}
-                    </div>
+                    </p>
+                    {/* goal exams as chips, capped */}
                     {data.goal && data.goal.exams.length > 0 && (
-                      <div className="space-y-1.5">
-                        <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
-                          Goal exams — never proof you will sit them
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {data.goal.exams.map((exam) => (
-                            <button
-                              key={exam.slug}
-                              type="button"
-                              onClick={() => onOpenPath(exam.canonicalPath)}
-                              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 text-sm text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
-                              aria-label={`Open ${exam.name}`}
-                            >
-                              {exam.name}
-                              {exam.status !== 'ACTIVE' && (
-                                <span className={`rounded-full border px-1.5 py-0.5 text-[10px] font-medium ${STATUS_STYLE[exam.status] ?? 'border-zinc-200 bg-zinc-50 text-zinc-500'}`}>
-                                  {exam.status.toLowerCase()}
-                                </span>
-                              )}
-                            </button>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {data.goal.exams.slice(0, 6).map((exam) => (
+                          <button
+                            key={exam.slug}
+                            type="button"
+                            onClick={() => onOpenPath(exam.canonicalPath)}
+                            className="inline-flex min-h-[32px] items-center rounded-full border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+                            aria-label={`Open ${exam.name}`}
+                          >
+                            {exam.name}
+                            {exam.status !== 'ACTIVE' && (
+                              <span className="ml-1.5 text-[10px] font-normal text-zinc-400">
+                                (retired)
+                              </span>
+                            )}
+                          </button>
+                        ))}
+                        {data.goal.exams.length > 6 && (
+                          <span
+                            className="inline-flex min-h-[32px] items-center rounded-full border border-zinc-200 bg-zinc-50 px-3 text-xs font-medium text-zinc-500"
+                            title={data.goal.exams.slice(6).map((exam) => exam.name).join(', ')}
+                          >
+                            +{data.goal.exams.length - 6} more
+                          </span>
+                        )}
                       </div>
                     )}
-                    {data.goal && data.goal.topics.length > 0 && (
-                      <div className="space-y-1.5">
-                        <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
-                          Goal subjects
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {data.goal.topics.map((topic) => (
-                            <button
-                              key={topic.slug}
-                              type="button"
-                              onClick={() => onOpenPath(topic.canonicalPath)}
-                              className="inline-flex min-h-[36px] items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-sm text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
-                              aria-label={`Open ${topic.label}`}
-                            >
-                              {topic.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </>
+                  </div>
                 ) : (
                   <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
                     <p className="text-sm text-zinc-600">
-                      No goal declared. A goal sets your exam scope, subjects, level and pace — the
-                      strongest personalisation signal.
+                      No goal declared — a goal sets your exam scope, level and pace, and shapes
+                      what this dashboard shows.
                     </p>
                     <Button asChild size="sm" className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700">
                       <a href="/onboarding">
@@ -544,120 +533,59 @@ export function DashboardView({
             </Card>
           </section>
 
-          {/* ---------- The §11 combined-exam queue (§22 "what matters now") ---------- */}
-          <section aria-labelledby="queue-heading" className="space-y-3">
+          {/* ---------- Your study queue (§11 queue + §22 revision, merged) ---------- */}
+          <section aria-labelledby="queue-heading" className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 id="queue-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
+              <h2 id="queue-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
                 <Layers className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-                {data.queue.scopeExam ? (
-                  <>
-                    <span className="text-zinc-400">Queue —</span> {data.queue.scopeExam.name}
-                  </>
-                ) : (
-                  'Combined-exam queue'
-                )}
+                Your study queue
               </h2>
               <div className="flex flex-wrap items-center gap-2">
-                {data.queue.mode !== 'NONE' && !data.queue.scopeExam && (
-                  <Badge variant="outline" className="border-zinc-200 bg-white font-normal text-zinc-600">
-                    Scope: {MODE_LABEL[data.queue.mode]}
-                  </Badge>
+                {/* P7-S5 §11: the compact scope select — all exams or one. */}
+                {data.queue.scopes.length > 1 && (
+                  <Select
+                    value={scopeExamSlug ?? 'all'}
+                    onValueChange={(value) => setScopeExamSlug(value === 'all' ? null : value)}
+                  >
+                    <SelectTrigger
+                      className="h-9 w-[190px] max-w-full border-zinc-200 bg-white text-xs font-medium"
+                      aria-label="Queue scope — all your exams or one"
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all" className="text-xs">
+                        All my exams
+                      </SelectItem>
+                      {data.queue.scopes.map((scope) => (
+                        <SelectItem key={scope.slug} value={scope.slug} className="text-xs">
+                          {scope.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 )}
-                {/* P7-S5 §22: the combined-exam quick mock — test what the queue teaches. */}
                 <button
                   type="button"
                   onClick={onOpenQuickMock}
                   className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-emerald-200 bg-emerald-50 px-2.5 text-xs font-semibold text-emerald-700 transition-colors hover:border-emerald-300 hover:bg-emerald-100"
                 >
                   <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                  Quick mock
+                  Mock test
                 </button>
-                {/* P5-S5: the §9 explanations surface — every signal behind this queue, with its control. */}
+                {/* §9 transparency stays one click away */}
                 <a
                   href="/personalisation"
-                  className="inline-flex min-h-[36px] items-center gap-1.5 rounded-md border border-zinc-200 bg-white px-2.5 text-xs font-medium text-zinc-600 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+                  className="inline-flex min-h-[36px] items-center rounded-md px-2 text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
                 >
-                  <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
-                  Why do I see this?
+                  Why this queue?
                 </a>
               </div>
             </div>
 
-            {/* P7-S5 §11: the scope chips — combined (default) or one exam's
-                queue only ("the same union algorithm, just with one exam in
-                the input set"). */}
-            {data.queue.scopes.length > 1 && (
-              <div
-                className="flex flex-wrap items-center gap-1.5"
-                role="group"
-                aria-label="Queue scope — all your exams or one"
-              >
-                <span className="text-xs font-medium text-zinc-500">Scope:</span>
-                <button
-                  type="button"
-                  onClick={() => setScopeExamSlug(null)}
-                  aria-pressed={!scopeExamSlug}
-                  className={`min-h-[32px] rounded-full border px-3 text-xs font-medium transition-colors ${
-                    !scopeExamSlug
-                      ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
-                      : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-200 hover:text-emerald-700'
-                  }`}
-                >
-                  All my exams
-                </button>
-                {data.queue.scopes.map((scope) => (
-                  <button
-                    key={scope.slug}
-                    type="button"
-                    onClick={() => setScopeExamSlug(scope.slug)}
-                    aria-pressed={scopeExamSlug === scope.slug}
-                    title={
-                      scope.fromGoal && scope.fromFollow
-                        ? 'In your goal AND your follows'
-                        : scope.fromGoal
-                          ? 'In your declared goal'
-                          : 'You follow this exam'
-                    }
-                    className={`min-h-[32px] rounded-full border px-3 text-xs font-medium transition-colors ${
-                      scopeExamSlug === scope.slug
-                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
-                        : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-200 hover:text-emerald-700'
-                    }`}
-                  >
-                    {scope.name}
-                  </button>
-                ))}
-              </div>
-            )}
-            <Card className="border-zinc-200 shadow-sm">
-              <CardContent className="space-y-4 p-5 sm:p-6">
-                {data.queue.units.length > 0 && (
-                  <div
-                    className="flex flex-wrap items-center gap-2 text-sm text-zinc-600"
-                    role="status"
-                  >
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                      <strong className="font-semibold">{data.queue.stats.unitCount}</strong> units
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                      across <strong className="font-semibold">{data.queue.stats.examCount}</strong> exams
-                    </span>
-                    {data.queue.stats.sharedUnitCount > 0 && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                        <strong className="font-semibold">{data.queue.stats.sharedUnitCount}</strong> shared
-                      </span>
-                    )}
-                    {data.queue.stats.duplicatesAvoided > 0 && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-emerald-700">
-                        <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-                        <strong className="font-semibold">{data.queue.stats.duplicatesAvoided}</strong>{' '}
-                        duplicates avoided
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                {/* Per-exam honest §36 notes */}
+            {/* Honest §36 notes (per-exam + queue level) — plain words */}
+            {(data.queue.note || data.queue.exams.some((entry) => entry.note)) && (
+              <div className="space-y-2">
                 {data.queue.exams
                   .filter((entry) => entry.note)
                   .map((entry) => (
@@ -668,279 +596,84 @@ export function DashboardView({
                       {entry.exam.name}: {entry.note}
                     </p>
                   ))}
-
-                {/* Queue-level honest note (§36) */}
                 {data.queue.note && (
                   <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
                     {data.queue.note}
                   </p>
                 )}
+              </div>
+            )}
 
-                {data.queue.units.length === 0 ? (
-                  <div className="space-y-2 rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-500">
-                    <p>
-                      {hasSignals
-                        ? 'No units in the queue right now — see the note above.'
-                        : 'Your queue appears once a declared or followed exam has an active syllabus version.'}
-                    </p>
-                    <p className="text-xs text-zinc-400">
-                      Units due for revision rise to the top once you have submitted attempts —
-                      try a mock test from an exam page or topic hub.
-                    </p>
-                  </div>
-                ) : (
-                  <ol className="max-h-[28rem] space-y-3 overflow-y-auto pr-1" aria-label="Your combined learning queue">
-                    {data.queue.units.map((entry, index) => {
-                      const tier = TIER_STYLE[entry.tier]
-                      return (
-                        <li key={entry.unit.unit.slug}>
-                          <button
-                            type="button"
-                            onClick={() => onOpenPath(entry.unit.canonicalPath)}
-                            className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
-                            aria-label={`Open ${entry.unit.unit.canonicalName}`}
-                          >
-                            <div className="flex flex-wrap items-start justify-between gap-2">
-                              <p className="flex min-w-0 flex-1 items-baseline gap-2 text-sm font-semibold leading-snug text-zinc-900">
-                                <span className="shrink-0 font-mono text-xs text-zinc-300" aria-hidden="true">
-                                  {String(index + 1).padStart(2, '0')}
-                                </span>
-                                <span className="min-w-0 break-words">{entry.unit.unit.canonicalName}</span>
-                              </p>
-                              <span className="flex shrink-0 flex-wrap items-center gap-1.5">
-                                <Badge variant="outline" className={`text-[10px] ${tier.className}`}>
-                                  {tier.label}
-                                </Badge>
-                                {entry.mastery && (
-                                  <Badge
-                                    variant="outline"
-                                    className={`text-[10px] font-semibold ${masteryChipClass(entry.mastery.score)}`}
-                                    title={`Last reviewed ${new Date(entry.mastery.lastReviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} · next review ${new Date(entry.mastery.nextReviewAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}`}
-                                  >
-                                    Mastery {entry.mastery.score}%
-                                  </Badge>
-                                )}
-                                <Badge
-                                  variant="outline"
-                                  className={`text-[10px] font-semibold ${DEPTH_STYLE[entry.unit.requiredDepth] ?? 'border-zinc-200 bg-white text-zinc-600'}`}
-                                >
-                                  {DEPTH_LABEL[entry.unit.requiredDepth] ?? entry.unit.requiredDepth}
-                                </Badge>
-                              </span>
-                            </div>
-
-                            {/* §11 step 9: "Covers: Exam A + Exam B" — once, never duplicated */}
-                            <p className="mt-1.5 flex flex-wrap items-center gap-1 text-xs text-zinc-500">
-                              <span className="font-medium text-zinc-600">Covers:</span>
-                              {entry.unit.exams.map((exam, examIndex) => (
-                                <span key={exam.slug}>
-                                  {examIndex > 0 && <span className="text-zinc-300">+</span>} {exam.name}
-                                </span>
-                              ))}
-                            </p>
-
-                            {/* §9: the explainability layer */}
-                            {entry.reasons.length > 0 && (
-                              <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-500">
-                                <span className="inline-flex items-center gap-1 font-medium text-emerald-700">
-                                  <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
-                                  Why
-                                </span>
-                                {entry.reasons.slice(0, 4).map((reason) => (
-                                  <span key={`${reason.kind}:${reason.examSlug ?? reason.topicSlug ?? ''}`} className="inline-flex items-center gap-1">
-                                    {reason.text}
-                                  </span>
-                                ))}
-                                {entry.reasons.length > 4 && (
-                                  <span className="text-zinc-400">+{entry.reasons.length - 4} more</span>
-                                )}
-                              </p>
-                            )}
-                          </button>
-                        </li>
-                      )
-                    })}
-                  </ol>
-                )}
-              </CardContent>
-            </Card>
+            <StudyQueue data={data} scopeExamSlug={scopeExamSlug} onOpenPath={onOpenPath} />
           </section>
 
-          {/* ---------- P7-S4: the §22 revision queue (due / upcoming / weak) ---------- */}
-          {/* Placement: directly after the combined-exam queue — §22's dashboard
-              order is "combined-exam queue, due revisions" — the two
-              what-matters-now surfaces. Every row opens the §16 knowledge page
-              (revise loops back to learn, §22). */}
-          <section aria-labelledby="mastery-heading" className="space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 id="mastery-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
-                <CalendarClock className="h-5 w-5 text-rose-600" aria-hidden="true" />
-                Revision queue
+          {/* ---------- Revision progress (§22 stats, one compact row) ---------- */}
+          {data.mastery.stats.trackedUnitCount > 0 && (
+            <section aria-labelledby="revision-heading" className="space-y-3">
+              <h2 id="revision-heading" className="text-lg font-semibold tracking-tight">
+                Revision progress
               </h2>
-              {data.mastery.stats.trackedUnitCount > 0 && (
-                <div className="flex flex-wrap items-center gap-2" role="status">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
-                    <strong className="font-semibold">{data.mastery.stats.trackedUnitCount}</strong> tracked
-                  </span>
-                  {data.mastery.stats.averageScore !== null && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
-                      avg <strong className="font-semibold">{data.mastery.stats.averageScore}%</strong>
-                    </span>
-                  )}
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-xs text-zinc-600">
-                    from <strong className="font-semibold">{data.mastery.stats.submittedAttemptCount}</strong>{' '}
-                    {data.mastery.stats.submittedAttemptCount === 1 ? 'attempt' : 'attempts'}
-                  </span>
-                </div>
-              )}
-            </div>
-            <Card className="border-zinc-200 shadow-sm">
-              <CardContent className="space-y-4 p-5 sm:p-6">
-                {data.mastery.stats.trackedUnitCount === 0 ? (
-                  <div className="space-y-2 rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-500">
-                    <p>{data.mastery.note ?? 'No mastery yet — the revision queue builds from your submitted mock tests.'}</p>
-                    <p className="text-xs text-zinc-400">
-                      Attempt a mock test and every unit it touched starts a spaced-review schedule —
-                      due units then rise to the top of your learning queue.
+              <Card className="border-zinc-200 shadow-sm">
+                <CardContent className="space-y-4 p-4 sm:p-5">
+                  <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    <p className="text-sm text-zinc-600">
+                      <strong className="font-semibold text-zinc-900">
+                        {data.mastery.stats.trackedUnitCount}
+                      </strong>{' '}
+                      {data.mastery.stats.trackedUnitCount === 1 ? 'unit' : 'units'} tracked
                     </p>
-                  </div>
-                ) : (
-                  <>
-                    {data.mastery.note && (
-                      <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
-                        {data.mastery.note}
+                    {data.mastery.stats.averageScore !== null && (
+                      <p className="flex min-w-[220px] flex-1 flex-wrap items-center gap-2 text-sm text-zinc-600">
+                        <span>Average mastery</span>
+                        <span className="h-1.5 min-w-[80px] flex-1 overflow-hidden rounded-full bg-zinc-100">
+                          <span
+                            className={`block h-full rounded-full ${masteryBarClass(data.mastery.stats.averageScore)}`}
+                            style={{ width: `${Math.round(data.mastery.stats.averageScore)}%` }}
+                          />
+                        </span>
+                        <strong className="font-semibold text-zinc-900">
+                          {Math.round(data.mastery.stats.averageScore)}%
+                        </strong>
                       </p>
                     )}
+                  </div>
 
-                    {data.mastery.due.length > 0 && (
-                      <div className="space-y-2.5">
-                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-900">
-                          <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-100 px-1.5 text-[11px] font-semibold text-rose-700">
-                            {data.mastery.stats.dueCount}
-                          </span>
-                          due now
-                        </p>
-                        <ol
-                          className="max-h-96 space-y-2.5 overflow-y-auto pr-1"
-                          aria-label="Units due for revision"
+                  {data.mastery.weak.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-xs font-medium text-zinc-500">Needs work:</span>
+                      {data.mastery.weak.map((item) => (
+                        <button
+                          key={item.unit.slug}
+                          type="button"
+                          onClick={() => onOpenPath(item.unit.canonicalPath)}
+                          className="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 text-xs font-medium text-rose-700 transition-colors hover:border-rose-400"
                         >
-                          {data.mastery.due.map((item) => (
-                            <li key={item.unit.slug}>
-                              <button
-                                type="button"
-                                onClick={() => onOpenPath(item.unit.canonicalPath)}
-                                className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-rose-300 hover:bg-rose-50/30"
-                                aria-label={`Revise ${item.unit.canonicalName}`}
-                              >
-                                <div className="flex flex-wrap items-start justify-between gap-2">
-                                  <div className="min-w-0 flex-1">
-                                    <p className="break-words text-sm font-semibold leading-snug text-zinc-900">
-                                      {item.unit.canonicalName}
-                                    </p>
-                                    <p className="mt-0.5 text-xs text-zinc-500">
-                                      {item.unit.topicLabel}
-                                      {item.unit.status === 'RETIRED' && (
-                                        <span className="ml-1.5 font-medium text-amber-700">(unit retired — kept as history)</span>
-                                      )}
-                                    </p>
-                                  </div>
-                                  <span className="flex shrink-0 flex-wrap items-center gap-1.5">
-                                    {item.isWeak && (
-                                      <Badge variant="outline" className="border-rose-200 bg-rose-50 text-[10px] text-rose-700">
-                                        Weak
-                                      </Badge>
-                                    )}
-                                    <Badge
-                                      variant="outline"
-                                      className={`text-[10px] font-semibold ${masteryChipClass(item.masteryScore)}`}
-                                    >
-                                      Mastery {item.masteryScore}%
-                                    </Badge>
-                                    <Badge variant="outline" className="border-rose-200 bg-rose-50 text-[10px] font-semibold text-rose-700">
-                                      {dueLabel(item.dueInDays)}
-                                    </Badge>
-                                  </span>
-                                </div>
-                                <p className="mt-2 text-xs text-zinc-500">{item.reason}</p>
-                              </button>
-                            </li>
-                          ))}
-                        </ol>
-                      </div>
-                    )}
+                          {item.unit.canonicalName}
+                          <span className="font-semibold">{Math.round(item.masteryScore)}%</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
 
-                    {data.mastery.upcoming.length > 0 && (
-                      <div className="space-y-2">
-                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
-                          <ListChecks className="h-4 w-4 text-teal-600" aria-hidden="true" />
-                          Coming up (next 7 days)
-                        </p>
-                        <ul className="space-y-1.5">
-                          {data.mastery.upcoming.map((item) => (
-                            <li key={item.unit.slug}>
-                              <button
-                                type="button"
-                                onClick={() => onOpenPath(item.unit.canonicalPath)}
-                                className="flex w-full flex-wrap items-center justify-between gap-2 rounded-lg border border-zinc-100 bg-zinc-50/60 px-3 py-2 text-left transition-colors hover:border-teal-200 hover:bg-teal-50/40"
-                              >
-                                <span className="min-w-0 flex-1 truncate text-sm text-zinc-700">
-                                  {item.unit.canonicalName}
-                                  <span className="ml-1.5 text-xs text-zinc-400">{item.unit.topicLabel}</span>
-                                </span>
-                                <span className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500">
-                                  <span className={`font-semibold ${masteryChipClass(item.masteryScore).split(' ').pop() ?? ''}`}>
-                                    {item.masteryScore}%
-                                  </span>
-                                  · {dueLabel(item.dueInDays)}
-                                </span>
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  {data.mastery.note && (
+                    <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                      {data.mastery.note}
+                    </p>
+                  )}
 
-                    {data.mastery.weak.length > 0 && (
-                      <div className="space-y-2">
-                        <p className="flex items-center gap-2 text-sm font-medium text-zinc-700">
-                          <Target className="h-4 w-4 text-amber-600" aria-hidden="true" />
-                          Weak topics
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {data.mastery.weak.map((item) => (
-                            <button
-                              key={item.unit.slug}
-                              type="button"
-                              onClick={() => onOpenPath(item.unit.canonicalPath)}
-                              className="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50 px-3 text-xs font-medium text-rose-700 transition-colors hover:border-rose-400"
-                            >
-                              {item.unit.canonicalName}
-                              <span className="font-semibold">{item.masteryScore}%</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                  {/* §9 transparency: the stated §22 rules, on demand */}
+                  <details className="group rounded-md border border-zinc-200 bg-zinc-50/60 px-3 py-2">
+                    <summary className="cursor-pointer list-none text-xs font-medium text-zinc-600 group-open:text-zinc-900">
+                      How revision scheduling works
+                    </summary>
+                    <p className="mt-2 text-xs leading-relaxed text-zinc-500">{data.mastery.rules}</p>
+                  </details>
+                </CardContent>
+              </Card>
+            </section>
+          )}
 
-                    {/* §9 transparency: the stated §22 rules, on demand */}
-                    <details className="group rounded-md border border-zinc-200 bg-zinc-50/60 px-3 py-2">
-                      <summary className="cursor-pointer list-none text-xs font-medium text-zinc-600 group-open:text-zinc-900">
-                        How this schedule works
-                      </summary>
-                      <p className="mt-2 text-xs leading-relaxed text-zinc-500">{data.mastery.rules}</p>
-                    </details>
-                  </>
-                )}
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* ---------- P6-S4: current affairs for your exams (§12 step 5) ---------- */}
-          {/* Placement choice: directly after the combined-exam queue — the
-              queue is "what to study" and this rail is "what's happening for
-              your exams": the two §22 what-matters-now surfaces built from
-              the same §9 exam scope. The follows orbit and the saves rail
-              (retrieval-only, §10) stay secondary below. */}
+          {/* ---------- Current affairs for your exams (§12 step 5) ---------- */}
           <CurrentAffairsRail
             token={token}
             countryIso={countryIso}
@@ -949,48 +682,46 @@ export function DashboardView({
             onSignIn={onSignIn}
           />
 
-          {/* ---------- Subjects in your orbit (§34 followed topics) ---------- */}
+          {/* ---------- Subjects in your orbit (goal + followed) ---------- */}
           {(data.signals.followedTopics.length > 0 || (data.goal?.topics.length ?? 0) > 0) && (
             <section aria-labelledby="orbit-heading" className="space-y-3">
-              <h2 id="orbit-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
-                <Sparkles className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-                Subjects in your orbit
-              </h2>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h2 id="orbit-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+                  <Rss className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+                  Subjects in your orbit
+                </h2>
+                <a
+                  href="/following"
+                  className="text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
+                >
+                  Manage
+                </a>
+              </div>
               <Card className="border-zinc-200 shadow-sm">
-                <CardContent className="space-y-4 p-5 sm:p-6">
-                  {data.signals.followedTopics.length > 0 && (
-                    <div className="space-y-1.5">
-                      <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-zinc-400">
-                        <Rss className="h-3.5 w-3.5" aria-hidden="true" />
-                        Followed subjects
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {data.signals.followedTopics.map((topic) => (
-                          <button
-                            key={topic.slug}
-                            type="button"
-                            onClick={() => onOpenPath(topic.canonicalPath)}
-                            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1 text-sm text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
-                            aria-label={`Open ${topic.label}`}
-                          >
-                            {topic.label}
-                            {topic.status !== 'ACTIVE' && (
-                              <span className={`rounded-full border px-1.5 py-0.5 text-[10px] font-medium ${STATUS_STYLE[topic.status] ?? 'border-zinc-200 bg-zinc-50 text-zinc-500'}`}>
-                                {topic.status.toLowerCase()}
-                              </span>
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  <p className="text-xs text-zinc-400">
-                    Followed subjects re-rank your queue and explain its units — manage them in{' '}
-                    <a href="/following" className="font-medium text-emerald-700 hover:text-emerald-800">
-                      Following
-                    </a>
-                    .
-                  </p>
+                <CardContent className="p-4 sm:p-5">
+                  <div className="flex flex-wrap gap-1.5">
+                    {[...(data.goal?.topics ?? []), ...data.signals.followedTopics]
+                      .filter(
+                        (topic, index, all) =>
+                          all.findIndex((other) => other.slug === topic.slug) === index
+                      )
+                      .map((topic) => (
+                        <button
+                          key={topic.slug}
+                          type="button"
+                          onClick={() => onOpenPath(topic.canonicalPath)}
+                          className="inline-flex min-h-[32px] items-center rounded-full border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+                          aria-label={`Open ${topic.label}`}
+                        >
+                          {topic.label}
+                          {topic.status !== 'ACTIVE' && (
+                            <span className="ml-1.5 text-[10px] font-normal text-zinc-400">
+                              (retired)
+                            </span>
+                          )}
+                        </button>
+                      ))}
+                  </div>
                 </CardContent>
               </Card>
             </section>
@@ -999,7 +730,7 @@ export function DashboardView({
           {/* ---------- Recently saved (§10 — retrieval, never a signal) ---------- */}
           <section aria-labelledby="saves-heading" className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 id="saves-heading" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
+              <h2 id="saves-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
                 <Bookmark className="h-5 w-5 text-emerald-600" aria-hidden="true" />
                 Recently saved
               </h2>
@@ -1013,60 +744,193 @@ export function DashboardView({
               )}
             </div>
             <Card className="border-zinc-200 shadow-sm">
-              <CardContent className="p-5 sm:p-6">
+              <CardContent className="p-4 sm:p-5">
                 {data.saves.items.length === 0 ? (
                   <p className="text-sm text-zinc-500">
-                    Nothing saved yet. Save knowledge from any page — saves are pure retrieval and
-                    never influence this dashboard&apos;s recommendations.
+                    Nothing saved yet — tap Save on any knowledge page or story to keep it here
+                    for later.
                   </p>
                 ) : (
                   <ul className="space-y-2" aria-label="Your most recent saves">
-                    {data.saves.items.map((save) => (
-                      <li key={save.id}>
-                        <button
-                          type="button"
-                          onClick={() => onOpenPath(save.object.canonicalPath)}
-                          className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2.5 text-left transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
-                          aria-label={`Open ${saveObjectTitle(save.object)}`}
-                        >
-                          <div className="flex flex-wrap items-center justify-between gap-2">
-                            <p className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-900">
-                              {saveObjectTitle(save.object)}
-                            </p>
-                            <Badge
-                              variant="outline"
-                              className={`shrink-0 text-[10px] font-normal ${
-                                save.object.status === 'RETIRED' || save.object.status === 'ARCHIVED' || save.object.status === 'OUTDATED'
-                                  ? STATUS_STYLE.RETIRED
-                                  : 'border-zinc-200 bg-white text-zinc-500'
-                              }`}
+                    {data.saves.items.map((save) => {
+                      const type = saveTypeMeta(save.objectType)
+                      const TypeIcon = type.icon
+                      const tombstone = SAVE_TOMBSTONE[save.object.status]
+                      return (
+                        <li key={save.id}>
+                          <button
+                            type="button"
+                            onClick={() => onOpenPath(save.object.canonicalPath)}
+                            className="flex w-full items-center gap-3 rounded-lg border border-zinc-200 bg-white px-3 py-2.5 text-left transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
+                            aria-label={`Open ${saveObjectTitle(save.object)}`}
+                          >
+                            <span
+                              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-100 bg-zinc-50 text-zinc-500"
+                              aria-hidden="true"
                             >
-                              {save.object.status.toLowerCase()}
-                            </Badge>
-                          </div>
-                        </button>
-                      </li>
-                    ))}
+                              <TypeIcon className="h-4 w-4" />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-medium text-zinc-900">
+                                {saveObjectTitle(save.object)}
+                              </span>
+                              <span className="mt-0.5 block text-xs text-zinc-400">
+                                {type.label} · Saved {formatSavedAt(save.savedAt)}
+                              </span>
+                              {tombstone && (
+                                <span className="mt-0.5 block text-xs text-amber-700">{tombstone}</span>
+                              )}
+                            </span>
+                          </button>
+                        </li>
+                      )
+                    })}
                   </ul>
                 )}
-                <p className="mt-3 text-xs text-zinc-400">
-                  A save is a bookmark, never a recommendation signal.
-                </p>
               </CardContent>
             </Card>
           </section>
-
-          {/* ---------- §22 honest P7 note ---------- */}
-          <p className="text-center text-xs text-zinc-400">
-            Your personalisation data stays reviewable and reversible —{' '}
-            <a href="/profile" className="font-medium text-emerald-700 hover:text-emerald-800">
-              review it in your profile
-            </a>
-            .
-          </p>
         </>
       )}
     </div>
+  )
+}
+
+// ---------- The merged study queue (§11 queue ∪ §22 revision, due-first) ----------
+
+function StudyQueue({
+  data,
+  scopeExamSlug,
+  onOpenPath,
+}: {
+  data: ApiDashboard
+  scopeExamSlug: string | null
+  onOpenPath: (path: string) => void
+}) {
+  /**
+   * The merge: the §11 combined-exam queue renders each canonical unit
+   * once; the §22 revision rows join it (due-first ordering, deduped by
+   * slug) so a unit never appears twice. Revision rows merge only in the
+   * combined scope — a single-exam scope shows that exam's units.
+   */
+  const cards = useMemo<StudyCard[]>(() => {
+    const bySlug = new Map<string, StudyCard>()
+    for (const entry of data.queue.units) {
+      bySlug.set(entry.unit.unit.slug, queueCard(entry))
+    }
+    if (scopeExamSlug === null) {
+      for (const item of [...data.mastery.due, ...data.mastery.upcoming]) {
+        const existing = bySlug.get(item.unit.slug)
+        if (existing) {
+          // Enrich a queue row that somehow carries no mastery state.
+          if (existing.dueInDays === null) {
+            existing.dueInDays = item.dueInDays
+            existing.masteryScore = item.masteryScore
+          }
+          continue
+        }
+        bySlug.set(item.unit.slug, {
+          slug: item.unit.slug,
+          title: item.unit.canonicalName,
+          summary: null,
+          path: item.unit.canonicalPath,
+          subject: item.unit.topicLabel,
+          exam: null,
+          extraExamCount: 0,
+          masteryScore: item.masteryScore,
+          dueInDays: item.dueInDays,
+        })
+      }
+    }
+    return [...bySlug.values()].sort(
+      (a, b) => (a.dueInDays ?? Number.POSITIVE_INFINITY) - (b.dueInDays ?? Number.POSITIVE_INFINITY)
+    )
+  }, [data, scopeExamSlug])
+
+  const hasSignals =
+    data.signals.goalExamCount > 0 ||
+    data.signals.followedExamCount > 0 ||
+    data.signals.goalSubjectCount > 0 ||
+    data.signals.followedTopicCount > 0
+
+  if (cards.length === 0) {
+    return (
+      <div className="space-y-2 rounded-xl border border-dashed border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-500">
+        <p>
+          {hasSignals
+            ? 'No units in the queue right now — check the notes above.'
+            : 'Your queue appears once a declared or followed exam has an active syllabus.'}
+        </p>
+        <p className="text-xs text-zinc-400">
+          Units due for revision rise to the top once you have submitted attempts — try a mock
+          test from an exam page or subject hub.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="Your study queue" role="list">
+      {cards.map((card) => {
+        const tone = card.dueInDays === null ? null : DUE_TONE[dueTone(card.dueInDays)]
+        return (
+          <li key={card.slug}>
+            <button
+              type="button"
+              onClick={() => onOpenPath(card.path)}
+              className={`flex h-full w-full flex-col gap-2 rounded-xl border border-zinc-200 border-l-4 bg-white p-4 text-left shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/30 ${
+                tone ? tone.border : 'border-l-zinc-200'
+              }`}
+              aria-label={`Open ${card.title}`}
+            >
+              <div className="flex items-start justify-between gap-2">
+                <p className="min-w-0 flex-1 text-sm font-semibold leading-snug text-zinc-900">
+                  {card.title}
+                </p>
+                {tone && card.dueInDays !== null && (
+                  <span
+                    className={`inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium ${tone.label}`}
+                  >
+                    <span className={`h-1.5 w-1.5 rounded-full ${tone.dot}`} aria-hidden="true" />
+                    {dueLabel(card.dueInDays)}
+                  </span>
+                )}
+              </div>
+              {card.subject && (
+                <p className="text-xs font-medium text-zinc-500">{card.subject}</p>
+              )}
+              {card.summary && (
+                <p className="line-clamp-2 text-xs leading-relaxed text-zinc-500">{card.summary}</p>
+              )}
+              <div className="mt-auto space-y-2 pt-1">
+                {card.masteryScore !== null && (
+                  <div>
+                    <div className="flex items-center justify-between text-[11px] text-zinc-500">
+                      <span>Mastery</span>
+                      <span className="font-semibold text-zinc-700">
+                        {Math.round(card.masteryScore)}%
+                      </span>
+                    </div>
+                    <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-zinc-100">
+                      <div
+                        className={`h-full rounded-full ${masteryBarClass(card.masteryScore)}`}
+                        style={{ width: `${Math.max(2, Math.round(card.masteryScore))}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
+                {card.exam && (
+                  <p className="text-[11px] text-zinc-400">
+                    For {card.exam}
+                    {card.extraExamCount > 0 && ` +${card.extraExamCount} more`}
+                  </p>
+                )}
+              </div>
+            </button>
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
@@ -1140,140 +1004,87 @@ function CurrentAffairsRail({
     >
       <h2
         id="dashboard-current-affairs-heading"
-        className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+        className="flex items-center gap-2 text-lg font-semibold tracking-tight"
       >
         <Newspaper className="h-5 w-5 text-emerald-600" aria-hidden="true" />
         Current affairs for your exams
       </h2>
-      <Card className="border-zinc-200 shadow-sm">
-        <CardContent className="space-y-4 p-5 sm:p-6">
-          {loading ? (
-            <div
-              className="space-y-3"
-              aria-busy="true"
-              aria-label="Loading current affairs for your exams"
+      {loading ? (
+        <div
+          className="space-y-4"
+          aria-busy="true"
+          aria-label="Loading current affairs for your exams"
+        >
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[0, 1, 2].map((index) => (
+              <Skeleton key={index} className="h-32 w-full rounded-xl" />
+            ))}
+          </div>
+        </div>
+      ) : authLost ? (
+        // §31: honest degraded state — the session can no longer carry this surface
+        <Card className="border-zinc-200 shadow-sm">
+          <CardContent className="flex flex-col items-start gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-zinc-600">
+              Sign in to see current affairs picked for your exams.
+            </p>
+            <Button
+              size="sm"
+              className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
+              onClick={onSignIn}
             >
-              {[0, 1, 2].map((index) => (
-                <Skeleton key={index} className="h-20 w-full rounded-lg" />
-              ))}
-            </div>
-          ) : authLost ? (
-            // §31: honest degraded state — the session can no longer carry this surface
-            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-zinc-600">
-                Sign in to see current affairs picked for your exams.
-              </p>
-              <Button
-                size="sm"
-                className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-                onClick={onSignIn}
-              >
-                <LogIn className="h-4 w-4" aria-hidden="true" />
-                Sign in
-              </Button>
-            </div>
-          ) : failed ? (
-            // Quiet by design: the dashboard stands alone if the feed is down
-            <p className="text-sm text-zinc-500">
-              Current affairs could not be loaded right now.
-            </p>
-          ) : !feed || feed.items.length === 0 ? (
-            // §36: the server's honest empty-scope note, rendered verbatim
-            <p className="text-sm text-zinc-500">
-              {feed?.note ?? 'No current affairs picked for your exams yet.'}
-            </p>
-          ) : (
-            <>
-              {/* §11 step 8 style: which exams picked this rail */}
-              {feed.exams.length > 0 && (
-                <p
-                  className="flex flex-wrap items-center gap-1.5 text-xs text-zinc-500"
-                  aria-label="Exams this feed is picked for"
+              <LogIn className="h-4 w-4" aria-hidden="true" />
+              Sign in
+            </Button>
+          </CardContent>
+        </Card>
+      ) : failed ? (
+        // Quiet by design: the dashboard stands alone if the feed is down
+        <p className="text-sm text-zinc-500">
+          Current affairs could not be loaded right now.
+        </p>
+      ) : !feed || feed.items.length === 0 ? (
+        // §36: the server's honest empty-scope note, rendered verbatim
+        <p className="text-sm text-zinc-500">
+          {feed?.note ?? 'No current affairs picked for your exams yet.'}
+        </p>
+      ) : (
+        <div className="space-y-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {feed.items.map((item) => (
+              <li key={item.slug}>
+                <button
+                  type="button"
+                  onClick={() => onOpenPath(item.canonicalPath)}
+                  className="flex h-full w-full flex-col gap-1.5 rounded-xl border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
+                  aria-label={`Open the event page for ${item.title}`}
                 >
-                  <span className="font-medium text-zinc-600">Picked for:</span>
-                  {feed.exams.map((exam, index) => (
-                    <span key={exam.slug} className="inline-flex items-center gap-1.5">
-                      {index > 0 && (
-                        <span className="text-zinc-300" aria-hidden="true">
-                          +
-                        </span>
-                      )}
-                      <Badge
-                        variant="outline"
-                        className="border-zinc-200 bg-white font-normal text-zinc-600"
-                      >
-                        {exam.name}
-                      </Badge>
+                  {item.topic.label && (
+                    <span className="text-[11px] font-medium uppercase tracking-wide text-orange-700">
+                      {item.topic.label}
                     </span>
-                  ))}
-                </p>
-              )}
-              <ol
-                className="max-h-[24rem] space-y-3 overflow-y-auto pr-1"
-                aria-label="Current affairs picked for your exams"
-              >
-                {feed.items.map((item) => {
-                  const lifecycle = FEED_LIFECYCLE_META[item.lifecycleState]
-                  return (
-                    <li key={item.slug}>
-                      <button
-                        type="button"
-                        onClick={() => onOpenPath(item.canonicalPath)}
-                        className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/30"
-                        aria-label={`Open the event page for ${item.title}`}
-                      >
-                        <div className="flex flex-wrap items-start justify-between gap-2">
-                          <p className="min-w-0 flex-1 text-sm font-semibold leading-snug text-zinc-900">
-                            {item.title}
-                          </p>
-                          <Badge
-                            variant="outline"
-                            className={`shrink-0 text-[10px] font-normal ${lifecycle.tone}`}
-                            title={lifecycle.note}
-                          >
-                            {lifecycle.label}
-                          </Badge>
-                        </div>
-                        <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-500">
-                          <span className="inline-flex items-center gap-1 text-zinc-400">
-                            <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                            {formatFeedDate(item.eventDate)}
-                          </span>
-                          <Badge
-                            variant="outline"
-                            className={`text-[10px] font-normal ${FEED_FRESHNESS_META[item.freshness.tier].tone}`}
-                            title={`${item.freshness.label} — based on the event date`}
-                          >
-                            {item.freshness.label}
-                          </Badge>
-                          <span className="text-zinc-300" aria-hidden="true">
-                            ·
-                          </span>
-                          <span>{item.topic.label}</span>
-                        </p>
-                        {/* §9: the reason sentence, rendered verbatim */}
-                        <p className="mt-1.5 flex items-start gap-1.5 text-xs text-zinc-500">
-                          <Lightbulb
-                            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600"
-                            aria-hidden="true"
-                          />
-                          <span>{item.reason}</span>
-                        </p>
-                      </button>
-                    </li>
-                  )
-                })}
-              </ol>
-              {feed.pagination.total > feed.items.length && (
-                <p className="text-xs text-zinc-400">
-                  Showing {feed.items.length} of {feed.pagination.total} picked{' '}
-                  {feed.pagination.total === 1 ? 'event' : 'events'}.
-                </p>
-              )}
-            </>
+                  )}
+                  <p className="text-sm font-semibold leading-snug text-zinc-900">{item.title}</p>
+                  {item.summary && (
+                    <p className="line-clamp-2 text-xs leading-relaxed text-zinc-500">
+                      {item.summary}
+                    </p>
+                  )}
+                  <p className="mt-auto pt-1 text-[11px] text-zinc-400">
+                    {formatFeedDate(item.eventDate)}
+                  </p>
+                </button>
+              </li>
+            ))}
+          </ul>
+          {feed.pagination.total > feed.items.length && (
+            <p className="text-xs text-zinc-400">
+              Showing {feed.items.length} of {feed.pagination.total} picked{' '}
+              {feed.pagination.total === 1 ? 'event' : 'events'}.
+            </p>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      )}
     </section>
   )
 }

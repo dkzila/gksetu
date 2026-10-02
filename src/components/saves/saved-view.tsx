@@ -3,40 +3,45 @@
 import { navigateToPath } from '@/components/home/app-router'
 
 /**
- * GKSetu — the Saved view (P5-S2, #/saved)
+ * GKSetu — the Saved view (P5-S2, /saved; SITE-S4-A redesign)
  * Master Plan §10 (Save = retrieval into user-defined collections; default
  * "Saved"; tombstones for withdrawn content), §31 (the account-control
  * surface over saved data — review, move, remove, organise), §16 (private
  * authenticated surface: noindex, never in the sitemap).
  *
- * The symmetric management surface to #/following (the P5-S1 precedent):
- * collections with live counts, saved items with honest §36 states, one-click
- * move/remove, and the §10 boundary footnote (saves are bookmarks — they
- * never feed recommendations; follows are the personalisation half).
+ * SITE-S4-A: one compact redesign — a single header (title + inline count +
+ * New collection / Refresh actions), the collection tab row, and clean item
+ * rows: plain-words type + icon, title, snippet, "Saved {date}", compact
+ * move/remove controls. No mono kind badges, difficulty chips, raw language
+ * codes or status badges — only honest plain-language tombstones.
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
+  BookOpen,
   Bookmark,
   BookmarkX,
   CalendarClock,
   Check,
+  CircleHelp,
+  FileText,
   FolderInput,
-  FolderPlus,
   Link2,
+  ListChecks,
   Loader2,
   LogIn,
+  Newspaper,
   Pencil,
   Plus,
   RefreshCw,
+  Timer,
   Trash2,
   X,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
 import { useAuth } from '@/stores/auth'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -69,20 +74,38 @@ function formatSavedAt(iso: string): string {
   if (hours < 24) return `${hours} h ago`
   const days = Math.round(hours / 24)
   if (days < 30) return `${days} d ago`
-  return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 /**
  * §10/§36 honesty: withdrawn/end-of-life objects stay listed as tombstones —
- * the collection never silently corrupts or loses rows without explanation.
+ * plain words, never raw status codes.
  */
-const TOMBSTONE_NOTES: Record<string, { label: string; className: string }> = {
-  RETIRED: { label: 'Withdrawn — kept as a record', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  ARCHIVED: { label: 'Archived — kept for reference', className: 'border-amber-200 bg-amber-50 text-amber-800' },
-  OUTDATED: { label: 'Flagged for correction', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
-  DRAFT: { label: 'Not public anymore', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
-  IN_REVIEW: { label: 'Not public anymore', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
-  SCHEDULED: { label: 'Scheduled — not live yet', className: 'border-zinc-200 bg-zinc-50 text-zinc-500' },
+const TOMBSTONE_NOTES: Record<string, string> = {
+  RETIRED: 'No longer available — kept for your history',
+  ARCHIVED: 'Archived — kept for reference',
+  OUTDATED: 'Being corrected — details may change',
+  DRAFT: 'Not available right now',
+  IN_REVIEW: 'Not available right now',
+  SCHEDULED: 'Not published yet',
+}
+
+/** The plain-words type + icon for each saved object (no mono badges). */
+function saveTypeMeta(save: ApiSave): { icon: typeof BookOpen; label: string } {
+  switch (save.object.kind) {
+    case 'CURRENT_EVENT':
+      return { icon: Newspaper, label: 'Current affairs' }
+    case 'QNA':
+      return { icon: CircleHelp, label: 'Q&A' }
+    case 'QUESTION':
+      return { icon: ListChecks, label: 'MCQ' }
+    case 'MOCK_TEST':
+      return { icon: Timer, label: 'Mock test' }
+    case 'CONTENT_ITEM':
+      return { icon: FileText, label: 'Article' }
+    default:
+      return { icon: BookOpen, label: 'Notes' }
+  }
 }
 
 // ---------- Component ----------
@@ -98,6 +121,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
   const [busyId, setBusyId] = useState<string | null>(null)
 
   // Collection create / rename inline forms.
+  const [showNewForm, setShowNewForm] = useState(false)
   const [newName, setNewName] = useState('')
   const [creating, setCreating] = useState(false)
   const [renaming, setRenaming] = useState<string | null>(null)
@@ -235,6 +259,7 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
       if (payload.status === 'ok' && payload.data) {
         toast({ title: `Collection “${name}” created`, description: 'Move saved items into it below.' })
         setNewName('')
+        setShowNewForm(false)
         await fetchList()
         setActiveCollection(payload.data.collection.id)
       } else {
@@ -319,29 +344,39 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
 
   if (status !== 'authenticated' || !user) {
     return (
-      <Card className="border-zinc-200 bg-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-base">
-            <Bookmark className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-            Your collections live behind sign-in
-          </CardTitle>
-          <CardDescription>
-            Saving keeps any knowledge page or published content in your personal
-            collections — the default “Saved”, or one of your own. Saves are just
-            bookmarks: they never feed recommendations.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap items-center gap-3">
-          <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onSignIn}>
-            <LogIn className="h-4 w-4" aria-hidden="true" />
-            Sign in to see your collections
-          </Button>
-          <Button variant="ghost" size="sm" className="gap-2 text-zinc-500" onClick={onGoHome}>
-            Browse GKSetu instead
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Button>
-        </CardContent>
-      </Card>
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-labelledby="saved-heading"
+        className="mx-auto max-w-xl"
+      >
+        <Card className="border-zinc-200 bg-white shadow-sm">
+          <CardHeader className="text-center">
+            <span
+              className="mx-auto mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50"
+              aria-hidden="true"
+            >
+              <Bookmark className="h-5 w-5 text-emerald-600" />
+            </span>
+            <CardTitle id="saved-heading" className="text-xl">
+              Your saved items
+            </CardTitle>
+            <CardDescription>
+              Keep any knowledge page, story, Q&A or mock test in your personal collections.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-3">
+            <Button className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onSignIn}>
+              <LogIn className="h-4 w-4" aria-hidden="true" />
+              Sign in to see your saves
+            </Button>
+            <Button variant="ghost" size="sm" className="text-zinc-500" onClick={onGoHome}>
+              Browse GKSetu instead
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.section>
     )
   }
 
@@ -353,21 +388,19 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
       onOpenEvent(save.object.slug)
     } else if (save.object.kind === 'MOCK_TEST') {
       // P7-S3 §10/§16 — the test's own runner page is the retrieval surface;
-      // canonicalPath is the server-built §16 URL, mirrored after the hash.
+      // canonicalPath is the server-built §16 URL.
       navigateToPath(save.object.canonicalPath)
     } else {
       // The item's own language market — the summary resolved it (§35).
-      // P7-S1: saved Q&A rows reopen the unit's §22 page (the Practice —
-      // Q&A layer the entry lives in), in the entry's own language.
-      // P7-S2: saved QUESTION rows do the same — their retrieval surface is
-      // the unit's scored "Practice — Test yourself" layer.
+      // P7-S1/P7-S2: saved Q&A and MCQ rows reopen the unit's §22 page in
+      // the entry's own language.
       onOpenSavedUnit(save.object.topicSlug, save.object.unit.slug, save.object.languageCode)
     }
   }
 
   return (
     <div className="space-y-8">
-      {/* ---------- Header ---------- */}
+      {/* ---------- Header — title + inline count + actions ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -375,77 +408,89 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
         aria-labelledby="saved-heading"
         className="space-y-3"
       >
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">Collections</Badge>
-          <Badge variant="outline" className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700">
-            Personal bookmarks — never used for recommendations
-          </Badge>
-        </div>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 id="saved-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h1 id="saved-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
               Saved
+              {data && data.counts.total > 0 && (
+                <span className="ml-2 align-middle text-base font-normal text-zinc-400">
+                  ({data.counts.total} {data.counts.total === 1 ? 'item' : 'items'})
+                </span>
+              )}
             </h1>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-600">
-              Your bookmarks across GKSetu — knowledge pages and published content,
-              organised into collections. Saved rows keep pointing at the same content, so
-              updates never create duplicates.
+            <p className="mt-1 text-sm text-zinc-600">
+              Your bookmarks across GKSetu, organised into collections.
             </p>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700"
-            onClick={() => void fetchList()}
-            disabled={loading}
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
-            Refresh
-          </Button>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              size="sm"
+              className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
+              onClick={() => setShowNewForm((open) => !open)}
+            >
+              <Plus className="h-4 w-4" aria-hidden="true" />
+              New collection
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 border-zinc-200 bg-white hover:border-emerald-300 hover:text-emerald-700"
+              onClick={() => void fetchList()}
+              disabled={loading}
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
+              Refresh
+            </Button>
+          </div>
         </div>
-        {data && (
-          <div className="flex flex-wrap items-center gap-2 text-sm" role="status">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-              <Bookmark className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-              <strong className="font-semibold">{data.counts.total}</strong>
-              <span className="text-zinc-500">saved</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-              <strong className="font-semibold">{data.counts.KNOWLEDGE_UNIT}</strong>
-              <span className="text-zinc-500">knowledge pages</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-              <strong className="font-semibold">{data.counts.CONTENT_ITEM}</strong>
-              <span className="text-zinc-500">content items</span>
-            </span>
-            {data.counts.CURRENT_EVENT > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                <strong className="font-semibold">{data.counts.CURRENT_EVENT}</strong>
-                <span className="text-zinc-500">current events</span>
-              </span>
-            )}
-            {data.counts.QNA > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                <strong className="font-semibold">{data.counts.QNA}</strong>
-                <span className="text-zinc-500">Q&amp;A</span>
-              </span>
-            )}
-            {data.counts.QUESTION > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                <strong className="font-semibold">{data.counts.QUESTION}</strong>
-                <span className="text-zinc-500">
-                  {data.counts.QUESTION === 1 ? 'question' : 'questions'}
-                </span>
-              </span>
-            )}
-            {data.counts.MOCK_TEST > 0 && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 py-1.5">
-                <strong className="font-semibold">{data.counts.MOCK_TEST}</strong>
-                <span className="text-zinc-500">
-                  {data.counts.MOCK_TEST === 1 ? 'test' : 'tests'}
-                </span>
-              </span>
-            )}
+
+        {/* New collection inline form */}
+        {showNewForm && (
+          <div className="flex flex-wrap items-center gap-2 rounded-xl border border-zinc-200 bg-white p-3">
+            <label htmlFor="new-collection" className="sr-only">
+              New collection name
+            </label>
+            <Input
+              id="new-collection"
+              value={newName}
+              onChange={(event) => setNewName(event.target.value)}
+              placeholder="e.g. Revision, Important Polity"
+              className="h-9 w-full sm:w-64 border-zinc-200 text-sm"
+              maxLength={60}
+              autoFocus
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') void createCollection()
+                if (event.key === 'Escape') {
+                  setNewName('')
+                  setShowNewForm(false)
+                }
+              }}
+            />
+            <Button
+              size="sm"
+              className="gap-1.5 bg-emerald-600 text-white hover:bg-emerald-700"
+              onClick={() => void createCollection()}
+              disabled={creating || newName.trim().length === 0}
+            >
+              {creating ? (
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <Check className="h-4 w-4" aria-hidden="true" />
+              )}
+              Create
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1.5 text-zinc-500"
+              onClick={() => {
+                setNewName('')
+                setShowNewForm(false)
+              }}
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+              Cancel
+            </Button>
           </div>
         )}
       </motion.section>
@@ -485,42 +530,9 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
         <>
           {/* ---------- Collections bar (§10) ---------- */}
           <section aria-labelledby="collections-heading" className="space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 id="collections-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
-                <FolderPlus className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-                Collections
-              </h2>
-              {/* New collection inline form */}
-              <div className="flex flex-wrap items-center gap-2">
-                <label htmlFor="new-collection" className="sr-only">
-                  New collection name
-                </label>
-                <Input
-                  id="new-collection"
-                  value={newName}
-                  onChange={(event) => setNewName(event.target.value)}
-                  placeholder="e.g. Revision, Important Polity"
-                  className="h-9 w-56 border-zinc-200 bg-white text-sm"
-                  maxLength={60}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter') void createCollection()
-                  }}
-                />
-                <Button
-                  size="sm"
-                  className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
-                  onClick={() => void createCollection()}
-                  disabled={creating || newName.trim().length === 0}
-                >
-                  {creating ? (
-                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  ) : (
-                    <Plus className="h-4 w-4" aria-hidden="true" />
-                  )}
-                  New collection
-                </Button>
-              </div>
-            </div>
+            <h2 id="collections-heading" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+              Collections
+            </h2>
 
             <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter by collection">
               <button
@@ -682,36 +694,32 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
 
           {/* ---------- Empty states ---------- */}
           {data.counts.total === 0 ? (
-            <Card className="border-zinc-200 bg-white">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <BookmarkX className="h-5 w-5 text-zinc-400" aria-hidden="true" />
-                  Nothing saved yet
-                </CardTitle>
-                <CardDescription>
-                  Open any knowledge page and press “Save” — the page joins your default
-                  “Saved” collection, and you can organise it into custom collections here.
-                  Saves are just bookmarks: they never influence recommendations.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button size="sm" className="gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onGoHome}>
+            <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+              <CardContent className="flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-3">
+                  <BookmarkX className="mt-0.5 h-5 w-5 shrink-0 text-zinc-400" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-900">Nothing saved yet</p>
+                    <p className="mt-0.5 max-w-xl text-sm text-zinc-600">
+                      Tap Save on any knowledge page, story, Q&A or mock test — it lands in your
+                      default “Saved” collection, and you can organise it into collections here.
+                    </p>
+                  </div>
+                </div>
+                <Button size="sm" className="shrink-0 gap-2 bg-emerald-600 text-white hover:bg-emerald-700" onClick={onGoHome}>
                   Browse knowledge
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </CardContent>
             </Card>
           ) : items.length === 0 ? (
-            <Card className="border-zinc-200 bg-white">
-              <CardHeader>
-                <CardTitle className="text-base">This collection is empty</CardTitle>
-                <CardDescription>
-                  Move saved items into “{activeCollectionRow?.name ?? 'this collection'}” with the
-                  move control on each card below — or save something new from any knowledge page.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button size="sm" variant="outline" className="gap-2 border-zinc-200" onClick={() => setActiveCollection(null)}>
+            <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
+              <CardContent className="flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm text-zinc-600">
+                  Nothing in “{activeCollectionRow?.name ?? 'this collection'}” yet — move saved
+                  items here with the collection control on each row below.
+                </p>
+                <Button size="sm" variant="outline" className="shrink-0 gap-2 border-zinc-200 bg-white" onClick={() => setActiveCollection(null)}>
                   See all saved items
                 </Button>
               </CardContent>
@@ -722,109 +730,75 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                 {activeCollectionRow ? `In “${activeCollectionRow.name}”` : 'All saved items'}
                 <span className="ml-2 text-sm font-normal text-zinc-400">({items.length})</span>
               </h2>
-              <ul className="space-y-3">
+              {/* >8 rows: a capped, slim-scrollbar list keeps the page compact */}
+              <ul
+                className={
+                  items.length > 8
+                    ? 'gksetu-scroll max-h-[640px] space-y-3 overflow-y-auto pr-1'
+                    : 'space-y-3'
+                }
+              >
                 {items.map((save) => {
                   const object = save.object
-                  const isUnit = object.kind === 'KNOWLEDGE_UNIT'
-                  const isEvent = object.kind === 'CURRENT_EVENT'
-                  const isQna = object.kind === 'QNA'
-                  const isQuestion = object.kind === 'QUESTION'
-                  const isMockTest = object.kind === 'MOCK_TEST'
-                  const title = isUnit
-                    ? object.canonicalName
-                    : isQna || isQuestion
-                      ? object.question
-                      : object.title
-                  const statusNote = TOMBSTONE_NOTES[isUnit ? object.status : isEvent ? object.lifecycleState : object.status]
+                  const type = saveTypeMeta(save)
+                  const TypeIcon = type.icon
+                  const title =
+                    object.kind === 'KNOWLEDGE_UNIT'
+                      ? object.canonicalName
+                      : object.kind === 'QNA' || object.kind === 'QUESTION'
+                        ? object.question
+                        : object.title
+                  const tombstone =
+                    TOMBSTONE_NOTES[
+                      object.kind === 'CURRENT_EVENT' ? object.lifecycleState : object.status
+                    ] ?? null
                   const collection = collectionById.get(save.collectionId)
+                  // Context after the type word — plain, one line.
+                  let context: string
+                  if (object.kind === 'CURRENT_EVENT') {
+                    context = `${object.topicCanonicalName} · ${new Date(object.eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`
+                  } else if (object.kind === 'QNA' || object.kind === 'QUESTION') {
+                    context = `${object.topicCanonicalName} · from ${object.unit.canonicalName}`
+                  } else if (object.kind === 'MOCK_TEST') {
+                    context = `${object.scopeLabel} · ${object.questionCount} ${object.questionCount === 1 ? 'question' : 'questions'} · ${object.durationMinutes} min`
+                  } else {
+                    // KNOWLEDGE_UNIT and CONTENT_ITEM both carry the topic name.
+                    context = object.topicCanonicalName
+                  }
+                  const snippet =
+                    object.kind === 'QNA'
+                      ? object.answerExcerpt
+                      : object.kind === 'KNOWLEDGE_UNIT'
+                        ? object.canonicalSummary
+                        : null
                   return (
                     <li key={save.id}>
                       <Card className="border-zinc-200 bg-white shadow-sm transition-colors hover:border-emerald-300">
-                        <CardContent className="flex flex-wrap items-center gap-3 p-4">
-                          {/* basis-52: at narrow widths the actions wrap to their
-                              own line instead of squeezing the title (the
-                              truncate span needs a width-constrained block
-                              button — inline-block shrinks to the full
-                              single-line text width). */}
+                        <CardContent className="flex flex-wrap items-start gap-3 p-4">
+                          <span
+                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-100 bg-zinc-50 text-zinc-500"
+                            aria-hidden="true"
+                          >
+                            <TypeIcon className="h-4 w-4" />
+                          </span>
                           <div className="min-w-0 flex-1 basis-52 sm:basis-64">
-                            <button type="button" onClick={() => openItem(save)} className="block w-full min-h-[32px] text-left">
-                              <span className="block truncate font-semibold text-zinc-900 hover:text-emerald-700">
+                            <button type="button" onClick={() => openItem(save)} className="flex w-full min-h-[44px] items-center text-left">
+                              <span className="min-w-0 truncate font-semibold leading-snug text-zinc-900 hover:text-emerald-700">
                                 {title}
                               </span>
                             </button>
-                            <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-500">
-                              <Badge
-                                variant="outline"
-                                className={`font-mono text-[10px] font-normal ${
-                                  isUnit
-                                    ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                                    : isEvent
-                                      ? 'border-orange-200 bg-orange-50 text-orange-700'
-                                      : isQna
-                                        ? 'border-violet-200 bg-violet-50 text-violet-700'
-                                        : isQuestion
-                                          ? 'border-amber-200 bg-amber-50 text-amber-700'
-                                          : isMockTest
-                                            ? 'border-emerald-300 bg-emerald-100 text-emerald-800'
-                                            : 'border-teal-200 bg-teal-50 text-teal-700'
-                                }`}
-                              >
-                                {isUnit
-                                  ? 'UNIT'
-                                  : isEvent
-                                    ? 'EVENT'
-                                    : isQna
-                                      ? 'Q&A'
-                                      : isQuestion
-                                        ? 'MCQ'
-                                        : isMockTest
-                                          ? 'MOCK TEST'
-                                          : object.format}
-                              </Badge>
-                              {isQuestion && (
-                                <Badge
-                                  variant="outline"
-                                  className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500"
-                                  title="The difficulty from the revision you saved"
-                                >
-                                  {object.difficulty}
-                                </Badge>
-                              )}
-                              {!isUnit && !isMockTest && <span>{object.languageCode}</span>}
-                              {!isUnit && !isMockTest && <span aria-hidden="true">·</span>}
-                              {isMockTest ? (
-                                <>
-                                  <span>
-                                    {object.questionCount} question{object.questionCount === 1 ? '' : 's'} ·{' '}
-                                    {object.durationMinutes} min · pass {object.passPercent}%
-                                  </span>
-                                  <span aria-hidden="true">·</span>
-                                  <span>{object.scopeLabel}</span>
-                                  <span aria-hidden="true">·</span>
-                                  <span>{object.languageCode}</span>
-                                </>
-                              ) : (
-                                <>
-                                  <span>{object.topicCanonicalName}</span>
-                                  <span aria-hidden="true">·</span>
-                                  <span>
-                                    {isUnit
-                                      ? object.type.toLowerCase().replace('_', ' ')
-                                      : isEvent
-                                        ? `event of ${new Date(object.eventDate).toLocaleDateString(undefined, {
-                                            day: 'numeric',
-                                            month: 'short',
-                                            year: 'numeric',
-                                          })}`
-                                        : object.unit.canonicalName}
-                                  </span>
-                                </>
-                              )}
-                            </div>
-                            <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
+                            <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-xs text-zinc-500">
+                              <span className="font-medium text-zinc-600">{type.label}</span>
+                              <span aria-hidden="true">·</span>
+                              <span>{context}</span>
+                            </p>
+                            {snippet && (
+                              <p className="mt-1 line-clamp-1 text-xs text-zinc-500">{snippet}</p>
+                            )}
+                            <p className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-zinc-400">
                               <CalendarClock className="h-3 w-3" aria-hidden="true" />
-                              <span>saved {formatSavedAt(save.savedAt)}</span>
-                              {collection && (
+                              <span>Saved {formatSavedAt(save.savedAt)}</span>
+                              {collection && activeCollection === null && (
                                 <>
                                   <span aria-hidden="true">·</span>
                                   <span className="inline-flex items-center gap-1">
@@ -833,11 +807,9 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                                   </span>
                                 </>
                               )}
-                            </div>
-                            {statusNote && (
-                              <Badge variant="outline" className={`mt-2 text-[10px] font-normal ${statusNote.className}`}>
-                                {statusNote.label}
-                              </Badge>
+                            </p>
+                            {tombstone && (
+                              <p className="mt-1.5 text-xs text-amber-700">{tombstone}</p>
                             )}
                           </div>
                           <div className="flex shrink-0 flex-wrap items-center gap-2">
@@ -889,15 +861,6 @@ export function SavedView({ onOpenSavedUnit, onOpenEvent, onGoHome, onSignIn }: 
                 })}
               </ul>
             </section>
-          )}
-
-          {/* ---------- Footer note (§10 boundary) ---------- */}
-          {data.counts.total > 0 && (
-            <p className="flex items-start gap-2 text-xs text-zinc-400">
-              <Bookmark className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              Saves are retrieval bookmarks — they never feed your feed, notifications or
-              recommendations. Following exams and topics (the personalisation half) lives on the Following page.
-            </p>
           )}
         </>
       )}
