@@ -77,7 +77,12 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
   const publicCountry = await getPublicCountry(isoCode)
   if (!publicCountry) return null
 
-  const languages = publicCountry.languages.map((language) => ({ code: language.code }))
+  // SITE-S2 — only LIVE languages get sitemap segments: a PLANNED ("Soon")
+  // language serves honest English-fallback content and is excluded from
+  // hreflang alternates (page-seo) — the census follows the same honesty.
+  const languages = publicCountry.languages
+    .filter((language) => language.contentStatus !== 'PLANNED')
+    .map((language) => ({ code: language.code }))
   const defaultLanguageCode = publicCountry.defaultLanguage.code
 
   // ---------- Visible topics + per-topic unit counts/lastmod (§14 scope) ----------

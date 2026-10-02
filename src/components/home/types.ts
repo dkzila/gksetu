@@ -17,6 +17,8 @@ export interface ApiCountryLanguage {
   direction: 'LTR' | 'RTL'
   /** §16 canonical home URL for this language inside the country. */
   url: string
+  /** SITE-S2 — PLANNED = announced ("Soon" chip), English-fallback content. */
+  contentStatus: 'LIVE' | 'PLANNED'
 }
 
 export interface ApiCountry {
@@ -129,6 +131,8 @@ export interface CountryHomepage {
     direction: 'LTR' | 'RTL'
     url: string
     isDefault: boolean
+    /** SITE-S2 — PLANNED = "Soon" chip in the Read-in row. */
+    contentStatus: 'LIVE' | 'PLANNED'
   }>
   categories: HomeCategory[]
   majorTopics: HomeTopicCard[]

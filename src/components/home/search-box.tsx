@@ -47,9 +47,11 @@ export interface SearchBoxProps {
   onOpenExam: (slug: string) => void
   /** P6-S2: opens the §16 current-affairs event page in-app. */
   onOpenEvent?: (slug: string) => void
+  /** SITE-S2 — localized placeholder (defaults to the English copy). */
+  placeholder?: string
 }
 
-export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenExam, onOpenEvent }: SearchBoxProps) {
+export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenExam, onOpenEvent, placeholder }: SearchBoxProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchItem[] | null>(null)
   const [total, setTotal] = useState(0)
@@ -148,7 +150,7 @@ export function SearchBox({ country, language, onOpenTopic, onOpenUnit, onOpenEx
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search topics, knowledge, exams…"
+            placeholder={placeholder ?? "Search topics, knowledge, exams…"}
             aria-label="Search GKSetu"
             className="h-11 rounded-lg border-zinc-200 bg-white pl-9 pr-9 text-base shadow-sm focus-visible:ring-emerald-500"
           />

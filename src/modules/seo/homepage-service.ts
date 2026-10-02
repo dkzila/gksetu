@@ -95,8 +95,12 @@ async function loadCountryHomepage(input: {
   )
 
   // ---------- §34 GK categories — top-level domains with §33 cluster previews ----------
+  // SITE-S1: the `current-affairs` domain is excluded — it has its own
+  // dedicated /current-affairs/ page and nav item (the subjects grid is the
+  // evergreen library, the daily read is its own surface).
+  const subjectRoots = tree.filter((root) => root.slug !== 'current-affairs')
   const categoryDetails = await Promise.all(
-    tree.map(async (root) => {
+    subjectRoots.map(async (root) => {
       try {
         return await getPublicTopic(root.slug, {
           country: input.country,
@@ -109,7 +113,7 @@ async function loadCountryHomepage(input: {
     })
   )
 
-  const categories: HomepageCategory[] = tree.map((root, index) => {
+  const categories: HomepageCategory[] = subjectRoots.map((root, index) => {
     const detail = categoryDetails[index]
     const counts = subtreeCounts(root, unitCountByTopic)
     return {
@@ -198,6 +202,7 @@ async function loadCountryHomepage(input: {
     direction: language.direction,
     url: language.url,
     isDefault: language.code === context.defaultLanguageCode,
+    contentStatus: language.contentStatus,
   }))
 
   // ---------- §16 SEO block (P4-S4) — canonical, hreflang cluster, lastmod ----------

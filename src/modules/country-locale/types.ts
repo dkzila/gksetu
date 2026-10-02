@@ -18,6 +18,9 @@ export interface PublicLanguageRef {
   direction: LanguageDirectionPublic
   /** Canonical home URL for this language inside the country (§16). */
   url: string
+  /** SITE-S2 — PLANNED = announced ("Soon" in the UI), §35 honest English
+   * fallback until content ships; excluded from hreflang alternates. */
+  contentStatus: 'LIVE' | 'PLANNED'
 }
 
 export interface PublicCountry {

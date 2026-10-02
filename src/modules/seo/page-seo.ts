@@ -33,7 +33,11 @@ export function buildPageSeo(input: {
   country: { slug: string; isDefault: boolean }
   defaultLanguageCode: string
   languageCode: string
-  languages: Array<{ code: string }>
+  /** SITE-S2 — entries may carry contentStatus; PLANNED ("Soon") languages
+   * are dropped from the hreflang cluster (honest alternates only — the
+   * page content is English-fallback there, and a cluster member must be a
+   * real variant). The rendered language itself always stays. */
+  languages: Array<{ code: string; contentStatus?: 'LIVE' | 'PLANNED' }>
   pathFor: (languageCode: string) => string
   noindexReason?: string
   lastModified?: Date | null
@@ -43,7 +47,10 @@ export function buildPageSeo(input: {
   // The alternate set — deduped, deterministic (code order, §37), self always
   // present (a hreflang cluster names every variant including itself).
   const codes = new Set<string>([languageCode])
-  for (const language of input.languages) codes.add(language.code)
+  for (const language of input.languages) {
+    if (language.contentStatus === 'PLANNED') continue
+    codes.add(language.code)
+  }
   const alternates = [...codes]
     .sort((a, b) => a.localeCompare(b))
     .map((code) => ({ hreflang: code, path: pathFor(code) }))

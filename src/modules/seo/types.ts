@@ -75,6 +75,8 @@ export interface DiscoveryLanguage {
   url: string
   /** True when this is the country's default language (segment omitted §16). */
   isDefault: boolean
+  /** SITE-S2 — PLANNED = announced ("Soon" chip), English-fallback content. */
+  contentStatus: 'LIVE' | 'PLANNED'
 }
 
 /**

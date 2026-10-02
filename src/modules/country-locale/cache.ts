@@ -23,8 +23,9 @@ export interface CountrySnapshotRow {
   defaultLanguage: Language | null
   /** P9-S2: the market's FIRST go-live moment (null = never launched). */
   launchedAt: Date | null
-  /** All languages configured for this country (any status — filter at use site). */
-  languages: Language[]
+  /** All languages configured for this country (any status — filter at use
+   * site), each tagged with the SITE-S2 per-market content readiness. */
+  languages: Array<Language & { contentStatus: 'LIVE' | 'PLANNED' }>
 }
 
 export interface LocaleSnapshot {
@@ -62,10 +63,11 @@ async function loadSnapshot(): Promise<LocaleSnapshot> {
     db.language.findMany(),
   ])
 
-  const byCountry = new Map<string, Language[]>()
+  const byCountry = new Map<string, Array<Language & { contentStatus: 'LIVE' | 'PLANNED' }>>()
   for (const link of links) {
     const list = byCountry.get(link.countryId) ?? []
-    list.push(link.language)
+    // SITE-S2: the link's content readiness rides with the language row.
+    list.push({ ...link.language, contentStatus: link.contentStatus as 'LIVE' | 'PLANNED' })
     byCountry.set(link.countryId, list)
   }
 

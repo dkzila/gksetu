@@ -134,6 +134,9 @@ export function SiteHeader({
                 {(currentCountry?.languages ?? []).map((entry) => (
                   <SelectItem key={entry.code} value={entry.code} className="text-sm">
                     {entry.nativeName ?? entry.name}
+                    {entry.contentStatus === 'PLANNED' && (
+                      <span className="ml-1.5 text-[10px] uppercase tracking-wide text-amber-600">soon</span>
+                    )}
                   </SelectItem>
                 ))}
               </SelectContent>

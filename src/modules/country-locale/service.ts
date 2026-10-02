@@ -117,6 +117,7 @@ function activeLanguageRefs(country: CountrySnapshotRow) {
       nativeName: language.nativeName,
       direction: language.direction as 'LTR' | 'RTL',
       url: buildCanonicalUrl(country, language, country.defaultLanguage?.code ?? language.code),
+      contentStatus: language.contentStatus,
     }))
 }
 

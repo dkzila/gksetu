@@ -34,6 +34,15 @@ enum LanguageStatus {
   INACTIVE
 }
 
+/** SITE-S2 — per-country content readiness of a configured language: LIVE
+ * (the market's content is published in this language) or PLANNED (the
+ * language is announced — “Soon” in the UI — with §35 honest English
+ * fallback until content ships; excluded from hreflang alternates). */
+enum LanguageContentStatus {
+  LIVE
+  PLANNED
+}
+
 enum CountryStatus {
   ACTIVE
   COMING_SOON
@@ -816,10 +825,11 @@ model Country {
 // Explicit join table (no scalar lists): the set of languages a country
 // actually exposes — never a global language list (§35).
 model CountryLanguage {
-  id         String   @id @default(cuid())
-  countryId  String
-  languageId String
-  createdAt  DateTime @default(now())
+  id            String               @id @default(cuid())
+  countryId     String
+  languageId    String
+  contentStatus LanguageContentStatus @default(LIVE)
+  createdAt     DateTime             @default(now())
 
   country  Country  @relation(fields: [countryId], references: [id], onDelete: Cascade)
   language Language @relation(fields: [languageId], references: [id], onDelete: Cascade)

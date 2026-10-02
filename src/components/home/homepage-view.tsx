@@ -17,18 +17,31 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
+  Atom,
   BookOpen,
   Clock3,
+  Cpu,
+  Dna,
   FlaskConical,
   Globe2,
   GraduationCap,
   Landmark,
   Languages,
+  Leaf,
+  Map,
+  Microscope,
   Newspaper,
   RefreshCw,
   Rocket,
+  Shield,
+  Sprout,
   Trophy,
   Users,
+  BookMarked,
+  HandCoins,
+  Award,
+  FileText,
+  CloudRainWind,
 } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -37,13 +50,37 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { DashboardTeaser } from '@/components/personalisation/dashboard-teaser'
+import { fillTemplate, homeStrings } from './home-strings'
 import { SearchBox } from './search-box'
 import { useSeoHead } from './seo-head'
 import type { CountryHomepage, Envelope, HomeUnitCard } from './types'
 
 // ---------- Constants ----------
 
-const CATEGORY_ICONS = [Landmark, Globe2, FlaskConical, Newspaper, Trophy, Users] as const
+/** SITE-S2 — a mark per subject (20 in the corpus); unknown slugs rotate. */
+const CATEGORY_ICONS = [Landmark, Globe2, FlaskConical, Trophy, Users, BookOpen] as const
+const SUBJECT_ICONS: Record<string, typeof Landmark> = {
+  'polity-governance': Landmark,
+  history: BookOpen,
+  'science-technology': FlaskConical,
+  geography: Map,
+  economy: HandCoins,
+  'environment-ecology': Leaf,
+  biology: Dna,
+  physics: Atom,
+  chemistry: Microscope,
+  'computer-it': Cpu,
+  sports: Trophy,
+  'art-culture': Users,
+  'books-authors': BookMarked,
+  'awards-honours': Award,
+  schemes: FileText,
+  'defence-security': Shield,
+  'international-relations': Globe2,
+  'static-gk': GraduationCap,
+  agriculture: Sprout,
+  'disaster-management': CloudRainWind,
+}
 
 const DIFFICULTY_STYLES: Record<string, string> = {
   BASIC: 'border-emerald-200 bg-emerald-50 text-emerald-700',
@@ -119,12 +156,20 @@ export function HomepageView({
   }, [fetchHomepage, reloadKey])
 
   // ---------- Document head (server-built seo block) ----------
+  // SITE-S2 — the homepage chrome strings; the localized title/description
+  // templates are resolved INSIDE the memo (the language is known then).
+  const stringsOf = homeStrings
   const seoInput = useMemo(
     () =>
       homepage
         ? {
-            title: `${homepage.country.name} — GK, Current Affairs & Exam Preparation | GKSetu`,
-            description: `GK, daily current affairs and exam preparation for ${homepage.country.name}: ${homepage.stats.topics} topics, ${homepage.stats.units} knowledge pages, ${homepage.stats.exams} exams — in your language.`,
+            title: fillTemplate(stringsOf(homepage.language.code).seoTitle, { country: homepage.country.name }),
+            description: fillTemplate(stringsOf(homepage.language.code).seoDescription, {
+              country: homepage.country.name,
+              topics: homepage.stats.topics,
+              units: homepage.stats.units,
+              exams: homepage.stats.exams,
+            }),
             seo: homepage.seo,
             language: homepage.language.code,
             countryIso: homepage.country.isoCode,
@@ -181,6 +226,10 @@ export function HomepageView({
 
   const comingSoon = homepage.country.status === 'COMING_SOON'
   const readerLanguage = homepage.language.code
+  // SITE-S2 — the homepage chrome in the reader's language (per-key English
+  // fallback; SEO keywords like GK / Current Affairs / Exam stay English).
+  const t = stringsOf(readerLanguage)
+  const countryName = homepage.country.name
 
   return (
     <div
@@ -202,22 +251,22 @@ export function HomepageView({
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-800">
               <Rocket className="mr-1 h-3 w-3" aria-hidden="true" />
-              Launching soon in {homepage.country.name}
+              {fillTemplate(t.comingSoonBadge, { country: countryName })}
             </Badge>
           </div>
         )}
 
         <h1 id="home-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
-          {homepage.country.name}&rsquo;s{' '}
+          {fillTemplate(t.heroPrefix, { country: countryName })}
           <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-            GK, Current Affairs
-          </span>{' '}
-          &amp; exam companion
+            {t.heroHighlight}
+          </span>
+          {t.heroSuffix}
         </h1>
         <p className="max-w-2xl text-base text-zinc-600 sm:text-lg">
           {comingSoon
-            ? `GKSetu launches in ${homepage.country.name} soon. Until then, explore the global knowledge library — every topic below is open to browse today.`
-            : `Everything you need in one place: evergreen GK, daily current affairs with exam context, and complete syllabi for every major exam — searchable, in your language.`}
+            ? fillTemplate(t.comingSoonSub, { country: countryName })
+            : t.heroSub}
         </p>
 
         {/* Search */}
@@ -228,30 +277,47 @@ export function HomepageView({
           onOpenUnit={onOpenUnit}
           onOpenExam={onOpenExam}
           onOpenEvent={(slug) => onOpenPath(`/current-affairs/${slug}/`)}
+          placeholder={t.searchPlaceholder}
         />
 
-        {/* Language switcher — only this country's languages */}
+        {/* Language switcher — only this country's languages. SITE-S2: a
+            PLANNED language carries a "Soon" chip (content is on the way;
+            browsing it today shows the honest English fallback, §35). */}
         {homepage.languages.length > 1 && (
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-zinc-400">
               <Languages className="h-3.5 w-3.5" aria-hidden="true" />
-              Read in
+              {t.readIn}
             </span>
-            {homepage.languages.map((entry) => (
-              <button
-                key={entry.code}
-                type="button"
-                onClick={() => onSwitchLanguage(entry.code)}
-                aria-current={entry.code === readerLanguage ? 'true' : undefined}
-                className={`min-h-[36px] rounded-full border px-3 py-1 text-sm transition-colors ${
-                  entry.code === readerLanguage
-                    ? 'border-emerald-600 bg-emerald-600 text-white'
-                    : 'border-zinc-200 bg-white text-zinc-700 hover:border-emerald-300 hover:text-emerald-700'
-                }`}
-              >
-                {entry.nativeName ?? entry.name}
-              </button>
-            ))}
+            {homepage.languages.map((entry) => {
+              const soon = entry.contentStatus === 'PLANNED'
+              return (
+                <button
+                  key={entry.code}
+                  type="button"
+                  onClick={() => onSwitchLanguage(entry.code)}
+                  aria-current={entry.code === readerLanguage ? 'true' : undefined}
+                  className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-full border px-3 py-1 text-sm transition-colors ${
+                    entry.code === readerLanguage
+                      ? 'border-emerald-600 bg-emerald-600 text-white'
+                      : 'border-zinc-200 bg-white text-zinc-700 hover:border-emerald-300 hover:text-emerald-700'
+                  }`}
+                >
+                  {entry.nativeName ?? entry.name}
+                  {soon && (
+                    <span
+                      className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
+                        entry.code === readerLanguage
+                          ? 'bg-white/20 text-white'
+                          : 'bg-amber-50 text-amber-700'
+                      }`}
+                    >
+                      {t.soon}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
           </div>
         )}
       </motion.section>
@@ -275,7 +341,7 @@ export function HomepageView({
       <section id="home-current-affairs" aria-labelledby="current-affairs-heading" className="scroll-mt-24 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 id="current-affairs-heading" className="text-xl font-semibold tracking-tight">
-            Current affairs
+            {t.currentAffairs}
           </h2>
           {homepage.currentAffairs.items.length > 0 && (
             <Button
@@ -284,7 +350,7 @@ export function HomepageView({
               className="gap-1.5 text-emerald-700 hover:text-emerald-800"
               onClick={() => onOpenPath('/current-affairs/')}
             >
-              View all
+              {t.viewAll}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           )}
@@ -342,13 +408,13 @@ export function HomepageView({
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-zinc-800">
                     {homepage.currentAffairs.available
-                      ? 'The latest stories are on their way'
-                      : 'Current affairs for this country launch soon'}
+                      ? t.caEmptyTitleAvailable
+                      : t.caEmptyTitleMarket}
                   </p>
                   <p className="max-w-xl text-sm text-zinc-500">
                     {homepage.currentAffairs.available
-                      ? 'New stories appear here as soon as our editors publish them — check back shortly.'
-                      : 'Until then, the global knowledge library below is fully open to browse.'}
+                      ? t.caEmptyBodyAvailable
+                      : t.caEmptyBodyMarket}
                   </p>
                 </div>
               </div>
@@ -358,7 +424,7 @@ export function HomepageView({
                 className="shrink-0 gap-2 border-zinc-300 bg-white hover:border-emerald-300 hover:text-emerald-700"
                 onClick={() => onOpenPath('/current-affairs/')}
               >
-                Browse current affairs
+                {t.browseCurrentAffairs}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             </CardContent>
@@ -371,15 +437,15 @@ export function HomepageView({
         <section id="home-categories" aria-labelledby="categories-heading" className="scroll-mt-24 space-y-4">
           <div className="flex items-center justify-between gap-3">
             <h2 id="categories-heading" className="text-xl font-semibold tracking-tight">
-              Explore by subject
+              {t.exploreBySubject}
             </h2>
             <p className="hidden text-xs text-zinc-400 sm:block">
-              The full GK library, organised for {homepage.country.name}
+              {fillTemplate(t.libraryLine, { country: countryName })}
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {homepage.categories.map((category, index) => {
-              const Icon = CATEGORY_ICONS[index % CATEGORY_ICONS.length]
+              const Icon = SUBJECT_ICONS[category.slug] ?? CATEGORY_ICONS[index % CATEGORY_ICONS.length]
               return (
                 <Card
                   key={category.slug}
@@ -407,11 +473,11 @@ export function HomepageView({
                       <div className="flex items-center gap-3 text-xs text-zinc-500">
                         <span>
                           <strong className="font-semibold text-zinc-700">{category.topicCount}</strong>{' '}
-                          topics
+                          {t.topicsLabel}
                         </span>
                         <span>
                           <strong className="font-semibold text-zinc-700">{category.unitCount}</strong>{' '}
-                          pages
+                          {t.pagesLabel}
                         </span>
                       </div>
                       {category.children.length > 0 && (
@@ -440,7 +506,7 @@ export function HomepageView({
       <section id="home-exams" aria-labelledby="exams-heading" className="scroll-mt-24 space-y-4">
         <div className="flex items-center justify-between gap-3">
           <h2 id="exams-heading" className="text-xl font-semibold tracking-tight">
-            Prepare for your exam
+            {t.prepareForExam}
           </h2>
           {homepage.exams.available && homepage.stats.exams > 0 && (
             <button
@@ -448,7 +514,7 @@ export function HomepageView({
               onClick={onBrowseExams}
               className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-emerald-700 transition-colors hover:text-emerald-800"
             >
-              All {homepage.stats.exams} exams
+              {fillTemplate(t.allExams, { n: homepage.stats.exams })}
               <span aria-hidden="true">→</span>
             </button>
           )}
@@ -540,7 +606,7 @@ export function HomepageView({
       {homepage.popularUnits.length > 0 && (
         <section aria-labelledby="popular-heading" className="space-y-4">
           <h2 id="popular-heading" className="text-xl font-semibold tracking-tight">
-            Popular right now
+            {t.popularNow}
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {homepage.popularUnits.map((unit) => (
@@ -559,7 +625,7 @@ export function HomepageView({
       {homepage.majorTopics.length > 0 && (
         <section aria-labelledby="major-heading" className="space-y-4">
           <h2 id="major-heading" className="text-xl font-semibold tracking-tight">
-            Major topics
+            {t.majorTopics}
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {homepage.majorTopics.map((topic) => (
