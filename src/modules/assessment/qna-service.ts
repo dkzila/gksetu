@@ -42,6 +42,8 @@ import { getTopicIdentity } from '@/modules/taxonomy'
 import { onUnitChanged } from '@/modules/search'
 import { wireQnaWorkflow } from '@/modules/editorial'
 import { onRepresentationPublished } from '@/modules/translations' // P9-S1 §36 drift/sync hook
+// SITE-S7: the batch "Asked in …" badge loader for the Q&A layer.
+import { loadQnaProvenanceMap } from '@/modules/pyq'
 
 import type {
   AdminQnaEntry,
@@ -496,6 +498,7 @@ export async function getPublicQnaLayer(input: {
         name: row.language.name,
         nativeName: row.language.nativeName,
       },
+      provenance: [], // SITE-S7 — filled by the batched badge load below
     }))
     // Deterministic (§37): by revision number, then question text.
     .sort(
@@ -503,6 +506,11 @@ export async function getPublicQnaLayer(input: {
         a.revision.publishedAt.localeCompare(b.revision.publishedAt) ||
         a.question.localeCompare(b.question)
     )
+
+  // SITE-S7: the batched "Asked in …" badges — ONE query for the whole layer
+  // (no N+1; the practice-listing precedent).
+  const provenanceById = await loadQnaProvenanceMap(entries.map((entry) => entry.id))
+  for (const entry of entries) entry.provenance = provenanceById.get(entry.id) ?? []
 
   return entries.length > 0
     ? { available: true, entries, note: null }

@@ -17,6 +17,7 @@ import {
   Compass,
   FileQuestion,
   GraduationCap,
+  History,
   Home,
   LayoutGrid,
   LineChart,
@@ -126,6 +127,13 @@ export function AppSidebar({
       icon: CircleHelp,
       active: route?.view === 'qna',
       href: '/qna/',
+    },
+    {
+      key: 'pyq',
+      label: 'PYQ',
+      icon: History,
+      active: route?.view === 'pyq',
+      href: '/pyq/',
     },
   ]
 

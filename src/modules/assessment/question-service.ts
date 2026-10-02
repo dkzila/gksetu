@@ -46,6 +46,8 @@ import {
 import { getTopicIdentity } from '@/modules/taxonomy'
 import { onUnitChanged } from '@/modules/search'
 import { wireQuestionWorkflow } from '@/modules/editorial'
+// SITE-S7: the batch "Asked in …" badge loader for the practice layer.
+import { loadQuestionProvenanceMap } from '@/modules/pyq'
 
 import type {
   AdminQuestionEntry,
@@ -605,6 +607,7 @@ export async function getPublicPracticeLayer(input: {
         name: row.language.name,
         nativeName: row.language.nativeName,
       },
+      provenance: [], // SITE-S7 — filled by the batched badge load below
     }))
     // Deterministic (§37): difficulty ladder, then first publication, then text.
     .sort(
@@ -613,6 +616,11 @@ export async function getPublicPracticeLayer(input: {
         a.revision.publishedAt.localeCompare(b.revision.publishedAt) ||
         a.question.localeCompare(b.question)
     )
+
+  // SITE-S7: the batched "Asked in …" badges — ONE query for the whole layer
+  // (no N+1; the practice-listing precedent).
+  const provenanceById = await loadQuestionProvenanceMap(entries.map((entry) => entry.id))
+  for (const entry of entries) entry.provenance = provenanceById.get(entry.id) ?? []
 
   return entries.length > 0
     ? { available: true, entries, note: null }

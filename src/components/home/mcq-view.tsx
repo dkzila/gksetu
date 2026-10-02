@@ -32,6 +32,8 @@ import type { AppRoute } from './app-router'
 import type { Envelope } from './types'
 
 import { ShareButton } from '@/components/shares/share-button'
+import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
+import type { ProvenanceBadgeItem } from '@/components/assessment/provenance-badges'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -56,6 +58,9 @@ interface McqPracticeQuestion {
   difficulty: 'BASIC' | 'INTERMEDIATE' | 'ADVANCED'
   subject: { slug: string; label: string } | null
   unit: { slug: string; canonicalName: string; topicSlug: string } | null
+  /** SITE-S7: exam-sitting appearances ("Asked in UPSC CSE · 2021") — [] when
+   * the question is practice-original; the badge line renders nothing then. */
+  provenance?: ProvenanceBadgeItem[]
 }
 
 /** GET /api/questions → data.practice (the frozen SITE-S3 contract). */
@@ -146,6 +151,10 @@ function QuestionCard({ question, reveal, pendingIndex, error, onCommit }: Quest
         <p className="text-sm font-semibold leading-snug text-zinc-800 sm:text-[15px]">
           {question.questionText}
         </p>
+
+        {/* SITE-S7: "Asked in …" provenance — where this question appeared
+            (exam · year · paper); nothing renders for practice-original items. */}
+        <ProvenanceBadgeLine items={question.provenance} />
 
         {/* Options — ONE TAP commits (server-scored); 44px touch targets */}
         <div className="space-y-1.5">
@@ -624,7 +633,10 @@ export function McqView({ route, onGoHome }: McqViewProps) {
           ) : (
             <ul className="grid gap-4" role="list" aria-label="Practice questions">
               {questions.map((question) => (
-                <li key={question.id}>
+                // min-w-0 lets the grid item shrink below the provenance
+                // pill's nowrap min-content — the badge truncates inside the
+                // card instead of stretching it (390px safety).
+                <li key={question.id} className="min-w-0">
                   <QuestionCard
                     question={question}
                     reveal={reveals[question.id] ?? null}

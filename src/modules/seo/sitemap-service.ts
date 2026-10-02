@@ -17,13 +17,14 @@
 import { db } from '@/lib/db'
 import { buildCanonicalUrl, getPublicCountry } from '@/modules/country-locale'
 import { windowContains } from '@/modules/exams-syllabus'
+import { getPyqIndex } from '@/modules/pyq'
 import { getPublicTree } from '@/modules/taxonomy'
 
 import { SeoError } from './errors'
 
 // ---------- Shapes ----------
 
-export const SITEMAP_TYPES = ['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus'] as const
+export const SITEMAP_TYPES = ['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus', 'pyq'] as const
 export type SitemapType = (typeof SITEMAP_TYPES)[number]
 
 /** One indexable §16 URL (path + honest lastmod). */
@@ -60,6 +61,9 @@ interface CountrySitemapModel {
   exams: Array<{ slug: string; lastModified: Date | null }>
   /** Syllabus-topic URLs per exam (placement-exists rule, CURRENT version). */
   syllabus: Array<{ examSlug: string; topicSlug: string; lastModified: Date | null }>
+  /** SITE-S7: PYQ URLs per language — only exams with ≥1 visible PYQ item
+   * (the /pyq/ page's own service is the one truth, §16). */
+  pyqByLanguage: Map<string, Array<{ examSlug: string; years: number[] }>>
 }
 
 // ---------- Per-country model ----------
@@ -290,6 +294,33 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     }
   }
 
+  // ---------- PYQ directory per language (SITE-S7 — the /pyq/ family) ----------
+  // getPyqIndex applies the exact §14/§35/§36 visibility gates the live
+  // /pyq/ page serves (60s cached) — the census can never declare a URL the
+  // page would not fill (§16 one-truth, the P9-S5 lesson). The per-exam and
+  // per-year URLs carry no lastmod: the index payload exposes only the
+  // market-wide newest publication, and a per-exam value is not cheaply
+  // available at census scale, so these entries stay honest without one.
+  // (Runtime import note: the pyq service's only seo-module touch is the
+  // deferred buildPageSeo call inside its loaders — module-eval order never
+  // matters for this cycle.)
+  const pyqLoads = await Promise.all(
+    languages.map(async (language) => {
+      const index = await getPyqIndex({ country: isoCode, language: language.code })
+      return { code: language.code, exams: index.exams }
+    })
+  )
+  const pyqByLanguage = new Map<string, Array<{ examSlug: string; years: number[] }>>()
+  for (const load of pyqLoads) {
+    pyqByLanguage.set(
+      load.code,
+      load.exams.map((exam) => ({
+        examSlug: exam.examSlug,
+        years: exam.years.map((year) => year.year),
+      }))
+    )
+  }
+
   return {
     isoCode: countryRow.isoCode,
     slug: countryRow.slug,
@@ -302,6 +333,7 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     eventsByLanguage,
     exams,
     syllabus,
+    pyqByLanguage,
   }
 }
 
@@ -320,7 +352,7 @@ function segmentEntries(
     case 'home':
       // SITE-S1 — the structural surfaces of the market: the homepage plus
       // the indexable listings (current-affairs, exams, subjects, mock-test,
-      // mcq, qna). They exist in every country-configured language (§35
+      // mcq, qna, pyq). They exist in every country-configured language (§35
       // structural rule), so they enumerate like the home URL itself.
       return [
         { path: path([]), lastModified: model.homeLastModified },
@@ -330,6 +362,7 @@ function segmentEntries(
         { path: path(['mock-test']), lastModified: model.homeLastModified },
         { path: path(['mcq']), lastModified: model.homeLastModified },
         { path: path(['qna']), lastModified: model.homeLastModified },
+        { path: path(['pyq']), lastModified: model.homeLastModified },
       ]
     case 'topics':
       // SITE-S1 — URL grammar v2: subjects at the root (/{subject}/).
@@ -358,6 +391,21 @@ function segmentEntries(
         path: path(['exams', entry.examSlug, 'syllabus', entry.topicSlug]),
         lastModified: entry.lastModified,
       }))
+    case 'pyq':
+      // SITE-S7 — the PYQ directory: /pyq/{exam}/ and /pyq/{exam}/{year}/ for
+      // every exam with ≥1 visible PYQ item in this language (the index page
+      // itself enumerates with the structural surfaces in 'home'). Per-exam
+      // grouped, examSlug asc, years desc — deterministic (§37), no lastmod
+      // (see the model note).
+      return [...(model.pyqByLanguage.get(languageCode) ?? [])]
+        .sort((a, b) => a.examSlug.localeCompare(b.examSlug))
+        .flatMap((exam) => [
+          { path: path(['pyq', exam.examSlug]), lastModified: null },
+          ...exam.years.map((year) => ({
+            path: path(['pyq', exam.examSlug, String(year)]),
+            lastModified: null,
+          })),
+        ])
   }
 }
 
@@ -433,7 +481,8 @@ export function invalidateCensusCache(): void {
  * The sitemap index input: every non-empty (country × language × type)
  * segment with its URL count and newest lastmod. Segments are ordered
  * deterministically: default market first, then iso; language by code; type
- * in the fixed home → topics → units → exams → syllabus order.
+ * in the fixed home → topics → units → current-affairs → exams → syllabus →
+ * pyq order.
  */
 export async function listSitemapSegments(): Promise<SitemapSegmentInfo[]> {
   // P10-S1: the segment list IS the cached inventory's segment list (the

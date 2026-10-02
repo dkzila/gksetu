@@ -502,6 +502,9 @@ model Exam {
   createdBy User?          @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   versions  ExamVersion[]
   goalExams UserGoalExam[] // P5-S3 — declared goal exam references
+  // SITE-S7: this exam's PYQ provenance rows (question + QnA appearances).
+  questionProvenance QuestionProvenance[]
+  qnaProvenance      QnAProvenance[]
 
   @@unique([countryId, code])
   @@index([status])
@@ -916,6 +919,9 @@ model User {
   // CONSOLE-S1: site settings + managed pages authored by this user.
   authoredSiteSettings      SiteSetting[]            @relation("SiteSettingAuthor")
   authoredSitePages         SitePage[]               @relation("SitePageAuthor")
+  // SITE-S7: PYQ provenance rows created by this user (both kinds).
+  createdQuestionProvenance QuestionProvenance[]
+  createdQnaProvenance      QnAProvenance[]
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1513,6 +1519,8 @@ model QnA {
   createdBy         User?         @relation("QnAAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   revisions         QnARevision[] @relation("QnARevisions")
   publishedRevision QnARevision?  @relation("LiveQnARevision", fields: [publishedRevisionId], references: [id])
+  // SITE-S7: the exam-sitting appearances of this QnA (PYQ provenance).
+  provenance        QnAProvenance[]
 
   @@unique([knowledgeUnitId, languageId, questionText])
   @@index([status])
@@ -1592,6 +1600,9 @@ model Question {
   createdBy         User?              @relation("QuestionAuthor", fields: [createdById], references: [id], onDelete: SetNull)
   revisions         QuestionRevision[] @relation("QuestionRevisions")
   publishedRevision QuestionRevision?  @relation("LiveQuestionRevision", fields: [publishedRevisionId], references: [id])
+  // SITE-S7: the exam-sitting appearances of this question (PYQ provenance —
+  // the /pyq/ directory + the "Asked in …" badges).
+  provenance        QuestionProvenance[]
 
   // §11 canonical identity: within one unit × language, the question text
   // identifies exactly one Question — the same discipline as QnA. The exam
@@ -1629,6 +1640,65 @@ model QuestionRevision {
 
   @@unique([questionId, revisionNumber])
   @@index([questionId, publishedAt])
+}
+
+// ---------- SITE-S7: PYQ provenance (docs/learning-platform-plan.md SITE-S7) ----------
+//
+// PYQ is a PROVENANCE layer, never a new content type: Question/QnA
+// identity, revisions, translations and lifecycle stay untouched — these
+// rows only record "this item appeared in {exam} {year} {paper}". A question
+// can carry many appearances (exam × year), the /pyq/ directory renders the
+// aggregate and every practice card can badge its origins. `year` is the
+// EXAM SITTING year — it deliberately does not reference ExamVersion (a
+// syllabus window, not a sitting; the TASKPLAN-B conclusion). `paper` uses a
+// non-null default ("") instead of nullable so the unique index actually
+// enforces (the SQL NULLs-DISTINCT pitfall): "" = unspecified,
+// "Prelims" / "Tier-I" / "Mains GS-II" name the actual paper.
+model QuestionProvenance {
+  id             String   @id @default(cuid())
+  questionId     String
+  question       Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  examId         String
+  exam           Exam     @relation(fields: [examId], references: [id])
+  year           Int // the exam sitting year (1900…), never a syllabus-window reference
+  paper          String   @default("") // "" = unspecified · "Prelims" · "Tier-I" · "Mains GS-II" …
+  questionNumber String? // e.g. "Q.14" — null when not recorded
+  notes          String? // internal editorial notes
+  createdById    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  // One appearance per (question × exam × year × paper) — the same sitting
+  // never lists a question twice; a different paper of the same year is a
+  // distinct (honest) appearance.
+  @@unique([questionId, examId, year, paper])
+  @@index([examId, year])
+  @@index([questionId])
+}
+
+// The QnA twin — identical shape/discipline (descriptive mains-style PYQs
+// carry provenance the same way scored MCQs do; the user-confirmed "PYQ v1
+// covers both MCQ and QnA provenance").
+model QnAProvenance {
+  id          String   @id @default(cuid())
+  qnaId       String
+  qna         QnA      @relation(fields: [qnaId], references: [id], onDelete: Cascade)
+  examId      String
+  exam        Exam     @relation(fields: [examId], references: [id])
+  year        Int // the exam sitting year (1900…), never a syllabus-window reference
+  paper       String   @default("") // "" = unspecified · "Prelims" · "Mains GS-I" …
+  notes       String?
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@unique([qnaId, examId, year, paper])
+  @@index([examId, year])
+  @@index([qnaId])
 }
 
 // ---------- P7-S3: MockTest + TestAttempt (Master Plan §6, §22, §43) ----------

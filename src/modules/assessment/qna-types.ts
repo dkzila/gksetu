@@ -11,6 +11,9 @@
  * QnA is immutable at the revision level; corrections append new revisions),
  * §37 (client-agnostic DTOs, deterministic ordering).
  */
+// SITE-S7: the provenance badge type of the pyq layer (type-only import —
+// no runtime edge).
+import type { PyqProvenanceBadge } from '@/modules/pyq'
 
 /**
  * Lifecycle — the §19 state machine, shared vocabulary with ContentItem
@@ -105,6 +108,9 @@ export interface PublicQnaEntry {
   /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
   aiAssisted: boolean
   language: { code: string; name: string; nativeName: string | null }
+  /** SITE-S7 — the item's recorded exam-sitting appearances (the "Asked in …"
+   * badges; [] = a practice-original). Batched by the layer (no N+1). */
+  provenance: PyqProvenanceBadge[]
 }
 
 /** The public layer as a whole (rendered between learn and revise on the

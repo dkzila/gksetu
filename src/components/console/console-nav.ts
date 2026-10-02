@@ -15,6 +15,7 @@ import {
   Files,
   FlaskConical,
   GraduationCap,
+  History,
   Languages,
   LayoutDashboard,
   Link2,
@@ -151,6 +152,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         icon: MessageCircleQuestion,
         permission: 'qna:manage',
         description: 'The QnA learning layer — question-and-answer knowledge checks.',
+      },
+      {
+        id: 'pyq',
+        label: 'PYQ',
+        path: 'pyq',
+        icon: History,
+        permission: 'question:manage',
+        description: 'Previous-year provenance — which exam, year and paper each question was asked in.',
       },
       {
         id: 'mock-tests',

@@ -53,6 +53,7 @@ import { CurrentAffairsView } from '@/components/home/current-affairs-view'
 import { SubjectsView } from '@/components/home/subjects-view'
 import { McqView } from '@/components/home/mcq-view'
 import { QnaView } from '@/components/home/qna-view'
+import { PyqView } from '@/components/home/pyq-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
@@ -671,6 +672,28 @@ export default function GKSetuApp() {
           { view: 'qna', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
           config
         )
+      } else if (root === 'pyq') {
+        // SITE-S7 — the PYQ directory: /pyq/, /pyq/{exam}/, /pyq/{exam}/{year}/
+        // (dashboard-style path links route through the same grammar). A
+        // non-year second segment tolerantly opens the exam page.
+        const pyqExamSlug = afterRoot[0] ?? null
+        const pyqYearSegment = afterRoot[1] ?? ''
+        const pyqYearParsed = /^\d{4}$/.test(pyqYearSegment) ? Number(pyqYearSegment) : null
+        navigateRoute(
+          {
+            view: 'pyq',
+            countryIso: country.isoCode,
+            language,
+            topicSlug: null,
+            unitSlug: null,
+            examSlug: pyqExamSlug,
+            pyqYear:
+              pyqYearParsed !== null && pyqYearParsed >= 1900 && pyqYearParsed <= 2100
+                ? pyqYearParsed
+                : null,
+          },
+          config
+        )
       } else if (root === 'mock-test') {
         navigateRoute(
           { view: 'mock-test', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
@@ -1072,6 +1095,12 @@ export default function GKSetuApp() {
         ) : route.view === 'qna' ? (
           <QnaView
             key={`${route.countryIso}:${route.language}`}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'pyq' ? (
+          <PyqView
+            key={`${route.countryIso}:${route.language}:${route.examSlug ?? ''}:${route.pyqYear ?? ''}`}
+            route={route}
             onGoHome={goHome}
           />
         ) : route.view === 'collection' && route.collectionId ? (

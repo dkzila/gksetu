@@ -247,6 +247,11 @@ export const AUDIT_ACTIONS = {
   /** P10-S4: the §26 AI assist calls (classification/mapping/dedup —
    *  suggestions only, never applied; the translationAiDraft precedent). */
   aiAssist: 'ai.assist',
+  /** SITE-S7: PYQ provenance (docs/learning-platform-plan.md — every
+   *  provenance mutation is audited; the sitePage precedent). */
+  pyqProvenanceCreate: 'pyq.provenance.create',
+  pyqProvenanceUpdate: 'pyq.provenance.update',
+  pyqProvenanceDelete: 'pyq.provenance.delete',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -295,4 +300,7 @@ export const AUDIT_OBJECT_TYPES = {
   /** CONSOLE-S1: the settings registry + managed static pages. */
   siteSetting: 'SiteSetting',
   sitePage: 'SitePage',
+  /** SITE-S7: the exam-sitting provenance rows (both kinds under one object
+   *  type — kind is carried in metadata/after as QUESTION | QNA). */
+  pyqProvenance: 'PYQ_PROVENANCE',
 } as const

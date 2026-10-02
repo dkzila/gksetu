@@ -10,12 +10,35 @@ import { z } from 'zod'
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
+/**
+ * SITE-S7/SITE-S8 — top-level URL words owned by the site's route grammar.
+ * A subject (topic) slug lives at /{slug}/, the root of the public URL
+ * space, so a node named 'pyq' or 'tutorials' would be shadowed by the
+ * /pyq/ and /tutorials/ content surfaces before the subject-fallback ever
+ * parsed. Create-time guard only — slugs are immutable, so the one legacy
+ * collision ('current-affairs', the topic the /current-affairs/ listing
+ * legitimately owns) is unaffected.
+ */
+const RESERVED_URL_WORDS = [
+  'pyq',
+  'tutorials',
+  'mcq',
+  'qna',
+  'subjects',
+  'exams',
+  'current-affairs',
+  'mock-test',
+] as const
+
 export const topicSlugSchema = z
   .string()
   .trim()
   .min(2, 'Slug must be at least 2 characters')
   .max(64, 'Slug must be at most 64 characters')
   .regex(SLUG_PATTERN, 'Slug must be lowercase kebab-case (letters, digits, single hyphens)')
+  .refine((slug) => !(RESERVED_URL_WORDS as readonly string[]).includes(slug), {
+    message: `"slug" is reserved by the site URL grammar`,
+  })
 
 export const TOPIC_TYPES = ['DOMAIN', 'BRANCH', 'TOPIC'] as const
 export const TOPIC_SCOPES = ['GLOBAL', 'COUNTRY'] as const

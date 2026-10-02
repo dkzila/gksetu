@@ -47,6 +47,8 @@ import { SaveButton } from '@/components/saves/save-button'
 import { ReportButton } from '@/components/feedback/report-button'
 import { PracticeLayer } from '@/components/assessment/practice-layer'
 import { MasteryStrip } from '@/components/assessment/mastery-strip'
+import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
+import type { ProvenanceBadgeItem } from '@/components/assessment/provenance-badges'
 
 // ---------- Types (mirror /api/knowledge/page/{ref}) ----------
 
@@ -105,6 +107,8 @@ interface PageQnaEntry {
   /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
   aiAssisted: boolean
   language: { code: string; name: string; nativeName: string | null }
+  /** SITE-S7: exam-sitting appearances ("Asked in …") — [] = practice-original. */
+  provenance?: ProvenanceBadgeItem[]
 }
 
 /** The knowledge page's Q&A layer as a whole — `available: false` carries the
@@ -133,6 +137,8 @@ export interface PagePracticeQuestion {
   /** §24/§26 — the live revision's immutable AI-provenance snapshot. */
   aiAssisted: boolean
   language: { code: string; name: string; nativeName: string | null }
+  /** SITE-S7: exam-sitting appearances ("Asked in …") — [] = practice-original. */
+  provenance?: ProvenanceBadgeItem[]
 }
 
 /** The knowledge page's scored practice layer as a whole (rendered after the
@@ -718,7 +724,7 @@ export function KnowledgePageView({
                       ) : (
                         <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
                       )}
-                      <span className="text-sm font-semibold leading-snug text-zinc-800">
+                      <span className="min-w-0 flex-1 text-sm font-semibold leading-snug text-zinc-800">
                         {entry.question}
                       </span>
                     </button>
@@ -734,6 +740,10 @@ export function KnowledgePageView({
                       />
                     </span>
                   </div>
+                  {/* SITE-S7: "Asked in …" provenance (exam · year · paper) — its
+                      own full-width row so the save/report stack never squeezes
+                      it; renders nothing for practice-original entries. */}
+                  <ProvenanceBadgeLine items={entry.provenance} className="-mt-1.5 px-3 pb-3 sm:px-4 sm:pb-4" />
                   {expanded && (
                     <div className="border-t border-zinc-100 p-3 sm:p-4">
                       <p className="whitespace-pre-line text-[15px] leading-relaxed text-zinc-700">

@@ -84,7 +84,11 @@ export const sitemapQuerySchema = z
   .object({
     country: z.string().trim().min(2).max(8).optional(),
     language: z.string().trim().min(2).max(8).optional(),
-    type: z.enum(['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus']).optional(),
+    // Keep in sync with SITEMAP_TYPES (sitemap-service) — the SITE-S7 'pyq'
+    // type (the /pyq/ exam/year directory) joins the set.
+    type: z
+      .enum(['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus', 'pyq'])
+      .optional(),
   })
   .refine(
     (query) => {

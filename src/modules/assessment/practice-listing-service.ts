@@ -37,6 +37,10 @@ import { buildPageSeo } from '@/modules/seo'
 import type { PageSeo } from '@/modules/seo'
 import { getPublicTree } from '@/modules/taxonomy'
 import type { PublicTopicNode } from '@/modules/taxonomy'
+// SITE-S7: the batch "Asked in …" badge loader (type-only pyq import here —
+// the runtime edge stays assessment → pyq, no cycle).
+import { loadQuestionProvenanceMap, loadQnaProvenanceMap } from '@/modules/pyq'
+import type { PyqProvenanceBadge } from '@/modules/pyq'
 
 // ---------- Typed errors (mapped to HTTP by the route handlers, §37) ----------
 
@@ -83,6 +87,8 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
  * One practice MCQ card. `options` are the option LABELS only — the
  * correctAnswer and its key NEVER ship on the listing (§22 scored
  * discipline: the key is revealed per-question by checkPracticeAnswer).
+ * SITE-S7: `provenance` carries the item's exam-sitting appearances (the
+ * "Asked in UPSC CSE · 2021 (Prelims)" badges — [] = a practice-original).
  */
 export interface PracticeQuestionCard {
   id: string
@@ -93,12 +99,14 @@ export interface PracticeQuestionCard {
   subject: { slug: string; label: string } | null
   /** The owning canonical unit (§7) — its own topic, not the root subject. */
   unit: { slug: string; canonicalName: string; topicSlug: string } | null
+  /** SITE-S7 — every recorded exam-sitting appearance, newest first. */
+  provenance: PyqProvenanceBadge[]
 }
 
 /**
  * One Q&A card. Q&A is a study surface (§23 "explanatory, unscored") — the
  * answer ships inline (answers expand, nothing is scored), always from the
- * live revision.
+ * live revision. SITE-S7: `provenance` mirrors the MCQ card's badges.
  */
 export interface PracticeQnaCard {
   id: string
@@ -108,6 +116,8 @@ export interface PracticeQnaCard {
   subject: { slug: string; label: string } | null
   /** The owning canonical unit (§7) — its own topic, not the root subject. */
   unit: { slug: string; canonicalName: string; topicSlug: string } | null
+  /** SITE-S7 — every recorded exam-sitting appearance, newest first. */
+  provenance: PyqProvenanceBadge[]
 }
 
 /** One subject chip — the ?subject= filter vocabulary (same set as /api/subjects). */
@@ -535,8 +545,13 @@ async function loadQuestionsPractice(input: QuestionsPracticeQuery): Promise<Que
           canonicalName: unit.canonicalName,
           topicSlug: topicSlugById.get(unit.topicId) ?? unit.slug,
         },
+        provenance: [], // SITE-S7 — filled by the batched badge load below
       }
     })
+
+  // ---------- SITE-S7: the batched provenance badges (ONE query — no N+1) ----------
+  const provenanceById = await loadQuestionProvenanceMap(questions.map((card) => card.id))
+  for (const card of questions) card.provenance = provenanceById.get(card.id) ?? []
 
   // ---------- Subject chips (reader-language counts, batched, UNFILTERED) ----------
   const subjects = await loadSubjectChips({
@@ -677,8 +692,13 @@ async function loadQnaPractice(input: QnaPracticeQuery): Promise<QnaPractice> {
           canonicalName: unit.canonicalName,
           topicSlug: topicSlugById.get(unit.topicId) ?? unit.slug,
         },
+        provenance: [], // SITE-S7 — filled by the batched badge load below
       }
     })
+
+  // ---------- SITE-S7: the batched provenance badges (ONE query — no N+1) ----------
+  const provenanceById = await loadQnaProvenanceMap(items.map((card) => card.id))
+  for (const card of items) card.provenance = provenanceById.get(card.id) ?? []
 
   // ---------- Subject chips (reader-language counts, batched, UNFILTERED) ----------
   const subjects = await loadSubjectChips({

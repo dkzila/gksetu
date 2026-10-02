@@ -27,6 +27,8 @@ import { currentAppPath, parseRoute } from './app-router'
 import type { ApiCountry, Envelope } from './types'
 
 import { ShareButton } from '@/components/shares/share-button'
+import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
+import type { ProvenanceBadgeItem } from '@/components/assessment/provenance-badges'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -48,6 +50,9 @@ interface QnaPracticeItem {
   answerBody: string
   subject: { slug: string; label: string } | null
   unit: { slug: string; canonicalName: string; topicSlug: string } | null
+  /** SITE-S7: exam-sitting appearances ("Asked in UPSC CSE · 2021") — [] when
+   * the entry is practice-original; the badge line renders nothing then. */
+  provenance?: ProvenanceBadgeItem[]
 }
 
 /** GET /api/qna → data.practice (the frozen SITE-S3 contract). */
@@ -95,6 +100,10 @@ function QnaCard({ item, expanded, onToggle }: QnaCardProps) {
         <p className="text-sm font-semibold leading-snug text-zinc-800 sm:text-[15px]">
           {item.questionText}
         </p>
+
+        {/* SITE-S7: "Asked in …" provenance — where this question appeared
+            (exam · year · paper); nothing renders for practice-original entries. */}
+        <ProvenanceBadgeLine items={item.provenance} />
 
         {/* The "Show answer" toggle — chevron, 44px touch target */}
         <button
@@ -475,7 +484,10 @@ export function QnaView({ onGoHome }: QnaViewProps) {
         ) : (
           <ul className="grid gap-4" role="list" aria-label="Questions and answers">
             {items.map((item) => (
-              <li key={item.id}>
+              // min-w-0 lets the grid item shrink below the provenance pill's
+              // nowrap min-content — the badge truncates inside the card
+              // instead of stretching it (390px safety).
+              <li key={item.id} className="min-w-0">
                 <QnaCard
                   item={item}
                   expanded={expandedIds[item.id] === true}

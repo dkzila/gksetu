@@ -17,6 +17,10 @@
  *   Subjects directory      …/subjects/            (SITE-S1)
  *   MCQ practice            …/mcq/                 (SITE-S1 shell, SITE-S3 content)
  *   Q&A practice            …/qna/                 (SITE-S1 shell, SITE-S3 content)
+ *   PYQ directory           …/pyq/                 (SITE-S7 — exam → year
+ *                          previous-year questions)
+ *   PYQ exam years          …/pyq/{exam}/          (SITE-S7)
+ *   PYQ year practice       …/pyq/{exam}/{year}/   (SITE-S7)
  *   Exam directory          …/exams/
  *   Exam page               …/exams/{exam}/        → /exams/upsc-civil-services/
  *   Syllabus topic          …/exams/{exam}/syllabus/{topic}/
@@ -78,7 +82,7 @@ const VERSION_PATTERN = /^c[a-z0-9]{20,}$/
  * first of these segments is NEVER a country slug or language code, so the
  * market-prefix resolution skips them.
  */
-const CONTENT_ROOTS = ['gk', 'exams', 'current-affairs', 'subjects', 'mcq', 'qna'] as const
+const CONTENT_ROOTS = ['gk', 'exams', 'current-affairs', 'subjects', 'mcq', 'qna', 'pyq'] as const
 
 /** True when a segment is a known content root (never a market marker). */
 export function isContentRoot(segment: string | undefined): boolean {
@@ -86,7 +90,7 @@ export function isContentRoot(segment: string | undefined): boolean {
 }
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'current-affairs' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'mock-test' | 'mcq' | 'qna' | 'subjects' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'current-affairs' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'mock-test' | 'mcq' | 'qna' | 'pyq' | 'subjects' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -95,6 +99,8 @@ export interface AppRoute {
   eventSlug: string | null
   /** The exam whose page (or syllabus topic) is open. */
   examSlug: string | null
+  /** SITE-S7: the PYQ year whose practice page is open (…/pyq/{exam}/{year}/). */
+  pyqYear: number | null
   /** The syllabus topic under the exam view (§16 …/exams/{exam}/syllabus/{topic}/). */
   syllabusTopicSlug: string | null
   /** The §22 mock test whose runner is open (P7-S3 — exam- or topic-scoped). */
@@ -154,6 +160,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     unitSlug: null,
     eventSlug: null,
     examSlug: null,
+    pyqYear: null,
     syllabusTopicSlug: null,
     testSlug: null,
     collectionId: null,
@@ -334,6 +341,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       unitSlug: null,
       eventSlug: null,
       examSlug: null,
+      pyqYear: null,
       syllabusTopicSlug: null,
       testSlug: null,
       collectionId: null,
@@ -359,6 +367,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug,
         examSlug: null,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: null,
         collectionId: null,
@@ -378,6 +387,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       unitSlug: null,
       eventSlug: null,
       examSlug: null,
+      pyqYear: null,
       syllabusTopicSlug: null,
       testSlug: null,
       collectionId: null,
@@ -400,6 +410,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       unitSlug: null,
       eventSlug: null,
       examSlug: null,
+      pyqYear: null,
       syllabusTopicSlug: null,
       testSlug: null,
       collectionId: null,
@@ -422,6 +433,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       unitSlug: null,
       eventSlug: null,
       examSlug: null,
+      pyqYear: null,
       syllabusTopicSlug: null,
       testSlug: null,
       collectionId: null,
@@ -442,6 +454,41 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       unitSlug: null,
       eventSlug: null,
       examSlug: null,
+      pyqYear: null,
+      syllabusTopicSlug: null,
+      testSlug: null,
+      collectionId: null,
+      page: 1,
+      versionId: null,
+      focusQuestionId: null,
+      scrollTo: null,
+      consolePath: null,
+      pageSlug: null,
+    }
+  }
+
+  // SITE-S7: the previous-year-questions directory — …/pyq/ (exam cards),
+  // …/pyq/{exam}/ (year groups), …/pyq/{exam}/{year}/ (the year practice
+  // page). The year segment must be a plausible sitting year (1900–2100);
+  // anything else tolerantly falls back to the exam page, where an unknown
+  // exam shows the honest empty state. This branch runs BEFORE the exams
+  // tree and the generic subject fallback (the SITE-S4 ordering lesson — a
+  // subject named 'pyq' can never shadow the directory).
+  if (root === 'pyq') {
+    const examSlug = afterRoot[0] ?? null
+    const yearSegment = afterRoot[1] ?? ''
+    const yearParsed = /^\d{4}$/.test(yearSegment) ? Number(yearSegment) : null
+    const pyqYear =
+      yearParsed !== null && yearParsed >= 1900 && yearParsed <= 2100 ? yearParsed : null
+    return {
+      view: 'pyq',
+      countryIso: country.isoCode,
+      language,
+      topicSlug: null,
+      unitSlug: null,
+      eventSlug: null,
+      examSlug,
+      pyqYear,
       syllabusTopicSlug: null,
       testSlug: null,
       collectionId: null,
@@ -468,6 +515,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug: null,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: null,
         collectionId: null,
@@ -488,6 +536,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: segments[index + 3],
         collectionId: null,
@@ -508,6 +557,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug,
+        pyqYear: null,
         syllabusTopicSlug: segments[index + 3],
         testSlug: null,
         collectionId: null,
@@ -528,6 +578,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: null,
         collectionId: null,
@@ -560,6 +611,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug: null,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: afterRoot[2],
         collectionId: null,
@@ -580,6 +632,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug,
         eventSlug: null,
         examSlug: null,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: null,
         collectionId: null,
@@ -601,6 +654,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
         unitSlug: null,
         eventSlug: null,
         examSlug: null,
+        pyqYear: null,
         syllabusTopicSlug: null,
         testSlug: null,
         collectionId: null,
@@ -626,6 +680,8 @@ export interface RouteInput {
   unitSlug: string | null
   eventSlug?: string | null
   examSlug?: string | null
+  /** SITE-S7: the PYQ year (view 'pyq' — …/pyq/{exam}/{year}/). */
+  pyqYear?: number | null
   syllabusTopicSlug?: string | null
   /** The §22 mock test to open (P7-S3) — exam- or topic-scoped. */
   testSlug?: string | null
@@ -702,6 +758,12 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
   } else if (route.view === 'qna') {
     // SITE-S1 — the Q&A practice surface (SITE-S3 fills the content).
     segments.push('qna')
+  } else if (route.view === 'pyq') {
+    // SITE-S7 — the PYQ directory: market-scoped segments (…/pyq/,
+    // …/pyq/{exam}/, …/pyq/{exam}/{year}/) for free hreflang parity.
+    segments.push('pyq')
+    if (route.examSlug) segments.push(route.examSlug)
+    if (route.examSlug && route.pyqYear) segments.push(String(route.pyqYear))
   } else if (route.view === 'exam' && route.examSlug) {
     segments.push('exams', route.examSlug)
   } else if (route.view === 'exam-directory') {

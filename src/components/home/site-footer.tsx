@@ -88,6 +88,7 @@ export function SiteFooter({
     { label: 'Mock Tests', href: '/mock-test/' },
     { label: 'MCQ Practice', href: '/mcq/' },
     { label: 'Q&A', href: '/qna/' },
+    { label: 'PYQ', href: '/pyq/' },
   ]
 
   const libraryLinks = [

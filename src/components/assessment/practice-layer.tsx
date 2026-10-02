@@ -33,6 +33,7 @@ import { Button } from '@/components/ui/button'
 import { SaveButton } from '@/components/saves/save-button'
 import { ReportButton } from '@/components/feedback/report-button'
 import { ShareButton } from '@/components/shares/share-button'
+import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
 
 import type { PagePracticeLayer, PagePracticeQuestion } from '@/components/reader/knowledge-page-view'
 
@@ -135,6 +136,12 @@ function QuestionCard({ entry, selected, answer, busy, error, unitSharePath, onS
           />
         </span>
       </div>
+
+      {/* SITE-S7: "Asked in …" provenance (exam · year · paper) — its own
+          full-width row so the save/share/report stack never squeezes it
+          (390px keeps exam + year readable); renders nothing for
+          practice-original questions. */}
+      <ProvenanceBadgeLine items={entry.provenance} className="-mt-1.5 px-3 pb-3 sm:px-4 sm:pb-4" />
 
       <div className="space-y-3 border-t border-zinc-100 p-3 sm:p-4">
         {/* Options — radio semantics (keyboard: Tab + arrows), one commit only */}

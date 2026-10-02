@@ -62,6 +62,7 @@ import { KnowledgePage } from './pages/knowledge-page'
 import { MockTestsPage } from './pages/mock-tests-page'
 import { PagesPage } from './pages/pages-page'
 import { PostsPage } from './pages/posts-page'
+import { PyqPage } from './pages/pyq-page'
 import { QnaPage } from './pages/qna-page'
 import { QuestionsPage } from './pages/questions-page'
 import { SettingsPage } from './pages/settings-page'
@@ -99,6 +100,8 @@ function renderConsolePage(consolePath: string | null) {
       return <QuestionsPage />
     case path === 'qna':
       return <QnaPage />
+    case path === 'pyq':
+      return <PyqPage />
     case path === 'mock-tests':
       return <MockTestsPage />
     case path === 'exams':
