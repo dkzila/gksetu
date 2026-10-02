@@ -13,6 +13,7 @@
 import {
   Bell,
   Bookmark,
+  BookOpen,
   CircleHelp,
   Compass,
   FileQuestion,
@@ -106,6 +107,13 @@ export function AppSidebar({
       icon: LayoutGrid,
       active: route?.view === 'subjects' || route?.view === 'topic' || route?.view === 'unit',
       href: '/subjects/',
+    },
+    {
+      key: 'tutorials',
+      label: 'Tutorials',
+      icon: BookOpen,
+      active: route?.view === 'tutorials',
+      href: '/tutorials/',
     },
     {
       key: 'mock-tests',

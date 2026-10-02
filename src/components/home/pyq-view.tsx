@@ -24,15 +24,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   BookOpen,
-  CheckCircle2,
   ChevronDown,
   ChevronRight,
   History,
   ListChecks,
-  Loader2,
   RefreshCw,
-  Target,
-  XCircle,
 } from 'lucide-react'
 
 import { useSeoHead } from './seo-head'
@@ -41,6 +37,8 @@ import type { AppRoute } from './app-router'
 import type { Envelope } from './types'
 
 import { ShareButton } from '@/components/shares/share-button'
+import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
+import { InlinePractice } from '@/components/practice/inline-practice'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -64,9 +62,9 @@ interface PyqProvenance {
   paper: string
 }
 
-/** One listed practice question — options are positional LABELS only; the
- * letter keys (A/B/C/…) are re-derived by index, matching the keys the
- * answer-check endpoint scores against. */
+/** One listed practice question — the shared inline-practice shape (options
+ * are positional LABELS only; the letter keys the answer-check endpoint
+ * scores against are re-derived by index inside the shared card). */
 interface PyqQuestion {
   id: string
   questionText: string
@@ -143,41 +141,10 @@ interface PyqYearPayload {
   seo: PyqSeo
 }
 
-/** POST /api/questions/practice → data.result — the ONLY public path where
- * correctAnswer + explanation ship, and only for the question just answered
- * (mirrors mcq-view's mirror of the same contract). */
-interface PracticeAnswerResult {
-  questionId: string
-  selected: string
-  correct: boolean
-  correctAnswer: string
-  explanation: string
-}
-
 // ---------- Presentation constants ----------
 
 /** The year page's question page size (matches the contract default). */
 const PAGE_SIZE = 12
-
-/** Positional option keys — the letters the answer key scores against. */
-const OPTION_LETTERS: string[] = ['A', 'B', 'C', 'D', 'E', 'F']
-
-/** Subtle difficulty chips (small — a hint, never a headline). */
-const DIFFICULTY_STYLE: Record<PyqQuestion['difficulty'], string> = {
-  BASIC: 'border-emerald-200 bg-emerald-50 text-emerald-700',
-  INTERMEDIATE: 'border-amber-200 bg-amber-50 text-amber-700',
-  ADVANCED: 'border-rose-200 bg-rose-50 text-rose-700',
-}
-
-/** One committed answer + the server's verdict (view-local state — §22's
- * practice is judged in the moment; nothing is persisted). */
-interface RevealState {
-  selectedIndex: number
-  correct: boolean
-  correctIndex: number | null
-  correctAnswer: string
-  explanation: string
-}
 
 // ---------- Small helpers ----------
 
@@ -201,183 +168,6 @@ function pyqBasePath(canonicalPath: string): string {
   return `${canonicalPath.split('/pyq/')[0]}/pyq/`
 }
 
-// ---------- Provenance badges ("Asked in {exam} · {year} (paper)") ----------
-
-function ProvenanceBadges({ provenance }: { provenance: PyqProvenance[] }) {
-  if (provenance.length === 0) return null
-  const shown = provenance.slice(0, 2)
-  const more = provenance.length - shown.length
-  return (
-    <>
-      {shown.map((appearance) => (
-        <Badge
-          key={`${appearance.examSlug}:${appearance.year}:${appearance.paper}`}
-          variant="outline"
-          className="border-amber-200 bg-amber-50/60 text-[10px] font-normal text-amber-800"
-        >
-          <History className="h-3 w-3 shrink-0 text-amber-600" aria-hidden="true" />
-          <span className="whitespace-normal text-left leading-snug">
-            Asked in {appearance.examName} · {appearance.year}
-            {appearance.paper ? ` (${appearance.paper})` : ''}
-          </span>
-        </Badge>
-      ))}
-      {more > 0 && (
-        <Badge
-          variant="outline"
-          className="border-amber-200 bg-amber-50/60 text-[10px] font-normal text-amber-700"
-        >
-          +{more} more
-        </Badge>
-      )}
-    </>
-  )
-}
-
-// ---------- One question card (the inline one-tap practice flow) ----------
-
-interface QuestionCardProps {
-  question: PyqQuestion
-  reveal: RevealState | null
-  pendingIndex: number | null
-  error: string | null
-  onCommit: (index: number) => void
-}
-
-function QuestionCard({ question, reveal, pendingIndex, error, onCommit }: QuestionCardProps) {
-  // Locked while a check is in flight OR once revealed — one attempt per view.
-  const locked = reveal !== null || pendingIndex !== null
-  return (
-    <Card className="py-0">
-      <CardContent className="space-y-3 p-4 sm:p-5">
-        {/* Meta row — difficulty hint + subject context + provenance badges */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <Badge
-            variant="outline"
-            className={`text-[10px] font-medium ${DIFFICULTY_STYLE[question.difficulty]}`}
-          >
-            {question.difficulty}
-          </Badge>
-          {question.subject && (
-            <Badge
-              variant="outline"
-              className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
-            >
-              {question.subject.label}
-            </Badge>
-          )}
-          <ProvenanceBadges provenance={question.provenance} />
-        </div>
-        <p className="text-sm font-semibold leading-snug text-zinc-800 sm:text-[15px]">
-          {question.questionText}
-        </p>
-
-        {/* Options — ONE TAP commits (server-scored); 44px touch targets */}
-        <div className="space-y-1.5">
-          {question.options.map((option, index) => {
-            const letter = OPTION_LETTERS[index] ?? String(index + 1)
-            const isPending = pendingIndex === index
-            const isChosen = reveal !== null ? reveal.selectedIndex === index : isPending
-            const isCorrectRow = reveal !== null && reveal.correctIndex === index
-            const isWrongRow = reveal !== null && isChosen && !reveal.correct
-            let rowClass: string
-            let keyClass: string
-            let textClass = 'text-zinc-700'
-            if (isCorrectRow) {
-              rowClass = 'border-emerald-400 bg-emerald-50'
-              keyClass = 'border-emerald-500 bg-emerald-600 text-white'
-            } else if (isWrongRow) {
-              rowClass = 'border-red-300 bg-red-50'
-              keyClass = 'border-red-400 bg-red-500 text-white'
-            } else if (isChosen) {
-              // The in-flight check on the committed row.
-              rowClass = 'border-emerald-400 bg-emerald-50/60'
-              keyClass = 'border-emerald-500 bg-emerald-600 text-white'
-            } else if (reveal) {
-              rowClass = 'border-zinc-200 bg-zinc-50/60'
-              keyClass = 'border-zinc-200 bg-white text-zinc-400'
-              textClass = 'text-zinc-400'
-            } else {
-              rowClass = 'border-zinc-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/40'
-              keyClass = 'border-zinc-300 bg-white text-zinc-600'
-            }
-            return (
-              <button
-                key={letter}
-                type="button"
-                disabled={locked}
-                onClick={() => onCommit(index)}
-                className={`flex min-h-[44px] w-full items-center gap-3 rounded-lg border p-2.5 text-left transition-colors ${rowClass}`}
-              >
-                <span
-                  aria-hidden="true"
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded border font-mono text-xs font-semibold ${keyClass}`}
-                >
-                  {letter}
-                </span>
-                <span className={`min-w-0 flex-1 text-sm leading-snug ${textClass}`}>
-                  {option}
-                </span>
-                {isPending && (
-                  <Loader2 className="h-4 w-4 shrink-0 animate-spin text-emerald-600" aria-hidden="true" />
-                )}
-                {isCorrectRow && (
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
-                )}
-                {isWrongRow && <XCircle className="h-4 w-4 shrink-0 text-red-500" aria-hidden="true" />}
-                <span className="sr-only">
-                  {isChosen ? ' — your answer' : ''}
-                  {isCorrectRow ? ' — the correct answer' : ''}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Inline check failure — the card stays tappable (retry by tapping again) */}
-        {error && !reveal && (
-          <p className="text-xs text-red-600" role="alert">
-            {error}
-          </p>
-        )}
-
-        {/* The reveal — verdict + explanation, bordered, inline */}
-        {reveal && (
-          <div
-            className={`rounded-lg border p-3 sm:p-4 ${
-              reveal.correct ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'
-            }`}
-          >
-            <p
-              className={`flex flex-wrap items-center gap-2 text-sm font-semibold ${
-                reveal.correct ? 'text-emerald-700' : 'text-red-700'
-              }`}
-            >
-              {reveal.correct ? (
-                <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
-              ) : (
-                <XCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
-              )}
-              {reveal.correct
-                ? 'Correct'
-                : `Not quite — the correct answer is ${
-                    reveal.correctIndex !== null
-                      ? (question.options[reveal.correctIndex] ?? reveal.correctAnswer)
-                      : reveal.correctAnswer
-                  }`}
-            </p>
-            {reveal.explanation && (
-              <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-zinc-700">
-                {reveal.explanation}
-              </p>
-            )}
-          </div>
-        )}
-      </CardContent>
-    </Card>
-  )
-}
-
 // ---------- One Q&A card (question + expandable model answer) ----------
 
 interface QnaCardProps {
@@ -391,18 +181,16 @@ function QnaCard({ item, expanded, onToggle }: QnaCardProps) {
   return (
     <Card className="py-0">
       <CardContent className="space-y-2 p-4 sm:p-5">
-        {/* Meta row — subject context + provenance badges */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          {item.subject && (
-            <Badge
-              variant="outline"
-              className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
-            >
-              {item.subject.label}
-            </Badge>
-          )}
-          <ProvenanceBadges provenance={item.provenance} />
-        </div>
+        {/* Meta row — subject context + the shared "Asked in …" badge line */}
+        {item.subject && (
+          <Badge
+            variant="outline"
+            className="border-zinc-200 bg-white text-[10px] font-normal text-zinc-600"
+          >
+            {item.subject.label}
+          </Badge>
+        )}
+        <ProvenanceBadgeLine items={item.provenance} />
         {/* The question — always visible */}
         <p className="text-sm font-semibold leading-snug text-zinc-800 sm:text-[15px]">
           {item.questionText}
@@ -480,10 +268,6 @@ export function PyqView({ route, onGoHome }: PyqViewProps) {
   // NOTE (SITE-S7): like /mcq/, ?page= never enters the address bar — the
   // year page's pagination is view-local state (§22 practice is ephemeral).
   const [page, setPage] = useState(1)
-  /** View-local reveal state — {questionId → committed answer + verdict}. */
-  const [reveals, setReveals] = useState<Record<string, RevealState>>({})
-  const [pending, setPending] = useState<{ questionId: string; index: number } | null>(null)
-  const [revealErrors, setRevealErrors] = useState<Record<string, string>>({})
   /** Which Q&A answers are expanded — {entryId → open} (accordion per card). */
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({})
 
@@ -544,61 +328,6 @@ export function PyqView({ route, onGoHome }: PyqViewProps) {
   const base = payload ? pyqBasePath(payload.seo.canonicalPath) : '/pyq/'
   const examHref = route.examSlug ? `${base}${route.examSlug}/` : '/pyq/'
 
-  // ---------- The answer check (POST /api/questions/practice — §22/§37) ----------
-
-  const commitAnswer = useCallback(
-    async (question: PyqQuestion, index: number) => {
-      if (pending || reveals[question.id] !== undefined) return
-      setPending({ questionId: question.id, index })
-      try {
-        const response = await fetch('/api/questions/practice', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          cache: 'no-store',
-          // selected = the option KEY (the positional letter), exactly the
-          // contract the knowledge page's practice layer commits against.
-          body: JSON.stringify({
-            questionId: question.id,
-            selected: OPTION_LETTERS[index] ?? String(index + 1),
-          }),
-        })
-        const body = (await response.json()) as Envelope<{ result: PracticeAnswerResult }>
-        if (body.status === 'ok' && body.data) {
-          const result = body.data.result
-          setReveals((current) => ({
-            ...current,
-            [question.id]: {
-              selectedIndex: index,
-              correct: result.correct,
-              correctIndex: OPTION_LETTERS.indexOf(result.correctAnswer),
-              correctAnswer: result.correctAnswer,
-              explanation: result.explanation,
-            },
-          }))
-          setRevealErrors((current) => {
-            if (!(question.id in current)) return current
-            const next = { ...current }
-            delete next[question.id]
-            return next
-          })
-        } else {
-          setRevealErrors((current) => ({
-            ...current,
-            [question.id]: body.error?.message ?? 'Could not check this answer — please retry.',
-          }))
-        }
-      } catch {
-        setRevealErrors((current) => ({
-          ...current,
-          [question.id]: 'Network error — please retry.',
-        }))
-      } finally {
-        setPending(null)
-      }
-    },
-    [pending, reveals]
-  )
-
   // ---------- SEO head (instant title; canonical/hreflang once loaded) ----------
 
   const seoInput = useMemo<SeoHeadInput>(() => {
@@ -645,11 +374,6 @@ export function PyqView({ route, onGoHome }: PyqViewProps) {
   const questions = yearData?.questions ?? []
   const qnaItems = yearData?.qna ?? []
   const pagination = yearData?.pagination ?? null
-  // The running score counts only what is on screen (honest per view).
-  const answeredCount = questions.filter((question) => reveals[question.id] !== undefined).length
-  const correctCount = questions.filter(
-    (question) => reveals[question.id]?.correct === true
-  ).length
 
   // ---------- Loading (first paint — mirrors the layout) ----------
 
@@ -1129,46 +853,27 @@ export function PyqView({ route, onGoHome }: PyqViewProps) {
           </Card>
         ) : (
           <>
-            {/* The MCQ practice list — running score at the section top */}
+            {/* The MCQ practice list — the shared inline-practice module
+                (one-tap reveal + verdict + the running score, SITE-S8-B) */}
             {questions.length > 0 ? (
-              <>
-                <div className="flex flex-wrap items-center justify-between gap-2">
+              loading ? (
+                <>
                   <h2 className="text-sm font-semibold text-zinc-900">
                     Questions from the {yearData?.year ?? route.pyqYear} paper
                   </h2>
-                  {answeredCount > 0 && (
-                    <Badge
-                      variant="outline"
-                      className="gap-1 border-emerald-200 bg-emerald-50 font-normal text-emerald-700"
-                      aria-live="polite"
-                    >
-                      <Target className="h-3 w-3" aria-hidden="true" />
-                      {answeredCount} answered · {correctCount} correct
-                    </Badge>
-                  )}
-                </div>
-                {loading ? (
                   <div className="grid gap-4" aria-busy="true" aria-label="Loading questions">
                     {[0, 1, 2].map((index) => (
                       <Skeleton key={index} className="h-60 w-full rounded-xl" />
                     ))}
                   </div>
-                ) : (
-                  <ul className="grid gap-4" role="list" aria-label="Previous year questions">
-                    {questions.map((question) => (
-                      <li key={question.id}>
-                        <QuestionCard
-                          question={question}
-                          reveal={reveals[question.id] ?? null}
-                          pendingIndex={pending?.questionId === question.id ? pending.index : null}
-                          error={revealErrors[question.id] ?? null}
-                          onCommit={(index) => void commitAnswer(question, index)}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </>
+                </>
+              ) : (
+                <InlinePractice
+                  questions={questions}
+                  heading={`Questions from the ${yearData?.year ?? route.pyqYear} paper`}
+                  listLabel="Previous year questions"
+                />
+              )
             ) : !loading && qnaItems.length === 0 ? (
               /* ---------- Honest empty state — nothing recorded for this sitting ---------- */
               <Card className="border-dashed border-zinc-300 bg-zinc-50/60">

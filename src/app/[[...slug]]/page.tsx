@@ -54,6 +54,7 @@ import { SubjectsView } from '@/components/home/subjects-view'
 import { McqView } from '@/components/home/mcq-view'
 import { QnaView } from '@/components/home/qna-view'
 import { PyqView } from '@/components/home/pyq-view'
+import { TutorialsView } from '@/components/home/tutorials-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
@@ -694,6 +695,23 @@ export default function GKSetuApp() {
           },
           config
         )
+      } else if (root === 'tutorials') {
+        // SITE-S8 — the tutorials directory: /tutorials/, /tutorials/{exam}/
+        // and /tutorials/{exam}/{chapter}/ (dashboard-style path links route
+        // through the same grammar; trailing junk beyond the chapter is
+        // tolerated the same way parseRoute tolerates it).
+        navigateRoute(
+          {
+            view: 'tutorials',
+            countryIso: country.isoCode,
+            language,
+            topicSlug: null,
+            unitSlug: null,
+            examSlug: afterRoot[0] ?? null,
+            chapterSlug: afterRoot[1] ?? null,
+          },
+          config
+        )
       } else if (root === 'mock-test') {
         navigateRoute(
           { view: 'mock-test', countryIso: country.isoCode, language, topicSlug: null, unitSlug: null },
@@ -1100,6 +1118,12 @@ export default function GKSetuApp() {
         ) : route.view === 'pyq' ? (
           <PyqView
             key={`${route.countryIso}:${route.language}:${route.examSlug ?? ''}:${route.pyqYear ?? ''}`}
+            route={route}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'tutorials' ? (
+          <TutorialsView
+            key={`${route.countryIso}:${route.language}:${route.examSlug ?? ''}:${route.chapterSlug ?? ''}`}
             route={route}
             onGoHome={goHome}
           />

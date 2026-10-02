@@ -18,13 +18,14 @@ import { db } from '@/lib/db'
 import { buildCanonicalUrl, getPublicCountry } from '@/modules/country-locale'
 import { windowContains } from '@/modules/exams-syllabus'
 import { getPyqIndex } from '@/modules/pyq'
+import { getTutorialsIndex } from '@/modules/tutorials'
 import { getPublicTree } from '@/modules/taxonomy'
 
 import { SeoError } from './errors'
 
 // ---------- Shapes ----------
 
-export const SITEMAP_TYPES = ['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus', 'pyq'] as const
+export const SITEMAP_TYPES = ['home', 'topics', 'units', 'current-affairs', 'exams', 'syllabus', 'pyq', 'tutorials'] as const
 export type SitemapType = (typeof SITEMAP_TYPES)[number]
 
 /** One indexable §16 URL (path + honest lastmod). */
@@ -64,6 +65,13 @@ interface CountrySitemapModel {
   /** SITE-S7: PYQ URLs per language — only exams with ≥1 visible PYQ item
    * (the /pyq/ page's own service is the one truth, §16). */
   pyqByLanguage: Map<string, Array<{ examSlug: string; years: number[] }>>
+  /** SITE-S8: tutorial exam slugs per language — every exam whose tutorial the
+   * /tutorials/ index would list for that reader (the index page's own §14/§35
+   * gates are the one truth, §16). */
+  tutorialsByLanguage: Map<string, string[]>
+  /** SITE-S8: the current version's chapter slugs per exam (language-free —
+   * chapters are syllabus nodes; only exams with a tutorial get entries). */
+  tutorialChapters: Map<string, string[]>
 }
 
 // ---------- Per-country model ----------
@@ -252,6 +260,8 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
   // ---------- Exams + syllabus topics (ACTIVE markets only, §14/§38/§36) ----------
   const exams: CountrySitemapModel['exams'] = []
   const syllabus: CountrySitemapModel['syllabus'] = []
+  /** SITE-S8: chapter slugs per exam (language-free, alphabetical — §37). */
+  const tutorialChapters = new Map<string, string[]>()
   if (countryRow.status === 'ACTIVE') {
     const examRows = await db.exam.findMany({
       where: { countryId: countryRow.id, status: 'ACTIVE' },
@@ -292,6 +302,30 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
         syllabus.push({ examSlug, topicSlug: slug, lastModified: version.effectiveFrom })
       }
     }
+
+    // SITE-S8 — the tutorial chapters: the current version's syllabus nodes
+    // WITH slugs (one batched query — the same census discipline as the
+    // syllabus topics above; 136 exams ≈ 1,000 nodes never walked per-exam).
+    // Chapters are language-free (syllabus structure); the per-language exam
+    // gate is the tutorials index below. Alphabetical per exam (§37).
+    const examSlugByVersionId = new Map(
+      [...currentByExamSlug].map(([examSlug, version]) => [version.id, examSlug])
+    )
+    const chapterRows = await db.syllabusNode.findMany({
+      where: {
+        examVersionId: { in: [...currentByExamSlug.values()].map((version) => version.id) },
+        slug: { not: null },
+      },
+      select: { examVersionId: true, slug: true },
+    })
+    for (const row of chapterRows) {
+      const examSlug = examSlugByVersionId.get(row.examVersionId)
+      if (!examSlug || !row.slug) continue
+      const bucket = tutorialChapters.get(examSlug)
+      if (bucket) bucket.push(row.slug)
+      else tutorialChapters.set(examSlug, [row.slug])
+    }
+    for (const slugs of tutorialChapters.values()) slugs.sort((a, b) => a.localeCompare(b))
   }
 
   // ---------- PYQ directory per language (SITE-S7 — the /pyq/ family) ----------
@@ -321,6 +355,23 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     )
   }
 
+  // ---------- Tutorials directory per language (SITE-S8 — the /tutorials/ family) ----------
+  // getTutorialsIndex applies the exact §14/§35/§36 visibility gates the live
+  // /tutorials/ page serves (60s cached) — the census can never declare a URL
+  // the page would not fill (§16 one-truth, the P9-S5 lesson). Chapters are
+  // §16-real for every current-version node (the TOC page lists them all).
+  // No lastmod, same honesty rule as the pyq entries above.
+  const tutorialLoads = await Promise.all(
+    languages.map(async (language) => {
+      const index = await getTutorialsIndex({ country: isoCode, language: language.code })
+      return { code: language.code, examSlugs: index.exams.map((exam) => exam.examSlug) }
+    })
+  )
+  const tutorialsByLanguage = new Map<string, string[]>()
+  for (const load of tutorialLoads) {
+    tutorialsByLanguage.set(load.code, [...load.examSlugs].sort((a, b) => a.localeCompare(b)))
+  }
+
   return {
     isoCode: countryRow.isoCode,
     slug: countryRow.slug,
@@ -334,6 +385,8 @@ async function loadCountryModel(isoCode: string): Promise<CountrySitemapModel | 
     exams,
     syllabus,
     pyqByLanguage,
+    tutorialsByLanguage,
+    tutorialChapters,
   }
 }
 
@@ -352,8 +405,8 @@ function segmentEntries(
     case 'home':
       // SITE-S1 — the structural surfaces of the market: the homepage plus
       // the indexable listings (current-affairs, exams, subjects, mock-test,
-      // mcq, qna, pyq). They exist in every country-configured language (§35
-      // structural rule), so they enumerate like the home URL itself.
+      // mcq, qna, pyq, tutorials). They exist in every country-configured
+      // language (§35 structural rule), so they enumerate like the home URL.
       return [
         { path: path([]), lastModified: model.homeLastModified },
         { path: path(['current-affairs']), lastModified: model.homeLastModified },
@@ -363,6 +416,7 @@ function segmentEntries(
         { path: path(['mcq']), lastModified: model.homeLastModified },
         { path: path(['qna']), lastModified: model.homeLastModified },
         { path: path(['pyq']), lastModified: model.homeLastModified },
+        { path: path(['tutorials']), lastModified: model.homeLastModified },
       ]
     case 'topics':
       // SITE-S1 — URL grammar v2: subjects at the root (/{subject}/).
@@ -406,6 +460,21 @@ function segmentEntries(
             lastModified: null,
           })),
         ])
+    case 'tutorials':
+      // SITE-S8 — the tutorials directory: /tutorials/{exam}/ (the TOC) and
+      // /tutorials/{exam}/{chapter}/ (the reader) for every exam the index
+      // would list in this language (the index page itself enumerates with
+      // the structural surfaces in 'home'). Chapters are the current
+      // version's slugged syllabus nodes — language-free, one truth with the
+      // TOC page. examSlug asc, chapters alphabetical — deterministic (§37),
+      // no lastmod (see the model note).
+      return [...(model.tutorialsByLanguage.get(languageCode) ?? [])].flatMap((examSlug) => [
+        { path: path(['tutorials', examSlug]), lastModified: null },
+        ...(model.tutorialChapters.get(examSlug) ?? []).map((chapterSlug) => ({
+          path: path(['tutorials', examSlug, chapterSlug]),
+          lastModified: null,
+        })),
+      ])
   }
 }
 
@@ -482,7 +551,7 @@ export function invalidateCensusCache(): void {
  * segment with its URL count and newest lastmod. Segments are ordered
  * deterministically: default market first, then iso; language by code; type
  * in the fixed home → topics → units → current-affairs → exams → syllabus →
- * pyq order.
+ * pyq → tutorials order.
  */
 export async function listSitemapSegments(): Promise<SitemapSegmentInfo[]> {
   // P10-S1: the segment list IS the cached inventory's segment list (the

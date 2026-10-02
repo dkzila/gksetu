@@ -505,6 +505,9 @@ model Exam {
   // SITE-S7: this exam's PYQ provenance rows (question + QnA appearances).
   questionProvenance QuestionProvenance[]
   qnaProvenance      QnAProvenance[]
+  // SITE-S8: per-user tutorial-syllabus progress rows denormalised to this
+  // exam for the fast per-exam percent read.
+  tutorialProgress TutorialProgress[]
 
   @@unique([countryId, code])
   @@index([status])
@@ -661,11 +664,20 @@ model ExamVersion {
 // canonical Topic — the ONLY bridge between exam requirements and knowledge
 // (§13: exams reach knowledge exclusively through SyllabusNode →
 // ExamMapping, which lands in P3-S3 and anchors on these rows).
+//
+// SITE-S8 (docs/learning-platform-plan.md): `slug` is the chapter URL
+// identity of the computed tutorial — /tutorials/{exam}/{chapter}/ (§16/§37
+// URL-stable). Kebab-case, unique within the version; nullable because
+// legacy nodes predate the field (backfilled by scripts/site-s8-tutorial-slugs.ts
+// — the composite unique treats NULLs as distinct, so slugless rows stay
+// legal and the public ref falls back to the node id). Frozen trees keep
+// their slugs forever (§36); the tree freeze rule is unchanged.
 model SyllabusNode {
   id            String   @id @default(cuid())
   examVersionId String
   parentId      String? // null = root; must belong to the SAME exam version
   name          String // exam-syllabus label (notification wording — never taxonomy, §13)
+  slug          String? // SITE-S8 chapter URL identity (kebab-case, unique per version; null = pre-backfill)
   topicId       String? // canonical taxonomy link (GLOBAL or the exam's country — §13/§14)
   depth         Int // 0 for roots; parent.depth + 1 (denormalised for reads)
   priority      Int      @default(0) // sibling ordering (§6) — ascending within a parent
@@ -678,7 +690,10 @@ model SyllabusNode {
   children     SyllabusNode[] @relation("SyllabusTree")
   topic        Topic?         @relation("SyllabusNodeTopic", fields: [topicId], references: [id])
   examMappings ExamMapping[]  @relation("ExamMappingNode") // P3-S3
+  // SITE-S8: per-user syllabus-walk progress rows pinned to this node.
+  tutorialProgress TutorialProgress[]
 
+  @@unique([examVersionId, slug]) // SITE-S8 — NULLs-distinct keeps slugless legacy nodes legal
   @@index([examVersionId, parentId, priority])
   @@index([topicId])
 }
@@ -922,6 +937,8 @@ model User {
   // SITE-S7: PYQ provenance rows created by this user (both kinds).
   createdQuestionProvenance QuestionProvenance[]
   createdQnaProvenance      QnAProvenance[]
+  // SITE-S8: tutorial chapter-progress rows owned by this user.
+  tutorialProgress TutorialProgress[]
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -1904,6 +1921,36 @@ model MasteryState {
   // The revision queue's hot read: my units ordered by due date.
   @@index([userId, nextReviewAt])
   @@index([knowledgeUnitId])
+}
+
+// ---------- SITE-S8: TutorialProgress (docs/learning-platform-plan.md SITE-S8) ----------
+//
+// A tutorial is COMPUTED, never stored (§46.3 spirit): the syllabus tree is
+// the TOC, mapped KUs are the lessons, the practice/PYQ/QnA/mock layers ride
+// the existing spine. The ONLY persisted tutorial state is the user's
+// syllabus walk: one row per user × syllabus node marked "learned".
+//
+// Deliberately NOT MasteryState (that is attempt-fed only — §9 implicit
+// signal) and NOT SavedItem (bookmarks, not progress): a chapter-read mark is
+// a §9 EXPLICIT signal with its own row (the TASKPLAN-B conclusion). `examId`
+// is denormalised for the per-exam percent read (the hot path: "how much of
+// this exam's tutorial have I walked"); `nodeId` cascades with the node
+// (a deleted node's progress is meaningless) while `examId` is FK-protected
+// (progress history outlives nothing — the exam row must exist; §36 honesty).
+model TutorialProgress {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nodeId      String
+  node        SyllabusNode @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  examId      String
+  exam        Exam         @relation(fields: [examId], references: [id])
+  completedAt DateTime     @default(now())
+
+  // One mark per user × chapter — the toggle upserts/deletes this identity.
+  @@unique([userId, nodeId])
+  // The per-exam progress read (denormalised examId — no join needed).
+  @@index([userId, examId])
 }
 
 // ---------- P8-S1: the §21 sharing system ----------

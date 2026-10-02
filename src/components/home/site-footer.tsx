@@ -85,6 +85,7 @@ export function SiteFooter({
     { label: 'Current Affairs', href: '/current-affairs/' },
     { label: 'Exams', href: '/exams/' },
     { label: 'Subjects', href: '/subjects/' },
+    { label: 'Tutorials', href: '/tutorials/' },
     { label: 'Mock Tests', href: '/mock-test/' },
     { label: 'MCQ Practice', href: '/mcq/' },
     { label: 'Q&A', href: '/qna/' },

@@ -453,10 +453,10 @@ export async function getSeoValidation(
       const grammar: Record<string, string> = {
         // SITE-S1 grammar v2 — subjects/knowledge pages live at the root and
         // the home segment carries the structural surfaces (…/mcq/, …/qna/,
-        // …/pyq/…). These patterns had drifted stale since v2 (the check was
-        // additionally crashing on the pattern-less 'current-affairs' type —
-        // found while adding the SITE-S7 'pyq' type).
-        home: `^($|(current-affairs|exams|subjects|mock-test|mcq|qna|pyq)/$)`,
+        // …/pyq/…, …/tutorials/…). These patterns had drifted stale since v2
+        // (the check was additionally crashing on the pattern-less
+        // 'current-affairs' type — found while adding the SITE-S7 'pyq' type).
+        home: `^($|(current-affairs|exams|subjects|mock-test|mcq|qna|pyq|tutorials)/$)`,
         topics: `^${SLUG}/$`,
         units: `^${SLUG}/${SLUG}/$`,
         'current-affairs': `^current-affairs/${SLUG}/$`,
@@ -464,6 +464,8 @@ export async function getSeoValidation(
         syllabus: `^exams/${SLUG}/syllabus/${SLUG}/$`,
         // SITE-S7 — the PYQ directory: per-exam and per-year pages.
         pyq: `^pyq/${SLUG}(?:/${SLUG})?/$`,
+        // SITE-S8 — the tutorials directory: per-exam TOC + chapter pages.
+        tutorials: `^tutorials/${SLUG}(?:/${SLUG})?/$`,
       }
       const failures: string[] = []
       let checked = 0
