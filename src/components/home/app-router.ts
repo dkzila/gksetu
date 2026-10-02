@@ -21,6 +21,9 @@
  *                          syllabus courses)
  *   Tutorial TOC            …/tutorials/{exam}/    (SITE-S8)
  *   Tutorial chapter        …/tutorials/{exam}/{chapter}/ (SITE-S8)
+ *   Combined tutorial       …/tutorials/combined/?exams=a,b (SITE-S9 — 'combined'
+ *                          is the reserved examSlug segment; the ?exams= set is
+ *                          the view's addressable state)
  *   PYQ directory           …/pyq/                 (SITE-S7 — exam → year
  *                          previous-year questions)
  *   PYQ exam years          …/pyq/{exam}/          (SITE-S7)
@@ -524,6 +527,13 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
   // This branch runs BEFORE the exams tree and the generic subject fallback
   // (the SITE-S4 ordering lesson — a subject named 'tutorials' can never
   // shadow the directory).
+  // SITE-S9: 'combined' is the RESERVED combined-tutorial segment —
+  // /tutorials/combined/?exams=a,b parses naturally as examSlug:'combined'
+  // (afterRoot[0], no interface change) and the CombinedTutorialView owns
+  // the ?exams= addressable state; any chapterSlug beyond 'combined' is
+  // tolerated junk, exactly like a real exam's chapter tail. buildPath's
+  // tutorials branch pushes the segments verbatim — it already renders
+  // /tutorials/combined/ correctly, no special casing needed.
   if (root === 'tutorials') {
     const examSlug = afterRoot[0] ?? null
     const chapterSlug = afterRoot[1] ?? null
@@ -827,6 +837,9 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
     // …/tutorials/{exam}/, …/tutorials/{exam}/{chapter}/) for free hreflang
     // parity — the same segments.push pattern as pyq (never the mock-test
     // fixed-path pattern).
+    // SITE-S9 — examSlug:'combined' needs no special case here: the pushes
+    // render /tutorials/combined/ verbatim (the view owns the ?exams= query
+    // through history.replaceState, never through buildPath).
     segments.push('tutorials')
     if (route.examSlug) segments.push(route.examSlug)
     if (route.examSlug && route.chapterSlug) segments.push(route.chapterSlug)

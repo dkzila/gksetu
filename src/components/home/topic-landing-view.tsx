@@ -41,6 +41,7 @@ import {
   GraduationCap,
   HandCoins,
   Hash,
+  History,
   Landmark,
   Layers,
   Leaf,
@@ -381,6 +382,13 @@ export function TopicLandingView({
               exams need this
             </span>
           )}
+          {landing.stats.pyqCount > 0 && landing.pyq && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs text-amber-700">
+              <History className="h-3.5 w-3.5 text-amber-600" aria-hidden="true" />
+              <strong className="font-semibold text-amber-800">{landing.stats.pyqCount}</strong>
+              previous-year question{landing.stats.pyqCount === 1 ? '' : 's'}
+            </span>
+          )}
           {focusLabel && (
             <span className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-2.5 py-1 text-xs text-zinc-500">
               {focusLabel}
@@ -395,6 +403,32 @@ export function TopicLandingView({
           </a>
           .
         </p>
+
+        {/* SITE-S9 — the PYQ aggregate line: which real sittings asked this
+            topic's questions (each exam links to its /pyq/{exam}/ page). */}
+        {landing.pyq && landing.pyq.exams.length > 0 && (
+          <p className="mt-1.5 text-xs text-zinc-500">
+            <History className="mr-1 inline h-3.5 w-3.5 text-amber-600" aria-hidden="true" />
+            Asked in real sittings:{' '}
+            {landing.pyq.exams.slice(0, 3).map((exam, index) => (
+              <span key={exam.slug}>
+                {index > 0 && <span className="text-zinc-300"> · </span>}
+                <a
+                  href={exam.canonicalPath}
+                  className="font-medium text-emerald-700 hover:text-emerald-800"
+                >
+                  {exam.name}
+                </a>{' '}
+                <span className="text-zinc-400">
+                  ({exam.yearFrom === exam.yearTo ? exam.yearFrom : `${exam.yearFrom}–${exam.yearTo}`})
+                </span>
+              </span>
+            ))}
+            {landing.pyq.exams.length > 3 && (
+              <span className="text-zinc-400"> +{landing.pyq.exams.length - 3} more</span>
+            )}
+          </p>
+        )}
       </motion.section>
 
       {/* ---------- §33 cluster children ---------- */}

@@ -305,7 +305,25 @@ export interface TopicLanding {
   /** §33 internal links — sibling topics under the same parent. */
   relatedTopics: LandingRelatedTopic[]
   /** Subtree counters (units under the whole subtree, visible topics, exams). */
-  stats: { unitCount: number; topicCount: number; examCount: number }
+  stats: { unitCount: number; topicCount: number; examCount: number; pyqCount: number }
+  /**
+   * SITE-S9 — the subtree's previous-year-questions aggregate (§22/§19-gated
+   * provenance-bearing items on visible subtree units, reader language with
+   * the honest English count fallback — the §35 swap rule applied to counts):
+   * which exams asked them and the sitting-year span, count-desc then name
+   * (§37). Null when the subtree carries no PYQs at all.
+   */
+  pyq: {
+    exams: Array<{
+      slug: string
+      name: string
+      yearFrom: number
+      yearTo: number
+      count: number
+      /** §16 /pyq/{exam}/ path in the reader's language. */
+      canonicalPath: string
+    }>
+  } | null
 }
 
 // ---------- Exam page + syllabus-topic page (§16/§33, P4-S3) ----------

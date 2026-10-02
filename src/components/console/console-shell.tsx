@@ -70,6 +70,7 @@ import { SourcesPage } from './pages/sources-page'
 import { StaffPage } from './pages/staff-page'
 import { TaxonomyPage } from './pages/taxonomy-page'
 import { TranslationsPage } from './pages/translations-page'
+import { TutorialsConsolePage } from './pages/tutorials-console-page'
 
 // ---------- The page router (console sub-path → component) ----------
 
@@ -106,6 +107,8 @@ function renderConsolePage(consolePath: string | null) {
       return <MockTestsPage />
     case path === 'exams':
       return <ExamsPage />
+    case path === 'tutorials':
+      return <TutorialsConsolePage />
     case path.startsWith('exams/'):
       return <ExamDetailPage examRef={path.slice('exams/'.length)} />
     case path === 'taxonomy':

@@ -48,6 +48,7 @@ import type { Envelope } from './types'
 import { useAuth } from '@/stores/auth'
 import { ShareButton } from '@/components/shares/share-button'
 import { ChapterReader } from '@/components/tutorials/chapter-reader'
+import { CombinedTutorialView } from '@/components/tutorials/combined-view'
 import { useTutorialProgress } from '@/components/tutorials/use-tutorial-progress'
 import type { TutorialExamProgress } from '@/components/tutorials/use-tutorial-progress'
 import { TutorialProgressBar } from '@/components/tutorials/progress-bar'
@@ -303,6 +304,14 @@ function tutorialsMode(route: AppRoute): 'index' | 'toc' | 'chapter' {
 }
 
 export function TutorialsView({ route, onGoHome }: TutorialsViewProps) {
+  // SITE-S9: 'combined' is the RESERVED combined-tutorial segment —
+  // /tutorials/combined/?exams=a,b rides examSlug:'combined' (the path router
+  // needs no interface change) and renders its own self-contained surface.
+  // Checked BEFORE the chapter dispatch so a chapterSlug beyond 'combined'
+  // never leaks into the chapter reader.
+  if (route.examSlug === 'combined') {
+    return <CombinedTutorialView route={route} onGoHome={onGoHome} />
+  }
   // The chapter reader is its own self-contained component (its own hooks
   // and fetch) — delegating here keeps this file's hook order unconditional
   // (rules-of-hooks) while one frozen props interface serves all depths.
@@ -648,6 +657,20 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
                 path={payload?.seo.canonicalPath ?? examHref}
                 title={exam?.name ?? 'Tutorial'}
               />
+              {/* SITE-S9 — the tutorial ↔ exam cross-link: the exam page keeps
+                  the version windows, coverage tree and mock-test registry. */}
+              {exam && (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 border-zinc-300 bg-white text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+                >
+                  <a href={`/exams/${exam.slug}/`} aria-label={`Open the ${exam.name} exam page`}>
+                    Exam details
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
         </motion.section>

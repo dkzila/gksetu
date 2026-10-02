@@ -12,12 +12,17 @@ import { z } from 'zod'
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const CODE_PATTERN = /^[A-Z0-9]+(?:-[A-Z0-9]+)*$/
 
+// SITE-S9: 'combined' is the RESERVED combined-tutorials segment
+// (/tutorials/combined/?exams=… rides examSlug:'combined' in the path
+// router) — an exam can never take this slug (no existing exam carries it;
+// this create-time guard keeps future creates honest).
 export const examSlugSchema = z
   .string()
   .trim()
   .min(2, 'Slug must be at least 2 characters')
   .max(96, 'Slug must be at most 96 characters')
   .regex(SLUG_PATTERN, 'Slug must be lowercase kebab-case (letters, digits, single hyphens)')
+  .refine((slug) => slug !== 'combined', 'This slug is reserved for the combined tutorials route')
 
 export const EXAM_LEVELS = ['NATIONAL', 'STATE', 'REGIONAL'] as const
 

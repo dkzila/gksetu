@@ -17,6 +17,7 @@ import {
   ArrowRight,
   BookOpen,
   BookOpenCheck,
+  GraduationCap,
   LayoutGrid,
   RefreshCw,
   Search,
@@ -212,7 +213,7 @@ export function SubjectsView({ countryIso, language, onOpenTopic, onGoHome }: Su
       </nav>
 
       {/* ---------- Compact hero — icon tile, H1, one-liner with the real
-          counts folded in (the Exams directory pattern — no actions) ---------- */}
+          counts folded in + the SITE-S9 tutorials cross-link ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -220,40 +221,60 @@ export function SubjectsView({ countryIso, language, onOpenTopic, onGoHome }: Su
         aria-labelledby="subjects-heading"
         className="rounded-xl border border-emerald-100 bg-emerald-50/40 p-4 sm:p-5"
       >
-        <div className="flex items-start gap-3">
-          <span
-            className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
-            aria-hidden="true"
-          >
-            <LayoutGrid className="h-5 w-5" />
-          </span>
-          <div className="min-w-0 space-y-1">
-            <h1 id="subjects-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Subjects
-            </h1>
-            <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
-              Every subject in the {countryName} GK library
-              {subjects.length > 0 ? (
-                <>
-                  {' '}—{' '}
-                  <span className="font-semibold text-zinc-700">{subjects.length} subjects</span>
-                  {totalSubtopics > 0 && (
-                    <>
-                      {' '}and{' '}
-                      <span className="font-semibold text-zinc-700">
-                        {totalSubtopics} subtopics
-                      </span>
-                    </>
-                  )}
-                  , each with its notes, Q&amp;A, practice questions and the exams that need it.
-                </>
-              ) : (
-                <>
-                  {' '}— open any subject for its notes, Q&amp;A, practice questions and the
-                  exams that need it.
-                </>
-              )}
-            </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex items-start gap-3">
+            <span
+              className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-100 bg-white text-emerald-600 sm:flex"
+              aria-hidden="true"
+            >
+              <LayoutGrid className="h-5 w-5" />
+            </span>
+            <div className="min-w-0 space-y-1">
+              <h1 id="subjects-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Subjects
+              </h1>
+              <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+                Every subject in the {countryName} GK library
+                {subjects.length > 0 ? (
+                  <>
+                    {' '}—{' '}
+                    <span className="font-semibold text-zinc-700">{subjects.length} subjects</span>
+                    {totalSubtopics > 0 && (
+                      <>
+                        {' '}and{' '}
+                        <span className="font-semibold text-zinc-700">
+                          {totalSubtopics} subtopics
+                        </span>
+                      </>
+                    )}
+                    , each with its notes, Q&amp;A, practice questions and the exams that need it.
+                  </>
+                ) : (
+                  <>
+                    {' '}— open any subject for its notes, Q&amp;A, practice questions and the
+                    exams that need it.
+                  </>
+                )}
+              </p>
+            </div>
+          </div>
+          {/* SITE-S9 — the subjects ↔ tutorials cross-link: the same syllabus
+              knowledge, walked exam by exam as structured courses. */}
+          <div className="flex shrink-0 items-center gap-2">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="gap-2 border-zinc-300 bg-white text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+            >
+              <a
+                href={`${directory ? directory.seo.canonicalPath.split('/subjects/')[0] : ''}/tutorials/`}
+                aria-label="Browse exam-wise tutorials"
+              >
+                <GraduationCap className="h-4 w-4" aria-hidden="true" />
+                Exam-wise tutorials
+              </a>
+            </Button>
           </div>
         </div>
       </motion.section>

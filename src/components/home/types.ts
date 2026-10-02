@@ -215,7 +215,18 @@ export interface TopicLanding {
     items: LandingExamCard[]
   }
   relatedTopics: LandingRelatedTopic[]
-  stats: { unitCount: number; topicCount: number; examCount: number }
+  stats: { unitCount: number; topicCount: number; examCount: number; pyqCount: number }
+  /** SITE-S9 — the subtree's PYQ aggregate (null = no PYQs under this topic). */
+  pyq: {
+    exams: Array<{
+      slug: string
+      name: string
+      yearFrom: number
+      yearTo: number
+      count: number
+      canonicalPath: string
+    }>
+  } | null
 }
 
 // ---------- GET /api/exams/{ref}/page (§16/§33, P4-S3) ----------

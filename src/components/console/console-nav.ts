@@ -9,6 +9,7 @@
  */
 import {
   BookOpen,
+  BookOpenCheck,
   ChartColumn,
   ClipboardList,
   FileText,
@@ -182,6 +183,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         icon: GraduationCap,
         permission: 'exam:manage',
         description: 'Exams, versions, syllabus trees and knowledge mappings.',
+      },
+      {
+        id: 'tutorials',
+        label: 'Tutorials',
+        path: 'tutorials',
+        icon: BookOpenCheck,
+        permission: 'exam:manage',
+        description: 'The computed learning paths — per-exam coverage, gaps and learner progress.',
       },
       {
         id: 'taxonomy',

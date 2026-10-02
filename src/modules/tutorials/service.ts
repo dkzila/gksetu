@@ -72,7 +72,14 @@ import type {
 
 // ---------- Typed errors (mapped to HTTP by the route handlers, §37) ----------
 
-export type TutorialsErrorCode = 'COUNTRY_NOT_FOUND'
+/** SITE-S9: TOO_MANY_EXAMS is a 400 (a malformed request, not a missing
+ * market) — the per-code status map keeps the constructor signature frozen. */
+export type TutorialsErrorCode = 'COUNTRY_NOT_FOUND' | 'TOO_MANY_EXAMS'
+
+const TUTORIALS_ERROR_STATUS: Record<TutorialsErrorCode, number> = {
+  COUNTRY_NOT_FOUND: 404,
+  TOO_MANY_EXAMS: 400,
+}
 
 export class TutorialsError extends Error {
   readonly code: TutorialsErrorCode
@@ -82,7 +89,7 @@ export class TutorialsError extends Error {
     super(message)
     this.name = 'TutorialsError'
     this.code = code
-    this.status = 404
+    this.status = TUTORIALS_ERROR_STATUS[code]
   }
 }
 
@@ -98,10 +105,12 @@ export function toTutorialsErrorResponse(
 
 // ---------- Constants + query schemas ----------
 
-/** The platform's canonical language — the §35 honest fallback target. */
-const CANONICAL_LANGUAGE_CODE = 'en'
-/** MappingPriority → sort rank for lesson ordering (CORE first, LOW last). */
-const MAPPING_PRIORITY_RANK: Record<string, number> = { CORE: 0, SUPPORTING: 1, LOW: 2 }
+/** The platform's canonical language — the §35 honest fallback target.
+ * Exported for the combined service (SITE-S9 sibling). */
+export const CANONICAL_LANGUAGE_CODE = 'en'
+/** MappingPriority → sort rank for lesson ordering (CORE first, LOW last).
+ * Exported for the combined service (SITE-S9 sibling). */
+export const MAPPING_PRIORITY_RANK: Record<string, number> = { CORE: 0, SUPPORTING: 1, LOW: 2 }
 /** Node ids are cuids — a chapterRef that matches resolves by id (slug otherwise). */
 const CUID_PATTERN = /^c[a-z0-9]{20,}$/
 
@@ -115,8 +124,9 @@ export type TutorialsQuery = z.infer<typeof tutorialsQuerySchema>
 
 // ---------- Shared reader-context helpers (the practice-listing pattern) ----------
 
-/** The resolved reader context of one public tutorials request. */
-interface TutorialsContext {
+/** The resolved reader context of one public tutorials request. Exported
+ * for the combined service (SITE-S9 sibling). */
+export interface TutorialsContext {
   publicCountry: PublicCountry
   countryRow: { id: string; status: string }
   language: { code: string; name: string }
@@ -125,7 +135,7 @@ interface TutorialsContext {
 
 /** Resolves the reader context, surfacing locale failures as the typed
  * COUNTRY_NOT_FOUND (the practice-listing precedent). */
-async function resolveReaderContext(input: {
+export async function resolveReaderContext(input: {
   country?: string
   language?: string
 }): Promise<TutorialsContext> {
@@ -159,7 +169,7 @@ async function resolveReaderContext(input: {
  * Resolves the reader-language row plus the canonical English row — the
  * §35 exposure pair (the practice-listing precedent, verbatim).
  */
-async function loadLanguagePair(readerCode: string): Promise<{
+export async function loadLanguagePair(readerCode: string): Promise<{
   readerLanguageId: string
   englishLanguageId: string | null
 }> {
@@ -188,7 +198,7 @@ async function loadLanguagePair(readerCode: string): Promise<{
  * visible-topic-slug set of the §14 unit gate). The taxonomy snapshot is
  * cache-served — no extra database round-trips.
  */
-async function loadSubjectMaps(input: { country?: string; language?: string }): Promise<{
+export async function loadSubjectMaps(input: { country?: string; language?: string }): Promise<{
   subjectByTopicId: Map<string, { slug: string; label: string }>
   topicSlugById: Map<string, string>
   visibleTopicSlugs: Set<string>
@@ -213,7 +223,11 @@ async function loadSubjectMaps(input: { country?: string; language?: string }): 
  * The §16 /tutorials/ path family: …/tutorials/, …/tutorials/{exam}/,
  * …/tutorials/{exam}/{chapter}/ (market-scoped, the pyq path precedent).
  */
-function tutorialsPath(context: TutorialsContext, languageCode: string, segments: string[]): string {
+export function tutorialsPath(
+  context: TutorialsContext,
+  languageCode: string,
+  segments: string[]
+): string {
   return buildCanonicalUrl(
     { slug: context.publicCountry.slug, isDefault: context.publicCountry.isDefault },
     { code: languageCode },
@@ -225,8 +239,9 @@ function tutorialsPath(context: TutorialsContext, languageCode: string, segments
 // ---------- The §14 tutorial unit gate + content-count aggregates ----------
 
 /** The unit fields the §14 gate reads (satisfied by both the MappingRow
- * include and the index's slim bulk select). */
-interface TutorialUnitLike {
+ * include and the index's slim bulk select). Exported for the combined
+ * service (SITE-S9 sibling). */
+export interface TutorialUnitLike {
   status: string
   scope: string
   countryId: string | null
@@ -239,7 +254,7 @@ interface TutorialUnitLike {
  * market's tree — the practice-listing §14 clause (applied uniformly to
  * lessons AND their questions so the counts can never disagree).
  */
-function isUnitVisible(
+export function isUnitVisible(
   unit: TutorialUnitLike,
   context: TutorialsContext,
   visibleTopicSlugs: Set<string>
@@ -251,15 +266,19 @@ function isUnitVisible(
   )
 }
 
-/** Per-unit PUBLISHED content counts of one language (three groupBys, no N+1). */
-interface UnitContentCounts {
+/** Per-unit PUBLISHED content counts of one language (three groupBys, no N+1).
+ * Exported for the combined service (SITE-S9 sibling). */
+export interface UnitContentCounts {
   questionsByUnit: Map<string, number>
   /** The provenance-bearing subset (PYQ — SITE-S7). */
   pyqByUnit: Map<string, number>
   qnaByUnit: Map<string, number>
 }
 
-async function loadUnitContentCounts(unitIds: string[], languageId: string): Promise<UnitContentCounts> {
+export async function loadUnitContentCounts(
+  unitIds: string[],
+  languageId: string
+): Promise<UnitContentCounts> {
   if (unitIds.length === 0) {
     return { questionsByUnit: new Map(), pyqByUnit: new Map(), qnaByUnit: new Map() }
   }
@@ -329,8 +348,9 @@ function questionCountOf(questionIdsJson: string): number {
 }
 
 /** Parses a stored optionsJson into the option LABELS only (§22 — no keys,
- * the practice-listing parser verbatim). */
-function optionLabels(optionsJson: string): string[] {
+ * the practice-listing parser verbatim). Exported for the combined service
+ * (SITE-S9 sibling). */
+export function optionLabels(optionsJson: string): string[] {
   try {
     const parsed: unknown = JSON.parse(optionsJson)
     if (!Array.isArray(parsed)) return []
@@ -348,7 +368,7 @@ function optionLabels(optionsJson: string): string[] {
 
 /** The newest live-revision publication among the visible questions/Q&As of
  * a unit scope (the honest lastmod, the practice-listing precedent). */
-async function loadScopeLastModified(unitIds: string[], languageId: string): Promise<Date | null> {
+export async function loadScopeLastModified(unitIds: string[], languageId: string): Promise<Date | null> {
   if (unitIds.length === 0) return null
   const where = {
     status: 'PUBLISHED' as const,
@@ -492,8 +512,9 @@ function toChapterSummaries(params: {
 
 // ---------- The one-exam aggregate (TOC + chapter share this) ----------
 
-/** One exam's computed tutorial skeleton — everything except the §35 counts. */
-interface ExamTutorialData {
+/** One exam's computed tutorial skeleton — everything except the §35 counts.
+ * Exported for the combined service (SITE-S9 sibling). */
+export interface ExamTutorialData {
   exam: TutorialExamRef & { id: string }
   version: { id: string; label: string }
   tree: NodeTree<NodeRow>
@@ -518,7 +539,7 @@ const EXAM_SELECT = {
  * (§14) with a current (in-effect) version — the nulls are the honest empty
  * states (unknown/inactive exam, or no current version).
  */
-async function loadExamTutorial(
+export async function loadExamTutorial(
   examSlug: string,
   context: TutorialsContext,
   visibleTopicSlugs: Set<string>

@@ -126,6 +126,9 @@ export async function getTopicLanding(
     ? flattenTree([landingNode]).map((entry) => entry.node.id)
     : []
 
+  // ---------- SITE-S9: the subtree's PYQ aggregate (stat + per-exam line) ----------
+  const pyq = await composePyqAggregate({ subtreeTopicIds, context })
+
   // ---------- Units directly on this topic (paginated, §37) ----------
   const where = visibleUnitsWhere([detail.node.id], context.countryRow.id)
   const [unitRows, totalUnits] = await Promise.all([
@@ -237,7 +240,138 @@ export async function getTopicLanding(
       unitCount: subtree.unitCount,
       topicCount: subtree.topicCount,
       examCount: exams.available ? exams.items.length : 0,
+      pyqCount: pyq ? pyq.exams.reduce((sum, exam) => sum + exam.count, 0) : 0,
     },
+    pyq,
+  }
+}
+
+// ---------- SITE-S9: the subtree PYQ aggregate ----------
+
+/** The canonical language — the §35 honest count fallback target. */
+const PYQ_CANONICAL_LANGUAGE = 'en'
+
+/** The per-exam accumulator of one provenance-bearing sitting set. */
+interface PyqExamCell {
+  years: { min: number; max: number }
+  items: Set<string>
+}
+
+/**
+ * SITE-S9 — which exams asked the subtree's visible units' questions as real
+ * sittings, and over which years (§22/§19: only PUBLISHED items with a live
+ * revision carrying provenance; §14 scope via visibleUnitsWhere). Language
+ * rule (documented §35 honesty): counts load in the reader's language; when
+ * that language carries none but English does, the English count serves (a
+ * stat line must never show 0 while the linked practice layers carry PYQs).
+ * Deterministic (§37): count desc, then exam name, then slug. Null when the
+ * subtree carries no PYQs in either language.
+ */
+async function composePyqAggregate(params: {
+  subtreeTopicIds: string[]
+  context: Awaited<ReturnType<typeof resolveReaderContext>>
+}): Promise<TopicLanding['pyq']> {
+  const { subtreeTopicIds, context } = params
+  if (subtreeTopicIds.length === 0) return null
+
+  // The §35 exposure pair (the tutorials module's loadLanguagePair pattern).
+  const codes =
+    context.languageCode === PYQ_CANONICAL_LANGUAGE
+      ? [context.languageCode]
+      : [context.languageCode, PYQ_CANONICAL_LANGUAGE]
+  const languageRows = await db.language.findMany({
+    where: { code: { in: codes }, status: 'ACTIVE' },
+    select: { id: true, code: true },
+  })
+  const readerLanguageId = languageRows.find((row) => row.code === context.languageCode)?.id
+  const englishLanguageId = languageRows.find((row) => row.code === PYQ_CANONICAL_LANGUAGE)?.id ?? null
+  if (!readerLanguageId) return null // unreachable through resolveReaderContext — quiet honest null
+
+  /** One pass over both provenance kinds in one language. */
+  const cellsOf = async (languageId: string): Promise<Map<string, PyqExamCell>> => {
+    const cells = new Map<string, PyqExamCell>()
+    const cell = (examId: string): PyqExamCell => {
+      const existing = cells.get(examId)
+      if (existing) return existing
+      const fresh: PyqExamCell = { years: { min: 9999, max: 0 }, items: new Set<string>() }
+      cells.set(examId, fresh)
+      return fresh
+    }
+    const [questionRows, qnaRows] = await Promise.all([
+      db.questionProvenance.findMany({
+        where: {
+          question: {
+            status: 'PUBLISHED',
+            publishedRevisionId: { not: null },
+            languageId,
+            knowledgeUnit: visibleUnitsWhere(subtreeTopicIds, context.countryRow.id),
+          },
+        },
+        select: { examId: true, year: true, questionId: true },
+      }),
+      db.qnAProvenance.findMany({
+        where: {
+          qna: {
+            status: 'PUBLISHED',
+            publishedRevisionId: { not: null },
+            languageId,
+            knowledgeUnit: visibleUnitsWhere(subtreeTopicIds, context.countryRow.id),
+          },
+        },
+        select: { examId: true, year: true, qnaId: true },
+      }),
+    ])
+    for (const row of questionRows) {
+      const target = cell(row.examId)
+      target.items.add(row.questionId)
+      target.years.min = Math.min(target.years.min, row.year)
+      target.years.max = Math.max(target.years.max, row.year)
+    }
+    for (const row of qnaRows) {
+      const target = cell(row.examId)
+      target.items.add(row.qnaId)
+      target.years.min = Math.min(target.years.min, row.year)
+      target.years.max = Math.max(target.years.max, row.year)
+    }
+    return cells
+  }
+
+  let cells = await cellsOf(readerLanguageId)
+  if (cells.size === 0 && context.languageCode !== PYQ_CANONICAL_LANGUAGE && englishLanguageId) {
+    cells = await cellsOf(englishLanguageId)
+  }
+  if (cells.size === 0) return null
+
+  // The exam names + slugs behind the provenance rows (one query).
+  const examRows = await db.exam.findMany({
+    where: { id: { in: [...cells.keys()] } },
+    select: { id: true, slug: true, name: true },
+  })
+  const examById = new Map(examRows.map((row) => [row.id, row]))
+
+  return {
+    exams: [...cells.entries()]
+      .flatMap(([examId, cell]) => {
+        const exam = examById.get(examId)
+        if (!exam) return [] // defense in depth — provenance exam ids always resolve
+        return [
+          {
+            slug: exam.slug,
+            name: exam.name,
+            yearFrom: cell.years.min,
+            yearTo: cell.years.max,
+            count: cell.items.size,
+            /** §16 /pyq/{exam}/ path in the reader's language. */
+            canonicalPath: localePath(context, context.languageCode, ['pyq', exam.slug]),
+          },
+        ]
+      })
+      .sort(
+        (a, b) =>
+          b.count - a.count ||
+          a.name.localeCompare(b.name) ||
+          a.slug.localeCompare(b.slug) // deterministic (§37)
+      ),
   }
 }
 

@@ -10,6 +10,13 @@
  * labelled English fallback; §16 SEO blocks as /tutorials/… paths; §37
  * client-agnostic contracts, deterministic ordering; §38 public surface).
  *
+ * SITE-S9 adds the combined tutorial (/tutorials/combined/?exams=a,b —
+ * docs/learning-platform-plan.md SITE-S9): the §11 union engine's building
+ * blocks re-applied under this module's stricter §14 gate — a COMPUTED union
+ * of multiple exams' tutorials grouped by canonical subject, with per-exam
+ * depth chips and per-exam progress riding the existing surfaces. Nothing is
+ * persisted (§46.3).
+ *
  * The ONLY persisted tutorial state is per-user chapter progress
  * (TutorialProgress) — shipped by the progress service, never cached.
  */
@@ -211,4 +218,165 @@ export interface TutorialExamProgress {
   completedNodeIds: string[]
   totalNodes: number
   percent: number
+}
+
+// ---------- GET /api/tutorials/combined — the combined tutorial (SITE-S9) ----------
+
+/** One exam of the combined set (resolved in request order, deduplicated). */
+export interface CombinedTutorialExam {
+  slug: string
+  name: string
+  organiser: string
+  level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+  versionLabel: string | null
+  /** Present when the exam has no current version — why it contributed nothing. */
+  note: string | null
+  /** Distinct visible mapped units this exam contributed to the union. */
+  unitCount: number
+}
+
+/** One per-exam depth chip of a united unit — "Core for UPSC CSE". */
+export interface CombinedUnitDepth {
+  examSlug: string
+  examName: string
+  /** The strongest mapping priority of this exam's mappings onto this unit. */
+  priority: 'CORE' | 'SUPPORTING' | 'LOW'
+  /** The exam's syllabus-node titles that carry this unit (≤3, deterministic). */
+  chapters: string[]
+}
+
+/** One united lesson (a canonical unit, rendered once across exams). */
+export interface CombinedTutorialUnit {
+  unitSlug: string
+  title: string
+  summary: string | null
+  type: string
+  difficulty: string
+  /** §16 knowledge-page path in the resolved locale. */
+  lessonPath: string
+  topicSlug: string
+  topicLabel: string
+  /** Per-exam chips, request order. */
+  depths: CombinedUnitDepth[]
+  practiceCount: number
+  pyqCount: number
+  isShared: boolean
+}
+
+/** One canonical-subject group of the union. */
+export interface CombinedSubjectGroup {
+  subjectSlug: string
+  subjectLabel: string
+  units: CombinedTutorialUnit[]
+  practiceCount: number
+  pyqCount: number
+  /** The group's practice questions (PracticeQuestionCard shape, labels only §22). */
+  questions: PracticeQuestionCard[]
+}
+
+/** GET /api/tutorials/combined payload body — ok({ combined: this }). */
+export interface CombinedTutorials {
+  country: { isoCode: string; name: string }
+  language: { code: string; name: string }
+  /** The resolved exam set, request order (dedup by exam id). */
+  exams: CombinedTutorialExam[]
+  /** Refs that resolved to nothing (unknown/inactive/out-of-market) — honest note. */
+  unknownRefs: string[]
+  /** Subject groups, subject label asc (§37 deterministic). */
+  groups: CombinedSubjectGroup[]
+  stats: {
+    examCount: number
+    subjectCount: number
+    unitCount: number
+    sharedUnitCount: number
+    practiceCount: number
+    pyqCount: number
+  }
+  seo: PageSeo
+  seoTitle: string
+  seoDescription: string
+  /** §35 honesty marker. */
+  fallback?: boolean
+}
+
+// ---------- GET /api/tutorials/admin — the console cockpit (SITE-S9) ----------
+
+/** One exam row of the console tutorials overview. */
+export interface TutorialsAdminExamRow {
+  examId: string
+  examSlug: string
+  examName: string
+  organiser: string
+  level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+  versionLabel: string | null
+  chapterCount: number
+  lessonCount: number
+  practiceCount: number
+  pyqCount: number
+  /** Share of chapters carrying ≥1 lesson (0–100, rounded). */
+  coveragePercent: number
+  /** Chapters with no mapped units (the lesson gap). */
+  emptyChapterCount: number
+  /** Distinct learners with ≥1 completed chapter on this exam. */
+  learnerCount: number
+  /** Total completed chapters across learners. */
+  completionCount: number
+}
+
+export interface TutorialsAdminOverview {
+  country: { isoCode: string; name: string }
+  language: { code: string; name: string }
+  exams: TutorialsAdminExamRow[]
+  totals: {
+    examCount: number
+    chapterCount: number
+    lessonCount: number
+    practiceCount: number
+    pyqCount: number
+    /** Mean coverage across exams with ≥1 chapter (0–100). */
+    avgCoveragePercent: number
+    learnerCount: number
+    completionCount: number
+  }
+}
+
+/** One gap chapter of the exam detail. */
+export interface TutorialsAdminGapChapter {
+  nodeId: string
+  nodeSlug: string
+  title: string
+  depth: number
+  parentTitles: string[]
+  lessonCount: number
+  practiceCount: number
+  pyqCount: number
+  qnaCount: number
+}
+
+export interface TutorialsAdminExamDetail {
+  country: { isoCode: string; name: string }
+  language: { code: string; name: string }
+  exam: {
+    id: string
+    slug: string
+    name: string
+    organiser: string
+    level: 'NATIONAL' | 'STATE' | 'REGIONAL'
+    versionId: string | null
+    versionLabel: string | null
+    chapterCount: number
+    lessonCount: number
+    practiceCount: number
+    pyqCount: number
+    qnaCount: number
+    coveragePercent: number
+    learnerCount: number
+    completionCount: number
+  } | null
+  /** Chapters with ZERO lessons — the "map a unit" gap. */
+  lessonGaps: TutorialsAdminGapChapter[]
+  /** Chapters with lessons but ZERO practice questions — the "add questions" gap. */
+  practiceGaps: TutorialsAdminGapChapter[]
+  /** Chapters with lessons but ZERO PYQs — the "record provenance" gap. */
+  pyqGaps: TutorialsAdminGapChapter[]
 }

@@ -465,6 +465,19 @@ export function ExamView({
         {/* P5-S1 — the §9/§10 follow action (exam-level, never per version) */}
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
+          {/* SITE-S9 — the exam ↔ tutorial cross-link: the syllabus as a
+              structured course (chapters, lessons, practice, PYQs). */}
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="gap-2 border-zinc-300 bg-white text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+          >
+            <a href={`/tutorials/${page.exam.slug}/`} aria-label={`Open the ${page.exam.name} tutorial`}>
+              <BookOpen className="h-4 w-4" aria-hidden="true" />
+              Tutorial
+            </a>
+          </Button>
           <span className="text-xs text-zinc-400">
             Follows shape your combined-exam queue and dashboard — manageable anytime from
             <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
