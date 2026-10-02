@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "//": "SITE-S5: ops/seed scripts live OUTSIDE the next build type-check (they must never block a production deploy — the Vercel failure class this fixes). This config keeps them locally type-checked via `bun run type-check` / `type-check:scripts`.",
+  "extends": "./tsconfig.json",
+  "include": [
+    "scripts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
