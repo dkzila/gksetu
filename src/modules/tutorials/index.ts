@@ -26,6 +26,9 @@ export {
 // SITE-S9: the combined getter lives in its sibling service (it consumes the
 // service's exported §14/§35 helpers like the exam-mapping family's siblings).
 export { getCombinedTutorials } from './combined-service'
+// SITE-S11: the syllabus-derived goal subjects (onboarding step 3's
+// pre-selection data — the same §14 gate as the tutorial pages, same module).
+export { getExamSubjects } from './subjects-service'
 // SITE-S9-B: the console cockpit getters (read-only coverage/gap/progress
 // aggregates over the same §14-gated computation as the public tutorials).
 export {
@@ -56,6 +59,8 @@ export type {
   CombinedTutorialExam,
   CombinedTutorialUnit,
   CombinedUnitDepth,
+  DerivedSubjectRow,
+  ExamSubjects,
   TutorialsAdminExamDetail,
   TutorialsAdminExamRow,
   TutorialsAdminGapChapter,

@@ -202,21 +202,26 @@ export async function loadSubjectMaps(input: { country?: string; language?: stri
   subjectByTopicId: Map<string, { slug: string; label: string }>
   topicSlugById: Map<string, string>
   visibleTopicSlugs: Set<string>
+  /** SITE-S11: topic slug → §35 label — the derived-subjects getter's labels
+   * (same tree snapshot, same walk; additive to the existing outputs). */
+  labelBySlug: Map<string, string>
 }> {
   const tree = await getPublicTree({ country: input.country, language: input.language })
   const subjectByTopicId = new Map<string, { slug: string; label: string }>()
   const topicSlugById = new Map<string, string>()
   const visibleTopicSlugs = new Set<string>()
+  const labelBySlug = new Map<string, string>()
   const walk = (nodes: PublicTopicNode[], root: PublicTopicNode) => {
     for (const node of nodes) {
       subjectByTopicId.set(node.id, { slug: root.slug, label: root.label })
       topicSlugById.set(node.id, node.slug)
       visibleTopicSlugs.add(node.slug)
+      labelBySlug.set(node.slug, node.label)
       walk(node.children, root)
     }
   }
   for (const root of tree) walk([root], root)
-  return { subjectByTopicId, topicSlugById, visibleTopicSlugs }
+  return { subjectByTopicId, topicSlugById, visibleTopicSlugs, labelBySlug }
 }
 
 /**
@@ -528,6 +533,7 @@ const EXAM_SELECT = {
   id: true,
   slug: true,
   name: true,
+  code: true,
   organiser: true,
   level: true,
   countryId: true,
@@ -578,6 +584,7 @@ export async function loadExamTutorial(
       id: exam.id,
       slug: exam.slug,
       name: exam.name,
+      code: exam.code,
       organiser: exam.organiser,
       level: exam.level as TutorialExamRef['level'],
     },
@@ -847,7 +854,7 @@ async function loadTutorialExam(examSlug: string, input: TutorialsQuery): Promis
   const payload: TutorialExam = {
     country: { isoCode: publicCountry.isoCode, name: publicCountry.name },
     language,
-    exam: { slug: data.exam.slug, name: data.exam.name, organiser: data.exam.organiser, level: data.exam.level },
+    exam: { slug: data.exam.slug, name: data.exam.name, code: data.exam.code, organiser: data.exam.organiser, level: data.exam.level },
     versionLabel: data.version.label,
     chapters,
     totals,
@@ -942,7 +949,7 @@ async function loadTutorialChapter(
     return {
       country: { isoCode: publicCountry.isoCode, name: publicCountry.name },
       language,
-      exam: { slug: data.exam.slug, name: data.exam.name, organiser: data.exam.organiser, level: data.exam.level },
+      exam: { slug: data.exam.slug, name: data.exam.name, code: data.exam.code, organiser: data.exam.organiser, level: data.exam.level },
       versionLabel: data.version.label,
       chapter: null,
       lessons: [],
@@ -1203,7 +1210,7 @@ async function loadTutorialChapter(
   const payload: TutorialChapter = {
     country: { isoCode: publicCountry.isoCode, name: publicCountry.name },
     language,
-    exam: { slug: data.exam.slug, name: data.exam.name, organiser: data.exam.organiser, level: data.exam.level },
+    exam: { slug: data.exam.slug, name: data.exam.name, code: data.exam.code, organiser: data.exam.organiser, level: data.exam.level },
     versionLabel: data.version.label,
     chapter: chapterInfo,
     lessons,

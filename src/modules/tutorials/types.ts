@@ -91,6 +91,38 @@ export interface TutorialsIndex {
   fallback?: boolean
 }
 
+// ---------- GET /api/exams/subjects — the syllabus-derived goal subjects (SITE-S11) ----------
+
+/**
+ * One subject derived from the chosen exams' current syllabi: a DISTINCT
+ * topic of the in-effect-mapped VERIFIED market-visible units (the §14 gate
+ * verbatim), carrying which of the requested exams' syllabi contain it.
+ * `label` is the §35 label (reader language → country default → canonical
+ * name). Sorted label asc, slug asc (§37 deterministic).
+ */
+export interface DerivedSubjectRow {
+  slug: string
+  label: string
+  /** The requested exams (request order) whose syllabi carry this subject. */
+  examSlugs: string[]
+}
+
+/**
+ * GET /api/exams/subjects payload body — ok(this). The exams-that-contributed
+ * list powers the UI's provenance chips; `skipped` are the refs that resolved
+ * to nothing (unknown/inactive/foreign exam, or no version in effect) — the
+ * honest resolution record, never an error (the combined precedent).
+ */
+export interface ExamSubjects {
+  subjects: DerivedSubjectRow[]
+  /** The exams that resolved with a current version (chips: name + code). */
+  exams: Array<{ slug: string; name: string; code: string }>
+  /** Refs that contributed nothing, verbatim as sent (honesty, never 400s). */
+  skipped: string[]
+  /** The §35-style honesty note (shipped when nothing derived). */
+  note: string | null
+}
+
 // ---------- GET /api/tutorials/[examRef] — the TOC ----------
 
 /** The exam a tutorial belongs to (null = unknown/inactive exam, or no
@@ -98,6 +130,9 @@ export interface TutorialsIndex {
 export interface TutorialExamRef {
   slug: string
   name: string
+  /** SITE-S11: the short exam code ("AFCAT") — provenance chips on derived
+   * subjects; additive, existing consumers ignore it. */
+  code: string
   organiser: string
   level: 'NATIONAL' | 'STATE' | 'REGIONAL'
 }

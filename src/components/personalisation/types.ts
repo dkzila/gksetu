@@ -91,6 +91,24 @@ export interface ApiTopicNode {
   children: ApiTopicNode[]
 }
 
+// ---------- S11-B: syllabus-derived subjects (mirrors /api/exams/subjects) ----------
+
+export interface ApiDerivedSubject {
+  slug: string
+  label: string
+  /** Which of the requested exams' syllabi carry this subject (request order). */
+  examSlugs: string[]
+}
+
+export interface ApiExamSubjects {
+  subjects: ApiDerivedSubject[]
+  /** The exams that resolved with a current version (provenance chips). */
+  exams: Array<{ slug: string; name: string; code: string }>
+  /** Refs that contributed nothing (unknown/inactive/no version in effect). */
+  skipped: string[]
+  note: string | null
+}
+
 // ---------- Dashboard (mirrors src/modules/personalisation/dashboard-types.ts, P5-S4) ----------
 
 export interface ApiDashboardReason {

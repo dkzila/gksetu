@@ -14,8 +14,15 @@
  * than duplicate), saves step 1 via PATCH /api/profile and the goal via a
  * single full-replacement PUT /api/goal (§9), then completes onboarding.
  * Every step is skippable; "Skip for now" is an honest §31 choice.
+ *
+ * SITE-S11 (docs/learning-flow-plan.md): step 2 scales beyond the scroll-wall
+ * — the exam picker is SERVER-driven (debounced search + 10-per-page
+ * pagination on the existing /api/exams contract, selections surviving page
+ * changes as removable chips); step 3 derives its subjects from the chosen
+ * exams' syllabi (/api/exams/subjects — the tutorials §14 gate) — pre-ticked,
+ * untickable, with the full taxonomy tree still browsable behind a toggle.
  */
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowLeft,
@@ -23,12 +30,16 @@ import {
   BookOpenCheck,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
   GraduationCap,
   ListChecks,
+  ListTree,
   Loader2,
   LogIn,
+  Search,
   Sparkles,
+  X,
 } from 'lucide-react'
 
 import { useToast } from '@/hooks/use-toast'
@@ -47,7 +58,9 @@ import type { ApiCountry, Envelope } from '@/components/home/types'
 import {
   LEVEL_LABELS,
   ONBOARDING_COPY,
+  type ApiDerivedSubject,
   type ApiExamOption,
+  type ApiExamSubjects,
   type ApiProfile,
   type ApiTopicNode,
 } from './types'
@@ -72,6 +85,28 @@ const MAX_TOPICS = 25
 const DAILY_OPTIONS = [15, 30, 45, 60, 90, 120, 180]
 const YEAR_OPTIONS = Array.from({ length: 8 }, (_, index) => 2025 + index)
 
+/** SITE-S11: the exam picker's page size — 10 rows per server page (the
+ * onboarding-at-scale decision: search + paginate, never a scroll-wall). */
+const EXAM_PAGE_SIZE = 10
+/** SITE-S11: the search input's debounce (ms) — typing settles before the
+ * server round-trip, so keystrokes never spam /api/exams. */
+const EXAM_SEARCH_DEBOUNCE_MS = 300
+
+/** The /api/exams list response (the envelope's data). */
+interface ExamListResponse {
+  exams: ApiExamOption[]
+  pagination: { page: number; pageSize: number; total: number; totalPages: number }
+  country: { isoCode: string; name: string }
+}
+
+/** The picker's held page — the response's exams plus the pagination numbers
+ * the footer renders. */
+interface ExamPage {
+  exams: ApiExamOption[]
+  total: number
+  totalPages: number
+}
+
 // ---------- Component ----------
 
 export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingViewProps) {
@@ -91,16 +126,38 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
   const [countryIso, setCountryIso] = useState('')
   const [languageCode, setLanguageCode] = useState('')
 
-  // Step 2 — goal exams (slugs)
-  const [examOptions, setExamOptions] = useState<ApiExamOption[] | null>(null)
-  const [examLoading, setExamLoading] = useState(false)
+  // Step 2 — goal exams: the SERVER-driven picker (S11-A). Search is
+  // debounced into `examSearch`; the page fetch rides the existing
+  // /api/exams contract (q/page/pageSize/total/totalPages); selections live
+  // in `selectedExams` and survive page changes; `examMetaBySlug` keeps the
+  // names/codes of every row ever seen (chips + the review line) — prefilled
+  // from the profile's goal exams so a re-run never shows bare slugs.
   const [selectedExams, setSelectedExams] = useState<Set<string>>(new Set())
+  const [examSearchInput, setExamSearchInput] = useState('')
+  const [examSearch, setExamSearch] = useState('')
+  const [examPage, setExamPage] = useState(1)
+  const [examResult, setExamResult] = useState<ExamPage | null>(null)
+  const [examLoading, setExamLoading] = useState(false)
+  const [examError, setExamError] = useState<string | null>(null)
+  const [examMetaBySlug, setExamMetaBySlug] = useState<Map<string, { name: string; code: string }>>(
+    new Map()
+  )
+  const [examReload, setExamReload] = useState(0)
+  const examRequestRef = useRef(0)
 
-  // Step 3 — goal subjects (slugs)
+  // Step 3 — goal subjects: the syllabus-derived group (S11-B) + the full
+  // taxonomy tree behind a toggle. `offeredSubjectsRef` remembers which
+  // derived subjects were offered last, so re-entering step 3 never re-ticks
+  // a subject the user deliberately unticked (their choice is respected).
   const [topicTree, setTopicTree] = useState<ApiTopicNode[] | null>(null)
   const [topicLoading, setTopicLoading] = useState(false)
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set())
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set())
+  const [derivedSubjects, setDerivedSubjects] = useState<ApiExamSubjects | null>(null)
+  const [derivedLoading, setDerivedLoading] = useState(false)
+  const [derivedError, setDerivedError] = useState<string | null>(null)
+  const [showAllSubjects, setShowAllSubjects] = useState(false)
+  const offeredSubjectsRef = useRef<Set<string>>(new Set())
 
   // Step 4 — level & pace
   const [level, setLevel] = useState('')
@@ -149,6 +206,11 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
         if (payload.data.goal) {
           setSelectedExams(new Set(payload.data.goal.exams.map((exam) => exam.slug)))
           setSelectedTopics(new Set(payload.data.goal.topics.map((topic) => topic.slug)))
+          // S11: names/codes for the prefilled selections — the chips row and
+          // the step-4 review never render a bare slug for them.
+          setExamMetaBySlug(
+            new Map(payload.data.goal.exams.map((exam) => [exam.slug, { name: exam.name, code: exam.code }]))
+          )
           setLevel(payload.data.goal.level ?? '')
           setStudyLanguage(payload.data.goal.studyLanguage?.code ?? '')
           setTargetYear(payload.data.goal.targetYear ? String(payload.data.goal.targetYear) : '')
@@ -166,20 +228,6 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     void loadProfile()
   }, [loadProfile])
 
-  const loadExams = useCallback(async (iso: string) => {
-    setExamLoading(true)
-    try {
-      const params = new URLSearchParams({ country: iso, pageSize: '300' })
-      const response = await fetch(`/api/exams?${params.toString()}`, { cache: 'no-store' })
-      const payload = (await response.json()) as Envelope<{ exams: ApiExamOption[] }>
-      setExamOptions(payload.status === 'ok' && payload.data ? payload.data.exams : [])
-    } catch {
-      setExamOptions([])
-    } finally {
-      setExamLoading(false)
-    }
-  }, [])
-
   const loadTopics = useCallback(async (iso: string, language: string) => {
     setTopicLoading(true)
     try {
@@ -195,22 +243,158 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     }
   }, [])
 
-  // ---------- Step transitions ----------
+  // ---------- S11-A: the server-driven exam picker ----------
 
-  const goToExams = useCallback(() => {
-    setStepError(null)
-    if (!countryIso.trim()) {
-      setStepError('Pick your home country — GKSetu personalises by your market.')
+  /** The debounce — typing settles for EXAM_SEARCH_DEBOUNCE_MS before the
+   * committed search changes (and the page resets to 1 with it). */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setExamSearch(examSearchInput.trim())
+      setExamPage(1)
+    }, EXAM_SEARCH_DEBOUNCE_MS)
+    return () => clearTimeout(timer)
+  }, [examSearchInput])
+
+  /** The current page fetch — the EXISTING /api/exams contract (q/page/
+   * pageSize), superseded cleanly by newer requests (the request-id guard:
+   * stale responses are dropped, never rendered). */
+  useEffect(() => {
+    if (step !== 2) return
+    const iso = countryIso.trim()
+    if (!iso) return
+    const requestId = ++examRequestRef.current
+    setExamLoading(true)
+    setExamError(null)
+    const params = new URLSearchParams({
+      country: iso,
+      pageSize: String(EXAM_PAGE_SIZE),
+      page: String(examPage),
+    })
+    if (examSearch) params.set('q', examSearch)
+    fetch(`/api/exams?${params.toString()}`, { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((payload: Envelope<ExamListResponse>) => {
+        if (requestId !== examRequestRef.current) return
+        if (payload.status === 'ok' && payload.data) {
+          setExamResult({
+            exams: payload.data.exams,
+            total: payload.data.pagination.total,
+            totalPages: Math.max(1, payload.data.pagination.totalPages),
+          })
+          setExamMetaBySlug((current) => {
+            if (payload.data!.exams.every((exam) => current.has(exam.slug))) return current
+            const next = new Map(current)
+            for (const exam of payload.data!.exams) {
+              next.set(exam.slug, { name: exam.name, code: exam.code })
+            }
+            return next
+          })
+        } else {
+          setExamError(payload.error?.message ?? 'Could not load exams')
+        }
+      })
+      .catch(() => {
+        if (requestId !== examRequestRef.current) return
+        setExamError('Network error — could not load exams')
+      })
+      .finally(() => {
+        if (requestId !== examRequestRef.current) return
+        setExamLoading(false)
+      })
+  }, [step, countryIso, examSearch, examPage, examReload])
+
+  /** Toggle one exam — shared by the page rows and the selected chips. */
+  const toggleExam = useCallback((slug: string) => {
+    setSelectedExams((current) => {
+      const next = new Set(current)
+      if (next.has(slug)) next.delete(slug)
+      else next.add(slug)
+      return next
+    })
+  }, [])
+
+  // ---------- S11-B: the syllabus-derived subjects ----------
+
+  /** Toggle one subject — shared by the derived rows and the taxonomy tree
+   * rows (one guard, one behaviour: the MAX_TOPICS cap). */
+  const toggleTopic = useCallback(
+    (slug: string) => {
+      setSelectedTopics((current) => {
+        if (!current.has(slug) && current.size >= MAX_TOPICS) {
+          toast({
+            title: 'Subject limit reached',
+            description: `A goal can declare at most ${MAX_TOPICS} subjects.`,
+            variant: 'destructive',
+          })
+          return current
+        }
+        const next = new Set(current)
+        if (next.has(slug)) next.delete(slug)
+        else next.add(slug)
+        return next
+      })
+    },
+    [toast]
+  )
+
+  /** Derives the chosen exams' subjects (/api/exams/subjects — the tutorials
+   * §14 gate) and PRE-TICKS them: the union of the current selection and the
+   * derived set, capped at MAX_TOPICS. A subject the user deliberately
+   * unticked from a previous offering stays unticked (their choice is
+   * respected across back-and-forth steps); only NEW derivations get added. */
+  const loadDerivedSubjects = useCallback(async () => {
+    if (selectedExams.size === 0) {
+      // No goal exams — the plain tree IS the step (the quiet honest path).
+      setDerivedSubjects(null)
+      setDerivedLoading(false)
+      setDerivedError(null)
+      setShowAllSubjects(true)
       return
     }
-    setStep(2)
-    void loadExams(countryIso.trim())
-  }, [countryIso, loadExams])
+    setDerivedLoading(true)
+    setDerivedError(null)
+    try {
+      const params = new URLSearchParams({ exams: [...selectedExams].join(',') })
+      if (countryIso.trim()) params.set('country', countryIso.trim())
+      if (languageCode) params.set('language', languageCode)
+      const response = await fetch(`/api/exams/subjects?${params.toString()}`, { cache: 'no-store' })
+      const payload = (await response.json()) as Envelope<ApiExamSubjects>
+      if (payload.status === 'ok' && payload.data) {
+        setDerivedSubjects(payload.data)
+        if (payload.data.subjects.length === 0) {
+          // Nothing derived — the tree is the step (never a dead end).
+          setShowAllSubjects(true)
+        }
+        const rejected = new Set(
+          [...offeredSubjectsRef.current].filter((slug) => !selectedTopics.has(slug))
+        )
+        const next = new Set(selectedTopics)
+        for (const subject of payload.data.subjects) {
+          if (next.size >= MAX_TOPICS) break
+          if (rejected.has(subject.slug) || next.has(subject.slug)) continue
+          next.add(subject.slug)
+        }
+        offeredSubjectsRef.current = new Set(payload.data.subjects.map((subject) => subject.slug))
+        setSelectedTopics(next)
+      } else {
+        setDerivedError(payload.error?.message ?? 'Could not derive subjects from your exams')
+        setShowAllSubjects(true)
+      }
+    } catch {
+      setDerivedError('Network error — could not derive subjects from your exams')
+      setShowAllSubjects(true)
+    } finally {
+      setDerivedLoading(false)
+    }
+  }, [selectedExams, selectedTopics, countryIso, languageCode])
+
+  // ---------- Step transitions ----------
 
   const goToTopics = useCallback(() => {
     setStep(3)
     void loadTopics(countryIso.trim(), languageCode)
-  }, [countryIso, languageCode, loadTopics])
+    void loadDerivedSubjects()
+  }, [countryIso, languageCode, loadTopics, loadDerivedSubjects])
 
   const saveBasicsAndContinue = useCallback(async () => {
     if (!token || !profile) return
@@ -250,9 +434,13 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
         setBusy(null)
       }
     }
+    // Entering step 2 fresh: the picker resets (the market may have changed —
+    // the fetch effect re-runs on the step change with a clean page 1).
+    setExamSearchInput('')
+    setExamSearch('')
+    setExamPage(1)
     setStep(2)
-    void loadExams(countryIso.trim())
-  }, [token, profile, name, countryIso, languageCode, loadExams, toast])
+  }, [token, profile, name, countryIso, languageCode, toast])
 
   const submitGoal = useCallback(async () => {
     if (!token) return
@@ -441,8 +629,10 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
               </CardTitle>
               <CardDescription>
                 {step === 1 && 'Your market decides which exams and languages GKSetu offers you.'}
-                {step === 2 && `Active exams in ${currentCountry?.name ?? 'your market'} — pick any number (or none yet).`}
-                {step === 3 && `Global subjects and your country's own. Up to ${MAX_TOPICS}.`}
+                {step === 2 &&
+                  `Active exams in ${currentCountry?.name ?? 'your market'} — search by name, code or organiser, then pick any number (or none yet).`}
+                {step === 3 &&
+                  `Subjects from your exams' syllabi come pre-selected — untick anything, or browse all subjects. Up to ${MAX_TOPICS}.`}
                 {step === 4 && 'Optional — a self-declared level and pace helps GKSetu shape difficulty later.'}
               </CardDescription>
             </CardHeader>
@@ -511,34 +701,93 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
               {/* ---------- Step 2 ---------- */}
               {step === 2 && (
                 <div className="space-y-3">
-                  {examLoading ? (
-                    <div className="space-y-2" aria-busy="true">
-                      <Skeleton className="h-16 w-full" />
-                      <Skeleton className="h-16 w-full" />
-                      <Skeleton className="h-16 w-full" />
+                  {/* Search — server-filtered (name/code/organiser), debounced */}
+                  <div className="relative">
+                    <Search
+                      className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
+                      aria-hidden="true"
+                    />
+                    <Input
+                      type="search"
+                      value={examSearchInput}
+                      onChange={(event) => setExamSearchInput(event.target.value)}
+                      placeholder="Search by exam, code or organiser…"
+                      aria-label="Search exams"
+                      className="border-zinc-200 bg-white pl-9"
+                    />
+                  </div>
+
+                  {/* Selected exams — removable chips pinned above the list;
+                      the selection survives page changes and searches */}
+                  {selectedExams.size > 0 && (
+                    <div className="flex flex-wrap gap-1.5" aria-label="Your selected exams">
+                      {[...selectedExams].map((slug) => {
+                        const meta = examMetaBySlug.get(slug)
+                        const label = meta?.name ?? slug
+                        return (
+                          <span
+                            key={slug}
+                            className="inline-flex max-w-full items-center gap-0.5 rounded-full border border-emerald-200 bg-emerald-50 py-0.5 pl-3 pr-1 text-xs text-emerald-900"
+                          >
+                            <span className="truncate font-medium">{label}</span>
+                            <button
+                              type="button"
+                              onClick={() => toggleExam(slug)}
+                              aria-label={`Remove ${label}`}
+                              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-emerald-700 transition-colors hover:bg-emerald-100"
+                            >
+                              <X className="h-3.5 w-3.5" aria-hidden="true" />
+                            </button>
+                          </span>
+                        )
+                      })}
                     </div>
-                  ) : !examOptions || examOptions.length === 0 ? (
-                    <p className="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-3 py-6 text-center text-sm text-zinc-500">
-                      No active exams in this market yet — continue and pick your subjects instead.
-                    </p>
+                  )}
+
+                  {/* The current page */}
+                  {examLoading ? (
+                    <div className="space-y-2" aria-busy="true" aria-label="Loading exams">
+                      {Array.from({ length: EXAM_PAGE_SIZE }, (_, index) => (
+                        <Skeleton key={index} className="h-14 w-full" />
+                      ))}
+                    </div>
+                  ) : examError ? (
+                    <div
+                      role="alert"
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-red-200 bg-red-50 px-3 py-3 text-sm text-red-700"
+                    >
+                      <span>{examError}</span>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="h-9 border-red-200 bg-white text-red-700 hover:bg-red-50"
+                        onClick={() => setExamReload((current) => current + 1)}
+                      >
+                        Try again
+                      </Button>
+                    </div>
+                  ) : !examResult || examResult.exams.length === 0 ? (
+                    examSearch ? (
+                      <p className="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-3 py-6 text-center text-sm text-zinc-500">
+                        No exams match “{examSearch}” — try a different search or clear it.
+                      </p>
+                    ) : (
+                      <p className="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-3 py-6 text-center text-sm text-zinc-500">
+                        No active exams in this market yet — continue and pick your subjects instead.
+                      </p>
+                    )
                   ) : (
                     <fieldset className="space-y-2">
                       <legend className="sr-only">Goal exams</legend>
-                      {examOptions.map((exam) => {
+                      {examResult.exams.map((exam) => {
                         const selected = selectedExams.has(exam.slug)
                         return (
                           <button
                             key={exam.slug}
                             type="button"
                             aria-pressed={selected}
-                            onClick={() =>
-                              setSelectedExams((current) => {
-                                const next = new Set(current)
-                                if (next.has(exam.slug)) next.delete(exam.slug)
-                                else next.add(exam.slug)
-                                return next
-                              })
-                            }
+                            onClick={() => toggleExam(exam.slug)}
                             className={`w-full rounded-lg border p-4 text-left transition-colors ${
                               selected
                                 ? 'border-emerald-400 bg-emerald-50'
@@ -567,6 +816,39 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                       })}
                     </fieldset>
                   )}
+
+                  {/* Pagination footer — 44px touch targets */}
+                  {!examError && examResult && examResult.total > 0 && (
+                    <div className="flex items-center justify-between gap-2 pt-1">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="h-11 gap-1 border-zinc-200 bg-white px-4 hover:bg-zinc-50"
+                        onClick={() => setExamPage((current) => Math.max(1, current - 1))}
+                        disabled={examPage <= 1 || examLoading}
+                      >
+                        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                        Prev
+                      </Button>
+                      <p className="text-center text-xs text-zinc-500" aria-live="polite">
+                        Page {examPage} of {examResult.totalPages} · {examResult.total} exam
+                        {examResult.total === 1 ? '' : 's'}
+                      </p>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="h-11 gap-1 border-zinc-200 bg-white px-4 hover:bg-zinc-50"
+                        onClick={() => setExamPage((current) => Math.min(examResult.totalPages, current + 1))}
+                        disabled={examPage >= examResult.totalPages || examLoading}
+                      >
+                        Next
+                        <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                      </Button>
+                    </div>
+                  )}
+
                   <p className="text-xs text-zinc-500">
                     {selectedExams.size} selected — a goal exam is an intent signal for
                     personalisation, never proof you will sit the exam.
@@ -576,54 +858,132 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
 
               {/* ---------- Step 3 ---------- */}
               {step === 3 && (
-                <div className="space-y-3">
-                  {topicLoading ? (
-                    <div className="space-y-2" aria-busy="true">
-                      <Skeleton className="h-10 w-full" />
-                      <Skeleton className="h-10 w-full" />
-                      <Skeleton className="h-10 w-2/3" />
-                    </div>
-                  ) : !topicTree || topicTree.length === 0 ? (
-                    <p className="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-3 py-6 text-center text-sm text-zinc-500">
-                      No subjects visible in this market yet.
-                    </p>
-                  ) : (
-                    <div className="max-h-[26rem] space-y-1 overflow-y-auto rounded-md border border-zinc-200 bg-white p-2">
-                      {topicTree.map((node) => (
-                        <TopicNodeRow
-                          key={node.slug}
-                          node={node}
-                          depth={0}
-                          selected={selectedTopics}
-                          expanded={expandedNodes}
-                          onToggleSelect={(slug) =>
-                            setSelectedTopics((current) => {
-                              if (!current.has(slug) && current.size >= MAX_TOPICS) {
-                                toast({
-                                  title: 'Subject limit reached',
-                                  description: `A goal can declare at most ${MAX_TOPICS} subjects.`,
-                                  variant: 'destructive',
-                                })
-                                return current
-                              }
-                              const next = new Set(current)
-                              if (next.has(slug)) next.delete(slug)
-                              else next.add(slug)
-                              return next
-                            })
-                          }
-                          onToggleExpand={(slug) =>
-                            setExpandedNodes((current) => {
-                              const next = new Set(current)
-                              if (next.has(slug)) next.delete(slug)
-                              else next.add(slug)
-                              return next
-                            })
-                          }
-                        />
-                      ))}
-                    </div>
+                <div className="space-y-4">
+                  {/* Group 1 — the syllabus-derived subjects (S11-B): what the
+                      chosen exams' current syllabi actually carry, pre-ticked
+                      with per-exam provenance chips. */}
+                  {selectedExams.size > 0 && (
+                    <section className="space-y-2" aria-label="Subjects from your exams' syllabus">
+                      <div className="flex items-center gap-2">
+                        <BookOpenCheck className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                        <h3 className="text-sm font-semibold">From your exams&rsquo; syllabus</h3>
+                        {derivedLoading && (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin text-zinc-400" aria-hidden="true" />
+                        )}
+                      </div>
+                      <p className="text-xs text-zinc-500">
+                        Derived from the {selectedExams.size} exam
+                        {selectedExams.size === 1 ? '' : 's'} you picked — pre-selected; untick
+                        anything you do not want.
+                      </p>
+                      {derivedLoading ? (
+                        <div className="space-y-1.5 rounded-md border border-emerald-200 bg-emerald-50/40 p-2" aria-busy="true">
+                          {Array.from({ length: 4 }, (_, index) => (
+                            <Skeleton key={index} className="h-11 w-full" />
+                          ))}
+                        </div>
+                      ) : derivedError ? (
+                        <div className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm text-amber-800">
+                          <span>{derivedError}</span>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            className="h-9 border-amber-300 bg-white text-amber-800 hover:bg-amber-100"
+                            onClick={() => void loadDerivedSubjects()}
+                          >
+                            Try again
+                          </Button>
+                        </div>
+                      ) : derivedSubjects && derivedSubjects.subjects.length > 0 ? (
+                        <div className="space-y-1.5 rounded-md border border-emerald-200 bg-emerald-50/40 p-2">
+                          {derivedSubjects.subjects.map((subject) => (
+                            <DerivedSubjectRow
+                              key={subject.slug}
+                              subject={subject}
+                              exams={derivedSubjects.exams}
+                              selected={selectedTopics.has(subject.slug)}
+                              onToggle={toggleTopic}
+                            />
+                          ))}
+                          {derivedSubjects.skipped.length > 0 && (
+                            <p className="px-1 pt-1 text-[11px] text-amber-700">
+                              {derivedSubjects.skipped.length} of your exam
+                              {derivedSubjects.skipped.length === 1 ? '' : 's'} contributed no
+                              subjects yet (no syllabus version in effect).
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="rounded-md border border-dashed border-emerald-200 bg-emerald-50/30 px-3 py-4 text-center text-sm text-zinc-500">
+                          {derivedSubjects?.note ??
+                            "Your exams' syllabi carry no mapped subjects yet — browse all subjects below."}
+                        </p>
+                      )}
+                    </section>
                   )}
+
+                  {/* Group 2 — the full taxonomy tree behind a toggle (the
+                      S11 decision: derived first, everything else on demand). */}
+                  <section className="space-y-2" aria-label="All subjects">
+                    <button
+                      type="button"
+                      onClick={() => setShowAllSubjects((current) => !current)}
+                      aria-expanded={showAllSubjects}
+                      className="flex min-h-[44px] w-full items-center justify-between gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-left text-sm font-medium text-zinc-700 transition-colors hover:border-emerald-200 hover:text-zinc-900"
+                    >
+                      <span className="flex items-center gap-2">
+                        <ListTree className="h-4 w-4 text-zinc-400" aria-hidden="true" />
+                        Browse all subjects
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 text-zinc-400 transition-transform ${
+                          showAllSubjects ? 'rotate-180' : ''
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    {selectedExams.size === 0 && (
+                      <p className="px-1 text-xs text-zinc-500">
+                        Pick goal exams in step 2 and their syllabus subjects will be pre-selected
+                        here.
+                      </p>
+                    )}
+                    {showAllSubjects &&
+                      (topicLoading ? (
+                        <div className="space-y-2" aria-busy="true">
+                          <Skeleton className="h-10 w-full" />
+                          <Skeleton className="h-10 w-full" />
+                          <Skeleton className="h-10 w-2/3" />
+                        </div>
+                      ) : !topicTree || topicTree.length === 0 ? (
+                        <p className="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-3 py-6 text-center text-sm text-zinc-500">
+                          No subjects visible in this market yet.
+                        </p>
+                      ) : (
+                        <div className="max-h-[26rem] space-y-1 overflow-y-auto rounded-md border border-zinc-200 bg-white p-2">
+                          {topicTree.map((node) => (
+                            <TopicNodeRow
+                              key={node.slug}
+                              node={node}
+                              depth={0}
+                              selected={selectedTopics}
+                              expanded={expandedNodes}
+                              onToggleSelect={toggleTopic}
+                              onToggleExpand={(slug) =>
+                                setExpandedNodes((current) => {
+                                  const next = new Set(current)
+                                  if (next.has(slug)) next.delete(slug)
+                                  else next.add(slug)
+                                  return next
+                                })
+                              }
+                            />
+                          ))}
+                        </div>
+                      ))}
+                  </section>
+
                   <p className="text-xs text-zinc-500">
                     {selectedTopics.size}/{MAX_TOPICS} selected — selecting a domain covers the
                     domain itself; children stay selectable for narrower focus.
@@ -717,7 +1077,10 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                         {selectedExams.size > 0 && (
                           <span className="text-zinc-500">
                             {' '}
-                            ({[...selectedExams].slice(0, 3).join(', ')}
+                            ({[...selectedExams]
+                              .slice(0, 3)
+                              .map((slug) => examMetaBySlug.get(slug)?.name ?? slug)
+                              .join(', ')}
                             {selectedExams.size > 3 ? '…' : ''})
                           </span>
                         )}
@@ -795,6 +1158,66 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
         </motion.div>
       )}
     </div>
+  )
+}
+
+// ---------- The derived-subject row (S11-B — provenance-chipped) ----------
+
+function DerivedSubjectRow({
+  subject,
+  exams,
+  selected,
+  onToggle,
+}: {
+  subject: ApiDerivedSubject
+  /** The resolved contributing exams (slug → chip name/code). */
+  exams: Array<{ slug: string; name: string; code: string }>
+  selected: boolean
+  onToggle: (slug: string) => void
+}) {
+  const examBySlug = new Map(exams.map((exam) => [exam.slug, exam]))
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={selected}
+      onClick={() => onToggle(subject.slug)}
+      className={`flex min-h-[44px] w-full items-center justify-between gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors ${
+        selected
+          ? 'border-emerald-400 bg-white'
+          : 'border-zinc-200 bg-white hover:border-emerald-300'
+      }`}
+    >
+      <span className="flex min-w-0 items-center gap-2">
+        <span
+          className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
+            selected ? 'border-emerald-600 bg-emerald-600' : 'border-zinc-300 bg-white'
+          }`}
+          aria-hidden="true"
+        >
+          {selected && <CheckCircle2 className="h-3.5 w-3.5 text-white" />}
+        </span>
+        <span className="truncate font-medium text-zinc-800">{subject.label}</span>
+      </span>
+      <span className="flex shrink-0 items-center gap-1">
+        {subject.examSlugs.slice(0, 3).map((slug) => {
+          const exam = examBySlug.get(slug)
+          return (
+            <Badge
+              key={slug}
+              variant="outline"
+              title={exam?.name ?? slug}
+              className="font-mono text-[10px] font-normal text-zinc-500"
+            >
+              {exam?.code ?? slug}
+            </Badge>
+          )
+        })}
+        {subject.examSlugs.length > 3 && (
+          <span className="text-[10px] text-zinc-400">+{subject.examSlugs.length - 3}</span>
+        )}
+      </span>
+    </button>
   )
 }
 
