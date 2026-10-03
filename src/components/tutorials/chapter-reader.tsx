@@ -58,6 +58,7 @@ import { TutorialProgressBar } from '@/components/tutorials/progress-bar'
 import { useTutorialProgress } from '@/components/tutorials/use-tutorial-progress'
 import { InlinePractice } from '@/components/practice/inline-practice'
 import type { InlinePracticeQuestion } from '@/components/practice/inline-practice'
+import { InlineLessonCard } from '@/components/tutorials/inline-lesson-card'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
@@ -160,13 +161,6 @@ interface TutorialChapterPayload {
 
 /** DFS depth → row indent (depth 0 = the section weight itself). */
 const DEPTH_PADDING: string[] = ['', 'pl-4', 'pl-8', 'pl-12', 'pl-14']
-
-/** Subtle difficulty chips (small — a hint, never a headline). */
-const DIFFICULTY_STYLE: Record<string, string> = {
-  BASIC: 'border-emerald-200 bg-emerald-50 text-emerald-700',
-  INTERMEDIATE: 'border-amber-200 bg-amber-50 text-amber-700',
-  ADVANCED: 'border-rose-200 bg-rose-50 text-rose-700',
-}
 
 /** "upsc-civil-services" → "Upsc Civil Services" — the INSTANT pre-payload
  * title fragment only (the payload's seoTitle takes over once it lands). */
@@ -759,7 +753,9 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
             <div className="min-w-0 space-y-6">
               {hasAnyContent ? (
                 <>
-                  {/* ---------- Lessons ---------- */}
+                  {/* ---------- Lessons (SITE-S10: AJAX expand in place — the
+                      reading flow never leaves the chapter; the title keeps
+                      the §16 link as the SEO/no-JS fallback) ---------- */}
                   {lessons.length > 0 && (
                     <section aria-labelledby="lessons-heading" className="space-y-3">
                       <BlockHeader
@@ -767,48 +763,14 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
                         title="Lessons"
                         count={`${lessons.length} lesson${lessons.length === 1 ? '' : 's'}`}
                       />
-                      <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="space-y-3">
                         {lessons.map((lesson) => (
-                          <Card
+                          <InlineLessonCard
                             key={lesson.unitSlug}
-                            className="group border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md"
-                          >
-                            <a
-                              href={lesson.path}
-                              className="block h-full focus:outline-none"
-                              aria-label={`Read the lesson ${lesson.title}`}
-                            >
-                              <CardContent className="space-y-2 p-4">
-                                <p className="text-sm font-semibold leading-snug text-zinc-900 group-hover:text-emerald-700">
-                                  {lesson.title}
-                                </p>
-                                {lesson.summary && (
-                                  <p className="line-clamp-2 text-xs leading-relaxed text-zinc-500">
-                                    {lesson.summary}
-                                  </p>
-                                )}
-                                <div className="flex flex-wrap items-center gap-1.5">
-                                  {DIFFICULTY_STYLE[lesson.difficulty] && (
-                                    <span
-                                      className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${DIFFICULTY_STYLE[lesson.difficulty]}`}
-                                    >
-                                      {lesson.difficulty}
-                                    </span>
-                                  )}
-                                  <span className="rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[10px] font-normal text-zinc-500">
-                                    {lesson.type}
-                                  </span>
-                                  <span className="rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[10px] font-normal text-zinc-500">
-                                    {lesson.topicLabel}
-                                  </span>
-                                </div>
-                                <p className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 group-hover:text-emerald-800">
-                                  Read the lesson
-                                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                                </p>
-                              </CardContent>
-                            </a>
-                          </Card>
+                            lesson={lesson}
+                            countryIso={route.countryIso}
+                            language={route.language}
+                          />
                         ))}
                       </div>
                     </section>

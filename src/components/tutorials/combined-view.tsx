@@ -48,6 +48,7 @@ import { InlinePractice } from '@/components/practice/inline-practice'
 import type { InlinePracticeQuestion } from '@/components/practice/inline-practice'
 import { TutorialProgressBar } from '@/components/tutorials/progress-bar'
 import type { TutorialExamProgress } from '@/components/tutorials/use-tutorial-progress'
+import { InlineLessonCard } from '@/components/tutorials/inline-lesson-card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -162,13 +163,6 @@ interface PickerExam {
 /** The §11 step 1 input cap — mirrored for the picker's add-guard. */
 const MAX_PICKER_EXAMS = 8
 
-/** Subtle difficulty chips (small — a hint, never a headline). */
-const DIFFICULTY_STYLE: Record<string, string> = {
-  BASIC: 'border-emerald-200 bg-emerald-50 text-emerald-700',
-  INTERMEDIATE: 'border-amber-200 bg-amber-50 text-amber-700',
-  ADVANCED: 'border-rose-200 bg-rose-50 text-rose-700',
-}
-
 /** Depth-chip styling — CORE earns the emerald weight, the rest stay quiet. */
 const DEPTH_CHIP_STYLE: Record<CombinedDepthMirror['priority'], string> = {
   CORE: 'border-emerald-200 bg-emerald-50 text-emerald-700',
@@ -217,7 +211,15 @@ function parseSelectedExams(values: string[]): string[] {
 
 // ---------- One subject group (own practice-open state) ----------
 
-function SubjectGroupSection({ group }: { group: CombinedGroupMirror }) {
+function SubjectGroupSection({
+  group,
+  countryIso,
+  language,
+}: {
+  group: CombinedGroupMirror
+  countryIso: string
+  language: string
+}) {
   const [practiceOpen, setPracticeOpen] = useState(false)
   const headingId = `combined-subject-${group.subjectSlug}`
   const practiceId = `combined-practice-${group.subjectSlug}`
@@ -234,56 +236,36 @@ function SubjectGroupSection({ group }: { group: CombinedGroupMirror }) {
         </p>
       </div>
 
-      {/* ---------- The united lesson rows ---------- */}
+      {/* ---------- The united lesson rows (SITE-S10: the shared inline
+          lesson card — expand in place, the flow never leaves) ---------- */}
       <ol className="space-y-2" aria-label={`${group.subjectLabel} lessons`}>
         {group.units.map((unit) => (
           <li key={unit.unitSlug}>
-            <Card className="border-zinc-200 bg-white shadow-sm transition-all hover:border-emerald-300 hover:shadow-md">
-              <CardContent className="space-y-2 p-4 sm:p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0 space-y-0.5">
-                    <a
-                      href={unit.lessonPath}
-                      className="block min-w-0"
-                      aria-label={`Read the lesson ${unit.title}`}
-                    >
-                      <p className="truncate text-sm font-semibold leading-snug text-zinc-900 hover:text-emerald-700 sm:text-[15px]">
-                        {unit.title}
-                      </p>
-                    </a>
-                    {unit.summary && (
-                      <p className="line-clamp-2 text-xs leading-relaxed text-zinc-500">
-                        {unit.summary}
-                      </p>
-                    )}
-                  </div>
-                  {unit.isShared && (
-                    <Badge
-                      variant="outline"
-                      className="shrink-0 border-emerald-200 bg-emerald-50 text-[10px] font-medium text-emerald-700"
-                    >
-                      Shared
-                    </Badge>
-                  )}
-                </div>
-                {/* Type/difficulty hints + the per-exam depth chips */}
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {unit.type && (
-                    <Badge
-                      variant="outline"
-                      className="border-zinc-200 bg-zinc-50 text-[10px] font-normal text-zinc-500"
-                    >
-                      {unit.type}
-                    </Badge>
-                  )}
-                  {DIFFICULTY_STYLE[unit.difficulty] && (
-                    <Badge
-                      variant="outline"
-                      className={`text-[10px] font-medium ${DIFFICULTY_STYLE[unit.difficulty]}`}
-                    >
-                      {unit.difficulty}
-                    </Badge>
-                  )}
+            <InlineLessonCard
+              lesson={{
+                unitSlug: unit.unitSlug,
+                title: unit.title,
+                summary: unit.summary,
+                type: unit.type,
+                difficulty: unit.difficulty,
+                path: unit.lessonPath,
+                topicSlug: unit.topicSlug,
+                topicLabel: unit.topicLabel,
+              }}
+              countryIso={countryIso}
+              language={language}
+              titleExtra={
+                unit.isShared ? (
+                  <Badge
+                    variant="outline"
+                    className="shrink-0 border-emerald-200 bg-emerald-50 text-[10px] font-medium text-emerald-700"
+                  >
+                    Shared
+                  </Badge>
+                ) : undefined
+              }
+              chipsExtra={
+                <>
                   {unit.depths.map((depth) => (
                     <span
                       key={depth.examSlug}
@@ -299,8 +281,10 @@ function SubjectGroupSection({ group }: { group: CombinedGroupMirror }) {
                       {DEPTH_LABEL[depth.priority]} for {depth.examName}
                     </span>
                   ))}
-                </div>
-                {(unit.practiceCount > 0 || unit.pyqCount > 0) && (
+                </>
+              }
+              metaExtra={
+                unit.practiceCount > 0 || unit.pyqCount > 0 ? (
                   <div className="flex flex-wrap items-center gap-3 text-[11px] text-zinc-500">
                     {unit.practiceCount > 0 && (
                       <span className="inline-flex items-center gap-1">
@@ -315,9 +299,9 @@ function SubjectGroupSection({ group }: { group: CombinedGroupMirror }) {
                       </span>
                     )}
                   </div>
-                )}
-              </CardContent>
-            </Card>
+                ) : undefined
+              }
+            />
           </li>
         ))}
       </ol>
@@ -967,7 +951,14 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
 
           {/* ---------- The subject groups ---------- */}
           {groups.length > 0 ? (
-            groups.map((group) => <SubjectGroupSection key={group.subjectSlug} group={group} />)
+            groups.map((group) => (
+              <SubjectGroupSection
+                key={group.subjectSlug}
+                group={group}
+                countryIso={route.countryIso}
+                language={route.language}
+              />
+            ))
           ) : (
             !loading && (
               <Card className="border-dashed border-zinc-300 bg-zinc-50/60">

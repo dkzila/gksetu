@@ -1,6 +1,6 @@
 # The Learning-Flow Wave — Inline Tutorials, Onboarding UX, Jurisdiction
 
-**Status:** PLANNED — awaiting user confirmation before implementation.
+**Status:** SITE-S10 COMPLETE (deployed) — S11 + S12 planned, awaiting confirmation.
 **Sessions:** SITE-S10 (tutorial flow + combined discoverability) → SITE-S11 (onboarding overhaul) → SITE-S12 (jurisdiction taxonomy).
 **Governing principle (unchanged):** unified systems only — every fix rides the existing spine. No new content types, no parallel exam systems, no second practice engine.
 

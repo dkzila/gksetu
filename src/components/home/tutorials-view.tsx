@@ -33,6 +33,7 @@ import {
   Circle,
   GraduationCap,
   History,
+  Layers,
   ListChecks,
   Loader2,
   RefreshCw,
@@ -657,6 +658,25 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
                 path={payload?.seo.canonicalPath ?? examHref}
                 title={exam?.name ?? 'Tutorial'}
               />
+              {/* SITE-S10 — the per-exam combined entry: seed the combined
+                  picker with THIS exam, one add away from a union plan. */}
+              {exam && (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 border-zinc-300 bg-white text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
+                >
+                  <a
+                    href={`${base}combined/?exams=${exam.slug}`}
+                    aria-label="Combine this exam with another into one study plan"
+                  >
+                    <Layers className="h-4 w-4" aria-hidden="true" />
+                    <span className="hidden sm:inline">Combine exams</span>
+                    <span className="sm:hidden">Combine</span>
+                  </a>
+                </Button>
+              )}
               {/* SITE-S9 — the tutorial ↔ exam cross-link: the exam page keeps
                   the version windows, coverage tree and mock-test registry. */}
               {exam && (
@@ -997,15 +1017,58 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
               />
             ))}
           </div>
+          {/* SITE-S10 — the combined plan CTA: ≥2 goal exams get a one-tap
+              entry into /tutorials/combined/ preseeded with THEIR exams (the
+              §11 cap 8 rides the combined page's own guard). */}
+          {yourExams.length >= 2 && (
+            <a
+              href={`${base}combined/?exams=${yourExams
+                .slice(0, 8)
+                .map((exam) => exam.examSlug)
+                .join(',')}`}
+              className="group flex flex-wrap items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50/50 px-4 py-3 transition-all hover:border-emerald-300 hover:bg-emerald-50"
+              aria-label="Open one combined study plan across your declared exams"
+            >
+              <span className="flex min-w-0 items-center gap-2.5">
+                <Layers className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden="true" />
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-emerald-900">
+                    One combined study plan
+                  </span>
+                  <span className="block truncate text-xs text-emerald-800/70">
+                    Your {yourExams.length} exams merged — shared lessons once, per-exam depth
+                  </span>
+                </span>
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-emerald-700">
+                Combine
+                <ChevronRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
+              </span>
+            </a>
+          )}
         </section>
       )}
 
       {/* ---------- All exams — search + the directory ---------- */}
       {exams.length > 0 ? (
         <section aria-labelledby="all-exams-heading" className="space-y-3">
-          <h2 id="all-exams-heading" className="text-lg font-semibold tracking-tight">
-            All exams
-          </h2>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="all-exams-heading" className="text-lg font-semibold tracking-tight">
+              All exams
+            </h2>
+            {/* SITE-S10 — the permanent combined entry (anonymous-friendly):
+                opens the picker's honest empty surface. */}
+            <a
+              href={`${base}combined/`}
+              className="inline-flex min-h-[32px] items-center gap-1.5 text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
+            >
+              <Layers className="h-3.5 w-3.5" aria-hidden="true" />
+              Combine exams into one plan
+            </a>
+          </div>
           <div className="relative">
             <Search
               className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
