@@ -114,6 +114,8 @@ interface ExamFormValues {
   country: string
   description: string
   notes: string
+  /** SITE-S12: the jurisdiction row's id (nullable — the cascade's set value). */
+  jurisdictionId: string
 }
 
 const EMPTY_FORM: ExamFormValues = {
@@ -125,6 +127,7 @@ const EMPTY_FORM: ExamFormValues = {
   country: '',
   description: '',
   notes: '',
+  jurisdictionId: '',
 }
 
 /** Submits the form; resolves `true` on success or a `{ field: message }` map (the API envelope's validation details). */
@@ -156,6 +159,8 @@ export function ExamFormDialog({
           country: exam.countryIso,
           description: exam.description ?? '',
           notes: exam.notes ?? '',
+          // SITE-S12: the existing jurisdictionId (may be null — empty string here).
+          jurisdictionId: exam.jurisdictionId ?? '',
         }
       : { ...EMPTY_FORM, country: countries[0]?.isoCode ?? '' }
   )
@@ -313,6 +318,17 @@ export function ExamFormDialog({
             />
           </Field>
 
+          {/* SITE-S12: the jurisdiction cascade — pick the exam's tier/scope
+              (Central / State / District / International). Loaded for the
+              chosen country from /api/jurisdictions. */}
+          <JurisdictionCascadeField
+            countryIso={mode === 'edit' ? exam?.countryIso ?? values.country : values.country}
+            value={values.jurisdictionId}
+            onChange={(id) => set('jurisdictionId', id)}
+            disabled={busy}
+            error={errors.jurisdictionId}
+          />
+
           <Field label="Internal notes" htmlFor="exam-notes" error={errors.notes}>
             <TextArea
               id="exam-notes"
@@ -357,6 +373,9 @@ export function ExamsPage() {
   const [debouncedSearch, setDebouncedSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [countryFilter, setCountryFilter] = useState('')
+  /** SITE-S12: the "missing jurisdiction" gap filter — `missing` surfaces
+   * untagged exams in one click. */
+  const [jurisdictionFilter, setJurisdictionFilter] = useState<'all' | 'missing' | 'tagged'>('all')
   const [page, setPage] = useState(1)
   const [countries, setCountries] = useState<CountryRef[]>([])
   const [listTick, setListTick] = useState(0)
@@ -405,6 +424,8 @@ export function ExamsPage() {
       if (debouncedSearch) params.set('q', debouncedSearch)
       if (statusFilter) params.set('status', statusFilter)
       if (countryFilter) params.set('country', countryFilter)
+      // SITE-S12: the gap filter — surfaces untagged exams in one click.
+      if (jurisdictionFilter !== 'all') params.set('jurisdiction', jurisdictionFilter)
       const { data, error: fetchError } = await apiRef.current.get<AdminExamListResult>(
         `/api/exams/admin/exams?${params.toString()}`
       )
@@ -422,7 +443,7 @@ export function ExamsPage() {
     return () => {
       cancelled = true
     }
-  }, [page, debouncedSearch, statusFilter, countryFilter, listTick])
+  }, [page, debouncedSearch, statusFilter, countryFilter, jurisdictionFilter, listTick])
 
   /** Re-runs the list fetch (event contexts: buttons, post-mutation callbacks). */
   const refreshList = useCallback(() => {
@@ -463,6 +484,25 @@ export function ExamsPage() {
           <span className="text-[11px] uppercase tracking-wide text-zinc-400">{exam.level}</span>
         ),
         className: 'hidden lg:table-cell',
+      },
+      // SITE-S12: the jurisdiction column — chips the exam's tier/scope, and
+      // surfaces the gap honestly ("— missing —") when null.
+      {
+        key: 'jurisdiction',
+        header: 'Jurisdiction',
+        render: (exam) =>
+          exam.jurisdiction ? (
+            <span className="inline-flex items-center rounded-md border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[11px] font-medium text-zinc-600">
+              {exam.jurisdiction.level === 'CENTRAL'
+                ? 'Central'
+                : exam.jurisdiction.level === 'INTERNATIONAL'
+                  ? 'International'
+                  : exam.jurisdiction.name}
+            </span>
+          ) : (
+            <span className="text-[11px] font-medium text-amber-700">— missing —</span>
+          ),
+        className: 'hidden xl:table-cell',
       },
       { key: 'status', header: 'Status', render: (exam) => <StatusBadge status={exam.status} /> },
       {
@@ -506,6 +546,8 @@ export function ExamsPage() {
       organiser: values.organiser.trim(),
       level: values.level,
       country: values.country,
+      // SITE-S12: the jurisdiction cascade's set value (null when blank).
+      ...(values.jurisdictionId ? { jurisdictionId: values.jurisdictionId } : {}),
       ...(values.description.trim() ? { description: values.description.trim() } : {}),
       ...(values.notes.trim() ? { notes: values.notes.trim() } : {}),
     })
@@ -534,6 +576,8 @@ export function ExamsPage() {
       name: values.name.trim(),
       organiser: values.organiser.trim(),
       level: values.level,
+      // SITE-S12: a nullable FK — clearing is allowed (the Console surfaces gaps).
+      jurisdictionId: values.jurisdictionId || null,
       ...(values.description.trim() ? { description: values.description.trim() } : { description: null }),
       ...(values.notes.trim() ? { notes: values.notes.trim() } : { notes: null }),
     })
@@ -658,6 +702,24 @@ export function ExamsPage() {
               })),
             ]}
             id="exam-country-filter"
+          />
+        </div>
+        {/* SITE-S12: the "missing jurisdiction" gap filter — surfaces untagged
+            exams in one click (the backfill gap view, riding exam:manage). */}
+        <div className="w-[170px]">
+          <SelectInput
+            value={jurisdictionFilter}
+            onChange={(value) => {
+              setJurisdictionFilter(value as 'all' | 'missing' | 'tagged')
+              setPage(1)
+              setLoading(true)
+            }}
+            options={[
+              { value: 'all', label: 'Any jurisdiction' },
+              { value: 'missing', label: '⚠ Missing jurisdiction' },
+              { value: 'tagged', label: 'Tagged' },
+            ]}
+            id="exam-jurisdiction-filter"
           />
         </div>
         {pagination && (
@@ -813,5 +875,123 @@ export function ExamsPage() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
+  )
+}
+
+// ---------- SITE-S12: the Jurisdiction cascade field (level → state → district) ----------
+
+interface JurisdictionOption {
+  id: string
+  level: 'INTERNATIONAL' | 'CENTRAL' | 'STATE' | 'DISTRICT'
+  name: string
+  code: string | null
+  parentId: string | null
+}
+
+/**
+ * The exam-form's jurisdiction picker. Loads the resolved country's
+ * jurisdictions + the shared INTERNATIONAL row from /api/jurisdictions/admin,
+ * groups them by level (Central, State, District), and shows them as a flat
+ * select (the cascade is a Console nicety — districts are nested under their
+ * state in the option list).
+ *
+ * A blank value means "no jurisdiction" — surfaced honestly in the table as
+ * "— missing —" and in the gap filter as a one-click drill-down.
+ */
+function JurisdictionCascadeField({
+  countryIso,
+  value,
+  onChange,
+  disabled,
+  error,
+}: {
+  countryIso: string
+  value: string
+  onChange: (id: string) => void
+  disabled?: boolean
+  error?: string
+}) {
+  const [options, setOptions] = useState<JurisdictionOption[]>([])
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    // If there's no country, derive options directly (no fetch, no setState-in-effect).
+    if (!countryIso) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setOptions([])
+      return
+    }
+    let cancelled = false
+    setLoading(true)
+    const params = new URLSearchParams({ country: countryIso, pageSize: '200' })
+    void fetch(`/api/jurisdictions/admin?${params.toString()}`, { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((payload: { status: 'ok' | 'error'; data?: { jurisdictions: JurisdictionOption[] } }) => {
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data) {
+          setOptions(payload.data.jurisdictions)
+        } else {
+          setOptions([])
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setOptions([])
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [countryIso])
+
+  // Group by level for the select options — Central, State, District.
+  const central = options.filter((o) => o.level === 'CENTRAL')
+  const states = options.filter((o) => o.level === 'STATE')
+  const districts = options.filter((o) => o.level === 'DISTRICT')
+  const stateById = new Map(states.map((s) => [s.id, s]))
+
+  // Build optgroups (only those with at least one option are shown).
+  const groups: Array<{ label: string; options: Array<{ value: string; label: string }> }> = []
+  if (central.length > 0) {
+    groups.push({
+      label: 'Central government',
+      options: central.map((c) => ({ value: c.id, label: c.name })),
+    })
+  }
+  if (states.length > 0) {
+    groups.push({
+      label: 'State / UT',
+      options: states.map((s) => ({ value: s.id, label: s.name })),
+    })
+  }
+  if (districts.length > 0) {
+    groups.push({
+      label: 'District',
+      options: districts.map((d) => {
+        const parent = d.parentId ? stateById.get(d.parentId) : null
+        return { value: d.id, label: parent ? `${d.name} (${parent.name})` : d.name }
+      }),
+    })
+  }
+
+  return (
+    <Field
+      label="Jurisdiction"
+      htmlFor="exam-jurisdiction"
+      error={error}
+      hint={loading ? 'Loading…' : 'Optional — the exam\'s tier/scope (Central, State, District)'}
+    >
+      <SelectInput
+        id="exam-jurisdiction"
+        value={value}
+        onChange={(id) => onChange(id)}
+        disabled={disabled || loading}
+        options={[]}
+        placeholder="— No jurisdiction (gap) —"
+        groups={groups}
+        invalid={Boolean(error)}
+      />
+    </Field>
   )
 }

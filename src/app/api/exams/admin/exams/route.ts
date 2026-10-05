@@ -30,6 +30,9 @@ export async function GET(request: Request) {
     status: url.searchParams.get('status') ?? undefined,
     level: url.searchParams.get('level') ?? undefined,
     country: url.searchParams.get('country') ?? undefined,
+    /** SITE-S12: filter by jurisdiction — `missing` surfaces untagged exams
+     * (the Console's gap-list view). `tagged` shows only tagged ones. */
+    jurisdiction: url.searchParams.get('jurisdiction') ?? undefined,
     q: url.searchParams.get('q') ?? undefined,
     page: url.searchParams.get('page') ?? undefined,
     pageSize: url.searchParams.get('pageSize') ?? undefined,

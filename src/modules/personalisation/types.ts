@@ -59,6 +59,11 @@ export interface PublicGoal {
   studyLanguage: { code: string; name: string } | null
   targetYear: number | null
   dailyMinutes: number | null
+  /** SITE-S12: the learner's subdivision code (e.g. "MH" for Maharashtra,
+   * India). Null when the home market has no seeded STATE jurisdictions or
+   * the user skipped the optional step-1 field. The home country is implied
+   * by the account's homeCountryId. */
+  stateCode: string | null
   declaredAt: string
   updatedAt: string
   exams: GoalExamSummary[]

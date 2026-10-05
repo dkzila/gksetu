@@ -40,6 +40,11 @@ import {
 } from '@/modules/country-locale'
 import type { PublicCountry } from '@/modules/country-locale'
 import { onExamChanged } from '@/modules/search'
+import {
+  bucketExamsByJurisdiction,
+  EXAM_JURISDICTION_INCLUDE,
+  toPublicJurisdiction,
+} from '@/modules/jurisdiction'
 
 import {
   EXAM_EDITABILITY,
@@ -100,6 +105,10 @@ export type ExamErrorCode =
   // them never disappear silently; see exam-mapping/mapping-service.ts)
   | 'NODE_HAS_MAPPINGS'
   | 'VERSION_HAS_MAPPINGS'
+  // SITE-S12: jurisdiction cascade validation (the exam-form's level → state →
+  // district picker sends a jurisdictionId; this guard rejects one that does
+  // not exist or does not belong to the exam's country).
+  | 'JURISDICTION_INVALID'
 
 const ERROR_STATUS: Record<ExamErrorCode, number> = {
   EXAM_NOT_FOUND: 404,
@@ -127,6 +136,7 @@ const ERROR_STATUS: Record<ExamErrorCode, number> = {
   OUTLINE_INVALID: 400,
   NODE_HAS_MAPPINGS: 409,
   VERSION_HAS_MAPPINGS: 409,
+  JURISDICTION_INVALID: 400,
 }
 
 export class ExamError extends Error {
@@ -197,13 +207,23 @@ const CUID_PATTERN = /^c[a-z0-9]{20,}$/
 export type VersionWithCount = ExamVersion & {
   _count: { syllabusNodes: number; examMappings: number }
 }
-export type ExamRow = Exam & { versions: VersionWithCount[] }
+export type ExamRow = Exam & { versions: VersionWithCount[] } & {
+  /** SITE-S12: the exam's jurisdiction row (loaded by findExam for admin DTOs). */
+  jurisdiction?: {
+    id: string
+    level: 'INTERNATIONAL' | 'CENTRAL' | 'STATE' | 'DISTRICT'
+    name: string
+    code: string | null
+    parent: { name: string; code: string | null } | null
+  } | null
+}
 
 export async function findExam(ref: string): Promise<ExamRow | null> {
   return db.exam.findFirst({
     where: CUID_PATTERN.test(ref) ? { id: ref } : { slug: ref.toLowerCase() },
     include: {
       versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+      jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
     },
   })
 }
@@ -218,6 +238,7 @@ function examSnapshot(exam: Exam) {
     level: exam.level,
     status: exam.status,
     countryId: exam.countryId,
+    jurisdictionId: exam.jurisdictionId,
     description: exam.description,
     notes: exam.notes,
   }
@@ -350,6 +371,7 @@ function toPublicSummary(
     level: exam.level as ExamLevelPublic,
     description: exam.description,
     countryIso,
+    jurisdiction: toPublicJurisdiction(exam.jurisdiction ?? null),
     currentVersion: currentVersionOf(exam.versions),
     versionCount: exam.versions.length,
     canonicalPath: path,
@@ -374,6 +396,8 @@ async function toAdminExam(exam: ExamRow): Promise<AdminExam> {
     countryName: country?.name ?? 'Unknown country',
     description: exam.description,
     notes: exam.notes,
+    jurisdictionId: exam.jurisdictionId,
+    jurisdiction: toPublicJurisdiction(exam.jurisdiction ?? null),
     currentVersion: currentVersionOf(exam.versions),
     versionCount: exam.versions.length,
     createdAt: exam.createdAt.toISOString(),
@@ -398,9 +422,15 @@ async function toAdminDetail(exam: ExamRow): Promise<AdminExamDetail> {
 /** Country exam directory: ACTIVE exams of one ACTIVE country (§38).
  * §29: public + user-independent → 60s in-memory TTL (the census-cache
  * precedent; see src/lib/payload-cache.ts for the two environments it
- * serves — the India corpus made this walk expensive enough to matter). */
+ * serves — the India corpus made this walk expensive enough to matter).
+ *
+ * SITE-S12: when `state` is provided, the directory's relevance ordering
+ * kicks in (own state first, then central + international, then other states).
+ * The result is the SAME set of exams — `state=` re-orders, never hides (§14
+ * scoping still applies: only the resolved country's exams). The cache key
+ * varies by `state` so different learners' orders never collide. */
 export async function getPublicExams(query: PublicExamListQuery): Promise<PublicExamListResult> {
-  const cacheKey = `exams:public-list:${query.country ?? 'default'}:${query.language ?? 'default'}:${query.q ?? ''}:${query.page}:${query.pageSize}`
+  const cacheKey = `exams:public-list:${query.country ?? 'default'}:${query.language ?? 'default'}:${query.q ?? ''}:${query.state ?? ''}:${query.page}:${query.pageSize}`
   return cachedPayload(cacheKey, () => loadPublicExams(query))
 }
 
@@ -421,13 +451,51 @@ async function loadPublicExams(query: PublicExamListQuery): Promise<PublicExamLi
       : {}),
   }
 
+  // SITE-S12: when `state` is provided, fetch ALL matching exams + bucket +
+  // paginate in-memory (the corpus is ~138 today — this is cheap, and the
+  // cache amortises it across requests). When `state` is absent, keep the
+  // existing server-side name-asc pagination.
+  if (query.state) {
+    const allRows = await db.exam.findMany({
+      where,
+      orderBy: [{ name: 'asc' }, { id: 'asc' }],
+      include: {
+        versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+        jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
+      },
+    })
+    const summaries = allRows.map((row) => ({
+      ...toPublicSummary(row, countryRow.isoCode, examPath(country, languageCode, row.slug)),
+    }))
+    // THE single bucketing primitive (no per-page bespoke logic).
+    const { primary, secondary } = bucketExamsByJurisdiction(summaries, query.state.toUpperCase())
+    // Primary first (own state + central + international), then secondary (other states).
+    const ordered = [...primary, ...secondary]
+    const total = ordered.length
+    const start = (query.page - 1) * query.pageSize
+    const paged = ordered.slice(start, start + query.pageSize)
+    return {
+      exams: paged,
+      pagination: {
+        page: query.page,
+        pageSize: query.pageSize,
+        total,
+        totalPages: Math.max(1, Math.ceil(total / query.pageSize)),
+      },
+      country: { isoCode: countryRow.isoCode, name: country.name },
+    }
+  }
+
   const [rows, total] = await Promise.all([
     db.exam.findMany({
       where,
       orderBy: [{ name: 'asc' }, { id: 'asc' }], // deterministic (§37)
       skip: (query.page - 1) * query.pageSize,
       take: query.pageSize,
-      include: { versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } } },
+      include: {
+        versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+        jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
+      },
     }),
     db.exam.count({ where }),
   ])
@@ -502,6 +570,13 @@ export async function getAdminExams(
     ...(countryId ? { countryId } : {}),
     ...(query.status ? { status: query.status } : {}),
     ...(query.level ? { level: query.level } : {}),
+    // SITE-S12: the Console's "missing jurisdiction" gap filter — surfaces
+    // exams whose jurisdictionId is null (the backfill gaps in one click).
+    ...(query.jurisdiction === 'missing'
+      ? { jurisdictionId: null }
+      : query.jurisdiction === 'tagged'
+        ? { jurisdictionId: { not: null } }
+        : {}),
     ...(query.q
       ? {
           OR: [
@@ -520,7 +595,10 @@ export async function getAdminExams(
       orderBy: [{ updatedAt: 'desc' }, { id: 'desc' }], // deterministic (§37)
       skip: (query.page - 1) * query.pageSize,
       take: query.pageSize,
-      include: { versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } } },
+      include: {
+        versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+        jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
+      },
     }),
     db.exam.count({ where }),
   ])
@@ -593,6 +671,25 @@ export async function createExam(
     )
   }
 
+  // SITE-S12: jurisdiction cascade validation. Null is allowed (the gap is
+  // surfaced by the Console's "missing jurisdiction" filter). When provided,
+  // the jurisdiction must exist and belong to this exam's country (or be the
+  // shared INTERNATIONAL row).
+  let jurisdictionId: string | null = null
+  if (input.jurisdictionId) {
+    const jurisdiction = await db.jurisdiction.findUnique({
+      where: { id: input.jurisdictionId },
+      select: { id: true, countryId: true, level: true },
+    })
+    if (!jurisdiction || (jurisdiction.countryId && jurisdiction.countryId !== country.id)) {
+      throw new ExamError(
+        'JURISDICTION_INVALID',
+        'The chosen jurisdiction does not belong to this exam\'s country'
+      )
+    }
+    jurisdictionId = jurisdiction.id
+  }
+
   const created = await db.exam.create({
     data: {
       slug: input.slug,
@@ -602,11 +699,15 @@ export async function createExam(
       level: input.level,
       status: 'DRAFT',
       countryId: country.id,
+      jurisdictionId,
       description: input.description ?? null,
       notes: input.notes ?? null,
       createdById: actor.userId,
     },
-    include: { versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } } },
+    include: {
+      versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+      jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
+    },
   })
 
   await recordAudit({
@@ -644,16 +745,42 @@ export async function updateExam(
   }
   // slug/code/country are immutable identity — not in the update schema at all.
 
+  // SITE-S12: jurisdiction cascade validation (the same guard as create — the
+  // jurisdiction must belong to this exam's country when set). Clearing is
+  // allowed (`null` surfaces the gap honestly).
+  let jurisdictionId: string | null | undefined = undefined
+  if (input.jurisdictionId !== undefined) {
+    if (input.jurisdictionId === null) {
+      jurisdictionId = null
+    } else {
+      const jurisdiction = await db.jurisdiction.findUnique({
+        where: { id: input.jurisdictionId },
+        select: { id: true, countryId: true },
+      })
+      if (!jurisdiction || (jurisdiction.countryId && jurisdiction.countryId !== exam.countryId)) {
+        throw new ExamError(
+          'JURISDICTION_INVALID',
+          'The chosen jurisdiction does not belong to this exam\'s country'
+        )
+      }
+      jurisdictionId = jurisdiction.id
+    }
+  }
+
   const updated = await db.exam.update({
     where: { id: exam.id },
     data: {
       ...(input.name !== undefined ? { name: input.name } : {}),
       ...(input.organiser !== undefined ? { organiser: input.organiser } : {}),
       ...(input.level !== undefined ? { level: input.level } : {}),
+      ...(jurisdictionId !== undefined ? { jurisdictionId } : {}),
       ...(input.description !== undefined ? { description: input.description } : {}),
       ...(input.notes !== undefined ? { notes: input.notes } : {}),
     },
-    include: { versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } } },
+    include: {
+      versions: { include: { _count: { select: { syllabusNodes: true, examMappings: true } } } },
+      jurisdiction: { select: EXAM_JURISDICTION_INCLUDE.jurisdiction.select },
+    },
   })
 
   await recordAudit({

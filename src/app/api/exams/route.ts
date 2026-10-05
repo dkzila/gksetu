@@ -20,6 +20,10 @@ export async function GET(request: Request) {
     country: url.searchParams.get('country') ?? undefined,
     language: url.searchParams.get('language') ?? undefined,
     q: url.searchParams.get('q') ?? undefined,
+    /** SITE-S12: the optional `state` query — the learner's home state code
+     * (ISO 3166-2 suffix, e.g. "MH"). Triggers jurisdiction-aware relevance
+     * ordering: own state + central + international first, other states last. */
+    state: url.searchParams.get('state') ?? undefined,
     page: url.searchParams.get('page') ?? undefined,
     pageSize: url.searchParams.get('pageSize') ?? undefined,
   })

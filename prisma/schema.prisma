@@ -478,6 +478,45 @@ enum ExamLevel {
   REGIONAL // regional/district-level recruitment
 }
 
+// SITE-S12: the jurisdiction taxonomy (docs/learning-flow-plan.md Problem 5).
+// A DB-backed International / Central / State / District classification
+// attached to exams, consumed by personalisation (state selection → Central +
+// International + own state + own districts first; other states secondary).
+//
+// `Exam.level` STAYS UNTOUCHED as legacy metadata (the backfill gap is
+// honestly surfaced when jurisdiction is null — never a hard cutover).
+enum JurisdictionLevel {
+  INTERNATIONAL // cross-market scope (UN, World Bank exams — countryId null)
+  CENTRAL // country-wide conducting body (the country's own "Government of India — Central")
+  STATE // a state/province of a country (India's 28 states + 8 UTs)
+  DISTRICT // a district subdivision under a STATE (created on demand in Console)
+}
+
+// SITE-S12: the jurisdiction row. `countryId` is null iff INTERNATIONAL
+// (cross-market scope; the exam's own Exam.countryId is unchanged — §14 holds
+// for every exam). `code` is the ISO 3166-2 subdivision suffix (e.g. "MH"),
+// null for CENTRAL/INTERNATIONAL. `parentId` links DISTRICT → its STATE.
+model Jurisdiction {
+  id        String           @id @default(cuid())
+  countryId String?
+  level     JurisdictionLevel
+  name      String // "Government of India — Central", "Maharashtra", "Pune District"
+  code      String? // ISO 3166-2 suffix: "MH", "RJ"; null for CENTRAL/INTERNATIONAL
+  parentId  String? // DISTRICT → its STATE row (null otherwise)
+  sortOrder Int              @default(0)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  country  Country?      @relation("JurisdictionCountry", fields: [countryId], references: [id], onDelete: Cascade)
+  parent   Jurisdiction? @relation("JurisdictionTree", fields: [parentId], references: [id])
+  children Jurisdiction[] @relation("JurisdictionTree")
+  exams    Exam[]
+
+  @@unique([countryId, level, code])
+  @@index([countryId, level])
+  @@index([parentId])
+}
+
 // §6 Exam row: "Country-specific exam definition — id, country_id, name, code,
 // organiser, level, status". Every exam belongs to EXACTLY ONE country (§14)
 // and reaches knowledge ONLY through SyllabusNode → ExamMapping (P3-S2/S3 —
@@ -492,16 +531,22 @@ model Exam {
   level       ExamLevel  @default(NATIONAL)
   status      ExamStatus @default(DRAFT)
   countryId   String // §14 — never null: an exam without a country cannot exist
+  // SITE-S12: nullable FK to Jurisdiction. Backfill first; gaps surfaced
+  // honestly in the Console's "missing jurisdiction" filter — never a hard
+  // cutover. SetNull keeps exam rows live even if a jurisdiction row is
+  // removed (the legacy `level` field still carries the rough tier).
+  jurisdictionId String?
   description String? // public-facing summary (what the exam is, who runs it)
   notes       String? // internal editorial notes
   createdById String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  country   Country        @relation("ExamCountry", fields: [countryId], references: [id])
-  createdBy User?          @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
-  versions  ExamVersion[]
-  goalExams UserGoalExam[] // P5-S3 — declared goal exam references
+  country    Country        @relation("ExamCountry", fields: [countryId], references: [id])
+  jurisdiction Jurisdiction? @relation(fields: [jurisdictionId], references: [id], onDelete: SetNull)
+  createdBy  User?          @relation("ExamAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+  versions   ExamVersion[]
+  goalExams  UserGoalExam[] // P5-S3 — declared goal exam references
   // SITE-S7: this exam's PYQ provenance rows (question + QnA appearances).
   questionProvenance QuestionProvenance[]
   qnaProvenance      QnAProvenance[]
@@ -513,6 +558,7 @@ model Exam {
   @@index([status])
   @@index([countryId, status])
   @@index([level])
+  @@index([jurisdictionId])
 }
 
 // ---------- P3-S3: ExamMapping (Master Plan §6, §8, §11, §12, §36) ----------
@@ -836,6 +882,8 @@ model Country {
   currentEvents   CurrentEvent[]    @relation("CurrentEventCountry") // P6-S1: §14 country-scoped events
   entities        Entity[] // P6-S3: §14 country-scoped entity reference records
   siteSettings    SiteSetting[] // CONSOLE-S1: this market's settings overrides
+  // SITE-S12: this country's jurisdiction rows (CENTRAL + its STATE/DISTRICT tree).
+  jurisdictions   Jurisdiction[]    @relation("JurisdictionCountry")
 
   @@index([status])
 }
@@ -1216,6 +1264,14 @@ enum GoalLevel {
 // §14: goal exams are strictly home-market; GLOBAL topics any market,
 // COUNTRY topics home market only (enforced at mutation time; existing rows
 // resolve honestly with §36 statuses if the market context later changes).
+//
+// SITE-S12: `stateCode` is the learner's subdivision code ("MH") — null when
+// the home market has no seeded STATE jurisdictions or the user skipped it.
+// The home country is implied by the user's homeCountryId (§9 explicit, §14
+// market-scoped). Validated against the seeded STATE rows of the home country
+// at declare time (a state code that doesn't exist there is rejected — never
+// a guessed assignment). Personalisation uses it for relevance-ordering: own
+// state first, then central + international, then other states.
 model UserGoal {
   id              String     @id @default(cuid())
   userId          String     @unique
@@ -1223,6 +1279,11 @@ model UserGoal {
   studyLanguageId String? // null = follow the account's preferred language (§35)
   targetYear      Int? // exam year the user is preparing for (e.g. 2026)
   dailyMinutes    Int? // §6 "preferences": self-declared daily study pace
+  // SITE-S12: the learner's subdivision code ("MH" for Maharashtra, India) —
+  // the §9 explicit signal that powers jurisdiction-aware ordering (own-state
+  // exams first in the directory, onboarding step 2, tutorials/PYQ/mock listings).
+  // Null = no state declared (the learner skipped the optional step 1 field).
+  stateCode       String?
   declaredAt      DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
 
@@ -1233,6 +1294,7 @@ model UserGoal {
 
   @@index([userId])
   @@index([studyLanguageId])
+  @@index([stateCode])
 }
 
 // One declared goal exam — a canonical Exam row reference (§14: home-market

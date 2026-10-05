@@ -123,13 +123,21 @@ export function SelectInput({
   options,
   placeholder,
   invalid,
+  disabled,
+  groups,
 }: {
   id?: string
   value: string
   onChange: (value: string) => void
-  options: Array<{ value: string; label: string }>
+  options: Array<{ value: string; label: string; disabled?: boolean }>
   placeholder?: string
   invalid?: boolean
+  /** SITE-S12: optional optgroup structure — when present, options are
+   * rendered inside named <optgroup> elements (the jurisdiction picker
+   * uses this to separate Central / State / District). */
+  groups?: Array<{ label: string; options: Array<{ value: string; label: string }> }>
+  /** SITE-S12: when true, the whole select is disabled (loading or busy). */
+  disabled?: boolean
 }) {
   return (
     <select
@@ -145,11 +153,21 @@ export function SelectInput({
       )}
     >
       {placeholder && <option value="">{placeholder}</option>}
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
+      {groups
+        ? groups.map((group) => (
+            <optgroup key={group.label} label={group.label}>
+              {group.options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </optgroup>
+          ))
+        : options.map((option) => (
+            <option key={option.value} value={option.value} disabled={option.disabled}>
+              {option.label}
+            </option>
+          ))}
     </select>
   )
 }

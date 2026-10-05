@@ -37,6 +37,7 @@ import {
   ListTree,
   Loader2,
   LogIn,
+  MapPin,
   Search,
   Sparkles,
   X,
@@ -55,6 +56,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 import { useSeoHead } from '@/components/home/seo-head'
 import type { ApiCountry, Envelope } from '@/components/home/types'
+import type { ApiJurisdictionState, ApiJurisdictions } from '@/components/home/jurisdiction'
 import {
   LEVEL_LABELS,
   ONBOARDING_COPY,
@@ -125,6 +127,14 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
   const [name, setName] = useState('')
   const [countryIso, setCountryIso] = useState('')
   const [languageCode, setLanguageCode] = useState('')
+  // SITE-S12: the learner's home state (optional, skippable). Loaded for the
+  // current country — shown only when the home country has seeded STATE rows.
+  const [stateCode, setStateCode] = useState('')
+  const [jurisdictionStates, setJurisdictionStates] = useState<ApiJurisdictionState[] | null>(null)
+  const [jurisdictionLoading, setJurisdictionLoading] = useState(false)
+  /** Mirror of `stateCode` read inside the country-change effect (avoids a
+   * re-fetch loop — the effect depends only on `countryIso`). */
+  const stateCodeRef = useRef('')
 
   // Step 2 — goal exams: the SERVER-driven picker (S11-A). Search is
   // debounced into `examSearch`; the page fetch rides the existing
@@ -215,6 +225,8 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
           setStudyLanguage(payload.data.goal.studyLanguage?.code ?? '')
           setTargetYear(payload.data.goal.targetYear ? String(payload.data.goal.targetYear) : '')
           setDailyMinutes(payload.data.goal.dailyMinutes ? String(payload.data.goal.dailyMinutes) : '')
+          // SITE-S12: prefilled state code (the learner may have set it earlier).
+          setStateCode(payload.data.goal.stateCode ?? '')
         }
       }
     } catch {
@@ -243,6 +255,58 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     }
   }, [])
 
+  // ---------- SITE-S12: the state picker — loads when the country changes ----------
+
+  // Keep the ref in lockstep with the state value (so the country-change effect
+  // can read the latest stateCode without re-fetching on every change).
+  useEffect(() => {
+    stateCodeRef.current = stateCode
+  }, [stateCode])
+
+  useEffect(() => {
+    const iso = countryIso.trim()
+    if (!iso) {
+      setJurisdictionStates(null)
+      return
+    }
+    let cancelled = false
+    setJurisdictionLoading(true)
+    void fetch(`/api/jurisdictions?country=${encodeURIComponent(iso)}`, { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((payload: Envelope<ApiJurisdictions>) => {
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data) {
+          setJurisdictionStates(payload.data.states)
+          // If the previously-set stateCode is no longer valid for the new
+          // country, clear it (§9 honest signal — never a guessed assignment).
+          if (
+            payload.data.states.length === 0 ||
+            (stateCodeRef.current && !payload.data.states.some((s) => s.code === stateCodeRef.current))
+          ) {
+            stateCodeRef.current = ''
+            setStateCode('')
+          }
+        } else {
+          setJurisdictionStates([])
+          stateCodeRef.current = ''
+          setStateCode('')
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setJurisdictionStates([])
+          stateCodeRef.current = ''
+          setStateCode('')
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setJurisdictionLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [countryIso])
+
   // ---------- S11-A: the server-driven exam picker ----------
 
   /** The debounce — typing settles for EXAM_SEARCH_DEBOUNCE_MS before the
@@ -257,7 +321,9 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
 
   /** The current page fetch — the EXISTING /api/exams contract (q/page/
    * pageSize), superseded cleanly by newer requests (the request-id guard:
-   * stale responses are dropped, never rendered). */
+   * stale responses are dropped, never rendered). SITE-S12: `state=` rides
+   * along when the learner has a declared home state — the server relevance-
+   * orders own state + central + international first. */
   useEffect(() => {
     if (step !== 2) return
     const iso = countryIso.trim()
@@ -271,6 +337,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
       page: String(examPage),
     })
     if (examSearch) params.set('q', examSearch)
+    if (stateCode) params.set('state', stateCode)
     fetch(`/api/exams?${params.toString()}`, { cache: 'no-store' })
       .then((response) => response.json())
       .then((payload: Envelope<ExamListResponse>) => {
@@ -457,6 +524,9 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
           studyLanguageCode: studyLanguage || null,
           targetYear: targetYear ? Number(targetYear) : null,
           dailyMinutes: dailyMinutes ? Number(dailyMinutes) : null,
+          // SITE-S12: the learner's home state (null = skip/clear — the §9
+          // honest signal, changeable at any time).
+          stateCode: stateCode || null,
         }),
       })
       const payload = (await response.json()) as Envelope<{ goal: ApiProfile['goal']; created: boolean }>
@@ -485,7 +555,7 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
     } finally {
       setBusy(null)
     }
-  }, [token, selectedExams, selectedTopics, level, studyLanguage, targetYear, dailyMinutes, onDone, toast])
+  }, [token, selectedExams, selectedTopics, level, studyLanguage, targetYear, dailyMinutes, stateCode, onDone, toast])
 
   const skipFlow = useCallback(async () => {
     if (!token) return
@@ -695,6 +765,39 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                       </Select>
                     </div>
                   </div>
+
+                  {/* SITE-S12: "Your state" — optional, skippable. Shown only
+                      when the home country has seeded STATE jurisdictions. */}
+                  {jurisdictionStates && jurisdictionStates.length > 0 && (
+                    <div className="space-y-2">
+                      <Label htmlFor="onboarding-state" className="flex items-center gap-1.5">
+                        <MapPin className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+                        Your state (optional)
+                      </Label>
+                      <Select value={stateCode} onValueChange={setStateCode}>
+                        <SelectTrigger id="onboarding-state" className="w-full border-zinc-200 bg-white">
+                          <SelectValue placeholder="Pick your state — helps surface exams near you" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {jurisdictionStates.map((state) => (
+                            <SelectItem key={state.code} value={state.code}>
+                              {state.name}
+                              {state.isUnionTerritory ? ' (UT)' : ''}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-zinc-500">
+                        We surface your home state&rsquo;s exams first in the directory — never proof of residence.
+                      </p>
+                    </div>
+                  )}
+                  {jurisdictionLoading && (
+                    <p className="flex items-center gap-2 text-xs text-zinc-400">
+                      <Loader2 className="h-3 w-3 animate-spin" aria-hidden="true" />
+                      Loading states for {currentCountry?.name ?? 'your market'}…
+                    </p>
+                  )}
                 </div>
               )}
 
@@ -1071,6 +1174,15 @@ export function OnboardingView({ onDone, onGoProfile, onSignIn }: OnboardingView
                           {currentCountry?.name ?? (selectionCountryIso || '—')}
                         </span>
                       </li>
+                      {/* SITE-S12: the declared home state (or 'unset'). */}
+                      {stateCode && jurisdictionStates && (
+                        <li>
+                          State:{' '}
+                          <span className="font-medium text-zinc-900">
+                            {jurisdictionStates.find((s) => s.code === stateCode)?.name ?? stateCode}
+                          </span>
+                        </li>
+                      )}
                       <li>
                         Exams:{' '}
                         <span className="font-medium text-zinc-900">{selectedExams.size}</span>

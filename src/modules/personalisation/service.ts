@@ -16,7 +16,7 @@
  * rows directly — a read-only projection, the same §28 precedent the
  * follow-save module set (no reverse dependency is ever created).
  */
-import { Prisma, type Exam, type Topic, type UserGoal } from '@prisma/client'
+import type { Prisma, Exam, Topic, UserGoal } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
   AUDIT_ACTIONS,
@@ -33,6 +33,7 @@ import {
   LocaleError,
 } from '@/modules/country-locale'
 import { findExam } from '@/modules/exams-syllabus'
+import { isValidStateCodeForCountry } from '@/modules/jurisdiction'
 import { toPublicUser, type PublicUser } from '@/modules/identity-access'
 
 import type {
@@ -57,6 +58,10 @@ export type GoalErrorCode =
   | 'GOAL_NOT_FOUND'
   | 'INVALID_LANGUAGE'
   | 'LANGUAGE_NOT_AVAILABLE_IN_COUNTRY'
+  // SITE-S12: the state-code guard — a state code that doesn't exist among the
+  // home country's seeded STATE jurisdictions is rejected (never a guessed
+  // assignment; §9 explicit signal).
+  | 'INVALID_STATE_CODE'
 
 const ERROR_STATUS: Record<GoalErrorCode, number> = {
   GOAL_OBJECT_NOT_FOUND: 404,
@@ -68,6 +73,7 @@ const ERROR_STATUS: Record<GoalErrorCode, number> = {
   GOAL_NOT_FOUND: 404,
   INVALID_LANGUAGE: 400,
   LANGUAGE_NOT_AVAILABLE_IN_COUNTRY: 400,
+  INVALID_STATE_CODE: 400,
 }
 
 export class GoalError extends Error {
@@ -312,6 +318,7 @@ async function hydrateGoal(
     studyLanguage: goal.studyLanguage,
     targetYear: goal.targetYear,
     dailyMinutes: goal.dailyMinutes,
+    stateCode: goal.stateCode,
     declaredAt: goal.declaredAt.toISOString(),
     updatedAt: goal.updatedAt.toISOString(),
     exams: goal.exams.map((row) => toGoalExamSummary(row.exam)).sort((a, b) => a.name.localeCompare(b.name)),
@@ -466,6 +473,29 @@ export async function setMyGoal(
     studyLanguageId = language.id
   }
 
+  // SITE-S12: the declared home state — a state code that exists among the
+  // home country's seeded STATE jurisdictions. Validated against the DB
+  // (never a guessed assignment — §9 honest signal). When the home country
+  // has no seeded states, the field is silently cleared (no error — the
+  // learner may have set it earlier from a market that seeded later).
+  let stateCode: string | null = null
+  if (input.stateCode != null && input.stateCode.trim() !== '') {
+    if (!user.homeCountryId) {
+      throw new GoalError(
+        'HOME_COUNTRY_REQUIRED',
+        'Declaring a home state needs a home country on your account.'
+      )
+    }
+    const normalized = input.stateCode.trim().toUpperCase()
+    if (!(await isValidStateCodeForCountry(user.homeCountryId, normalized))) {
+      throw new GoalError(
+        'INVALID_STATE_CODE',
+        `State "${input.stateCode}" is not a recognized state in your home country.`
+      )
+    }
+    stateCode = normalized
+  }
+
   const existing = await loadGoalRow(userId)
 
   // Cold pooled Supabase connections can stretch each round-trip past ~700ms;
@@ -484,12 +514,14 @@ export async function setMyGoal(
         studyLanguageId,
         targetYear: input.targetYear ?? null,
         dailyMinutes: input.dailyMinutes ?? null,
+        stateCode,
       },
       update: {
         level: input.level ?? null,
         studyLanguageId,
         targetYear: input.targetYear ?? null,
         dailyMinutes: input.dailyMinutes ?? null,
+        stateCode,
       },
       include: GOAL_INCLUDE,
     })
@@ -544,6 +576,7 @@ export async function setMyGoal(
           studyLanguage: existing.studyLanguage?.code ?? null,
           targetYear: existing.targetYear,
           dailyMinutes: existing.dailyMinutes,
+          stateCode: existing.stateCode,
           examCount: existing.exams.length,
           topicCount: existing.topics.length,
         }
@@ -553,6 +586,7 @@ export async function setMyGoal(
       studyLanguage: goal.studyLanguage?.code ?? null,
       targetYear: goal.targetYear,
       dailyMinutes: goal.dailyMinutes,
+      stateCode: goal.stateCode,
       examCount: exams.length,
       topicCount: topics.length,
       exams: exams.map((exam) => exam.slug),
@@ -605,6 +639,7 @@ export async function removeMyGoal(
       studyLanguage: goal.studyLanguage?.code ?? null,
       targetYear: goal.targetYear,
       dailyMinutes: goal.dailyMinutes,
+      stateCode: goal.stateCode,
       examCount: goal.exams.length,
       topicCount: goal.topics.length,
     },

@@ -5,6 +5,8 @@
  * Mirrors the /api/profile, /api/goal and /api/onboarding contracts (§37).
  */
 
+import type { ApiJurisdiction } from '@/components/home/jurisdiction'
+
 // ---------- API envelope ----------
 
 export interface Envelope<T> {
@@ -45,6 +47,10 @@ export interface ApiGoal {
   studyLanguage: { code: string; name: string } | null
   targetYear: number | null
   dailyMinutes: number | null
+  /** SITE-S12: the learner's home state code (ISO 3166-2 suffix, e.g. "MH").
+   * Null when the home market has no seeded STATE jurisdictions or the user
+   * skipped the optional step-1 field. */
+  stateCode: string | null
   declaredAt: string
   updatedAt: string
   exams: ApiGoalExam[]
@@ -76,6 +82,8 @@ export interface ApiExamOption {
   description: string | null
   countryIso: string
   currentVersion: { label: string } | null
+  /** SITE-S12: the exam's jurisdiction projection (null when not backfilled). */
+  jurisdiction: ApiJurisdiction | null
 }
 
 export interface ApiTopicNode {

@@ -19,28 +19,48 @@
  * organiser line (the exam code folded in, no mono badge), and the current
  * syllabus line.
  *
+ * SITE-S12 — jurisdiction-aware groups: when the resolved country has seeded
+ * STATE jurisdictions AND the signed-in learner has a declared home state,
+ * the directory shows "Your state ({Maharashtra})" + central + international
+ * first as the primary bucket, and "Other states" as a collapsed secondary
+ * section. Without a known state: the existing neutral National/State/Regional
+ * level groups stay (the legacy `Exam.level` field, used as the honest
+ * fallback when jurisdiction is null). Exam cards carry a subtle jurisdiction
+ * chip ("Central" / "Maharashtra" / "International" / "Pune District") in
+ * addition to the level chip.
+ *
  * Country-scoped by design (§14): the list is the resolved market's own
  * exams; data comes from GET /api/exams (server-side scope enforcement — the
- * UI only renders server truth).
+ * UI only renders server truth). The `?state=` query triggers the server's
+ * relevance ordering; the client only renders the resulting primary/secondary
+ * sections (no per-page bespoke logic — the bucket helper is the ONE primitive).
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   BookOpenCheck,
+  ChevronDown,
   GraduationCap,
   ListFilter,
+  MapPin,
   RefreshCw,
   Rocket,
   Search,
 } from 'lucide-react'
 
 import { useSeoHead } from '@/components/home/seo-head'
+import {
+  bucketByJurisdiction,
+  jurisdictionChipLabel,
+  type ApiJurisdiction,
+} from '@/components/home/jurisdiction'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAuth } from '@/stores/auth'
 
 // ---------- API envelope + DTO mirrors (§37 client-agnostic contract) ----------
 
@@ -58,6 +78,8 @@ interface DirectoryExam {
   organiser: string
   level: 'NATIONAL' | 'STATE' | 'REGIONAL'
   description: string | null
+  /** SITE-S12: the exam's jurisdiction projection (null when not backfilled). */
+  jurisdiction: ApiJurisdiction | null
   currentVersion: { id: string; label: string } | null
   versionCount: number
   canonicalPath: string
@@ -99,6 +121,12 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
   const [query, setQuery] = useState('')
   const [level, setLevel] = useState<LevelFilter>('ALL')
 
+  // SITE-S12: the signed-in learner's declared home state — fetched once on
+  // mount from /api/goal (anonymous users see the neutral level groups).
+  const { token } = useAuth()
+  const [ownStateCode, setOwnStateCode] = useState<string | null>(null)
+  const [ownStateLabel, setOwnStateLabel] = useState<string | null>(null)
+
   useSeoHead({
     // SITE-S1 — the directory is real, indexable content (the user's SEO
     // ask): a meaningful, keyword-bearing title and description.
@@ -109,13 +137,45 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
     countryIso,
   })
 
-  // ---------- Directory load (market-scoped, once per country/language) ----------
+  // ---------- The learner's declared home state (one fetch, anonymous-safe) ----------
+
+  useEffect(() => {
+    if (!token) {
+      setOwnStateCode(null)
+      setOwnStateLabel(null)
+      return
+    }
+    let cancelled = false
+    void fetch('/api/goal', { headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' })
+      .then((response) => response.json())
+      .then((payload: Envelope<{ goal: { stateCode: string | null } | null }>) => {
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data?.goal?.stateCode) {
+          setOwnStateCode(payload.data.goal.stateCode)
+        } else {
+          setOwnStateCode(null)
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setOwnStateCode(null)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [token])
+
+  // ---------- Directory load (market-scoped, once per country/language + state) ----------
 
   const fetchDirectory = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
       const params = new URLSearchParams({ country: countryIso, language, pageSize: String(PAGE_SIZE) })
+      // SITE-S12: when the learner has a declared state, the server-side `state=`
+      // query applies the same bucket ordering (own state first, then central +
+      // international, then other states). The state is the goal's stateCode —
+      // never anything the URL leaks.
+      if (ownStateCode) params.set('state', ownStateCode)
       const response = await fetch(`/api/exams?${params.toString()}`, { cache: 'no-store' })
       const payload = (await response.json()) as Envelope<DirectoryResult>
       if (payload.status === 'ok' && payload.data) {
@@ -130,7 +190,7 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
     } finally {
       setLoading(false)
     }
-  }, [countryIso, language])
+  }, [countryIso, language, ownStateCode])
 
   useEffect(() => {
     void fetchDirectory()
@@ -159,8 +219,36 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
     })
   }, [exams, query, level])
 
+  // SITE-S12: when the learner has a declared home state AND there is at least
+  // one exam with a non-null jurisdiction in the visible set, render the
+  // jurisdiction-aware primary/secondary bucket layout. The server already
+  // pre-ordered by `state=`; the client helper just splits primary from
+  // secondary (one truth — same logic as the server's bucketExamsByJurisdiction).
+  const showJurisdictionGroups =
+    query.trim() === '' && level === 'ALL' && Boolean(ownStateCode) && visible.some((e) => e.jurisdiction)
+
+  const buckets = useMemo(() => {
+    if (!showJurisdictionGroups) return null
+    return bucketByJurisdiction(visible, ownStateCode)
+  }, [showJurisdictionGroups, visible, ownStateCode])
+
+  // Resolve the user's own state label from the first matching exam in the
+  // primary bucket (its jurisdiction.stateCode === ownStateCode) — saves a
+  // separate fetch.
+  useEffect(() => {
+    if (!ownStateCode || !buckets) {
+      setOwnStateLabel(null)
+      return
+    }
+    const match = buckets.primary.find(
+      (e) => e.jurisdiction?.level === 'STATE' && e.jurisdiction?.stateCode === ownStateCode
+    )
+    setOwnStateLabel(match?.jurisdiction?.name ?? null)
+  }, [ownStateCode, buckets])
+
   // Grouped presentation when unfiltered; flat when searching/filtering.
-  const grouped = query.trim() === '' && level === 'ALL'
+  // When jurisdiction groups are shown, the legacy level groups are NOT.
+  const grouped = query.trim() === '' && level === 'ALL' && !showJurisdictionGroups
   const groups = useMemo(() => {
     if (!grouped) return []
     return (
@@ -171,6 +259,9 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
       ].filter((group) => group.items.length > 0)
     )
   }, [grouped, visible])
+
+  // SITE-S12: the collapsed-secondary-section state.
+  const [showSecondary, setShowSecondary] = useState(false)
 
   // ---------- Loading (first paint — mirrors the layout, CA pattern) ----------
 
@@ -363,7 +454,61 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
       {/* ---------- The directory ---------- */}
       {!loading && !error && visible.length > 0 && (
         <>
-          {grouped ? (
+          {showJurisdictionGroups && buckets ? (
+            <div className="space-y-6">
+              {/* Primary bucket: own state + central + international */}
+              {buckets.primary.length > 0 && (
+                <section aria-labelledby="group-jurisdiction-primary" className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h2 id="group-jurisdiction-primary" className="text-lg font-semibold tracking-tight">
+                      {ownStateLabel ? `Your state (${ownStateLabel}) · Central · International` : 'Central · International · Your state'}
+                    </h2>
+                    <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700">
+                      {buckets.primary.length}
+                    </Badge>
+                  </div>
+                  <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                    {buckets.primary.map((exam) => (
+                      <ExamCard key={exam.slug} exam={exam} onOpenExam={onOpenExam} />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Secondary bucket: other states (collapsed) */}
+              {buckets.secondary.length > 0 && (
+                <section aria-labelledby="group-jurisdiction-secondary" className="space-y-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowSecondary((current) => !current)}
+                    aria-expanded={showSecondary}
+                    className="flex w-full items-center justify-between gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-left text-sm font-medium text-zinc-700 transition-colors hover:border-emerald-200 hover:text-zinc-900"
+                  >
+                    <span className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-zinc-400" aria-hidden="true" />
+                      Other states
+                      <Badge variant="outline" className="border-zinc-200 bg-zinc-50 text-zinc-500">
+                        {buckets.secondary.length}
+                      </Badge>
+                    </span>
+                    <ChevronDown
+                      className={`h-4 w-4 shrink-0 text-zinc-400 transition-transform ${
+                        showSecondary ? 'rotate-180' : ''
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  {showSecondary && (
+                    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                      {buckets.secondary.map((exam) => (
+                        <ExamCard key={exam.slug} exam={exam} onOpenExam={onOpenExam} />
+                      ))}
+                    </div>
+                  )}
+                </section>
+              )}
+            </div>
+          ) : grouped ? (
             <div className="space-y-6">
               {groups.map((group) => (
                 <section key={group.key} aria-labelledby={`group-${group.key}`} className="space-y-3">
@@ -413,6 +558,11 @@ export function ExamDirectoryView({ countryIso, language, onOpenExam, onGoHome }
 // ---------- One exam card (compact — name, subtle level chip, organiser, syllabus) ----------
 
 function ExamCard({ exam, onOpenExam }: { exam: DirectoryExam; onOpenExam: (slug: string) => void }) {
+  // SITE-S12: prefer the jurisdiction chip over the legacy level chip when
+  // available (more specific: "Maharashtra" vs. "State"). When jurisdiction is
+  // null, fall back to the level chip (the honest "this exam isn't tagged yet"
+  // state — surfaced in the Console's "missing jurisdiction" filter).
+  const jurisdictionChip = jurisdictionChipLabel(exam.jurisdiction)
   return (
     <Card className="group cursor-pointer border-zinc-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md">
       <button
@@ -431,7 +581,7 @@ function ExamCard({ exam, onOpenExam }: { exam: DirectoryExam; onOpenExam: (slug
               variant="outline"
               className="shrink-0 border-zinc-200 bg-zinc-50 text-[11px] font-normal text-zinc-500"
             >
-              {LEVEL_LABEL[exam.level]}
+              {jurisdictionChip ?? LEVEL_LABEL[exam.level]}
             </Badge>
           </div>
           <CardDescription className="line-clamp-1 text-xs">

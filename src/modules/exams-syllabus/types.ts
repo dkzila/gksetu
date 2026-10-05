@@ -7,6 +7,8 @@
  * (client-agnostic shapes), §38 (editorial exam operations).
  */
 
+import type { PublicJurisdiction } from '@/modules/jurisdiction'
+
 export type ExamStatusPublic = 'DRAFT' | 'ACTIVE' | 'INACTIVE' | 'RETIRED'
 export type ExamLevelPublic = 'NATIONAL' | 'STATE' | 'REGIONAL'
 
@@ -74,6 +76,8 @@ export interface PublicExamSummary {
   level: ExamLevelPublic
   description: string | null
   countryIso: string
+  /** SITE-S12: the exam's jurisdiction projection (null when not yet backfilled). */
+  jurisdiction: PublicJurisdiction | null
   /** The currently effective version, if any (§11 step 2). */
   currentVersion: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null } | null
   versionCount: number
@@ -106,6 +110,10 @@ export interface AdminExam {
   countryName: string
   description: string | null
   notes: string | null
+  /** SITE-S12: the jurisdiction row's id (the Console cascade's set value). */
+  jurisdictionId: string | null
+  /** SITE-S12: the jurisdiction projection (display name, level, code). */
+  jurisdiction: PublicJurisdiction | null
   currentVersion: { id: string; label: string; effectiveFrom: string; effectiveTo: string | null } | null
   versionCount: number
   createdAt: string

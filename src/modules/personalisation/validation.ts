@@ -55,6 +55,18 @@ export const goalSetSchema = z.object({
     .max(600, 'Keep the daily target under 10 hours')
     .nullable()
     .optional(),
+  /** SITE-S12: the learner's subdivision code (ISO 3166-2 suffix, e.g. "MH").
+   * Validated against the seeded STATE rows of the home country by the service
+   * (a state code that doesn't exist there is rejected — never a guessed
+   * assignment). Null clears the field (§9 explicit signal, changeable). */
+  stateCode: z
+    .string()
+    .trim()
+    .min(2)
+    .max(8)
+    .regex(/^[A-Z]{2,8}$/, 'state must be a 2-8 letter uppercase code, e.g. "MH"')
+    .nullable()
+    .optional(),
 })
 export type GoalSetInput = z.infer<typeof goalSetSchema>
 
