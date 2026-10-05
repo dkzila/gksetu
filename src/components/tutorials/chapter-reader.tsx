@@ -52,17 +52,19 @@ import type { SeoHeadInput } from '@/components/home/seo-head'
 import type { AppRoute } from '@/components/home/app-router'
 import type { Envelope } from '@/components/home/types'
 
-import { useAuth } from '@/stores/auth'
 import { ShareButton } from '@/components/shares/share-button'
 import { TutorialProgressBar } from '@/components/tutorials/progress-bar'
 import { useTutorialProgress } from '@/components/tutorials/use-tutorial-progress'
 import { InlinePractice } from '@/components/practice/inline-practice'
 import type { InlinePracticeQuestion } from '@/components/practice/inline-practice'
 import { InlineLessonCard } from '@/components/tutorials/inline-lesson-card'
+import { ExamNotesSection } from '@/components/premium/exam-notes-section'
+import { PaywallModal } from '@/components/payments/paywall-modal'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAuth } from '@/stores/auth'
 
 // ---------- Props (frozen — tutorials-view renders this exact interface) ----------
 
@@ -346,6 +348,12 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({})
   /** The mobile/tablet chapters drawer. */
   const [chaptersOpen, setChaptersOpen] = useState(false)
+  /** SITE-S13: the paywall modal — opened when the user taps "Unlock for ₹99"
+   *  on a locked ExamNote card. The default scope is decided by the CTA. */
+  const [paywall, setPaywall] = useState<{ open: boolean; scope: 'SINGLE_EXAM' | 'ALL_EXAMS' }>({
+    open: false,
+    scope: 'SINGLE_EXAM',
+  })
 
   // ---------- Chapter fetch (market/exam/chapter driven; race-guarded) ----------
 
@@ -893,6 +901,20 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
                 </section>
               )}
 
+              {/* ---------- Exam notes (SITE-S13: the premium editorial
+                  overlay — pattern brief, cheat sheet, worked MCQs, revision
+                  notes). Renders only when the chapter payload is loaded AND
+                  the chapter has a syllabusNodeId. Locked cards open the
+                  paywall modal.) ---------- */}
+              {chapter && route.examSlug && (
+                <ExamNotesSection
+                  examSlug={route.examSlug}
+                  syllabusNodeId={chapter.id}
+                  isSignedIn={signedIn}
+                  onUnlock={(scope) => setPaywall({ open: true, scope })}
+                />
+              )}
+
               {/* ---------- Footer prev/next — two large tappable cards ---------- */}
               <nav aria-label="Chapter navigation" className="grid gap-3 sm:grid-cols-2">
                 {siblings.prev ? (
@@ -1032,6 +1054,16 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
           </div>
         </SheetContent>
       </Sheet>
+
+      {/* SITE-S13: the paywall modal — opened by the ExamNotesSection's locked cards. */}
+      {route.examSlug && (
+        <PaywallModal
+          open={paywall.open}
+          onClose={() => setPaywall((current) => ({ ...current, open: false }))}
+          examSlug={route.examSlug}
+          defaultScope={paywall.scope}
+        />
+      )}
     </div>
   )
 }

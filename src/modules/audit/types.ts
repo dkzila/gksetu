@@ -252,6 +252,15 @@ export const AUDIT_ACTIONS = {
   pyqProvenanceCreate: 'pyq.provenance.create',
   pyqProvenanceUpdate: 'pyq.provenance.update',
   pyqProvenanceDelete: 'pyq.provenance.delete',
+  /** SITE-S13: ExamNote editorial mutations (docs/premium-learning-plan.md —
+   *  the exam-pattern editorial overlay; the content item precedent). */
+  examNoteCreate: 'examnote.create',
+  examNoteUpdate: 'examnote.update',
+  examNoteTransition: 'examnote.transition',
+  /** SITE-S13: premium-access grants + revocations (the entitlement audit
+   *  trail — who flipped the switch on each row). */
+  premiumGrant: 'user.premium.grant',
+  premiumRevoke: 'user.premium.revoke',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -303,4 +312,10 @@ export const AUDIT_OBJECT_TYPES = {
   /** SITE-S7: the exam-sitting provenance rows (both kinds under one object
    *  type — kind is carried in metadata/after as QUESTION | QNA). */
   pyqProvenance: 'PYQ_PROVENANCE',
+  /** SITE-S13: the exam-pattern editorial overlay notes (4 kinds under one
+   *  object type — kind is carried in metadata/after as PATTERN_BRIEF |
+   *  CHEAT_SHEET | WORKED_MCQ | REVISION_NOTES). */
+  examNote: 'ExamNote',
+  /** SITE-S13: the premium-access entitlement row (the gating grant/revoke). */
+  userPremiumAccess: 'UserPremiumAccess',
 } as const

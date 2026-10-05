@@ -296,3 +296,58 @@ export async function removeSetting(
     ...meta,
   })
 }
+
+// ---------- SITE-S13: internal premium-gating flag ----------
+
+/**
+ * SITE-S13: the "free for now" lever. When this returns false (default), the
+ * ExamNotes module's gating helper short-circuits — every PUBLISHED note is
+ * visible to everyone (anonymous + signed-in). When true, only users with an
+ * active `UserPremiumAccess` entitlement see the full note body; others see
+ * a 100-char preview + the paywall CTA.
+ *
+ * The flag lives in site-settings under `premium.gatingEnabled` (default
+ * absent = false). The Console's `/console/premium` page toggles it; flipping
+ * is a Console edit, not a deploy.
+ */
+const PREMIUM_GATING_FLAG = 'premium.gatingEnabled'
+
+export async function isPremiumGatingEnabled(): Promise<boolean> {
+  const row = await db.siteSetting.findFirst({
+    where: { key: PREMIUM_GATING_FLAG, isActive: true, countryId: null },
+    select: { value: true },
+  })
+  return (row?.value ?? '').trim().toLowerCase() === 'true'
+}
+
+/** Used by the Console's `/console/premium` page to flip the switch.
+ *  Bypasses `assertValidKey` (which guards the public whitelist) since this
+ *  key is internal — only the premium module reads it. */
+export async function setPremiumGatingEnabled(enabled: boolean, actor: Actor, meta: AuditRequestMeta = {}): Promise<void> {
+  assertCan(actor, 'settings:manage')
+  const value = enabled ? 'true' : 'false'
+  const existing = await db.siteSetting.findFirst({ where: { countryId: null, key: PREMIUM_GATING_FLAG } })
+  if (existing) {
+    await db.siteSetting.update({
+      where: { id: existing.id },
+      data: { value, isActive: true, createdById: actor.userId },
+    })
+  } else {
+    await db.siteSetting.create({
+      data: { key: PREMIUM_GATING_FLAG, value, countryId: null, isActive: true, createdById: actor.userId },
+    })
+  }
+  await recordAudit({
+    actor: { userId: actor.userId, email: actor.email, role: actor.role },
+    action: AUDIT_ACTIONS.siteSettingUpdate,
+    objectType: AUDIT_OBJECT_TYPES.siteSetting,
+    objectId: PREMIUM_GATING_FLAG,
+    objectLabel: PREMIUM_GATING_FLAG,
+    before: existing ? { value: existing.value } : null,
+    after: { value },
+    metadata: { countryIso: null },
+    ip: meta.ip ?? null,
+    userAgent: meta.userAgent,
+  })
+}
+

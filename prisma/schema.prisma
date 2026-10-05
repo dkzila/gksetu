@@ -553,6 +553,12 @@ model Exam {
   // SITE-S8: per-user tutorial-syllabus progress rows denormalised to this
   // exam for the fast per-exam percent read.
   tutorialProgress TutorialProgress[]
+  // SITE-S13: this exam's premium editorial notes (pattern briefs, cheat
+  // sheets, worked MCQs, revision notes — the overlay layer).
+  examNotes ExamNote[]
+  // SITE-S13: premium-access rows scoped to this exam (the SINGLE_EXAM
+  // entitlements — null when scope is ALL_EXAMS).
+  premiumAccess UserPremiumAccess[]
 
   @@unique([countryId, code])
   @@index([status])
@@ -738,6 +744,9 @@ model SyllabusNode {
   examMappings ExamMapping[]  @relation("ExamMappingNode") // P3-S3
   // SITE-S8: per-user syllabus-walk progress rows pinned to this node.
   tutorialProgress TutorialProgress[]
+  // SITE-S13: per-exam editorial notes pinned to this chapter node (the
+  // premium overlay layer — one note per kind per exam per chapter).
+  examNotes    ExamNote[]
 
   @@unique([examVersionId, slug]) // SITE-S8 — NULLs-distinct keeps slugless legacy nodes legal
   @@index([examVersionId, parentId, priority])
@@ -987,6 +996,16 @@ model User {
   createdQnaProvenance      QnAProvenance[]
   // SITE-S8: tutorial chapter-progress rows owned by this user.
   tutorialProgress TutorialProgress[]
+  // SITE-S13: ExamNotes authored + revisions published by this user (the
+  // exam-pattern-specific editorial layer that overlays the tutorial chapter).
+  authoredExamNotes       ExamNote[]            @relation("ExamNoteAuthor")
+  publishedExamNoteRevisions ExamNoteRevision[] @relation("ExamNoteRevisionPublisher")
+  // SITE-S13: premium-access rows owned by this user (the entitlement that
+  // unlocks the gated ExamNotes).
+  premiumAccess          UserPremiumAccess[]
+  // SITE-S13: premium-access rows GRANTED by this user (the admin/support
+  // audit trail — who flipped the switch on each row).
+  grantedPremiumAccess   UserPremiumAccess[]   @relation("PremiumGrantor")
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -2568,4 +2587,125 @@ model SitePage {
 enum SitePageStatus {
   DRAFT
   PUBLISHED
+}
+
+// ---------- SITE-S13: Premium Learning Overlay (docs/premium-learning-plan.md) ----------
+//
+// The exam-pattern-specific editorial layer that overlays the existing tutorial
+// chapter pages. The base lesson (knowledge-unit projection) stays free and
+// shared — every exam sees the same canonical Mauryan Empire content. The
+// premium editorial layer sits ON TOP of that lesson: 4 exam-specific blocks
+// per chapter that a coaching institute would charge ₹5,000 for.
+//
+// Governing principles (same as the rest of the platform):
+//   - §14: every note belongs to exactly ONE exam (the home-market exam).
+//   - §16: canonical URL is /tutorials/{exam}/{chapter}/#note-{kind} — the
+//     notes are sections INSIDE the chapter page, not separate surfaces.
+//   - §19: DRAFT → PUBLISHED (editor+), PUBLISHED → INACTIVE, INACTIVE →
+//     PUBLISHED. Revisions are append-only (§36).
+//   - §36: published body is denormalised onto ExamNote.body for the fast
+//     public read (no join needed for the chapter page).
+//   - §37: typed errors, deterministic sorting.
+//   - The free-tier switch is the `premiumGatingEnabled` site-setting flag
+//     (default false — every note visible to everyone; flip to true to gate).
+
+// The 4 editorial block kinds. The order matters — pattern brief first (sets
+// the context), revision notes last (last-minute recap).
+enum ExamNoteKind {
+  PATTERN_BRIEF    // exam-specific weightage + question style (~200 words)
+  CHEAT_SHEET      // 1-page condensed revision — articles/dates/formulas
+  WORKED_MCQ       // real PYQ + step-by-step explanation + trap + pattern alert
+  REVISION_NOTES   // chapter-summary mind-map, last-minute tips
+}
+
+enum ExamNoteStatus {
+  DRAFT     // being authored; not visible publicly even with gating off
+  PUBLISHED // visible (gated or not, per the site-setting flag)
+  INACTIVE  // soft-disabled without deleting the body (§36 — restore-ready)
+}
+
+model ExamNote {
+  id             String         @id @default(cuid())
+  examId         String // §14: home-market exam — every note belongs to one exam
+  syllabusNodeId String // the chapter (P3-S2 SyllabusNode) — links to the tutorial chapter
+  kind           ExamNoteKind
+  /** The current PUBLISHED revision's body (rich text — markdown). */
+  body           String         @db.Text
+  status         ExamNoteStatus @default(DRAFT)
+  authoredById   String?
+  publishedRevisionId String? // the revision currently live (null = DRAFT, never published)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  exam          Exam             @relation(fields: [examId], references: [id], onDelete: Cascade)
+  syllabusNode  SyllabusNode    @relation(fields: [syllabusNodeId], references: [id], onDelete: Cascade)
+  authoredBy    User?           @relation("ExamNoteAuthor", fields: [authoredById], references: [id], onDelete: SetNull)
+  revisions     ExamNoteRevision[]
+
+  @@unique([examId, syllabusNodeId, kind]) // one note per chapter per kind per exam
+  @@index([examId, syllabusNodeId])
+  @@index([status])
+  @@index([kind])
+}
+
+// §36: revisions are append-only — the published body is denormalised onto
+// ExamNote.body; this table is the immutable history (audit + restore).
+model ExamNoteRevision {
+  id            String   @id @default(cuid())
+  noteId        String
+  body          String   @db.Text // immutable after create (§36)
+  publishedById String?
+  publishedAt   DateTime @default(now())
+
+  note         ExamNote @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  publishedBy  User?    @relation("ExamNoteRevisionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+
+  @@index([noteId])
+}
+
+// ---------- SITE-S13: Premium access (the entitlement that unlocks notes) ----------
+
+enum PremiumScope {
+  SINGLE_EXAM // one examId — ₹99 lifetime
+  ALL_EXAMS   // every exam — ₹499/year
+}
+
+enum PremiumSource {
+  PURCHASE // paid via Razorpay (SITE-S14)
+  REDEEM   // coupon code
+  GRANT    // admin manual grant (support/promo)
+}
+
+// ONE row per active entitlement. The gating helper `canAccessExamNote(user,
+// examId)` returns true when ANY row covers the exam: ALL_EXAMS (annual pass)
+// OR SINGLE_EXAM for this examId AND within [startsAt, expiresAt].
+model UserPremiumAccess {
+  id            String        @id @default(cuid())
+  userId        String
+  scope         PremiumScope @default(SINGLE_EXAM)
+  examId        String? // null when scope = ALL_EXAMS
+  startsAt      DateTime      @default(now())
+  /** Null = lifetime (for ₹99 single-exam). Set for the annual pass (+1 year). */
+  expiresAt     DateTime?
+  source        PremiumSource @default(PURCHASE)
+  /** SITE-S14: Razorpay order id + payment id (null until payment is wired).
+   *  UNIQUE so the webhook receiver is idempotent on payment_id (Razorpay
+   *  retries on network blips — we never grant the same entitlement twice). */
+  orderId       String?
+  paymentId     String?
+  /** §36 audit: who granted this, when, why. */
+  grantedById   String?
+  grantedAt     DateTime       @default(now())
+  grantedReason String? // "Razorpay payment #pay_xxx" / "manual admin grant" / "REDEEM: DIWALI50"
+  createdAt     DateTime       @default(now())
+
+  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam          Exam?  @relation(fields: [examId], references: [id], onDelete: Cascade)
+  grantedBy     User?  @relation("PremiumGrantor", fields: [grantedById], references: [id], onDelete: SetNull)
+
+  @@unique([paymentId]) // idempotency — Razorpay retries are safe
+  @@index([userId])
+  @@index([examId])
+  @@index([expiresAt])
+  @@index([scope, source])
 }

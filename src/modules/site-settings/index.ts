@@ -12,6 +12,8 @@ export {
   listSettings,
   upsertSettings,
   removeSetting,
+  isPremiumGatingEnabled,
+  setPremiumGatingEnabled,
   type PublicSettings,
   type AdminSettingRow,
   type AdminSettingsView,

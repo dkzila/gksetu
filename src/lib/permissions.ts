@@ -61,6 +61,9 @@ export type Permission =
   // NEVER WRITER (staff provisioning is an operator capability)
   | 'settings:manage' // CONSOLE-S1: manage the site-settings registry (integrations, ads.txt, robots extras, API keys) — ADMIN only (platform-level rows; the countryId override field is data-modelled for later market scoping)
   | 'pages:manage' // CONSOLE-S1: manage the static site pages (About/Contact/Privacy + custom) — ADMIN only in v1 (platform-level pages)
+  | 'note:manage' // SITE-S13: author exam-pattern editorial notes (pattern brief, cheat sheet, worked MCQ, revision notes) — the content:manage precedent: WRITER (own country + language scope), COUNTRY_ADMIN (own country), ADMIN
+  | 'note:publish' // SITE-S13: publish/schedule/retire exam notes — the editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
+  | 'premium:manage' // SITE-S13: manage UserPremiumAccess rows + the gating switch — ADMIN only in v1 (the entitlement grant is platform-level; country scoping arrives when multi-market premium ships)
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
   | 'sessions:manage-own' // list/revoke own sessions (any active account)
 
@@ -132,6 +135,9 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'staff:manage',
     'settings:manage',
     'pages:manage',
+    'note:manage',
+    'note:publish',
+    'premium:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -159,6 +165,8 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     // provisioning capability, country-narrowed like every other staff-class
     // write. WRITER never holds it (a writer cannot mint colleagues).
     'staff:manage',
+    'note:manage',
+    'note:publish',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -166,7 +174,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
   // (source:manage, platform-level per §24) and work the editorial board in
   // scope. P7-S1: QnA authoring rides the WRITER class — the §18
   // Question/Test Author role consolidated into v1's four-role model.
-  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'mocktest:manage', 'translations:manage', 'sessions:manage-own'],
+  WRITER: ['content:manage', 'source:manage', 'editorial:work', 'qna:manage', 'question:manage', 'mocktest:manage', 'translations:manage', 'note:manage', 'sessions:manage-own'],
   READER: ['sessions:manage-own'],
 }
 
@@ -189,6 +197,8 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'feedback:manage',
   'translations:manage',
   'staff:manage',
+  'note:manage',
+  'note:publish',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -199,6 +209,7 @@ const WRITER_NARROWED: ReadonlySet<Permission> = new Set([
   'question:manage',
   'mocktest:manage',
   'translations:manage',
+  'note:manage',
 ])
 
 /**
@@ -295,6 +306,9 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'staff:manage': 'Manage workspace staff — invite, scope, suspend, reset credentials (own market, §20)',
   'settings:manage': 'Manage site settings & integration codes (console)',
   'pages:manage': 'Manage static site pages (About, Contact, Privacy…)',
+  'note:manage': 'Author exam notes — pattern briefs, cheat sheets, worked MCQs, revision notes (own scope, SITE-S13)',
+  'note:publish': 'Publish, schedule & retire exam notes — the editorial gate (SITE-S13)',
+  'premium:manage': 'Manage premium access grants + the gating switch (SITE-S13)',
   'audit:read': 'Read audit trail',
   'sessions:manage-own': 'Manage own sessions',
 }
