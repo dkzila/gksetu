@@ -64,6 +64,7 @@ export type Permission =
   | 'note:manage' // SITE-S13: author exam-pattern editorial notes (pattern brief, cheat sheet, worked MCQ, revision notes) — the content:manage precedent: WRITER (own country + language scope), COUNTRY_ADMIN (own country), ADMIN
   | 'note:publish' // SITE-S13: publish/schedule/retire exam notes — the editorial gate: ADMIN + COUNTRY_ADMIN, never WRITER
   | 'premium:manage' // SITE-S13: manage UserPremiumAccess rows + the gating switch — ADMIN only in v1 (the entitlement grant is platform-level; country scoping arrives when multi-market premium ships)
+  | 'book:manage' // SITE-S15: create/edit/transition books + editions + exam links — ADMIN + COUNTRY_ADMIN (own country); the exam:manage precedent
   | 'audit:read' // read the accountability trail (ADMIN only in P1)
   | 'sessions:manage-own' // list/revoke own sessions (any active account)
 
@@ -138,6 +139,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'note:manage',
     'note:publish',
     'premium:manage',
+    'book:manage',
   ],
   // Sources are platform-level shared evidence (§24) — the record itself is
   // never country-scoped. Country scope is enforced on the LINK (which content
@@ -167,6 +169,7 @@ const ROLE_CATEGORY_GRANTS: Record<UserRole, Permission[]> = {
     'staff:manage',
     'note:manage',
     'note:publish',
+    'book:manage',
   ],
   // §18 Writer: "create/edit assigned content but cannot publish unless
   // granted" — publish-class transitions need content:publish/qna:publish
@@ -199,6 +202,7 @@ const COUNTRY_NARROWED: ReadonlySet<Permission> = new Set([
   'staff:manage',
   'note:manage',
   'note:publish',
+  'book:manage',
 ])
 
 /** Permissions WRITER may hold, narrowed by country AND language scope. */
@@ -309,6 +313,7 @@ export const PERMISSION_LABELS: Record<Permission, string> = {
   'note:manage': 'Author exam notes — pattern briefs, cheat sheets, worked MCQs, revision notes (own scope, SITE-S13)',
   'note:publish': 'Publish, schedule & retire exam notes — the editorial gate (SITE-S13)',
   'premium:manage': 'Manage premium access grants + the gating switch (SITE-S13)',
+  'book:manage': 'Manage books + editions + exam links — the store registry (own country, SITE-S15)',
   'audit:read': 'Read audit trail',
   'sessions:manage-own': 'Manage own sessions',
 }

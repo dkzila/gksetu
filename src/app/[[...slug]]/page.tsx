@@ -55,6 +55,8 @@ import { McqView } from '@/components/home/mcq-view'
 import { QnaView } from '@/components/home/qna-view'
 import { PyqView } from '@/components/home/pyq-view'
 import { TutorialsView } from '@/components/home/tutorials-view'
+import { StoreView } from '@/components/home/store-view'
+import { BookDetailView } from '@/components/home/book-detail-view'
 import { SharedCollectionView } from '@/components/shares/shared-collection-view'
 import { FollowingView } from '@/components/follows/following-view'
 import { SavedView } from '@/components/saves/saved-view'
@@ -311,7 +313,9 @@ export default function GKSetuApp() {
       route.view === 'event' ||
       route.view === 'topic' ||
       route.view === 'exam' ||
-      route.view === 'collection'
+      route.view === 'collection' ||
+      route.view === 'store' ||
+      (route.view === 'book-detail' && !!route.bookSlug)
     if (!shareable) return
     // The route only counts as a landing while the URL is STILL the one the
     // page loaded with — any in-app navigation before this point disqualifies.
@@ -1125,6 +1129,21 @@ export default function GKSetuApp() {
           <TutorialsView
             key={`${route.countryIso}:${route.language}:${route.examSlug ?? ''}:${route.chapterSlug ?? ''}`}
             route={route}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'store' ? (
+          <StoreView
+            key={`${route.countryIso}:${route.language}`}
+            countryIso={route.countryIso}
+            language={route.language}
+            onGoHome={goHome}
+          />
+        ) : route.view === 'book-detail' && route.bookSlug ? (
+          <BookDetailView
+            key={`${route.countryIso}:${route.language}:${route.bookSlug}`}
+            bookSlug={route.bookSlug}
+            countryIso={route.countryIso}
+            language={route.language}
             onGoHome={goHome}
           />
         ) : route.view === 'collection' && route.collectionId ? (

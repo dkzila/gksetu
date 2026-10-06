@@ -60,6 +60,7 @@ import { ExamDetailPage } from './pages/exam-detail-page'
 import { ExamsPage } from './pages/exams-page'
 import { KnowledgePage } from './pages/knowledge-page'
 import { MockTestsPage } from './pages/mock-tests-page'
+import { BooksPage } from './pages/books-page'
 import { PagesPage } from './pages/pages-page'
 import { PostsPage } from './pages/posts-page'
 import { PremiumPage } from './pages/premium-page'
@@ -122,6 +123,8 @@ function renderConsolePage(consolePath: string | null) {
       return <TaxonomyPage />
     case path === 'pages':
       return <PagesPage />
+    case path === 'books':
+      return <BooksPage />
     case path === 'premium':
       return <PremiumPage />
     case path === 'settings':

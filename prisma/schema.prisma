@@ -559,6 +559,9 @@ model Exam {
   // SITE-S13: premium-access rows scoped to this exam (the SINGLE_EXAM
   // entitlements — null when scope is ALL_EXAMS).
   premiumAccess UserPremiumAccess[]
+  // SITE-S15: book links — the books that are linked to this exam (the
+  // autosuggest on the exam + chapter pages reads this).
+  bookLinks BookExamLink[] @relation("BookExamLinkExam")
 
   @@unique([countryId, code])
   @@index([status])
@@ -856,6 +859,8 @@ model Language {
   translations        Translation[] // P9-S1 §6: translation links keyed on the target language
   goalStudyLanguages  UserGoal[]        @relation("UserGoalStudyLanguage") // P5-S3
   entityAliases       EntityAlias[] // P6-S3: language-specific alias spellings
+  // SITE-S15: book editions in this language (the per-language variant of a book).
+  bookEditions       BookEdition[]  @relation("BookEditionLanguage")
 
   @@index([status])
 }
@@ -893,6 +898,8 @@ model Country {
   siteSettings    SiteSetting[] // CONSOLE-S1: this market's settings overrides
   // SITE-S12: this country's jurisdiction rows (CENTRAL + its STATE/DISTRICT tree).
   jurisdictions   Jurisdiction[]    @relation("JurisdictionCountry")
+  // SITE-S15: books scoped to this country (§14 — a book belongs to one country; magazines can be country-specific).
+  books           Book[]            @relation("BookCountry")
 
   @@index([status])
 }
@@ -1006,6 +1013,12 @@ model User {
   // SITE-S13: premium-access rows GRANTED by this user (the admin/support
   // audit trail — who flipped the switch on each row).
   grantedPremiumAccess   UserPremiumAccess[]   @relation("PremiumGrantor")
+  // SITE-S15: books authored by this user (the Console's audit trail).
+  authoredBooks          Book[]                 @relation("BookAuthor")
+  // SITE-S15: book-access rows owned by this user (purchased books' PDF entitlement).
+  bookAccess             UserBookAccess[]
+  // SITE-S15: orders placed by this user.
+  orders                 Order[]
 
   @@index([homeCountryId])
   @@index([preferredLanguageId])
@@ -2708,4 +2721,201 @@ model UserPremiumAccess {
   @@index([examId])
   @@index([expiresAt])
   @@index([scope, source])
+}
+
+// ---------- SITE-S15: Store + Books (docs/store-and-books-plan.md) ----------
+//
+// The marketplace for books, magazines, notes (PDF + print versions) + the
+// exam-linked autosuggest. ONE Book row carries the identity (slug, title,
+// description, type, cover image, category). MANY BookEdition rows carry the
+// per-language + per-format variants (same book, different language or
+// different format or different price).
+//
+// Governing principles (same as the rest of the platform):
+//   - §14: a book belongs to ONE country (magazines can be country-specific).
+//   - §16: canonical URL is /store/{book-slug}/ — the language is a query param (?lang=hi).
+//   - §19: DRAFT → PUBLISHED → RETIRED (no hard delete — history preserved).
+//   - §36: prices + descriptions + editions are mutable, but purchased
+//     OrderItem snapshots are immutable (the price at purchase time never changes).
+//   - §37: typed errors, deterministic sorting.
+//   - Payment reuses SITE-S14 (Razorpay) — no second payment engine.
+
+enum BookType {
+  BOOK                 // a full-length book (e.g. "Indian Polity — the GKSetu edition")
+  MAGAZINE             // a periodic issue (e.g. "GKSetu Monthly — October 2026")
+  NOTE_COMPILATION     // a compiled set of ExamNotes (e.g. "UPSC CSE Polity — all chapters' notes")
+  CURRENT_AFFAIRS_DIGEST  // a monthly CA compilation (future — schema accommodates)
+}
+
+enum BookFormat {
+  PDF     // digital download
+  PRINT   // physical shipped
+}
+
+enum BookStatus {
+  DRAFT
+  PUBLISHED
+  RETIRED  // end-of-life, no longer purchasable but historical orders preserved
+}
+
+model Book {
+  id           String     @id @default(cuid())
+  slug         String     @unique // URL-stable, lowercase kebab
+  type         BookType   @default(BOOK)
+  status       BookStatus @default(DRAFT)
+  // The canonical (English) title — used for SEO + the canonical URL.
+  title        String
+  // A short tagline (the card subtitle).
+  subtitle     String?
+  description  String     @db.Text  // the long-form marketing copy (markdown)
+  // Cover image — a public URL (the user uploads via the Console; stored on Supabase Storage).
+  coverImageUrl String?
+  // The category — for the store's filter chips (Polity, History, CA, Quant, etc.).
+  category     String?
+  // The publication date — for magazines + digests (the issue month).
+  publishedAt  DateTime?
+  // Author / publisher — free-text (e.g. "GKSetu Editorial Board").
+  author       String?
+  // Sort order — for the Console's manual ordering of featured books.
+  sortOrder    Int        @default(0)
+  // §14: the home-market country (a book belongs to one country — for §14 scoping; magazines can be country-specific).
+  countryId    String?
+  // Audit.
+  createdById  String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  editions     BookEdition[]
+  examLinks    BookExamLink[]
+  country      Country?   @relation("BookCountry", fields: [countryId], references: [id], onDelete: SetNull)
+  createdBy    User?      @relation("BookAuthor", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([status, type])
+  @@index([countryId, status])
+  @@index([category])
+}
+
+// The per-language + per-format variant of a book. ONE Book has MANY editions —
+// the user picks the format + the language on the book's detail page (the
+// "language changer" the user asked for — picks the edition, swaps the price +
+// the PDF + the cover).
+model BookEdition {
+  id          String     @id @default(cuid())
+  bookId      String
+  // The format (PDF vs Print).
+  format      BookFormat
+  // The language of this edition (links to the Language table — §35).
+  languageId  String
+  // The price in paise (₹99 = 9900). 0 = free.
+  price       Int        @default(0)
+  // For PDF: the file URL (Supabase Storage). For PRINT: the print-on-demand SKU / weight.
+  fileUrl     String?
+  // The page count (for the metadata + the print shipping cost calc).
+  pageCount   Int?
+  // The ISBN (for print editions — optional).
+  isbn        String?
+  // Whether this edition is currently purchasable (a published book can have a "PDF available, print coming soon" state).
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  book        Book       @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  language    Language   @relation("BookEditionLanguage", fields: [languageId], references: [id])
+  // SITE-S15: the book-access rows that unlocked this edition's PDF (the purchase entitlement).
+  bookAccess  UserBookAccess[]
+  // SITE-S17: the order items that purchased this edition (the immutable snapshots).
+  orderItems  OrderItem[]
+
+  @@unique([bookId, format, languageId])  // one edition per format per language per book
+  @@index([bookId])
+  @@index([languageId])
+}
+
+// The exam linkage — many-to-many between Book + Exam. The autosuggest on the
+// chapter page + the exam page reads this (when a user is on
+// /tutorials/upsc-civil-services/{chapter}/, the store surfaces books linked
+// to upsc-civil-services).
+model BookExamLink {
+  id        String   @id @default(cuid())
+  bookId    String
+  examId    String
+  // The relevance — "primary" (the book is THE book for this exam) vs "supplementary" (relevant but not the main resource).
+  relevance String   @default("supplementary")  // "primary" | "supplementary"
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  exam      Exam     @relation("BookExamLinkExam", fields: [examId], references: [id], onDelete: Cascade)
+
+  @@unique([bookId, examId])
+  @@index([examId])
+}
+
+// The entitlement that unlocks a purchased book's PDF (the print version ships
+// separately). Reuses the UserPremiumAccess pattern — idempotent on Razorpay
+// payment_id (the webhook grants the row on payment.captured).
+model UserBookAccess {
+  id            String   @id @default(cuid())
+  userId        String
+  bookEditionId String
+  // SITE-S14: the Razorpay order + payment ids (idempotency on payment_id).
+  orderId       String?
+  paymentId     String?
+  // The purchase date + the download-expiry (null = lifetime for PDF; set for time-limited magazines).
+  purchasedAt   DateTime @default(now())
+  expiresAt     DateTime?
+  // The download count (the user can download the PDF N times — anti-piracy).
+  downloadCount Int      @default(0)
+  maxDownloads  Int      @default(5)  // 5 downloads by default; configurable per book
+
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookEdition   BookEdition  @relation(fields: [bookEditionId], references: [id], onDelete: Cascade)
+
+  @@unique([paymentId])
+  @@index([userId])
+  @@index([bookEditionId])
+}
+
+// SITE-S17: the order (multi-item cart, paid via Razorpay). The OrderItem
+// snapshots the price + the format at purchase time (§36 — never changes
+// after, even if the book's price later changes).
+model Order {
+  id              String   @id @default(cuid())
+  userId          String
+  // The Razorpay order id + payment id (idempotency).
+  razorpayOrderId  String?
+  razorpayPaymentId String?  @unique
+  // The total amount in paise.
+  amount          Int
+  currency        String   @default("INR")
+  // The order status (pending → paid → fulfilled → refunded).
+  status          String   @default("pending")  // pending | paid | fulfilled | refunded
+  // The shipping address (for PRINT orders).
+  shippingAddress Json?
+  // Audit.
+  createdAt       DateTime @default(now())
+  paidAt          DateTime?
+  fulfilledAt     DateTime?
+
+  items           OrderItem[]
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  bookEditionId String
+  // The price snapshot (the price at the time of purchase — never changes after).
+  priceSnapshot Int
+  // The format snapshot (PDF/PRINT — for the fulfilment pipeline).
+  formatSnapshot String
+  quantity      Int      @default(1)
+
+  order          Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  bookEdition    BookEdition  @relation(fields: [bookEditionId], references: [id], onDelete: Restrict)
+
+  @@index([orderId])
 }

@@ -26,6 +26,7 @@ import {
   Newspaper,
   Rss,
   Settings,
+  ShoppingBag,
   Timer,
   UserRound,
 } from 'lucide-react'
@@ -142,6 +143,13 @@ export function AppSidebar({
       icon: History,
       active: route?.view === 'pyq',
       href: '/pyq/',
+    },
+    {
+      key: 'store',
+      label: 'Store',
+      icon: ShoppingBag,
+      active: route?.view === 'store' || route?.view === 'book-detail',
+      href: '/store/',
     },
   ]
 

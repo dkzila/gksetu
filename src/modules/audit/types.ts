@@ -261,6 +261,15 @@ export const AUDIT_ACTIONS = {
    *  trail — who flipped the switch on each row). */
   premiumGrant: 'user.premium.grant',
   premiumRevoke: 'user.premium.revoke',
+  /** SITE-S15: book + edition + exam-link mutations (the store registry). */
+  bookCreate: 'book.create',
+  bookUpdate: 'book.update',
+  bookTransition: 'book.transition',
+  bookEditionCreate: 'book.edition.create',
+  bookEditionUpdate: 'book.edition.update',
+  bookEditionRemove: 'book.edition.remove',
+  bookExamLink: 'book.exam.link',
+  bookExamUnlink: 'book.exam.unlink',
 } as const
 
 /** Object type vocabulary (§6 entities that exist so far). */
@@ -318,4 +327,9 @@ export const AUDIT_OBJECT_TYPES = {
   examNote: 'ExamNote',
   /** SITE-S13: the premium-access entitlement row (the gating grant/revoke). */
   userPremiumAccess: 'UserPremiumAccess',
+  /** SITE-S15: the store book + the per-language per-format edition + the
+   *  exam linkage (the autosuggest source). */
+  book: 'Book',
+  bookEdition: 'BookEdition',
+  bookExamLink: 'BookExamLink',
 } as const

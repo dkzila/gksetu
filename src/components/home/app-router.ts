@@ -97,7 +97,7 @@ export function isContentRoot(segment: string | undefined): boolean {
 }
 
 export interface AppRoute {
-  view: 'home' | 'topic' | 'unit' | 'event' | 'current-affairs' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'mock-test' | 'mcq' | 'qna' | 'pyq' | 'tutorials' | 'subjects' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page'
+  view: 'home' | 'topic' | 'unit' | 'event' | 'current-affairs' | 'exam' | 'exam-directory' | 'syllabus' | 'test' | 'following' | 'saved' | 'onboarding' | 'profile' | 'dashboard' | 'personalisation' | 'notifications' | 'feedback' | 'mock-test' | 'mcq' | 'qna' | 'pyq' | 'tutorials' | 'subjects' | 'collection' | 'signin' | 'console' | 'dev-track' | 'site-page' | 'store' | 'book-detail'
   countryIso: string
   language: string
   topicSlug: string | null
@@ -129,6 +129,8 @@ export interface AppRoute {
   consolePath: string | null
   /** CONSOLE-S1: the managed site page slug (/about, /p/{slug}). */
   pageSlug: string | null
+  /** SITE-S15: the book slug whose store detail page is open (…/store/{slug}/). */
+  bookSlug?: string | null
 }
 
 /** The current app path — the URL pathname + query (legacy-hash aware). */
@@ -181,6 +183,7 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
     scrollTo: null,
     consolePath: null,
     pageSlug: null,
+    bookSlug: null,
   }
   if (!defaultCountry) return fallback
 
@@ -267,6 +270,20 @@ export function parseRoute(path: string, config: ApiCountry[]): AppRoute {
       examSlug: segments[1] ?? null,
       scrollTo: null,
     }
+  }
+
+  // SITE-S15: the store directory + the book detail page.
+  // /store/ → the directory. /store/{slug}/ → the book detail.
+  if (segments[0] === 'store') {
+    if (segments[1]) {
+      return {
+        ...fallback,
+        view: 'book-detail',
+        bookSlug: segments[1],
+        scrollTo: null,
+      }
+    }
+    return { ...fallback, view: 'store', scrollTo: null }
   }
 
   // P5-S5: the explanations & controls surface (§9/§31) — market-independent.
@@ -763,6 +780,8 @@ export interface RouteInput {
   consolePath?: string | null
   /** CONSOLE-S1: the managed site page slug (view 'site-page'). */
   pageSlug?: string | null
+  /** SITE-S15: the book slug (view 'book-detail'). */
+  bookSlug?: string | null
 }
 
 /** Builds the §16-shaped URL path for a route (defaults omitted, §16). */
@@ -795,6 +814,14 @@ export function buildPath(route: RouteInput, config: ApiCountry[]): string {
   // deep-links its scope card). Market-independent, like its predecessor.
   if (route.view === 'mock-test') {
     return route.examSlug ? `/mock-test/${route.examSlug}/` : '/mock-test/'
+  }
+  // SITE-S15: the store + the book detail page — market-independent root
+  // (like /mock-test/ — the store is a global surface, not market-scoped).
+  if (route.view === 'store') {
+    return '/store/'
+  }
+  if (route.view === 'book-detail' && route.bookSlug) {
+    return `/store/${route.bookSlug}/`
   }
   const country = config.find((entry) => entry.isoCode === route.countryIso)
   if (!country) return '/'

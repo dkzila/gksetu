@@ -27,6 +27,7 @@ import {
   ScrollText,
   Settings,
   ShieldCheck,
+  ShoppingBag,
   Sparkles,
   Tags,
   Timer,
@@ -231,6 +232,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         icon: ShieldCheck,
         permission: 'premium:manage',
         description: 'The entitlement registry that unlocks gated ExamNotes. Manage grants + the global gating switch (the "free for now" lever).',
+      },
+      {
+        id: 'books',
+        label: 'Books (Store)',
+        path: 'books',
+        icon: ShoppingBag,
+        permission: 'book:manage',
+        description: 'The marketplace registry — books, magazines, exam-notes compilations. Manage editions + link exams (the autosuggest source).',
       },
       {
         id: 'settings',
