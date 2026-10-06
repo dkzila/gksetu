@@ -104,11 +104,13 @@ export function BookDetailView({ bookSlug, countryIso, language, onGoHome }: Boo
     ? [...new Set(book.allEditions.map((e) => e.language.code))]
     : []
 
-  const handleBuyOrDownload = () => {
+  const handleBuyOrDownload = async () => {
     if (!selectedEdition) return
     if (selectedEdition.price === 0) {
-      // Free — direct download (the fileUrl is the direct PDF).
-      if (selectedEdition.fileUrl) {
+      // Free — direct download (the fileUrl is the direct PDF or the compilation route).
+      if (book?.type === 'NOTE_COMPILATION') {
+        window.open(`/api/store/${book.slug}/download?edition=${selectedEdition.id}`, '_blank')
+      } else if (selectedEdition.fileUrl) {
         window.open(selectedEdition.fileUrl, '_blank')
       } else {
         toast({
@@ -118,11 +120,38 @@ export function BookDetailView({ bookSlug, countryIso, language, onGoHome }: Boo
         })
       }
     } else {
-      // Paid — SITE-S17 wires the Razorpay checkout. For now (S15), show a toast.
-      toast({
-        title: 'Payment integration coming soon',
-        description: `This ${FORMAT_LABELS[selectedFormat]} edition costs ${selectedEdition.priceLabel}. Payments activate when Razorpay keys are added.`,
-      })
+      // Paid — POST /api/store/checkout creates a Razorpay order (or returns 503).
+      try {
+        const response = await fetch('/api/store/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bookSlug: book!.slug, editionId: selectedEdition.id }),
+        })
+        const payload = await response.json()
+        if (payload.status === 'ok' && payload.data) {
+          if (payload.data.free) {
+            // Free edition — the checkout API says it's free (shouldn't reach here for price > 0).
+            window.open(payload.data.downloadUrl, '_blank')
+          } else {
+            // SCAFFOLD: when Razorpay is live, open the checkout modal here.
+            // For now, show a toast with the order details.
+            toast({
+              title: 'Payment integration coming soon',
+              description: `This ${selectedEdition.format} edition costs ${selectedEdition.priceLabel}. Payments activate when Razorpay keys are added (see docs/payment-integration.md).`,
+            })
+          }
+        } else if (payload.error?.code === 'PAYMENTS_NOT_CONFIGURED') {
+          toast({
+            title: 'Payments not configured yet',
+            description: 'The Razorpay integration is scaffolded. See docs/payment-integration.md to enable.',
+            variant: 'destructive',
+          })
+        } else {
+          toast({ title: 'Could not start checkout', description: payload.error?.message, variant: 'destructive' })
+        }
+      } catch {
+        toast({ title: 'Network error — could not start checkout', variant: 'destructive' })
+      }
     }
   }
 

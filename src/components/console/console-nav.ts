@@ -33,6 +33,7 @@ import {
   Timer,
   UserCircle,
   Users,
+  Package,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -240,6 +241,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         icon: ShoppingBag,
         permission: 'book:manage',
         description: 'The marketplace registry — books, magazines, exam-notes compilations. Manage editions + link exams (the autosuggest source).',
+      },
+      {
+        id: 'orders',
+        label: 'Orders',
+        path: 'orders',
+        icon: Package,
+        permission: 'book:manage',
+        description: 'The fulfilment pipeline — paid orders that need shipping (PRINT) or are auto-fulfilled (PDF).',
       },
       {
         id: 'settings',

@@ -70,6 +70,7 @@ import type { Envelope, ExamCoverageNode, ExamPage, HomeExamCard, HomeUnitCard }
 import { useSeoHead } from './seo-head'
 import { FollowButton } from '@/components/follows/follow-button'
 import { ShareButton } from '@/components/shares/share-button'
+import { ExamBooksSection } from '@/components/home/exam-books-section'
 
 // ---------- Props ----------
 
@@ -642,6 +643,9 @@ export function ExamView({
         isHistorical={isHistorical}
         onOpenEvent={onOpenEvent}
       />
+
+      {/* ---------- SITE-S18: books for this exam (auto-suggested) ---------- */}
+      <ExamBooksSection examSlug={page.exam.slug} />
 
       {/* ---------- §33 related exams ---------- */}
       {page.relatedExams.length > 0 && (

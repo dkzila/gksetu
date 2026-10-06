@@ -59,6 +59,7 @@ import { InlinePractice } from '@/components/practice/inline-practice'
 import type { InlinePracticeQuestion } from '@/components/practice/inline-practice'
 import { InlineLessonCard } from '@/components/tutorials/inline-lesson-card'
 import { ExamNotesSection } from '@/components/premium/exam-notes-section'
+import { ExamBooksSection } from '@/components/home/exam-books-section'
 import { PaywallModal } from '@/components/payments/paywall-modal'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -913,6 +914,13 @@ export function ChapterReader({ route, onGoHome }: ChapterReaderProps) {
                   isSignedIn={signedIn}
                   onUnlock={(scope) => setPaywall({ open: true, scope })}
                 />
+              )}
+
+              {/* ---------- SITE-S18: books for this exam (the "Get the
+                  printed book" auto-suggest — renders when books are linked
+                  to this exam; silent when empty). ---------- */}
+              {chapter && route.examSlug && (
+                <ExamBooksSection examSlug={route.examSlug} />
               )}
 
               {/* ---------- Footer prev/next — two large tappable cards ---------- */}
