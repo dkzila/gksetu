@@ -57,7 +57,6 @@ import {
 } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Textarea } from '@/components/ui/textarea'
 
 import { navigateToPath } from '@/components/home/app-router'
 import {
@@ -71,9 +70,9 @@ import { ResourceTable, type ResourceColumn } from '@/components/console/ui/reso
 import {
   Field,
   SelectInput,
-  TextArea,
   TextInput,
 } from '@/components/console/ui/form-fields'
+import { VisualEditor } from '@/components/console/ui/visual-editor'
 import {
   fieldErrorMap,
   useConsoleApi,
@@ -726,14 +725,12 @@ function ExamNoteFormDialog({
             </div>
           )}
 
-          <Field label="Body (markdown)" htmlFor="note-body" required error={errors.body} hint={`${values.body.length} characters`}>
-            <Textarea
-              id="note-body"
+          <Field label="Body" htmlFor="note-body" required error={errors.body} hint={`${values.body.length} characters`}>
+            <VisualEditor
               value={values.body}
-              onChange={(e) => set('body', e.target.value)}
+              onChange={(value) => set('body', value)}
               placeholder="Pattern Brief: exam-specific weightage + question style. Cheat Sheet: 1-page condensed revision. Worked MCQs: real PYQ + step-by-step explanation + trap. Revision Notes: chapter-summary mind-map."
-              rows={12}
-              maxLength={50_000}
+              minHeight={300}
             />
           </Field>
 

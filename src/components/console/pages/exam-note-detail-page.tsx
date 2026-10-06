@@ -49,6 +49,7 @@ import {
   statusLabel,
   previewText,
 } from './exam-notes-shared'
+import { RichContent } from '@/components/premium/rich-content'
 
 export function ExamNoteDetailPage({ noteId }: { noteId: string }) {
   const canManage = useHasPermission('note:manage')
@@ -201,9 +202,7 @@ export function ExamNoteDetailPage({ noteId }: { noteId: string }) {
               Published notes are immutable (§36). Unpublish to edit — a new revision is created on re-publish.
             </p>
           )}
-          <pre className="whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-zinc-700">
-            {note.body}
-          </pre>
+          <RichContent body={note.body} kind={note.kind} />
         </CardContent>
       </Card>
 

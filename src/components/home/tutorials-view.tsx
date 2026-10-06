@@ -990,6 +990,93 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
         </div>
       )}
 
+      {/* ---------- SITE-S19: Combine exams CTA — a highlighted card between
+          the hero and the All Exams section. Explains what "combine" does
+          (merges multiple exam tutorials into one unified study plan — shared
+          lessons shown once, per-exam depth preserved). When the user has ≥2
+          goal exams, the CTA is pre-seeded with their exams; otherwise it
+          opens the picker's honest empty surface. ---------- */}
+      <motion.section
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+        className="overflow-hidden rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 sm:p-6"
+        aria-labelledby="combine-exams-heading"
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0 space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-white text-emerald-600">
+                <Layers className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <h2 id="combine-exams-heading" className="text-lg font-bold tracking-tight text-zinc-900">
+                Combine Multiple Exam Tutorials in One Plan
+              </h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+              Studying for more than one exam? Merge their tutorials into a single unified study plan —
+              shared lessons appear once (no duplication), while each exam's unique depth + practice + PYQs
+              stay exam-specific. Perfect for UPSC + SSC, or any combination you're preparing for.
+            </p>
+            {yourExams.length >= 2 && (
+              <p className="text-xs font-medium text-emerald-700">
+                ✨ You have {yourExams.length} goal exams — combine them with one tap below.
+              </p>
+            )}
+          </div>
+          <div className="flex shrink-0 flex-col gap-2">
+            {yourExams.length >= 2 ? (
+              <>
+                <a
+                  href={`${base}combined/?exams=${yourExams
+                    .slice(0, 8)
+                    .map((exam) => exam.examSlug)
+                    .join(',')}`}
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+                  aria-label="Open a combined study plan across your declared exams"
+                >
+                  Combine your {yourExams.length} exams
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <a
+                  href="/onboarding"
+                  className="inline-flex h-9 items-center justify-center text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
+                >
+                  Change your goal exams
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href={`${base}combined/`}
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+                  aria-label="Open the combined tutorials picker"
+                >
+                  Pick exams to combine
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                {signedIn && yourExams.length === 1 && (
+                  <a
+                    href="/onboarding"
+                    className="inline-flex h-9 items-center justify-center text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
+                  >
+                    Add more exams to your goal
+                  </a>
+                )}
+                {!signedIn && (
+                  <a
+                    href="/signin"
+                    className="inline-flex h-9 items-center justify-center text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
+                  >
+                    Sign in to combine your goal exams
+                  </a>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      </motion.section>
+
       {/* ---------- Your exams (the personalised section — goal first) ---------- */}
       {yourExams.length > 0 && (
         <section aria-labelledby="your-exams-heading" className="space-y-3">
@@ -1059,15 +1146,6 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
             <h2 id="all-exams-heading" className="text-lg font-semibold tracking-tight">
               All exams
             </h2>
-            {/* SITE-S10 — the permanent combined entry (anonymous-friendly):
-                opens the picker's honest empty surface. */}
-            <a
-              href={`${base}combined/`}
-              className="inline-flex min-h-[32px] items-center gap-1.5 text-xs font-medium text-zinc-500 transition-colors hover:text-emerald-700"
-            >
-              <Layers className="h-3.5 w-3.5" aria-hidden="true" />
-              Combine exams into one plan
-            </a>
           </div>
           <div className="relative">
             <Search

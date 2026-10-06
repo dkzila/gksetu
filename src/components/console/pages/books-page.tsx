@@ -60,7 +60,8 @@ import {
   formatWhen,
 } from '@/components/console/ui/primitives'
 import { ResourceTable, type ResourceColumn } from '@/components/console/ui/resource-table'
-import { Field, SelectInput, TextArea, TextInput } from '@/components/console/ui/form-fields'
+import { Field, SelectInput, TextInput } from '@/components/console/ui/form-fields'
+import { VisualEditor } from '@/components/console/ui/visual-editor'
 import {
   fieldErrorMap,
   useConsoleApi,
@@ -627,13 +628,12 @@ function BookFormDialog({
             />
           </Field>
 
-          <Field label="Description (marketing copy — markdown)" htmlFor="book-description" required error={errors.description} hint={`${values.description.length} characters`}>
-            <TextArea
-              id="book-description"
+          <Field label="Description (marketing copy)" htmlFor="book-description" required error={errors.description} hint={`${values.description.length} characters`}>
+            <VisualEditor
               value={values.description}
               onChange={(v) => set('description', v)}
               placeholder="The long-form marketing copy. What this book is, who it's for, what it covers."
-              rows={4}
+              minHeight={150}
             />
           </Field>
 

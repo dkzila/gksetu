@@ -35,6 +35,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { EXAM_NOTE_KIND_LABELS, type ExamNoteKind, type PublicExamNote, type PublicExamNotesResult } from '@/modules/exam-notes'
+import { RichContent } from '@/components/premium/rich-content'
 
 // ---------- Props ----------
 
@@ -231,9 +232,7 @@ function ExamNoteCard({
           <>
             {/* Blurred preview — the first 100 chars (the API returns just the preview when locked). */}
             <div className="pointer-events-none select-none blur-sm">
-              <pre className="whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-zinc-700">
-                {note.body}
-              </pre>
+              <RichContent body={note.body} kind={note.kind} />
             </div>
             <div className="flex flex-wrap items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3">
               <Lock className="h-4 w-4 shrink-0 text-amber-700" aria-hidden="true" />
@@ -256,9 +255,7 @@ function ExamNoteCard({
             </div>
           </>
         ) : (
-          <pre className="whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-zinc-700">
-            {note.body}
-          </pre>
+          <RichContent body={note.body} kind={note.kind} />
         )}
       </CardContent>
     </Card>
