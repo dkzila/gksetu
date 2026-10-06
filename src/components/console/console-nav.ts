@@ -26,6 +26,8 @@ import {
   Newspaper,
   ScrollText,
   Settings,
+  ShieldCheck,
+  Sparkles,
   Tags,
   Timer,
   UserCircle,
@@ -170,6 +172,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         permission: 'mocktest:manage',
         description: 'Timed, sectioned tests assembled from the question bank.',
       },
+      {
+        id: 'exam-notes',
+        label: 'Exam Notes',
+        path: 'exam-notes',
+        icon: Sparkles,
+        permission: 'note:manage',
+        description: 'The premium editorial overlay — Pattern Briefs, Cheat Sheets, Worked MCQs, Revision Notes for every chapter of every exam.',
+      },
     ],
   },
   {
@@ -213,6 +223,14 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         icon: Files,
         permission: 'pages:manage',
         description: 'About, Contact, Privacy Policy and any custom page — managed, published, footer-linked.',
+      },
+      {
+        id: 'premium',
+        label: 'Premium Access',
+        path: 'premium',
+        icon: ShieldCheck,
+        permission: 'premium:manage',
+        description: 'The entitlement registry that unlocks gated ExamNotes. Manage grants + the global gating switch (the "free for now" lever).',
       },
       {
         id: 'settings',
@@ -279,6 +297,10 @@ export function findNavMatch(consolePath: string | null): ConsoleNavItem | null 
   // Exam detail pages ride the Exams nav item.
   if (path === 'exams' || path.startsWith('exams/')) {
     return CONSOLE_NAV.flatMap((group) => group.items).find((item) => item.id === 'exams') ?? null
+  }
+  // ExamNote detail pages ride the Exam Notes nav item.
+  if (path === 'exam-notes' || path.startsWith('exam-notes/')) {
+    return CONSOLE_NAV.flatMap((group) => group.items).find((item) => item.id === 'exam-notes') ?? null
   }
   return null
 }

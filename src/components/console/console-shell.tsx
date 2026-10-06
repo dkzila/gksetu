@@ -62,9 +62,12 @@ import { KnowledgePage } from './pages/knowledge-page'
 import { MockTestsPage } from './pages/mock-tests-page'
 import { PagesPage } from './pages/pages-page'
 import { PostsPage } from './pages/posts-page'
+import { PremiumPage } from './pages/premium-page'
 import { PyqPage } from './pages/pyq-page'
 import { QnaPage } from './pages/qna-page'
 import { QuestionsPage } from './pages/questions-page'
+import { ExamNotesPage } from './pages/exam-notes-page'
+import { ExamNoteDetailPage } from './pages/exam-note-detail-page'
 import { SettingsPage } from './pages/settings-page'
 import { SourcesPage } from './pages/sources-page'
 import { StaffPage } from './pages/staff-page'
@@ -105,6 +108,10 @@ function renderConsolePage(consolePath: string | null) {
       return <PyqPage />
     case path === 'mock-tests':
       return <MockTestsPage />
+    case path === 'exam-notes':
+      return <ExamNotesPage />
+    case path.startsWith('exam-notes/'):
+      return <ExamNoteDetailPage noteId={path.slice('exam-notes/'.length)} />
     case path === 'exams':
       return <ExamsPage />
     case path === 'tutorials':
@@ -115,6 +122,8 @@ function renderConsolePage(consolePath: string | null) {
       return <TaxonomyPage />
     case path === 'pages':
       return <PagesPage />
+    case path === 'premium':
+      return <PremiumPage />
     case path === 'settings':
       return <SettingsPage />
     case path === 'staff':
