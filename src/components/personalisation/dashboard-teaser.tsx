@@ -14,7 +14,7 @@ import { navigateToPath } from '@/components/home/app-router'
  * see the sign-in CTA, unchanged (§34 anonymous-first).
  */
 import { useCallback, useEffect, useState } from 'react'
-import { ArrowRight, Layers, Lightbulb, ListChecks, Loader2, ShieldCheck, Target } from 'lucide-react'
+import { ArrowRight, BookOpen, Layers, Lightbulb, ListChecks, Loader2, ShieldCheck, Target } from 'lucide-react'
 
 import { useAuth } from '@/stores/auth'
 import { Badge } from '@/components/ui/badge'
@@ -215,6 +215,31 @@ export function DashboardTeaser({ countryIso, language, onOpenPath, onSignIn }: 
             )}
             {loading && (
               <Loader2 className="h-3.5 w-3.5 animate-spin text-zinc-400" aria-hidden="true" />
+            )}
+          </div>
+        )}
+
+        {/* SITE-S22: tutorial access links — small buttons with a border separator */}
+        {data?.goal && data.goal.exams.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 border-t border-emerald-200/60 pt-3">
+            {data.goal.exams.slice(0, 3).map((exam) => (
+              <a
+                key={exam.slug}
+                href={`/tutorials/${exam.slug}/`}
+                className="inline-flex min-h-[28px] items-center gap-1 rounded-md border border-emerald-200 bg-white/80 px-2.5 text-xs font-medium text-emerald-700 transition-colors hover:bg-emerald-100"
+              >
+                <BookOpen className="h-3 w-3" aria-hidden="true" />
+                {exam.name}
+              </a>
+            ))}
+            {data.goal.exams.length >= 2 && (
+              <a
+                href={`/tutorials/combined/?exams=${data.goal.exams.slice(0, 8).map((e) => e.slug).join(',')}`}
+                className="inline-flex min-h-[28px] items-center gap-1 rounded-md border border-emerald-300 bg-emerald-100 px-2.5 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-200"
+              >
+                <Layers className="h-3 w-3" aria-hidden="true" />
+                Combined tutorial
+              </a>
             )}
           </div>
         )}

@@ -399,6 +399,10 @@ export interface ExamPage {
   units: { items: ExamPageUnit[]; total: number }
   /** §33 internal links — the reader country's other ACTIVE exams. */
   relatedExams: HomepageExamCard[]
+  /** SITE-S22: state-level exams (when the exam is STATE level). */
+  stateExams: HomepageExamCard[]
+  /** SITE-S22: the state name (for the "Other exams in {State}" heading). */
+  stateName: string | null
   language: { code: string; name: string; nativeName: string | null }
 }
 

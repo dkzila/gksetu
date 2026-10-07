@@ -23,7 +23,6 @@ import {
   AlertCircle,
   ArrowRight,
   BookOpen,
-  BookOpenCheck,
   CalendarClock,
   CalendarRange,
   ClipboardCheck,
@@ -381,7 +380,7 @@ export function ExamView({
         <div className="flex flex-wrap items-center gap-2">
           <Badge className="bg-zinc-900 text-white hover:bg-zinc-900">{page.exam.code}</Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-[10px] font-medium uppercase tracking-wide text-zinc-500">
-            {page.exam.level.toLowerCase()}
+            {page.exam.level === 'STATE' ? 'State' : page.exam.level === 'NATIONAL' ? 'National' : 'Regional'}
           </Badge>
           <Badge variant="outline" className="border-zinc-200 bg-white text-zinc-600">
             {page.exam.countryName}
@@ -420,10 +419,9 @@ export function ExamView({
             <Badge
               variant="outline"
               className="border-emerald-200 bg-emerald-50 font-normal text-emerald-700"
-              title="Current-affairs knowledge is linked to this syllabus the moment it is mapped"
             >
               <Radio className="mr-1 h-3 w-3" aria-hidden="true" />
-              Live — mappings keep flowing
+              Current syllabus
             </Badge>
           )}
         </div>
@@ -452,42 +450,31 @@ export function ExamView({
             <strong className="font-semibold">{page.coverage.branchCount}</strong>
             <span className="text-zinc-500">branches</span>
           </span>
-          <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-zinc-400">
-            {loading ? (
-              <RefreshCw className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-            ) : (
-              <BookOpenCheck className="h-3.5 w-3.5" aria-hidden="true" />
-            )}
-            {page.language.name}
-            {page.language.nativeName ? ` · ${page.language.nativeName}` : ''}
-          </span>
         </div>
 
-        {/* P5-S1 — the §9/§10 follow action (exam-level, never per version) */}
+        {/* P5-S1 — the §9/§10 follow action */}
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <FollowButton objectType="EXAM" objectRef={page.exam.slug} objectName={page.exam.name} />
-          {/* SITE-S9 — the exam ↔ tutorial cross-link: the syllabus as a
-              structured course (chapters, lessons, practice, PYQs). */}
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="gap-2 border-zinc-300 bg-white text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700"
-          >
-            <a href={`/tutorials/${page.exam.slug}/`} aria-label={`Open the ${page.exam.name} tutorial`}>
-              <BookOpen className="h-4 w-4" aria-hidden="true" />
-              Tutorial
-            </a>
-          </Button>
-          <span className="text-xs text-zinc-400">
-            Follows shape your combined-exam queue and dashboard — manageable anytime from
-            <a href="/following" className="ml-1 font-medium text-emerald-700 hover:text-emerald-800">
-              Following
-            </a>
-            .
-          </span>
         </div>
       </motion.section>
+
+      {/* ---------- SITE-S22: Tutorial CTA — a highlighted section ---------- */}
+      <a
+        href={`/tutorials/${page.exam.slug}/`}
+        className="group flex items-center justify-between gap-3 rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 transition-all hover:border-emerald-300 hover:bg-emerald-50"
+        aria-label={`Start the ${page.exam.name} tutorial course`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-white text-emerald-600">
+            <BookOpen className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-emerald-900">Start the Tutorial Course</p>
+            <p className="text-xs text-emerald-700">Structured chapters · lessons · practice · PYQs · mock tests</p>
+          </div>
+        </div>
+        <ChevronRight className="h-5 w-5 shrink-0 text-emerald-600 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      </a>
 
       {/* ---------- §36 version selector (started windows only) ---------- */}
       {page.versions.length > 1 && (
@@ -646,6 +633,20 @@ export function ExamView({
 
       {/* ---------- SITE-S18: books for this exam (auto-suggested) ---------- */}
       <ExamBooksSection examSlug={page.exam.slug} />
+
+      {/* ---------- SITE-S22: State-level exams (only when the exam is STATE level) ---------- */}
+      {page.stateExams.length > 0 && page.stateName && (
+        <section aria-labelledby="state-exams-heading" className="space-y-4">
+          <h2 id="state-exams-heading" className="text-xl font-semibold tracking-tight">
+            Other state exams in {page.stateName}
+          </h2>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {page.stateExams.map((exam) => (
+              <RelatedExamCard key={exam.slug} exam={exam} onOpenExam={onOpenExam} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ---------- §33 related exams ---------- */}
       {page.relatedExams.length > 0 && (

@@ -39,6 +39,7 @@ import {
   composeUnitCards,
   examPath,
   flattenTree,
+  isCurrentVersion,
   localePath,
   resolveReaderContext,
   type ReaderContext,
@@ -207,6 +208,57 @@ async function loadExamPage(ref: string, query: ExamPageQuery): Promise<ExamPage
     limit: RELATED_EXAM_LIMIT,
   })
 
+  // ---------- SITE-S22: state-level related exams (when the exam is STATE level) ----------
+  // When the exam's level is STATE, we also fetch the other STATE exams
+  // in the same country — the "Other exams in {State}" section. The
+  // jurisdiction taxonomy (SITE-S12) gives us the state name; without it,
+  // we fall back to the country name (the existing "Other exams in {Country}").
+  let stateExams: ExamPage['relatedExams'] = []
+  let stateName: string | null = null
+  if (detail.level === 'STATE' && detail.jurisdiction?.stateCode) {
+    // Find the jurisdiction's state name.
+    const stateJurisdiction = await db.jurisdiction.findFirst({
+      where: { countryId: context.countryRow.id, level: 'STATE', code: detail.jurisdiction.stateCode },
+      select: { name: true },
+    })
+    if (stateJurisdiction) {
+      stateName = stateJurisdiction.name
+      // Fetch STATE-level exams in the same country (the state-scoped directory).
+      const stateExamRows = await db.exam.findMany({
+        where: {
+          countryId: context.countryRow.id,
+          status: 'ACTIVE',
+          level: 'STATE',
+          slug: { not: detail.slug },
+        },
+        include: {
+          versions: { select: { id: true, label: true, effectiveFrom: true, effectiveTo: true } },
+          jurisdiction: { select: { code: true, name: true } },
+        },
+        orderBy: [{ name: 'asc' }, { slug: 'asc' }],
+        take: RELATED_EXAM_LIMIT,
+      })
+      // Build the same card shape as composeExamCards.
+      stateExams = stateExamRows.map((exam) => {
+        const currentVersion = exam.versions
+          .filter(isCurrentVersion)
+          .sort((a, b) => b.effectiveFrom.getTime() - a.effectiveFrom.getTime())[0]
+        return {
+          slug: exam.slug,
+          name: exam.name,
+          code: exam.code,
+          organiser: exam.organiser,
+          level: exam.level,
+          currentVersion: currentVersion
+            ? { label: currentVersion.label, effectiveFrom: currentVersion.effectiveFrom.toISOString() }
+            : null,
+          mappingCount: 0,
+          canonicalPath: examPath(context, exam.slug),
+        }
+      })
+    }
+  }
+
   // ---------- Ranked study list (§11 base ranking, §22 quick facts) ----------
   const studyList = await composeStudyList(coverage, context, query)
 
@@ -298,6 +350,8 @@ async function loadExamPage(ref: string, query: ExamPageQuery): Promise<ExamPage
     },
     units: studyList,
     relatedExams: relatedExams.available ? relatedExams.items : [],
+    stateExams,
+    stateName,
     language: detail.language,
   }
 }

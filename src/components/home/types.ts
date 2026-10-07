@@ -302,6 +302,8 @@ export interface ExamPage {
     total: number
   }
   relatedExams: HomeExamCard[]
+  stateExams: HomeExamCard[]
+  stateName: string | null
   language: { code: string; name: string; nativeName: string | null }
 }
 

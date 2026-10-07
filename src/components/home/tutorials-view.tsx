@@ -1033,9 +1033,10 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
                     .map((exam) => exam.examSlug)
                     .join(',')}`}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
-                  aria-label="Open a combined study plan across your declared exams"
+                  aria-label="Start the combined course across your declared exams"
                 >
-                  Combine your {yourExams.length} exams
+                  <BookOpen className="h-4 w-4" aria-hidden="true" />
+                  Start the Course
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
@@ -1052,7 +1053,8 @@ function TutorialsDirectory({ route, onGoHome }: TutorialsViewProps) {
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
                   aria-label="Open the combined tutorials picker"
                 >
-                  Pick exams to combine
+                  <BookOpen className="h-4 w-4" aria-hidden="true" />
+                  Start the Course
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 {signedIn && yourExams.length === 1 && (
