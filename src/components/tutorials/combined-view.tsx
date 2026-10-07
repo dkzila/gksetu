@@ -30,6 +30,7 @@ import {
   Layers,
   Link2,
   ListChecks,
+  Menu,
   Plus,
   RefreshCw,
   Search,
@@ -54,6 +55,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
 
 // ---------- Props (frozen — tutorials-view renders this exact interface) ----------
@@ -641,6 +643,26 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
   const resolvedExams = payload?.exams ?? []
   const atMax = selected.length >= MAX_PICKER_EXAMS
 
+  // ---------- SITE-S23: the structured reading surface state ----------
+
+  /** The active subject in the left sidebar (null = first group). */
+  const [activeSubject, setActiveSubject] = useState<string | null>(null)
+  /** The mobile/tablet subject tree drawer (the <lg tree). */
+  const [mobileTreeOpen, setMobileTreeOpen] = useState(false)
+
+  /** When the payload changes, reset the active subject to the first group. */
+  useEffect(() => {
+    if (groups.length > 0 && !activeSubject) {
+      setActiveSubject(groups[0].subjectSlug)
+    }
+  }, [groups, activeSubject])
+
+  /** The active subject group (the one rendered in the content area). */
+  const activeSubjectGroup = useMemo(
+    () => groups.find((g) => g.subjectSlug === activeSubject) ?? null,
+    [groups, activeSubject]
+  )
+
   /** The market-scoped link base — derived from the server canonical. */
   const base = payload ? tutorialsBasePath(payload.seo.canonicalPath) : '/tutorials/'
 
@@ -1086,16 +1108,67 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
             </section>
           )}
 
-          {/* ---------- The subject groups ---------- */}
+          {/* ---------- SITE-S23: The structured reading surface — left sidebar
+              (subject tree) + content area (the selected subject's lessons +
+              practice + PYQs), matching the single-exam chapter-reader pattern. ---------- */}
           {groups.length > 0 ? (
-            groups.map((group) => (
-              <SubjectGroupSection
-                key={group.subjectSlug}
-                group={group}
-                countryIso={route.countryIso}
-                language={route.language}
-              />
-            ))
+            <div className="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
+              {/* ===== Left sidebar: the subject tree (sticky on lg+) ===== */}
+              <aside className="hidden lg:block">
+                <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-zinc-200 bg-white p-3 shadow-sm">
+                  <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold text-zinc-900">
+                    <Layers className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                    Subjects
+                  </h2>
+                  <CombinedSubjectTree
+                    groups={groups}
+                    activeSubject={activeSubject}
+                    onSelect={setActiveSubject}
+                  />
+                </div>
+              </aside>
+
+              {/* ===== Content area: the selected subject's lessons + practice ===== */}
+              <div className="min-w-0 space-y-5">
+                {/* Mobile subject selector (a compact dropdown) */}
+                <div className="lg:hidden">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full justify-between gap-2"
+                    onClick={() => setMobileTreeOpen(true)}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Layers className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                      {activeSubject
+                        ? groups.find((g) => g.subjectSlug === activeSubject)?.subjectLabel ?? 'Subjects'
+                        : 'Select a subject'}
+                    </span>
+                    <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </div>
+
+                {/* The selected subject group */}
+                {activeSubjectGroup ? (
+                  <SubjectGroupSection
+                    key={activeSubjectGroup.subjectSlug}
+                    group={activeSubjectGroup}
+                    countryIso={route.countryIso}
+                    language={route.language}
+                  />
+                ) : (
+                  /* When no subject selected (default), render the first group */
+                  groups[0] && (
+                    <SubjectGroupSection
+                      key={groups[0].subjectSlug}
+                      group={groups[0]}
+                      countryIso={route.countryIso}
+                      language={route.language}
+                    />
+                  )
+                )}
+              </div>
+            </div>
           ) : (
             !loading && (
               <Card className="border-dashed border-zinc-300 bg-zinc-50/60">
@@ -1131,6 +1204,80 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
           )}
         </>
       )}
+
+      {/* ---------- SITE-S23: Mobile/tablet subject tree drawer (<lg) ---------- */}
+      <Sheet open={mobileTreeOpen} onOpenChange={setMobileTreeOpen}>
+        <SheetContent side="left" className="w-80 overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle className="flex items-center gap-2">
+              <Layers className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+              Subjects
+            </SheetTitle>
+          </SheetHeader>
+          <div className="mt-3">
+            <CombinedSubjectTree
+              groups={groups}
+              activeSubject={activeSubject}
+              onSelect={(slug) => {
+                setActiveSubject(slug)
+                setMobileTreeOpen(false)
+              }}
+            />
+          </div>
+        </SheetContent>
+      </Sheet>
     </div>
+  )
+}
+
+// ---------- SITE-S23: The subject tree (shared by the desktop sidebar + the mobile drawer) ----------
+
+function CombinedSubjectTree({
+  groups,
+  activeSubject,
+  onSelect,
+}: {
+  groups: CombinedGroupMirror[]
+  activeSubject: string | null
+  onSelect: (slug: string) => void
+}) {
+  return (
+    <nav aria-label="Combined subjects">
+      <ol className="space-y-0.5">
+        {groups.map((group, index) => {
+          const isActive = activeSubject === group.subjectSlug
+          return (
+            <li key={group.subjectSlug}>
+              <button
+                type="button"
+                onClick={() => onSelect(group.subjectSlug)}
+                aria-current={isActive ? 'true' : undefined}
+                className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+                  isActive
+                    ? 'bg-emerald-50 font-semibold text-emerald-900'
+                    : 'text-zinc-700 hover:bg-zinc-50'
+                }`}
+              >
+                <span className="flex min-w-0 items-center gap-2">
+                  <span
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
+                      isActive
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-zinc-100 text-zinc-500'
+                    }`}
+                  >
+                    {index + 1}
+                  </span>
+                  <span className="truncate">{group.subjectLabel}</span>
+                </span>
+                <span className={`shrink-0 text-xs ${isActive ? 'text-emerald-700' : 'text-zinc-400'}`}>
+                  {group.units.length}
+                </span>
+              </button>
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
   )
 }
