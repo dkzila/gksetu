@@ -375,17 +375,15 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
   const selectedKey = useMemo(() => selected.join(','), [selected])
   const hasSelection = selectedKey.length > 0
 
-  // Selection changes write the URL (replaceState — no popstate, no re-parse;
-  // the browser back button still walks selections through popstate).
+  // Selection changes write the URL (pushState — the browser back button
+  // walks selections through popstate; the user can go Back to the
+  // previous selection set, which is the expected behaviour).
   const writeSelectionUrl = useCallback((next: string[]) => {
     try {
-      window.history.replaceState(
-        null,
-        '',
-        next.length > 0 ? `?exams=${next.join(',')}` : window.location.pathname
-      )
+      const url = next.length > 0 ? `?exams=${next.join(',')}` : window.location.pathname
+      window.history.pushState({ exams: next.join(',') }, '', url)
     } catch {
-      // A replaceState failure must never break the surface — state moves on.
+      // A pushState failure must never break the surface — state moves on.
     }
   }, [])
 
@@ -509,6 +507,40 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
       cancelled = true
     }
   }, [signedIn, token, payload])
+
+  // ---------- Combined progress (signed-in only — single aggregate fetch) ----------
+
+  interface CombinedProgress {
+    combinedPercent: number
+    combinedCompleted: number
+    combinedTotal: number
+  }
+  const [combinedProgress, setCombinedProgress] = useState<CombinedProgress | null>(null)
+  useEffect(() => {
+    if (!signedIn || !token || !hasSelection) {
+      setCombinedProgress(null)
+      return
+    }
+    let cancelled = false
+    void (async () => {
+      try {
+        const response = await fetch(
+          `/api/tutorials/progress/combined?exams=${encodeURIComponent(selectedKey)}`,
+          { headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' }
+        )
+        const body = (await response.json()) as Envelope<CombinedProgress>
+        if (cancelled) return
+        if (body.status === 'ok' && body.data) {
+          setCombinedProgress(body.data)
+        }
+      } catch {
+        // Fail-silent — the per-exam cards still render.
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [signedIn, token, hasSelection, selectedKey])
 
   // ---------- SEO head (instant title; canonical/hreflang once loaded) ----------
 
@@ -893,10 +925,41 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
                 className="flex items-center gap-2 text-lg font-semibold tracking-tight"
               >
                 <Target className="h-5 w-5 text-emerald-600" aria-hidden="true" />
-                Your progress per exam
+                Your progress
               </h2>
-              {/* grid-cols-1 (minmax(0,1fr)) — the implicit auto track would
-                  stretch past a 390px viewport on the card's nowrap rows. */}
+
+              {/* The combined progress card — spans full width, above the per-exam cards */}
+              {combinedProgress && combinedProgress.combinedTotal > 0 && (
+                <Card className="border-emerald-300 bg-emerald-50/40 shadow-sm">
+                  <CardContent className="space-y-2 p-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <Layers className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                        <p className="text-sm font-semibold text-emerald-900">
+                          Combined plan
+                        </p>
+                      </div>
+                      <span className="text-[11px] text-zinc-500">
+                        {combinedProgress.combinedTotal} chapters total
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[11px] text-zinc-500">
+                        <span>
+                          {combinedProgress.combinedCompleted}/{combinedProgress.combinedTotal} chapters
+                          learned across {resolvedExams.length} exam{resolvedExams.length === 1 ? '' : 's'}
+                        </span>
+                        <span className="font-medium text-emerald-700">
+                          {combinedProgress.combinedPercent}%
+                        </span>
+                      </div>
+                      <TutorialProgressBar percent={combinedProgress.combinedPercent} />
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Per-exam progress cards */}
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {resolvedExams.map((exam) => {
                   const progress = progressByExam[exam.slug]

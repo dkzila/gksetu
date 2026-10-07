@@ -19,13 +19,14 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, ChevronDown, CircleHelp, RefreshCw, Timer } from 'lucide-react'
+import { BookOpen, ChevronDown, CircleHelp, RefreshCw, Target, Timer } from 'lucide-react'
 
 import { useSeoHead } from './seo-head'
 import type { SeoHeadInput } from './seo-head'
 import { currentAppPath, parseRoute } from './app-router'
 import type { ApiCountry, Envelope } from './types'
 
+import { useAuth } from '@/stores/auth'
 import { ShareButton } from '@/components/shares/share-button'
 import { ProvenanceBadgeLine } from '@/components/assessment/provenance-badges'
 import type { ProvenanceBadgeItem } from '@/components/assessment/provenance-badges'
@@ -159,6 +160,9 @@ function QnaCard({ item, expanded, onToggle }: QnaCardProps) {
 // ---------- Component ----------
 
 export function QnaView({ onGoHome }: QnaViewProps) {
+  const { status, token } = useAuth()
+  const signedIn = status === 'authenticated' && !!token
+
   // The market resolution (see the file header): public config + the
   // product's own path parser — the same values the shell routed on.
   const [market, setMarket] = useState<{ countryIso: string; language: string } | null>(null)
@@ -174,6 +178,33 @@ export function QnaView({ onGoHome }: QnaViewProps) {
   const [page, setPage] = useState(1)
   /** Which answers are expanded — {entryId → open} (accordion per card). */
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({})
+
+  // ---------- SITE-S20: personalisation — goal exams ----------
+
+  const [goalExams, setGoalExams] = useState<Array<{ slug: string; name: string }>>([])
+  useEffect(() => {
+    if (!signedIn || !token) {
+      setGoalExams([])
+      return
+    }
+    let cancelled = false
+    void (async () => {
+      try {
+        const response = await fetch('/api/goal', {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: 'no-store',
+        })
+        const payload = (await response.json()) as Envelope<{ goal: { exams: Array<{ slug: string; name: string }> } | null }>
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data?.goal?.exams) {
+          setGoalExams(payload.data.goal.exams.map((e) => ({ slug: e.slug, name: e.name })))
+        }
+      } catch {
+        // Fail-silent.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [signedIn, token])
 
   // ---------- Market resolution (public config + the path parser) ----------
   // The seq ref makes the LAST resolution authoritative (retry races).
@@ -404,6 +435,31 @@ export function QnaView({ onGoHome }: QnaViewProps) {
           </div>
         </div>
       </motion.section>
+
+      {/* ---------- SITE-S20: personalisation — goal exams (Q&A is exam-agnostic, so this links to tutorials) ---------- */}
+      {signedIn && goalExams.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          <Target className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+          <span className="text-xs text-zinc-500">Your exams:</span>
+          {goalExams.slice(0, 4).map((exam) => (
+            <a
+              key={exam.slug}
+              href={`/tutorials/${exam.slug}/`}
+              className="whitespace-nowrap rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-600 transition-colors hover:border-emerald-300 hover:text-emerald-700"
+            >
+              {exam.name}
+            </a>
+          ))}
+          {goalExams.length >= 2 && (
+            <a
+              href={`/tutorials/combined/?exams=${goalExams.slice(0, 8).map((e) => e.slug).join(',')}`}
+              className="whitespace-nowrap rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 transition-colors hover:bg-emerald-100"
+            >
+              Combined plan
+            </a>
+          )}
+        </div>
+      )}
 
       {/* ---------- Subject chips — one scrollable row, never a tall stack ---------- */}
       {subjects.length > 0 && (

@@ -20,13 +20,14 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ListChecks, RefreshCw, Timer } from 'lucide-react'
+import { ListChecks, RefreshCw, Target, Timer } from 'lucide-react'
 
 import { useSeoHead } from './seo-head'
 import type { SeoHeadInput } from './seo-head'
 import type { AppRoute } from './app-router'
-import type { Envelope } from './types'
+import type { Envelope, ApiCountry } from './types'
 
+import { useAuth } from '@/stores/auth'
 import { ShareButton } from '@/components/shares/share-button'
 import type { ProvenanceBadgeItem } from '@/components/assessment/provenance-badges'
 import { InlinePractice } from '@/components/practice/inline-practice'
@@ -80,6 +81,9 @@ const PAGE_SIZE = 12
 // ---------- Component ----------
 
 export function McqView({ route, onGoHome }: McqViewProps) {
+  const { status, token } = useAuth()
+  const signedIn = status === 'authenticated' && !!token
+
   const [practice, setPractice] = useState<McqPracticeListing | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -91,7 +95,38 @@ export function McqView({ route, onGoHome }: McqViewProps) {
   // lives in view-local state and never enters the address bar.
   const [page, setPage] = useState(1)
 
-  // ---------- Listing fetch (market/subject/page driven; race-guarded) ----------
+  // ---------- SITE-S20: personalisation — goal exams + combined ----------
+
+  /** The active exam filter: null = all, a slug = one exam, 'combined' = the user's goal exams. */
+  const [examFilter, setExamFilter] = useState<string | null>(null)
+  const [goalExams, setGoalExams] = useState<Array<{ slug: string; name: string }>>([])
+
+  // Load the user's goal exams once (signed-in only — for the personalisation chips).
+  useEffect(() => {
+    if (!signedIn || !token) {
+      setGoalExams([])
+      return
+    }
+    let cancelled = false
+    void (async () => {
+      try {
+        const response = await fetch('/api/goal', {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: 'no-store',
+        })
+        const payload = (await response.json()) as Envelope<{ goal: { exams: Array<{ slug: string; name: string }> } | null }>
+        if (cancelled) return
+        if (payload.status === 'ok' && payload.data?.goal?.exams) {
+          setGoalExams(payload.data.goal.exams.map((e) => ({ slug: e.slug, name: e.name })))
+        }
+      } catch {
+        // Fail-silent — the personalisation chips just don't render.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [signedIn, token])
+
+  // ---------- Listing fetch (market/subject/page/exam driven; race-guarded) ----------
   // The seq ref makes the LAST request authoritative — a slow earlier response
   // (a rapid subject toggle) can never overwrite a newer one.
 
@@ -108,6 +143,7 @@ export function McqView({ route, onGoHome }: McqViewProps) {
         pageSize: String(PAGE_SIZE),
       })
       if (activeSubject) params.set('subject', activeSubject)
+      if (examFilter && examFilter !== 'combined') params.set('exam', examFilter)
       const response = await fetch(`/api/questions?${params.toString()}`, { cache: 'no-store' })
       const payload = (await response.json()) as Envelope<{ practice: McqPracticeListing }>
       if (seq !== requestSeq.current) return
@@ -125,7 +161,7 @@ export function McqView({ route, onGoHome }: McqViewProps) {
     } finally {
       if (seq === requestSeq.current) setLoading(false)
     }
-  }, [route.countryIso, route.language, page, activeSubject])
+  }, [route.countryIso, route.language, page, activeSubject, examFilter])
 
   useEffect(() => {
     void fetchPractice()
@@ -288,6 +324,43 @@ export function McqView({ route, onGoHome }: McqViewProps) {
           </div>
         </div>
       </motion.section>
+
+      {/* ---------- SITE-S20: personalisation — exam filter chips (signed-in only) ---------- */}
+      {signedIn && goalExams.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filter by your exams">
+          <Target className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
+          <button
+            type="button"
+            onClick={() => setExamFilter(null)}
+            aria-pressed={examFilter === null}
+            className={`whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+              examFilter === null
+                ? 'border-emerald-600 bg-emerald-600 text-white'
+                : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-300 hover:text-emerald-700'
+            }`}
+          >
+            All
+          </button>
+          {goalExams.slice(0, 4).map((exam) => {
+            const active = examFilter === exam.slug
+            return (
+              <button
+                key={exam.slug}
+                type="button"
+                onClick={() => setExamFilter(active ? null : exam.slug)}
+                aria-pressed={active}
+                className={`whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                  active
+                    ? 'border-emerald-600 bg-emerald-600 text-white'
+                    : 'border-zinc-200 bg-white text-zinc-600 hover:border-emerald-300 hover:text-emerald-700'
+                }`}
+              >
+                {exam.name}
+              </button>
+            )
+          })}
+        </div>
+      )}
 
       {/* ---------- Subject chips — one scrollable row, never a tall stack ---------- */}
       {subjects.length > 0 && (
