@@ -34,6 +34,7 @@ export async function GET(request: Request) {
     country: params.get('country') ?? undefined,
     language: params.get('language') ?? undefined,
     subject: params.get('subject') ?? undefined,
+    exam: params.get('exam') ?? undefined,
     page: params.get('page') ?? undefined,
     pageSize: params.get('pageSize') ?? undefined,
   })

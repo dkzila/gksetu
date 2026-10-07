@@ -393,10 +393,52 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
         if (current.includes(slug) || current.length >= MAX_PICKER_EXAMS) return current
         const next = [...current, slug]
         writeSelectionUrl(next)
+        // SITE-S21: persist to the user's goal via PUT /api/goal (signed-in
+        // only). This is the SAME goal the onboarding wizard writes — the
+        // combined tutorials page's Add Exam is now the same system, not a
+        // separate URL-only state. Fail-silent: the URL already carries the
+        // selection; a failed goal-save just means the tutorials index's
+        // "Your exams" count won't update (the user can re-add on next visit).
+        if (signedIn && token) {
+          void (async () => {
+            try {
+              // Read the current goal first (we need the topics + other fields
+              // to do a full-replacement PUT — /api/goal is §9 full-replacement).
+              const goalRes = await fetch('/api/goal', {
+                headers: { Authorization: `Bearer ${token}` },
+                cache: 'no-store',
+              })
+              const goalBody = await goalRes.json()
+              if (goalBody.status !== 'ok' || !goalBody.data?.goal) return
+              const existing = goalBody.data.goal
+              // Merge: add the new exam slug if not already present.
+              const examSlugs = existing.exams.map((e: { slug: string }) => e.slug)
+              if (!examSlugs.includes(slug)) {
+                examSlugs.push(slug)
+              }
+              // Full-replacement PUT — preserves topics, level, etc.
+              await fetch('/api/goal', {
+                method: 'PUT',
+                headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  exams: examSlugs,
+                  topics: existing.topics.map((t: { slug: string }) => t.slug),
+                  level: existing.level,
+                  studyLanguageCode: existing.studyLanguage?.code ?? null,
+                  targetYear: existing.targetYear,
+                  dailyMinutes: existing.dailyMinutes,
+                  stateCode: existing.stateCode ?? null,
+                }),
+              })
+            } catch {
+              // Fail-silent — the URL state is the source of truth for this view.
+            }
+          })()
+        }
         return next
       })
     },
-    [writeSelectionUrl]
+    [writeSelectionUrl, signedIn, token]
   )
 
   const removeExam = useCallback(
@@ -404,10 +446,42 @@ export function CombinedTutorialView({ route, onGoHome }: CombinedTutorialViewPr
       setSelected((current) => {
         const next = current.filter((entry) => entry !== slug)
         writeSelectionUrl(next)
+        // SITE-S21: persist the removal to the user's goal (same system).
+        if (signedIn && token) {
+          void (async () => {
+            try {
+              const goalRes = await fetch('/api/goal', {
+                headers: { Authorization: `Bearer ${token}` },
+                cache: 'no-store',
+              })
+              const goalBody = await goalRes.json()
+              if (goalBody.status !== 'ok' || !goalBody.data?.goal) return
+              const existing = goalBody.data.goal
+              const examSlugs = existing.exams
+                .map((e: { slug: string }) => e.slug)
+                .filter((s: string) => s !== slug)
+              await fetch('/api/goal', {
+                method: 'PUT',
+                headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  exams: examSlugs,
+                  topics: existing.topics.map((t: { slug: string }) => t.slug),
+                  level: existing.level,
+                  studyLanguageCode: existing.studyLanguage?.code ?? null,
+                  targetYear: existing.targetYear,
+                  dailyMinutes: existing.dailyMinutes,
+                  stateCode: existing.stateCode ?? null,
+                }),
+              })
+            } catch {
+              // Fail-silent.
+            }
+          })()
+        }
         return next
       })
     },
-    [writeSelectionUrl]
+    [writeSelectionUrl, signedIn, token]
   )
 
   // ---------- The combined payload (selection/market driven; race-guarded) ----------

@@ -189,7 +189,7 @@ export const questionsPracticeQuerySchema = z.object({
 
 export type QuestionsPracticeQuery = z.infer<typeof questionsPracticeQuerySchema>
 
-/** GET /api/qna query — ?country=&language=&subject=&page=&pageSize= (QnA carries no exam anchor, §6). */
+/** GET /api/qna query — ?country=&language=&subject=&exam=&page=&pageSize= (SITE-S21: exam filter added via ExamMapping). */
 export const qnaPracticeQuerySchema = z.object({
   country: z.string().trim().min(2).max(8).optional(),
   language: z.string().trim().min(2).max(8).optional(),
@@ -198,6 +198,16 @@ export const qnaPracticeQuerySchema = z.object({
     .trim()
     .max(120)
     .regex(SLUG_PATTERN, 'Subject must be kebab-case (a-z, 0-9, hyphens)')
+    .optional(),
+  /** SITE-S21: exam slug filter — filters QnA to units mapped to this exam
+   * via the ExamMapping table (the §8 requirement layer — same join the MCQ
+   * listing uses via Question.examVersionId, but QnA has no examVersionId so
+   * we join through the knowledgeUnit → ExamMapping → ExamVersion → Exam path). */
+  exam: z
+    .string()
+    .trim()
+    .max(120)
+    .regex(SLUG_PATTERN, 'Exam must be kebab-case (a-z, 0-9, hyphens)')
     .optional(),
   page: z.coerce.number().int().min(1).default(1),
   pageSize: z.coerce
@@ -243,6 +253,7 @@ export async function getPublicQnaPractice(input: QnaPracticeQuery): Promise<Qna
     input.country ?? 'default',
     input.language ?? 'default',
     input.subject ?? 'all',
+    input.exam ?? 'all',
     input.page,
     input.pageSize,
   ].join(':')
@@ -632,9 +643,42 @@ async function loadQnaPractice(input: QnaPracticeQuery): Promise<QnaPractice> {
     knowledgeUnit: visibleUnitsWhere(context, allVisibleTopicIds),
   })
 
+  // SITE-S21: the exam filter for QnA. QnA has no examVersionId (unlike
+  // Question), so we filter via the knowledgeUnit → ExamMapping → ExamVersion
+  // → Exam path. The unit must be mapped to this exam's current version.
+  let examUnitIds: Set<string> | null = null
+  if (input.exam) {
+    const exam = await db.exam.findUnique({
+      where: { slug: input.exam.toLowerCase() },
+      select: {
+        id: true,
+        versions: {
+          where: {
+            effectiveFrom: { lte: new Date() },
+            OR: [{ effectiveTo: null }, { effectiveTo: { gte: new Date() } }],
+          },
+          orderBy: { effectiveFrom: 'desc' },
+          take: 1,
+          select: { id: true },
+        },
+      },
+    })
+    if (exam?.versions[0]) {
+      const mappings = await db.examMapping.findMany({
+        where: { examVersionId: exam.versions[0].id },
+        select: { knowledgeUnitId: true },
+      })
+      examUnitIds = new Set(mappings.map((m) => m.knowledgeUnitId))
+    } else {
+      // Unknown exam or no current version → honest empty page.
+      examUnitIds = new Set()
+    }
+  }
+
   const qnaWhere = (languageId: string): Prisma.QnAWhereInput => ({
     ...baseQnaWhere(languageId),
     ...(subjectTopicIds ? { knowledgeUnit: visibleUnitsWhere(context, subjectTopicIds) } : {}),
+    ...(examUnitIds !== null ? { knowledgeUnitId: { in: [...examUnitIds] } } : {}),
   })
 
   // ---------- First pass + §35 honest fallback (same rule as MCQ) ----------
