@@ -63,7 +63,7 @@ interface TranslatedMCQ {
   correctAnswer: string
 }
 
-const CONCURRENCY = 1  // serial LLM calls — the API has tight rate limits
+const CONCURRENCY = 1  // serial LLM calls — parallel batches cause unhandled rejections in Bun
 
 async function sleep(ms: number) { return new Promise((r) => setTimeout(r, ms)) }
 
@@ -160,12 +160,19 @@ async function translateBatch(
       return parseResult(content, expectedIds)
     } catch (e) {
       const msg = (e as Error).message
+      // 429 rate limit — back off and retry
       if (msg.includes('429') || msg.includes('Too many requests')) {
-        const wait = 5000 * (attempt + 1) // 5s, 10s, 15s, 20s
+        const wait = 5000 * (attempt + 1)
         console.log(`    [429] ${lang.code}: backing off ${wait}ms (attempt ${attempt + 1}/4)`)
         await sleep(wait)
         continue
       }
+      // 400 content filter — soft fail (don't retry, return null so the batch is skipped)
+      if (msg.includes('400') && (msg.includes('contentFilter') || msg.includes('1301'))) {
+        console.log(`    [content-filter] ${lang.code}: batch rejected — skipping ${batch.length} MCQs`)
+        return null
+      }
+      // Other errors — log and return null (don't kill the process)
       console.log(`    ! LLM error (${lang.code}): ${msg.slice(0, 100)}`)
       return null
     }
@@ -212,21 +219,24 @@ async function translateSubjectToLang(
     for (let j = 0; j < chunk.length; j += batchSize) {
       batches.push(chunk.slice(j, j + batchSize))
     }
-    const results = await Promise.all(
+    const results = await Promise.allSettled(
       batches.map(async (b) => translateBatch(b, lang))
     )
     for (let bi = 0; bi < results.length; bi++) {
       const r = results[bi]
-      if (r && r.length > 0) {
-        allResults.push(...r)
-        translated += r.length
+      if (r.status === 'fulfilled' && r.value && r.value.length > 0) {
+        allResults.push(...r.value)
+        translated += r.value.length
       } else {
+        if (r.status === 'rejected') {
+          console.log(`    [batch-rejected] ${lang.code}: ${String(r.reason ?? '').slice(0, 80)}`)
+        }
         failed += batches[bi]!.length
       }
     }
     // Save intermediate progress
     writeFileSync(outFile, JSON.stringify(allResults, null, 2))
-    if (i + batchSize * CONCURRENCY < toTranslate.length) await sleep(800)
+    if (i + batchSize * CONCURRENCY < toTranslate.length) await sleep(400)
   }
 
   // Deduplicate by id (keep last)
@@ -242,14 +252,39 @@ async function main() {
   const onlySlug = argv.includes('--slug') ? argv[argv.indexOf('--slug') + 1] : null
   const onlyLang = argv.includes('--lang') ? argv[argv.indexOf('--lang') + 1] : null
   const limitArg = argv.includes('--limit') ? parseInt(argv[argv.indexOf('--limit') + 1]!, 10) : 0
-  const batchSizeArg = argv.includes('--batch-size') ? parseInt(argv[argv.indexOf('--batch-size') + 1]!, 10) : 12
+  const batchSizeArg = argv.includes('--batch-size') ? parseInt(argv[argv.indexOf('--batch-size') + 1]!, 10) : 15
 
   mkdirSync(TRANS_DIR, { recursive: true })
 
   const files = readdirSync(DATA_DIR).filter((f) => f.endsWith('.json'))
-  console.log(`SITE-S25 translator: ${files.length} subjects, batchSize=${batchSizeArg}, limit=${limitArg}`)
+  console.log(`SITE-S26 translator: ${files.length} subjects, batchSize=${batchSizeArg}, concurrency=${CONCURRENCY}, limit=${limitArg}`)
 
   const langs = onlyLang ? TARGET_LANGS.filter((l) => l.code === onlyLang) : TARGET_LANGS
+
+  // ---------- Progress summary at startup ----------
+  let totalToTranslate = 0
+  let totalAlreadyCached = 0
+  for (const file of files) {
+    const subjectSlug = file.replace(/\.json$/, '')
+    if (onlySlug && subjectSlug !== onlySlug) continue
+    let mcqs: ScrapedMCQ[] = []
+    try { mcqs = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf-8')) } catch { continue }
+    if (!Array.isArray(mcqs) || mcqs.length === 0) continue
+    const source = mcqs.filter((m) => m.language === 'hi')
+    const slice = limitArg > 0 ? source.slice(0, limitArg) : source
+    for (const lang of langs) {
+      const outFile = join(TRANS_DIR, subjectSlug, `${lang.code}.json`)
+      let cached = 0
+      if (existsSync(outFile)) {
+        try { cached = (JSON.parse(readFileSync(outFile, 'utf-8')) as unknown[]).length } catch {}
+      }
+      totalAlreadyCached += cached
+      totalToTranslate += Math.max(0, slice.length - cached)
+    }
+  }
+  console.log(`  Work remaining: ${totalToTranslate} MCQs to translate (${totalAlreadyCached} already cached)`)
+  console.log(`  Estimated LLM calls: ~${Math.ceil(totalToTranslate / batchSizeArg)}`)
+  console.log(`  Estimated runtime: ~${Math.ceil(totalToTranslate / batchSizeArg * 3 / 60)} minutes (at ~3s/call)\n`)
 
   let totalTranslated = 0
   let totalCached = 0
@@ -277,5 +312,16 @@ async function main() {
   console.log(`  Failed: ${totalFailed}`)
   console.log(`  Output: ${TRANS_DIR}/`)
 }
+
+// Prevent unhandled promise rejections from killing the process —
+// the SDK's internal fetch errors surface here if any escape our try/catch.
+process.on('unhandledRejection', (reason) => {
+  const msg = String(reason ?? '').slice(0, 200)
+  console.log(`  [unhandled-rejection] ${msg} — continuing`)
+})
+process.on('uncaughtException', (err) => {
+  const msg = String(err?.message ?? err).slice(0, 200)
+  console.log(`  [uncaught-exception] ${msg} — continuing`)
+})
 
 main().catch((e) => { console.error('FAILED:', e); process.exit(1) })

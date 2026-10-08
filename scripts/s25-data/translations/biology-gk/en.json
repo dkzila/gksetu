@@ -1,0 +1,272 @@
+[
+  {
+    "id": "biology-gk::शरीर की सबसे बड़ी ग्रंथि कौन है ?",
+    "question": "Which is the largest gland in the human body?",
+    "optionA": "Salivary gland",
+    "optionB": "Thyroid",
+    "optionC": "Liver",
+    "optionD": "Stomach",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मनुष्य में मादा जनन अंग से किस हॉर्मोन का स्त्राव होता है ?",
+    "question": "Which hormone is secreted from the female reproductive organ in humans?",
+    "optionA": "Estrogen",
+    "optionB": "Progesterone",
+    "optionC": "Relaxin",
+    "optionD": "All statements are true",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मनुष्य में ऐच्छिक गतियों का नियंत्रण किसके द्वारा होता है ?",
+    "question": "In humans, voluntary movements are controlled by which part?",
+    "optionA": "Cerebrum",
+    "optionB": "Thyroid",
+    "optionC": "Cerebellum",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::शरीर का तापक्रम कहाँ नियंत्रित होता है ?",
+    "question": "Where is the body temperature regulated?",
+    "optionA": "Spinal cord",
+    "optionB": "Cerebellum",
+    "optionC": "Hypothalamus",
+    "optionD": "Pituitary",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::अमीबा में भोजन का अंतर्ग्रहण किसके द्वारा होता है ?",
+    "question": "In Amoeba, food is ingested by which part?",
+    "optionA": "Pseudopodia",
+    "optionB": "Cell mouth",
+    "optionC": "Cilia",
+    "optionD": "Anus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्न में कौन-सा एंजाइम लार में पाया जाता है ?",
+    "question": "Which of the following enzyme is found in saliva?",
+    "optionA": "Pepsin",
+    "optionB": "Trypsin",
+    "optionC": "Amylase",
+    "optionD": "Chymotrypsin",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वह प्रक्रिया जिसके द्वारा मनुष्य श्वास ग्रहण करता है तथा छोड़ता है वह है ?",
+    "question": "The process by which a human takes in and breathes out air is?",
+    "optionA": "Respiration",
+    "optionB": "Breathing",
+    "optionC": "Inhalation",
+    "optionD": "Exhalation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::ऊर्जा उत्पादन के लिए कोशिका प्रायः किसका उपयोग करती है ?",
+    "question": "For energy production, a cell mostly uses?",
+    "optionA": "Amino acid",
+    "optionB": "Glucose",
+    "optionC": "Fatty acid",
+    "optionD": "Sucrose",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::किस अभिक्रिया द्वारा पोधें में ऑक्सीजन बाहरी वातावरण से कोशिकाओं में पहुँचता है ?",
+    "question": "By which process does oxygen in plants reach the cells from the external environment?",
+    "optionA": "Fermentation",
+    "optionB": "Diffusion",
+    "optionC": "Combustion",
+    "optionD": "Photosynthesis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::श्वसन की अभिक्रिया में खाद्य पदार्थों की परिणति क्या होती है ?",
+    "question": "What is the end result of food substances in the process of respiration?",
+    "optionA": "Decomposition",
+    "optionB": "Combustion",
+    "optionC": "Transformation",
+    "optionD": "Synthesis",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::खाद्य पदार्थों का पोधें में स्थानांतरण का मुख्य रूप रूप कौन-सा है ?",
+    "question": "What is the main form of transport of food substances in plants?",
+    "optionA": "Glucose",
+    "optionB": "Starch",
+    "optionC": "Sucrose",
+    "optionD": "Protein",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::एक स्वस्थ मनुष्य का रक्त चाप होता है ?",
+    "question": "What is the blood pressure of a healthy human?",
+    "optionA": "90/60",
+    "optionB": "120/80",
+    "optionC": "200/130",
+    "optionD": "140/160",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मनुष्य के मस्तिष्क की सबसे बाहरी झिल्ली है ?",
+    "question": "The outermost membrane of the human brain is?",
+    "optionA": "Piamater",
+    "optionB": "Mater",
+    "optionC": "Duramater",
+    "optionD": "Arachnoid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मनुष्य के सूंघने की क्षमता को नियंत्रित करता है ?",
+    "question": "What controls the ability of humans to smell?",
+    "optionA": "Optic lobe",
+    "optionB": "Olfactory lobe",
+    "optionC": "Cerebrum",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मनुष्य में बुद्धि एवं चतुराई का केंद्र है ?",
+    "question": "The center of intelligence and cleverness in humans is?",
+    "optionA": "Cerebellum",
+    "optionB": "Hypothalamus",
+    "optionC": "Cerebrum",
+    "optionD": "Spinal cord",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::रक्त में ग्लूकोज की मात्रा नियंत्रित रहता है ?",
+    "question": "The amount of glucose in the blood is controlled by?",
+    "optionA": "Somatostatin",
+    "optionB": "Glucagon",
+    "optionC": "Gastrin",
+    "optionD": "Insulin",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::ऑक्सीजन है ?",
+    "question": "Oxygen is?",
+    "optionA": "Fat",
+    "optionB": "Carbohydrate",
+    "optionC": "Enzyme",
+    "optionD": "Hormone",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::जैव प्रक्रम के अंतगर्त कौन आता है ?",
+    "question": "Which of the following comes under biological processes?",
+    "optionA": "Nutrition",
+    "optionB": "Excretion",
+    "optionC": "Respiration",
+    "optionD": "All",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::गोबरछता किसके अंतगर्त आता है ?",
+    "question": "Gobar chata comes under?",
+    "optionA": "Parasite",
+    "optionB": "Autotroph",
+    "optionC": "Saprophyte",
+    "optionD": "Osmotroph",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वायुमंडल में सामान्यतः CO2 पाया जाता है ?",
+    "question": "CO2 is generally found in the atmosphere?",
+    "optionA": "78 %",
+    "optionB": "21 %",
+    "optionC": "4 %",
+    "optionD": "0.03 %",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::छाया में पनपने वाले पोधें को क्या कहते हैं ?",
+    "question": "Plants that grow in shade are called?",
+    "optionA": "Heliphytes",
+    "optionB": "Theiophytes",
+    "optionC": "Sciophytes",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मनुष्य में मुख्य श्वसन अंग क्या है ?",
+    "question": "What is the main respiratory organ in humans?",
+    "optionA": "Lungs",
+    "optionB": "Nose",
+    "optionC": "Trachea",
+    "optionD": "Gills",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्न में कौन-सी बीमारी श्वसनतंत्र से संबंधित है ?",
+    "question": "Which of the following diseases is related to the respiratory system?",
+    "optionA": "Diarrhea",
+    "optionB": "Tuberculosis",
+    "optionC": "Pneumonia",
+    "optionD": "Both (B) and (C)",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::उच्च रक्त चाप की अवस्था को क्या कहते हैं ?",
+    "question": "What is the condition of high blood pressure called?",
+    "optionA": "Hypotension",
+    "optionB": "Paralysis",
+    "optionC": "Hypertension",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मछलियों में उत्सर्जी पदार्थ क्या है ?",
+    "question": "What is the excretory product in fish?",
+    "optionA": "Amino acid",
+    "optionB": "Uric acid",
+    "optionC": "Urea",
+    "optionD": "Ammonia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::पोधें में आवश्यकता से अधिक जल किस प्रक्रिया द्वारा बाहर निकाले जाते हैं ?",
+    "question": "Excess water in plants is removed by which process?",
+    "optionA": "Absorption",
+    "optionB": "Transpiration",
+    "optionC": "Excretion",
+    "optionD": "Photosynthesis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्न में से किसे प्रकाशसंश्लेषी अंगक कहते हैं ?",
+    "question": "Which of the following is called a photosynthetic organ?",
+    "optionA": "Leaf",
+    "optionB": "Chloroplast",
+    "optionC": "Stomata",
+    "optionD": "Root",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पोधें में गैसों के आदान-प्रदान के लिए रहते हैं ?",
+    "question": "What is present in plants for the exchange of gases?",
+    "optionA": "Root",
+    "optionB": "Stomata",
+    "optionC": "Stem",
+    "optionD": "Branch",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::फेफड़ा का आकार होता है ?",
+    "question": "What is the shape of the lungs?",
+    "optionA": "Round",
+    "optionB": "Cylindrical",
+    "optionC": "Conical",
+    "optionD": "Oval",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::भोजन का पाचन किस प्रकार की अभिक्रिया है ?",
+    "question": "What type of reaction is digestion of food?",
+    "optionA": "Anabolism",
+    "optionB": "Combination",
+    "optionC": "Catabolism",
+    "optionD": "Displacement",
+    "correctAnswer": "A"
+  }
+]

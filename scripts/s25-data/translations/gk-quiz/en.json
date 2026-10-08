@@ -1,0 +1,362 @@
+[
+  {
+    "id": "gk-quiz::&#39;तोता-ए-हिन्द&#39; के उपनाम से जाने जाते हैं ?",
+    "question": "'तोता-ए-हिन्द' के उपनाम से जाने जाते हैं ?",
+    "optionA": "इब्नबतूता",
+    "optionB": "असीम",
+    "optionC": "अमीर खुसरो",
+    "optionD": "दयाराम",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::अमीर खुसरो का वास्तविक नाम क्या था ?",
+    "question": "अमीर खुसरो का वास्तविक नाम क्या था ?",
+    "optionA": "मुहम्मद खुसरो",
+    "optionB": "मुहम्मद हसन",
+    "optionC": "मुहम्मद खान",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::संगीत के दुनिया में &#39;सितार के जादूगर&#39; नाम से किसे जाने जाते है ?",
+    "question": "संगीत के दुनिया में 'सितार के जादूगर' नाम से किसे जाने जाते है ?",
+    "optionA": "रहीम सेन",
+    "optionB": "त्यागराज",
+    "optionC": "तानसेन",
+    "optionD": "पुरंदर दास",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::गुरु नानक का वास्तविक नाम क्या था ?",
+    "question": "गुरु नानक का वास्तविक नाम क्या था ?",
+    "optionA": "गुरु",
+    "optionB": "गुरु नानक",
+    "optionC": "नानक",
+    "optionD": "नरेन्द्रनाथ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::गौतम बुद्ध का वास्तविक नाम क्या था ?",
+    "question": "गौतम बुद्ध का वास्तविक नाम क्या था ?",
+    "optionA": "देवदत्त",
+    "optionB": "सिद्धार्थ",
+    "optionC": "नरेन्द्र",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::स्वामी विवेकानंद का वास्तविक नाम क्या था ?",
+    "question": "स्वामी विवेकानंद का वास्तविक नाम क्या था ?",
+    "optionA": "विवेकानंद",
+    "optionB": "नरेन्द्रनाथ दत्त",
+    "optionC": "देवदत्त",
+    "optionD": "कृष्ण दत्त",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::किसने कहा था &#39;दिल्ली अभी दूर है&#39; ?",
+    "question": "किसने कहा था 'दिल्ली अभी दूर है' ?",
+    "optionA": "निजामुद्दीन औलिया",
+    "optionB": "फिरोज तुगलक",
+    "optionC": "अमीर खुसरो",
+    "optionD": "त्यागराज",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::दुःख में सब सुमिरन करें, सुख में करे न कोय, यह पंक्ति किसने कही है ?",
+    "question": "दुःख में सब सुमिरन करें, सुख में करे न कोय, यह पंक्ति किसने कही है ?",
+    "optionA": "सूरदास",
+    "optionB": "तुलसीदास",
+    "optionC": "मीराबाई",
+    "optionD": "कबीरदास",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-quiz::कर्मण्येवाधिकारस्ते मां फलेषु कदाचना किस धर्म ग्रन्थ की उक्ति है ?",
+    "question": "कर्मण्येवाधिकारस्ते मां फलेषु कदाचना किस धर्म ग्रन्थ की उक्ति है ?",
+    "optionA": "रामचरितमानस",
+    "optionB": "रामायण",
+    "optionC": "श्रीमदभागवत गीता",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::किसने कहा था &#39;राम और रहीम एक ही ईश्वर के दो अलग-अलग नाम है&#39;",
+    "question": "किसने कहा था 'राम और रहीम एक ही ईश्वर के दो अलग-अलग नाम है'",
+    "optionA": "कबीर दास",
+    "optionB": "महात्मा गाँधी",
+    "optionC": "स्वामी विवेकानंद",
+    "optionD": "तुलसीदास",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::आदि शंकराचार्य का जन्म कहाँ हुआ था ?",
+    "question": "आदि शंकराचार्य का जन्म कहाँ हुआ था ?",
+    "optionA": "कलादी",
+    "optionB": "कांचीपुरम",
+    "optionC": "मथुरा",
+    "optionD": "काशी",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::ईसा मसीहा का जन्म कहाँ हुआ था ?",
+    "question": "ईसा मसीहा का जन्म कहाँ हुआ था ?",
+    "optionA": "बेविलोन में",
+    "optionB": "एब्रे में",
+    "optionC": "बेथलहेम में",
+    "optionD": "बेरुत में",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::यामिनी कृष्णमूर्ति का संबंध किस शास्त्रीय नृत्य से है ?",
+    "question": "यामिनी कृष्णमूर्ति का संबंध किस शास्त्रीय नृत्य से है ?",
+    "optionA": "कत्थक",
+    "optionB": "भरतनाट्यम",
+    "optionC": "अोडिसी",
+    "optionD": "कथकली",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::बिरजू महाराज किस क्षेत्र के सुविख्यात कलाकार हैं ?",
+    "question": "बिरजू महाराज किस क्षेत्र के सुविख्यात कलाकार हैं ?",
+    "optionA": "भरतनाट्यम नृत्य के",
+    "optionB": "कथकली नृत्य के",
+    "optionC": "अोडिसी नृत्य के",
+    "optionD": "कत्थक नृत्य के",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-quiz::भारती शिवाजी किस शैली के नृत्य के लिए प्रसिद्ध है ?",
+    "question": "भारती शिवाजी किस शैली के नृत्य के लिए प्रसिद्ध है ?",
+    "optionA": "भरतनाट्यम",
+    "optionB": "कथकली",
+    "optionC": "मोहिनीअट्टम",
+    "optionD": "अोडिसी",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::रंगोली भारत के किस क्षेत्र की प्रमुख लोक कला शैली है ?",
+    "question": "Rangoli is a prominent folk art style of which region of India?",
+    "optionA": "Maharashtra",
+    "optionB": "Madhya Pradesh",
+    "optionC": "Rajasthan",
+    "optionD": "Tamil Nadu",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::&#39;अल्पना&#39; भारत के किस क्षेत्र की प्रमुख लोक कला शैली है ?",
+    "question": "&#39;Alpana&#39; is a prominent folk art style of which region of India?",
+    "optionA": "Chandigarh",
+    "optionB": "West Bengal",
+    "optionC": "Punjab",
+    "optionD": "Kerala",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::गुरु नानक देव का जन्म कब हुआ था ?",
+    "question": "When was Guru Nanak Dev born?",
+    "optionA": "1450 CE",
+    "optionB": "1453 CE",
+    "optionC": "1469 CE",
+    "optionD": "1488 CE",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::त्यागराज कौन थे ?",
+    "question": "Who was Tyagaraja?",
+    "optionA": "Scientist",
+    "optionB": "Dancer",
+    "optionC": "Musician",
+    "optionD": "Politician",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::बंगाल में भक्ति आन्दोलन के प्रवर्तक थे ?",
+    "question": "Who was the pioneer of the Bhakti movement in Bengal?",
+    "optionA": "Namdev",
+    "optionB": "Chaitanya",
+    "optionC": "Ramananda",
+    "optionD": "Ramanuja",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::भारत में पुनर्जागरण का जनक कहा जाता है ?",
+    "question": "Who is known as the father of the Renaissance in India?",
+    "optionA": "Mahatma Gandhi",
+    "optionB": "Raja Ram Mohan Roy",
+    "optionC": "Swami Vivekananda",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::सन्त कबीर का जन्म कहाँ हुआ था ?",
+    "question": "Where was Sant Kabir born?",
+    "optionA": "Varanasi",
+    "optionB": "Hyderabad",
+    "optionC": "Mathura",
+    "optionD": "Delhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::महावीर का जन्म किस राजघराने में हुआ था ?",
+    "question": "In which royal dynasty was Mahavir born?",
+    "optionA": "Kshatriya",
+    "optionB": "Shakya",
+    "optionC": "Licchavi",
+    "optionD": "Satavahana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::बुद्ध किस वंश से सम्बन्धित थे ?",
+    "question": "Which dynasty was Buddha related to?",
+    "optionA": "Shakya",
+    "optionB": "Shatavahana",
+    "optionC": "Kuru",
+    "optionD": "Maurya",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::ज्ञान प्राप्ति से पूर्व महावीर का नाम क्या था ?",
+    "question": "What was the name of Mahavir before attaining knowledge?",
+    "optionA": "Vardhaman",
+    "optionB": "Ansuman",
+    "optionC": "Sudhakar",
+    "optionD": "Somdatta",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::निम्न में से कौन संत महाराष्ट्र से थे ?",
+    "question": "Who among the following was a saint from Maharashtra?",
+    "optionA": "Maitreyi",
+    "optionB": "Tukaram",
+    "optionC": "Tyagaraja",
+    "optionD": "Vyas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::दक्षिण भारत के अलवार थे ?",
+    "question": "Who were the Alvars of South India?",
+    "optionA": "Saints",
+    "optionB": "Warriors",
+    "optionC": "Traders",
+    "optionD": "Sculptors of idols",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::सिखों के किस गुरु का जन्म पटना साहिब में हुआ था ?",
+    "question": "Which Guru of the Sikhs was born in Patna Sahib?",
+    "optionA": "Guru Nanak Dev",
+    "optionB": "Guru Gobind Singh",
+    "optionC": "Guru",
+    "optionD": "Arjun Dev",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::सिख गुरु अर्जुनदेव किसके शासनकाल में थे ?",
+    "question": "During whose reign was Sikh Guru Arjun Dev?",
+    "optionA": "Shah Jahan",
+    "optionB": "Jahangir",
+    "optionC": "Humayun",
+    "optionD": "Akbar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::खालसा की स्थापना किसने की ?",
+    "question": "Who established the Khalsa?",
+    "optionA": "Guru Nanak Dev",
+    "optionB": "Guru Ramdas",
+    "optionC": "Guru Gobind Singh",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::राग &#39;मियाँ की मल्हार&#39; का रचियता किसे माना जाता है ?",
+    "question": "Who is considered the composer of the Raga 'Mian Ki Malhar'?",
+    "optionA": "Amir Khusro",
+    "optionB": "Tansen",
+    "optionC": "Swami Haridas",
+    "optionD": "Baiju Bawra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::कत्थक कहाँ की नृत्य है ?",
+    "question": "Where is Kathak a dance from?",
+    "optionA": "Northern India",
+    "optionB": "Manipur",
+    "optionC": "Odisha",
+    "optionD": "Kerala",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::मुख़ौटा नृत्य का सम्बन्ध किस नृत्य शैली से है ?",
+    "question": "Which dance style is associated with the Mask dance?",
+    "optionA": "Kuchipudi",
+    "optionB": "Manipuri",
+    "optionC": "Kathakali",
+    "optionD": "Odissi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::निम्नलिखित में कौन-सा एक शास्त्रीय नृत्य नहीं है ?",
+    "question": "Which of the following is not a classical dance?",
+    "optionA": "Odissi",
+    "optionB": "Manipuri",
+    "optionC": "Garba",
+    "optionD": "Kathak",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-quiz::निम्नलिखित में से किस नृत्य का उद्भव उत्तर भारत में हुआ ?",
+    "question": "Which of the following dances originated in North India?",
+    "optionA": "Kathak",
+    "optionB": "Bharatanatyam",
+    "optionC": "Manipuri",
+    "optionD": "Kathakali",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::चार मीनार कहाँ स्थित है ?",
+    "question": "Where is Char Minar located?",
+    "optionA": "Delhi",
+    "optionB": "Hyderabad",
+    "optionC": "Aurangabad",
+    "optionD": "Agra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-quiz::अंतर्राष्ट्रीय मजदूर दिवस कब मनाया जाता है ?",
+    "question": "When is International Workers' Day celebrated?",
+    "optionA": "On 1 February",
+    "optionB": "On 1 March",
+    "optionC": "On 1 April",
+    "optionD": "On 1 May",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-quiz::नौकरशाही की नियुक्ति की प्रकृति कैसी होती है ?",
+    "question": "What is the nature of bureaucratic appointments?",
+    "optionA": "Temporary",
+    "optionB": "Daily remunerative",
+    "optionC": "Permanent",
+    "optionD": "Ad hoc",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-quiz::गिरनार पहाड़ियाँ कहाँ स्थित हैं ?",
+    "question": "Where are Girnar Hills located?",
+    "optionA": "Gujarat",
+    "optionB": "Odisha",
+    "optionC": "Goa",
+    "optionD": "Assam",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-quiz::माइकेल एंजेलो नामक वायरस विश्व में चिन्ता का कारण कब बना हअा था ?",
+    "question": "When did the Michelangelo virus become a cause of concern worldwide?",
+    "optionA": "1993",
+    "optionB": "1996",
+    "optionC": "1998",
+    "optionD": "1995",
+    "correctAnswer": "A"
+  }
+]
