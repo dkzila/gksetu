@@ -1,0 +1,30 @@
+[
+  {
+    "id": "chemistry-gk-question::भार का एस.आई मात्रक क्या है ?",
+    "question": "भार का एस.आई मात्रक क्या है ?",
+    "optionA": "न्यूटन",
+    "optionB": "ग्राम",
+    "optionC": "डाइन",
+    "optionD": "किलोग्राम",
+    "correctAnswer": "A",
+    "subject": "Chemistry GK Questions",
+    "subjectSlug": "chemistry-gk-question",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/chemistry-gk-question",
+    "language": "hi"
+  },
+  {
+    "id": "chemistry-gk-question::विद्युत आवेश का एस आई (SI) मात्रक क्या है ?",
+    "question": "विद्युत आवेश का एस आई (SI) मात्रक क्या है ?",
+    "optionA": "वोल्ट",
+    "optionB": "केल्विन",
+    "optionC": "किलोग्राम",
+    "optionD": "कूलॉम",
+    "correctAnswer": "D",
+    "subject": "Chemistry GK Questions",
+    "subjectSlug": "chemistry-gk-question",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/chemistry-gk-question",
+    "language": "hi"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "physics-gk-in-english::A virtual image of a real object is formed ?",
+    "question": "A virtual image of a real object is formed ?",
+    "optionA": "Convex Mirror",
+    "optionB": "Concave Mirror",
+    "optionC": "Plane Mirror",
+    "optionD": "All of these",
+    "correctAnswer": "C",
+    "subject": "Physics GK (English)",
+    "subjectSlug": "physics-gk-in-english",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/physics-gk-in-english",
+    "language": "en"
+  },
+  {
+    "id": "physics-gk-in-english::Is a mirror always an erect image of a real object ?",
+    "question": "Is a mirror always an erect image of a real object ?",
+    "optionA": "Flat, Concave",
+    "optionB": "Plane, Convex, Concave",
+    "optionC": "Flat, Convex",
+    "optionD": "Convex-Concave",
+    "correctAnswer": "C",
+    "subject": "Physics GK (English)",
+    "subjectSlug": "physics-gk-in-english",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/physics-gk-in-english",
+    "language": "en"
+  },
+  {
+    "id": "physics-gk-in-english::What is the nature of real image ?",
+    "question": "What is the nature of real image ?",
+    "optionA": "Reverse",
+    "optionB": "Straight",
+    "optionC": "Straight And Reverse",
+    "optionD": "None Of These",
+    "correctAnswer": "A",
+    "subject": "Physics GK (English)",
+    "subjectSlug": "physics-gk-in-english",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/physics-gk-in-english",
+    "language": "en"
+  },
+  {
+    "id": "physics-gk-in-english::Forms an image smaller than the object ?",
+    "question": "Forms an image smaller than the object ?",
+    "optionA": "Plane Mirror",
+    "optionB": "Concave Mirror",
+    "optionC": "Convex Mirror",
+    "optionD": "Convex Mirror And Concave Mirror",
+    "correctAnswer": "D",
+    "subject": "Physics GK (English)",
+    "subjectSlug": "physics-gk-in-english",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/physics-gk-in-english",
+    "language": "en"
+  },
+  {
+    "id": "physics-gk-in-english::According to the law of reflection of light ?",
+    "question": "According to the law of reflection of light ?",
+    "optionA": "The angle of incidence is greater than the angle of reflection",
+    "optionB": "The angle of incidence is equal to the angle of reflection",
+    "optionC": "The angle of incidence is smaller than the angle of reflection",
+    "optionD": "All the statements are true",
+    "correctAnswer": "B",
+    "subject": "Physics GK (English)",
+    "subjectSlug": "physics-gk-in-english",
+    "topicSlug": "science-technology",
+    "sourceUrl": "https://gk-hindi.in/physics-gk-in-english",
+    "language": "en"
+  }
+]

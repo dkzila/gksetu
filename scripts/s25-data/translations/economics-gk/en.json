@@ -1,0 +1,182 @@
+[
+  {
+    "id": "economics-gk::भारत में सबसे संपत्ति वाला राज्य कौन हैं ?",
+    "question": "Which is the wealthiest state in India?",
+    "optionA": "Tamil Nadu",
+    "optionB": "Maharashtra",
+    "optionC": "Kerala",
+    "optionD": "Karnataka",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत का कितना % आबादी कृषि उद्योग पर निर्भर हैं ?",
+    "question": "What percentage of India's population depends on agriculture?",
+    "optionA": "60%",
+    "optionB": "70%",
+    "optionC": "58.9%",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::राष्ट्रीय पधार्थ से सकल लाभ में कितना % कृषि उद्योग का योगदान है ?",
+    "question": "What percentage does agriculture contribute to the Gross Domestic Product?",
+    "optionA": "17.5%",
+    "optionB": "17.9%",
+    "optionC": "20%",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::GDP के आधार पर भारत का स्थान है ?",
+    "question": "What is India's rank based on GDP?",
+    "optionA": "5",
+    "optionB": "3",
+    "optionC": "7",
+    "optionD": "13",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::ppp (Purchasing Power Parity) के आधार पर भारत का स्थान है ?",
+    "question": "What is India's rank based on PPP (Purchasing Power Parity)?",
+    "optionA": "4",
+    "optionB": "9",
+    "optionC": "7",
+    "optionD": "3",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::GDP पर कैपिटा के आधार पर सबसे पहले स्थान पर कौन सा देश है ?",
+    "question": "Which country ranks first based on GDP per capita?",
+    "optionA": "Luxembourg",
+    "optionB": "United States",
+    "optionC": "Qatar",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में उच्चतम मानव विकास सूचकांक(HDI) किस राज्य में है ?",
+    "question": "Which state in India has the highest Human Development Index (HDI)?",
+    "optionA": "Gujarat",
+    "optionB": "Kerala",
+    "optionC": "Tamil Nadu",
+    "optionD": "Maharashtra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्न में कौन-से देश में मिश्रित अर्थव्यवस्था है ?",
+    "question": "Which of the following countries has a mixed economy?",
+    "optionA": "America",
+    "optionB": "India",
+    "optionC": "China",
+    "optionD": "Russia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::आर्थिक क्रियाओं का उद्देश्य होता है ? दोनों",
+    "question": "What is the purpose of economic activities? Both",
+    "optionA": "Livelihood",
+    "optionB": "Entertainment",
+    "optionC": "(A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::जनसंख्या वृद्धि से आर्थिक विकास की गति ?",
+    "question": "The pace of economic development due to population growth?",
+    "optionA": "Remains normal",
+    "optionB": "Becomes rapid",
+    "optionC": "Slows down",
+    "optionD": "Nothing happens",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::आर्थिक विकास की व्याख्या के विभिन्न आधार कौन-कौन हैं ?",
+    "question": "What are the different bases for explaining economic development?",
+    "optionA": "Gross National Product",
+    "optionB": "Per Capita Income",
+    "optionC": "Basis of Economic Welfare",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::मानव-विकास सूचकांक में भारत का क्या स्थान है ?",
+    "question": "What is India's position in the Human Development Index?",
+    "optionA": "126",
+    "optionB": "127",
+    "optionC": "129",
+    "optionD": "128",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::पहला मानव-विकास सूचकांक किस अर्थशास्त्री ने तैयार किया था ?",
+    "question": "Which economist prepared the first Human Development Index?",
+    "optionA": "Prof. Amartya Sen",
+    "optionB": "Mahbub-ul-Haq",
+    "optionC": "Dr. Manmohan Singh",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में प्राथमिक क्षेत्र किसे कहा जाता है ?",
+    "question": "Which of the following is called the primary sector?",
+    "optionA": "Agricultural sector",
+    "optionB": "Service sector",
+    "optionC": "Industrial sector",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::शिक्षक द्वारा अपने पुत्र को पढ़ाना, कौन-सी क्रिया है ?",
+    "question": "A teacher teaching his own son, which activity is it?",
+    "optionA": "Non-economic",
+    "optionB": "Economic",
+    "optionC": "Both",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::इनमें से कौन भारत सरकार का केंद्रीय बैंक है ?",
+    "question": "Which of these is the central bank of the Government of India?",
+    "optionA": "Cooperative Bank",
+    "optionB": "Reserve Bank of India",
+    "optionC": "Central Bank of India",
+    "optionD": "State Bank of India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::राष्ट्रिय विकास परिषद का अध्यक्ष कौन होता है ?",
+    "question": "Who is the chairman of the National Development Council?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Governor",
+    "optionD": "Vice President",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::किस आधुनिक यंत्र के आगमन के बाद सूचना, शिक्षा एवं ज्ञान सर्वसुलभ हो गया है ?",
+    "question": "After the advent of which modern machine, information, education and knowledge have become universally accessible?",
+    "optionA": "Mobile Phone",
+    "optionB": "Calculator",
+    "optionC": "Computer",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::व्यवसायिक बैंक का राष्ट्रियकरण कब किया गया ?",
+    "question": "When was the nationalization of commercial banks done?",
+    "optionA": "1975",
+    "optionB": "1966",
+    "optionC": "1969",
+    "optionD": "1980",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::अंतर्राष्ट्रीय व्यापार संबंधी नियमों को निर्धारित करने वाली संस्था कौन है ?",
+    "question": "Which organization determines the rules related to international trade?",
+    "optionA": "World Bank",
+    "optionB": "IMF",
+    "optionC": "UNO",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  }
+]

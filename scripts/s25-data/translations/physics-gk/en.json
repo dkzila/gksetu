@@ -1,0 +1,137 @@
+[
+  {
+    "id": "physics-gk::वास्तविक वस्तु का आभासी प्रतिबिंब बनता है ?",
+    "question": "A virtual image of a real object is formed in?",
+    "optionA": "convex mirror",
+    "optionB": "plane mirror",
+    "optionC": "concave mirror",
+    "optionD": "all of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::वास्तविक वस्तु का हमेशा सीधा प्रतिबिंब बनाने वाला दर्पण होता है ?",
+    "question": "Which mirror always forms an erect image of a real object?",
+    "optionA": "plane, convex, concave",
+    "optionB": "plane, concave",
+    "optionC": "convex-concave",
+    "optionD": "plane, convex",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::वास्तविक प्रतिबिंब की प्रकृति कैसी होती है ?",
+    "question": "What is the nature of a real image?",
+    "optionA": "inverted",
+    "optionB": "erect",
+    "optionC": "erect and inverted",
+    "optionD": "none of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::वस्तु से छोटा प्रतिबिंब बनाता है ?",
+    "question": "Which forms an image smaller than the object?",
+    "optionA": "convex mirror",
+    "optionB": "concave mirror",
+    "optionC": "plane mirror",
+    "optionD": "convex mirror and concave mirror",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::काश के परावर्तन के नियम के अनुसार -",
+    "question": "According to the law of reflection of light -",
+    "optionA": "angle of incidence is greater than angle of reflection",
+    "optionB": "angle of incidence is equal to angle of reflection",
+    "optionC": "angle of incidence is less than angle of reflection",
+    "optionD": "all statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::समतल दर्पण द्वारा बना प्रतिबिंब सदा होता है ?",
+    "question": "The image formed by a plane mirror is always?",
+    "optionA": "virtual and inverted",
+    "optionB": "real and erect",
+    "optionC": "erect and virtual",
+    "optionD": "real",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::आँख में प्रवेश करने वाले प्रकाश की मात्रा को नियंत्रित करता है ?",
+    "question": "Controls the amount of light entering the eye?",
+    "optionA": "iris",
+    "optionB": "pupil",
+    "optionC": "lens",
+    "optionD": "ciliary muscles",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::सूर्योदय और सूर्यास्त के समय सूर्य का गोल दीखता है ?",
+    "question": "The sun appears flat at the time of sunrise and sunset?",
+    "optionA": "spherical",
+    "optionB": "cubical",
+    "optionC": "oval",
+    "optionD": "flat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::यदि दर्पण में बना प्रतिबिंब हमेशा सीधा, आकार में वस्तु के बराबर है, तो दर्पण है ?",
+    "question": "If the image formed in a mirror is always erect and equal in size to the object, then the mirror is?",
+    "optionA": "Concave",
+    "optionB": "Convex",
+    "optionC": "Plane",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::समतल दर्पण के द्वारा बना प्रतिबिंब होता है ?",
+    "question": "The image formed by a plane mirror is?",
+    "optionA": "Real",
+    "optionB": "Virtual",
+    "optionC": "Inverted",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्न में से कौन-सा पदार्थ लेंस के लिए प्रयुक्त नहीं किया जा सकता है ?",
+    "question": "Which of the following substances cannot be used for a lens?",
+    "optionA": "Water",
+    "optionB": "Clay",
+    "optionC": "Plastic",
+    "optionD": "Glass",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::उत्तल लेंस की क्षमता होती है ?",
+    "question": "The power of a convex lens is?",
+    "optionA": "Negative",
+    "optionB": "Positive",
+    "optionC": "Zero",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::लेंस की क्षमता का S.I मात्रक होता है ?",
+    "question": "The S.I. unit of the power of a lens is?",
+    "optionA": "Meter",
+    "optionB": "(Meter)2",
+    "optionC": "Diopter",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::पानी से भरी बाल्टी की गहराई कम दिखती है । इसका कारण है ?",
+    "question": "The depth of a water-filled bucket appears less. The reason is?",
+    "optionA": "Total internal reflection",
+    "optionB": "Refraction",
+    "optionC": "Reflection",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पानी में डाली हुई छड़ी टेढ़ी दिखती है । इसका कारण है ?",
+    "question": "A stick dipped in water appears bent. The reason is?",
+    "optionA": "Reflection",
+    "optionB": "Refraction",
+    "optionC": "Reflection and refraction",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  }
+]

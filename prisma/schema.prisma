@@ -2465,6 +2465,7 @@ model SeoObservation {
 enum TranslationSourceType {
   CONTENT_ITEM
   QNA
+  QUESTION // SITE-S25: a §22 scored MCQ assessment — translated MCQs from gk-hindi.in corpus
 }
 
 // The link's own lifecycle, derived exclusively from representation

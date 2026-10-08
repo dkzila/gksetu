@@ -1,0 +1,173 @@
+[
+  {
+    "id": "chemistry-gk::निम्न में कौन अॅक्सीकरण नहीं है ?",
+    "question": "Which of the following is not oxidation?",
+    "optionA": "Precipitation",
+    "optionB": "Digestion of food",
+    "optionC": "Respiration",
+    "optionD": "Combustion",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::नमक के घोल में सिलवर नाइट्रेट का घोल डालने पर दही जैसे पदार्थ उत्पन्न होता है । यह कौन सी अभिक्रिया है ?",
+    "question": "When a solution of silver nitrate is added to a salt solution, a substance like curd is produced. What is this reaction called?",
+    "optionA": "Displacement",
+    "optionB": "Neutralization",
+    "optionC": "Combination",
+    "optionD": "Precipitation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::संक्षारण किस प्रकार की अभिक्रिया है ?",
+    "question": "What type of reaction is corrosion?",
+    "optionA": "Reduction reaction",
+    "optionB": "Precipitation reaction",
+    "optionC": "Oxidation reaction",
+    "optionD": "Combination reaction",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::किसी रासायनिक अभिक्रिया में आॅक्सीजन के अनुपात का बढ़ना क्या कहलाता है ?",
+    "question": "What is the increase in the proportion of oxygen called in a chemical reaction?",
+    "optionA": "Reduction reaction",
+    "optionB": "Oxidation reaction",
+    "optionC": "Endothermic reaction",
+    "optionD": "Displacement reaction",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन सी अभिक्रियाओं के युग्म हमेशा साथ-साथ होते हैं ?",
+    "question": "Which pair of reactions always occur together?",
+    "optionA": "Combination and decomposition",
+    "optionB": "Precipitation and displacement",
+    "optionC": "Neutralization and displacement",
+    "optionD": "Oxidation and reduction",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सोडियम हाइड्रोक्साइड और हाइड्रोक्लोरिक अम्ल की अभिक्रिया से सोडियम क्लोराइड और जल बनाते हैं । यह कौन-सी अभिक्रिया है ?",
+    "question": "Sodium hydroxide and hydrochloric acid react to form sodium chloride and water. What is this reaction called?",
+    "optionA": "Neutralization",
+    "optionB": "Decomposition",
+    "optionC": "Combination",
+    "optionD": "Precipitation",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::किसी अभिक्रिया में भाग लेने वाले पदार्थ क्या कहलाते हैं ?",
+    "question": "What are the substances that take part in a reaction called?",
+    "optionA": "Product",
+    "optionB": "Reactant",
+    "optionC": "Reagent",
+    "optionD": "Oxidizing agent",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::श्वसन किस प्रकार की अभिक्रिया है ?",
+    "question": "What type of reaction is respiration?",
+    "optionA": "Exothermic reaction",
+    "optionB": "Combination reaction",
+    "optionC": "Oxidation-reduction reaction",
+    "optionD": "Decomposition reaction",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::बल अम्ल और दुर्बल क्षारक से बने लवण का pH मान क्या है ?",
+    "question": "What is the pH value of a salt formed by a strong acid and a weak base?",
+    "optionA": "More than 7",
+    "optionB": "Less than 7",
+    "optionC": "Between 10 and 14",
+    "optionD": "Less than 14",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::क्षारक को जल में घोलने पर क्या मुक्त होते हैं ?",
+    "question": "What is released when a base is dissolved in water?",
+    "optionA": "(OH)- ions",
+    "optionB": "H+ ions",
+    "optionC": "Both ions",
+    "optionD": "No ions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::दही में किस प्रकार का अम्ल पाया जाता है ?",
+    "question": "What type of acid is found in curd?",
+    "optionA": "Lactic acid",
+    "optionB": "Citric acid",
+    "optionC": "Oxalic acid",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::किसी अम्ल में मुख्य रूप से एक परमाणु अवश्य मौजूद रहता है जो धातु से अभिक्रिया कर एक गैस उतपन्न करता है ।",
+    "question": "An atom must be present mainly in an acid which reacts with a metal to produce a gas.",
+    "optionA": "Hydrogen",
+    "optionB": "Oxygen",
+    "optionC": "Nitrogen",
+    "optionD": "Ammonia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::वे पदार्थ जिनके स्वाद खट्टा होते हैं और जो नीले लिटमस के घोल को लाल बनाता है, कहा जाता है ?",
+    "question": "What are the substances that taste sour and turn blue litmus solution red called?",
+    "optionA": "Acid",
+    "optionB": "Salt",
+    "optionC": "Base",
+    "optionD": "Alkali",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::जल में घुलनशील भस्म क्या कहलाते हैं ?",
+    "question": "What are water-soluble bases called?",
+    "optionA": "Base",
+    "optionB": "Alkali",
+    "optionC": "Corrosion",
+    "optionD": "Erosion",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन प्रबल अम्लीय हैं ?",
+    "question": "Which of the following is strongly acidic?",
+    "optionA": "pH = 7",
+    "optionB": "pH = 14",
+    "optionC": "pH = 0",
+    "optionD": "pH = 3",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::शुष्क बुझा हुआ चूना पर क्लोरीन गैस की क्रिया से कौन -सा पदार्थ बनता है ?",
+    "question": "What substance is formed by the action of chlorine gas on slaked lime?",
+    "optionA": "Calcium chloride",
+    "optionB": "Bleaching powder",
+    "optionC": "Hydrochloric acid",
+    "optionD": "Water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हल्दी, लिटमस पत्र आदि किस प्रकार का सूचक है ?",
+    "question": "What type of indicator are turmeric, litmus paper, etc.?",
+    "optionA": "Synthetic",
+    "optionB": "Natural",
+    "optionC": "Natural and synthetic",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::अपच का उपचार करने के लिए निम्न में से कौन औषधि का उपयोग होता है ?",
+    "question": "Which medicine is used to treat indigestion?",
+    "optionA": "Antacid",
+    "optionB": "Antibiotic",
+    "optionC": "Analgesic",
+    "optionD": "Antiseptic",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन ऑक्सीकरण नहीं है ?",
+    "question": "Which of the following is not oxidation?",
+    "optionA": "Combustion",
+    "optionB": "Precipitation",
+    "optionC": "Digestion of food",
+    "optionD": "Respiration",
+    "correctAnswer": "B"
+  }
+]

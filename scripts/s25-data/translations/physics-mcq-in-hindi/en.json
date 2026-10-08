@@ -1,0 +1,74 @@
+[
+  {
+    "id": "physics-mcq-in-hindi::वास्तविक वस्तु का आभासी प्रतिबिंब बनता है ?",
+    "question": "A virtual image of a real object is formed?",
+    "optionA": "In a convex mirror",
+    "optionB": "By a plane mirror",
+    "optionC": "In a concave mirror",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-mcq-in-hindi::वास्तविक वस्तु का हमेशा सीधा प्रतिबिंब बनाने वाला दर्पण होता है ?",
+    "question": "Which mirror always forms an erect image of a real object?",
+    "optionA": "Plane, convex, concave",
+    "optionB": "Plane, concave",
+    "optionC": "Convex-concave",
+    "optionD": "Plane, convex",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-mcq-in-hindi::वास्तविक प्रतिबिंब की प्रकृति कैसी होती है ?",
+    "question": "What is the nature of a real image?",
+    "optionA": "Inverted",
+    "optionB": "Erect",
+    "optionC": "Erect and inverted",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-mcq-in-hindi::वस्तु से छोटा प्रतिबिंब बनाता है ?",
+    "question": "Which forms an image smaller than the object?",
+    "optionA": "Convex mirror",
+    "optionB": "Concave mirror",
+    "optionC": "Plane mirror",
+    "optionD": "Convex mirror and concave mirror",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-mcq-in-hindi::काश के परावर्तन के नियम के अनुसार -",
+    "question": "According to the law of reflection of light -",
+    "optionA": "The angle of incidence is greater than the angle of reflection",
+    "optionB": "The angle of incidence is equal to the angle of reflection",
+    "optionC": "The angle of incidence is less than the angle of reflection",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-mcq-in-hindi::समतल दर्पण द्वारा बना प्रतिबिंब सदा होता है ?",
+    "question": "The image formed by a plane mirror is always?",
+    "optionA": "Virtual and inverted",
+    "optionB": "Real and erect",
+    "optionC": "Erect and virtual",
+    "optionD": "Real",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-mcq-in-hindi::आँख में प्रवेश करने वाले प्रकाश की मात्रा को नियंत्रित करता है ?",
+    "question": "Controls the amount of light entering the eye?",
+    "optionA": "Iris",
+    "optionB": "Pupil",
+    "optionC": "Lens",
+    "optionD": "Ciliary muscles",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-mcq-in-hindi::सूर्योदय और सूर्यास्त के समय सूर्य का गोल दीखता है ?",
+    "question": "Why does the sun appear flattened at sunrise and sunset?",
+    "optionA": "Spherical",
+    "optionB": "Cubical",
+    "optionC": "Oval",
+    "optionD": "Flat",
+    "correctAnswer": "D"
+  }
+]

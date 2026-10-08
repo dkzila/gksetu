@@ -1,0 +1,182 @@
+[
+  {
+    "id": "geography-gk::भूगोल का जनक किसे कहा जाता है ?",
+    "question": "Who is considered the father of Geography?",
+    "optionA": "Eratosthenes",
+    "optionB": "Herodotus",
+    "optionC": "Hipparchus",
+    "optionD": "Hecataeus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "geography-gk::भूगोल के लिए ज्योग्रैफिका शब्द का प्रयोग सर्वप्रथम किसने किया ?",
+    "question": "Who first used the word 'Geographica' for Geography?",
+    "optionA": "Herodotus",
+    "optionB": "Hecataeus",
+    "optionC": "Hipparchus",
+    "optionD": "Eratosthenes",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "geography-gk::मानव भूगोल का पिता निम्नलिखित में से किसको कहा जाता है ?",
+    "question": "Who is considered the father of Human Geography?",
+    "optionA": "Carl Ritter",
+    "optionB": "Jean Brunhes",
+    "optionC": "Humboldt",
+    "optionD": "Hipparchus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::भूगोल को मानव पारिस्थितिकी के रूप में परिभाषित करने वाला विद्धान कौन है ?",
+    "question": "Who defined Geography as Human Ecology?",
+    "optionA": "Hettner",
+    "optionB": "Jean Brunhes",
+    "optionC": "H.H. Barrows",
+    "optionD": "Eratosthenes",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "geography-gk::भू-आकृति विज्ञान का जन्मदाता किसे माना जाता है ?",
+    "question": "Who is considered the father of Geomorphology?",
+    "optionA": "Peschel",
+    "optionB": "Davis",
+    "optionC": "Penck",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::भूगोल पृथ्वी को केन्द्र मानकर अध्ययन करने वाला विज्ञान है, ऐसा किसने कहा था ?",
+    "question": "Who said that Geography is a science that studies the Earth with the Earth at its center?",
+    "optionA": "Varenius",
+    "optionB": "Taylor",
+    "optionC": "Kant",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::सौरमण्डल के बारे में विश्व के समक्ष जानकारी प्रस्तुत करने का श्रेय किस विद्धान को है ?",
+    "question": "To which scholar is the credit given for presenting information about the Solar System to the world?",
+    "optionA": "Copernicus",
+    "optionB": "Kepler",
+    "optionC": "Galileo",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::सूर्य के चारों और घूमने वाले खगोलीय पिण्ड क्या कहलाते हैं ?",
+    "question": "What are the celestial bodies that revolve around the Sun called?",
+    "optionA": "Planets",
+    "optionB": "Satellites",
+    "optionC": "Comets",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::भूलोग भूतल का अध्ययन है ऐसा किसने कहा था ?",
+    "question": "Who said that Geology is the study of the Earth's surface?",
+    "optionA": "Varenius",
+    "optionB": "Taylor",
+    "optionC": "Kant",
+    "optionD": "Carl Ritter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "geography-gk::सौरमण्डल में कुल कितने ग्रह हैं ?",
+    "question": "How many planets are there in the Solar System?",
+    "optionA": "12",
+    "optionB": "10",
+    "optionC": "9",
+    "optionD": "8",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "geography-gk::किसी ग्रह के चारों ओर परिक्रमा करने वाले छोटे आकाशीय पिण्ड को क्या कहते हैं ?",
+    "question": "What is the small celestial body that orbits a planet called?",
+    "optionA": "Comet",
+    "optionB": "Planet",
+    "optionC": "Satellite",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "geography-gk::ग्रहों की गति का नियम प्रतिपादित किसने किया ?",
+    "question": "Who formulated the laws of planetary motion?",
+    "optionA": "Kepler",
+    "optionB": "Galileo",
+    "optionC": "Newton",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::नार्वे में अर्द्धरात्रि के समय सूर्य कब दिखाई देता है ?",
+    "question": "When does the sun appear at midnight in Norway?",
+    "optionA": "12 August",
+    "optionB": "21 June",
+    "optionC": "21 July",
+    "optionD": "21 March",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "geography-gk::सौरमण्डल की खोज किसने की ?",
+    "question": "Who discovered the solar system?",
+    "optionA": "Copernicus",
+    "optionB": "Aryabhata",
+    "optionC": "Carl Ritter",
+    "optionD": "Kepler",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::सौरमण्डल का जन्मदाता किसे कहा जाता है ?",
+    "question": "Who is called the creator of the solar system?",
+    "optionA": "Earth",
+    "optionB": "Venus",
+    "optionC": "Saturn",
+    "optionD": "Sun",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "geography-gk::एक ग्रह की अपने कक्ष में सूर्य से अधिकतम दूरी को क्या कहा जाता है ?",
+    "question": "What is called the maximum distance of a planet from the sun in its orbit?",
+    "optionA": "Perigee",
+    "optionB": "Aphelion",
+    "optionC": "Perihelion",
+    "optionD": "Apogee",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "geography-gk::एक ग्रह की अपने कक्ष में सूर्य से न्यूनतम दूरी को क्या कहा जाता है ?",
+    "question": "What is called the minimum distance of a planet from the sun in its orbit?",
+    "optionA": "Perihelion",
+    "optionB": "Apogee",
+    "optionC": "Aphelion",
+    "optionD": "Perigee",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "geography-gk::अन्तरिक्ष में कुल कितने तारामण्डल है ?",
+    "question": "How many constellations are there in space?",
+    "optionA": "97",
+    "optionB": "81",
+    "optionC": "95",
+    "optionD": "89",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "geography-gk::पार्थिव ग्रहों की संख्या कितनी है ?",
+    "question": "How many terrestrial planets are there?",
+    "optionA": "5",
+    "optionB": "8",
+    "optionC": "4",
+    "optionD": "7",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "geography-gk::ब्रह्यण्ड में विस्फोटी तारा कहलाती है ?",
+    "question": "What is called a star that explodes in the universe?",
+    "optionA": "Meteor",
+    "optionB": "Nova",
+    "optionC": "Comet",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  }
+]

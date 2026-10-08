@@ -51,6 +51,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 import { DashboardTeaser } from '@/components/personalisation/dashboard-teaser'
 import { fillTemplate, homeStrings } from './home-strings'
+import { LanguageShowcase } from './language-showcase'
 import { SearchBox } from './search-box'
 import { useSeoHead } from './seo-head'
 import type { CountryHomepage, Envelope, HomeUnitCard } from './types'
@@ -320,6 +321,13 @@ export function HomepageView({
             })}
           </div>
         )}
+
+        {/* SITE-S25 — multi-language content showcase strip (question counts
+            per language, fetched from /api/content-stats). */}
+        <LanguageShowcase
+          currentLanguage={readerLanguage}
+          onSwitchLanguage={onSwitchLanguage}
+        />
       </motion.section>
 
       {/* ---------- Personalised entry (progressive) ---------- */}

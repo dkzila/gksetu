@@ -119,8 +119,8 @@ export function SiteHeader({
             </Select>
           </div>
 
-          {/* Language switcher */}
-          <div className="hidden items-center gap-1.5 sm:flex">
+          {/* Language switcher — SITE-S25: visible on mobile too (was hidden sm:flex) */}
+          <div className="flex items-center gap-1.5">
             <Languages className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
             <span className="sr-only">Language</span>
             <Select value={route?.language ?? ''} onValueChange={onSwitchLanguage} disabled={!currentCountry}>
