@@ -268,5 +268,2435 @@
     "optionC": "Catabolism",
     "optionD": "Displacement",
     "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::हॉर्मोन शब्द का नामकरण किसने किया था ?",
+    "question": "Who named the hormone?",
+    "optionA": "Robert",
+    "optionB": "Aristotle",
+    "optionC": "Bayliss and Starling",
+    "optionD": "Brown Porter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पृथक्करण का नियम किसने दिया था ?",
+    "question": "Who gave the law of segregation?",
+    "optionA": "Acerians",
+    "optionB": "Darwin",
+    "optionC": "Mendel",
+    "optionD": "Babylonian",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::&#39;जीव-विज्ञान&#39; शब्द का प्रयोग सर्वप्रथम किसने किया ?",
+    "question": "Who first used the word &#39;Biology&#39;?",
+    "optionA": "Lamarck and Treviranus",
+    "optionB": "Von Mohl",
+    "optionC": "Purkinje",
+    "optionD": "Aristotle",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जीव-विज्ञान के जनक के नाम से जाने जाते हैं ?",
+    "question": "Who is known as the father of biology?",
+    "optionA": "Lamarck",
+    "optionB": "Darwin",
+    "optionC": "Aristotle",
+    "optionD": "Treviranus",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वनस्पति-विज्ञान के जनक के नाम से जाने जाते हैं ?",
+    "question": "Who is known as the father of botany?",
+    "optionA": "Theophrastus",
+    "optionB": "Darwin",
+    "optionC": "Purkinje",
+    "optionD": "Aristotle",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::बॉटनी शब्द की उत्पत्ति किस भाषा के शब्द से हुई है ?",
+    "question": "From which language did the word &#39;Botany&#39; originate?",
+    "optionA": "Greek",
+    "optionB": "Latin",
+    "optionC": "French",
+    "optionD": "Portuguese",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::फाइकोलॉजी में किसका अध्ययन किया जाता है ?",
+    "question": "What is studied in Phycology?",
+    "optionA": "Fungi",
+    "optionB": "Algae",
+    "optionC": "Virus",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पर्यावरण का अध्ययन जीव-विज्ञान की किस शाखा के अन्तर्गत किया जाता है ?",
+    "question": "Under which branch of biology is the study of environment done?",
+    "optionA": "Taxonomic",
+    "optionB": "Genetics",
+    "optionC": "Physiology",
+    "optionD": "Ecology",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::डेण्ड्रोलॉजी का संबंध है ?",
+    "question": "What is Dendrology related to?",
+    "optionA": "Study of plants",
+    "optionB": "Study of flowers",
+    "optionC": "Study of shrubs",
+    "optionD": "Study of trees",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पुष्पों का अध्ययन कहलाता है ?",
+    "question": "What is the study of flowers called?",
+    "optionA": "Agrostology",
+    "optionB": "Phenology",
+    "optionC": "Anthology",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वनस्पति संवर्द्धन से संबन्धित विज्ञान की शाखा को कहते हैं ?",
+    "question": "What is the branch of science related to plant propagation called?",
+    "optionA": "Olericulture",
+    "optionB": "Horticulture",
+    "optionC": "Agriculture",
+    "optionD": "Floriculture",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::स्पर्मोलॉजी में किसका अध्ययन किया जाता है ?",
+    "question": "What is studied in Spermatology?",
+    "optionA": "Pollen grains",
+    "optionB": "Seeds",
+    "optionC": "Fruits",
+    "optionD": "Leaves",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::एग्रेस्टोलॉजी में किसका अध्ययन किया जाता है ?",
+    "question": "What is studied in Agrostology?",
+    "optionA": "Grasses",
+    "optionB": "Fruits",
+    "optionC": "Crops",
+    "optionD": "Oil seeds",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पीडोलॉजी में किसका अध्ययन किया जाता है ?",
+    "question": "What is studied in Pedology?",
+    "optionA": "Soil",
+    "optionB": "Fruits",
+    "optionC": "Rocks",
+    "optionD": "Plants",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पौधों को नाम देने वाले विज्ञान कहलाता है ?",
+    "question": "What is the science of naming plants called?",
+    "optionA": "Nomenclature",
+    "optionB": "Taxonomy",
+    "optionC": "Identification",
+    "optionD": "Classification",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसे वर्गिकी का पितामह कहा जाता है ?",
+    "question": "Among the following, who is called the father of taxonomy?",
+    "optionA": "Engler",
+    "optionB": "Linnaeus",
+    "optionC": "Aristotle",
+    "optionD": "Lamarck",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::सूक्ष्मजीव मिलते हैं ?",
+    "question": "Microorganisms are found?",
+    "optionA": "In sandy soil",
+    "optionB": "In saline water",
+    "optionC": "In marshy land",
+    "optionD": "In all of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::विषाणु वृद्धि करता है ?",
+    "question": "Virus grows?",
+    "optionA": "In living cell",
+    "optionB": "In sugar solution",
+    "optionC": "In dead body",
+    "optionD": "In water",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::साबूदाना किससे बनाया जाता है ?",
+    "question": "Sago is made from?",
+    "optionA": "Pinus",
+    "optionB": "Cedrus",
+    "optionC": "Juniperus",
+    "optionD": "Cycas",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::फलों का अध्ययन कहलाता है ?",
+    "question": "The study of fruits is called?",
+    "optionA": "Phenology",
+    "optionB": "Pomology",
+    "optionC": "Agrostology",
+    "optionD": "Anthology",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::द्धिनाम पद्धति के प्रतिपालक हैं ?",
+    "question": "The supporters of binomial system are?",
+    "optionA": "Darwin",
+    "optionB": "Theophrastus",
+    "optionC": "Linnaeus",
+    "optionD": "Hippocrates",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::जीवाणु की खोज सर्वप्रथम किसने की ?",
+    "question": "Who first discovered bacteria?",
+    "optionA": "Robert Koch",
+    "optionB": "Louis Pasteur",
+    "optionC": "Leeuwenhoek",
+    "optionD": "Robert Hooke",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::जिन पोधें पर बीज बनतें हैं किन्तु पुष्प नहीं लगते क्या कहलाते हैं ?",
+    "question": "Plants on which seeds are formed but flowers do not bloom are called?",
+    "optionA": "Bryophytes",
+    "optionB": "Pteridophytes",
+    "optionC": "Gymnosperms",
+    "optionD": "Angiosperms",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::जीवाणुओं की साधारण आकृति क्या होती है ?",
+    "question": "What is the simple shape of bacteria?",
+    "optionA": "Spiral",
+    "optionB": "Spherical",
+    "optionC": "Rod-shaped",
+    "optionD": " comma-shaped",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::जो जीवाणु आकर में सबसे छोटे होते हैं क्या कहलाता है ?",
+    "question": "Bacteria that are smallest in size are called?",
+    "optionA": "Vibrio",
+    "optionB": "Coccus",
+    "optionC": "Bacillus",
+    "optionD": "Spirilla",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन सा रोग बैक्टीरिया से होता है ?",
+    "question": "Which of the following diseases is caused by bacteria?",
+    "optionA": "Jaundice",
+    "optionB": "Tuberculosis",
+    "optionC": "Smallpox",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मानव की आंत में पाया जाने वाला जीवाणु है ?",
+    "question": "Bacteria found in human intestine is?",
+    "optionA": "Escherichia coli",
+    "optionB": "Coronavirus",
+    "optionC": "Vibrio cholerae",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::एण्टीबायोटिक्स अधिकांशतया पाये जाते है ?",
+    "question": "Antibiotics are mostly found?",
+    "optionA": "In angiosperms",
+    "optionB": "In fungi",
+    "optionC": "In viruses",
+    "optionD": "In bacteria",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::निम्न में से सबसे छोटा जीव है ?",
+    "question": "The smallest living organism is?",
+    "optionA": "Mycoplasma",
+    "optionB": "Yeast",
+    "optionC": "Virus",
+    "optionD": "Bacteria",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन सा रोग जीवाणु के कारण होता है ?",
+    "question": "Which of the following diseases is caused by bacteria?",
+    "optionA": "Diarrhea",
+    "optionB": "Cholera",
+    "optionC": "Smallpox",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसके द्वारा दूध खट्टा होता है ?",
+    "question": "By which of the following is milk turned sour?",
+    "optionA": "Virus",
+    "optionB": "Bacteria",
+    "optionC": "Nematode",
+    "optionD": "Protozoa",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन सा रोग जीवाणु संक्रमण के कारण होती है ?",
+    "question": "Which of the following diseases is caused by bacterial infection?",
+    "optionA": "Diarrhea",
+    "optionB": "Asthma",
+    "optionC": "Leprosy",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::सर्वप्रथम विषाणु की खोज किसने की ?",
+    "question": "Who discovered the virus first?",
+    "optionA": "Ivanovsky",
+    "optionB": "Edward Jenner",
+    "optionC": "Linnaeus",
+    "optionD": "Smith",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::चेचक के लिए टीके का विकास किया था ?",
+    "question": "The vaccine for smallpox was developed by?",
+    "optionA": "Milstein",
+    "optionB": "Edward Jenner",
+    "optionC": "Louis Pasteur",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::दूध के दही के रूप में जमने का कारण है ?",
+    "question": "The cause of milk turning into curd is?",
+    "optionA": "Lactobacillus",
+    "optionB": "Mycobacterium",
+    "optionC": "Yeast",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्न में से कौन स्वपोषी होता है ?",
+    "question": "Which of the following is autotrophic?",
+    "optionA": "Algae",
+    "optionB": "Virus",
+    "optionC": "Fungi",
+    "optionD": "Protozoa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::टिक्का रोग किसमें होता है ?",
+    "question": "Tikka disease occurs in?",
+    "optionA": "Jowar",
+    "optionB": "Sugarcane",
+    "optionC": "Rice",
+    "optionD": "Groundnut",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::H.I.V द्वारा होने वाला रोग है ?",
+    "question": "The disease caused by H.I.V is?",
+    "optionA": "Cancer",
+    "optionB": "Tuberculosis",
+    "optionC": "AIDS",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन सा रोग विषाणु के कारण होता है ?",
+    "question": "Which of the following diseases is caused by virus?",
+    "optionA": "Malaria",
+    "optionB": "Tuberculosis",
+    "optionC": "Smallpox",
+    "optionD": "Jaundice",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::किस शैवाल से आयोडीन प्राप्त होती है ?",
+    "question": "From which algae is iodine obtained?",
+    "optionA": "Adogonium",
+    "optionB": "Ulothrix",
+    "optionC": "Actocarpus",
+    "optionD": "Laminaria",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::हाइड्रोफोबिया रोग उत्पन्न होता है ?",
+    "question": "Hydrophobia disease is caused by?",
+    "optionA": "Virus",
+    "optionB": "Bacteria",
+    "optionC": "Yeast",
+    "optionD": "Protozoa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसमें एन्जाइम्स नहीं होते हैं ?",
+    "question": "In which of the following are enzymes not present?",
+    "optionA": "Virus",
+    "optionB": "Bacteria",
+    "optionC": "Algae",
+    "optionD": "Lichen",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::कुत्ते के काटने से जिस विषाणु के द्वारा घात रोग उत्पन्न होता है क्या कहलाता है ?",
+    "question": "What is called the disease caused by the virus due to dog bite?",
+    "optionA": "Cholera",
+    "optionB": "Plague",
+    "optionC": "Mumps",
+    "optionD": "Hydrophobia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::सार्स (S.A.R.S.) क्या है ?",
+    "question": "What is SARS?",
+    "optionA": "Communication System",
+    "optionB": "Viral Disease",
+    "optionC": "Fungal Disease",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::खसरा निम्नलिखित संक्रमण के कारण होता है ?",
+    "question": "Measles is caused by which of the following infections?",
+    "optionA": "Bacteria",
+    "optionB": "Mycoplasma",
+    "optionC": "Virus",
+    "optionD": "Algae",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::आलू में मोजैक रोग का कारक तत्व है ?",
+    "question": "What is the causative agent of mosaic disease in potatoes?",
+    "optionA": "Fungus",
+    "optionB": "Lichen",
+    "optionC": "Bacteria",
+    "optionD": "Virus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::शैवालों की कोशिका भित्ति किसकी बनी होती है ?",
+    "question": "The cell wall of algae is made of?",
+    "optionA": "Cutin",
+    "optionB": "Chitin",
+    "optionC": "Suberin",
+    "optionD": "Cellulose",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::केल्प प्राप्त होता है ?",
+    "question": "Kelp is obtained from?",
+    "optionA": "Lichens",
+    "optionB": "Marine algae",
+    "optionC": "Aquatic algae",
+    "optionD": "Algae",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::लाल सागर का लाल रंग किसकी उपस्थिति के कारण होता है ?",
+    "question": "The red color of the Red Sea is due to the presence of?",
+    "optionA": "Meat",
+    "optionB": "Lichen",
+    "optionC": "Algae",
+    "optionD": "Bacteria",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::अगर-अगर किससे प्राप्त होता है ?",
+    "question": "Agar-agar is obtained from?",
+    "optionA": "Algae",
+    "optionB": "Bacteria",
+    "optionC": "Moss",
+    "optionD": "Fungus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::वनस्पति विज्ञान की वह शाखा जिसके अन्तर्गत कवकों का अध्ययन किया जाता है, कहलाती है ?",
+    "question": "The branch of botany in which the study of fungi is done is called?",
+    "optionA": "Agrology",
+    "optionB": "Mycology",
+    "optionC": "Phenology",
+    "optionD": "Pomology",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::कवकों की कोशिका भित्ति किसकी बनी होती है ?",
+    "question": "The cell wall of fungi is made of?",
+    "optionA": "Chitin and Hemicellulose",
+    "optionB": "Lipids",
+    "optionC": "Protein",
+    "optionD": "Cellulose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सभी कवक सदैव होते हैं ?",
+    "question": "All fungi are always?",
+    "optionA": "Saprophytic",
+    "optionB": "Parasitic",
+    "optionC": "Heterotrophic",
+    "optionD": "Autotrophic",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वृक्षों की छालों पर उगने वाले कवक कहलाते हैं ?",
+    "question": "Fungi that grow on tree bark are called?",
+    "optionA": "Epiphyllous",
+    "optionB": "Corticolous",
+    "optionC": "Coprophilous",
+    "optionD": "Saxicolous",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::गोबर पर उगने वाले कवक कहलाते हैं ?",
+    "question": "Fungi that grow on dung are called?",
+    "optionA": "Saxicolous",
+    "optionB": "Epiphyllous",
+    "optionC": "Terricolous",
+    "optionD": "Coprophilous",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::निम्न में से किसमें क्लोरोफिल नहीं होता है ?",
+    "question": "Which of the following does not contain chlorophyll?",
+    "optionA": "Fungi",
+    "optionB": "Algae",
+    "optionC": "Bryophytes",
+    "optionD": "Pteridophytes",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::खाली चट्टानों पर उगने वाले लाइकेन को क्या कहा जाता है ?",
+    "question": "What is the lichen that grows on bare rocks called?",
+    "optionA": "Parmelia",
+    "optionB": "Saxatilis",
+    "optionC": "Saxicolous",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::जापान में लोग किस लाइकेन को सब्जी के रूप में खाते हैं ?",
+    "question": "In Japan, people eat which lichen as a vegetable?",
+    "optionA": "Rocelle",
+    "optionB": "Indocarpus",
+    "optionC": "Parmelia",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मिरगी की औषधि किस लाइकेन से प्राप्त होती है ?",
+    "question": "The medicine for epilepsy is obtained from which lichen?",
+    "optionA": "Rocelle",
+    "optionB": "Lecanora",
+    "optionC": "Indocarpus",
+    "optionD": "Parmelia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::बीजों की प्रकृति किसमें उत्पन्न हुई ?",
+    "question": "In which were the seeds of nature produced?",
+    "optionA": "Fungi",
+    "optionB": "Algae",
+    "optionC": "Pteridophytes",
+    "optionD": "Bryophytes",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::एजोला है, एक ?",
+    "question": "Azolla is, a ?",
+    "optionA": "Aquatic fern",
+    "optionB": "Fungi",
+    "optionC": "Algae",
+    "optionD": "Lichen",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसे जैव उर्वरक के रूप में प्रयोग किया जाता है ?",
+    "question": "Which of the following is used as a biofertilizer?",
+    "optionA": "Urea",
+    "optionB": "Azolla",
+    "optionC": "Manure",
+    "optionD": "Clostridium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::सबसे अधिक क्रोमोसोम किसमें पाये जाते हैं ?",
+    "question": "In which are the most chromosomes found?",
+    "optionA": "In Pteridophytes",
+    "optionB": "In Bryophytes",
+    "optionC": "In humans",
+    "optionD": "In elephants",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::किस वर्ग के पौधों में बीज बनते हैं, परन्तु बीज नग्न रूप में पौधे पर लगे रहते है ?",
+    "question": "In which class of plants do seeds form, but the seeds remain naked on the plant?",
+    "optionA": "Gymnosperms",
+    "optionB": "Angiosperms",
+    "optionC": "Pteridophytes",
+    "optionD": "Bryophytes",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सिल्विकल्चर वनस्पति विज्ञान की वह शाखा है जिसमें वर्णन होता है ?",
+    "question": "Silviculture is that branch of botany in which description is done?",
+    "optionA": "Of forest development",
+    "optionB": "Of pteridophytes",
+    "optionC": "Of fungi cultivation",
+    "optionD": "Of algae cultivation",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::ोटीन जो कोशिका के भीतर उपयोग की जाती है,किसके द्वारा संश्लेषित होती है ?",
+    "question": "Protein that is used inside the cell, by what is it synthesized?",
+    "optionA": "By endoplasmic reticulum",
+    "optionB": "By Golgi body",
+    "optionC": "By free ribosomes",
+    "optionD": "By bound ribosomes",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्न में बैक्टीरिया से फैलने वाला रोग है?",
+    "question": "Which of the following is a disease spread by bacteria?",
+    "optionA": "Smallpox",
+    "optionB": "Tuberculosis",
+    "optionC": "Mumps",
+    "optionD": "Jaundice",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मूलांकुर के अतिरिक्त पौधे के किसी भी भाग से विकसित होने वाली जड़ें कहलाती है ?",
+    "question": "Roots that develop from any part of the plant other than the radicle are called?",
+    "optionA": "Adventitious roots",
+    "optionB": "Fibrous roots",
+    "optionC": "Lateral roots",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मूलांकुर से विकसित होने वाली जड़ें कहलाती हैं ?",
+    "question": "Roots that develop from the radicle are called?",
+    "optionA": "Tap roots",
+    "optionB": "Respiratory roots",
+    "optionC": "Fibrous roots",
+    "optionD": "Lateral roots",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::श्वसन मूल मिलती है ?",
+    "question": "Respiratory roots are found?",
+    "optionA": "In Jussiaea",
+    "optionB": "In maize",
+    "optionC": "In betel",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन-सा एक जड़ नहीं है ?",
+    "question": "Which of the following is not a root?",
+    "optionA": "Sweet potato",
+    "optionB": "Radish",
+    "optionC": "Potato",
+    "optionD": "Carrot",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::अवस्तम्भ मूल पायी जाती है ?",
+    "question": "Adventitious roots are found?",
+    "optionA": "In sugarcane",
+    "optionB": "In chickpea",
+    "optionC": "In rice",
+    "optionD": "In peanut",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जड़े विकसित होती हैं ?",
+    "question": "Roots develop?",
+    "optionA": "From stem",
+    "optionB": "From leaf",
+    "optionC": "From plumule",
+    "optionD": "From radicle",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::गाजर है एक ?",
+    "question": "Carrot is a ?",
+    "optionA": "Flower",
+    "optionB": "Stem",
+    "optionC": "Root",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::बरगद के पेड़ के तने से लटकने वाली मोटी जड़े कहलाती हैं ?",
+    "question": "What are the thick roots hanging from the trunk of the banyan tree called?",
+    "optionA": "Aerial roots",
+    "optionB": "Climbing roots",
+    "optionC": "Prop roots",
+    "optionD": "Stilt roots",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पेड़ में निम्लिखित में से कौन-सा हमेशा रहता है ?",
+    "question": "Which of the following is always present in a tree?",
+    "optionA": "Leaf",
+    "optionB": "Root",
+    "optionC": "Bud",
+    "optionD": "Branches",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::आलू का खाने योग्य भाग होता है ?",
+    "question": "What is the edible part of a potato?",
+    "optionA": "Root",
+    "optionB": "Fruit",
+    "optionC": "Stem",
+    "optionD": "Bud",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::नागफनी में प्रकाश संश्लेषी कार्य होता है ?",
+    "question": "In which part of the snake plant does photosynthesis occur?",
+    "optionA": "By the leaf stalk",
+    "optionB": "By the bulb",
+    "optionC": "By the rhizome",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन एक तना है ?",
+    "question": "Which of the following is a stem?",
+    "optionA": "Carrot",
+    "optionB": "Radish",
+    "optionC": "Potato",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::आलू भूमिगत रूपान्तरित तना होता है, जिसे कहा जाता है ?",
+    "question": "Potato is an underground modified stem, what is it called?",
+    "optionA": "Tuber",
+    "optionB": "Bulb",
+    "optionC": "Rhizome",
+    "optionD": "Corm",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::हल्दी के पौधो का खाने योग्य हिस्सा कौन-सा है ?",
+    "question": "Which part of the turmeric plant is edible?",
+    "optionA": "Fruit",
+    "optionB": "Rhizome",
+    "optionC": "Corm",
+    "optionD": "Root",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::अदरक क्या है ?",
+    "question": "What is ginger?",
+    "optionA": "Rhizome",
+    "optionB": "Bulb",
+    "optionC": "Root",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::प्याज किसका परिवर्तित रूप है ?",
+    "question": "What is the modified form of an onion?",
+    "optionA": "Root",
+    "optionB": "Flower",
+    "optionC": "Stem",
+    "optionD": "Fruit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वे पौधे जिनमें कभी पुष्प नहीं बनते हैं, क्या कहलाते हैं ?",
+    "question": "What are plants that never produce flowers called?",
+    "optionA": "Cryptogams",
+    "optionB": "Angiosperms",
+    "optionC": "Gymnosperms",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::संसार का सबसे बड़ा पुष्प किसके द्वारा उत्पन्न होता है ?",
+    "question": "Which plant produces the largest flower in the world?",
+    "optionA": "By Loranthus",
+    "optionB": "By Rafflesia",
+    "optionC": "By Drosera",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::संसार का सबसे छोटा पुष्प कौन-सा है ?",
+    "question": "What is the smallest flower in the world?",
+    "optionA": "Wolffia",
+    "optionB": "Lotus",
+    "optionC": "Rose",
+    "optionD": "Rafflesia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जीवनचक्र की दृष्टि से पौधे का सबसे महत्वपूर्ण अंग कौन-सा है ?",
+    "question": "From the perspective of the life cycle, which is the most important part of a plant?",
+    "optionA": "Stem",
+    "optionB": "Root",
+    "optionC": "Flower",
+    "optionD": "Leaf",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::कौन एक जीवित जीवश्म कहलाता है ?",
+    "question": "Which is known as a living fossil?",
+    "optionA": "Ginkgo",
+    "optionB": "Cycas",
+    "optionC": "Pinus",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::दमा एव खांसी के रोगों में काम आने वाली औषधि इफेड्रिन किससे प्राप्त की जाती है ?",
+    "question": "From which plant is ephedrine, a medicine used in asthma and cough, obtained?",
+    "optionA": "Pinus",
+    "optionB": "Juniperus",
+    "optionC": "Cycas",
+    "optionD": "Ephedra",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::संसार का सबसे बड़ा पुष्प कौन-सा है ?",
+    "question": "What is the largest flower in the world?",
+    "optionA": "Rafflesia",
+    "optionB": "Cactus",
+    "optionC": "Lotus",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सामान्यतः अंकुरण के लिए किसकी आवश्यकता नहीं होती है ?",
+    "question": "Generally, which is not required for germination?",
+    "optionA": "Air",
+    "optionB": "Heat",
+    "optionC": "Water",
+    "optionD": "Light",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::किस पौधे में बीज होता है लेकिन फल नहीं होता है ?",
+    "question": "Which plant has seeds but no fruit?",
+    "optionA": "Almond",
+    "optionB": "Cycas",
+    "optionC": "Groundnut",
+    "optionD": "Sugarcane",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::किस पौधे का फल भूमि के नीचे पाया जाता है ?",
+    "question": "Which plant's fruit is found underground?",
+    "optionA": "Carrot",
+    "optionB": "Potato",
+    "optionC": "Groundnut",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::नारियल का खाने योग्य भाग होता है ?",
+    "question": "Which part of the coconut is edible?",
+    "optionA": "Endosperm",
+    "optionB": "Complete seed",
+    "optionC": "Seed coat",
+    "optionD": "Pericarp",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सुगन्धित पुष्पों में परागण किसके द्वारा होता है ?",
+    "question": "Pollination in fragrant flowers is done by?",
+    "optionA": "Insects",
+    "optionB": "Birds",
+    "optionC": "Water",
+    "optionD": "Air",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::अनिषेकजनन प्रायः किसमे दिखायी देता है ?",
+    "question": "Apomixis is commonly seen in?",
+    "optionA": "Litchi",
+    "optionB": "Grape",
+    "optionC": "All types of fruits",
+    "optionD": "Mango",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::तना काट आमतौर पर किसके प्रवर्धन के लिए प्रयोग किया जाता है ?",
+    "question": "Stem cutting is generally used for the propagation of?",
+    "optionA": "Banana",
+    "optionB": "Cotton",
+    "optionC": "Sugarcane",
+    "optionD": "Litchi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्न में से किस एक की खेती पौधे का प्रतिरोपण करके की जाती है ?",
+    "question": "Which of the following is cultivated by transplanting plants?",
+    "optionA": "Soybean",
+    "optionB": "Sorghum",
+    "optionC": "Onion",
+    "optionD": "Maize",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::एक सत्य फल परिवर्धित होता है ?",
+    "question": "A true fruit develops from?",
+    "optionA": "Thalamus",
+    "optionB": "Petals",
+    "optionC": "Ovary",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्न में से कौन-सा एक कूट फल होते हैं ?",
+    "question": "Which of the following is a pome fruit?",
+    "optionA": "Mango",
+    "optionB": "Cashew",
+    "optionC": "Apple",
+    "optionD": "Areca nut",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::सर्वाधिक महत्वपूर्ण भोजन किससे उत्पन्न होते हैं ?",
+    "question": "The most important food is produced from?",
+    "optionA": "Stems",
+    "optionB": "Leaves",
+    "optionC": "Fruits",
+    "optionD": "Roots",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::चावल का दाना क्या है ?",
+    "question": "What is the grain of rice?",
+    "optionA": "A seed",
+    "optionB": "A caryopsis",
+    "optionC": "A fruit",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::नाशपाती का कौन-सा भाग खाया जाता है ?",
+    "question": "Which part of the pear is eaten?",
+    "optionA": "Fruit",
+    "optionB": "Seed",
+    "optionC": "Fleshy thalamus",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::बीज किससे विकसित होता है ?",
+    "question": "Seed develops from?",
+    "optionA": "Ovaries",
+    "optionB": "Ovules",
+    "optionC": "Anthers",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसे वर्गिकी का जनक कहा जाता है ?",
+    "question": "Among the following, who is considered the father of taxonomy?",
+    "optionA": "Aristotle",
+    "optionB": "Triviranas",
+    "optionC": "Leeuwenhoek",
+    "optionD": "Linnaeus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::वर्गीकरण की आधारीय इकाई है ?",
+    "question": "What is the basic unit of classification?",
+    "optionA": "Family",
+    "optionB": "Species",
+    "optionC": "Class",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::आलू किस कुल से संबंधित इकाई है ?",
+    "question": "To which family does potato belong?",
+    "optionA": "Compositae",
+    "optionB": "Gramineae",
+    "optionC": "Solanaceae",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::कपास किस कुल से संबंधित इकाई है ?",
+    "question": "To which family does cotton belong?",
+    "optionA": "Malvaceae",
+    "optionB": "Compositae",
+    "optionC": "Solanaceae",
+    "optionD": "Gramineae",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::बैगन किस कुल का पौधा है ?",
+    "question": "To which family does brinjal belong?",
+    "optionA": "Solanaceae",
+    "optionB": "Compositae",
+    "optionC": "Malvaceae",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::आम का वानस्पतिक नाम क्या है ?",
+    "question": "What is the botanical name of mango?",
+    "optionA": "Aam",
+    "optionB": "Mangifera indica",
+    "optionC": "Daucus carota",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::दलहन पौधे सम्बंधित है ?",
+    "question": "Pulse plants are related to?",
+    "optionA": "Cruciferae",
+    "optionB": "Solanaceae",
+    "optionC": "Leguminosae",
+    "optionD": "Gramineae",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::चाय के पौधे का वानस्पतिक नाम क्या है ?",
+    "question": "What is the botanical name of tea plant?",
+    "optionA": "Sinensis",
+    "optionB": "Thea sinensis",
+    "optionC": "Sinensis thea",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मटर पौधा क्या है ?",
+    "question": "What is pea plant?",
+    "optionA": "Flower",
+    "optionB": "Vegetable",
+    "optionC": "Shrub",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::लौंग होता है एक ?",
+    "question": "Cloves are?",
+    "optionA": "Dry floral bud",
+    "optionB": "Seed",
+    "optionC": "Fruit",
+    "optionD": "Bark",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::फूलगोभी के पौधे का कौन-सा भाग खाया जाता है ?",
+    "question": "Which part of the cauliflower plant is eaten?",
+    "optionA": "Inflorescence",
+    "optionB": "Leaves",
+    "optionC": "Roots",
+    "optionD": "A and B",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पौधो के किस भाग से कॉफी प्राप्त होती है ?",
+    "question": "From which part of the plant is coffee obtained?",
+    "optionA": "From roots",
+    "optionB": "From leaves",
+    "optionC": "From seeds",
+    "optionD": "From fruits",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्न में से कौन-सा एक मानव निर्वित धान्य है ?",
+    "question": "Which of the following is a cultivated cereal grain?",
+    "optionA": "Triticum vulgare",
+    "optionB": "Triticale",
+    "optionC": "Zea mays",
+    "optionD": "Cereal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::विटामिन सी का सबसे अच्छा स्रोत है ?",
+    "question": "What is the best source of Vitamin C?",
+    "optionA": "Orange",
+    "optionB": "Lemon",
+    "optionC": "Sugarcane",
+    "optionD": "Amla",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::तम्बाकू की पत्तियों में होता है ?",
+    "question": "What is found in tobacco leaves?",
+    "optionA": "Nicotine",
+    "optionB": "Cauliviscin",
+    "optionC": "Aspirin",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जन्तुओं में होने वाली &#39; फूट एण्ड माउथ &#39; रोग किसके कारण उत्पन्न होती है ?",
+    "question": "In animals, the disease 'Foot and Mouth' is caused by which of the following?",
+    "optionA": "Virus",
+    "optionB": "Protozoa",
+    "optionC": "Bacteria",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::भारत की प्रमुख धान्य फसल है ?",
+    "question": "What is the main cereal crop of India?",
+    "optionA": "Wheat",
+    "optionB": "Maize",
+    "optionC": "Rice",
+    "optionD": "Jowar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::दालें किसका एक अच्छा स्रोत होता है ?",
+    "question": "Pulses are a good source of which of the following?",
+    "optionA": "Protein",
+    "optionB": "Fat",
+    "optionC": "Carbohydrate",
+    "optionD": "Cellulose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::किस वनस्पति खाद्य में अधिकतम प्रोटीन होता है ?",
+    "question": "Which of the following plant foods contains the maximum protein?",
+    "optionA": "Arhar",
+    "optionB": "Soyabean",
+    "optionC": "Peas",
+    "optionD": "Gram",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन-सी फसल मृदा को नाइट्रोजन से भरपूर कर देती है ?",
+    "question": "Which of the following crops enriches the soil with nitrogen?",
+    "optionA": "Maize",
+    "optionB": "Jowar",
+    "optionC": "Peas",
+    "optionD": "Gram",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::दालचीनी पेड़ के किस भाग से प्राप्त की जाती है ?",
+    "question": "Cinnamon is obtained from which part of the tree?",
+    "optionA": "Flower",
+    "optionB": "Root",
+    "optionC": "Bark",
+    "optionD": "Leaves",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::तारपीन का तेल किससे प्राप्त होता है ?",
+    "question": "Turpentine oil is obtained from which of the following?",
+    "optionA": "Deodar",
+    "optionB": "Pine",
+    "optionC": "Mycorrhiza",
+    "optionD": "Netam",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::लिटमस प्राप्त होता है ?",
+    "question": "Litmus is obtained from which of the following?",
+    "optionA": "Bacteria",
+    "optionB": "Algae",
+    "optionC": "Fungi",
+    "optionD": "Lichen",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::पौधों में जल का परिवहन किसके द्वारा होता है ?",
+    "question": "In plants, water transport occurs through which of the following?",
+    "optionA": "Phloem",
+    "optionB": "Skin",
+    "optionC": "Xylem",
+    "optionD": "Capillary",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::भूमि में पौधों की जड़ों के लिए उपलब्ध जल होता है ?",
+    "question": "Water available for plant roots in the soil is called?",
+    "optionA": "Gravitational water",
+    "optionB": "Hygroscopic water",
+    "optionC": "Capillary water",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पौधों की वृद्धि के लिए कितने आवश्यक तत्वों की जरूरत होती है ?",
+    "question": "How many essential elements are required for plant growth?",
+    "optionA": "5",
+    "optionB": "11",
+    "optionC": "15",
+    "optionD": "16",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::पत्तियों की हरिमहीनता किसकी कमी से होता है ?",
+    "question": "Chlorosis in leaves is caused by the deficiency of which of the following?",
+    "optionA": "Mg",
+    "optionB": "Mo",
+    "optionC": "Ca",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::वाष्पोत्सर्जन होता है ?",
+    "question": "Transpiration occurs through which of the following?",
+    "optionA": "Roots",
+    "optionB": "All aerial parts",
+    "optionC": "Stems",
+    "optionD": "Leaves",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::वाष्पोत्सर्जनमापी यंत्र कौन-सा है ?",
+    "question": "Which of the following is a potometer?",
+    "optionA": "Clinometer",
+    "optionB": "Potometer",
+    "optionC": "Hygrometer",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पौधें में वाष्पोत्सर्जन की क्रिया किसमें होती है ?",
+    "question": "In plants, the process of transpiration occurs in which of the following?",
+    "optionA": "Leaf",
+    "optionB": "Root",
+    "optionC": "Stem",
+    "optionD": "Entire plant",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::काश संश्लेषण की क्रिया में निम्नलिखित में से कौन आवश्यक है ?",
+    "question": "What is required in the process of photosynthesis?",
+    "optionA": "Sunlight",
+    "optionB": "Chlorophyll",
+    "optionC": "Carbon dioxide",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::काश संश्लेषण की क्रिया में निम्नलिखित में से क्या बाहर निकलता है ?",
+    "question": "What is released in the process of photosynthesis?",
+    "optionA": "Oxygen",
+    "optionB": "Hydrogen",
+    "optionC": "Chlorine",
+    "optionD": "Carbon dioxide",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::काश संश्लेषण की क्रिया कब होता है ?",
+    "question": "When does photosynthesis occur?",
+    "optionA": "Only at night",
+    "optionB": "Only during the day",
+    "optionC": "During day and night",
+    "optionD": "During the day or night",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::श्वसन मापन यंत्र क्या कहलाता है ?",
+    "question": "What is the respiration measuring instrument called?",
+    "optionA": "Autometer",
+    "optionB": "Respirometer",
+    "optionC": "Potometer",
+    "optionD": "Hygrometer",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::काश संश्लेषण में हरे पौधों द्धारा कोन-सी गैस छोड़े जाती है ?",
+    "question": "Which gas is released by green plants during photosynthesis?",
+    "optionA": "Carbon dioxide",
+    "optionB": "Oxygen",
+    "optionC": "Nitrogen",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::फल पकाने वाला हार्मोन कौन-सा है ?",
+    "question": "Which is the fruit ripening hormone?",
+    "optionA": "Ethylene",
+    "optionB": "Auxin",
+    "optionC": "Gibberellin",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पौधों की लम्बाई में वृद्धि के लिए आवश्यक नहीं है ?",
+    "question": "What is not necessary for the growth of plants in length?",
+    "optionA": "Nitrogen",
+    "optionB": "Sodium",
+    "optionC": "Calcium",
+    "optionD": "Phosphorus",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::काश संश्लेषण क्रिया में मुक्त होने वाली ऑक्सीजन कहाँ से आती है ?",
+    "question": "Where does the oxygen released during photosynthesis come from?",
+    "optionA": "Atmosphere",
+    "optionB": "Water",
+    "optionC": "Carbon dioxide",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::वह यंत्र जिसके द्धारा तने की वृद्धि दर सही रूप में नापी जाती है ?",
+    "question": "What is the instrument by which the rate of growth of the stem is measured correctly?",
+    "optionA": "Potometer",
+    "optionB": "Autometer",
+    "optionC": "Auxanometer",
+    "optionD": "Respirometer",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पेड़ों की पत्तियों में पाया जाने वाला हरा पदार्थ क्या कहलाता है ?",
+    "question": "What is the green substance found in the leaves of trees called?",
+    "optionA": "Nitrogen",
+    "optionB": "Chlorophyll",
+    "optionC": "Hemoglobin",
+    "optionD": "Calcium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पादप रोगों का सबसे उत्तरदायी कारक कौन है ?",
+    "question": "What is the most responsible factor for plant diseases?",
+    "optionA": "Bacteria",
+    "optionB": "Fungi",
+    "optionC": "Protozoa",
+    "optionD": "Virus",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पेड़ व पौधें का खाना तैयार करने की प्रक्रिया क्या कहलाती है ?",
+    "question": "What is the process of making food for trees and plants called?",
+    "optionA": "Photosynthesis",
+    "optionB": "Metabolic synthesis",
+    "optionC": "Carbohydrate hydrolysis",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन-सा पादप हार्मोन बोने पौधों को लम्बा कर देता है तथा फूल बनने में भी मदद करता है ?",
+    "question": "Which plant hormone makes the plants long and also helps in flower formation?",
+    "optionA": "Ethylene",
+    "optionB": "Auxin",
+    "optionC": "Gibberellin",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::छुईमुई की पत्ती में गति होती हैं ?",
+    "question": "Movement occurs in the leaves of Mimosa pudica?",
+    "optionA": "Photonasty",
+    "optionB": "Seismonasty",
+    "optionC": "Photonasty",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::खैरा रोग किस फसल से सम्बन्धित है ?",
+    "question": "Khaira disease is related to which crop?",
+    "optionA": "Rice",
+    "optionB": "Sugarcane",
+    "optionC": "Jowar",
+    "optionD": "Groundnut",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::खैरा रोग किसके कारण होता है ?",
+    "question": "What is the cause of Khaira disease?",
+    "optionA": "Due to virus",
+    "optionB": "Due to zinc deficiency",
+    "optionC": "Due to bacteria",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::चाय में लाल रस्ट रोग किसके कारण होता है ?",
+    "question": "What is the cause of red rust disease in tea?",
+    "optionA": "Virus",
+    "optionB": "Bacteria",
+    "optionC": "Green algae",
+    "optionD": "Fungus",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::नींबू का कैंकर रोग किसके कारण होता है ?",
+    "question": "What is the cause of canker disease in lemon?",
+    "optionA": "Bacteria",
+    "optionB": "Virus",
+    "optionC": "Algae",
+    "optionD": "Fungus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मिलीबग किस फसल से सम्बन्धित है ?",
+    "question": "Millbug is related to which crop?",
+    "optionA": "Moong",
+    "optionB": "Mustard",
+    "optionC": "Sugarcane",
+    "optionD": "Jowar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::गेहूँ से सम्बन्धित रस्ट रोग पर कार्य करने वाले वैज्ञानिक हैं ?",
+    "question": "Scientists working on wheat rust disease are?",
+    "optionA": "K.C. Mehta",
+    "optionB": "D.D. Pant",
+    "optionC": "Birbal Sahni",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::अग्निनीरजा रोग किससे सम्बन्धित है ?",
+    "question": "Agneeraja disease is related to?",
+    "optionA": "Coconut",
+    "optionB": "Orange",
+    "optionC": "Apple",
+    "optionD": "Grape",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::सिट्रस कैंकर है ?",
+    "question": "Citrus canker is?",
+    "optionA": "A disease of lemon",
+    "optionB": "A famous insect of lemon",
+    "optionC": "A species of lemon",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::आलू में ब्लैक हार्ट का कारक कौन है ?",
+    "question": "What is the cause of Black Heart in potato?",
+    "optionA": "Oxygen deficiency",
+    "optionB": "Potassium deficiency",
+    "optionC": "Boron deficiency",
+    "optionD": "Copper deficiency",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पादपों में बना खाद्य पदार्थ पौधे के विभिन्न अंगो में किसके द्धारा पहुँचता है ?",
+    "question": "By what means does the food substance formed in plants reach the various parts of the plant?",
+    "optionA": "Phloem",
+    "optionB": "Cortex",
+    "optionC": "Xylem",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पादपों में जल तथा खनिज लवणों का संचालन किसके द्धारा होता है ?",
+    "question": "By what means does the transport of water and mineral salts occur in plants?",
+    "optionA": "Phloem",
+    "optionB": "Xylem",
+    "optionC": "Cortex",
+    "optionD": "Pith",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::डेसीबल किसे नापने के लिए प्रयोग में लाया जाता है ?",
+    "question": "Decibel is used to measure?",
+    "optionA": "Particles in air",
+    "optionB": "Sugar in urine",
+    "optionC": "Sound in atmosphere",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::वंशागति के अध्ययन से सम्बन्धित जीव विज्ञान की शाखा क्या है ?",
+    "question": "What is the branch of biology related to the study of heredity?",
+    "optionA": "Genetics",
+    "optionB": "Anatomy",
+    "optionC": "Cytology",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसको आनुवंशिकी का पिता कहा जाता है ?",
+    "question": "Who is called the father of genetics?",
+    "optionA": "Mendel",
+    "optionB": "Weismann",
+    "optionC": "Darwin",
+    "optionD": "K.C. Mehta",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जीन शब्द का प्रतिपादन किसने किया है ?",
+    "question": "Who coined the term gene?",
+    "optionA": "D.D. Pant",
+    "optionB": "Johannsen",
+    "optionC": "Mendel",
+    "optionD": "Darwin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::जीन्स बने होते हैं ?",
+    "question": "Genes are made of?",
+    "optionA": "RNA",
+    "optionB": "Proteins",
+    "optionC": "DNA",
+    "optionD": "DNA and RNA",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::योगशाला में सर्व प्रथम DNA का संश्लेषण किसने किया था ?",
+    "question": "In the laboratory, who first synthesized DNA?",
+    "optionA": "Khorana did",
+    "optionB": "Miller did",
+    "optionC": "Darwin did",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::किसके द्धारा आनुवंशिकता के विज्ञान को आनुवंशिकी कहा गया है ?",
+    "question": "By whom was the science of heredity called genetics?",
+    "optionA": "Watson",
+    "optionB": "Muller",
+    "optionC": "Mendel",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::आनुवंशिकी उत्परिवर्तन होता है ?",
+    "question": "Genetic mutation occurs in?",
+    "optionA": "Chromosome",
+    "optionB": "Ribosome",
+    "optionC": "RNA",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सेल नाम किस जीव वैज्ञानिक ने सर्वप्रथम दिया था ?",
+    "question": "Which biologist first gave the name cell?",
+    "optionA": "Brown",
+    "optionB": "Robert Hooke",
+    "optionC": "Fleming",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::कोशिका में प्रोटीन संश्लेषण कहाँ होता है ?",
+    "question": "Where does protein synthesis occur in the cell?",
+    "optionA": "In the ribosome",
+    "optionB": "In the centrosome",
+    "optionC": "In the Golgi body",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::80 % से अधिक सेल में पाया जाने वाला पदार्थ क्या है ?",
+    "question": "What is the substance found in more than 80% of cells?",
+    "optionA": "Water",
+    "optionB": "Minerals",
+    "optionC": "Protein",
+    "optionD": "Fat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::गॉल्जीकाय का प्रमुख कार्य है ?",
+    "question": "The main function of the Golgi body is?",
+    "optionA": "To produce digestive juice",
+    "optionB": "Secretion",
+    "optionC": "Respiration",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::किसकी उपस्थिति के कारण किसी पादप कोशिका और पशु कोशिका में अंतर पाया जाता है ?",
+    "question": "Due to the presence of what is a difference found between a plant cell and an animal cell?",
+    "optionA": "Cell wall",
+    "optionB": "Cell membrane",
+    "optionC": "Nucleus",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::कौन-सा अंगक प्रायः जन्तु कोशिका में उपस्थित नहीं होता है ?",
+    "question": "Which organelle is usually not present in an animal cell?",
+    "optionA": "Golgi body",
+    "optionB": "Mitochondria",
+    "optionC": "Vacuole",
+    "optionD": "Mitochondria and vacuole",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन-सा कोशिकांग DNA रखता है ?",
+    "question": "Which of the following organelles contains DNA?",
+    "optionA": "Golgi body",
+    "optionB": "Mitochondria",
+    "optionC": "Lysosome",
+    "optionD": "Centriole",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::कोशिका व आण्विक जीव विज्ञान केन्द्र कहाँ स्थित है ?",
+    "question": "Where is the Centre for Cellular and Molecular Biology located?",
+    "optionA": "Hyderabad",
+    "optionB": "Mumbai",
+    "optionC": "Kolkata",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::जीवद्रव्य शब्द का प्रयोग सर्वप्रथम किसने किया था ?",
+    "question": "Who first used the term protoplasm?",
+    "optionA": "Rutherford",
+    "optionB": "Huxley",
+    "optionC": "Purkinje",
+    "optionD": "John Dalton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::कोशिका की क्रियात्मक गतिविधियां किसके द्वारा नियंत्रित होती है ?",
+    "question": "The functional activities of the cell are controlled by?",
+    "optionA": "By the nucleolus",
+    "optionB": "By the nucleus",
+    "optionC": "By the protoplasm",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::जीवद्रव्य जीवन का भौतिक आधार है यह किसका कथन है ?",
+    "question": "Protoplasm is the physical basis of life, whose statement is this?",
+    "optionA": "Huxley",
+    "optionB": "Lamarck",
+    "optionC": "Henry",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::फूलों और बीजों को विभिन्न प्रकार के आकर्षक रंग प्रदान करता है ?",
+    "question": "What provides various attractive colors to flowers and seeds?",
+    "optionA": "Leucoplast",
+    "optionB": "Tonoplast",
+    "optionC": "Chromoplast",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पत्तियों को हरा रंग प्रदान करता है ?",
+    "question": "What gives leaves their green color?",
+    "optionA": "Chloroplast",
+    "optionB": "Tonoplast",
+    "optionC": "Chromoplast",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::कोशिका की आत्महत्या की थैली कहलाता है ?",
+    "question": "What is the suicide bag of the cell called?",
+    "optionA": "Golgi body",
+    "optionB": "Mitochondria",
+    "optionC": "Centriole",
+    "optionD": "Lysosome",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::जीवन का भैतिक आधार है ?",
+    "question": "What is the physical basis of life?",
+    "optionA": "Cell",
+    "optionB": "Nucleus",
+    "optionC": "Food",
+    "optionD": "Protoplasm",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::न्यूक्लियस की खोज सर्वप्रथम किसने की थी ?",
+    "question": "Who discovered the nucleus first?",
+    "optionA": "Brown",
+    "optionB": "Robert Hooke",
+    "optionC": "Fleming",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::माइटोकॉण्ड्रिया किसमे अनुपस्थित होता है ?",
+    "question": "In which is mitochondria absent?",
+    "optionA": "Green algae",
+    "optionB": "Bacteria",
+    "optionC": "Fungi",
+    "optionD": "Yeast",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::भोजन का अनिवार्य अवयव है ?",
+    "question": "What is an essential component of food?",
+    "optionA": "Protein",
+    "optionB": "Carbohydrate",
+    "optionC": "Glucose",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन-सा पदार्थ मानव शरीर में ईंधन का काम करता है ?",
+    "question": "Which of the following substances acts as fuel in the human body?",
+    "optionA": "Vitamin",
+    "optionB": "Water",
+    "optionC": "Protein",
+    "optionD": "Carbohydrate",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::केप्सूल का आवरण बना होता है ?",
+    "question": "The capsule is made of?",
+    "optionA": "Starch",
+    "optionB": "Protein",
+    "optionC": "Glucose",
+    "optionD": "Cellulose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::शहद का प्रमुख घटक है ?",
+    "question": "The main component of honey is?",
+    "optionA": "Maltose",
+    "optionB": "Fructose",
+    "optionC": "Glucose",
+    "optionD": "Vitamin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन-सी शर्करा तत्काल ऊर्जा प्रदान करती है ?",
+    "question": "Which of the following sugars provides immediate energy?",
+    "optionA": "Cellulose",
+    "optionB": "Maltose",
+    "optionC": "Glucose",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::शहद में मुख्यतः क्या होते हैं ?",
+    "question": "What are mainly found in honey?",
+    "optionA": "Protein",
+    "optionB": "Fat",
+    "optionC": "Vitamin",
+    "optionD": "Carbohydrate",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से सर्वाधिक ऊर्जा प्रदान करता है ?",
+    "question": "Which of the following provides the most energy?",
+    "optionA": "Mineral salts",
+    "optionB": "Carbohydrate",
+    "optionC": "Protein",
+    "optionD": "Vitamin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में कार्बोहाइड्रेट पुनः संग्रह होता है ?",
+    "question": "Where are carbohydrates stored in the human body?",
+    "optionA": "Glycogen",
+    "optionB": "Sugar",
+    "optionC": "Starch",
+    "optionD": "Glucose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::एथलीट को निम्न में से किससे जल्दी और ज्यादा ऊर्जा मिलती है ?",
+    "question": "From which of the following does an athlete get quick and more energy?",
+    "optionA": "Protein",
+    "optionB": "Carbohydrate",
+    "optionC": "Glucose",
+    "optionD": "Vitamin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::शरीर में ऊतकों का निर्माण किससे होता है ?",
+    "question": "What is the building of tissues in the body made from?",
+    "optionA": "Protein",
+    "optionB": "Carbohydrate",
+    "optionC": "Fat",
+    "optionD": "Vitamin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::एन्जाइम मूल रूप से क्या होता है ?",
+    "question": "What is an enzyme fundamentally?",
+    "optionA": "Lipid",
+    "optionB": "Acid",
+    "optionC": "Carbohydrate",
+    "optionD": "Protein",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::सोयाबीन में प्रोटीन का प्रतिशत कितना होता है ?",
+    "question": "What is the percentage of protein in soybean?",
+    "optionA": "50%",
+    "optionB": "42%",
+    "optionC": "64%",
+    "optionD": "75%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::किसमें प्रोटीन नहीं पाया जाता है ?",
+    "question": "In which is protein not found?",
+    "optionA": "Rice",
+    "optionB": "Pulses",
+    "optionC": "Milk",
+    "optionD": "Meat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसमें प्रोटीन का सबसे अधिक स्त्रोत पाया जाता है ?",
+    "question": "In which of the following is the richest source of protein found?",
+    "optionA": "Pea",
+    "optionB": "Soybean",
+    "optionC": "Urad",
+    "optionD": "Chickpea",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::शाकाहारी अधिकतम प्रोटीन पाते हैं ?",
+    "question": "Vegetarians get maximum protein from?",
+    "optionA": "Pulses",
+    "optionB": "Vegetables",
+    "optionC": "Milk",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में वसा जमा होती है ?",
+    "question": "Where is fat stored in the human body?",
+    "optionA": "In the liver",
+    "optionB": "In the skin",
+    "optionC": "In adipose tissue",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::विटामिन शब्द किसने प्रतिपादित किया है ?",
+    "question": "Who coined the word vitamin?",
+    "optionA": "Funk",
+    "optionB": "Lanec",
+    "optionC": "Pasteur",
+    "optionD": "Mendel",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसमें ऊर्जा प्राप्त नहीं होती है ?",
+    "question": "From which of the following is energy not obtained?",
+    "optionA": "Vitamin",
+    "optionB": "Protein",
+    "optionC": "Carbohydrate",
+    "optionD": "Fat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसे रक्षात्मक पदार्थ कहा जाता है ?",
+    "question": "Which of the following is called a protective substance?",
+    "optionA": "Protein",
+    "optionB": "Carbohydrate",
+    "optionC": "Vitamin",
+    "optionD": "Fat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::गाजर किस विटामिन का समृद्ध स्त्रोत है ?",
+    "question": "Carrot is a rich source of which vitamin?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin B",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मानव शरीर विटामिन A संचित रहता है ?",
+    "question": "Where does the human body store vitamin A?",
+    "optionA": "Liver",
+    "optionB": "Spleen",
+    "optionC": "Abdomen",
+    "optionD": "Stomach",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::रतौंधी का मुख्य कारण किस विटामिन की कमी है ?",
+    "question": "What is the main cause of night blindness?",
+    "optionA": "Deficiency of vitamin A",
+    "optionB": "Deficiency of vitamin B",
+    "optionC": "Deficiency of vitamin C",
+    "optionD": "Deficiency of vitamin D",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::थायमिन क्या है ?",
+    "question": "What is thiamine?",
+    "optionA": "Vitamin A1",
+    "optionB": "Vitamin B1",
+    "optionC": "Vitamin B2",
+    "optionD": "Vitamin C",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::विटामिन C का रसायनिक नाम क्या है ?",
+    "question": "What is the chemical name of vitamin C?",
+    "optionA": "Nitric acid",
+    "optionB": "Oxalic acid",
+    "optionC": "Citric acid",
+    "optionD": "Ascorbic acid",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::किसी सब्जी से प्राप्त न होने वाला विटामिन कौन-सा है ?",
+    "question": "Which vitamin is not obtained from any vegetable?",
+    "optionA": "Vitamin A1",
+    "optionB": "Vitamin B1",
+    "optionC": "Vitamin D",
+    "optionD": "Vitamin E",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::ातः कालीन धूप में मानव शरीर में कौन-सा विटामिन उतपन्न होता है ?",
+    "question": "In strong sunlight, which vitamin is produced in the human body?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin B",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मनुष्य लोहा किससे प्राप्त करता है ?",
+    "question": "From what does a human get iron?",
+    "optionA": "Milk",
+    "optionB": "Fish",
+    "optionC": "Spinach",
+    "optionD": "Cheese",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में औसतन ऑक्सीजन का तत्व कितना प्रतिशत होता है ?",
+    "question": "What is the average percentage of oxygen in the human body?",
+    "optionA": "35%",
+    "optionB": "50%",
+    "optionC": "43%",
+    "optionD": "55%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन आयोडीन का सर्वोत्तम स्त्रोत है ?",
+    "question": "Which of the following is the best source of iodine?",
+    "optionA": "Radish",
+    "optionB": "Lentil",
+    "optionC": "Algae",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मछलियों के यकृत के तेल में किसकी प्रचुरता होती है ?",
+    "question": "What is abundant in the liver oil of fish?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin E",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::विटामिन D के सर्जन में निम्न में से कौन पाया जाता है ?",
+    "question": "Which of the following is found in the synthesis of Vitamin D?",
+    "optionA": "Folic acid",
+    "optionB": "Calciferol",
+    "optionC": "Retinol",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::विटामिन का रासायनिक नाम क्या है ?",
+    "question": "What is the chemical name of Vitamin?",
+    "optionA": "Tocopherol",
+    "optionB": "Retinol",
+    "optionC": "Riboflavin",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में रक्त का थक्का किस विटामिन से बनता है ?",
+    "question": "In the human body, blood clot is formed by which vitamin?",
+    "optionA": "Vitamin A1",
+    "optionB": "Vitamin E",
+    "optionC": "Vitamin K",
+    "optionD": "Vitamin D",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::दाँतों में निम्नलिखित में से क्या होता है ?",
+    "question": "What is found in teeth?",
+    "optionA": "Calcium",
+    "optionB": "Minerals",
+    "optionC": "Carbohydrates",
+    "optionD": "Glucose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किस तत्व का सम्बन्ध दाँतों की विकृति के साथ है ?",
+    "question": "Which of the following elements is related to dental deformity?",
+    "optionA": "Iodine",
+    "optionB": "Bromine",
+    "optionC": "Fluorine",
+    "optionD": "Chlorine",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::हृदय की धड़कन को नियंत्रित करने के लिए निम्न में से कौन-सा खनिज आवश्यक है ?",
+    "question": "Which mineral is necessary to control the heartbeat of the heart?",
+    "optionA": "Potassium",
+    "optionB": "Chlorine",
+    "optionC": "Bromine",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::सागरीय खर-पतवार किसका महत्वपूर्ण स्त्रोत है ?",
+    "question": "Sea algae is an important source of which?",
+    "optionA": "Chlorine",
+    "optionB": "Iodine",
+    "optionC": "Bromine",
+    "optionD": "Fluorine",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पालक के पत्तों में किसकी मात्रा सबसे अधिक होती है ?",
+    "question": "What is the most abundant in spinach leaves?",
+    "optionA": "Vitamin",
+    "optionB": "Carbohydrate",
+    "optionC": "Iron",
+    "optionD": "Fat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसकी कमी से दन्तक्षय होता है ?",
+    "question": "Due to the deficiency of which, dental caries occurs?",
+    "optionA": "Fluorine",
+    "optionB": "Copper",
+    "optionC": "Zinc",
+    "optionD": "Iron",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::किसमें भरपूर लौह तत्व पाया जाता है ?",
+    "question": "In which is abundant iron element found?",
+    "optionA": "Milk",
+    "optionB": "Eggs",
+    "optionC": "Orange",
+    "optionD": "Green vegetables",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::इनमें से वसा कौन विलेय नहीं होता है ?",
+    "question": "Which of these fats is not soluble?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin B",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::जपानी एनसेफलाइटिस का कारक होता है ?",
+    "question": "What is the cause of Japanese encephalitis?",
+    "optionA": "Bacteria",
+    "optionB": "Virus",
+    "optionC": "Fungus",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::EEG से जिस अंग की कार्य प्रणाली प्रकट होती है, वह है ?",
+    "question": "Which organ's functioning system is revealed by EEG?",
+    "optionA": "Brain",
+    "optionB": "Ear",
+    "optionC": "Liver",
+    "optionD": "Heart",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::केसीन दुग्ध होता है ?",
+    "question": "Casein is a?",
+    "optionA": "Carbohydrate",
+    "optionB": "Protein",
+    "optionC": "Fat",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::किस तत्व की कमी के कारण घेंघा रोग हो होता है ?",
+    "question": "Due to the deficiency of which element does goiter occur?",
+    "optionA": "Nitrogen",
+    "optionB": "Calcium",
+    "optionC": "Iodine",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में शंक्रमण को रोकने में मदद करता है ?",
+    "question": "What helps in preventing infection in the human body?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin B1",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन-सा रोग रक्ताधान द्वारा नहीं फैलता है ?",
+    "question": "Which of the following diseases is not spread by blood transfusion?",
+    "optionA": "Hepatitis",
+    "optionB": "Typhoid",
+    "optionC": "Malaria",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::कैंसर के उपचार के लिए प्रयुक्त रेडियो आइसोटोप है ?",
+    "question": "Which radioisotope is used for cancer treatment?",
+    "optionA": "p-30",
+    "optionB": "Co-60",
+    "optionC": "P-32",
+    "optionD": "C-14",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::मीनामाता रोग का कारण है ?",
+    "question": "What is the cause of Minamata disease?",
+    "optionA": "Zinc",
+    "optionB": "Lead",
+    "optionC": "Cadmium",
+    "optionD": "Mercury",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::सन साइन विटामिन है ?",
+    "question": "Sunshine vitamin is?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin E",
+    "optionC": "Vitamin K",
+    "optionD": "Vitamin D",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::पीत ज्वर संचारित किया जाता है ?",
+    "question": "Yellow fever is transmitted by?",
+    "optionA": "Anopheles",
+    "optionB": "Fly",
+    "optionC": "Aedes",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन-सा रोग संक्रामक है ?",
+    "question": "Which of the following diseases is infectious?",
+    "optionA": "Arthritis",
+    "optionB": "Diphtheria",
+    "optionC": "Diabetes",
+    "optionD": "Cancer",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में कौन-सा रोग प्रायः वायु के माध्यम से फैलता है ?",
+    "question": "Which of the following diseases is often spread through air?",
+    "optionA": "Plague",
+    "optionB": "Typhoid",
+    "optionC": "Cholera",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से विटामिन कौन-सा है ?",
+    "question": "Which of the following is a vitamin?",
+    "optionA": "Folic acid",
+    "optionB": "Linoleic acid",
+    "optionC": "Citric acid",
+    "optionD": "Glutamic acid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::छिली हुई सब्जियों को धोने से कौन-सा विटामिन निकल जाता है ?",
+    "question": "Which vitamin is lost by washing peeled vegetables?",
+    "optionA": "Vitamin A",
+    "optionB": "Vitamin B",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin D",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्न में से कौन-सी प्रोटीन दूध में पायी जाती है ?",
+    "question": "Which of the following proteins is found in milk?",
+    "optionA": "Casein",
+    "optionB": "Hemoglobin",
+    "optionC": "Agglutinin",
+    "optionD": "Myosin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किसकी उपस्थिति के कारण दूध में मिठास आ जाती है ?",
+    "question": "Due to the presence of which of the following, sweetness comes in milk?",
+    "optionA": "Cryose",
+    "optionB": "Sucrose",
+    "optionC": "Carotene",
+    "optionD": "Lactose",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मनुष्य में कुल कितनी हड्डियाँ होती है ?",
+    "question": "How many bones are there in total in humans?",
+    "optionA": "212",
+    "optionB": "206",
+    "optionC": "202",
+    "optionD": "200",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::नवजात शिशुओं मे हड्डियों की संख्या कितनी होती है ?",
+    "question": "How many bones are there in newborn babies?",
+    "optionA": "200",
+    "optionB": "206",
+    "optionC": "208",
+    "optionD": "216",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मनुष्य की खोपड़ी में कितनी अस्थियाँ होती है ?",
+    "question": "How many bones are there in the human skull?",
+    "optionA": "8",
+    "optionB": "30",
+    "optionC": "32",
+    "optionD": "34",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::मनुष्य के शरीर में पसलियों के कितने जोड़े होते हैं ?",
+    "question": "How many pairs of ribs are there in the human body?",
+    "optionA": "10",
+    "optionB": "12",
+    "optionC": "14",
+    "optionD": "16",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::शरीर की सर्वाधिक प्रबल अस्थि होती है ?",
+    "question": "The strongest bone in the body is?",
+    "optionA": "In the thigh",
+    "optionB": "In the neck",
+    "optionC": "In the arm",
+    "optionD": "In the jaw",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मानव शरीर की सबसे छोटी हड्डी है ?",
+    "question": "The smallest bone in the human body is?",
+    "optionA": "Nail",
+    "optionB": "Nose",
+    "optionC": "Stapes",
+    "optionD": "Jaw",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव शरीर की सबसे लम्बी हड्डी है ?",
+    "question": "The longest bone in the human body is?",
+    "optionA": "Fibula",
+    "optionB": "Stapes",
+    "optionC": "Femur",
+    "optionD": "Tibia",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से कौन मानव के पैर की हड्डी नहीं है ?",
+    "question": "Which of the following is not a bone of the human foot?",
+    "optionA": "Tibia",
+    "optionB": "Fibula",
+    "optionC": "Femur",
+    "optionD": "Humerus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मनुष्य के शरीर में पैर की हड्डी ?",
+    "question": "Bone of the human foot?",
+    "optionA": "is hollow",
+    "optionB": "is sesamoid",
+    "optionC": "is spongy",
+    "optionD": "is solid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::टीबिया नामक हड्डी किसमें पायी जाती है ?",
+    "question": "In which part is the bone called Tibia found?",
+    "optionA": "Arm",
+    "optionB": "Mouth",
+    "optionC": "Leg",
+    "optionD": "Skull",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव शरीर के किस अंग की हड्डी सबसे लम्बी होती है ?",
+    "question": "The bone of which part of the human body is the longest?",
+    "optionA": "Spine",
+    "optionB": "Arm",
+    "optionC": "Rib cage",
+    "optionD": "Thigh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मनुष्य के जीवन काल में कितने दाँत दो बार विकसित होते हैं ?",
+    "question": "How many teeth develop twice in a human lifetime?",
+    "optionA": "4",
+    "optionB": "12",
+    "optionC": "20",
+    "optionD": "28",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में पाचन का अधिकांश भाग किस अंग में सम्पन्न होता है ?",
+    "question": "In which organ is most of the digestion completed in the human body?",
+    "optionA": "Large intestine",
+    "optionB": "Stomach",
+    "optionC": "Small intestine",
+    "optionD": "Pancreas",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::मानव तंत्र में निम्नलिखित में से कौन-सा एक पाचन एन्जाइम नहीं है ?",
+    "question": "In the human system, which of the following is not a digestive enzyme?",
+    "optionA": "Trypsin",
+    "optionB": "Pepsin",
+    "optionC": "Tylosin",
+    "optionD": "Gastrin",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मानव शरीर में निम्नलिखित हार्मोनों में से कौन-सा रक्त कैल्सियम और फॉस्फेट को विनियमित करता है ?",
+    "question": "Which of the following hormones regulates calcium and phosphate in the human body?",
+    "optionA": "Glucagon",
+    "optionB": "Thyroxine",
+    "optionC": "Growth hormone",
+    "optionD": "Parathyroid hormone",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मानव की पाचन नली लगभग कितने फीट लम्बी होती है ?",
+    "question": "How long is the human digestive tract approximately?",
+    "optionA": "16",
+    "optionB": "18",
+    "optionC": "22",
+    "optionD": "32",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मुख में मण्ड का शर्करा में पाचन किसके द्वारा होता है ?",
+    "question": "In the mouth, the digestion of starch into sugar is done by?",
+    "optionA": "Tylosin",
+    "optionB": "Lipase",
+    "optionC": "Amylase",
+    "optionD": "Pepsin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पाचन तंत्र का हिस्सा नहीं होता है ?",
+    "question": "Which of the following is not a part of the digestive system?",
+    "optionA": "Liver",
+    "optionB": "Intestine",
+    "optionC": "Cornea",
+    "optionD": "Gall bladder",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::दुग्ध प्रोटीन को पचाने वाला एन्जाइम है ?",
+    "question": "The enzyme that digests milk protein is?",
+    "optionA": "Trypsin",
+    "optionB": "Erypsin",
+    "optionC": "Rennin",
+    "optionD": "Pepsin",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::अधिकतम पोषक तत्व रक्त में कहाँ से अवशोषित किये जाते हैं ?",
+    "question": "Where are the maximum nutrients absorbed into the blood?",
+    "optionA": "Mouth",
+    "optionB": "Small intestine",
+    "optionC": "Large intestine",
+    "optionD": "Stomach",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::लार में कौन-सा एन्जाइम पाया जाता है ?",
+    "question": "Which enzyme is found in saliva?",
+    "optionA": "Tylosin",
+    "optionB": "Resin",
+    "optionC": "Rennin",
+    "optionD": "Tannin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "biology-gk::पेट में भोजन को पचाने के लिए निम्नांकित में से किसकी खास आवश्यकता होती है ?",
+    "question": "For digestion of food in the stomach, which of the following is specially required?",
+    "optionA": "Water",
+    "optionB": "Air",
+    "optionC": "Minerals",
+    "optionD": "Enzyme",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "biology-gk::मुख से निकली लार किसका पाचन करती है ?",
+    "question": "Saliva secreted from the mouth digests?",
+    "optionA": "Protein",
+    "optionB": "Vitamin",
+    "optionC": "Starch",
+    "optionD": "Fat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::निम्नलिखित में से किस अम्ल की उपस्थिति मानव पेट में होती है ?",
+    "question": "Which of the following acids is present in the human stomach?",
+    "optionA": "Picric acid",
+    "optionB": "Sulfuric acid",
+    "optionC": "Hydrochloric acid",
+    "optionD": "Nitric acid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::ोटीन का पाचन कहाँ से प्रारम्भ होता है ?",
+    "question": "Where does the digestion of protein begin?",
+    "optionA": "Mouth cavity",
+    "optionB": "Food pipe",
+    "optionC": "Abdomen",
+    "optionD": "Small intestine",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "biology-gk::पाचन क्रिया में प्रोटीन निम्नलिखित में से किस पदार्थ में बदल जाते हैं ?",
+    "question": "In the process of digestion, proteins are converted into which of the following substances?",
+    "optionA": "Fat",
+    "optionB": "Amino acid",
+    "optionC": "Sugar",
+    "optionD": "Glucose",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पचे हुए भोजन में मौजूद विषैले पदार्थ का कौन-सा अंग चूषण करता है ?",
+    "question": "Which organ absorbs the poisonous substances present in digested food?",
+    "optionA": "Pancreas",
+    "optionB": "Liver",
+    "optionC": "Stomach",
+    "optionD": "Kidney",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पित्त जमा होता है ?",
+    "question": "Where is bile stored?",
+    "optionA": "In the duodenum",
+    "optionB": "In the gallbladder",
+    "optionC": "In the spleen",
+    "optionD": "In the liver",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "biology-gk::पित्त निम्न में से किसके द्वारा पैदा किया जाता है ?",
+    "question": "Bile is produced by which of the following?",
+    "optionA": "Liver",
+    "optionB": "Spleen",
+    "optionC": "Pancreas",
+    "optionD": "Stomach",
+    "correctAnswer": "A"
   }
 ]

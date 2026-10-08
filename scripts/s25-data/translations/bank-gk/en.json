@@ -1,1 +1,2018 @@
-[]
+[
+  {
+    "id": "bank-gk::भारत में कितने सार्वजनिक संस्था बैंक हैं ?",
+    "question": "How many public sector banks are there in India?",
+    "optionA": "27",
+    "optionB": "29",
+    "optionC": "25",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::बैंक प्रदान करती हैं ?",
+    "question": "What do banks provide?",
+    "optionA": "Central services",
+    "optionB": "Direct services",
+    "optionC": "Financial services",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय रिज़र्व बैंक कब स्थापित हुआ ?",
+    "question": "When was the Reserve Bank of India established?",
+    "optionA": "1 April 1935",
+    "optionB": "25 March 1947",
+    "optionC": "17 December 1937",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारतीय रिज़र्व बैंक का मुख्यालय कहाँ हैं ?",
+    "question": "Where is the headquarters of the Reserve Bank of India?",
+    "optionA": "Nagpur",
+    "optionB": "Delhi",
+    "optionC": "Mumbai",
+    "optionD": "Bhopal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय रिज़र्व बैंक का राष्ट्रीयकरण कब हुआ ?",
+    "question": "When was the Reserve Bank of India nationalized?",
+    "optionA": "2 September 1950",
+    "optionB": "19 March 1947",
+    "optionC": "1 January 1949",
+    "optionD": "26 January 1950",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय रिज़र्व बैंक का बैंक दर कितना हैं ?",
+    "question": "What is the bank rate of the Reserve Bank of India?",
+    "optionA": "6%",
+    "optionB": "7.75%",
+    "optionC": "7%",
+    "optionD": "5%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारतीय महिला बैंक का स्थापना कब हुआ ?",
+    "question": "When was the Bank of India established?",
+    "optionA": "19 November 2013",
+    "optionB": "15 August 2014",
+    "optionC": "26 January 2013",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारतीय स्टेट बैंक का स्थापना कब हुआ था ?",
+    "question": "When was the State Bank of India established?",
+    "optionA": "1 April 1935",
+    "optionB": "1 January 1949",
+    "optionC": "17 December 1951",
+    "optionD": "July 1, 1955",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::भारत का सबसे पहला बैंक है ?",
+    "question": "What is the first bank of India?",
+    "optionA": "Reserve Bank of India",
+    "optionB": "Bank of Hindustan",
+    "optionC": "State Bank of India",
+    "optionD": "Andhra Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::बैंक ऑफ़ हिन्दुस्तानी बैंक का स्थापना कब हुआ था ?",
+    "question": "When was the Bank of Hindustan established?",
+    "optionA": "1805",
+    "optionB": "1915",
+    "optionC": "1770",
+    "optionD": "1750",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत में केन्द्रीय बैंक व्य्वसाय कार्य किस बैंक द्वारा प्रस्तुत किया जाता है ?",
+    "question": "Which bank performs central banking business in India?",
+    "optionA": "Reserve Bank of India",
+    "optionB": "State Bank of India",
+    "optionC": "United Bank of India",
+    "optionD": "Union Bank of India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::विश्व बैंक का मुख्यालय कहाँ है ?",
+    "question": "Where is the headquarters of the World Bank?",
+    "optionA": "In Washington D.C.",
+    "optionB": "In Geneva",
+    "optionC": "In The Hague",
+    "optionD": "In Paris",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::&#39;वर्ल्ड डेवलपमेंट रिपोर्ट&#39; निम्नलिखित में से किस संस्था का प्रकाशन है ?",
+    "question": "Which organization publishes the 'World Development Report'?",
+    "optionA": "International Monetary Fund",
+    "optionB": "World Trade Organization",
+    "optionC": "World Bank",
+    "optionD": "UNCTAD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय रिजर्व बैंक निम्नलिखित में से किस दर का निर्धारण नहीं करता है ?",
+    "question": "Which of the following rates does the Reserve Bank of India not determine?",
+    "optionA": "Bank rate",
+    "optionB": "Reverse repo rate",
+    "optionC": "Income tax rate",
+    "optionD": "Repo rate",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::ग्रामीण क्षेत्र के बहुसंख्य लोग ऋण की आवश्यकता को पूरा करने के लिए निम्नलिखित में से किसके पास जाते हैं ?",
+    "question": "In rural areas, many people go to whom to meet their credit needs?",
+    "optionA": "Moneylender",
+    "optionB": "RBI",
+    "optionC": "NABARD",
+    "optionD": "Foreign bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारत में विभिन्न श्रेणी के वाणिज्यिक बैंक हैं, इनमें से कौन वाणिज्यिक बैंकों की श्रेणी में नहीं आता है ?",
+    "question": "In India, there are various categories of commercial banks, which of the following does not come under the category of commercial banks?",
+    "optionA": "Private Bank",
+    "optionB": "Nationalized Bank",
+    "optionC": "Cooperative Bank",
+    "optionD": "Commodity Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित प्रकार के बैंक में से किस प्रकार के बैंकों को विदेशी मुद्रा खातें के संचालन की अनुमति प्राप्त है ?",
+    "question": "Which of the following types of banks are permitted to operate foreign currency accounts?",
+    "optionA": "Foreign Bank",
+    "optionB": "Regional Rural Bank",
+    "optionC": "Nationalized Bank",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन-सी एक साधारण बैंक ग्राहक की सामान्य बैंकिंग गतिविधि नहीं मानी जा सकती ?",
+    "question": "Which of the following is not considered a normal banking activity of a general bank customer?",
+    "optionA": "Using ATM",
+    "optionB": "Tele Banking",
+    "optionC": "Reducing or increasing PLR and announcing loan policy",
+    "optionD": "Using Banker's Cheque",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत निम्नलिखित में से किस राष्ट्र समूह का सदस्य है ?",
+    "question": "India is a member of which of the following country groups?",
+    "optionA": "OPEC",
+    "optionB": "NATO",
+    "optionC": "BRICS",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत द्वारा विकसित मिसाइल का नाम निम्नलिखित में से क्या है ?",
+    "question": "What is the name of the missile developed by India?",
+    "optionA": "Dhruv",
+    "optionB": "Vivian",
+    "optionC": "Trishul",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बैंकिंग जगत् में प्रयुक्त KYC का पूर्ण रूप क्या है ?",
+    "question": "What is the full form of KYC used in the banking world?",
+    "optionA": "Keep Your Credibility",
+    "optionB": "Know Your Credibility",
+    "optionC": "Keep Your Customer",
+    "optionD": "Know Your Customer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::बैकिंग एवं वित्त के क्षेत्र में निम्नलिखित में से किस शब्द का प्रयोग किया जाता है ?",
+    "question": "Which of the following words is used in the field of banking and finance?",
+    "optionA": "Accrued Interest",
+    "optionB": "Diffusion",
+    "optionC": "Divergence",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से भारत के निजी क्षेत्र के एक बैंक का नाम कौन-सा है ?",
+    "question": "Which of the following is the name of a private sector bank in India?",
+    "optionA": "Dena Bank",
+    "optionB": "South Indian Bank",
+    "optionC": "Syndicate Bank",
+    "optionD": "IDBI Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::वित्तीय सेवाओं तक पहुँच की कमी को तकनीकी रूप से क्या कहते हैं ?",
+    "question": "What is the technical term for the lack of access to financial services?",
+    "optionA": "Financial Instability",
+    "optionB": "Financial Exclusion",
+    "optionC": "Financial Stability",
+    "optionD": "Financial Inclusion",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन-सा आधे विश्व का प्रमुख भोजन है ?",
+    "question": "Which of the following is the staple food for half the world?",
+    "optionA": "Potato",
+    "optionB": "Wheat",
+    "optionC": "Maize",
+    "optionD": "Banana",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::बैंकिंग के क्षेत्र में निम्नलिखित में से कौन से शब्द का प्रयोग होता है ?",
+    "question": "Which of the following words is used in the banking sector?",
+    "optionA": "Entropy",
+    "optionB": "Accounts",
+    "optionC": "Viscosity",
+    "optionD": "Plasma",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से जापान की कौन-सी मुद्रा करेंसी है ?",
+    "question": "Which of the following is the currency of Japan?",
+    "optionA": "Yuan",
+    "optionB": "Euro",
+    "optionC": "Yen",
+    "optionD": "Dollar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::विदेशी मुद्रा सम्बन्धी कार्य किस बैंक का हैं ?",
+    "question": "Foreign exchange related work is of which bank?",
+    "optionA": "Offshore Banking",
+    "optionB": "State Bank of India",
+    "optionC": "Commercial Banking",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::देश की सरकार एंव केन्द्रीय बैंक द्वारा जारी नोट व सिक्के कौन-सी मुद्रा होती हैं ?",
+    "question": "Which currency is issued by the country's government and central bank in the form of notes and coins?",
+    "optionA": "Legal Tender",
+    "optionB": "Near Money",
+    "optionC": "Statutory Money",
+    "optionD": "Acceptable Money",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::बॉम्बे स्टॉक एक्सचेन्ज का विश्व में कौन-सा स्थान हैं ?",
+    "question": "What is the rank of the Bombay Stock Exchange in the world?",
+    "optionA": "12th",
+    "optionB": "13th",
+    "optionC": "11th",
+    "optionD": "10th",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::मुम्बई स्टॉक एक्सचेन्ज को कब मान्यता मिली ?",
+    "question": "When was the Mumbai Stock Exchange recognized?",
+    "optionA": "On 25 December, 1965",
+    "optionB": "On 22 May, 1950",
+    "optionC": "On 13 August, 1957",
+    "optionD": "On 12 July, 1960",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय रुपये के नोट पर कितनी भाषाओं में नोट के मुल्य का उल्लेख होता हैं ?",
+    "question": "In how many languages is the value of the note mentioned on an Indian rupee note?",
+    "optionA": "In 17 languages",
+    "optionB": "In 16 languages",
+    "optionC": "In 15 languages",
+    "optionD": "In 14 languages",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::वह ऋणपत्र जिसके धन वापसी की समय सीमा निश्चित हो उसे कहॉं जाता हैं ?",
+    "question": "What is the security instrument for which the time limit for repayment is fixed?",
+    "optionA": "Redeemable Security",
+    "optionB": "Irredeemable Security",
+    "optionC": "Convertible Security",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्न में से किस ऋणपत्र की वापसी की कोई निश्चित समय नहीं हैं ?",
+    "question": "Which of the following securities has no fixed time for repayment?",
+    "optionA": "Redeemable Security",
+    "optionB": "Irredeemable Security",
+    "optionC": "Non-convertible Security",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय जीवन बीमा निगम (LIC) की स्थापना कब हुई थी ?",
+    "question": "When was the Life Insurance Corporation of India (LIC) established?",
+    "optionA": "On 20 March, 1960",
+    "optionB": "On 16 September, 1954",
+    "optionC": "On 3 February, 1958",
+    "optionD": "On 19 January, 1956",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::भारतीय जीवन बीमा निगम (LIC) का मुख्य कार्यालय कहॉं पर हैं ?",
+    "question": "Where is the head office of the Life Insurance Corporation of India (LIC) located?",
+    "optionA": "Jaipur",
+    "optionB": "New Delhi",
+    "optionC": "Mumbai",
+    "optionD": "Ahmedabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बैंक की नई शाखाऍं खोलने के लाइसेन्स किसके द्वारा जारी किए जाते हैं ?",
+    "question": "By whom are licenses issued for opening new bank branches?",
+    "optionA": "State Government",
+    "optionB": "Ministry of Finance",
+    "optionC": "Reserve Bank of India (RBI)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::नदियों का देश किस देश को कहते हैै ?",
+    "question": "Which country is known as the land of rivers?",
+    "optionA": "Bangladesh",
+    "optionB": "Spain",
+    "optionC": "Brazil",
+    "optionD": "India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::पहला बायोमीट्रिक एटीएम किस बैंक ने स्थापित किया?",
+    "question": "Which bank established the first biometric ATM?",
+    "optionA": "State Bank of India",
+    "optionB": "Punjab National Bank",
+    "optionC": "Union Bank",
+    "optionD": "Dena Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::किस बैंक को 2016 के लिए सर्वश्रेष्ठ लघु बैंक घोषित किया गया है?",
+    "question": "Which bank was declared the best small bank for 2016?",
+    "optionA": "Dena Bank",
+    "optionB": "Yes Bank",
+    "optionC": "Karur Vysya Bank",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::धनशोधन क्या है?",
+    "question": "What is money laundering?",
+    "optionA": "Conversion of cash into gold",
+    "optionB": "Conversion of gold into cash",
+    "optionC": "Conversion of illegally obtained money",
+    "optionD": "Conversion of assets into cash",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::सावधि और आवर्ती जमाएँ ?",
+    "question": "Fixed and recurring deposits?",
+    "optionA": "Not payable",
+    "optionB": "Payable after a fixed period",
+    "optionC": "Payable after the death of depositors",
+    "optionD": "Payable on demand",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::हमारे देश में मुद्रास्फीति के नियंत्रण के लिए भारतीय रिजर्व बैंक निम्नलिखित में से क्या उपाय करता है?",
+    "question": "What measure does the Reserve Bank of India take to control inflation in our country?",
+    "optionA": "Increasing repo rate",
+    "optionB": "Increase in CRR",
+    "optionC": "Increase in SLR",
+    "optionD": "Contraction of money supply",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::विलास वस्तुओं के क्रय के लिए बैंकों द्वारा किस प्रकार का ऋण दिया जाता है?",
+    "question": "What type of loan is given by banks for purchasing luxury goods?",
+    "optionA": "Mortgage loan",
+    "optionB": "Housing loan",
+    "optionC": "Durable consumer goods loan",
+    "optionD": "Consumption loan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बचत बैंक पर देय ब्याज ?",
+    "question": "Interest payable on savings bank?",
+    "optionA": "Not regulated by Reserve Bank of India",
+    "optionB": "Regulated by Reserve Bank of India",
+    "optionC": "Regulated by Central Government",
+    "optionD": "Regulated by State Governments",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से किस कार्ड से बैंक को उच्च ऋण जोखिम है?",
+    "question": "Which card exposes the bank to high credit risk?",
+    "optionA": "ATM card",
+    "optionB": "Credit card",
+    "optionC": "Debit card",
+    "optionD": "All of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन–सा एक क्रेडिट कार्ड एसोसिएशन है?",
+    "question": "Which of the following is a credit card association?",
+    "optionA": "India Card",
+    "optionB": "City Bank Cards",
+    "optionC": "SBI Card",
+    "optionD": "Master Card",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन–सी एक इलेक्ट्रॉनिक बैंकिंग डिलीवरी चैनल नहीं है?",
+    "question": "Which of the following is not an electronic banking delivery channel?",
+    "optionA": "Internet Banking",
+    "optionB": "Mobile Phone Banking",
+    "optionC": "Mobile Van",
+    "optionD": "Tele Banking",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन–सा संगठन उधारकर्ताओं की ऋण पृष्ठभूमि रखताउपलब्ध कराता है?",
+    "question": "Which of the following organizations provides the credit history of borrowers?",
+    "optionA": "CIBIL",
+    "optionB": "CAMELS",
+    "optionC": "SEBI",
+    "optionD": "RBI",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::तारों का रंग किस पर निर्भर करता है ?",
+    "question": "On what does the color of stars depend?",
+    "optionA": "Radius",
+    "optionB": "Atmospheric pressure",
+    "optionC": "Temperature",
+    "optionD": "Distance",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::सूर्य का प्रकाश हमारे पास लगभग कितने समय में पहुँचता है ?",
+    "question": "How long does it take for sunlight to reach us?",
+    "optionA": "2 minutes",
+    "optionB": "4 minutes",
+    "optionC": "6 minutes",
+    "optionD": "8 minutes",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::काशीय फाइबर किस सिद्धांत पर कार्य करता है ?",
+    "question": "On which principle does optical fiber work?",
+    "optionA": "Refraction",
+    "optionB": "Total internal reflection",
+    "optionC": "Interference",
+    "optionD": "Scattering",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::इंटरनेट प्रोद्योगिकी के आरम्भ में इंटरनेट पेज तैयार करने के लिए कौन सी भाषा प्रयोग की जाती थी ?",
+    "question": "Which language was used to prepare web pages in the beginning of internet technology?",
+    "optionA": "XML",
+    "optionB": "ASP",
+    "optionC": "HTML",
+    "optionD": "DHTML",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::किस हार्मोन के स्त्रावित होने से हृदय गति बढ़ जाती है तथा उत्तेजना का अनुभव होने लगता है?",
+    "question": "Which hormone, when secreted, increases heart rate and causes excitement?",
+    "optionA": "Adrenaline",
+    "optionB": "Vasopressin",
+    "optionC": "Cortisone",
+    "optionD": "Insulin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::किस प्रदेश में ब्रिटिश सरकार के विरुद्ध बिरसा मुंडा का संचालन हो रहा था?",
+    "question": "In which state was Birsa Munda's movement against the British government going on?",
+    "optionA": "Punjab",
+    "optionB": "Chota Nagpur",
+    "optionC": "Tarai",
+    "optionD": "Manipur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::ऐक्ट ऑफ़ यूनियन किस वर्ष पारित हुआ ?",
+    "question": "In which year was the Act of Union passed?",
+    "optionA": "In 1688",
+    "optionB": "In 1707",
+    "optionC": "In 1788",
+    "optionD": "In 1807",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::विलियम प्रथम कहां का शासक था ?",
+    "question": "Where was William I the ruler?",
+    "optionA": "Prussia",
+    "optionB": "Italy",
+    "optionC": "Greece",
+    "optionD": "Austria",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::मेजिनी का संबंध किस संगठन से था ?",
+    "question": "With which organization was Mazzini associated?",
+    "optionA": "Red Army",
+    "optionB": "Carbonari",
+    "optionC": "Diet",
+    "optionD": "Young Italy",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::किस देश को यूरोप का मरीज कहा जाता है ?",
+    "question": "Which country is called the sick man of Europe?",
+    "optionA": "Turkey",
+    "optionB": "France",
+    "optionC": "Germany",
+    "optionD": "Italy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::जालवेरिन एक संस्था थी ?",
+    "question": "Jallianwala was an organization?",
+    "optionA": "Of revolutionaries",
+    "optionB": "Of scholars",
+    "optionC": "Of priests and feudal lords",
+    "optionD": "Of traders",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::किस युद्ध के बाद जर्मनी का एकीकरण पूरा हुआ ?",
+    "question": "After which war was the unification of Germany completed?",
+    "optionA": "War of Crimea",
+    "optionB": "War of the Seven Years",
+    "optionC": "War of Schleswig",
+    "optionD": "Prussia-Denmark War",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बोल्शेविक क्रांति कब हुई ?",
+    "question": "When did the Bolshevik Revolution take place?",
+    "optionA": "November 1917",
+    "optionB": "February 1905",
+    "optionC": "February 1917",
+    "optionD": "April 1917",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::रासपुटिन कौन था ?",
+    "question": "Who was Rasputin?",
+    "optionA": "Corrupt priest",
+    "optionB": "Social reformer",
+    "optionC": "Scientist",
+    "optionD": "Philosopher",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::अप्रैल थीसिस किसने तैयार की ?",
+    "question": "Who prepared the April Thesis?",
+    "optionA": "Trotsky",
+    "optionB": "Lenin",
+    "optionC": "Marx",
+    "optionD": "Stalin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::मारीआन किस देश के राष्ट्रवाद का प्रतीक था ?",
+    "question": "Marianne was a symbol of nationalism of which country?",
+    "optionA": "Germany",
+    "optionB": "France",
+    "optionC": "Russia",
+    "optionD": "Italy",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::संघ सरकार का उदाहरण है ?",
+    "question": "An example of a federal government is?",
+    "optionA": "Britain",
+    "optionB": "America",
+    "optionC": "China",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::यूनाईटेड जनता पार्टी का गठन कब हुआ ?",
+    "question": "When was the United Janata Party formed?",
+    "optionA": "In 1992",
+    "optionB": "In 1999",
+    "optionC": "In 2000",
+    "optionD": "In 2004",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्न में से कौन उपभोक्ता उद्योग है ?",
+    "question": "Which of the following is a consumer industry?",
+    "optionA": "Abra",
+    "optionB": "Sugar",
+    "optionC": "Cement",
+    "optionD": "Iron-steel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::किस क्षेत्र को द्वितीयक क्षेत्र कहा जाता है ?",
+    "question": "Which sector is called the secondary sector?",
+    "optionA": "Industry",
+    "optionB": "Service",
+    "optionC": "Agriculture",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::कम्युनिस्ट मैनिफेस्टो का प्रकाशन किस वर्ष हुआ था ?",
+    "question": "In which year was the Communist Manifesto published?",
+    "optionA": "In 1844",
+    "optionB": "In 1848",
+    "optionC": "In 1864",
+    "optionD": "In 1867",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::इटली एवं जर्मनी के एकीकरण के विरुद्ध निम्न में कौन था ?",
+    "question": "Who was against the unification of Italy and Germany?",
+    "optionA": "Russia",
+    "optionB": "England",
+    "optionC": "Prussia",
+    "optionD": "Austria",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::होआ-हाओ आंदोलन के नेता कौन थे ?",
+    "question": "Who were the leaders of the Hoa Hao movement?",
+    "optionA": "Bao Dai",
+    "optionB": "Fan-Boi Chau",
+    "optionC": "Huihn-Phu-Soc",
+    "optionD": "Kuang",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::लियांग किचाओ कौन था ?",
+    "question": "Who was Liang Qichao?",
+    "optionA": "King Fulse",
+    "optionB": "Huihnh Phu So",
+    "optionC": "Chinese reformer",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::पेटीएम ने किस नाम से अपना क्रेडिट कार्ड लॉन्च किया है ?",
+    "question": "Under what name has Paytm launched its credit card?",
+    "optionA": "Paytm Digital Card",
+    "optionB": "Paytm First Card",
+    "optionC": "Paytm Green Card",
+    "optionD": "Paytm Payment Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारत का पहला &#39;ग्रीन कार लोन&#39; किस बैंक ने लांच किया है ?",
+    "question": "Which bank has launched India's first 'Green Car Loan'?",
+    "optionA": "State Bank of India",
+    "optionB": "Canara Bank",
+    "optionC": "Bank of Baroda",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::वित्त मंत्रालय ने ईपीएफ पर मिलने वाले ब्याज दर को बढाकर अब कितना कर दिया है ?",
+    "question": "What has the Ministry of Finance increased the interest rate on EPF to now?",
+    "optionA": "8.60%",
+    "optionB": "8.65%",
+    "optionC": "8.70%",
+    "optionD": "8.75%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::इंडियाबुल्स हाउसिंग फाइनेंस में किस बैंक का विलय किया जा रहा है ?",
+    "question": "Which bank is being merged into India Bulls Housing Finance?",
+    "optionA": "Bank of Baroda",
+    "optionB": "Jan Dhan Bank",
+    "optionC": "Lakshmi Vilas Bank",
+    "optionD": "Ajanta Bank",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::विश्व बैंक के 13वें अध्यक्ष के रूप में किन्हें चुना गया है ?",
+    "question": "Who has been elected as the 13th President of the World Bank?",
+    "optionA": "Jim Yong Kim",
+    "optionB": "Kevin Peterson",
+    "optionC": "David Malpas",
+    "optionD": "David Tucker",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::कौन सा बैंक यूपीआई लेनदेन पर शुल्क लगाने वाला पहला ऋणदाता बैंक बनेगा ?",
+    "question": "Which bank will become the first lender bank to charge fees on UPI transactions?",
+    "optionA": "Kotak Mahindra Bank",
+    "optionB": "State Bank of India Bank",
+    "optionC": "HDFC Bank",
+    "optionD": "ICICI Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::आरबीआई ने वित्त वर्ष 2019-20 में भारत की विकास दर कितने % रहने का अनुमान लगाया है ?",
+    "question": "What growth rate has RBI estimated for India in the financial year 2019-20?",
+    "optionA": "7.0%",
+    "optionB": "7.2%",
+    "optionC": "7.4%",
+    "optionD": "7.6%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::आरबीआई ने रेपो रेट 6.25% से घटाकर कितना कर दिया है ?",
+    "question": "What rate has the RBI reduced the repo rate from 6.25% to?",
+    "optionA": "5.50%",
+    "optionB": "5.85%",
+    "optionC": "6%",
+    "optionD": "7%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बैंक ऑफ़ बड़ौदा में देना बैंक और विजया बैंक का विलय कब हुआ है ?",
+    "question": "When did the merger of Dena Bank and Vijaya Bank with Bank of Baroda happen?",
+    "optionA": "1 April 2019",
+    "optionB": "31 March 2019",
+    "optionC": "1 March 2019",
+    "optionD": "1 February 2019",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::आरबीआई ने स्विफ्ट प्रणाली से जुड़े सॉफ्टवेयर को लेकर दिशा निर्देशों का पालन नहीं करने पर किस बैंक पर 2 करोड़ रुपये का जुर्माना लगाया है ?",
+    "question": "For which bank has the RBI imposed a fine of 2 crore rupees for not following the guidelines related to SWIFT system software?",
+    "optionA": "Allahabad Bank",
+    "optionB": "Vijaya Bank",
+    "optionC": "State Bank of India",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::भारत की अक्षय ऊर्जा उत्पादक कंपनी अवादा एनर्जी प्राइवेट लिमिटेड में किस संस्था ने 50 मिलियन डॉलर ऋण का निवेश किया है ?",
+    "question": "Which institution has invested 50 million dollars in India's renewable energy company Avaada Energy Private Limited?",
+    "optionA": "World Bank",
+    "optionB": "Reserve Bank of India",
+    "optionC": "Bank of China",
+    "optionD": "Asian Development Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::किस भारतीय बैंक ने व्यापारिक अवसरों के लिए बैंक ऑफ चाइना के साथ समझौता ज्ञापन पर हस्ताक्षर किए है ?",
+    "question": "Which Indian bank has signed a Memorandum of Understanding with Bank of China for business opportunities?",
+    "optionA": "Allahabad Bank",
+    "optionB": "Punjab National Bank",
+    "optionC": "ICICI Bank",
+    "optionD": "State Bank of India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::8100 करोड़ रुपए के बैंक लोन फ्रॉड मामले में किस आरोपी भगोड़े को अल्बानिया में गिरफ्तार किया गया है ?",
+    "question": "In the 8100 crore rupee bank loan fraud case, which accused fugitive was arrested in Albania?",
+    "optionA": "Nirav Modi",
+    "optionB": "Hitesh Patel",
+    "optionC": "Vijay Mehta",
+    "optionD": "Vijay Mallya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::पंजाब नेशनल बैंक के साथ धोखाधड़ी करने वाले नीरव मोदी को कहां पर गिरफ्तार किया गया है ?",
+    "question": "Where was Nirav Modi, who defrauded Punjab National Bank, arrested?",
+    "optionA": "London",
+    "optionB": "Hungary",
+    "optionC": "Spain",
+    "optionD": "Portugal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::किस बैंक ने अपने 16500 एटीएम से कार्डलेस निकासी की घोषणा की है ?",
+    "question": "Which bank has announced cardless withdrawals from its 16500 ATMs?",
+    "optionA": "UCO Bank",
+    "optionB": "PNB Bank",
+    "optionC": "Allahabad Bank",
+    "optionD": "SBI",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::आरबीआई ने किस बैंक को अब सरकारी से प्राइवेट बैंक घोषित कर दिया है ?",
+    "question": "Which bank has the RBI now declared from government to private bank?",
+    "optionA": "PNB",
+    "optionB": "OBC",
+    "optionC": "IDBI",
+    "optionD": "SBI",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::एक्सिस बैंक के नए अध्यक्ष के रूप में किन्हें नियुक्त किया गया है ?",
+    "question": "Who has been appointed as the new Chairman of Axis Bank?",
+    "optionA": "Rakesh Jhunjhunwala",
+    "optionB": "Dinesh Ahuja",
+    "optionC": "Surendra Singh",
+    "optionD": "Sunil Arora",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::कौन सा बैंक कर्मचारियों के बच्चों के लिए डे-केयर सुविधा शुरू करने वाला पहला सार्वजनिक क्षेत्र का बैंक बन गया है ?",
+    "question": "Which bank has become the first public sector bank to start a daycare facility for employees' children?",
+    "optionA": "State Bank of India",
+    "optionB": "Bank of Baroda",
+    "optionC": "UCO Bank",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::बैंक ऑफ बड़ौदा का चेयरमैन किन्हें बनाया गया है ?",
+    "question": "Who has been made the Chairman of Bank of Baroda?",
+    "optionA": "Hasmukh Adhia",
+    "optionB": "Ram Charan Singh",
+    "optionC": "Krishna Venugopal",
+    "optionD": "Virendra Ahlawat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::रिजर्व बैंक ने केवाईसी नियमों का पालन करने के लिए ई-वॉलेट कंपनियों को कितना समय और दिया है ?",
+    "question": "How much time has the Reserve Bank given to e-wallet companies to comply with KYC rules?",
+    "optionA": "1 month",
+    "optionB": "6 months",
+    "optionC": "3 months",
+    "optionD": "9 months",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::केंद्र सरकार ने 12 बैंकों के रिकैपिटलाइजेशन के लिए कितने रुपए मंजूर किए है ?",
+    "question": "How many rupees has the central government approved for the recapitalization of 12 banks?",
+    "optionA": "38239 crore",
+    "optionB": "58239 crore",
+    "optionC": "48239 crore",
+    "optionD": "28239 crore",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::पीएफ की जमा राशि पर ब्याज दर बढाकर कितनी कर दी गई है ?",
+    "question": "By how much has the interest rate on PF deposit amount been increased?",
+    "optionA": "8.55%",
+    "optionB": "8.45%",
+    "optionC": "8.75%",
+    "optionD": "8.65%",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::आरबीआई ने बैंकिंग नियमों के उल्लंघन को लेकर कितने बैंको पर 5 करोड़ का जुर्माना लगाया है ?",
+    "question": "RBI has imposed a fine of 5 crore on how many banks for violating banking rules?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "6",
+    "optionD": "8",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::किस बैंक ने अपने कर्मचारियों को हफ्ते में एक दिन समय पर घर जाने की छूट देने की नई पहल शुरू की है ?",
+    "question": "Which bank has started a new initiative to allow its employees to go home once a week during working hours?",
+    "optionA": "SBI",
+    "optionB": "IDBI",
+    "optionC": "Allahabad Bank",
+    "optionD": "ICICI",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::रिजर्व बैंक ऑफ इंडिया ने किसानों के लिए कॉलेटरल फ्री लोन की लिमिट बढ़ाकर कितनी की है ?",
+    "question": "Reserve Bank of India has increased the limit for collateral-free loan for farmers to how much?",
+    "optionA": "1.30 lakh rupees",
+    "optionB": "1.00 lakh rupees",
+    "optionC": "1.90 lakh rupees",
+    "optionD": "1.60 lakh rupees",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::भारतीय रिजर्व बैंक ने रेपो रेट में कितनी फीसदी की कमी की है ?",
+    "question": "By how many percent has the Reserve Bank of India reduced the repo rate?",
+    "optionA": "0.25 percent",
+    "optionB": "0.15 percent",
+    "optionC": "0.50 percent",
+    "optionD": "0.45 percent",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::एक अप्रैल 2019 से देना बैंक और विजया बैंक का विलय किस बैंक में हो जाएगा ?",
+    "question": "From April 1, 2019, the merger of Dena Bank and Vijaya Bank will take place in which bank?",
+    "optionA": "State Bank of India",
+    "optionB": "Allahabad Bank",
+    "optionC": "Bank of Baroda",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::रिजर्व बैंक ऑफ इंडिया का नया गवर्नर किन्हें बनाया गया है ?",
+    "question": "Who has been appointed as the new Governor of the Reserve Bank of India?",
+    "optionA": "C. Rangarajan",
+    "optionB": "Urjit Patel",
+    "optionC": "Sunil Arora",
+    "optionD": "Shaktikanta Das",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::देश का पहला डुओ कार्ड किस बैंक ने लॉन्च किया है ?",
+    "question": "Which bank has launched the first Duo card in the country?",
+    "optionA": "Dena Bank",
+    "optionB": "Allahabad Bank",
+    "optionC": "PNB Bank",
+    "optionD": "IndusInd Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::इंडिया पोस्ट पेमेंट्स बैंक को कब लांच किया गया ?",
+    "question": "When was India Post Payments Bank launched?",
+    "optionA": "1 October",
+    "optionB": "1 September",
+    "optionC": "1 December",
+    "optionD": "1 November",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::हाल ही में चीन के किस बैंक को रिज़र्व बैंक ऑफ़ इंडिया ने भारत में ब्रांच खोलने की अनुमति प्रदान की है ?",
+    "question": "Recently, which Chinese bank has been given permission by the Reserve Bank of India to open a branch in India?",
+    "optionA": "Bank of China",
+    "optionB": "Bank of Tibet",
+    "optionC": "Bank of Xi",
+    "optionD": "Bank of Hong Kong",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारतीय स्टेट बैंक का स्थापना दिवस कब मनाया जाता है ?",
+    "question": "When is the Foundation Day of State Bank of India celebrated?",
+    "optionA": "1 April",
+    "optionB": "1 July",
+    "optionC": "1 September",
+    "optionD": "1 August",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारतीय रिजर्व बैंक ने भारतीय अर्थव्यवस्था के बेहतर पूर्वानुमान के लिए किस लैब की स्थापना करने का निर्णय लिया ?",
+    "question": "Reserve Bank of India has decided to set up which lab for better forecasting of the Indian economy?",
+    "optionA": "Economy Lab",
+    "optionB": "Data Science Lab",
+    "optionC": "New Generic Lab",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारतीय रिज़र्व बैंक का स्थापना दिवस कब मनाया जाता है ?",
+    "question": "When is the Foundation Day of the Reserve Bank of India celebrated?",
+    "optionA": "1 January",
+    "optionB": "1 April",
+    "optionC": "1 November",
+    "optionD": "1 July",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::बैंक द्वारा \"अल्पावधि वित्त\" ऋण कितने समय के लिए दिया जाता हैं ?",
+    "question": "For what period does a bank provide \"short-term finance\" loan?",
+    "optionA": "For 5 months",
+    "optionB": "For a period of less than 15 months",
+    "optionC": "Only for one year",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::गुप्त युग का प्रवर्तक कौन था?",
+    "question": "Who was the initiator of the Gupta era?",
+    "optionA": "Chandragupta 1",
+    "optionB": "Samudragupta",
+    "optionC": "Shrigupta",
+    "optionD": "Ghatotkacha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::गुप्त राजवंश किस लिए प्रसिद्ध था?",
+    "question": "The Gupta dynasty was famous for what?",
+    "optionA": "Imperialism",
+    "optionB": "Art and Architecture",
+    "optionC": "Revenue and Land Reforms",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::गुप्त शासकों की सरकारी भाषा थी?",
+    "question": "What was the official language of the Gupta rulers?",
+    "optionA": "Pali",
+    "optionB": "Sanskrit",
+    "optionC": "Hindi",
+    "optionD": "Prakrit",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::गुप्त शासन के दौरान निम्नलिखित में से ऐसा व्यक्ति कौन था, जो एक महान खगोलविज्ञानी तथा गणितज्ञ था?",
+    "question": "During the Gupta period, who was the person who was a great astronomer and mathematician?",
+    "optionA": "Vagbhatta",
+    "optionB": "Varahamihira",
+    "optionC": "Aryabhata",
+    "optionD": "Bhanugupta",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::गुप्त राजा जिसने विक्रमादित्य की पदवी ग्रहण की थी, वह था",
+    "question": "The Gupta king who assumed the title of Vikramaditya was",
+    "optionA": "Skandagupta",
+    "optionB": "Kumargupta",
+    "optionC": "Samudragupta",
+    "optionD": "Chandragupta II",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से गुप्तवंश का वह राजा कौन था जुसने हूणों को भारत पर आक्रमण करने से रोका?",
+    "question": "Which king of the Gupta dynasty prevented the Huns from invading India?",
+    "optionA": "Skandagupta",
+    "optionB": "Kumargupta",
+    "optionC": "Chandragupta II",
+    "optionD": "Samudragupta",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में किनके सिक्के संगीत के प्रति उनका प्रेम दर्शाते हैं ?",
+    "question": "Whose coins show their love for music?",
+    "optionA": "Mauryas",
+    "optionB": "Cholas",
+    "optionC": "Guptas",
+    "optionD": "Nandas",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::बाणभट्ट निम्नलिखित में से किस सम्राट के राजदरबारी कवी थे?",
+    "question": "For which emperor was Banabhatta a court poet?",
+    "optionA": "Vikramaditya",
+    "optionB": "Kanishka",
+    "optionC": "Harshavardhana",
+    "optionD": "Kumargupta",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::हर्षवर्धन अपनी धार्मिक सभा कहाँ किया करता था?",
+    "question": "Where did Harshavardhana hold his religious assemblies?",
+    "optionA": "In Mathura",
+    "optionB": "In Tamralipti",
+    "optionC": "In Varanasi",
+    "optionD": "In Prayag",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::एक महान रोमानी नाटक कान्द्म्बरी का लेखक कौन था ?",
+    "question": "Who was the author of the great romantic play Kadambari?",
+    "optionA": "Banabhatta",
+    "optionB": "Bindusara",
+    "optionC": "Bhaskaravardhana",
+    "optionD": "Harshavardhana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्न में से किसकी रचना हर्षवर्धन ने नहीं की थी?",
+    "question": "Which of the following works was not composed by Harshavardhana?",
+    "optionA": "Ratnavali",
+    "optionB": "Nagananda",
+    "optionC": "Harshacharita",
+    "optionD": "Priyadarshika",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::वायुमण्डलीय दाब मापने का पैमाना है ?",
+    "question": "What is the instrument used to measure atmospheric pressure?",
+    "optionA": "Millimeter",
+    "optionB": "Decameter",
+    "optionC": "Barometer",
+    "optionD": "Voltmeter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::अमीबा में कुल कितने शैल (कोशिका) होते है?",
+    "question": "How many cells does an amoeba have in total?",
+    "optionA": "One",
+    "optionB": "Two",
+    "optionC": "Three",
+    "optionD": "Four",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::नागालैंड भारत का विधिवत राज्य कब बना?",
+    "question": "When did Nagaland become a state of India?",
+    "optionA": "1963 AD",
+    "optionB": "1964 AD",
+    "optionC": "1965 AD",
+    "optionD": "1969 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::उत्तर पूर्व सीमान्त रेलवे में सबसे बड़ा रेलवेस्टेसन है ?",
+    "question": "Which is the largest railway station in the Northeast Frontier Railway?",
+    "optionA": "Maligaon",
+    "optionB": "Malakheda",
+    "optionC": "Phulera",
+    "optionD": "Jalgaon",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::मुख्यमन्त्री की नियुक्ति कौन करता है?",
+    "question": "Who appoints the Chief Minister?",
+    "optionA": "President",
+    "optionB": "Governor",
+    "optionC": "Prime Minister",
+    "optionD": "Chief Justice",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::रेफ्रिजरेटर में कौन सी गैस प्रयुक्त की जाती है?",
+    "question": "Which gas is used in a refrigerator?",
+    "optionA": "Oxygen",
+    "optionB": "Nitrogen",
+    "optionC": "Carbon",
+    "optionD": "Freon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::इलेक्ट्रान के खोजकर्त्ता हैं ?",
+    "question": "Who discovered the electron?",
+    "optionA": "J.J. Thomson",
+    "optionB": "Kalam Azad",
+    "optionC": "J. Thomson",
+    "optionD": "Darwin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::असमिया भाषा में मुद्रित प्रथम पुस्तक के लेखक कौन थे?",
+    "question": "Who was the author of the first book printed in the Assamese language?",
+    "optionA": "Atmaram Sharma",
+    "optionB": "Motilal",
+    "optionC": "Radhe Shyam Sharma",
+    "optionD": "Mohan Prakash Sharma",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::रविन्द्रनाथ टैगोर ने भारत के राष्ट्रीयगान के अलावा किस एक और देश का राष्ट्रीय गान लिखा?",
+    "question": "Besides India's national anthem, which other country's national anthem did Rabindranath Tagore write?",
+    "optionA": "China",
+    "optionB": "Pakistan",
+    "optionC": "Sri Lanka",
+    "optionD": "Bangladesh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::हीटर के तार किस चीज के बने होते है?",
+    "question": "Of what are the wires of a heater made?",
+    "optionA": "Nichrome",
+    "optionB": "Copper",
+    "optionC": "Silver",
+    "optionD": "Gold",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::लोहे पर जंग लगने से उसका भार ?",
+    "question": "What happens to the weight of iron when rust forms on it?",
+    "optionA": "It becomes lighter",
+    "optionB": "It increases excessively",
+    "optionC": "It increases",
+    "optionD": "It decreases",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::विश्व का सबसे बड़ा नदी द्वीप‘माजुली’असम के किस जिले में स्थित है?",
+    "question": "In which district of Assam is the world's largest river island, 'Majuli', located?",
+    "optionA": "Darjeeling",
+    "optionB": "Sivasagar",
+    "optionC": "Jorhat",
+    "optionD": "Morigaon",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::ध्वनि कि चाल अधिकतम किसमें होती है ?",
+    "question": "In which medium does sound travel the fastest?",
+    "optionA": "Brass",
+    "optionB": "Copper",
+    "optionC": "Zinc",
+    "optionD": "Steel",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::किसे‘ भविष्य की धातु कहा जाता है?",
+    "question": "Which metal is known as 'the metal of the future'?",
+    "optionA": "Lead",
+    "optionB": "Titanium",
+    "optionC": "Platinum",
+    "optionD": "Mercury",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::कौनसा तत्व स्वतन्त्र अवश्था में पाया जाता है?",
+    "question": "Which element is found in its free state?",
+    "optionA": "Sulfur",
+    "optionB": "Beryllium",
+    "optionC": "Helium",
+    "optionD": "Sodium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::दिल्ली की सुल्तान रजिया सुल्तान किसकी पुत्री थी?",
+    "question": "Razia Sultan of Delhi was the daughter of whom?",
+    "optionA": "Alauddin Khilji",
+    "optionB": "Shams-ud-din Iltutmish",
+    "optionC": "Muhammad bin Tughlaq",
+    "optionD": "Babur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::महाराष्ट्र के प्रथम मुख्यमंत्री कौन थे?",
+    "question": "Who was the first Chief Minister of Maharashtra?",
+    "optionA": "Indira Gandhi",
+    "optionB": "Y.B. Chavan",
+    "optionC": "Mamata Banerjee",
+    "optionD": "Sarojini Naidu",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::‘भारत का मैनचेस्टर’ किसे कहा जाता है?",
+    "question": "Which city is known as 'Manchester of India'?",
+    "optionA": "Ahmedabad",
+    "optionB": "Nagpur",
+    "optionC": "Jaipur",
+    "optionD": "Surat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::बिहार का शोक किस नदी को कहा जाता है?",
+    "question": "Which river is known as the 'sorrow of Bihar'?",
+    "optionA": "Mahi",
+    "optionB": "Yamuna",
+    "optionC": "Kosi",
+    "optionD": "Ravi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय फ़िल्म अभिनेता, ‘शत्रुध्नसिन्हा’ किस राज्य से सम्बंधित हैं?",
+    "question": "Which Indian state is the actor 'Shatrughan Sinha' associated with?",
+    "optionA": "Uttar Pradesh",
+    "optionB": "Bihar",
+    "optionC": "Madhya Pradesh",
+    "optionD": "Gujarat",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::किस भारतीय राज्य में‘ विशाखापट्टनम’ बन्दरगाह स्थित है?",
+    "question": "In which Indian state is the 'Visakhapatnam' port located?",
+    "optionA": "Andhra Pradesh",
+    "optionB": "Maharashtra",
+    "optionC": "Manipur",
+    "optionD": "Nagaland",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::हमारे सौर परिवार कितने ग्रह है?",
+    "question": "How many planets are in our solar system?",
+    "optionA": "5",
+    "optionB": "7",
+    "optionC": "8",
+    "optionD": "11",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारतीय की डीजल इंजन विनिर्माण इकाई‘ डीजल लोकोमोटिववर्क्स’ कहाँ स्थित है?",
+    "question": "Where is the Indian Diesel Engine Manufacturing Unit 'Diesel Locomotive Works' located?",
+    "optionA": "Ahmedabad",
+    "optionB": "Varanasi",
+    "optionC": "Roorkee",
+    "optionD": "Kutch",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::‘बैसाखी’त्यौहार किस धर्म के लोग मनाते हैं?",
+    "question": "Which religion's people celebrate the 'Baisakhi' festival?",
+    "optionA": "Hindu",
+    "optionB": "Christian",
+    "optionC": "Muslim",
+    "optionD": "Sikh religion people",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::‘शाहनामा’किसकी कृति है ?",
+    "question": "'Shahnama' is the work of whom?",
+    "optionA": "Akbar",
+    "optionB": "Firdausi",
+    "optionC": "Ghazalkhan",
+    "optionD": "Nawabpataudi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::मणिपुर की राजधानी है ?",
+    "question": "What is the capital of Manipur?",
+    "optionA": "Kohima",
+    "optionB": "Imphal",
+    "optionC": "Hyderabad",
+    "optionD": "Itanagar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::कौन-सी नदी महाराष्ट्र के नासिक से निकलती है ?",
+    "question": "Which river originates from Nashik in Maharashtra?",
+    "optionA": "Godavari",
+    "optionB": "Ganga",
+    "optionC": "Mahi",
+    "optionD": "Ravi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::अंजूबॉबीजार्ज सम्बंधित है ?",
+    "question": "Anju Bobby George is related to?",
+    "optionA": "Cricket",
+    "optionB": "Athletics",
+    "optionC": "Badminton",
+    "optionD": "Hockey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::प्लासी का युद्ध कब हुआ था ?",
+    "question": "When did the Battle of Plassey take place?",
+    "optionA": "1756 AD",
+    "optionB": "1757 AD",
+    "optionC": "1759 AD",
+    "optionD": "1758 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::महात्मा गांधी जी के पत्नी का नाम क्या था ?",
+    "question": "What was the name of Mahatma Gandhi's wife?",
+    "optionA": "Kamladevi",
+    "optionB": "Kasturba Gandhi",
+    "optionC": "Arundevi",
+    "optionD": "Putlibai",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::स्वतन्त्र भारत के प्रथम भारतीय गवर्नर जनरल थे?",
+    "question": "Who was the first Indian Governor General of free India?",
+    "optionA": "Kailashnarayan",
+    "optionB": "Sardar Patel",
+    "optionC": "Mahatma Gandhi",
+    "optionD": "C. Rajagopalachari",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::रेशम के कीड़े का भोज्य पदार्थ क्या है ?",
+    "question": "What is the food of the silkworm?",
+    "optionA": "Mango leaf",
+    "optionB": "Mulberry leaf",
+    "optionC": "Grape leaf",
+    "optionD": "Pomegranate leaf",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::अनुच्छेद 370 भारत के किस राज्य में लागू है?",
+    "question": "In which state of India is Article 370 applicable?",
+    "optionA": "Rajasthan",
+    "optionB": "Jammu-Kashmir",
+    "optionC": "Andhra Pradesh",
+    "optionD": "Madhya Pradesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::अंजूबॉबी जार्ज सम्बंधित है ?",
+    "question": "Anju Bobby George is related to?",
+    "optionA": "Cricket",
+    "optionB": "Athletics",
+    "optionC": "Badminton",
+    "optionD": "Hockey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::कौन सी रेखा विषुवत रेखा के समानांतर है ?",
+    "question": "Which line is parallel to the equator?",
+    "optionA": "Latitude",
+    "optionB": "Outer line",
+    "optionC": "Equator",
+    "optionD": "Longitude",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::अंतिम मुगल शासक बहादुर शाहजफर की मृत्यु कहाँ हुई थी ?",
+    "question": "Where did the death of the last Mughal ruler Bahadur Shah Zafar take place?",
+    "optionA": "Burma",
+    "optionB": "Rangoon",
+    "optionC": "Berlin",
+    "optionD": "Moscow",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारतीय राष्ट्रीय कांग्रेस के संस्थापक कौन थे?",
+    "question": "Who was the founder of the Indian National Congress?",
+    "optionA": "Jawaharlal Nehru",
+    "optionB": "A.O. Hume",
+    "optionC": "General Dyer",
+    "optionD": "Motilal Nehru",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::ार्थना समाज की स्थापना किसने की ?",
+    "question": "Who founded the Arya Samaj?",
+    "optionA": "Jyotirao Phule",
+    "optionB": "Atmaram Pandurang",
+    "optionC": "Harimilal Pooni",
+    "optionD": "Ramchandra Das",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::रेशम के कीड़े का भोज्य पदार्थ क्या है?",
+    "question": "What is the food of the silkworm?",
+    "optionA": "Mango leaves",
+    "optionB": "Mulberry leaves",
+    "optionC": "Grape leaves",
+    "optionD": "Pomegranate leaves",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::चीन असम के किस दिशा में स्थित है ?",
+    "question": "In which direction is China from Assam?",
+    "optionA": "North",
+    "optionB": "East",
+    "optionC": "South",
+    "optionD": "West",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::सूर्य से सबसे नजदीक गृह है ?",
+    "question": "Which planet is closest to the Sun?",
+    "optionA": "Jupiter",
+    "optionB": "Mercury",
+    "optionC": "Saturn",
+    "optionD": "Venus",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::मुख्य चुनाव आयुक्त की नियुक्ति कौन करता है?",
+    "question": "Who appoints the Chief Election Commissioner?",
+    "optionA": "President",
+    "optionB": "Governor",
+    "optionC": "Chief Justice",
+    "optionD": "Prime Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::वायु का दबाव किसके कारण होता है ?",
+    "question": "What causes air pressure?",
+    "optionA": "Pressure",
+    "optionB": "Density",
+    "optionC": "Speed",
+    "optionD": "Weight",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::चंडीगढ़कारॉ कगार्डन (शैलउद्यान) किसने बनाया था ?",
+    "question": "Who built the Rock Garden of Chandigarh?",
+    "optionA": "Babur",
+    "optionB": "Nek Chand",
+    "optionC": "Raja Ram Mohan Roy",
+    "optionD": "Khilji",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::कौन सा शहर अफगानिस्तान की राजधानी है ?",
+    "question": "Which city is the capital of Afghanistan?",
+    "optionA": "Islamabad",
+    "optionB": "Kabul",
+    "optionC": "Sindh",
+    "optionD": "Kandahar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::नृत्य और संगीत की प्रसिद्ध मुद्रा लावणी किस प्रदेश में प्रयोग की जाती है?",
+    "question": "In which state is the famous dance form Lavani used?",
+    "optionA": "Chhattisgarh",
+    "optionB": "Maharashtra",
+    "optionC": "Goa",
+    "optionD": "Madhya Pradesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::सैंडलवुड निम्नलिखित में किसके लिए प्रयोग किया जाता है ?",
+    "question": "For which of the following is Sandalwood used?",
+    "optionA": "Kannada cinema",
+    "optionB": "Telugu cinema",
+    "optionC": "Tamil cinema",
+    "optionD": "South Indian cinema",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::पुत्तराज सम्मान किस क्षेत्र में दिया जाता है?",
+    "question": "In which field is the Puttaraj Samman given?",
+    "optionA": "Music",
+    "optionB": "Dance",
+    "optionC": "Painting",
+    "optionD": "Literature",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::मुस्लिम तीर्थस्थल गलियाकोट किस प्रदेश में है?",
+    "question": "In which state is the Muslim shrine Galiakot located?",
+    "optionA": "Uttar Pradesh",
+    "optionB": "Rajasthan",
+    "optionC": "Jammu and Kashmir",
+    "optionD": "Bihar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::उत्तर पूर्व क्षेत्र सांस्कृतिक केंद्र का हेडक्वार्टर कहाँ है?",
+    "question": "Where is the headquarters of the North Eastern Cultural Centre?",
+    "optionA": "Guwahati",
+    "optionB": "Itanagar",
+    "optionC": "Aizawl",
+    "optionD": "Dimapur",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में कौन से सम्प्रदाय की स्थापना संत तुकाराम ने की?",
+    "question": "Which sect did Sant Tukaram found?",
+    "optionA": "Paramarthi Sampradaya",
+    "optionB": "Warkari Sampradaya",
+    "optionC": "Rudra Sampradaya",
+    "optionD": "Shri Sampradaya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::अर्थशास्त्र में नोबेल पुरस्कार पाने वाले प्रथम भारतीय ?",
+    "question": "Who was the first Indian to receive the Nobel Prize in Economics?",
+    "optionA": "Rabindranath Tagore",
+    "optionB": "Venkatraman Ramakrishnan",
+    "optionC": "Amartya Sen",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत के प्रथम सिक्ख प्रधानमंत्री ?",
+    "question": "Who was the first Sikh Prime Minister of India?",
+    "optionA": "Vishwanath Pratap Singh",
+    "optionB": "Dr. Manmohan Singh",
+    "optionC": "Chandra Shekhar Singh",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भारत रत्न प्राप्त करने वाली पहली महिला ?",
+    "question": "Who was the first woman to receive the Bharat Ratna?",
+    "optionA": "Mrs. Bachendri Pal",
+    "optionB": "Mrs. Indira Gandhi",
+    "optionC": "Mrs. P.K. Gheesia",
+    "optionD": "Sushmita Sen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::थम महिला चिकित्सक ?",
+    "question": "Who was the first woman doctor?",
+    "optionA": "Prema Mathur",
+    "optionB": "Kadambini Ganguli",
+    "optionC": "Mamata Banerjee",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::राष्ट्रीय ध्वज तिरंगे का गहरा केसरिया रंग क्या दर्शाता है ?",
+    "question": "What does the deep saffron color of the national tricolor flag represent?",
+    "optionA": "Peace and truth",
+    "optionB": "Development and fertility",
+    "optionC": "Strength and courage",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::राष्ट्रीय ध्वज तिरंगे में सबसे ऊपर कौन सा रंग रहता है ?",
+    "question": "Which color is at the top in the national tricolor flag?",
+    "optionA": "Deep saffron color",
+    "optionB": "White",
+    "optionC": "Green color",
+    "optionD": "White and green color",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::राष्ट्रीय ध्वज तिरंगे में बीच में कौन सा रंग रहता है ?",
+    "question": "Which color is in the middle in the national tricolor flag?",
+    "optionA": "Green color",
+    "optionB": "Saffron color",
+    "optionC": "White and green color",
+    "optionD": "White",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::राष्ट्रीय ध्वज तिरंगे में सबसे नीचे कौन सा रंग रहता है ?",
+    "question": "Which color is at the bottom in the national tricolor flag?",
+    "optionA": "White",
+    "optionB": "Deep saffron color",
+    "optionC": "White and green color",
+    "optionD": "Green color",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::निम्न में से कौन सा बैंक सरकारी नहीं है ?",
+    "question": "Which of the following is not a government bank?",
+    "optionA": "UCO Bank",
+    "optionB": "Punjab National Bank",
+    "optionC": "IDBI Bank",
+    "optionD": "Bank of Maharashtra",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::देना बैंक का किस बैंक में विलय हुआ है ?",
+    "question": "Into which bank has Dena Bank merged?",
+    "optionA": "Bank of Baroda",
+    "optionB": "Indian Bank",
+    "optionC": "Canara Bank",
+    "optionD": "Bank of India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::आय (Revenue) के मामले में सबसे बड़ा निजी बैंक कौन सा है ?",
+    "question": "Which is the largest private bank in terms of revenue?",
+    "optionA": "AXIS Bank",
+    "optionB": "HDFC Bank",
+    "optionC": "BOB Bank",
+    "optionD": "ICICI Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::कुल संपत्ति के मामले में सबसे बड़ा सरकारी बैंक कौन सा है ?",
+    "question": "Which is the largest government bank in terms of total assets?",
+    "optionA": "SBI",
+    "optionB": "PNB",
+    "optionC": "Canara Bank",
+    "optionD": "BOB",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्न में से किस बैंक की टैग लाइन &#39;One Family One Bank&#39; है ?",
+    "question": "Which of the following banks has the tagline 'One Family One Bank'?",
+    "optionA": "Bank of Maharashtra",
+    "optionB": "State Bank of India",
+    "optionC": "Punjab National Bank",
+    "optionD": "Indian Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन भारत में शेयर बाजार के कार्य को नियंत्रित करता है ?",
+    "question": "Which of the following regulates the functioning of the stock market in India?",
+    "optionA": "RBI",
+    "optionB": "SBI",
+    "optionC": "FEMA",
+    "optionD": "SEBI",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::नव मल्थूसियन सिद्धांत निम्नलिखित में से किससे संबंधित है ?",
+    "question": "The neo-Malthusian theory is related to which of the following?",
+    "optionA": "Poverty",
+    "optionB": "Employment",
+    "optionC": "Resource scarcity",
+    "optionD": "Income",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत में क्षेत्रीय ग्रामीण बैंक की स्थापना किस वर्ष हुई थी ?",
+    "question": "In which year was the Regional Rural Bank established in India?",
+    "optionA": "1950",
+    "optionB": "1995",
+    "optionC": "1990",
+    "optionD": "1975",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::सहकारिया समिति का संबंध निम्नलिखित में से किससे था ?",
+    "question": "The Sarkaria Committee was related to which of the following?",
+    "optionA": "Improvement in industrial production",
+    "optionB": "Direct tax reform",
+    "optionC": "Center-state relations",
+    "optionD": "Railway fare reform",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::कितने प्रतिशत से अधिक फटे हुये नोटों को बदलकर आप नए नोट ले सकते हैं ?",
+    "question": "How many percent more torn notes can you exchange for new notes?",
+    "optionA": "51",
+    "optionB": "57",
+    "optionC": "61",
+    "optionD": "80",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::थम बायोमेट्रिक एटीएम जारी करने वाला बैंक का क्या नाम है ?",
+    "question": "What is the name of the bank that launched the Thum Biometric ATM?",
+    "optionA": "UCO Bank",
+    "optionB": "State Bank",
+    "optionC": "ICICI Bank",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::‘काॅर्पोरेशन बैंक’ का विलय किस बैंक के साथ किया गया ?",
+    "question": "With which bank was 'Corporation Bank' merged?",
+    "optionA": "Central Bank of India",
+    "optionB": "UCO Bank",
+    "optionC": "Canara Bank",
+    "optionD": "Union Bank of India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::एगमार्क एक्ट भारत में कब लागू किया गया ?",
+    "question": "When was the Agmark Act implemented in India?",
+    "optionA": "1937",
+    "optionB": "1952",
+    "optionC": "1947",
+    "optionD": "1965",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारतीय रिजर्व बैंक के गठन की सिफारिश किस आयोग ने की थी ?",
+    "question": "Which commission recommended the establishment of the Reserve Bank of India?",
+    "optionA": "Keynes Commission",
+    "optionB": "Finance Commission",
+    "optionC": "Planning Commission",
+    "optionD": "Hilton Young Commission",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::भारत का जीएसटी किस देश के माॅडल पर आधारित है ?",
+    "question": "India's GST is based on the model of which country?",
+    "optionA": "Canada",
+    "optionB": "England",
+    "optionC": "France",
+    "optionD": "America",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::200 रू. के नोट पर किसका चित्र अंकित हैं ?",
+    "question": "Whose picture is engraved on the 200 rupee note?",
+    "optionA": "Hampi",
+    "optionB": "Red Fort",
+    "optionC": "Rani ki Vav",
+    "optionD": "Stupa of Sanchi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::देश का पहला तैरता एटीएम कहां शुरू किया गया ?",
+    "question": "Where was the country's first floating ATM started?",
+    "optionA": "Delhi",
+    "optionB": "Kolkata",
+    "optionC": "Mumbai",
+    "optionD": "Kochi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::वर्तमान में कितने सरकारी बैंक हैं ?",
+    "question": "How many government banks are there currently?",
+    "optionA": "10",
+    "optionB": "11",
+    "optionC": "12",
+    "optionD": "17",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::कॉरपोरेशन बैंक का विलय किस बैंक में हुआ ?",
+    "question": "In which bank was Corporation Bank merged?",
+    "optionA": "Union Bank of India",
+    "optionB": "Allahabad Bank",
+    "optionC": "Canara Bank",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से किस क्षेत्र का नरसिंहम समिति का संबंध था ?",
+    "question": "Which of the following areas was the Narasimham Committee related to?",
+    "optionA": "Tax structure",
+    "optionB": "Banking reform",
+    "optionC": "Planning reform",
+    "optionD": "Higher education",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::‘विजया बैंक’ और ‘देना बैंक‘ का विलय निम्न में से किस बैंक में किया गया था ?",
+    "question": "In which bank was the merger of 'Vijaya Bank' and 'Dena Bank' done?",
+    "optionA": "Bank of Baroda",
+    "optionB": "State Bank of India",
+    "optionC": "Union Bank",
+    "optionD": "Allahabad Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::‘इण्डिया बैंक’ का विलय किस बैंक के साथ किया गया ?",
+    "question": "With which bank was 'India Bank' merged?",
+    "optionA": "Indian Bank",
+    "optionB": "Allahabad Bank",
+    "optionC": "Punjab National Bank",
+    "optionD": "UCO Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::निम्न में से बैंकिंग लोकपाल योजना की शुरूआत किसने की ?",
+    "question": "Which of the following initiated the Banking Ombudsman Scheme?",
+    "optionA": "Union Bank",
+    "optionB": "Reserve Bank of India",
+    "optionC": "State Bank of India",
+    "optionD": "Punjab National Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::‘यूनाइटेड बैंक’ का विलय किस बैंक में किया गया ?",
+    "question": "Into which bank was 'United Bank' merged?",
+    "optionA": "Punjab National Bank",
+    "optionB": "Corporation Bank",
+    "optionC": "Union Bank of India",
+    "optionD": "India Bank",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::देश की सरकार एवं केन्द्रीय बैंक द्वारा जारी नोट व सिक्के कौन-सी मुद्रा होती है ?",
+    "question": "What type of currency is issued by the country's government and central bank in the form of notes and coins?",
+    "optionA": "Near money",
+    "optionB": "Acceptable currency",
+    "optionC": "Legal tender",
+    "optionD": "Legal currency",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::कौन-सा बैंक पहले इम्पीरियल बैंक के नाम जाना जाता था ?",
+    "question": "Which bank was formerly known as Imperial Bank?",
+    "optionA": "Punjab National Bank",
+    "optionB": "Allahabad Bank",
+    "optionC": "State Bank of India",
+    "optionD": "Reserve Bank of India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::‘सिंडिकेट बैंक’ का विलय किस बैंक के साथ किया गया है ?",
+    "question": "With which bank has Syndicate Bank been merged?",
+    "optionA": "Union Bank",
+    "optionB": "Yes Bank",
+    "optionC": "Canara Bank",
+    "optionD": "Andhra Bank",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत में जीएसटी लागू करने का सुझाव किस समिति ने दिया था ?",
+    "question": "Which committee suggested the implementation of GST in India?",
+    "optionA": "Vijay Kelkar Committee",
+    "optionB": "Ramesh Committee",
+    "optionC": "KK Committee",
+    "optionD": "N Singh Committee",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::बैंक की नई शाखाएं खोलने के लिये लाइसेंस किसके द्वारा दिया जाता है ?",
+    "question": "By whom is the license given to open new branches of a bank?",
+    "optionA": "Indian Banks Association",
+    "optionB": "State Government",
+    "optionC": "RBI",
+    "optionD": "Ministry of Finance",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::भारत में सिक्कों की ढलाई का काम कौन करता है ?",
+    "question": "Who is responsible for minting coins in India?",
+    "optionA": "NABARD",
+    "optionB": "Prime Minister's Office",
+    "optionC": "Reserve Bank of India",
+    "optionD": "Ministry of Finance",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::यूनियन बैंक ऑफ इंडिया के साथ किस बैंक का विलय किया जायेगा ?",
+    "question": "Which bank will be merged with Union Bank of India?",
+    "optionA": "Corporation Bank",
+    "optionB": "Andhra Bank",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::निम्नलिखित में से कौन-सी मुद्रा एस.डी.आर. के मूल्य की गणना में शामिल नहीं की जाती है ?",
+    "question": "Which of the following currencies is not included in the calculation of the value of SDR?",
+    "optionA": "Yen",
+    "optionB": "Pound Sterling",
+    "optionC": "Rupee",
+    "optionD": "Yuan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::राष्ट्रीय आय के आँकड़ों का अनुमान भारत में किस (संस्था द्वारा लगाया जाता है ?",
+    "question": "By which institution in India are the estimates of national income figures made?",
+    "optionA": "C.S.O.",
+    "optionB": "Planning Commission",
+    "optionC": "Ministry of Finance",
+    "optionD": "None of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::भारत के केन्द्रीय बैंक का नाम क्या है ?",
+    "question": "What is the name of the central bank of India?",
+    "optionA": "Central Bank of India",
+    "optionB": "State Bank of India",
+    "optionC": "Indian Bank",
+    "optionD": "Reserve Bank of India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::कबीर के गुरु कौन थे ?",
+    "question": "Who was Kabir's Guru?",
+    "optionA": "Ramanand",
+    "optionB": "Vallabhacharya",
+    "optionC": "Ramanuja",
+    "optionD": "Namdev",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::“राष्ट्रीय वयोश्री योजना ” का शुभारम्भ कब किया गया ?",
+    "question": "When was the 'Rashtriya Vayoshri Yojana' launched?",
+    "optionA": "1 April 2016",
+    "optionB": "1 April 2017",
+    "optionC": "1 July 2017",
+    "optionD": "1 July 2016",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::वह संविधान संशोधन जिसके तहत GST पारित किया गया ?",
+    "question": "The constitutional amendment under which GST was passed?",
+    "optionA": "124th",
+    "optionB": "123rd",
+    "optionC": "121st",
+    "optionD": "122nd",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::वर्तमान में राज्यसभा के सदस्यों की अधिकतम संख्या कितनी हो सकती है ?",
+    "question": "What is the maximum number of members that can be in the Rajya Sabha at present?",
+    "optionA": "250",
+    "optionB": "252",
+    "optionC": "245",
+    "optionD": "238",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::वर्मीकम्पोस्टिंग किससे की जाती है ?",
+    "question": "Vermicomposting is done from what?",
+    "optionA": "Animals",
+    "optionB": "Fungus",
+    "optionC": "Worms",
+    "optionD": "Bacteria",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::निम्न में से कौन सा दर्रा पश्चिमी घाट पर्वतमाला में स्थित नहीं है ?",
+    "question": "Which of the following passes is not located in the Western Ghats mountain range?",
+    "optionA": "Bhor Ghat",
+    "optionB": "Thal Ghat",
+    "optionC": "Pal Ghat",
+    "optionD": "Pipli Ghat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bank-gk::स्वामी विवेकानन्द का मूल नाम क्या था ?",
+    "question": "What was the original name of Swami Vivekananda?",
+    "optionA": "Surendra Datta",
+    "optionB": "Narendranath Datta",
+    "optionC": "Krishna Datta",
+    "optionD": "Bhukeshwar Datta",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::भिलाई लौह-इस्पात संयंत्र की स्थापना किस देश के सहयोग से की गई है ?",
+    "question": "With the cooperation of which country was the Bhilai Iron and Steel Plant established?",
+    "optionA": "Britain",
+    "optionB": "Germany",
+    "optionC": "Russia",
+    "optionD": "United States",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bank-gk::कौन-सी अक्षांश रेखा भारत के मध्य से गुजरती है ?",
+    "question": "Which parallel line passes through the middle of India?",
+    "optionA": "Tropic of Cancer",
+    "optionB": "Equator",
+    "optionC": "Tropic of Capricorn",
+    "optionD": "Arctic Circle",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::तेलों के हाइड्रोजनीकरण में प्रयुक्त उत्पेरक है ?",
+    "question": "The catalyst used in the hydrogenation of oils is?",
+    "optionA": "Ni",
+    "optionB": "Pt",
+    "optionC": "Mo",
+    "optionD": "Fe",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bank-gk::सूर्य के द्रवमान के 1.4 को कहा जाता है ?",
+    "question": "What is the 1.4 solar mass called?",
+    "optionA": "Rutherford Limit",
+    "optionB": "Chandrasekhar Limit",
+    "optionC": "Meghnad Shah Limit",
+    "optionD": "Raman Limit",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bank-gk::सतीश धवन आंतरिक केंद्र कहा स्थित है ?",
+    "question": "Where is the Satish Dhawan Centre located?",
+    "optionA": "Lucknow",
+    "optionB": "Delhi",
+    "optionC": "Mumbai",
+    "optionD": "Sriharikota",
+    "correctAnswer": "D"
+  }
+]

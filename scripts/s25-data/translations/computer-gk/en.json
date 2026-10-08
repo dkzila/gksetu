@@ -1,0 +1,2027 @@
+[
+  {
+    "id": "computer-gk::कंप्यूटर के आविष्कारक कौन हैं ?",
+    "question": "Who invented the computer?",
+    "optionA": "Von Neumann",
+    "optionB": "J S Kilby",
+    "optionC": "Charles Babbage",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::सबसे पहला कंप्यूटर का नाम क्या था ?",
+    "question": "What was the name of the first computer?",
+    "optionA": "ATARIS",
+    "optionB": "ENIAC",
+    "optionC": "TANDY",
+    "optionD": "NOVELLA",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::आधुनिक कम्प्यूटर की खोज सर्वप्रथम कब हुई ?",
+    "question": "When was the modern computer first discovered?",
+    "optionA": "1949",
+    "optionB": "1951",
+    "optionC": "1946",
+    "optionD": "1947",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कम्प्यूटर के क्षेत्र में महान क्रांति कब से आई ?",
+    "question": "When did the great revolution come in the field of computers?",
+    "optionA": "1977",
+    "optionB": "2000",
+    "optionC": "1955",
+    "optionD": "1960",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर का हिन्दी नाम क्या है ?",
+    "question": "What is the Hindi name of computer?",
+    "optionA": "Ganana Karnewala",
+    "optionB": "Sanganak",
+    "optionC": "Hisab Laganewala",
+    "optionD": "Parignak",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर साक्षरता दिवस कब मनाया जाता है ?",
+    "question": "When is Computer Literacy Day celebrated?",
+    "optionA": "5 December",
+    "optionB": "14 December",
+    "optionC": "22 December",
+    "optionD": "2 December",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::CPU का पूर्ण रूप क्या है ?",
+    "question": "What is the full form of CPU?",
+    "optionA": "Central Processing Unit",
+    "optionB": "Central Problem Unit",
+    "optionC": "Central Processing Union",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::इनमें से कौन सर्च इंजन नहीं है ?",
+    "question": "Which of these is not a search engine?",
+    "optionA": "Google",
+    "optionB": "Yahoo",
+    "optionC": "Baidu",
+    "optionD": "Wolfram Alpha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::निम्न में कौन इनपुट इकाई है ?",
+    "question": "Which of these is an input device?",
+    "optionA": "Mouse",
+    "optionB": "Keyboard",
+    "optionC": "Scanner",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::1 किलोबाइट (KB) कितने बाइट के बराबर होते है ?",
+    "question": "How many bytes are in 1 kilobyte (KB)?",
+    "optionA": "1024 bytes",
+    "optionB": "1024 megabytes",
+    "optionC": "1024 gigabytes",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::1 मेगाबाइट (MB) कितने बाइट के बराबर होते है ?",
+    "question": "How many bytes are in 1 megabyte (MB)?",
+    "optionA": "1024 KB",
+    "optionB": "1024 MB",
+    "optionC": "1024 GB",
+    "optionD": "1024 TB",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::1 गीगाबाइट (GB) कितने बाइट के बराबर होते है ?",
+    "question": "How many bytes are in 1 gigabyte (GB)?",
+    "optionA": "1024 KB",
+    "optionB": "1024 MB",
+    "optionC": "1024 GB",
+    "optionD": "1024 TB",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कम्प्यूटरों में प्रयुक्त आई. सी. चिप बनते हैं ?",
+    "question": "I.C. chips used in computers are made of?",
+    "optionA": "Chromium",
+    "optionB": "Iron Oxide",
+    "optionC": "Silver",
+    "optionD": "Silicon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::इन्टरनेट के पते में पद एचटीटीपी का सही विस्तृत रूप है ?",
+    "question": "What is the correct full form of HTTP in an internet address?",
+    "optionA": "higher text transfer protocol",
+    "optionB": "higher transfer tex protocol",
+    "optionC": "hybrid text transfer protocol",
+    "optionD": "hyper text transfer protocol",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::किसी कंप्यूटर के प्रोग्राम में बच्चों द्वारा प्रयुक्त भाषा प्रायः कौन-सी होती है ?",
+    "question": "Which language is often used by children in a computer program?",
+    "optionA": "BASIC",
+    "optionB": "Java",
+    "optionC": "Logo",
+    "optionD": "Pilot",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::एक सुवाह्य, निजी कंप्यूटर जो आपकी गोद में रखने लायक छोटा-सा होता है, क्या कहलाता है ?",
+    "question": "A portable, personal computer that is small enough to fit on your lap is called what?",
+    "optionA": "Mainframe computer",
+    "optionB": "Notebook computer",
+    "optionC": "Workstation",
+    "optionD": "PDA",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कोडांतरक एक प्रोग्राम है, वह निम्नलिखित में से किससे प्रोग्राम का रूपान्तरण है ?",
+    "question": "A compiler is a program, it converts a program from what?",
+    "optionA": "From machine to low-level",
+    "optionB": "From low-level to high-level",
+    "optionC": "From high-level to compilation",
+    "optionD": "From compilation to machine",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::मल्टी प्रोसेसिंग (Multi Processing) होती है ?",
+    "question": "Multi Processing occurs?",
+    "optionA": "By one processor",
+    "optionB": "By more than one processor",
+    "optionC": "Without any processor",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से ऑप्टिकल मेमोरी है ?",
+    "question": "Which of the following is optical memory?",
+    "optionA": "Bubble memories",
+    "optionB": "Floppy disk",
+    "optionC": "CD-ROM",
+    "optionD": "Core memories",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::CPU में कंट्रोल, मेमोरी और तीसरा कौन सा यूनिट होते हैं ?",
+    "question": "In CPU, control, memory and which third unit are there?",
+    "optionA": "Micro",
+    "optionB": "Processor",
+    "optionC": "Output",
+    "optionD": "Arithmetic/Logic",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::CPU के ALU में होते हैं ?",
+    "question": "What are in the ALU of CPU?",
+    "optionA": "RAM space",
+    "optionB": "Registers",
+    "optionC": "Byte space",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::गणना और तुलना के लिए कम्प्यूटर के किस भाग का प्रयोग किया जाता है ?",
+    "question": "Which part of the computer is used for calculation and comparison?",
+    "optionA": "Disk unit",
+    "optionB": "Modem",
+    "optionC": "ALU",
+    "optionD": "Control unit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::एक हार्डवेयर डिवाइस जो डाटा को अर्थ पूर्ण इनफार्मेशन में परिवर्तित करता है ?",
+    "question": "A hardware device that converts data into meaningful information?",
+    "optionA": "Processor",
+    "optionB": "Input device",
+    "optionC": "Program",
+    "optionD": "Protector",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::ोसेसर के तीन मुख्य भाग है ?",
+    "question": "What are the three main parts of a processor?",
+    "optionA": "ALU, Control unit and RAM",
+    "optionB": "ALU, Control unit and registers",
+    "optionC": "Cache, Control unit and registers",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::CPU और I/O के बीच सिग्नलों के मूवमेंट को कौन नियंत्रित करता है ?",
+    "question": "Who controls the movement of signals between CPU and I/O?",
+    "optionA": "Control unit",
+    "optionB": "ALU",
+    "optionC": "Memory unit",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कम्प्यूटर के सेंट्रल प्रोसैसिंग यूनिट का Function है ?",
+    "question": "What is the function of the computer's Central Processing Unit?",
+    "optionA": "Deletes data",
+    "optionB": "Creates invoices",
+    "optionC": "Performs calculations and processing",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्न में से कौन-सा कम्प्यूटर का बुनियादी कार्य नहीं है?",
+    "question": "Which of the following is not a basic function of a computer?",
+    "optionA": "Processing data",
+    "optionB": "Scanning text",
+    "optionC": "Accepting input",
+    "optionD": "Storing data",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::परिचालन सम्पन्न करता है ?",
+    "question": "What performs operation?",
+    "optionA": "Algorithm",
+    "optionB": "Arithmetic",
+    "optionC": "ASCII",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कम्प्यूटर में अधिकांश प्रोसैसिंग किसमे होती है ?",
+    "question": "Where does most of the processing occur in a computer?",
+    "optionA": "Motherboard",
+    "optionB": "Memory",
+    "optionC": "CPU",
+    "optionD": "RAM",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कम्प्यूटर निम्नलिखित में से कौन-सा कार्य नहीं करता है ?",
+    "question": "Which of the following tasks does a computer not perform?",
+    "optionA": "Processing",
+    "optionB": "Understanding",
+    "optionC": "Inputting",
+    "optionD": "Outputting",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::मुख मेमोरी किसके समन्वय से कार्य करती है ?",
+    "question": "Main memory works under the coordination of which component?",
+    "optionA": "Intel",
+    "optionB": "Special purpose card",
+    "optionC": "RAM",
+    "optionD": "CPU",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::माइक्रोप्रोसेसर जो कंप्यूटर का मस्तिष्क होता है, उसे कहा जाता है ?",
+    "question": "The microprocessor which is the brain of the computer is called?",
+    "optionA": "Software",
+    "optionB": "Microchip",
+    "optionC": "Macrochip",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर द्वारा प्रोड्यूस किया गया परिमाण है ?",
+    "question": "What is the quantity produced by the computer?",
+    "optionA": "Memory",
+    "optionB": "Data",
+    "optionC": "Output",
+    "optionD": "Input",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::इनपुट का आउटपुट में रुपान्तरण किया जाता है ?",
+    "question": "Input is converted into output by?",
+    "optionA": "Memory",
+    "optionB": "CPU",
+    "optionC": "Input and output",
+    "optionD": "Peripherals",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::ोसेस्ड डेटा को कहते हैं ?",
+    "question": "Processed data is called?",
+    "optionA": "Output",
+    "optionB": "Process",
+    "optionC": "Input",
+    "optionD": "All",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::सी पी यू का मुख्य घटक है ?",
+    "question": "The main component of CPU is?",
+    "optionA": "Control unit",
+    "optionB": "Memory",
+    "optionC": "Arithmetic logic unit",
+    "optionD": "All these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की क्षमता है ?",
+    "question": "The capacity of computer is?",
+    "optionA": "Low",
+    "optionB": "High",
+    "optionC": "Limited",
+    "optionD": "Unlimited",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर को किस प्रकार की बुद्धि की संज्ञा दी गई है ?",
+    "question": "What type of intelligence has been given to the computer?",
+    "optionA": "Human",
+    "optionB": "Artificial",
+    "optionC": "Pure",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::मनुष्य की स्मरण शक्ति कंप्यूटर की तुलना में होती है ?",
+    "question": "Human memory capacity is compared to computer?",
+    "optionA": "Normal",
+    "optionB": "High",
+    "optionC": "Low",
+    "optionD": "Average",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::मानव-मन तथा कंप्यूटर में किसकी गति अधिक है ?",
+    "question": "In human mind and computer, whose speed is more?",
+    "optionA": "Computer",
+    "optionB": "Human mind",
+    "optionC": "Equal in both",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::E.D.P क्या है ?",
+    "question": "What is E.D.P?",
+    "optionA": "Electronic Data Power",
+    "optionB": "Electronic Data Personal",
+    "optionC": "Electronic Data Part",
+    "optionD": "Electronic Data Processing",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में सुचना किसे कहा जाता है ?",
+    "question": "What is information called in computer?",
+    "optionA": "Data",
+    "optionB": "Numbers",
+    "optionC": "Collected data",
+    "optionD": "All these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में डेटा किसे कहा जाता है ?",
+    "question": "What is data called in computer?",
+    "optionA": "Symbol",
+    "optionB": "Number",
+    "optionC": "Given information",
+    "optionD": "Symbolic and numerical information",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::इनपुट का आउटपुट में रूपान्तरण किसके द्वारा किया जाता है ?",
+    "question": "Conversion of input into output is done by?",
+    "optionA": "Memory",
+    "optionB": "Storage",
+    "optionC": "CPU",
+    "optionD": "Input-output unit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में जाने वाले डेटा को क्या कहते हैं ?",
+    "question": "What is the data going into the computer called?",
+    "optionA": "Algorithm",
+    "optionB": "Input",
+    "optionC": "Output",
+    "optionD": "Calculations",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::डेटा प्रोसेसिंग का अर्थ क्या है ?",
+    "question": "What is the meaning of data processing?",
+    "optionA": "Performing calculation tasks",
+    "optionB": "Collection of data",
+    "optionC": "Computer's operating system",
+    "optionD": "Preparing information for commercial use",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::ATM क्या होता हैं ?",
+    "question": "What is an ATM?",
+    "optionA": "Automated Teller Machine",
+    "optionB": "Staff-free bank counter",
+    "optionC": "Branches of banks",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर प्रोसेस द्वारा इनफार्मेशन में परिवर्तित किये जाते हैं?",
+    "question": "What is converted into information by computer processing?",
+    "optionA": "Input",
+    "optionB": "Data",
+    "optionC": "Number",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::एक इलेक्ट्रॉनिक डिवाइस जो डेटा को इनफार्मेशन में कनवर्ट करते हुए प्रोसेस करता है ?",
+    "question": "An electronic device that processes data by converting it into information?",
+    "optionA": "Computer",
+    "optionB": "Case",
+    "optionC": "Processor",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::थम गणना यंत्र है ?",
+    "question": "Thum is a calculating device?",
+    "optionA": "Calculator",
+    "optionB": "Difference Engine",
+    "optionC": "Abacus",
+    "optionD": "Clock",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::पैकमैन नामक प्रसिद्ध कंप्यूटर किस काम के लिए बना था ?",
+    "question": "For what purpose was the famous computer Pac-Man built?",
+    "optionA": "Bank",
+    "optionB": "Stock Market",
+    "optionC": "Games",
+    "optionD": "Book Publishing",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::किसने प्रथम मेकैनिकल कैलकुलेटर का निर्माण किया था ?",
+    "question": "Who built the first mechanical calculator?",
+    "optionA": "John Mauchly",
+    "optionB": "Blaise Pascal",
+    "optionC": "Howard Aiken",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किसने पंच कार्ड का आरंभ किया ?",
+    "question": "Who initiated the punch card?",
+    "optionA": "Jacquard",
+    "optionB": "Powers",
+    "optionC": "Pascal",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर के बुनियादी संरचना का विकास किया था ?",
+    "question": "Who developed the basic architecture of the computer?",
+    "optionA": "John Mauchly",
+    "optionB": "Jacquard",
+    "optionC": "Charles Babbage",
+    "optionD": "Blaise Pascal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::इनमें से कौन सबसे बड़ा, सबसे तेज और सबसे महँगा कंप्यूटर है ?",
+    "question": "Which is the largest, fastest, and most expensive computer among these?",
+    "optionA": "Super Computer",
+    "optionB": "Laptop",
+    "optionC": "Personal Computer",
+    "optionD": "Note Book",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::सामान्य रूप से प्रयुक्त किया जाने वाला कंप्यूटर है ?",
+    "question": "Computer generally used is?",
+    "optionA": "Digital Computer",
+    "optionB": "Optical Computer",
+    "optionC": "Hybrid Computer",
+    "optionD": "Analog Computer",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::CRAY क्या है ?",
+    "question": "What is CRAY?",
+    "optionA": "Micro Computer",
+    "optionB": "Mainframe Computer",
+    "optionC": "Mini Computer",
+    "optionD": "Super Computer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::मल्टी प्रोग्रामिंग का प्रयोग किस पीढ़ी के कंप्यूटर से शुरू हुआ था ?",
+    "question": "From which generation of computers did the use of multiprogramming begin?",
+    "optionA": "First Generation",
+    "optionB": "Second Generation",
+    "optionC": "Third Generation",
+    "optionD": "Fourth Generation",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::विश्व का सबसे पहला सुपर कंप्यूटर कब बना ?",
+    "question": "When was the world's first supercomputer built?",
+    "optionA": "1981",
+    "optionB": "1980",
+    "optionC": "1976",
+    "optionD": "1995",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::भारत में निर्मित प्रथम कंप्यूटर का क्या नाम है ?",
+    "question": "What is the name of the first computer built in India?",
+    "optionA": "Aryabhatta",
+    "optionB": "Siddhartha",
+    "optionC": "Ashoka",
+    "optionD": "Buddha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::सबसे तेज कंप्यूटर होता है ?",
+    "question": "Which is the fastest computer?",
+    "optionA": "Mini Computer",
+    "optionB": "Micro Computer",
+    "optionC": "Mainframe Computer",
+    "optionD": "Super Computer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::माइक्रोप्रोसेसर किस पीढ़ी का कंप्यूटर है ?",
+    "question": "Microprocessor is a computer of which generation?",
+    "optionA": "First Generation",
+    "optionB": "Second Generation",
+    "optionC": "Third Generation",
+    "optionD": "Fourth Generation",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::भारत में निर्मित &#39;परम कम्प्यूटर&#39; किस प्रकार का कम्प्यूटर है ?",
+    "question": "What type of computer is the 'Param' computer made in India?",
+    "optionA": "Micro Computer",
+    "optionB": "Mini Computer",
+    "optionC": "Mainframe Computer",
+    "optionD": "Super Computer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::गणना संयंत्र एबाकस का अविष्कार किस देश में हुआ ?",
+    "question": "In which country was the calculating device Abacus invented?",
+    "optionA": "India",
+    "optionB": "America",
+    "optionC": "China",
+    "optionD": "Greece",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::IMAC एक प्रकार का है ?",
+    "question": "IMAC is a type of?",
+    "optionA": "Machine",
+    "optionB": "Processor",
+    "optionC": "Program",
+    "optionD": "Register",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::एनालिटिक इंजन का निर्माण किसने किया था ?",
+    "question": "Who built the Analytical Engine?",
+    "optionA": "G. Eckert",
+    "optionB": "Ada Lovelace",
+    "optionC": "Charles Babbage",
+    "optionD": "Semen Korsakov",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::सर्व प्रथम पंच कार्ड का प्रयोग किसने किया था ?",
+    "question": "Who first used the punch card?",
+    "optionA": "Joseph Marie",
+    "optionB": "Charles Babbage",
+    "optionC": "John Mauchly",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर के विकास में सर्वाधिक योगदान किसका है ?",
+    "question": "Whose contribution is the most in the development of computers?",
+    "optionA": "Charles Babbage",
+    "optionB": "Joseph Jacquard",
+    "optionC": "Blaise Pascal",
+    "optionD": "Von Neumann",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::इन्टीग्रेटेड सर्किट चिप का विकास किसने किया है ?",
+    "question": "Who developed the Integrated Circuit Chip?",
+    "optionA": "Charles Babbage",
+    "optionB": "C. V. Raman",
+    "optionC": "Robert Noyce",
+    "optionD": "J. S. Kilby",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::चुम्बकीय डिस्क पर किस पदार्थ की परत होती है ?",
+    "question": "What material is coated on the magnetic disk?",
+    "optionA": "Iron Oxide",
+    "optionB": "Sodium Peroxide",
+    "optionC": "Magnesium Oxide",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::डिजिटल कंप्यूटर किस सिद्धान्त पर कार्य करता है ?",
+    "question": "On which principle does a digital computer work?",
+    "optionA": "Measurement",
+    "optionB": "Calculation",
+    "optionC": "Electrical",
+    "optionD": "Logical",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::भारत में विकसित &#39;परम&#39; सुपर कंप्यूटर का विकास किस संस्था ने किया है ?",
+    "question": "Which institution developed the 'Param' supercomputer in India?",
+    "optionA": "IIT, Kanpur",
+    "optionB": "IIT, Delhi",
+    "optionC": "C-DAC",
+    "optionD": "BARC",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्न में से तेज कौन-सा है ?",
+    "question": "Which of the following is the fastest?",
+    "optionA": "Registers",
+    "optionB": "CD_ROM",
+    "optionC": "RAM",
+    "optionD": "Cache",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::किसने पहला इलेक्ट्रॉनिक कंप्यूटर - ENIAC को बनाया था ?",
+    "question": "Who built the first electronic computer - ENIAC?",
+    "optionA": "Von Neumann",
+    "optionB": "Presper Eckert & John Mauchly",
+    "optionC": "Joseph Marie",
+    "optionD": "Charles Babbage",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::डॉट मैट्रिक्स किस उपकरण की किस्म है ?",
+    "question": "Dot Matrix is a type of which device?",
+    "optionA": "Printer",
+    "optionB": "Scanner",
+    "optionC": "Keyboard",
+    "optionD": "Mouse",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::की-बोर्ड में &#39;Function Key&#39; की संख्या कितनी होती है ?",
+    "question": "How many 'Function Keys' are there in a keyboard?",
+    "optionA": "16",
+    "optionB": "12",
+    "optionC": "19",
+    "optionD": "14",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किस प्रिंटर द्वारा एक स्ट्रोक में एक अक्षर प्रिंट होता है ?",
+    "question": "Which printer prints one character in a single stroke?",
+    "optionA": "Plotter",
+    "optionB": "Laser Printer",
+    "optionC": "Dot Matrix Printer",
+    "optionD": "Line Printer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::इनमें से कौन इनपुट डिवाइस नहीं है ?",
+    "question": "Which of these is not an input device?",
+    "optionA": "Monitor",
+    "optionB": "Magnetic Tape",
+    "optionC": "Joystick",
+    "optionD": "Magnetic Disk",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::सर्वाधिक तेज गति का प्रिन्टर है ?",
+    "question": "The fastest printer is?",
+    "optionA": "Jet Printer",
+    "optionB": "Laser Printer",
+    "optionC": "Thermal Printer",
+    "optionD": "Dot Printer",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::L.C.D का पूरा नाम क्या होता है ?",
+    "question": "What is the full form of L.C.D?",
+    "optionA": "Liquid Crystal Display",
+    "optionB": "Lead Crystal Device",
+    "optionC": "Liquid Central Display",
+    "optionD": "Light Central Display",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर के मेमोरी में डाले गये कार्य को प्रदर्शित करता है ?",
+    "question": "Displays the work put into the computer's memory?",
+    "optionA": "Monitor",
+    "optionB": "Printer",
+    "optionC": "RAM",
+    "optionD": "ROM",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::गेम खेलना किससे आसान हो जाता है ?",
+    "question": "Playing games becomes easier with?",
+    "optionA": "Keyboard",
+    "optionB": "Mouse",
+    "optionC": "Joystick",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::Ctrl, Shift और Alt को कौन सी कुंजियाँ कहते हैं ?",
+    "question": "What are Ctrl, Shift, and Alt called?",
+    "optionA": "Function",
+    "optionB": "Modifier",
+    "optionC": "Alpha Numeric",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::अधिकांश प्रोडक्ट्स पर प्रिंटेड लाइनों के पैटर्न को क्या कहते हैं ?",
+    "question": "What are the pattern of printed lines on most products called?",
+    "optionA": "Barcodes",
+    "optionB": "Scanners",
+    "optionC": "Prices",
+    "optionD": "Code",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::OCR का पूर्ण रूप क्या है ?",
+    "question": "What is the full form of OCR?",
+    "optionA": "Optical CPU Recognition",
+    "optionB": "Optical Character Recognition",
+    "optionC": "Optical Character Rendering",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::निम्न में से कौन-सा आउटपुट डिवाइस नहीं है ?",
+    "question": "Which of the following is not an output device?",
+    "optionA": "Printer",
+    "optionB": "Monitor",
+    "optionC": "Plotter",
+    "optionD": "Touchscreen",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::व्यक्तिगत कंप्यूटर हेतु सबसे साधारण स्टोरेज डिवाइस है ?",
+    "question": "The most common storage device for personal computers is?",
+    "optionA": "Floppy Disk",
+    "optionB": "Pen Drive",
+    "optionC": "Hard Disk Drive",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::मॉनिटर के डिस्प्ले आकार को कैसे मापा जता है ?",
+    "question": "How is the size of a monitor's display measured?",
+    "optionA": "Horizontally",
+    "optionB": "Diagonally",
+    "optionC": "Jig-Jag",
+    "optionD": "Vertically",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में प्रिंटेड डायग्राम पाने के लिए यूज किया जाने वाले इनपुट डिवाइस है ?",
+    "question": "The input device used to get printed diagrams in a computer is?",
+    "optionA": "Mouse",
+    "optionB": "Printer",
+    "optionC": "Keyboard",
+    "optionD": "Scanner",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::पहला कंप्यूटर माउस किसने बनाया था ?",
+    "question": "Who invented the first computer mouse?",
+    "optionA": "William English",
+    "optionB": "Douglas Engelbart",
+    "optionC": "Robert Zawacki",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::जब PC पर किसी डोक्यूमेंट पर कार्य करते हैं, तब डोक्यूमेंट अस्थायी रूप से स्टोर होता है ?",
+    "question": "When working on a document on a PC, where is the document temporarily stored?",
+    "optionA": "CPU",
+    "optionB": "RAM",
+    "optionC": "ROM",
+    "optionD": "CD-ROM",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की मुख्य मेमोरी क्या होती है ?",
+    "question": "What is the main memory of a computer?",
+    "optionA": "External",
+    "optionB": "Internal",
+    "optionC": "Auxiliary",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::फ्लॉपी डिस्क किस प्रकार की मेमोरी से सम्बन्ध रखती है ?",
+    "question": "What type of memory is a floppy disk related to?",
+    "optionA": "External",
+    "optionB": "Internal",
+    "optionC": "Volatile",
+    "optionD": "A and B",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::रैम (RAM) किस तरह की मेमोरी है ?",
+    "question": "What type of memory is RAM?",
+    "optionA": "External",
+    "optionB": "Auxiliary",
+    "optionC": "Internal",
+    "optionD": "Primary",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::निम्न में से कौन RAM नहीं है ?",
+    "question": "Which of the following is not RAM?",
+    "optionA": "PRAM",
+    "optionB": "DRAM",
+    "optionC": "FLASH",
+    "optionD": "SRAM",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::सेल फोनों में किस प्रकार के स्टोरेज डिवाइसों का उपयोग किया जाता है ?",
+    "question": "What type of storage devices are used in mobile phones?",
+    "optionA": "Cache",
+    "optionB": "Rom",
+    "optionC": "Flash",
+    "optionD": "Buffer",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::इंटरनल स्टोरेज किस प्रकार का स्टोरेज है ?",
+    "question": "What type of storage is internal storage?",
+    "optionA": "Virtual",
+    "optionB": "Primary",
+    "optionC": "Secondary",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किस मेमोरी में रखा डाटा बिजली जाते ही समाप्त हो जाता है ?",
+    "question": "In which memory does the stored data get erased when the power goes off?",
+    "optionA": "RAM",
+    "optionB": "Floppy",
+    "optionC": "CD",
+    "optionD": "Disk",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::सी. डी. को कॉम्पैक्ट डिस्क के अलावा अन्य किस नाम से भी जाना जाता है ?",
+    "question": "What is CD also known as, other than Compact Disc?",
+    "optionA": "Project Disc",
+    "optionB": "Object Disc",
+    "optionC": "Optical Disc",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::सबसे कॉमन प्रकार की स्टोरेज डिवाइसें हैं ?",
+    "question": "What are the most common types of storage devices?",
+    "optionA": "Optical",
+    "optionB": "Magnetic",
+    "optionC": "Magnetic",
+    "optionD": "Persistent",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::CD से आप क्या कर सकते हैं ?",
+    "question": "What can you do with a CD?",
+    "optionA": "Read",
+    "optionB": "Write",
+    "optionC": "Read and Write",
+    "optionD": "Either read or write",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्न में से कौन-सा ऑप्टिकल डिस्क का उदाहरण है ?",
+    "question": "Which of the following is an example of an optical disc?",
+    "optionA": "Magnetic Disc",
+    "optionB": "Memory Disc",
+    "optionC": "Digital Versatile Disc",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कौन सी डिवाइस प्रोग्राम और डाटा के बीच का अंतर समझ सकती है ?",
+    "question": "Which device can understand the difference between a program and data?",
+    "optionA": "Memory",
+    "optionB": "Input Device",
+    "optionC": "Output Device",
+    "optionD": "Microprocessor",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::डीवीडी (DVD) का उदहारण है ?",
+    "question": "DVD is an example of?",
+    "optionA": "Output Device",
+    "optionB": "Hard Disk",
+    "optionC": "Optical Disc",
+    "optionD": "Object Disc",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की प्रमुख मेमोरी को कहा जाता है ?",
+    "question": "What is the main memory of a computer called?",
+    "optionA": "Primary Memory",
+    "optionB": "Internal Memory",
+    "optionC": "Primary Storage",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::डिस्क को ट्रैकों और सेक्टरों में विभाजित करने की प्रक्रिया क्या है ?",
+    "question": "What is the process of dividing a disk into tracks and sectors?",
+    "optionA": "Crashing",
+    "optionB": "Tracking",
+    "optionC": "Formatting",
+    "optionD": "Dicing",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से क्या स्टोरेज डिवाइस का उदाहरण नहीं है ?",
+    "question": "Which of the following is not an example of a storage device?",
+    "optionA": "Floppy",
+    "optionB": "Hard Disk",
+    "optionC": "CD",
+    "optionD": "RAM",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::फाइल सिस्टम स्थायी रूप से संग्रहण में रहता है ?",
+    "question": "File system resides permanently in storage?",
+    "optionA": "Device",
+    "optionB": "Primary",
+    "optionC": "Secondary",
+    "optionD": "Direct Memory",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::डीवीडी (DVD) क्या है ?",
+    "question": "What is DVD (DVD)?",
+    "optionA": "Digital Versatile Disk",
+    "optionB": "Digital Video Disk",
+    "optionC": "Dynamic Video Disk",
+    "optionD": "Dynamic Versatile Disk",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::CPU के लिए सामन्य गणित परफार्म करता है ?",
+    "question": "Performs general arithmetic for CPU?",
+    "optionA": "DIMM",
+    "optionB": "BUS",
+    "optionC": "ALU",
+    "optionD": "Register",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::मदरबोर्ड के कंफोनेन्ट्स के बीच इनफार्मेशन किसके माध्यम से ट्रेवल करता है ?",
+    "question": "Information travels between motherboard components through what?",
+    "optionA": "Peripherals",
+    "optionB": "Flash Memory",
+    "optionC": "CMOS",
+    "optionD": "BUS",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर का मुख्य पटल कहलाता है ?",
+    "question": "The main board of a computer is called?",
+    "optionA": "Mother Board",
+    "optionB": "Father Board",
+    "optionC": "Key Board",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::पी. सी. का पूरा नाम क्या है ?",
+    "question": "What is the full name of PC?",
+    "optionA": "Public Computer",
+    "optionB": "Personal Computer",
+    "optionC": "Private Computer",
+    "optionD": "Both (B) and (C)",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::एक्सेसरिज जिस स्थान पर सिस्टम यूनिट से जुड़ते हैं उसे क्या कहते हैं ?",
+    "question": "Accessories connect to the system unit at what place?",
+    "optionA": "Ring",
+    "optionB": "Port",
+    "optionC": "Bus",
+    "optionD": "Yesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में आई. बी. एम. का पूरा नाम है ?",
+    "question": "What is the full name of IBM in computer?",
+    "optionA": "International Business Machine",
+    "optionB": "International Brain Machine",
+    "optionC": "Indian Brain Machine",
+    "optionD": "Indian Business Machine",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::विशेष प्रकार के संगीत उपकरणों को साउंड कार्डों से कौन-सा पोर्ट जोड़ता है ?",
+    "question": "Which port connects special types of musical instruments to sound cards?",
+    "optionA": "BUS",
+    "optionB": "MINI",
+    "optionC": "USB",
+    "optionD": "MIDI",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::संपूर्ण कंप्यूटर प्रणाली के लिए संप्रेषण नियंत्रण करता है ?",
+    "question": "Controls communication for the entire computer system?",
+    "optionA": "Motherboard",
+    "optionB": "Processor",
+    "optionC": "Semi Conductor",
+    "optionD": "Co-processor",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::डिस्क को पढ़ने के लिए प्रयोग में आने वाला हार्डवेयर है ?",
+    "question": "Hardware used for reading a disk is?",
+    "optionA": "CPU",
+    "optionB": "Floppy Disk",
+    "optionC": "Disk Drive",
+    "optionD": "Hardware",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::इलेक्ट्रॉनिक कंम्पोनेन्टवाले थिन प्लेट या बोर्ड को कहते हैं ?",
+    "question": "A thin plate or board with electronic components is called?",
+    "optionA": "Hard Disk",
+    "optionB": "ROM",
+    "optionC": "RAM",
+    "optionD": "Circuit Board",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::एक्सपैंशन कार्ड किसमे इन्सर्ट किए जाते हैं ?",
+    "question": "Expansion cards are inserted into what?",
+    "optionA": "CPU",
+    "optionB": "Peripheral Device",
+    "optionC": "Slot",
+    "optionD": "Pegs",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की घड़ी की स्पीड की गणना किसमें की जाती है ?",
+    "question": "The speed of a computer's clock is measured in which unit?",
+    "optionA": "Bit",
+    "optionB": "Megabyte",
+    "optionC": "Gigabyte",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::मदरबोर्ड में क्या रहता है जो मदरबोर्ड पर CPU को दूसरे पुर्जों से जोड़ता हैं ?",
+    "question": "What is present in the motherboard that connects the CPU to other components on the motherboard?",
+    "optionA": "Primary Memory",
+    "optionB": "System Bus",
+    "optionC": "ALU",
+    "optionD": "Input Unit",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किसका उपयोग करते हुए पहला कंप्यूटर प्रोग्राम किए गए थे ?",
+    "question": "Using which were the first computer programs programmed?",
+    "optionA": "Machine Language",
+    "optionB": "Source Card",
+    "optionC": "Object Card",
+    "optionD": "Assembly Language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::किसने बेसिक कंप्यूटर भाषा का विकास किया था ?",
+    "question": "Who developed the BASIC computer language?",
+    "optionA": "Nicholas Berth",
+    "optionB": "Jim Clark",
+    "optionC": "Nicholas Berth",
+    "optionD": "John. G. Kemeny",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::बेसिक कंप्यूटर भाषा का विकास कब हुआ था ?",
+    "question": "When was the BASIC computer language developed?",
+    "optionA": "1955",
+    "optionB": "1968",
+    "optionC": "1964",
+    "optionD": "1975",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::किसी प्रोग्राम का चित्र के रूप में प्रदर्शन क्या कहलाता है ?",
+    "question": "What is the display of a program in the form of a diagram called?",
+    "optionA": "Mix Chart",
+    "optionB": "Chart",
+    "optionC": "Flowchart",
+    "optionD": "Hull Chart",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से कौन-सी वैज्ञानिक कंप्यूटर भाषा है ?",
+    "question": "Which of the following is a scientific computer language?",
+    "optionA": "COBOL",
+    "optionB": "BASIC",
+    "optionC": "PASCAL",
+    "optionD": "FORTRAN",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर भाषा COBOL किसके लिए उपयोगी है ?",
+    "question": "The computer language COBOL is useful for which of the following?",
+    "optionA": "Graphic Work",
+    "optionB": "Business Work",
+    "optionC": "Scientific Work",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किस कंप्यूटर भाषा का प्रयोग वाणिज्यिक कार्यों में किया है ?",
+    "question": "Which computer language is used for business purposes?",
+    "optionA": "BASIC",
+    "optionB": "COBOL",
+    "optionC": "PASCAL",
+    "optionD": "FORTRAN",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::अंग्रेजी भाषा के समान उच्चस्तरीय कंप्यूटर भाषा है ?",
+    "question": "Which computer language is similar to the English language?",
+    "optionA": "C++",
+    "optionB": "COBOL",
+    "optionC": "PASCAL",
+    "optionD": "FORTRAN",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर भाषा JAVA के आविष्कारक कौन हैं ?",
+    "question": "Who are the inventors of the computer language JAVA?",
+    "optionA": "Microsoft",
+    "optionB": "Infosys",
+    "optionC": "Sun Microsystems",
+    "optionD": "IBM",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::सारे कंप्यूटर में लागू होती है ?",
+    "question": "Which is applicable in all computers?",
+    "optionA": "COBOL language",
+    "optionB": "FORTRAN language",
+    "optionC": "Machine language",
+    "optionD": "BASIC language",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::इंटरनेट पर प्रयुक्त कंप्यूटर लैंग्वेज है ?",
+    "question": "The computer language used on the Internet is?",
+    "optionA": "Java",
+    "optionB": "Pascal",
+    "optionC": "COBOL",
+    "optionD": "BASIC",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::यूनिक्स नामक ऑपरेटिंग प्रणाली विशेष रूप से किस हेतु प्रयोग में लायी जाती है ?",
+    "question": "For which purpose is the operating system called Unix specially used?",
+    "optionA": "Laptop Computers",
+    "optionB": "Desktop Computers",
+    "optionC": "Super Computers",
+    "optionD": "Web Servers",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::किस प्रोग्रामिंग लैंग्वेज को ट्रांसलेटर की जरूरत नहीं होती है ?",
+    "question": "Which programming language does not require a translator?",
+    "optionA": "Machine Language",
+    "optionB": "C",
+    "optionC": "BASIC",
+    "optionD": "High Level Language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से कौन-सा मशीन इंडिपेंडेंट प्रोग्राम है ?",
+    "question": "Which of the following is a machine-independent program?",
+    "optionA": "Low Level Language",
+    "optionB": "High Level Language",
+    "optionC": "Assembly Language",
+    "optionD": "Machine Language",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::गलती एक एल्गोरिदम है जिससे गलत परिणाम निकलते हैं, इसे क्या कहते हैं ?",
+    "question": "An error is an algorithm that produces wrong results, what is it called?",
+    "optionA": "Logical Error",
+    "optionB": "Compiler Error",
+    "optionC": "Machine Error",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::मशीन लैंग्वेज क्या प्रयोग करती है ?",
+    "question": "What does Machine Language use?",
+    "optionA": "English Language Code",
+    "optionB": "Numeric Code",
+    "optionC": "Java Language",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर डाटा स्टोर और गणनाएं करने के लिए नंबर सिस्टम का प्रयोग करते हैं ?",
+    "question": "Which number system do computers use to store data and perform calculations?",
+    "optionA": "Hexadecimal",
+    "optionB": "Octal",
+    "optionC": "Binary",
+    "optionD": "Decimal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से स्टोरेज का सबसे बड़ा यूनिट कौन-सा है ?",
+    "question": "Which of the following is the largest unit of storage?",
+    "optionA": "KB",
+    "optionB": "TB",
+    "optionC": "MB",
+    "optionD": "GB",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::बिट किसका का लघु रूप है ?",
+    "question": "What is the short form of Bit?",
+    "optionA": "Megabyte",
+    "optionB": "Binary Language",
+    "optionC": "Binary Digit",
+    "optionD": "Binary Number",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::एक बाइट से कितने विकल्प होते हैं ?",
+    "question": "How many options are there in one byte?",
+    "optionA": "64",
+    "optionB": "16",
+    "optionC": "8",
+    "optionD": "512",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर मेमोरी की सबसे छोटी इकाई क्या कहलाती है ?",
+    "question": "What is called the smallest unit of computer memory?",
+    "optionA": "Bit",
+    "optionB": "Byte",
+    "optionC": "Megabyte",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कितना बाइट मिलकर एक किलोबाइट बनता है ?",
+    "question": "How many bytes make one kilobyte?",
+    "optionA": "4096",
+    "optionB": "1024",
+    "optionC": "612",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::बाइनरी नंबर प्रणाली में कितने अंक होते हैं ?",
+    "question": "How many digits are there in the binary number system?",
+    "optionA": "1",
+    "optionB": "4",
+    "optionC": "2",
+    "optionD": "8",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::अक्षरों तथा चिन्हों को बाइटों में स्टोर करने की विधि को क्या कहते हैं ?",
+    "question": "What is the method of storing characters and symbols in bytes called?",
+    "optionA": "Alpha System",
+    "optionB": "Number System",
+    "optionC": "Byte System",
+    "optionD": "Coding System",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में किसी शब्द की लम्बाई किसमें मापते है ?",
+    "question": "In what unit is the length of a word measured in a computer?",
+    "optionA": "Byte",
+    "optionB": "Bit",
+    "optionC": "Megabyte",
+    "optionD": "File",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::लॉजिक गेट (Logic Gate) क्या है ?",
+    "question": "What is a Logic Gate?",
+    "optionA": "A special CD",
+    "optionB": "A software",
+    "optionC": "A type of circuit",
+    "optionD": "A computer game",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर पर इनफार्मेशन किस रूप में स्टोर किया जाता है ?",
+    "question": "In what form is information stored on a computer?",
+    "optionA": "Digital Data",
+    "optionB": "Analog Data",
+    "optionC": "Modem Data",
+    "optionD": "Watts Data",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कौन सा एक प्रोग्राम है जिससे कंप्यूटर का उपयोग करना आसान हो जाता है ?",
+    "question": "Which is a program that makes it easier to use a computer?",
+    "optionA": "Application",
+    "optionB": "Operating System",
+    "optionC": "Network",
+    "optionD": "Utility",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::ोग्राम में त्रुटि जिससे गलत या अनुपयुक्त परिणाम उत्पन्न होते हैं, उसे क्या कहते हैं ?",
+    "question": "What is the error in a program that causes incorrect or inappropriate results to be generated?",
+    "optionA": "Byte",
+    "optionB": "Bug",
+    "optionC": "Unit Problem",
+    "optionD": "Programming Error",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::सॉफ्टवेयर का प्राथमिक उद्देश्य डाटा को किसमें बदलना है ?",
+    "question": "What is the primary purpose of software to convert data into?",
+    "optionA": "Program",
+    "optionB": "Information",
+    "optionC": "Website",
+    "optionD": "Object",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::सॉफ्टवेयर कोड में त्रुटियां ढूंढने की एक प्रक्रिया है ?",
+    "question": "What is the process of finding errors in software code?",
+    "optionA": "Testing",
+    "optionB": "Debugging",
+    "optionC": "Compiling",
+    "optionD": "Running",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की भौतिक बनावट कहलाती है ?",
+    "question": "What is the physical structure of a computer called?",
+    "optionA": "Software",
+    "optionB": "Hardware",
+    "optionC": "Keyboard",
+    "optionD": "Monitor",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::DOS का पूरा नाम क्या है ?",
+    "question": "What is the full name of DOS?",
+    "optionA": "Disk Operating System",
+    "optionB": "Disk of System",
+    "optionC": "Device Operating System",
+    "optionD": "Door Operating System",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::इसमें विषम शब्द है ?",
+    "question": "Which one is the odd word?",
+    "optionA": "MS-DOX",
+    "optionB": "ACCESS",
+    "optionC": "UNIX",
+    "optionD": "WINDOWS 98",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::यूनिक्स का विकास कब हुआ ?",
+    "question": "When was Unix developed?",
+    "optionA": "1960",
+    "optionB": "1965",
+    "optionC": "1969",
+    "optionD": "1975",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::यूनिक्स की मुख्य भाषा है ?",
+    "question": "What is the main language of Unix?",
+    "optionA": "Basic",
+    "optionB": "COBOL",
+    "optionC": "Java",
+    "optionD": "Assembly",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में काम करने के लिए किस सॉफ्टवेयर का प्रयोग किया जाता जाता है ?",
+    "question": "Which software is used to work on a computer?",
+    "optionA": "Application",
+    "optionB": "System",
+    "optionC": "Program",
+    "optionD": "Package",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कौन-सा सॉफ्टवेयर कंप्यूटर के हार्डवेयर को नियंत्रित करता है ?",
+    "question": "Which software controls the computer's hardware?",
+    "optionA": "System",
+    "optionB": "Application",
+    "optionC": "Program",
+    "optionD": "Memory",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कम्पाइलर कंप्यूटर की किस प्रकार की भाषा है ?",
+    "question": "What type of language is a compiler for a computer?",
+    "optionA": "Low-level language",
+    "optionB": "High-level language",
+    "optionC": "Pascal language",
+    "optionD": "COBOL language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर में उपयोग के लिए बाजार में बिकने वाले प्रोग्राम को क्या कहते हैं ?",
+    "question": "What is the program sold in the market for use in a computer called?",
+    "optionA": "Software Package",
+    "optionB": "Software Program",
+    "optionC": "Software System",
+    "optionD": "Software Language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::यूनिक्स की विशेषताएँ क्या है ?",
+    "question": "What are the features of Unix?",
+    "optionA": "Jansan",
+    "optionB": "Ken Thompson",
+    "optionC": "Rama Varth Catherine",
+    "optionD": "Rord Fenson",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर की असेम्बली भाषा में लिखे गये प्रोग्राम को मशीन भाषा में बदलने का काम करता है ?",
+    "question": "What converts a program written in computer assembly language into machine language?",
+    "optionA": "Compiler",
+    "optionB": "Assembler",
+    "optionC": "Interpreter",
+    "optionD": "Processor",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::हार्डवेयर और सॉफ्टवेयर के बीच संबंध बनाने की तकनीक या सुविधा को क्या कहा जाता है ?",
+    "question": "What is the technique or facility for establishing a relationship between hardware and software called?",
+    "optionA": "Internet",
+    "optionB": "Intercom",
+    "optionC": "EPROM",
+    "optionD": "Interface",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::ोग्रामिंग भाषा में लिखे गये मूल प्रोग्राम को क्या कहा जाता है ?",
+    "question": "What is a program written in a programming language called?",
+    "optionA": "Youth Program",
+    "optionB": "Farm Program",
+    "optionC": "Source Program",
+    "optionD": "Loop Program",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::किस ऑपरेटिंग सिस्टम में उपयोगकर्ता एक साथ कई कंप्यूटर ऑपरेट कर सकते हैं ?",
+    "question": "In which operating system can users operate multiple computers at the same time?",
+    "optionA": "MS-DOS",
+    "optionB": "Time Sharing",
+    "optionC": "Windows",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::ओरेकल (Oracle) है ?",
+    "question": "What is Oracle?",
+    "optionA": "Operating System",
+    "optionB": "Database Software",
+    "optionC": "Word Processing Software",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::टैली (Tally) सॉफ्टवेयर का प्रयोग किया जाता है ?",
+    "question": "Tally software is used for?",
+    "optionA": "Networking",
+    "optionB": "Communication",
+    "optionC": "Accounting",
+    "optionD": "DTP",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::C.D.A का तात्पर्य है ?",
+    "question": "What does C.D.A stand for?",
+    "optionA": "Computer Algorithm for Design",
+    "optionB": "Computer Aided Design",
+    "optionC": "Computer Application in Design",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::रिज्यूमे बनाने के लिए किस सॉफ्टवेयर का उपयोग किया जाता है ?",
+    "question": "Which software is used to create a resume?",
+    "optionA": "Pagemaker",
+    "optionB": "Ms-Word",
+    "optionC": "Java",
+    "optionD": "(A) and (B)",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::MS-Word किसका उदाहरण है ?",
+    "question": "MS-Word is an example of?",
+    "optionA": "Application Software",
+    "optionB": "Operating System",
+    "optionC": "Compiler",
+    "optionD": "Running Program",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::किसी प्रोग्राम के मानव द्वारा पठनीय वर्शन को क्या कहा जाता है ?",
+    "question": "What is the human-readable version of a program called?",
+    "optionA": "Program Code",
+    "optionB": "Source Code",
+    "optionC": "Human Code",
+    "optionD": "System Code",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::एक बार में एक स्स्टमेंट को कन्वर्ट और एक्जीक्यूट करता है ?",
+    "question": "Which converts and executes one statement at a time?",
+    "optionA": "Interpreter",
+    "optionB": "Compiler",
+    "optionC": "Converter",
+    "optionD": "Instructions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::पहले से चल रहे कंप्यूटर को रीस्टार्ट करना क्या कहलाता है ?",
+    "question": "What is it called to restart a computer that is already running?",
+    "optionA": "Booting",
+    "optionB": "Starting",
+    "optionC": "Rebooting",
+    "optionD": "Second-Starting",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::POST का पूरा नाम क्या है ?",
+    "question": "What is the full form of POST?",
+    "optionA": "Program On Self Test",
+    "optionB": "Program On System Test",
+    "optionC": "Power On Self Test",
+    "optionD": "Power On System Test",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::लाइनेक्स किस किस्म का सॉफ्टवेयर है ?",
+    "question": "What type of software is Linux?",
+    "optionA": "Open Source",
+    "optionB": "Proprietary",
+    "optionC": "Shareware",
+    "optionD": "Hidden Type",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::जब एक कंप्यूटर में दो प्रोसेसर लगाए जाते हैं, तो उसे क्या कहते हैं ?",
+    "question": "When two processors are installed in a computer, what is it called?",
+    "optionA": "Parallel Processing",
+    "optionB": "Double Processing",
+    "optionC": "Duplicate Processing",
+    "optionD": "Sequential Processing",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::मेनफ्रेम या सुपरकंप्यूटर में एक्सेस के लिए यूजर्स अक्सर क्या उपयोग करते हैं ?",
+    "question": "What do users often use to access a mainframe or supercomputer?",
+    "optionA": "Desktop",
+    "optionB": "Terminal",
+    "optionC": "Handheld",
+    "optionD": "Node",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::किस टोपोलोजी में नेटवर्क कंमपोनेंट एक ही केबल से कनेक्ट किए जाते हैं ?",
+    "question": "In which topology are network components connected to the same cable?",
+    "optionA": "Mesh",
+    "optionB": "Ring",
+    "optionC": "Bus",
+    "optionD": "Star",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::नियमों का एक सेट है ?",
+    "question": "What is a set of rules?",
+    "optionA": "Domain",
+    "optionB": "URL",
+    "optionC": "Resource Locator",
+    "optionD": "Protocol",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::उस नेटवर्क टोपोलोजी का क्या नाम है, जिसमें प्रत्येक संभावित नोड में द्विदिशीय कड़ियाँ हैं ?",
+    "question": "What is the name of the network topology in which each possible node has bidirectional links?",
+    "optionA": "Tree",
+    "optionB": "Star",
+    "optionC": "Mesh",
+    "optionD": "Ring",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::किसका लघु रूप है ?",
+    "question": "What is the short form of?",
+    "optionA": "Large Area Network",
+    "optionB": "Local Area Nodes",
+    "optionC": "Large Area Nodes",
+    "optionD": "Local Area Network",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::टिपिकल नेटवर्क में सबसे शक्तिशाली कंप्यूटर है ?",
+    "question": "The most powerful computer in a typical network is?",
+    "optionA": "Network Server",
+    "optionB": "Desktop",
+    "optionC": "Network Switch",
+    "optionD": "Network Station",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::वेब पेज का एक वर्ड जिसे क्लिक करने पर दूसरा डाक्यूमेन्ट खुलता है, उसे क्या कहते हैं ?",
+    "question": "What is the word on a web page that when clicked opens another document called?",
+    "optionA": "URL",
+    "optionB": "Anchor",
+    "optionC": "Reference",
+    "optionD": "Hyperlink",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::ई-मेल भेजते समय किस लाइन में संदेश की विषय वस्तु के बारे में बताया जाता है ?",
+    "question": "While sending an email, in which line is the subject matter of the message told?",
+    "optionA": "CC",
+    "optionB": "To",
+    "optionC": "Subject",
+    "optionD": "Contents",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::अनसॉलिसिटेड-ई-मेल को क्या कहते हैं ?",
+    "question": "What is unsolicited email called?",
+    "optionA": "Newsgroup",
+    "optionB": "Backbone",
+    "optionC": "Usenet",
+    "optionD": "Spam",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::भारत की पहली राजनीतिक पार्टी जिसने इंटरनेट पर अपना वेबसाइट बनाया ?",
+    "question": "India's first political party which created its website on the internet?",
+    "optionA": "Samajwadi Party",
+    "optionB": "Bharatiya Janata Party",
+    "optionC": "Rashtriya Janata Party",
+    "optionD": "Lok Janashakti Party",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::भारत में सर्वप्रथम किस राज्य ने इंटरनेट पर टेलीफोन डायरेक्टरी उपलब्ध कराई है ?",
+    "question": "Which state in India first made the telephone directory available on the internet?",
+    "optionA": "Andhra Pradesh",
+    "optionB": "Sikkim",
+    "optionC": "Assam",
+    "optionD": "Jharkhand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::HTML का पूरा नाम क्या है ?",
+    "question": "What is the full name of HTML?",
+    "optionA": "Hyper Text Mark Up Language",
+    "optionB": "Hyper Tech Mark Up Language",
+    "optionC": "Hyper Text Mail Language",
+    "optionD": "Hyper Tech Mail Language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से इंटरनेट किसके द्वारा चलाया जाता है ?",
+    "question": "Which of the following runs the internet?",
+    "optionA": "VSNL",
+    "optionB": "IETF",
+    "optionC": "Inter NIC",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::जो डिवाइस दो या दो से अधिक नेटवर्कों को जोड़ता है उसे क्या कहा जाता है ?",
+    "question": "What is the device that connects two or more networks called?",
+    "optionA": "Bus",
+    "optionB": "Roadway",
+    "optionC": "Gateway",
+    "optionD": "Pathway",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::HTTP का उपयोग करती है ?",
+    "question": "HTTP is used by?",
+    "optionA": "Webpage",
+    "optionB": "Server",
+    "optionC": "Worksheet",
+    "optionD": "Workbook",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::w.w.w प्रोटोकॉल का उपयोग करता है ?",
+    "question": "w.w.w protocol uses?",
+    "optionA": "HTTP",
+    "optionB": "WBC",
+    "optionC": "FTP",
+    "optionD": "MTP",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::कोई वेबसाइट एक्सेस करने पर सबसे पहले जो पेज या मेन पेज दिखाई पड़ता है उसे क्या कहते हैं ?",
+    "question": "What is the first page or main page that appears when you access a website called?",
+    "optionA": "Master Page",
+    "optionB": "Home Page",
+    "optionC": "First Page",
+    "optionD": "Banner Page",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::कंप्यूटर को इंटरनेट में जोड़ने में मदद करता है ?",
+    "question": "What helps in connecting a computer to the internet?",
+    "optionA": "Net Fit",
+    "optionB": "Browser",
+    "optionC": "Cable",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::&#39;org&#39; का संबन्ध किस क्षेत्र से है ?",
+    "question": "Which domain does &#39;org&#39; belong to?",
+    "optionA": "Non-commercial",
+    "optionB": "Education",
+    "optionC": "Organization",
+    "optionD": "Commercial",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::.com डोमेन का संबंध है ?",
+    "question": "What is the domain of .com?",
+    "optionA": "Commercial organization",
+    "optionB": "Personal characteristic",
+    "optionC": "Related to art",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::भारत में इंटरनेट की सुबिधा कब से प्रारंभ हुई थी ?",
+    "question": "When did internet facilities start in India?",
+    "optionA": "1992",
+    "optionB": "1993",
+    "optionC": "1994",
+    "optionD": "1995",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::वेबसाइट का एड्रेस निम्नलिखित में से कहलाता है ?",
+    "question": "What is the address of a website called?",
+    "optionA": "User ID",
+    "optionB": "User Address",
+    "optionC": "URL",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::मोडेम का पूरा नाम क्या है ?",
+    "question": "What is the full name of modem?",
+    "optionA": "Modulator Demodulation",
+    "optionB": "Modulator Demodulator",
+    "optionC": "Modulator Discussion",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::ई-मेल का पूरा नाम क्या है ?",
+    "question": "What is the full name of e-mail?",
+    "optionA": "Electric Mail",
+    "optionB": "Electronic Mail",
+    "optionC": "English Mail",
+    "optionD": "Essential Mail",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::इंटरनेट का पूरा नाम क्या है ?",
+    "question": "What is the full name of internet?",
+    "optionA": "International Network",
+    "optionB": "Intercom Network",
+    "optionC": "Intercontinental Network",
+    "optionD": "Internal Network",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::&#39;सूचना राजपथ&#39; किसे कहते हैं ?",
+    "question": "What is &#39;Information Superhighway&#39; called?",
+    "optionA": "Internet",
+    "optionB": "E-mail",
+    "optionC": "Phone",
+    "optionD": "Pager",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::ई-मेल के जन्मदाता किसे माना जाता है ?",
+    "question": "Who is considered the father of e-mail?",
+    "optionA": "Ray Tomlinson",
+    "optionB": "Bill Gates",
+    "optionC": "Lincoln Golitsburg",
+    "optionD": "Charles Babbage",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::w.w.w के आविष्कारक हैं ?",
+    "question": "Who are the inventors of w.w.w?",
+    "optionA": "Von Neumann",
+    "optionB": "J S Kilby",
+    "optionC": "Tim Berners-Lee",
+    "optionD": "Charles Babbage",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::इंटरनेट का स्टांडर्ड प्रोटोकॉल है ?",
+    "question": "What is the standard protocol of the internet?",
+    "optionA": "HTML",
+    "optionB": "Java",
+    "optionC": "TCP/IP",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::सबसे लोकप्रिय इंटरनेट गतिविधि है ?",
+    "question": "What is the most popular internet activity?",
+    "optionA": "Communication",
+    "optionB": "Shopping",
+    "optionC": "Entertainment",
+    "optionD": "Searching",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::वेव पेज को रीलोड करने हेतु कौन सा बटन दवाए जाते है ?",
+    "question": "Which button is pressed to reload a web page?",
+    "optionA": "Reload",
+    "optionB": "Restore",
+    "optionC": "Refresh",
+    "optionD": "Any of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::ई-मेल लिखना किसके समान है ?",
+    "question": "Writing an e-mail is similar to?",
+    "optionA": "Talking on the phone",
+    "optionB": "Writing a letter",
+    "optionC": "Sending a package",
+    "optionD": "Drawing a picture",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::मोशन पिक्चर क्लिपों को बदलने के लिए किस प्रकार का सॉफ्टवेयर प्रयोग किया जाता है ?",
+    "question": "What type of software is used to edit motion picture clips?",
+    "optionA": "Drawing",
+    "optionB": "Computer Design",
+    "optionC": "Video Editing",
+    "optionD": "Painting",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से कौन-सा ईमेल का भाग नहीं है ?",
+    "question": "Which of the following is not a part of an email?",
+    "optionA": "(_)",
+    "optionB": "()",
+    "optionC": "(.)",
+    "optionD": "(@)",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::निम्नलिखित में से कौन निःशुल्क ई-मेल सेवा प्रदान करता है ?",
+    "question": "Which of the following provides free email service?",
+    "optionA": "Rediffmail",
+    "optionB": "Yahoo",
+    "optionC": "Hotmail",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::सॉफ्टवेयर में कमांडों और ऑप्शनों की सूचियां होती हैं ?",
+    "question": "Software contains lists of commands and options?",
+    "optionA": "Manu Bar",
+    "optionB": "Main Page",
+    "optionC": "Tool Bar",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::MS Office 2000 को किस कंपनी ने बनाया ?",
+    "question": "Which company created MS Office 2000?",
+    "optionA": "Corel",
+    "optionB": "Lotus",
+    "optionC": "Microsoft",
+    "optionD": "Novell",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::माइक्रोसॉफ्ट कम्पनी के संस्थापक हैं ?",
+    "question": "Who are the founders of Microsoft company?",
+    "optionA": "Paul Allen",
+    "optionB": "Bill Gates",
+    "optionC": "(A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::विण्डोज सॉफ्टवेयर का निर्माण किया गया ?",
+    "question": "Windows software was created?",
+    "optionA": "By Wipro",
+    "optionB": "By Apple Corporation",
+    "optionC": "By IBM",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::एस. एस. विंडोज किस प्रकार का सॉफ्टवेयर है ?",
+    "question": "What type of software is S.S. Windows?",
+    "optionA": "GUI",
+    "optionB": "CUI",
+    "optionC": "MUI",
+    "optionD": "LUI",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::विंडोज 98 का विकास कब हुआ ?",
+    "question": "When was Windows 98 developed?",
+    "optionA": "2000",
+    "optionB": "2003",
+    "optionC": "1998",
+    "optionD": "1999",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::चिकित्सा शास्त्र के जनक किसे कहा जाता है ?",
+    "question": "Who is considered the father of medical science?",
+    "optionA": "Theophrastus",
+    "optionB": "Hippocrates",
+    "optionC": "Darwin",
+    "optionD": "Galen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::भारत में इंटरनेट उपभोक्ताओं की सर्वाधिक संख्या किस राज्य में है ?",
+    "question": "Which state in India has the highest number of internet users?",
+    "optionA": "Maharashtra",
+    "optionB": "Madhya Pradesh",
+    "optionC": "Kerala",
+    "optionD": "Tamil Nadu",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "computer-gk::विश्व में सर्वाधिक कंप्यूटरों वाला देश कौन-सा है ?",
+    "question": "Which country has the most computers in the world?",
+    "optionA": "China",
+    "optionB": "Russia",
+    "optionC": "United States",
+    "optionD": "New Zealand",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "computer-gk::फेसबुक का सबसे अधिक यूजर किस देश के हैं ?",
+    "question": "Which country has the most Facebook users?",
+    "optionA": "Russia",
+    "optionB": "India",
+    "optionC": "China",
+    "optionD": "America",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "computer-gk::कीबोर्ड को हिन्दी में क्या कहा जाता है ?",
+    "question": "What is keyboard called in Hindi?",
+    "optionA": "Information giver",
+    "optionB": "Kunji Patal",
+    "optionC": "Keyboard",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "computer-gk::Twitter के सबसे अधिक यूजर किस देश में है ?",
+    "question": "Which country has the most Twitter users?",
+    "optionA": "Japan",
+    "optionB": "America",
+    "optionC": "Turkey",
+    "optionD": "Australia",
+    "correctAnswer": "C"
+  }
+]

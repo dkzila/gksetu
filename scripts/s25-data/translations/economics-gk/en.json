@@ -178,5 +178,1715 @@
     "optionC": "UNO",
     "optionD": "None of these",
     "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में योजना आयोग का गठन कब किया गया था ?",
+    "question": "When was the Planning Commission established in India?",
+    "optionA": "15 March 1950",
+    "optionB": "15 September 1950",
+    "optionC": "15 October 1951",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::बिहार के किस जिले का प्रतिव्यक्ति आय सर्वाधिक है ?",
+    "question": "Which district of Bihar has the highest per capita income?",
+    "optionA": "Nalanda",
+    "optionB": "Patna",
+    "optionC": "Sheohar",
+    "optionD": "Gaya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::लीची का विश्व में सबसे बड़ा उत्पादक देश कौन-सा है ?",
+    "question": "Which is the world's largest producer of lychee?",
+    "optionA": "India",
+    "optionB": "Nepal",
+    "optionC": "Russia",
+    "optionD": "China",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::निम्न में से कौन-सा भारतीय राज्य गरीबी के कुचक्र का शिकार है ?",
+    "question": "Which Indian state is trapped in the poverty trap?",
+    "optionA": "Bihar",
+    "optionB": "Kerala",
+    "optionC": "Karnataka",
+    "optionD": "Haryana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में राष्ट्रिय आय की गणना के लिए सर्वमान्य प्रमाणित संस्था है ?",
+    "question": "Which is the universally recognized institution for calculating national income in India?",
+    "optionA": "NITI Aayog",
+    "optionB": "National Development Council",
+    "optionC": "Central Statistical Organization",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में वित्तीय वर्ष कहा जाता है ?",
+    "question": "What is the financial year called in India?",
+    "optionA": "1 April to 31 March",
+    "optionB": "1 July to 30 June",
+    "optionC": "1 September to 31 August",
+    "optionD": "1 January to 31 December",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::तीसा की भयानक आर्थिक मंदी से उबारने के लिए किसने सुझाव दिया था ?",
+    "question": "Who suggested a way to overcome the Great Depression of the 1930s?",
+    "optionA": "Prof. Keynes",
+    "optionB": "Malthus",
+    "optionC": "Amartya Sen",
+    "optionD": "Dadabhai Naoroji",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::तीसा की भयानक आर्थिक मंदी की अवधि क्या थी ?",
+    "question": "What was the period of the Great Depression of the 1930s?",
+    "optionA": "1920-30",
+    "optionB": "1929-33",
+    "optionC": "1918-25",
+    "optionD": "1998-2009",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::उत्पादन एवं आय गणना विधि आर्थिक दृष्टिकोण से है ?",
+    "question": "The production and income calculation method is from an economic point of view?",
+    "optionA": "Simple",
+    "optionB": "Scientific",
+    "optionC": "Practical",
+    "optionD": "Suitable all three",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::गरीबी के कुचक्र को किसने परिभाषित किया है ?",
+    "question": "Who has defined the poverty trap?",
+    "optionA": "Ragnar Nurkse",
+    "optionB": "Prof. Fisher",
+    "optionC": "Prof. Keynes",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::अर्थशास्त्र किनकी रचना थी ?",
+    "question": "Arthashastra was written by whom?",
+    "optionA": "Chandragupta",
+    "optionB": "Maurya Sikandar",
+    "optionC": "Chanakya",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::राष्ट्रिय आय समिति का गठन किस वर्ष हुआ था ?",
+    "question": "In which year was the National Income Committee formed?",
+    "optionA": "1950",
+    "optionB": "1949",
+    "optionC": "1948",
+    "optionD": "1960",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::हमारे देश में किस मुद्रा को वैधानिक मान्यता प्राप्त है ?",
+    "question": "Which currency has legal tender in our country?",
+    "optionA": "Commodity money",
+    "optionB": "Credit money",
+    "optionC": "Paper money",
+    "optionD": "Check",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्नांकित में कौन विधि ग्राह्य मुद्रा है ?",
+    "question": "Which of the following is legal tender money?",
+    "optionA": "10 rupee note",
+    "optionB": "Check",
+    "optionC": "Draft",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::आजकल मुद्रा का कौन-सा रूप अधिक प्रचलन में है ?",
+    "question": "Which form of currency is more in circulation these days?",
+    "optionA": "Metallic money",
+    "optionB": "Paper money",
+    "optionC": "Coins",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::इनमें से कौन मुद्रा के कार्य नहीं हैं ?",
+    "question": "Which of the following is not a function of money?",
+    "optionA": "Medium",
+    "optionB": "Measurement",
+    "optionC": "Payment",
+    "optionD": "Writing and Editing",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::किस धातु का मुद्रा के रूप में सर्वाधिक प्रयोग हुआ है ?",
+    "question": "Which metal has been most used as currency?",
+    "optionA": "Iron",
+    "optionB": "Copper",
+    "optionC": "Brass",
+    "optionD": "Silver and Gold",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::इनमें से कौन साख का आधार नहीं है ?",
+    "question": "Which of the following is not the basis of credit?",
+    "optionA": "Trust",
+    "optionB": "Education",
+    "optionC": "Ability to pay",
+    "optionD": "Period of loan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::बांग्लादेश की मुद्रा का क्या नाम है ?",
+    "question": "What is the currency of Bangladesh?",
+    "optionA": "Rupee",
+    "optionB": "Dollar",
+    "optionC": "Taka",
+    "optionD": "Dinar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::किसने कहा था कि कर्ज जमा की संतान है और जमा कर्ज की संतान है ?",
+    "question": "Who said that debt is the child of deposit and deposit is the child of debt?",
+    "optionA": "Keynes",
+    "optionB": "Marshall",
+    "optionC": "Pigou",
+    "optionD": "Crowther",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से कौन प्लास्टिक मुद्रा के रूप में प्रचलित है ?",
+    "question": "Which of the following is prevalent as plastic money?",
+    "optionA": "A.T.M.",
+    "optionB": "Paper Note",
+    "optionC": "Check",
+    "optionD": "Draft",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::किसने कहा था कि आधुनिक विश्व में उद्योग मुद्ररूपी वस्त्र धारण किये हुए है ?",
+    "question": "Who said that in the modern world, industry is clothed in the form of money?",
+    "optionA": "Crowther",
+    "optionB": "Trescott",
+    "optionC": "Pigou",
+    "optionD": "Marshall",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::क्षेत्रीय ग्रामीण बैंकों की स्थापना किस वर्ष की गई ?",
+    "question": "In which year were Regional Rural Banks established?",
+    "optionA": "1985",
+    "optionB": "1975",
+    "optionC": "1990",
+    "optionD": "2011",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::सहकारी नियोजन समिति का गठन किसके नेतृत्व में किया गया था ?",
+    "question": "The Cooperative Planning Committee was formed under whose leadership?",
+    "optionA": "R.G. Saraiya",
+    "optionB": "Meclagan",
+    "optionC": "Hores",
+    "optionD": "Chelmsford",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत की वृत्तीय राजधानी किस शहर को कहा गया है ?",
+    "question": "Which city is called the financial capital of India?",
+    "optionA": "Mumbai",
+    "optionB": "Delhi",
+    "optionC": "Patna",
+    "optionD": "Bangalore",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::गैर संस्थागत वित्त प्रदान करने वाले सबसे लोकप्रिय साधन है ?",
+    "question": "What is the most popular means of providing non-institutional finance?",
+    "optionA": "Native Banker",
+    "optionB": "Mahajan",
+    "optionC": "Trader",
+    "optionD": "Cooperative Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में सहकारिता आंदोलन का प्रारंभ कब हुआ ?",
+    "question": "When did the cooperative movement begin in India?",
+    "optionA": "1904 AD",
+    "optionB": "1907 AD",
+    "optionC": "1905 AD",
+    "optionD": "1920 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::इनमें से कौन एशिया का सबसे पुराना शेयर बाजार है ?",
+    "question": "Which is the oldest stock market in Asia?",
+    "optionA": "Patna",
+    "optionB": "Kanpur",
+    "optionC": "Mumbai",
+    "optionD": "Delhi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::आर्थिक विकास का तीसरा क्षेत्र क्या है ?",
+    "question": "What is the third sector of economic development?",
+    "optionA": "Service Sector",
+    "optionB": "Science Sector",
+    "optionC": "Education Sector",
+    "optionD": "Agriculture Sector",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::राष्ट्रिय ग्रामीण रोजगार गारंटी योजना किस महापुरुष के नाम पर है ?",
+    "question": "On which great person's name is the National Rural Employment Guarantee Scheme?",
+    "optionA": "Rajiv Gandhi",
+    "optionB": "Mahatma Gandhi",
+    "optionC": "Indira Gandhi",
+    "optionD": "Jawaharlal Nehru",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::स्वर्ण जयंती शहरी रोजगार योजना किस वर्ष शुरू की गई थी ?",
+    "question": "In which year was the Golden Jubilee Urban Employment Scheme launched?",
+    "optionA": "1995",
+    "optionB": "1990",
+    "optionC": "2000",
+    "optionD": "1997",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::एक अर्थव्यवस्था की आधार संरचना का निर्माण होता है ?",
+    "question": "The basic structure of an economy is built by?",
+    "optionA": "Agriculture",
+    "optionB": "Industries",
+    "optionC": "Services",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत को किस उद्योग के क्षेत्र में अधिक सफलता मिली है ?",
+    "question": "In which industry sector has India achieved more success?",
+    "optionA": "Computer Hardware",
+    "optionB": "Computer Software",
+    "optionC": "Both",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::आर्थिक सुधार संबंधी नवीन आर्थिक नीति कार्यक्रम कब शुरू हुआ ?",
+    "question": "When did the New Economic Policy program related to economic reforms start?",
+    "optionA": "July, 1980",
+    "optionB": "July, 1992",
+    "optionC": "July, 1991",
+    "optionD": "July, 1995",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::पारले ग्रुप के &#39;थम्स अप&#39; नामक ब्रांड को किस बहुराष्ट्रीय कंपनी ने खरीद लिया था ?",
+    "question": "Which multinational company bought the brand 'Thums Up' from the Parle Group?",
+    "optionA": "Nokia",
+    "optionB": "Reebok",
+    "optionC": "L.G.",
+    "optionD": "Coca-Cola",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::इनमें से कौन भारतीय बहुराष्ट्रीय कंपनी है ?",
+    "question": "Which of these is an Indian multinational company?",
+    "optionA": "Nokia",
+    "optionB": "Dabur",
+    "optionC": "Samsung",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में वैश्वीकरण की प्रक्रिया कब शुरू हुई ?",
+    "question": "When did the process of globalization start in India?",
+    "optionA": "1991",
+    "optionB": "1980",
+    "optionC": "1992",
+    "optionD": "1996",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::उपभोक्ता आंदोलन का प्रवर्तक किसको माना जाता है ?",
+    "question": "Who is considered the promoter of the consumer movement?",
+    "optionA": "Bill Clinton",
+    "optionB": "George Bush",
+    "optionC": "Ralph Nader",
+    "optionD": "McLagan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::उपभोक्ता अधिकार दिवस कब मनाया जाता है ?",
+    "question": "When is Consumer Rights Day celebrated?",
+    "optionA": "17 March",
+    "optionB": "15 March",
+    "optionC": "19 April",
+    "optionD": "22 April",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::उपभोक्ता जागरूकता आंदोलन की शुरुआत किस देश में हुई थी ?",
+    "question": "In which country did the consumer awareness movement begin?",
+    "optionA": "China",
+    "optionB": "Japan",
+    "optionC": "England",
+    "optionD": "United States",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::उपभोक्ता अधिकारों की घोषणा किस देश में हुई थी ?",
+    "question": "In which country was the Declaration of Consumer Rights made?",
+    "optionA": "China",
+    "optionB": "Japan",
+    "optionC": "England",
+    "optionD": "United States",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::बिहार में सेवा का अधिकार किस वर्ष लागु किया हुआ ?",
+    "question": "In which year was the Right to Service implemented in Bihar?",
+    "optionA": "2011",
+    "optionB": "2012",
+    "optionC": "1980",
+    "optionD": "1999",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::अंतर्राष्ट्रीय मानकीकरण संगठन(ISO) का मुख्यालय कहाँ है ?",
+    "question": "Where is the headquarters of the International Organization for Standardization (ISO)?",
+    "optionA": "Dhaka",
+    "optionB": "Geneva",
+    "optionC": "New York",
+    "optionD": "London",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::संयुक्त राष्ट्रसंघ ने किस वर्ष उपभोक्ता के अधिकारों एवं सुरक्षा के लिए सिद्धांत निर्धारित किए ?",
+    "question": "In which year did the United Nations establish principles for the rights and protection of consumers?",
+    "optionA": "1985",
+    "optionB": "1990",
+    "optionC": "2005",
+    "optionD": "2010",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::मानवाधिकार आयोग की स्थापना कब हुई ?",
+    "question": "When was the Human Rights Commission established?",
+    "optionA": "1993",
+    "optionB": "1994",
+    "optionC": "1995",
+    "optionD": "2005",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::वर्ल्ड डेवलपमेंट रिपोर्ट किसका वार्षिक प्रकाशन है ?",
+    "question": "What is the annual publication of the World Development Report?",
+    "optionA": "I.M.F",
+    "optionB": "W.T.O",
+    "optionC": "I.B.R.D",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::राज्यस्तरीय मानव विकास रिपोर्ट जारी करने वाला प्रथम राज्य है ?",
+    "question": "Which state was the first to release the State Human Development Report?",
+    "optionA": "Kerala",
+    "optionB": "Rajasthan",
+    "optionC": "U.P.",
+    "optionD": "Madhya Pradesh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::बंद अर्थव्यवस्था से आप क्या समझते हैं ?",
+    "question": "What do you understand by a closed economy?",
+    "optionA": "Import closed",
+    "optionB": "Export closed",
+    "optionC": "Controlled capital",
+    "optionD": "Import-export closed",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत में प्रच्छन्न बेरोजगारी सामान्यतः दिखाई देती है ?",
+    "question": "In India, disguised unemployment is generally visible in?",
+    "optionA": "Service sector",
+    "optionB": "Agriculture sector",
+    "optionC": "Factory sector",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत के किस राज्य में गरीबों का प्रतिशत सबसे अधिक है ?",
+    "question": "In which state of India is the percentage of the poor the highest?",
+    "optionA": "Odisha",
+    "optionB": "Bihar",
+    "optionC": "Jharkhand",
+    "optionD": "Chhattisgarh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारतीय अर्थव्यवस्था के उदारीकरण का अग्रदूत किसको कहा जाता है ?",
+    "question": "Who is known as the pioneer of Indian economic liberalization?",
+    "optionA": "P. Chidambaram",
+    "optionB": "Amartya Sen",
+    "optionC": "Dr. Manmohan Singh",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::किसी अर्थव्यवस्था में क्षेत्रों को सार्वजनिक और निजी में किस आधार पर वर्गीकृत किया जाता है ?",
+    "question": "On what basis are sectors classified as public and private in an economy?",
+    "optionA": "Employment conditions",
+    "optionB": "Ownership of enterprises",
+    "optionC": "Use of raw materials",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत की राष्ट्रीय आय में सर्वाधिक योगदान है ?",
+    "question": "What is the maximum contribution to India's national income?",
+    "optionA": "Service sector",
+    "optionB": "Business sector",
+    "optionC": "Agriculture sector",
+    "optionD": "Industry sector",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::देश में राष्ट्रीय न्यादर्श की स्थापना कब हुई ?",
+    "question": "When was the National Sample Survey established in the country?",
+    "optionA": "1955",
+    "optionB": "1965",
+    "optionC": "1950",
+    "optionD": "1952",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्न में किस राज्य की प्रति व्यक्ति आय सबसे अधिक है ?",
+    "question": "Which of the following states has the highest per capita income?",
+    "optionA": "Gujarat",
+    "optionB": "Maharashtra",
+    "optionC": "Goa",
+    "optionD": "Punjab",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में राष्ट्रीय आय की गणना में किस विधि का प्रयोग किया जाता है ?",
+    "question": "Which method is used in the calculation of national income in India?",
+    "optionA": "Income method",
+    "optionB": "Production method",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::हिन्दू वृद्धि दर किससे सम्बन्धित है ?",
+    "question": "Hindu rate of growth is related to?",
+    "optionA": "Population",
+    "optionB": "Literacy",
+    "optionC": "Per capita income",
+    "optionD": "National income",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत में राष्ट्रीय आय संमकों का आकलन किसके द्वारा किया जाता है ?",
+    "question": "Who estimates the national income aggregates in India?",
+    "optionA": "Planning Commission Ministry of Finance",
+    "optionB": "Central Statistical Organization",
+    "optionC": "Reserve Bank of India",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में आर्थिक विकास की बेहतर माप कौन-सी है ?",
+    "question": "Which of the following is a better measure of economic development?",
+    "optionA": "Disposable income",
+    "optionB": "Gross Domestic Product",
+    "optionC": "Per capita income",
+    "optionD": "Net National Product",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::देश के लिए राष्ट्रीय आय का पहला अनुमान किसने तैयार किया था ?",
+    "question": "Who prepared the first estimate of national income for the country?",
+    "optionA": "Dadabhai Naoroji",
+    "optionB": "National Income Committee",
+    "optionC": "National Sample Survey Organization",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::ति व्यक्ति आय निकालने के लिए राष्ट्रीय आय को भाग दिया जाता है ?",
+    "question": "To find per capita income, national income is divided by?",
+    "optionA": "Area of the country",
+    "optionB": "Total population of the country",
+    "optionC": "Amount of capital employed",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से कौन-सा क्षेत्र भारत के सकल घरेलू उत्पाद को सर्वाधिक योगदान देता है ?",
+    "question": "Which of the following sectors contributes the most to India's Gross Domestic Product?",
+    "optionA": "Primary sector",
+    "optionB": "Tertiary sector",
+    "optionC": "Secondary sector",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::मुद्रा स्वयं मुद्रा का निर्माण करती है यह परिभाषा किसने प्रस्तुत की ?",
+    "question": "Who presented the definition 'Money creates money'?",
+    "optionA": "Marshall",
+    "optionB": "Hansen",
+    "optionC": "Crowther",
+    "optionD": "Kromer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::&#39;ग्रेशम का नियम&#39; निम्नलिखित में से किससे सम्बन्धित है ?",
+    "question": "'Gresham's Law' is related to which of the following?",
+    "optionA": "Currency circulation",
+    "optionB": "Supply and demand",
+    "optionC": "Deficit economy",
+    "optionD": "Currency circulation",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::किन देशों की मुद्रा प्रायः हार्ड करेन्सी होती है ?",
+    "question": "The currency of which countries is often a hard currency?",
+    "optionA": "Developed countries",
+    "optionB": "Developing countries",
+    "optionC": "Underdeveloped countries",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::ऐसी विदेशी मुद्रा जिसमे शीघ्र पलायन कर जाने की प्रवृत्ति हो वह कहलाती है ?",
+    "question": "What is called a foreign currency that has a tendency to flee quickly?",
+    "optionA": "Soft currency",
+    "optionB": "Hard currency",
+    "optionC": "Hot money",
+    "optionD": "Rare currency",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से कौन मुद्रा का कार्य नहीं है ?",
+    "question": "Which of the following is not a function of money?",
+    "optionA": "Measurement of value",
+    "optionB": "Storage of value",
+    "optionC": "Transfer of value",
+    "optionD": "Stabilization of value",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::सरकार द्वारा पुरानी मुद्रा को समाप्त कर नई मुद्रा चलाना कहलाता है ?",
+    "question": "What is called the government abolishing old currency and introducing new currency?",
+    "optionA": "Demonetization",
+    "optionB": "Devaluation",
+    "optionC": "Currency contraction",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::बाजार के नियम के प्रस्तुतकर्ता थे ?",
+    "question": "Who were the presenters of the law of the market?",
+    "optionA": "J.B. Say",
+    "optionB": "Malthus",
+    "optionC": "Ricardo",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::लगातार बढ़ती कीमतों की प्रक्रिया होती है ?",
+    "question": "The process of continuously rising prices is called?",
+    "optionA": "Inflation",
+    "optionB": "Overproduction",
+    "optionC": "Recession",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::मुद्रा स्फीति के कारण सबसे अधिक हानि होती है ?",
+    "question": "Who suffers the most loss due to inflation?",
+    "optionA": "Debtor",
+    "optionB": "Creditor",
+    "optionC": "Business class",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::मुद्रा स्फीति से लाभान्वित होता है ?",
+    "question": "Who benefits from inflation?",
+    "optionA": "Borrower",
+    "optionB": "Lender",
+    "optionC": "Saver",
+    "optionD": "Pensioner",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में कौन मुद्रा-स्फीति के नियन्त्रण की विधि नहीं है ?",
+    "question": "Which of the following is not a method of controlling inflation?",
+    "optionA": "Control over money supply",
+    "optionB": "Rationing of goods",
+    "optionC": "Control over demand",
+    "optionD": "Reduction in interest rates",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::गिल्ट एल्ट बाजार किससे सम्बन्धित है ?",
+    "question": "The gilt-edged market is related to?",
+    "optionA": "Gold and silver",
+    "optionB": "Currency notes",
+    "optionC": "Government securities",
+    "optionD": "Bonds",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में किसे बैंकों का बैंक कहा जाता है ?",
+    "question": "In India, which is known as the bank of banks?",
+    "optionA": "Reserve Bank of India",
+    "optionB": "Bank of India",
+    "optionC": "State Bank of India",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में करेंसी नोट जारी करता है ?",
+    "question": "Who issues currency notes in India?",
+    "optionA": "Urban Cooperative Bank",
+    "optionB": "Reserve Bank of India",
+    "optionC": "Ministry of Finance",
+    "optionD": "Finance Secretary",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से किस बैंक में कोई व्यक्ति अपना खाता नहीं खोल सकता है ?",
+    "question": "In which of the following banks can a person not open an account?",
+    "optionA": "Bank of India",
+    "optionB": "Urban Cooperative Bank",
+    "optionC": "Reserve Bank of India",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारतीय रिजर्व बैंक का लेखा वर्ष होता है ?",
+    "question": "What is the accounting year of the Reserve Bank of India?",
+    "optionA": "October-September",
+    "optionB": "April-March",
+    "optionC": "July-June",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::बैंक नोट प्रेस कहाँ स्थित है ?",
+    "question": "Where is the Bank Note Press located?",
+    "optionA": "Nashik",
+    "optionB": "Mumbai",
+    "optionC": "Devas",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारतीय औद्योगिक पुनर्निर्माण बैंक की स्थापना किस वर्ष की गई थी ?",
+    "question": "In which year was the Industrial Reconstruction Bank of India established?",
+    "optionA": "1947",
+    "optionB": "1990",
+    "optionC": "1985",
+    "optionD": "1991",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::फेडरल रिजर्व बैंक किस देश का केन्द्रीय बैंक है ?",
+    "question": "The Federal Reserve Bank is the central bank of which country?",
+    "optionA": "USA",
+    "optionB": "Germany",
+    "optionC": "France",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारतीय यूनिट टेस्ट की स्थापना किस वर्ष की गई ?",
+    "question": "In which year was the Unit Trust of India established?",
+    "optionA": "1964",
+    "optionB": "1969",
+    "optionC": "1971",
+    "optionD": "1973",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत का सबसे बड़ा म्यूचुअल फण्ड संस्था है ?",
+    "question": "What is India's largest mutual fund organization?",
+    "optionA": "G.I.C",
+    "optionB": "U.T.I",
+    "optionC": "S.B.I",
+    "optionD": "L.I.C",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में स्टॉक एक्सचेन्जों का नियमन करने वाली बॉडी है ?",
+    "question": "Which body regulates stock exchanges in India?",
+    "optionA": "N.S.E",
+    "optionB": "S.E.B.I",
+    "optionC": "R.B.I",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::बम्बई स्टॉक एक्सचेन्ज की स्थापना कब हुई ?",
+    "question": "When was the Bombay Stock Exchange established?",
+    "optionA": "1890 AD",
+    "optionB": "1865 AD",
+    "optionC": "1875 AD",
+    "optionD": "1881 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::राष्ट्रीय स्टॉक एक्सचेन्ज की स्थापना की संस्तुति में किस समिति द्वारा की गई थी ?",
+    "question": "Which committee recommended the establishment of the National Stock Exchange?",
+    "optionA": "Mahalanobis Committee",
+    "optionB": "Wanchoo Committee",
+    "optionC": "Firvani Committee",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::NIFTY निम्नलिखित में से किस शेयर बाजार का मूल्य सूचकांक है ?",
+    "question": "NIFTY is a price index of which stock market?",
+    "optionA": "C.S.E",
+    "optionB": "N.S.E",
+    "optionC": "D.S.E",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::&#39;चमकता हुआ सितारा&#39; किस बैंक का प्रतीक है ?",
+    "question": "'The Shining Star' is the symbol of which bank?",
+    "optionA": "Bank of Baroda",
+    "optionB": "Bank of India",
+    "optionC": "Indian Bank",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारतीय जीवन बीमा निगम की स्थापना कब हुई ?",
+    "question": "When was the Life Insurance Corporation of India established?",
+    "optionA": "1960",
+    "optionB": "1980",
+    "optionC": "1956",
+    "optionD": "1975",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::दलाल स्ट्रीट कहाँ स्थित है ?",
+    "question": "Where is Dalal Street located?",
+    "optionA": "Mumbai",
+    "optionB": "Paris",
+    "optionC": "New Delhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में कागजी नोट मुद्रा को जारी करने का पूर्ण अधिकार किसके पास है ?",
+    "question": "In India, who has the full authority to issue paper currency?",
+    "optionA": "Urban Cooperative Banks",
+    "optionB": "Bank of India",
+    "optionC": "Finance Commission",
+    "optionD": "Reserve Bank",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::सरकार अर्थोपाय ऋण लेती है ?",
+    "question": "The government takes economic loans from?",
+    "optionA": "IDBI",
+    "optionB": "RBI",
+    "optionC": "SBI",
+    "optionD": "ICICI",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित भारतीय बैंकों में से कौन-सा एक राष्ट्रीयकृत बैंक नहीं है ?",
+    "question": "Which of the following Indian banks is not a nationalized bank?",
+    "optionA": "Dena Bank",
+    "optionB": "Federal Bank",
+    "optionC": "Corporation Bank",
+    "optionD": "Vijaya Bank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से किसको वास्तविक मजदूरी का प्रमुख निधरित माना जाता है ?",
+    "question": "Which of the following is considered the main determinant of real wages?",
+    "optionA": "Purchasing power of money",
+    "optionB": "Nature of work",
+    "optionC": "Additional income",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::नई मुद्रा यूरो किस वर्ष में प्रारंभ की गई ?",
+    "question": "In which year was the new currency Euro introduced?",
+    "optionA": "1997",
+    "optionB": "1998",
+    "optionC": "1999",
+    "optionD": "2001",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::थम क्षेत्रीय ग्रामीण बैंक की स्थापना किस वर्ष की गई ?",
+    "question": "In which year was the Tham Regional Rural Bank established?",
+    "optionA": "1947",
+    "optionB": "1975",
+    "optionC": "1950",
+    "optionD": "1995",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::किस वर्ष नाबार्ड की स्थापना हुई ?",
+    "question": "In which year was NABARD established?",
+    "optionA": "1935",
+    "optionB": "1991",
+    "optionC": "1976",
+    "optionD": "1982",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::किसी अर्थव्यवस्था में मुद्रा के मूल्य और कीमत स्तर के बीच सम्बन्ध होता है ?",
+    "question": "In an economy, what is the relationship between the value of money and the price level?",
+    "optionA": "Stable",
+    "optionB": "Inverse",
+    "optionC": "Direct",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::जो वस्तुएँ दुर्लभ हों और उनकी आपूर्ति सीमित हो उन्हें क्या कहते हैं ?",
+    "question": "What are the goods that are scarce and have limited supply called?",
+    "optionA": "Economic goods",
+    "optionB": "Expensive goods",
+    "optionC": "Development goods",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::अर्थ तंत्र में ज्ञान, तकनीकी कुशलता, शिक्षा आदि को क्या माना जाता है ?",
+    "question": "In an economy, what are knowledge, technical skill, education, etc. considered as?",
+    "optionA": "Tangible physical capital",
+    "optionB": "Working capital",
+    "optionC": "Human capital",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::किसी उद्यमी का सबसे महत्वपूर्ण काम कौन-सा होता है ?",
+    "question": "What is the most important task of an entrepreneur?",
+    "optionA": "Management",
+    "optionB": "Taking risks",
+    "optionC": "Marketing",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से उत्पादन का सर्वाधिक गतिशील कारक कौन-सा है ?",
+    "question": "Which of the following is the most dynamic factor of production?",
+    "optionA": "Capital",
+    "optionB": "Organization",
+    "optionC": "Land",
+    "optionD": "Labor",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से किसकी दृष्टि से भारतीय अर्थव्यवस्था में कुटीर तथा लघु उद्योग आवश्यक है ?",
+    "question": "From whose point of view are cottage and small industries necessary in the Indian economy?",
+    "optionA": "Employment generation",
+    "optionB": "Income generation",
+    "optionC": "Low cost",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::औद्योगिक एवं वित्तीय विनिमय बोर्ड की स्थापना कब की गई थी ?",
+    "question": "When was the Industrial and Financial Exchange Board established?",
+    "optionA": "1945",
+    "optionB": "1955",
+    "optionC": "1992",
+    "optionD": "1995",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::मानव विकास सूचकांक किस अर्थशास्त्री की देन है ?",
+    "question": "The Human Development Index is the contribution of which economist?",
+    "optionA": "Mahbub-ul-Haq",
+    "optionB": "Amartya Sen",
+    "optionC": "Johnson",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में औद्योगिक वित्त का शिखर संगठन है ?",
+    "question": "What is the apex organization for industrial finance in India?",
+    "optionA": "I.C.I.C.I",
+    "optionB": "R.B.I",
+    "optionC": "I.F.C.I",
+    "optionD": "I.D.B.I",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से कौन-सी संस्था उद्योगों को दीर्घकालीन वित्त उपलब्ध कराती है ?",
+    "question": "Which of the following institutions provides long-term finance to industries?",
+    "optionA": "L.I.C",
+    "optionB": "G.I.C",
+    "optionC": "U.T.I",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारतीय औद्योगिक वित्त निगम की स्थापना कब की गई थी ?",
+    "question": "When was the Industrial Finance Corporation of India established?",
+    "optionA": "1945",
+    "optionB": "1948",
+    "optionC": "1953",
+    "optionD": "1990",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::बोकारो स्टील प्लान्ट किस देश के सहयोग से स्थापित किया गया है ?",
+    "question": "The Bokaro Steel Plant was established with the cooperation of which country?",
+    "optionA": "Great Britain",
+    "optionB": "France",
+    "optionC": "Russia",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::दुर्गापुर इस्पात संयंत्र किसके सहयोग से स्थापित किया गया ?",
+    "question": "The Durgapur Iron and Steel Plant was established with the cooperation of which country?",
+    "optionA": "Germany",
+    "optionB": "Great Britain",
+    "optionC": "Russia",
+    "optionD": "France",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::विश्व में स्वर्ण की सर्वाधिक खपत वाला देश है ?",
+    "question": "Which country has the highest consumption of gold in the world?",
+    "optionA": "Japan",
+    "optionB": "India",
+    "optionC": "Russia",
+    "optionD": "France",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::किस खनिज के उत्पादन में भारत का विश्व में प्रथम स्थान है ?",
+    "question": "In the production of which mineral does India rank first in the world?",
+    "optionA": "Graphite",
+    "optionB": "Tungsten",
+    "optionC": "Mica",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::विश्व में बॉक्साइड संसाधन के मामले में भारत का स्थान है ?",
+    "question": "What is India's position in terms of bauxite resources in the world?",
+    "optionA": "Third",
+    "optionB": "Second",
+    "optionC": "Fourth",
+    "optionD": "Fifth",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत की प्रथम खनिज नीति कब घोसित हुई थी ?",
+    "question": "When was India's first mineral policy announced?",
+    "optionA": "1950",
+    "optionB": "1951",
+    "optionC": "1952",
+    "optionD": "1955",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत किस देश को लौह-अयस्क का सर्वाधिक निर्यात करता है ?",
+    "question": "To which country does India export the most iron ore?",
+    "optionA": "Japan",
+    "optionB": "Russia",
+    "optionC": "U.K.",
+    "optionD": "Germany",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::स्टैगफ्लेशन स्थिति है ?",
+    "question": "Stagflation is a situation of?",
+    "optionA": "Stagnation and recession",
+    "optionB": "Stagnation and inflation",
+    "optionC": "Stagnation and deflation",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::वह कौन-सा बैंक है जिसने कृषकों के पास आसानी से पहुँचने के लिए किसान क्लब बनाए हैं ?",
+    "question": "Which bank has formed Farmer Clubs to easily reach farmers?",
+    "optionA": "Reserve Bank of India",
+    "optionB": "Bank of India",
+    "optionC": "Regional Rural Bank",
+    "optionD": "Allahabad Bank",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::कोयला उत्पादक देशों में भारत का स्थान है ?",
+    "question": "What is India's position among coal-producing countries?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fourth",
+    "optionD": "Fifth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::पेट्रोलियम पदार्थों की बिक्री के लिए पेट्रोकार्ड किस कम्पनी द्वारा जारी किये गये है ?",
+    "question": "Which company has issued Petrocards for the sale of petroleum products?",
+    "optionA": "H.P.C.L",
+    "optionB": "B.P.C.L",
+    "optionC": "L.O.C.L",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::औद्योगिक क्रांति सर्वप्रथम किस देश में हुई ?",
+    "question": "In which country did the Industrial Revolution first take place?",
+    "optionA": "England",
+    "optionB": "France",
+    "optionC": "Germany",
+    "optionD": "India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत का सबसे बड़ा उद्योग कौन-सा है ?",
+    "question": "Which is the largest industry in India?",
+    "optionA": "Jewelry industry",
+    "optionB": "Textile industry",
+    "optionC": "Manufacturing industry",
+    "optionD": "Handicraft industry",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत का प्राचीनतम विशाल उद्योग है ?",
+    "question": "Which is the oldest large-scale industry in India?",
+    "optionA": "Cotton textile industry",
+    "optionB": "Jute industry",
+    "optionC": "Paper industry",
+    "optionD": "Handicraft industry",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::चीनी उत्पादन में भारत का विश्व में कौन-सा स्थान है ?",
+    "question": "What is India's rank in world sugar production?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fourth",
+    "optionD": "Fifth",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::वह कौन-सा वित्तीय वर्ष है जिससे सार्वजनिक उद्यमों में विनिवेश आरंभ हुआ ?",
+    "question": "Which financial year saw the beginning of disinvestment in public enterprises?",
+    "optionA": "1970-1971",
+    "optionB": "1991-1992",
+    "optionC": "1994-1995",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में उदार औद्योगिक नीति किस वर्ष अपनाई गई ?",
+    "question": "In which year was the liberal industrial policy adopted in India?",
+    "optionA": "1945",
+    "optionB": "1975",
+    "optionC": "1991",
+    "optionD": "1980",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::व्यवसाय के अन्तगर्त आता है ?",
+    "question": "Which comes under business?",
+    "optionA": "Trade and industry",
+    "optionB": "Only trade",
+    "optionC": "Commerce and industry",
+    "optionD": "Trade, commerce and industry",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत का सबसे महत्वपूर्ण लघु उद्योग कौन-सा है ?",
+    "question": "Which is the most important small-scale industry in India?",
+    "optionA": "Handloom industry",
+    "optionB": "Leather industry",
+    "optionC": "Pottery industry",
+    "optionD": "Cotton textile industry",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::थम कृषि गणना कब की गई थी ?",
+    "question": "When was the first agricultural census conducted?",
+    "optionA": "In 1948",
+    "optionB": "In 1990",
+    "optionC": "In 1976",
+    "optionD": "In 1970",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत में कृषि क्षेत्र के GDP का कितना प्रतिशत भाग कृषि शोध पर व्यय किया जाता है ?",
+    "question": "What percentage of the agricultural sector's GDP in India is spent on agricultural research?",
+    "optionA": "5%",
+    "optionB": "0.5%",
+    "optionC": "0.3%",
+    "optionD": "3%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::हरित क्रांति का सर्वाधिक निराशाजनक परिणाम किस फसल में देखने को मिला ?",
+    "question": "In which crop was the most disappointing result of the Green Revolution seen?",
+    "optionA": "Pulses",
+    "optionB": "Maize",
+    "optionC": "Oilseeds",
+    "optionD": "Soybean",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::हरित क्रांति शब्द के प्रतिपादक कौन है ?",
+    "question": "Who coined the term 'Green Revolution'?",
+    "optionA": "William Gaud",
+    "optionB": "Verghese Kurien",
+    "optionC": "Norman Borlaug",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::ऑपरेशन फ्लड कार्यक्रम का प्रारम्भ कब हुआ था ?",
+    "question": "When was Operation Flood program started?",
+    "optionA": "In 1995",
+    "optionB": "In 1998",
+    "optionC": "In 1945",
+    "optionD": "In 1970",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::नीली क्रांति का सम्बन्ध निम्नलिखित में से किससे है ?",
+    "question": "The Blue Revolution is related to which of the following?",
+    "optionA": "Fish farming",
+    "optionB": "Indigo cultivation",
+    "optionC": "Poultry farming",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::मत्स्य उत्पादन में भारत का विश्व में कौन-सा स्थान है ?",
+    "question": "What is India's rank in world fish production?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fourth",
+    "optionD": "Fifth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::विश्व में कॉफी उत्पादन में भारत का स्थान है ?",
+    "question": "What is India's rank in world coffee production?",
+    "optionA": "Fourth",
+    "optionB": "Fifth",
+    "optionC": "Sixth",
+    "optionD": "Seventh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::चावल निर्यात के मामले में भारत का विश्व में कौन सा स्थान है ?",
+    "question": "What is India's rank in world rice exports?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fourth",
+    "optionD": "Fifth",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::विश्व में तम्बाकू उत्पादन में भारत का स्थान है ?",
+    "question": "What is India's rank in world tobacco production?",
+    "optionA": "First",
+    "optionB": "Second",
+    "optionC": "Third",
+    "optionD": "Fourth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::कौन-सा देश विश्व में गेहूँ का सर्वाधिक उत्पादन करता है ?",
+    "question": "Which country produces the most wheat in the world?",
+    "optionA": "England",
+    "optionB": "Russia",
+    "optionC": "China",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत ने किसके उत्पादन में आत्मनिर्भरता प्राप्त कर ली है ?",
+    "question": "In which production has India achieved self-sufficiency?",
+    "optionA": "Food grains",
+    "optionB": "Edible oils",
+    "optionC": "Petroleum",
+    "optionD": "Fertilizers",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::राष्ट्रीय कृषि अनुसंधान प्रबंधन अकादमी कहाँ स्थित है ?",
+    "question": "Where is the National Academy of Agricultural Research Management located?",
+    "optionA": "Hyderabad",
+    "optionB": "Dehradun",
+    "optionC": "New Delhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::ऑपरेशन फ्लड किस कार्य से सम्बन्धित है ?",
+    "question": "Operation Flood is related to which activity?",
+    "optionA": "Wheat production",
+    "optionB": "Water conservation",
+    "optionC": "Milk production",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::खाद्य एवं कृषि संगठन का मुख्यालय कहाँ स्थित है ?",
+    "question": "Where is the headquarters of the Food and Agriculture Organization?",
+    "optionA": "In Rome",
+    "optionB": "In Geneva",
+    "optionC": "In Paris",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::राष्ट्रीय कृषि विपणन संस्थान स्थित है ?",
+    "question": "Where is the National Institute of Agricultural Marketing located?",
+    "optionA": "Jaipur",
+    "optionB": "Hyderabad",
+    "optionC": "New Delhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::किसान क्रेडिट कार्ड योजना किस वर्ष शुरू की गई थी ?",
+    "question": "In which year was the Kisan Credit Card Scheme launched?",
+    "optionA": "1990",
+    "optionB": "1950",
+    "optionC": "1998",
+    "optionD": "2000",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में फसलों के सकल क्षेत्रफल में से खाद्यान्नों का क्षेत्रफल है ?",
+    "question": "What is the area under food grains out of the gross cropped area in India?",
+    "optionA": "60-65%",
+    "optionB": "More than 70%",
+    "optionC": "More than 50%",
+    "optionD": "58%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::विश्व में दुग्ध उत्पादन के क्षेत्र में भारत का स्थान है ?",
+    "question": "What is India's rank in world milk production?",
+    "optionA": "First",
+    "optionB": "Second",
+    "optionC": "Third",
+    "optionD": "Fourth",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::इन्द्रधनुषीय क्रांति का संबंध है ?",
+    "question": "The Rainbow Revolution is related to?",
+    "optionA": "Blue Revolution",
+    "optionB": "Green Revolution",
+    "optionC": "White Revolution",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत में तम्बाकू का सर्वाधिक उत्पादन करने वाला राज्य है ?",
+    "question": "Which state produces the most tobacco in India?",
+    "optionA": "Andhra Pradesh",
+    "optionB": "Madhya Pradesh",
+    "optionC": "Karnataka",
+    "optionD": "Haryana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में गेहूँ का सर्वाधिक उत्पादन करने वाला राज्य है ?",
+    "question": "Which state produces the most wheat in India?",
+    "optionA": "Madhya Pradesh",
+    "optionB": "Haryana",
+    "optionC": "Andhra Pradesh",
+    "optionD": "Uttar Pradesh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::मोबाइल फोन का प्रयोग करने वाले लोगों की सर्वाधिक संख्या किस देश में है ?",
+    "question": "Which country has the highest number of mobile phone users?",
+    "optionA": "England",
+    "optionB": "America",
+    "optionC": "China",
+    "optionD": "Russia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::विश्व में सेलफोन का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which is the largest producer of mobile phones in the world?",
+    "optionA": "China",
+    "optionB": "America",
+    "optionC": "France",
+    "optionD": "India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::केन्द्र सरकार के बजट के चालू खाते में व्यय की सबसे बड़ी मद है ?",
+    "question": "What is the largest head of expenditure in the current account of the central government budget?",
+    "optionA": "Defense expenditure",
+    "optionB": "Interest payment",
+    "optionC": "Central plan",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित प्रत्यक्ष करों में से किस कर से सरकार को अधिकतम राजस्व की प्राप्ति होती है ?",
+    "question": "From which of the following direct taxes does the government get maximum revenue?",
+    "optionA": "Income tax",
+    "optionB": "Property tax",
+    "optionC": "Gift tax",
+    "optionD": "Corporate tax",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::भारत सरकार के बजट के कुल घाटे में किस घाटे का सबसे अधिक योगदान है ?",
+    "question": "Which deficit contributes the most to the total deficit of the Indian government budget?",
+    "optionA": "Fiscal deficit",
+    "optionB": "Revenue deficit",
+    "optionC": "Primary deficit",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत सरकार के बजट के आँकड़ों में कुल व्यय और कुल प्रप्तियों के बीच अंतर को क्या कहते हैं ?",
+    "question": "What is the difference between total expenditure and total receipts in the budget figures of the Indian government called?",
+    "optionA": "Fiscal deficit",
+    "optionB": "Revenue deficit",
+    "optionC": "Budget deficit",
+    "optionD": "Current deficit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित में से कौन-सा एक साधन केन्द्र सरकार के राजस्व का स्त्रोत नहीं है ?",
+    "question": "Which of the following is not a source of revenue for the central government?",
+    "optionA": "Agricultural income tax",
+    "optionB": "Excise duty",
+    "optionC": "Income tax",
+    "optionD": "Corporate tax",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::गैर योजना खर्च का सबसे महत्वपूर्ण मद कौन-सा है ?",
+    "question": "Which is the most important head of non-plan expenditure?",
+    "optionA": "Defense",
+    "optionB": "Fertilizer subsidy",
+    "optionC": "Interest payment",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::सम्पदा कर भारत में पहली बार किस वर्ष से लागू किया गया ?",
+    "question": "In which year was wealth tax first implemented in India?",
+    "optionA": "1997",
+    "optionB": "1957",
+    "optionC": "1982",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::संशोधित मूल्य वर्धित कर का संबंध है ?",
+    "question": "The modified value added tax is related to?",
+    "optionA": "Wealth tax",
+    "optionB": "Excise duty",
+    "optionC": "Income tax",
+    "optionD": "Sales tax",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में गरीबी हटाओ का नारा किस पंचवर्षीय योजना के अंतगर्त दिया गया था ?",
+    "question": "Under which Five-Year Plan was the slogan 'Garibi Hatao' given in India?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fifth",
+    "optionD": "Tenth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::राष्ट्रीय विकास परिषद् का पदेन सचिव होता है ?",
+    "question": "Who is the ex-officio Secretary of the National Development Council?",
+    "optionA": "Secretary of Lok Sabha",
+    "optionB": "Secretary of Planning Commission",
+    "optionC": "Secretary of Finance Ministry",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::थम वित्त आयोग के अध्यक्ष थे ?",
+    "question": "Who was the chairman of the Thirteenth Finance Commission?",
+    "optionA": "K.C. Neogi",
+    "optionB": "Mahaveer Tyagi",
+    "optionC": "Amartya Sen",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में वित्त आयोग के गठन का प्रावधान संविधान के किस अनुच्छेद में वर्णित है ?",
+    "question": "In which article of the Constitution is the provision for the formation of the Finance Commission in India described?",
+    "optionA": "Article 293",
+    "optionB": "Article 280",
+    "optionC": "Article 264",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::मौलिक अधिकारों को लागू करने के लिए रिट जारी की जाती है ?",
+    "question": "For the enforcement of fundamental rights, writs are issued by?",
+    "optionA": "The Supreme Court",
+    "optionB": "The President",
+    "optionC": "The Parliament",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में योजना आयोग का गठन किस वर्ष किया गया था ?",
+    "question": "In which year was the Planning Commission established in India?",
+    "optionA": "1988",
+    "optionB": "1950",
+    "optionC": "1948",
+    "optionD": "1956",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारतीय चमड़े का सर्वाधिक निर्यात किसको किया जाता है ?",
+    "question": "To whom is the maximum export of Indian leather done?",
+    "optionA": "Russia",
+    "optionB": "France",
+    "optionC": "England",
+    "optionD": "China",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत का अधिकतम विदेशी व्यपार किसके साथ है ?",
+    "question": "With whom does India have the maximum foreign trade?",
+    "optionA": "United States",
+    "optionB": "Thailand",
+    "optionC": "Bangladesh",
+    "optionD": "Japan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत द्वारा सबसे अधिक विदेशी मुद्रा किस पदार्थ के आयत पर व्यय की जाती है ?",
+    "question": "On which commodity does India spend the most foreign exchange?",
+    "optionA": "Electricity generation machinery",
+    "optionB": "Petroleum products",
+    "optionC": "Fertilizers",
+    "optionD": "Defense equipment",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारतीय विदेशी वयापार संस्थान कहाँ स्थित है ?",
+    "question": "Where is the Indian Institute of Foreign Trade located?",
+    "optionA": "Hyderabad",
+    "optionB": "Mumbai",
+    "optionC": "New Delhi",
+    "optionD": "Ahmedabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::निम्न में से किस एक जगह मुक्त व्यापार क्षेत्र नहीं है ?",
+    "question": "Which of the following is not a free trade zone?",
+    "optionA": "Mumbai",
+    "optionB": "Visakhapatnam",
+    "optionC": "Thiruvananthapuram",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::नायक समिति का सम्बन्ध किससे है ?",
+    "question": "The Nayak Committee is related to?",
+    "optionA": "Cottage industries",
+    "optionB": "Small industries",
+    "optionC": "Heavy industries",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::किस वर्ष में विदेशी विनिमय प्रबन्ध अधिनियम प्रभावी हुआ ?",
+    "question": "In which year did the Foreign Exchange Management Act come into force?",
+    "optionA": "2003",
+    "optionB": "2002",
+    "optionC": "2000",
+    "optionD": "1999",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में FERA का स्थान ले लिया है ?",
+    "question": "Who has replaced FERA in India?",
+    "optionA": "FETA",
+    "optionB": "FENA",
+    "optionC": "FEMA",
+    "optionD": "FELA",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भुगतान संतुलन में निहित होता है ?",
+    "question": "What is included in the balance of payments?",
+    "optionA": "Invisible trade",
+    "optionB": "Visible trade",
+    "optionC": "Loans",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::केलकर टास्ट फोर्स की सिफारिशों का सम्बन्ध किससे है ?",
+    "question": "The recommendations of the Kelkar Task Force are related to?",
+    "optionA": "Foreign investment",
+    "optionB": "Banking",
+    "optionC": "Taxes",
+    "optionD": "Trade",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::नरसिंहम रिपोर्ट का संबंध किसके पुनर्गठन से है ?",
+    "question": "The Narasimham Report is related to the reorganization of?",
+    "optionA": "Income tax",
+    "optionB": "Banking institutions",
+    "optionC": "Sales tax",
+    "optionD": "Insurance industry",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::यदि सूरत में बनी वस्तुएँ मुम्बई या दिल्ली में बेची जाएँ तो यह है ?",
+    "question": "If goods made in Surat are sold in Mumbai or Delhi, then this is?",
+    "optionA": "Regional trade",
+    "optionB": "Internal trade",
+    "optionC": "International trade",
+    "optionD": "Free trade",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::कृष्ण क्रांति का संबंध किससे है ?",
+    "question": "The Green Revolution is related to?",
+    "optionA": "Food oil production",
+    "optionB": "Green gram",
+    "optionC": "Fertilizer production",
+    "optionD": "Mineral oil production",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::निम्नलिखित वर्गों में से किस वर्ग के देशों के साथ भारत का सर्वाधिक आयत व्यापर है ?",
+    "question": "With which group of countries does India have the maximum trade?",
+    "optionA": "Eastern Europe",
+    "optionB": "Developing countries",
+    "optionC": "O.P.E.C",
+    "optionD": "O.E.C.D",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::चन्द्रशेखरन समिति किससे सम्बन्धित है ?",
+    "question": "The Chandrasekhar Committee is related to?",
+    "optionA": "Shares",
+    "optionB": "Education",
+    "optionC": "Space missions",
+    "optionD": "Revenue",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::कर सुधार समिति का अध्यक्ष किसे नियुक्त किया गया था ?",
+    "question": "Who was appointed as the chairman of the Tax Reform Committee?",
+    "optionA": "Raja Chelliah",
+    "optionB": "Pranab Mukherjee",
+    "optionC": "K. P. Narasimha",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::किस समिति ने कृषि जोतों पर कर लगाने की संस्तुति की थी ?",
+    "question": "Which committee had recommended imposing tax on agricultural lands?",
+    "optionA": "Wanchoo Committee",
+    "optionB": "Bhoothalingam Committee",
+    "optionC": "Chelliah Committee",
+    "optionD": "Raja Committee",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::केन्द्र एवं राज्य के बीच वित्तीय विवादों के निपटारे हेतु मुख्य एजेन्सी है ?",
+    "question": "What is the main agency for resolving financial disputes between the Center and the States?",
+    "optionA": "Supreme Court",
+    "optionB": "Finance Commission",
+    "optionC": "Law Minister",
+    "optionD": "Finance Minister",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::देश में चीनी मिलों की सर्वाधिक संख्या किस राज्य में है ?",
+    "question": "In which state of the country is the maximum number of sugar mills located?",
+    "optionA": "Tamil Nadu",
+    "optionB": "Rajasthan",
+    "optionC": "Maharashtra",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में निम्नलिखित में से किस प्रकार का बिजली का उत्पादन सर्वाधिक होता है ?",
+    "question": "In India, which of the following types of electricity production is the highest?",
+    "optionA": "Thermal power",
+    "optionB": "Nuclear power",
+    "optionC": "Solar power",
+    "optionD": "Hydropower",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "economics-gk::भारत में वाणिज्यिक ऊर्जा की कितना प्रतिशत पूर्ति कोयले से होती है ?",
+    "question": "What percentage of commercial energy in India is supplied by coal?",
+    "optionA": "50%",
+    "optionB": "76%",
+    "optionC": "67%",
+    "optionD": "53%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::भारत में बेरोजगारी की किस्म पायी जाती है ?",
+    "question": "What types of unemployment are found in India?",
+    "optionA": "Cyclical unemployment",
+    "optionB": "Rural underemployment",
+    "optionC": "Structural unemployment",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "economics-gk::कृषि में मूलतः किस प्रकार की बेरोजगारी की प्रधानता देखने को मिलती है ?",
+    "question": "In agriculture, which type of unemployment is primarily seen?",
+    "optionA": "Open unemployment",
+    "optionB": "Disguised unemployment",
+    "optionC": "Frictional unemployment",
+    "optionD": "Structural unemployment",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "economics-gk::भारत में ग्रामीण क्षेत्रों में कौन-सी बेरोजगारी सर्वाधिक पायी जाती है ?",
+    "question": "Which type of unemployment is most prevalent in rural areas of India?",
+    "optionA": "Seasonal unemployment",
+    "optionB": "Disguised unemployment",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "economics-gk::वर्तमान समय में देश में किस प्रकार की बेरोजगारी की समस्या बहुत गंभीर समस्या बनी हुई है ?",
+    "question": "At present, which type of unemployment has become a very serious problem in the country?",
+    "optionA": "Urban unemployment",
+    "optionB": "Rural unemployment",
+    "optionC": "Educated unemployment",
+    "optionD": "Open unemployment",
+    "correctAnswer": "C"
   }
 ]

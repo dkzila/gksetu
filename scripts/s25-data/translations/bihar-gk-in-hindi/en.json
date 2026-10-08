@@ -1,0 +1,2009 @@
+[
+  {
+    "id": "bihar-gk-in-hindi::बिहार दिवस कब मनाई जाती है ?",
+    "question": "When is Bihar Day celebrated?",
+    "optionA": "20 March",
+    "optionB": "21 March",
+    "optionC": "22 March",
+    "optionD": "25 March",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार की राजधानी कहाँ है ?",
+    "question": "Where is the capital of Bihar?",
+    "optionA": "Patna",
+    "optionB": "Purnia",
+    "optionC": "Darbhanga",
+    "optionD": "Munger",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का उच्च न्यायालय हैं ?",
+    "question": "What is the High Court of Bihar?",
+    "optionA": "Patna",
+    "optionB": "Saran",
+    "optionC": "Koshi",
+    "optionD": "Magadh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का राजकीय भाषा है ?",
+    "question": "What is the official language of Bihar?",
+    "optionA": "Hindi and Urdu",
+    "optionB": "Sanskrit and Urdu",
+    "optionC": "Hindi and Sanskrit",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का राजकीय वृक्ष है ?",
+    "question": "What is the state tree of Bihar?",
+    "optionA": "Bel",
+    "optionB": "Peepal",
+    "optionC": "Mango",
+    "optionD": "Neem",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का राजकीय पुष्प है ?",
+    "question": "What is the state flower of Bihar?",
+    "optionA": "Lotus",
+    "optionB": "Marigold",
+    "optionC": "Rose",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का राजकीय पशु है ?",
+    "question": "What is the state animal of Bihar?",
+    "optionA": "Cow",
+    "optionB": "Buffalo",
+    "optionC": "Buffalo",
+    "optionD": "Horse",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का राजकीय पक्षी है ?",
+    "question": "What is the state bird of Bihar?",
+    "optionA": "Swan",
+    "optionB": "Hen",
+    "optionC": "Cuckoo",
+    "optionD": "Sparrow",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का प्रमंडल है ?",
+    "question": "How many divisions are there in Bihar?",
+    "optionA": "7",
+    "optionB": "8",
+    "optionC": "9",
+    "optionD": "11",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का जिला है ?",
+    "question": "How many districts are there in Bihar?",
+    "optionA": "32",
+    "optionB": "34",
+    "optionC": "36",
+    "optionD": "38",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का अनुमंडल है ?",
+    "question": "How many sub-divisions are there in Bihar?",
+    "optionA": "95",
+    "optionB": "101",
+    "optionC": "105",
+    "optionD": "119",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में विश्वविद्यालयों की संख्या हैं ?",
+    "question": "How many universities are there in Bihar?",
+    "optionA": "21",
+    "optionB": "23",
+    "optionC": "25",
+    "optionD": "30",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सर्वाधिक जनसख्या वाला जिला हैं ?",
+    "question": "Which is the most populous district in Bihar?",
+    "optionA": "Begusarai",
+    "optionB": "Darbhanga",
+    "optionC": "Patna",
+    "optionD": "Madhubani",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे कम जनसख्या वाला जिला हैं ?",
+    "question": "Which is the least populous district in Bihar?",
+    "optionA": "Munger",
+    "optionB": "Sheikhpura",
+    "optionC": "Sitamarhi",
+    "optionD": "Khagaria",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे कम लिंगानुपात वाला जिला हैं ?",
+    "question": "Which is the district with the lowest sex ratio in Bihar?",
+    "optionA": "Munger",
+    "optionB": "Saharsa",
+    "optionC": "Aurangabad",
+    "optionD": "Madhepura",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सर्वाधिक लिंगानुपात वाला जिला हैं ?",
+    "question": "Which district in Bihar has the highest sex ratio?",
+    "optionA": "Samastipur",
+    "optionB": "Sheohar",
+    "optionC": "Gopalganj",
+    "optionD": "Patna",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सर्वाधिक साक्षारता वाला जिला हैं ?",
+    "question": "Which district in Bihar has the highest literacy rate?",
+    "optionA": "Rohtas",
+    "optionB": "Nawada",
+    "optionC": "Patna",
+    "optionD": "Darbhanga",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे कम साक्षरता वाला जिला हैं ?",
+    "question": "Which district in Bihar has the lowest literacy rate?",
+    "optionA": "Gaya",
+    "optionB": "Purnia",
+    "optionC": "Samastipur",
+    "optionD": "Khagaria",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सर्वाधिक वर्षा वाला जिला हैं ?",
+    "question": "Which district in Bihar has the highest rainfall?",
+    "optionA": "Kishanganj",
+    "optionB": "Muzaffarpur",
+    "optionC": "Saharsa",
+    "optionD": "Madhubani",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे कम वर्षा वाला जिला हैं ?",
+    "question": "Which district in Bihar has the lowest rainfall?",
+    "optionA": "Araria",
+    "optionB": "Aurangabad",
+    "optionC": "Bhojpur",
+    "optionD": "Buxar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे ठंडा वाला जिला हैं ?",
+    "question": "Which district in Bihar is the coldest?",
+    "optionA": "Kishanganj",
+    "optionB": "Kaimur",
+    "optionC": "Gaya",
+    "optionD": "Muzaffarpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सबसे बड़ा नगर हैं ?",
+    "question": "Which is the largest city in Bihar?",
+    "optionA": "Bhagalpur",
+    "optionB": "Darbhanga",
+    "optionC": "Madhubani",
+    "optionD": "Patna",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मूल रूप से बिहार शब्द का अर्थ है ?",
+    "question": "What is the original meaning of the word Bihar?",
+    "optionA": "Buddhist monastery",
+    "optionB": "Land of angels",
+    "optionC": "Land of greenery",
+    "optionD": "Aryan land",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में नमक सत्याग्रह आरंभ हुआ ?",
+    "question": "When did the Salt Satyagraha begin in Bihar?",
+    "optionA": "6 February 1921",
+    "optionB": "6 February 1929",
+    "optionC": "15 April 1930",
+    "optionD": "7 April 1934",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का पृथक प्रान्त के रूप में गठन की मांग प्रस्तुत की गई ?",
+    "question": "When was the demand for the formation of Bihar as a separate province presented?",
+    "optionA": "1896 AD",
+    "optionB": "1906 AD",
+    "optionC": "1911 AD",
+    "optionD": "1936 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का मुगल साम्रज्य के प्रान्त के रूप में गठन हुआ ?",
+    "question": "When was Bihar formed as a province of the Mughal Empire?",
+    "optionA": "1504 AD",
+    "optionB": "1540 AD",
+    "optionC": "1580 AD",
+    "optionD": "1600 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार विधान सभा में वर्तमान में कितने सदस्य हैं ?",
+    "question": "How many members are currently in the Bihar Legislative Assembly?",
+    "optionA": "240",
+    "optionB": "243",
+    "optionC": "245",
+    "optionD": "246",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार से लोकसभा के लिए कितने सदस्य चुने जाते हैं ?",
+    "question": "How many members are elected from Bihar to the Lok Sabha?",
+    "optionA": "20",
+    "optionB": "25",
+    "optionC": "30",
+    "optionD": "40",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना उच्च न्यायालय की स्थापना कब हुई ?",
+    "question": "When was the Patna High Court established?",
+    "optionA": "1916",
+    "optionB": "1917",
+    "optionC": "1918",
+    "optionD": "1921",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में राज्य सभा की कितनी सीटे हैं ?",
+    "question": "How many seats does Bihar have in the Rajya Sabha?",
+    "optionA": "12",
+    "optionB": "14",
+    "optionC": "15",
+    "optionD": "16",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::झारखंड बिहार से कब पृथक हुआ ?",
+    "question": "When did Jharkhand separate from Bihar?",
+    "optionA": "15 November 2000",
+    "optionB": "25 November 2001",
+    "optionC": "23 November 2002",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार और उड़ीसा का विभाजन हुआ ?",
+    "question": "When did Bihar and Odisha divide?",
+    "optionA": "In 1932",
+    "optionB": "In 1936",
+    "optionC": "In 1937",
+    "optionD": "In 1938",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार सोशलिस्ट पार्टी के संस्थापक थे ?",
+    "question": "Who were the founders of the Bihar Socialist Party?",
+    "optionA": "Jayaprakash Narayan",
+    "optionB": "Subhas Chandra Bose",
+    "optionC": "Satya Bhakta",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार के प्रमुख समाचार-पत्र &#39;बिहारी&#39; के सम्पादक थे ?",
+    "question": "Who was the editor of Bihar's leading newspaper 'Bihari'?",
+    "optionA": "Babuji Prasad",
+    "optionB": "Babu Gopal",
+    "optionC": "Babu Maheshwar Prasad",
+    "optionD": "Babu Ram Prasad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में किस स्थान पर भारतीय राष्ट्रीय कांग्रेस का 1922 का अधिवेशन हुआ ?",
+    "question": "At which place in Bihar did the 1922 session of the Indian National Congress take place?",
+    "optionA": "Haripur",
+    "optionB": "Ramgarh",
+    "optionC": "Gaya",
+    "optionD": "Patna",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में किसान सभा की स्थापना किनके द्वारा की गई ?",
+    "question": "Who established the Bihar Kisan Sabha?",
+    "optionA": "Sahajanand Saraswati",
+    "optionB": "Jay Prakash Narayan",
+    "optionC": "Swami Agnivesh",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार प्रांतीय किसान सभा का गठन इस सन् में हुआ ?",
+    "question": "In which year was the Bihar Provincial Kisan Sabha formed?",
+    "optionA": "February, 1931",
+    "optionB": "January, 1933",
+    "optionC": "March, 1929",
+    "optionD": "April, 1922",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार बंगाल से कब पृथक हुआ ?",
+    "question": "When did Bihar separate from Bengal?",
+    "optionA": "1911",
+    "optionB": "1912",
+    "optionC": "1813",
+    "optionD": "1814",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::1857 की क्रान्ति के बिहार के नेता थे ?",
+    "question": "Who were the leaders of Bihar in the 1857 revolution?",
+    "optionA": "Maulvi Ahmadullah",
+    "optionB": "Kunwar Singh",
+    "optionC": "Tantya Tope",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना को प्रांतीय राजधानी बनाया था ?",
+    "question": "Who made Patna the provincial capital?",
+    "optionA": "Sher Shah",
+    "optionB": "Humayun",
+    "optionC": "Ibrahim Lodi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में सर्वाधिक लोकप्रिय सुल्तान कौन थे ?",
+    "question": "Who was the most popular Sultan in Bihar?",
+    "optionA": "Sher Shah Suri",
+    "optionB": "Bakhtiyar Khilji",
+    "optionC": "Ibrahim Lodi",
+    "optionD": "Alauddin Khilji",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नालंदा विश्वविद्यालय का वैभव किसके हाथों नष्ट हुआ ?",
+    "question": "Whose hands destroyed the glory of Nalanda University?",
+    "optionA": "Bakhtiyar Khilji",
+    "optionB": "Ibrahim Lodi",
+    "optionC": "Sher Shah Suri",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस काल में बिहार की राजनीतिक शक्ति, शैक्षिक व सांस्कृतिक गरिमा खंडित हुई ?",
+    "question": "In which period was the political power, educational and cultural dignity of Bihar broken?",
+    "optionA": "In the Mauryan period",
+    "optionB": "In the Gupta period",
+    "optionC": "In the medieval period",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस मुगल शासक ने सर्वप्रथम बिहार को अपने साम्रज्य में मिलाया था ?",
+    "question": "Which Mughal ruler first included Bihar in his empire?",
+    "optionA": "Babur",
+    "optionB": "Jahangir",
+    "optionC": "Akbar",
+    "optionD": "Humayun",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पाटलिपुत्र के संस्थापक थे ?",
+    "question": "Who were the founders of Pataliputra?",
+    "optionA": "Udayin",
+    "optionB": "Ashoka",
+    "optionC": "Bimbisara",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पाटलिपुत्र में स्थित चंद्रगुप्त का महल मुख्यतः बना था ?",
+    "question": "What was Chandragupta's palace in Pataliputra mainly built of?",
+    "optionA": "Bricks",
+    "optionB": "Clay",
+    "optionC": "Wood",
+    "optionD": "Stone",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पाटलिपुत्र में इनमें से किस शासक ने सर्वप्रथम अपनी राजधानी बनाई ?",
+    "question": "Which of these rulers first made his capital in Pataliputra?",
+    "optionA": "Chandragupta Maurya",
+    "optionB": "Kanishka",
+    "optionC": "Ashoka the Great",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में 1857 की क्रान्ति के नेता कुंवर सिंह का देहांत कब हुआ ?",
+    "question": "When did Kunwar Singh, the leader of the 1857 revolution in Bihar, die?",
+    "optionA": "April 17, 1858",
+    "optionB": "June 10, 1858",
+    "optionC": "May 9, 1858",
+    "optionD": "May 12, 1858",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिरसा मुण्डा का कार्य-क्षेत्र कौन-सा था ?",
+    "question": "What was the area of work of Birsa Munda?",
+    "optionA": "Champaran",
+    "optionB": "Alipur",
+    "optionC": "Ballia",
+    "optionD": "Ranchi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::स्वामी सहजानन्द का संबंध था ?",
+    "question": "What was the connection of Swami Sahajanand?",
+    "optionA": "With the tribal movement of Bihar",
+    "optionB": "With the labor movement of Bihar",
+    "optionC": "With the peasant movement of Bihar",
+    "optionD": "With the caste movement of Bihar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::चन्द्रगुप्त मौर्य के गुरु थे ?",
+    "question": "Who was the guru of Chandragupta Maurya?",
+    "optionA": "Chanakya",
+    "optionB": "Kanada",
+    "optionC": "Parashar",
+    "optionD": "Vatsyayana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::इनमें से कौन बिहार में किसान आंदोलन के साथ जुड़े थे ?",
+    "question": "Who was associated with the peasant movement in Bihar?",
+    "optionA": "Rajendra Prasad",
+    "optionB": "Motilal Nehru",
+    "optionC": "Bhagat Singh",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कांग्रेस सोशलिस्ट पार्टी की पहली बैठक हुई ?",
+    "question": "Where was the first meeting of the Congress Socialist Party held?",
+    "optionA": "In Delhi",
+    "optionB": "In Lahore",
+    "optionC": "In Patna",
+    "optionD": "In Nasik",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::श्री नरसिंह नारायण क्या थे ?",
+    "question": "What was Shri Narayan Narayan?",
+    "optionA": "Socialist",
+    "optionB": "Communist",
+    "optionC": "Internationalist",
+    "optionD": "Nationalist",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जयप्रकाश नारायण किस पार्टी से संबंधित थे ?",
+    "question": "Which party was Jayaprakash Narayan associated with?",
+    "optionA": "Congress",
+    "optionB": "Nationalist",
+    "optionC": "Socialist",
+    "optionD": "Kisan Sabha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::रामचंद्र शर्मा किस गाँव से थे ?",
+    "question": "From which village was Ramchandra Sharma?",
+    "optionA": "Indrapur",
+    "optionB": "Gogri",
+    "optionC": "Amraha",
+    "optionD": "Pema",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जगत नारायण लाल को किस जेल में भेजा गया ?",
+    "question": "To which jail was Jagat Narayan Lal sent?",
+    "optionA": "Bankipur Jail",
+    "optionB": "Hazaribagh Jail",
+    "optionC": "Bhagalpur Jail",
+    "optionD": "Camp Jail",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::&#39;बिहार केसरी&#39; से किसे सम्बोधित किया जाता है ?",
+    "question": "Who is addressed as 'Bihar Kesari'?",
+    "optionA": "To Anugrah Narayan Singh",
+    "optionB": "To Karpoori Thakur",
+    "optionC": "To Dr. Shree Krishna Singh",
+    "optionD": "To Jayaprakash Narayan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस देश की सीमा बिहार राज्य से जुड़ती है ?",
+    "question": "Which country's border is connected with Bihar state?",
+    "optionA": "Nepal",
+    "optionB": "Bhutan",
+    "optionC": "Bangladesh",
+    "optionD": "China",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पुराना बिहार का कितना प्रतिशत जमीन लेकर झारखण्ड राज्य बना है ?",
+    "question": "What percentage of the land of old Bihar was taken to form the state of Jharkhand?",
+    "optionA": "38.40%",
+    "optionB": "45.85%",
+    "optionC": "42.85%",
+    "optionD": "51%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का शोक निम्नलिखित में किसे कहा जाता है ?",
+    "question": "To whom is Bihar's sorrow referred to in the following?",
+    "optionA": "To Ajay",
+    "optionB": "To Kosi",
+    "optionC": "To Son",
+    "optionD": "To Bagmati",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::आम की वह प्रजाति जो केवल बिहार में ही उपजायी जाती है ?",
+    "question": "Which variety of mango is only cultivated in Bihar?",
+    "optionA": "Dashahari",
+    "optionB": "Jardalu",
+    "optionC": "Langra",
+    "optionD": "Safeda",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में बहने वाली नदियों में किसका उद्गम अमरकंटक में है ?",
+    "question": "Among the rivers flowing in Bihar, which one has its origin at Amarkantak?",
+    "optionA": "Koyal",
+    "optionB": "Son",
+    "optionC": "Punpun",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सम्पूर्ण बिहार राज्य स्थित है ?",
+    "question": "The entire state of Bihar is situated?",
+    "optionA": "In the plain region",
+    "optionB": "In the lake region",
+    "optionC": "In the plateau region",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार मे तेल शोधक कारखाना है ?",
+    "question": "Where is the oil refinery in Bihar?",
+    "optionA": "In Patna",
+    "optionB": "In Ara",
+    "optionC": "In Barauni",
+    "optionD": "In Bhagalpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार की कौन-सी नदी पर बहुद्देश्यीय परियोजना का निर्माण कार्य किया जाता है ?",
+    "question": "On which river of Bihar is the construction work of a multipurpose project carried out?",
+    "optionA": "Ganga",
+    "optionB": "Punpun",
+    "optionC": "Phalgu",
+    "optionD": "Kosi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में डालमिया नगर किसके लिए प्रसिद्ध है ?",
+    "question": "For what is Dalmianagar famous in Bihar?",
+    "optionA": "Silk",
+    "optionB": "Jute",
+    "optionC": "Leather",
+    "optionD": "Cement",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में कोयले का अनुमानित भंडार है ?",
+    "question": "What is the estimated coal reserve in Bihar?",
+    "optionA": "1260 crore tons",
+    "optionB": "303 crore tons",
+    "optionC": "16 crore tons",
+    "optionD": "20058 crore tons",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पूर्वी मध्य रेलवे क्षेत्र का मुख्यालय कहाँ स्थित है ?",
+    "question": "Where is the headquarters of the East Central Railway Zone located?",
+    "optionA": "Patna",
+    "optionB": "Raipur",
+    "optionC": "Hajipur",
+    "optionD": "Muzaffarpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में केला उत्पादन का प्रसिद्ध क्षेत्र है ?",
+    "question": "Which is the famous region for banana production in Bihar?",
+    "optionA": "Bhagalpur",
+    "optionB": "Hajipur",
+    "optionC": "Munger",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मखान की खेती के लिए देश का अग्रणी राज्य है ?",
+    "question": "Which state is the leading state in the cultivation of Makhana?",
+    "optionA": "Uttar Pradesh",
+    "optionB": "Kerala",
+    "optionC": "Bihar",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::ककोलत जलप्रताप बिहार के किस जिले में स्थित है ?",
+    "question": "In which district of Bihar is Kakolat Waterfall located?",
+    "optionA": "Patna",
+    "optionB": "Nawada",
+    "optionC": "Munger",
+    "optionD": "Nalanda",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से कौन-सा शहर बिहार के सबसे पूर्वी भाग में स्थित है ?",
+    "question": "Which of the following cities is located in the easternmost part of Bihar?",
+    "optionA": "Bhagalpur",
+    "optionB": "Purnia",
+    "optionC": "Katihar",
+    "optionD": "Patna",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित झीलों में से कौन-सी बिहार में स्थित है ?",
+    "question": "Which of the following lakes is located in Bihar?",
+    "optionA": "Sambhar Lake",
+    "optionB": "Anuppur Lake",
+    "optionC": "Sukhna Lake",
+    "optionD": "Kamala Lake",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नालंदा विश्वविद्यालय किसलिए विश्व-प्रसिद्ध था ?",
+    "question": "For what was Nalanda University world-famous?",
+    "optionA": "Medical Science",
+    "optionB": "Chemistry",
+    "optionC": "Buddhist Religion and Philosophy",
+    "optionD": "Logic",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नालंदा विश्वविद्यालय के विनाश के कारण थे ?",
+    "question": "Who was responsible for the destruction of Nalanda University?",
+    "optionA": "Muslims",
+    "optionB": "Mughals",
+    "optionC": "Scythians",
+    "optionD": "Kushans",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार आनेवाला पहला अंग्रेज यात्री था ?",
+    "question": "Who was the first English traveler to come to Bihar?",
+    "optionA": "Peter Mundy",
+    "optionB": "Bishop Heber",
+    "optionC": "John Marshall",
+    "optionD": "Ralph Fitch",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अंतिम मौर्य सम्राट था ?",
+    "question": "Who was the last Mauryan emperor?",
+    "optionA": "Avanti Varma",
+    "optionB": "Brihadratha",
+    "optionC": "Nandi Vardhana",
+    "optionD": "Jalauka",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गुप्त सम्राट जिसने हूणों को पराजित किया थे ?",
+    "question": "Which Gupta emperor defeated the Huns?",
+    "optionA": "Skandagupta",
+    "optionB": "Samudragupta",
+    "optionC": "Ramagupta",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सम्राट अशोक के पिता थे ?",
+    "question": "Who was the father of Emperor Ashoka?",
+    "optionA": "Bimbisara",
+    "optionB": "Chandragupta Maurya",
+    "optionC": "Brihadratha",
+    "optionD": "Bindusara",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अशोक के शिलालेखों में प्रयुक्त भाषा है ?",
+    "question": "What language was used in Ashoka's inscriptions?",
+    "optionA": "Pali",
+    "optionB": "Sanskrit",
+    "optionC": "Prakrit",
+    "optionD": "Hindi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::वह स्त्रोत जिसमें पाटलिपुत्र के प्रशासन का वर्णन उपलब्ध है, वह है ?",
+    "question": "Which source contains a description of the administration of Pataliputra?",
+    "optionA": "Divyavadana",
+    "optionB": "Arthashastra",
+    "optionC": "Indica",
+    "optionD": "Ashoka's Inscriptions",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अजातशत्रु के वंश का नाम क्या था ?",
+    "question": "What was the name of Ajatashatru's dynasty?",
+    "optionA": "Haryanka",
+    "optionB": "Maurya",
+    "optionC": "Gupta",
+    "optionD": "Nanda",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अजातशत्रु किस राज्य को पराजित नहीं कर सका ?",
+    "question": "Which state could Ajatashatru not defeat?",
+    "optionA": "Avanti",
+    "optionB": "Vajji-Vaishali",
+    "optionC": "Kausala",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::ईसा पूर्व छठी सदी में विश्व की प्रथम गणतन्त्रात्मक व्यवस्था कहाँ थी ?",
+    "question": "Where was the first republican system in the world in the 6th century BC?",
+    "optionA": "Vaishali",
+    "optionB": "Pataliputra",
+    "optionC": "Sparta",
+    "optionD": "Athens",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्न नदियों में सबसे अधिक नदीपथ परिवर्तन किया है ?",
+    "question": "Which of the following rivers has changed its course the most?",
+    "optionA": "Son River",
+    "optionB": "Ganga River",
+    "optionC": "Kosi River",
+    "optionD": "Gandak River",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किसके प्रयत्नों से बिहार प्रान्तीय कांग्रेस का दूसरा अधिवेशन हुआ ?",
+    "question": "Through whose efforts was the second session of the Bihar Provincial Congress held?",
+    "optionA": "G.K. Gokhale",
+    "optionB": "Shri Krishna",
+    "optionC": "Shri Deep Narayan Singh",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में बिहार के कौन-से जिलों के कुछ इलाके पश्चिम बंगाल को दिए गये थे ?",
+    "question": "Which of the following Bihar districts were some areas given to West Bengal?",
+    "optionA": "Bhagalpur and Samastipur",
+    "optionB": "Purnia and Manbhum",
+    "optionC": "Jamshedpur",
+    "optionD": "Rajgir",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::स्वतंत्रता पूर्व बिहार में बड़े जमींदारों की राजनितिक शक्ति बचाने का माध्यम था ?",
+    "question": "What was the means for large landlords in pre-independence Bihar to preserve their political power?",
+    "optionA": "State resources",
+    "optionB": "Culture",
+    "optionC": "Economic status",
+    "optionD": "Social status",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बलदेव सहाय ने महाधिवक्ता के पद से त्यागपत्र कब दिया ?",
+    "question": "When did Baldev Sahay resign from the post of Advocate General?",
+    "optionA": "1942",
+    "optionB": "1943",
+    "optionC": "1913",
+    "optionD": "1911",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कांग्रेस सोशलिस्ट पार्टी की पहली बैठक पटना में हुई ?",
+    "question": "When was the first meeting of the Congress Socialist Party held in Patna?",
+    "optionA": "1921 में",
+    "optionB": "1934 में",
+    "optionC": "1937 में",
+    "optionD": "1939 में",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मुजफ्फरपुर में किंग्स फोर्ड की हत्या का प्रयास कब किया गया ?",
+    "question": "When was the attempt to murder Kingsford made in Muzaffarpur?",
+    "optionA": "1908",
+    "optionB": "1909",
+    "optionC": "1907",
+    "optionD": "1911",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना कलम अथवा पटना शैली का अंतिम चित्रकार किसे मन जाता है ?",
+    "question": "Who is considered the last painter of the Patna Kalam or Patna style?",
+    "optionA": "नन्दलाल बसु को",
+    "optionB": "अवधेश कुमार सिन्हा",
+    "optionC": "ईश्वरी प्रसाद को",
+    "optionD": "केदार शर्मा को",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिस्मिल्लाह खां संबंधित थे ?",
+    "question": "Bismillah Khan was associated with?",
+    "optionA": "संतूर वादन से",
+    "optionB": "तबला वादन से",
+    "optionC": "बांसुरी वादन से",
+    "optionD": "शहनाई वादन से",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गोपाल सिंह नेपाली ने निम्नलिखित में किस पत्र-पत्रिका का सम्पादन नहीं किया ?",
+    "question": "Which of the following newspapers/magazines was not edited by Gopal Singh Nepali?",
+    "optionA": "सुधा",
+    "optionB": "हंस",
+    "optionC": "प्रभात",
+    "optionD": "दी मुरली",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::महाकवि विद्यापति किस युग के कवि थे ?",
+    "question": "In which era was the great poet Vidyapati?",
+    "optionA": "आधुनिक काल के",
+    "optionB": "प्रागैतिहासिक काल के",
+    "optionC": "मध्यकाल के",
+    "optionD": "प्राचीन काल के",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::दिनकर जी अपनी किस रचना से राष्ट्रकवि के रूप में प्रतिष्ठित हुए ?",
+    "question": "Through which of his works did Dinakar Ji establish himself as the National Poet?",
+    "optionA": "उर्वशी",
+    "optionB": "हुंकार",
+    "optionC": "धूप-छाँव",
+    "optionD": "रेणुका",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जयप्रकाश नारायण किस पार्टी से थे ?",
+    "question": "Which party was Jayaprakash Narayan associated with?",
+    "optionA": "कांग्रेस पार्टी",
+    "optionB": "किसान सभा",
+    "optionC": "सोशलिस्ट पार्टी",
+    "optionD": "कम्युनिष्ट पार्टी",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::डॉ राजेन्द्र प्रसाद कहाँ के रहने वाले थे ?",
+    "question": "Where did Dr. Rajendra Prasad live?",
+    "optionA": "मध्य प्रदेश",
+    "optionB": "बिहार",
+    "optionC": "उत्तर प्रदेश",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::राजकुमार शुक्ला किस गांव के निवासी थे ?",
+    "question": "In which village did Rajkumar Shukla live?",
+    "optionA": "मुरली खेर के",
+    "optionB": "मुरली भरहवा के",
+    "optionC": "मुरली भीत के",
+    "optionD": "मुरलीधर के",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सच्चिदानंद सिन्हा किसके साथ जुड़े थे ?",
+    "question": "With whom was Sachchidanand Sinha associated?",
+    "optionA": "डंडी मार्च",
+    "optionB": "सविनय अवज्ञा आंदोलन",
+    "optionC": "भारत छोड़ो आंदोलन",
+    "optionD": "इनमें से किसी के साथ नहीं",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कुंवर सिंह ने 1857 के विद्रोह का नेतृत्व किस प्रान्त से किया ?",
+    "question": "From which province did Kunwar Singh lead the revolt of 1857?",
+    "optionA": "पंजाब",
+    "optionB": "महाराष्ट्र",
+    "optionC": "बंगाल",
+    "optionD": "बिहार",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कुँवर सिंह राजा थे ?",
+    "question": "Kunwar Singh was the king of?",
+    "optionA": "हमीरपुर के",
+    "optionB": "रामपुर के",
+    "optionC": "जगदीशपुर के",
+    "optionD": "धीरपुर के",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कुँवर सिंह के विरुद्ध आरा में अंग्रेजी फौज का नेतृत्व करने वाला पहला सेनानायक इनमें कौन था ?",
+    "question": "Who was the first military leader to lead the English army against Kunwar Singh in Ara?",
+    "optionA": "मिलमैन",
+    "optionB": "कैप्टेन डनवर",
+    "optionC": "लूगार्ड",
+    "optionD": "कैप्टन ली ग्रांड",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस फसल के उत्पादन में बिहार देश में अग्रणी है ?",
+    "question": "In the production of which crop is Bihar leading in the country?",
+    "optionA": "Rice",
+    "optionB": "Sugarcane",
+    "optionC": "Makhana",
+    "optionD": "Bamboo",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कुँवर सिंह के पिता का नाम था ?",
+    "question": "What was the name of Kunwar Singh's father?",
+    "optionA": "Ram Bakhsh Singh",
+    "optionB": "Udwant Singh",
+    "optionC": "Sahabzada Singh",
+    "optionD": "Umarao Singh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार की प्रचलित कला है ?",
+    "question": "What is the popular art of Bihar?",
+    "optionA": "Madhubani",
+    "optionB": "Awadhi",
+    "optionC": "Mughal",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का प्रसिद्ध पर्व है ?",
+    "question": "What is the famous festival of Bihar?",
+    "optionA": "Durga Puja",
+    "optionB": "Baisakhi",
+    "optionC": "Chhath Puja",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार की पेंटिंग विधा कौन-सी है ?",
+    "question": "What is the painting style of Bihar?",
+    "optionA": "Madhubani",
+    "optionB": "Mughal",
+    "optionC": "Pichhwai",
+    "optionD": "Srirangam",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सोनपुर मेला को कहते हैं ?",
+    "question": "Sonpur fair is called?",
+    "optionA": "Harikshetra Mela",
+    "optionB": "Janaki Navami Mela",
+    "optionC": "Saurath Mela",
+    "optionD": "Vaishali Mela",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का अद्वितीय त्यौहार क्या है ?",
+    "question": "What is the unique festival of Bihar?",
+    "optionA": "Diwali",
+    "optionB": "Chhath",
+    "optionC": "Vinayaka Chaturthi",
+    "optionD": "Bihu",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से कौन बिहार का लोक नृत्य है ?",
+    "question": "Which of the following is a folk dance of Bihar?",
+    "optionA": "Jhali",
+    "optionB": "Garba",
+    "optionC": "Karma",
+    "optionD": "Jat-Jatin",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पद्मश्री सीता देवी किसकी प्रसिद्ध हस्ती थी ?",
+    "question": "Padma Shri Sita Devi was famous for which art form?",
+    "optionA": "Classical dance",
+    "optionB": "Madhubani painting",
+    "optionC": "Maithili cinema",
+    "optionD": "Bhojpuri cinema",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नव नालंदा महाविहार किसके लिए विख्यात है ?",
+    "question": "Nalanda Mahavihara is famous for?",
+    "optionA": "Birthplace of Mahavira",
+    "optionB": "Museum",
+    "optionC": "Pali Research Institute",
+    "optionD": "Xuanzang Memorial",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से किस नगर में सूर्य मंदिर स्थित है ?",
+    "question": "In which of the following cities is the Sun Temple located?",
+    "optionA": "Gaya",
+    "optionB": "Ranchi",
+    "optionC": "Deo",
+    "optionD": "Bodh Gaya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में परमानेंट सेटिलमेंट लागू करने का करण था ?",
+    "question": "What was the reason for implementing Permanent Settlement in Bihar?",
+    "optionA": "Right of zamindars on land and land revenue",
+    "optionB": "Abolition of zamindari system",
+    "optionC": "To decide revenue",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में महात्मा गाँधी के पूर्व सापेक्ष राष्ट्रीय सक्रियता की अनुपस्थिति इसके अभाव में देखी जा सकती है ?",
+    "question": "The absence of national activism before Mahatma Gandhi in Bihar can be seen due to the lack of?",
+    "optionA": "Integrated community",
+    "optionB": "Creative regional elite",
+    "optionC": "Extremist groups",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस क्षेत्र में राहुल सांकृत्यायन 1920 के असहयोग आंदोलन में सक्रिय थे ?",
+    "question": "In which region was Rahul Sankrityayan active in the 1920 Non-Cooperation Movement?",
+    "optionA": "Chhapra",
+    "optionB": "Patna",
+    "optionC": "Lucknow",
+    "optionD": "Delhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::चम्पारण नील आंदोलन के राष्ट्रीय नेता कौन थे ?",
+    "question": "Who was the national leader of the Champaran Indigo Movement?",
+    "optionA": "Mahatma Gandhi",
+    "optionB": "Ram Singh",
+    "optionC": "Baba Ramchandra",
+    "optionD": "Birsa Munda",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::हजारीबाग में बिहारी स्टूडेंट्स कॉन्फरेंस का 16वां अधिवेशन हुआ ?",
+    "question": "When was the 16th session of the Bihar Students' Conference held in Hazaribagh?",
+    "optionA": "In 1921",
+    "optionB": "In 1922",
+    "optionC": "In 1923",
+    "optionD": "In 1925",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गाँधी जी ने भारत में पहली बार सत्याग्रह आंदोलन बिहार में कहाँ प्रारम्भ किया ?",
+    "question": "Where did Gandhi ji start the first Satyagraha movement in Bihar?",
+    "optionA": "Patna",
+    "optionB": "Bettiah",
+    "optionC": "Champaran",
+    "optionD": "Chhapra",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::1922 में गया के इंडियन नेशनल कांग्रेस के अधिवेशन के अध्यक्ष कौन थे ?",
+    "question": "Who was the president of the Indian National Congress session in Gaya in 1922?",
+    "optionA": "Chittaranjan Das",
+    "optionB": "Hakim Ajmal Khan",
+    "optionC": "Dr. Rajendra Prasad",
+    "optionD": "S. N. Banerjee",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार कांग्रेस सोशलिस्ट पार्टी का गठन हुआ ?",
+    "question": "When was the Bihar Congress Socialist Party formed?",
+    "optionA": "In 1930",
+    "optionB": "In 1931",
+    "optionC": "In 1932",
+    "optionD": "In 1935",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बेगूसराय में चौकीदारी कर के विरुद्ध आन्दोलन एक हिस्सा था ?",
+    "question": "The movement against the Chaukidari tax in Begusarai was a part of?",
+    "optionA": "The Non-Cooperation Movement",
+    "optionB": "The Khilafat Movement",
+    "optionC": "The Quit India Movement",
+    "optionD": "The Civil Disobedience Movement",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार के उस क्रान्तिकारी का नाम बताइए जिसने सितंबर में हिंदुस्तान सोशलिस्ट रिपब्लिकन आर्मी की बैठक में भाग लिया था।",
+    "question": "Name the revolutionary from Bihar who attended the meeting of the Hindustan Socialist Republican Army in September.",
+    "optionA": "Phanindranath Ghosh",
+    "optionB": "Bhagat Singh",
+    "optionC": "Ajay Ghosh",
+    "optionD": "Jyotindranath",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::चम्पारण आंदोलन से कौन संबंधित नहीं था ?",
+    "question": "Who was not associated with the Champaran Movement?",
+    "optionA": "Jayaprakash Narayan",
+    "optionB": "Dr. Rajendra Prasad",
+    "optionC": "Anugrah Narayan Singh",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गाँधी जी का चम्पारण सत्याग्रह किससे जुड़ा था ?",
+    "question": "Gandhi ji's Champaran Satyagraha was associated with?",
+    "optionA": "Tinkathiya",
+    "optionB": "Zamindari",
+    "optionC": "Jamindari",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::भावती देवी किस क्षेत्र की स्वतंत्रता संग्राम सेनानी थी ?",
+    "question": "From which region was Bhawati Devi a freedom fighter?",
+    "optionA": "Patna",
+    "optionB": "Shahabad",
+    "optionC": "Bhagalpur",
+    "optionD": "Champaran",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बंगाल के किस नवाब ने मुंगेर को अपनी राजधानी बनाया ?",
+    "question": "Which Nawab of Bengal made Munger his capital?",
+    "optionA": "Alivardi Khan",
+    "optionB": "Mir Qasim",
+    "optionC": "Mir Jafar",
+    "optionD": "Siraj-ud-Daula",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से किस भारतीय को रॉबर्ट क्लाइव ने बिहार का नायब दीवान नियुक्त किया था ?",
+    "question": "Which Indian was appointed as the Naib Diwan of Bihar by Robert Clive?",
+    "optionA": "Omichand",
+    "optionB": "Manik Chand",
+    "optionC": "Shitab Rai",
+    "optionD": "Rai Durlabh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गोलघर का निर्माण किस गवर्नर जनरल के समय में हुआ ?",
+    "question": "During the time of which Governor-General was the Golghar built?",
+    "optionA": "Warren Hastings",
+    "optionB": "Lord Harding",
+    "optionC": "Lord Cornwallis",
+    "optionD": "Sir John Shore",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना के 1857 के स्वतंत्रता संग्राम के नेता थे ?",
+    "question": "Who were the leaders of the 1857 freedom struggle in Patna?",
+    "optionA": "Pir Ali Khan",
+    "optionB": "Kushal Singh",
+    "optionC": "Judhar Singh",
+    "optionD": "Kunwar Singh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::1830 के दशक में पटना नगर केंद्र था ?",
+    "question": "In the 1830s, Patna was the center of?",
+    "optionA": "The Wahabi Movement",
+    "optionB": "The Sannyasi Revolt",
+    "optionC": "The Munda Revolt",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::1866-86 के नील खेतिहरों के बिहार में हुए विद्रोह के क्षेत्र की पहचान करें ?",
+    "question": "Identify the region of the revolt of the indigo cultivators in Bihar in 1866-86?",
+    "optionA": "Muzaffarpur and Chhapra",
+    "optionB": "Champaran and Muzaffarpur",
+    "optionC": "Darbhanga and Champaran",
+    "optionD": "Madhubani and Begusarai",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::इल्तुतमिश ने बिहार में अपना प्रथम सूबेदार नियुक्त किया था ?",
+    "question": "Iltutmish appointed his first Subedar in Bihar?",
+    "optionA": "Aiyaaz",
+    "optionB": "Nasiruddin Mahmood",
+    "optionC": "Malik Jani",
+    "optionD": "Ali Mardan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अकबर ने बंगाल तथा बिहार को मुगल साम्राज्य में मिलाया ?",
+    "question": "Akbar merged Bengal and Bihar into the Mughal Empire?",
+    "optionA": "In 1590",
+    "optionB": "In 1575",
+    "optionC": "In 1576",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किसने प्राचीन पाटलिपुत्र नगरी के स्थान पर पटना शहर बसाया ?",
+    "question": "Who built the city of Patna in place of the ancient city of Pataliputra?",
+    "optionA": "Sher Shah Suri",
+    "optionB": "Jahangir",
+    "optionC": "Emperor Akbar",
+    "optionD": "Prince Parvez",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मध्यकाल के किस शासक के शासनकाल में बिहार का समूचे उत्तर भारत में राजनीतिक प्रभाव रहा ?",
+    "question": "During the reign of which medieval ruler did Bihar have political influence throughout North India?",
+    "optionA": "Humayun",
+    "optionB": "Jahangir",
+    "optionC": "Akbar",
+    "optionD": "Sher Shah Suri",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मुगलों के पतन के बाद बिहार किसके अधीन हो गया ?",
+    "question": "After the fall of the Mughals, Bihar came under whose control?",
+    "optionA": "It came under the control of local jagirdars",
+    "optionB": "It became a separate province",
+    "optionC": "It came under the control of the Nawabs of Bengal",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सम्राट शाहआलम द्वितीय ने ईस्ट इण्डिया कम्पनी को बंगाल तथा उड़ीसा की दीवानी प्रदान की ?",
+    "question": "Emperor Shah Alam II granted the Diwani of Bengal and Odisha to the East India Company?",
+    "optionA": "On August 12, 1765",
+    "optionB": "On August 18, 1765",
+    "optionC": "On August 29, 1765",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस मुसलमान शासक के शासनकाल में बिहार की खोयी हुई प्रतिष्ठा आंशिक रूप से पुनः स्थापित हुई ?",
+    "question": "Under the reign of which Muslim ruler was the lost prestige of Bihar partially restored?",
+    "optionA": "During the reign of Akbar",
+    "optionB": "During the British Raj",
+    "optionC": "During the reign of Jahangir",
+    "optionD": "During the reign of Sher Shah Suri",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::विश्व का पहला गणतंत्र वैशाली में किसके द्वारा स्थापित किया गया ?",
+    "question": "Who established the first republic in the world at Vaishali?",
+    "optionA": "Maurya",
+    "optionB": "Licchavi",
+    "optionC": "Gupta",
+    "optionD": "Nanda",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिम्बिसार ने निम्नांकित किस राज्य से वैवाहिक संबंध स्थापित नहीं किया ?",
+    "question": "With which of the following states did Bimbisara not establish matrimonial relations?",
+    "optionA": "Kosala",
+    "optionB": "Videha",
+    "optionC": "Madra",
+    "optionD": "Vajji-Licchavi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::राजकुमारी चल्हना कौन थी ?",
+    "question": "Who was Princess Chalhana?",
+    "optionA": "Vajji-Licchavi princess",
+    "optionB": "Madra princess",
+    "optionC": "Daughter of the King of Kosala",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित किस राजा ने वैवाहिक नीति अपनाकर अपने राज्य की स्थिति मजबूत की ?",
+    "question": "Which of the following kings strengthened his state's position by adopting a matrimonial policy?",
+    "optionA": "Ajatashatru",
+    "optionB": "Bimbisara",
+    "optionC": "Udayin",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अजातशत्रु ने अवन्ति के हमले से बचने के लिए किलाबंदी की थी, उसने वह किला कहाँ बनवाया था ?",
+    "question": "Ajatashatru had built a fort for protection against the attack of Avanti, where did he build that fort?",
+    "optionA": "In Vaishali",
+    "optionB": "In Rajgriha",
+    "optionC": "In Anga",
+    "optionD": "In Pataliputra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मगध की प्रारंभिक प्रथम राजधानी कौन-सी थी ?",
+    "question": "What was the first capital of Magadha?",
+    "optionA": "Pataliputra",
+    "optionB": "Champa",
+    "optionC": "Girivraj",
+    "optionD": "Vaishali",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस शासक द्वारा सर्वप्रथम पाटलिपुत्र का राजधानी के रूप में चयन किया गया ?",
+    "question": "By which ruler was Pataliputra first selected as the capital?",
+    "optionA": "By Ajatashatru",
+    "optionB": "By Kanishka",
+    "optionC": "By Udayin",
+    "optionD": "By Kalashoka",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::उदयिन के बाद मगध साम्राज्य पर किस राजवंश का शासन स्थापित हुआ ?",
+    "question": "After Udayin, which dynasty established its rule over the Magadha Empire?",
+    "optionA": "Nanda dynasty",
+    "optionB": "Maurya dynasty",
+    "optionC": "Shunga dynasty",
+    "optionD": "Shishunaga dynasty",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मेगास्थनीज की पुस्तक का नाम क्या है ?",
+    "question": "What is the name of Megasthenes' book?",
+    "optionA": "Arthashastra",
+    "optionB": "Indica",
+    "optionC": "Purana",
+    "optionD": "Rigveda",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पाटलिपुत्र को इनमें से किस शासक ने सर्वप्रथम अपनी राजधानी बनाई ?",
+    "question": "Which of these rulers first made Patliputra his capital?",
+    "optionA": "Ashoka the Great",
+    "optionB": "Chandragupta Vikramaditya",
+    "optionC": "Chandragupta Maurya",
+    "optionD": "Kanishka",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मौर्यकाल में शिक्षा का सर्वाधिक प्रसिद्ध केंद्र था ?",
+    "question": "What was the most famous center of education during the Mauryan period?",
+    "optionA": "Vaishali",
+    "optionB": "Ujjain",
+    "optionC": "Takshashila",
+    "optionD": "Nalanda",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::कौटिल्य का अर्थशास्त्र कितने अधिकरणों में विभाजित है ?",
+    "question": "How many sections is Kautilya's Arthashastra divided into?",
+    "optionA": "12",
+    "optionB": "14",
+    "optionC": "16",
+    "optionD": "20",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से चन्द्रगुप्त मौर्य का विशिष्ट रूप से वर्णन हुआ है, वह है ?",
+    "question": "Which of the following specifically describes Chandragupta Maurya?",
+    "optionA": "Ashoka",
+    "optionB": "Kunala",
+    "optionC": "Bindusara",
+    "optionD": "Chandragupta",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जिसके ग्रंथ में चन्द्रगुप्त मौर्य का विशिष्ट रूप से वर्णन हुआ है, वह है ?",
+    "question": "In whose book is Chandragupta Maurya specifically described?",
+    "optionA": "Bhasa",
+    "optionB": "Ashvaghosha",
+    "optionC": "Visakhdatta",
+    "optionD": "Sudraka",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मगध में मौर्यवंश के शासन की स्थापना किसने की थी ?",
+    "question": "Who established the rule of the Mauryan dynasty in Magadha?",
+    "optionA": "Emperor Ashoka",
+    "optionB": "Bindusara",
+    "optionC": "Chandragupta Maurya",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से मगध का कौन-सा राजा सिकन्दर महान का समकालीन था ?",
+    "question": "Which of the following kings of Magadha was a contemporary of Alexander the Great?",
+    "optionA": "Mahapadma Nanda",
+    "optionB": "Chandragupta Maurya",
+    "optionC": "Sukalp",
+    "optionD": "Ghanananda",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नन्द वंश के पश्चात मगध पर किस राजवंश ने शासन किया ?",
+    "question": "Which dynasty ruled Magadha after the Nanda dynasty?",
+    "optionA": "Maurya",
+    "optionB": "Kushan",
+    "optionC": "Gupta",
+    "optionD": "Shunga",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस मगध सम्राट ने स्वयं को एकराट कहा है ?",
+    "question": "Which Magadha emperor called himself Ekarat?",
+    "optionA": "Bimbisara",
+    "optionB": "Ajatashatru",
+    "optionC": "Ashoka",
+    "optionD": "Mahapadma Nanda",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अभिलेखों में किस शासक का उल्लेख पियदस्सी एवं देवानामप्रिय के रूप में किया गया है ?",
+    "question": "In which inscriptions is the ruler mentioned as Piyadassi and Devanampriya?",
+    "optionA": "Chandragupta Maurya",
+    "optionB": "Harshavardhana",
+    "optionC": "Samudragupta",
+    "optionD": "Ashoka",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::गुप्तवंश के किस शासक को भारत का नेपोलियन कहा जाता है ?",
+    "question": "Which ruler of the Gupta dynasty is called the Napoleon of India?",
+    "optionA": "Samudragupta",
+    "optionB": "Kumargupta",
+    "optionC": "Chandragupta II",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से गुप्त वंश के किस शासक को विक्रमादित्य भी कहा जाता है ?",
+    "question": "Which ruler of the Gupta dynasty is also known as Vikramaditya?",
+    "optionA": "Samudragupta",
+    "optionB": "Kumargupta",
+    "optionC": "Chandragupta II",
+    "optionD": "Chandragupta I",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मौर्य वंश के पश्चात किस वंश का राज्य स्थापित हुआ ?",
+    "question": "Which dynasty was established after the Mauryan dynasty?",
+    "optionA": "Shank dynasty",
+    "optionB": "Shunga dynasty",
+    "optionC": "Satavahana dynasty",
+    "optionD": "Kushan dynasty",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अशोक के ब्राह्मी अभिलेखों को सर्वप्रथम किसने पढ़ा था ?",
+    "question": "Who was the first to read Ashoka's Brahmi inscriptions?",
+    "optionA": "V. N. Mishra",
+    "optionB": "Princep",
+    "optionC": "H. D. Sankalia",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::केवल वह स्तम्भ जिसमें अशोक ने स्वयं को मगध का सम्राट बताया है ?",
+    "question": "Only that pillar in which Ashoka called himself the emperor of Magadha?",
+    "optionA": "Maski Minor Inscription",
+    "optionB": "Bhabru Inscription",
+    "optionC": "Queen's Pillar Inscription",
+    "optionD": "Rummindei Inscription",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::अर्थशास्त्र के अनुसार सीता भूमि का अभिप्राय है ?",
+    "question": "According to Arthashastra, what is meant by Sita Bhumi?",
+    "optionA": "Unploughed useless land",
+    "optionB": "Land ploughed by tribes",
+    "optionC": "Land owned by Brahmins",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सैण्ड्रोकोटस से चन्द्रगुप्त मौर्य की पहचान किसने की ?",
+    "question": "Who identified Chandragupta Maurya with Sandrocottus?",
+    "optionA": "R. K. Mukherjee",
+    "optionB": "William Jones",
+    "optionC": "D. R. Bhandarkar",
+    "optionD": "V. A. Smith",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में भांगर मिट्टी मिलती है ?",
+    "question": "Bangar soil is found in Bihar?",
+    "optionA": "In the Purnia Saharsa-Darbhanga-Muzaffarpur region",
+    "optionB": "In the East Champaran-Nalanda-Gaya-Sasaram region",
+    "optionC": "In the Gaya-Nalanda-Bodh Gaya-Sasaram region",
+    "optionD": "In the Gaya-Bodh Gaya-East Champaran Bhagalpur region",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार राज्य में सबसे लम्बा रेल पुल किस नदी पर बना है ?",
+    "question": "On which river is the longest railway bridge built in Bihar state?",
+    "optionA": "Ganga",
+    "optionB": "Punpun",
+    "optionC": "Phalgu",
+    "optionD": "Son",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार के कुल भौगोलिक क्षेत्र का वनाच्छादित प्रतिशत है लगभग ?",
+    "question": "What is the percentage of forest area in the total geographical area of Bihar?",
+    "optionA": "15%",
+    "optionB": "17%",
+    "optionC": "19%",
+    "optionD": "23%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से किस अखवार का प्रकाशन पटना से होता था ?",
+    "question": "Which of the following newspapers was published from Patna?",
+    "optionA": "Indian Nation",
+    "optionB": "The Dawn",
+    "optionC": "Prabhakar",
+    "optionD": "Punjab Kesari",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार की मुख्य खाद्यान्न फसलें हैं ?",
+    "question": "What are the main food crops of Bihar?",
+    "optionA": "Sugarcane, tea and barley",
+    "optionB": "Rice, wheat and maize",
+    "optionC": "Mung, coffee and barley",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::त्रिवेणी नहर में किस नदी से पानी आता है ?",
+    "question": "From which river does water come in the Triveni Canal?",
+    "optionA": "Son",
+    "optionB": "Mayurakshi",
+    "optionC": "Gandak",
+    "optionD": "Kosi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्न में से कौन दो नदियां अमरकंटक से उद्गमित हैं ?",
+    "question": "Which two rivers originate from Amarkantak?",
+    "optionA": "Tapi, Narmada",
+    "optionB": "Chambal, Betwa",
+    "optionC": "Son, Betwa",
+    "optionD": "Narmada, Son",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::वर्तमान में बिहार में सम्पत्ति का मुख्य स्त्रोत क्या है ?",
+    "question": "What is the main source of property in Bihar at present?",
+    "optionA": "Industry",
+    "optionB": "Mineral wealth",
+    "optionC": "Agriculture",
+    "optionD": "Natural resources",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार सरकार के द्वारा कर्मचारियों के वेतन एवं पेंशन पर अपने समस्त संसाधनों का कितना प्रतिशत व्यय किया जाता है ?",
+    "question": "What percentage of its total resources does the Bihar government spend on the salaries and pensions of employees?",
+    "optionA": "40%",
+    "optionB": "46%",
+    "optionC": "50%",
+    "optionD": "60%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::वर्ष 2006-07 में बिहार का विकासात्मक व्यय इसके कुल व्यय का था ?",
+    "question": "In the year 2006-07, Bihar's developmental expenditure was what percent of its total expenditure?",
+    "optionA": "About 60%",
+    "optionB": "67%",
+    "optionC": "56%",
+    "optionD": "54%",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में पहली बार किनके द्वारा राज्य का आर्थिक-सर्वेक्षण प्रस्तुत किया गया ?",
+    "question": "For the first time in Bihar, by whom was the economic survey of the state presented?",
+    "optionA": "Nitish Kumar",
+    "optionB": "Sushil Modi",
+    "optionC": "Lalu Prasad",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::भारत में चालू मूल्यों पर प्रति व्यक्ति न्यूतम आय वाला राज्य है ?",
+    "question": "Which state in India has the minimum per capita income at current prices?",
+    "optionA": "Rajasthan",
+    "optionB": "Gujarat",
+    "optionC": "Bihar",
+    "optionD": "Odisha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नरेगा योजना का खर्च केंद्र और राज्य के बीच किस अनुपात में वहन किया जाता है ?",
+    "question": "In what ratio is the expenditure of the MGNREGA scheme shared between the center and the state?",
+    "optionA": "90 : 10",
+    "optionB": "50 : 50",
+    "optionC": "75 : 75",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::उत्तर बिहार किसके लिए प्रसिद्ध है ?",
+    "question": "For what is North Bihar famous?",
+    "optionA": "Agricultural prosperity",
+    "optionB": "Heavy industry",
+    "optionC": "Floods",
+    "optionD": "Drought",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मख्दुम कुण्ड कहाँ पर स्थित है ?",
+    "question": "Where is Makhdum Kund located?",
+    "optionA": "In Maner",
+    "optionB": "In Rajgir",
+    "optionC": "In Biharsharif",
+    "optionD": "In Phulwari Sharif",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बोधगया में बोधि वृक्ष अपने वंश की किस पीढ़ी का है ?",
+    "question": "Which generation of its lineage is the Bodhi Tree in Bodh Gaya?",
+    "optionA": "Third",
+    "optionB": "Fourth",
+    "optionC": "Fifth",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जैन धर्म के प्रवर्तक महावीर स्वामी का जन्म-स्थान कहाँ था ?",
+    "question": "Where was the birthplace of Mahavira Swami, the propounder of Jainism?",
+    "optionA": "Pipphali Vana",
+    "optionB": "Vikramshila",
+    "optionC": "Kundagram",
+    "optionD": "Vaishali",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::वर्द्धमान महावीर ने कहाँ निर्वाण प्राप्त किया था ?",
+    "question": "Where did Vardhamana Mahavira attain Nirvana?",
+    "optionA": "Vaishali",
+    "optionB": "Rajgir",
+    "optionC": "Nalanda",
+    "optionD": "Pawapuri",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना में किस सिख गुरु का जन्म हुआ था ?",
+    "question": "Which Sikh Guru was born in Patna?",
+    "optionA": "Guru Nanak",
+    "optionB": "Guru Gobind Singh",
+    "optionC": "Guru Hargobind",
+    "optionD": "Guru Tegh Bahadur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::विष्णुपद मंदिर कहाँ स्थित है ?",
+    "question": "Where is the Vishnupad Temple located?",
+    "optionA": "In Patna",
+    "optionB": "In Gaya",
+    "optionC": "In Jamui",
+    "optionD": "In Danapur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार के किस पर्यटन केंद्र पर गर्म जल के अनेक स्त्रोत हैं ?",
+    "question": "At which tourist center in Bihar are there many sources of hot water?",
+    "optionA": "Deo",
+    "optionB": "Pawapuri",
+    "optionC": "Rajgir",
+    "optionD": "Biharsharif",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से किस नगर में प्रथम बौद्ध सभा आयोजित की गई थी ?",
+    "question": "In which city was the first Buddhist council organized?",
+    "optionA": "Nalanda",
+    "optionB": "Bodh Gaya",
+    "optionC": "Rajgir",
+    "optionD": "Gaya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::राजगृह का पुराना नाम क्या था ?",
+    "question": "What was the old name of Rajgir?",
+    "optionA": "Magadha",
+    "optionB": "Girivraj",
+    "optionC": "Vasumati",
+    "optionD": "Pataliputra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पटना स्थित गोलघर का निमार्ण कब किया गया था ?",
+    "question": "When was the Golghar in Patna built?",
+    "optionA": "In 1786 AD",
+    "optionB": "In 1756 AD",
+    "optionC": "In 1776 AD",
+    "optionD": "In 1796 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का सबसे कम जनसंख्या घनत्व वाला जिला है ?",
+    "question": "Which district of Bihar has the lowest population density?",
+    "optionA": "Kaimur",
+    "optionB": "Nalanda",
+    "optionC": "Saharsa",
+    "optionD": "Purnia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का सबसे कम जनसंख्या वाला जिला है ?",
+    "question": "Which district of Bihar has the lowest population?",
+    "optionA": "Lakhisarai",
+    "optionB": "Sheikhpura",
+    "optionC": "Sheohar",
+    "optionD": "Arwal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जनसंख्या घनत्व के आधार पर बिहार का स्थान है ?",
+    "question": "What is Bihar's position based on population density?",
+    "optionA": "First in India",
+    "optionB": "Fourth in India",
+    "optionC": "Third in India",
+    "optionD": "Second in India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में साक्षरता का प्रतिशत है ?",
+    "question": "What is the literacy rate in Bihar?",
+    "optionA": "42.85%",
+    "optionB": "47.25%",
+    "optionC": "51.5%",
+    "optionD": "61.8%",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सबसे कम महिला साक्षरता वाला जिला है ?",
+    "question": "Which is the district with the lowest female literacy rate?",
+    "optionA": "Madhepura",
+    "optionB": "Saran",
+    "optionC": "Siwan",
+    "optionD": "Saharsa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में अनुसूचित जनजाति की आबादी की प्रतिशत करीब कितना है ?",
+    "question": "What is the approximate percentage of Scheduled Tribe population in Bihar?",
+    "optionA": "7.5%",
+    "optionB": "15.3%",
+    "optionC": "1.3%",
+    "optionD": "11%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::सर्वाधिक महिला साक्षरता वाला जिला है ?",
+    "question": "Which is the district with the highest female literacy rate?",
+    "optionA": "Rohtas",
+    "optionB": "Lakhisarai",
+    "optionC": "Supaul",
+    "optionD": "Gopalganj",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "bihar-gk-in-hindi::भारत में जनसंख्या के अनुसार तीसरा एवं क्षेत्रफल के अनुसार बारहवाँ राज्य है ?",
+    "question": "Which is the third state by population and twelfth by area in India?",
+    "optionA": "Maharashtra",
+    "optionB": "Bihar",
+    "optionC": "Karnataka",
+    "optionD": "Madhya Pradesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में प्रति हजार पुरषों पर महिलाओं की सबसे कम संख्या वाला जिला है ?",
+    "question": "Which is the district in Bihar with the lowest number of women per thousand men?",
+    "optionA": "Sitamarhi",
+    "optionB": "Madhubani",
+    "optionC": "Munger",
+    "optionD": "Muzaffarpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार का वह जिला कौन है जहाँ महिलाओं की संख्या पुरुष की संख्या से अधिक है ?",
+    "question": "Which is the district in Bihar where the number of women is more than the number of men?",
+    "optionA": "Darbhanga",
+    "optionB": "Siwan",
+    "optionC": "Gopalganj",
+    "optionD": "Saran",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::लार्ड सिन्हा ने 1921 में कहाँ के गवर्नर पद से त्यागपत्र दिया था ?",
+    "question": "From which governor's post did Lord Sinha resign in 1921?",
+    "optionA": "Bengal",
+    "optionB": "Madras",
+    "optionC": "Punjab",
+    "optionD": "Bihar-Orissa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पंचायत के चुनाव कराने हेतु निर्णय किसके द्वारा लिया जाता है ?",
+    "question": "By whom is the decision taken to hold Panchayat elections?",
+    "optionA": "Central Government",
+    "optionB": "Election Commission",
+    "optionC": "District Judge",
+    "optionD": "State Government",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में कौन राज्य विधानमंडल का अंग नहीं है ?",
+    "question": "Which of the following is not an organ of the State Legislature?",
+    "optionA": "Governor",
+    "optionB": "Advocate General",
+    "optionC": "Vidhan Parishad",
+    "optionD": "Vidhan Sabha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::किस आधुनिक शहर का पुराना नाम ओदन्तपुरी था ?",
+    "question": "Which modern city's old name was Odantapuri?",
+    "optionA": "Rajgir",
+    "optionB": "Patna",
+    "optionC": "Biharsharif",
+    "optionD": "Gaya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::इण्डिका का लेखक कौन था ?",
+    "question": "Who was the author of Indica?",
+    "optionA": "Vishnu Gupta",
+    "optionB": "Pliny",
+    "optionC": "Megasthenes",
+    "optionD": "Dionysius",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::मेगास्थनीज ने भारतीय समाज को कितनी श्रेणियों में विभाजित किया ?",
+    "question": "Into how many categories did Megasthenes divide Indian society?",
+    "optionA": "Four",
+    "optionB": "Seven",
+    "optionC": "Six",
+    "optionD": "Five",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::नालन्दा विश्वविद्यालय की स्थापना का युग है ?",
+    "question": "The era of the establishment of Nalanda University is?",
+    "optionA": "Maurya",
+    "optionB": "Pala",
+    "optionC": "Gupta",
+    "optionD": "Kushan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::विक्रमशिला शिक्षा केंद्र के संस्थापक का नाम है ?",
+    "question": "The name of the founder of the Vikramshila education center is?",
+    "optionA": "Devapala",
+    "optionB": "Narendra Pala",
+    "optionC": "Nayanapala",
+    "optionD": "Dharmapala",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::विक्रमशिला विश्वविद्यालय में किस विषय की पढ़ाई विशेष रूप से होती थी ?",
+    "question": "In which subject was special teaching done at Vikramshila University?",
+    "optionA": "Buddhism",
+    "optionB": "Science",
+    "optionC": "Tantra Science",
+    "optionD": "Astronomy",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::महात्मा बुद्ध ने अपना प्रथम धर्मचक्रप्रवर्तन किस स्थान पर दिया था ?",
+    "question": "At which place did Mahatma Buddha give his first Dharmachakra Pravartan?",
+    "optionA": "Lumbini",
+    "optionB": "Vaishali",
+    "optionC": "Patliputra",
+    "optionD": "Sarnath",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::द्वितीय बौद्ध संगीति का आयोजन किस शासक ने किया ?",
+    "question": "Which ruler organized the Second Buddhist Council?",
+    "optionA": "Ajatashatru",
+    "optionB": "Kanishka",
+    "optionC": "Ashoka Maurya",
+    "optionD": "Kalashoka",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::पाटलिपुत्र में आयोजित तृतीय बौद्ध परिषद का संरक्षक कौन था ?",
+    "question": "Who was the patron of the Third Buddhist Council held in Patliputra?",
+    "optionA": "Ajatashatru",
+    "optionB": "Ashoka",
+    "optionC": "Kalashoka",
+    "optionD": "Chandragupta Maurya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "bihar-gk-in-hindi::चतुर्थ बौद्ध संगीति का आयोजन निम्नलिखित किसके समय में हुआ था ?",
+    "question": "In the time of whom was the Fourth Buddhist Council organized?",
+    "optionA": "Ashoka",
+    "optionB": "Harsha",
+    "optionC": "Kalashoka",
+    "optionD": "Kanishka",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार महान धार्मिक केंद्र है ?",
+    "question": "Bihar is a great religious center?",
+    "optionA": "For Sikhs",
+    "optionB": "For religious people",
+    "optionC": "For Jains and Buddhists",
+    "optionD": "For all of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से कौन-सी बात बौद्ध तथा जैन में समान नहीं है ?",
+    "question": "Which of the following is not similar in Buddhism and Jainism?",
+    "optionA": "Non-violence",
+    "optionB": "Indifference towards the Vedas",
+    "optionC": "Soul suppression",
+    "optionD": "Rejection of rites and rituals",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::महावीर जैन की मृत्यु निम्नलिखित में से किस नगर में हुई ?",
+    "question": "In which of the following cities did Mahavira Jain die?",
+    "optionA": "Rajgir",
+    "optionB": "Samastipur",
+    "optionC": "Pawapuri",
+    "optionD": "Ranchi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जैन धर्म के प्रवर्तक महावीर स्वामी का जन्म कहाँ हुआ था ?",
+    "question": "Where was the founder of Jainism, Mahavira Swami, born?",
+    "optionA": "Vaishali",
+    "optionB": "Patliputra",
+    "optionC": "Magadh",
+    "optionD": "Kundagram",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::निम्नलिखित में से किस नगर में जापानियों ने विश्व शांति स्तूप निर्माण कराया था ?",
+    "question": "In which of the following cities did the Japanese build the World Peace Pagoda?",
+    "optionA": "Deo",
+    "optionB": "Bodh Gaya",
+    "optionC": "Gaya",
+    "optionD": "Rajgir",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::जैन धर्मावलम्बियों का मुख्य तीर्थस्थल है ?",
+    "question": "The main pilgrimage place for Jains is?",
+    "optionA": "Pawapuri",
+    "optionB": "Parasnath",
+    "optionC": "Vaishali",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में लगनी राग किस अवसर पर गाया जाता है ?",
+    "question": "On which occasion is the Lagani Raga sung in Bihar?",
+    "optionA": "On the festival of Diwali",
+    "optionB": "On the birthday",
+    "optionC": "At the time of last rites",
+    "optionD": "On the occasion of marriage",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "bihar-gk-in-hindi::ख्यात कवि विद्यापति कहॉं निवासी थे ?",
+    "question": "Where was the famous poet Vidyapati a resident?",
+    "optionA": "Maner",
+    "optionB": "Purnia",
+    "optionC": "Mithila",
+    "optionD": "Vaishali",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "bihar-gk-in-hindi::बिहार में \"फाग राग\" के गीतों की रचना किसने की थी ?",
+    "question": "Who composed the songs of 'Fag Raga' in Bihar?",
+    "optionA": "Navalkishore Singh",
+    "optionB": "Rajashah",
+    "optionC": "Poet Vidyapati",
+    "optionD": "Buchanan",
+    "correctAnswer": "A"
+  }
+]

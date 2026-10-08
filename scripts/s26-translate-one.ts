@@ -199,7 +199,7 @@ async function main() {
   if (!Array.isArray(mcqs) || mcqs.length === 0) process.exit(0)
 
   const source = mcqs.filter((m) => m.language === 'hi')
-  const slice = source.slice(0, limit)
+  const slice = limit > 0 ? source.slice(0, limit) : source
 
   const outDir = join(TRANS_DIR, slug)
   mkdirSync(outDir, { recursive: true })

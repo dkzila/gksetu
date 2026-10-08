@@ -1,0 +1,20 @@
+[
+  {
+    "id": "chemistry-gk-question::भार का एस.आई मात्रक क्या है ?",
+    "question": "What is the SI unit of weight?",
+    "optionA": "Newton",
+    "optionB": "Gram",
+    "optionC": "Dyne",
+    "optionD": "Kilogram",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk-question::विद्युत आवेश का एस आई (SI) मात्रक क्या है ?",
+    "question": "What is the SI unit of electric charge?",
+    "optionA": "Volt",
+    "optionB": "Kelvin",
+    "optionC": "Kilogram",
+    "optionD": "Coulomb",
+    "correctAnswer": "D"
+  }
+]

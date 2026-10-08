@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का राजकीय पक्षी कौन-सा है ?",
+    "question": "What is the state bird of Delhi?",
+    "optionA": "House Sparrow",
+    "optionB": "Quail",
+    "optionC": "Swan",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली राज्य की पूर्व से पश्चिम की कुल लम्बाई है ?",
+    "question": "What is the total length of Delhi state from east to west?",
+    "optionA": "47.30 km",
+    "optionB": "60 km",
+    "optionC": "45 km",
+    "optionD": "51.90 km",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के पूर्व में कौन-सा राज्य है ?",
+    "question": "Which state is to the east of Delhi?",
+    "optionA": "Uttar Pradesh",
+    "optionB": "Rajasthan",
+    "optionC": "Haryana",
+    "optionD": "Punjab",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के उत्तर, पश्चिम व दक्षिण में स्थित राज्य है ?",
+    "question": "Which state is located to the north, west and south of Delhi?",
+    "optionA": "Himachal Pradesh",
+    "optionB": "Haryana",
+    "optionC": "Uttar Pradesh",
+    "optionD": "Uttarakhand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का कुल क्षेत्रफल कितना है ?",
+    "question": "What is the total area of Delhi?",
+    "optionA": "1483 sq. km",
+    "optionB": "1630 sq. km",
+    "optionC": "1553 sq. km",
+    "optionD": "1360 sq. km",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की राजकीय भाषा है ?",
+    "question": "What is the official language of Delhi?",
+    "optionA": "English",
+    "optionB": "Hindi",
+    "optionC": "Punjabi",
+    "optionD": "Urdu",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का साक्षरता प्रतिशत कितना है ?",
+    "question": "What is the literacy rate of Delhi?",
+    "optionA": "85.14 percent",
+    "optionB": "89.10 percent",
+    "optionC": "82.45 percent",
+    "optionD": "86.34 percent",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का जनसंख्या घनत्व कितना है ?",
+    "question": "What is the population density of Delhi?",
+    "optionA": "10560",
+    "optionB": "12670",
+    "optionC": "8990",
+    "optionD": "11297",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में लोकसभा सदस्यों की संख्या कितनी है ?",
+    "question": "How many members of Lok Sabha are there in Delhi?",
+    "optionA": "10 members",
+    "optionB": "7 members",
+    "optionC": "9 members",
+    "optionD": "8 members",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में राज्य सभा सदस्यों की संख्या कितनी हैं ?",
+    "question": "How many members of Rajya Sabha are there in Delhi?",
+    "optionA": "2 members",
+    "optionB": "5 members",
+    "optionC": "4 members",
+    "optionD": "3 members",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में विधानसभा सदस्यों की संख्या कितनी है ?",
+    "question": "How many members of the Legislative Assembly are there in Delhi?",
+    "optionA": "10",
+    "optionB": "70",
+    "optionC": "30",
+    "optionD": "50",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली राज्य में कुल कितने जिले है ?",
+    "question": "How many districts are there in Delhi state?",
+    "optionA": "8 districts",
+    "optionB": "17 districts",
+    "optionC": "15 districts",
+    "optionD": "11 districts",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में कुल नगरों की संख्या कितनी है ?",
+    "question": "How many towns are there in Delhi?",
+    "optionA": "141",
+    "optionB": "110",
+    "optionC": "121",
+    "optionD": "152",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गांवों की संख्या कितनी है ?",
+    "question": "How many villages are there in Delhi?",
+    "optionA": "112",
+    "optionB": "122",
+    "optionC": "142",
+    "optionD": "132",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में कुल कितनी तहसीले है ?",
+    "question": "How many tehsils are there in Delhi?",
+    "optionA": "23",
+    "optionB": "13",
+    "optionC": "33",
+    "optionD": "43",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का नाम राजा दिल्लू के नाम पर पड़ा है राजा दिल्लू किस वंश का शासक था ?",
+    "question": "The name of Delhi was given after King Dillu. King Dillu was a ruler of which dynasty?",
+    "optionA": "Tomar dynasty",
+    "optionB": "Surya dynasty",
+    "optionC": "Mayur dynasty",
+    "optionD": "Chauhan dynasty",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली को विधिवत रूप से किसने बसाया था ?",
+    "question": "Who established Delhi in a formal manner?",
+    "optionA": "Tomar Rajputs",
+    "optionB": "Parmar Rajputs",
+    "optionC": "Chauhan Rajputs",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में किन शासकों द्वारा दिल्ली को 736 ई. में बसाया और इसका नाम ढिल्ली या ढिल्लीका रखा था ?",
+    "question": "Which rulers established Delhi in 736 AD and named it Dhilli or Dhillika?",
+    "optionA": "Chauhan Rajputs",
+    "optionB": "Naga dynasty Rajputs",
+    "optionC": "Tomar Rajputs",
+    "optionD": "Rathore Rajputs",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में प्राचीन लालकोट किले का निर्माण किसने करवाया था ?",
+    "question": "Who got the ancient Lal Kot fort built in Delhi?",
+    "optionA": "Anangpal",
+    "optionB": "Raja Vigraharaj",
+    "optionC": "Prithviraj Chauhan",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस महान शासक को राय पिथौरा भी कहा था ?",
+    "question": "Which great ruler of Delhi was also called Rai Pithora?",
+    "optionA": "Anangpal II",
+    "optionB": "Prithviraj Chauhan",
+    "optionC": "Anaji Chauhan",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मुहम्मद गोरी ने पृथ्वीराज चौहान को हराकर अपने किस गुलाम को दिल्ली का शासक नियुक्त किया ?",
+    "question": "After defeating Prithviraj Chauhan, Muhammad Ghori appointed which of his slaves as the ruler of Delhi?",
+    "optionA": "Qutbuddin Aibak",
+    "optionB": "Balban",
+    "optionC": "Iltutmish",
+    "optionD": "Aram Shah",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गुलाम वंश का शासन काल माना जाता है ?",
+    "question": "The reign of the Slave dynasty in Delhi is considered to be?",
+    "optionA": "1050 AD to 1110 AD",
+    "optionB": "1106 AD to 1290 AD",
+    "optionC": "1206 AD to 1290 AD",
+    "optionD": "1260 AD to 1390 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में तुगलक वंश का अंतिम शासक कौन था ?",
+    "question": "Who was the last ruler of the Tughlaq dynasty in Delhi?",
+    "optionA": "Iltutmish",
+    "optionB": "Nasiruddin Mahmud Shah",
+    "optionC": "Qutbuddin Aibak",
+    "optionD": "Alauddin Masud",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मुगल शासक बाबर ने दिल्ली की सत्ता पर अधिकार किया था ?",
+    "question": "The Mughal ruler Babur captured the power of Delhi in?",
+    "optionA": "1459 AD",
+    "optionB": "1497 AD",
+    "optionC": "1564 AD",
+    "optionD": "1526 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गुलाम वंश का पहला शासक कौन था ?",
+    "question": "Who was the first ruler of the Slave dynasty in Delhi?",
+    "optionA": "Alauddin Masud",
+    "optionB": "Muhammad Ghori",
+    "optionC": "Qutbuddin Aibak",
+    "optionD": "Iltutmish",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस शासक को लाख बख्श कहा जाता है ?",
+    "question": "Which ruler of Delhi is called Lakh Baksh?",
+    "optionA": "Babur",
+    "optionB": "Qutbuddin Aibak",
+    "optionC": "Nasiruddin",
+    "optionD": "Iltutmish",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के प्रथम गुलाम शासक कुतुबुद्दीन ऐबक की मृत्यु कब हुई थी ?",
+    "question": "When did the death of the first Slave ruler of Delhi, Qutbuddin Aibak, occur?",
+    "optionA": "1210 AD",
+    "optionB": "1213 AD",
+    "optionC": "1206 AD",
+    "optionD": "1216 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के शासक कुतुबुद्दीन ऐबक की मृत्यु के बाद गद्दी पर कौन बैठा ?",
+    "question": "After the death of the ruler of Delhi, Qutbuddin Aibak, who ascended the throne?",
+    "optionA": "Iltutmish",
+    "optionB": "Aram Shah",
+    "optionC": "Razia Sultan",
+    "optionD": "Balban",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में अल्तमश के मकबरे का निर्माण किसने करवाया था ?",
+    "question": "Who got the tomb of Altamash built in Delhi?",
+    "optionA": "Nasiruddin",
+    "optionB": "Balban",
+    "optionC": "Firoz Shah Tughlaq",
+    "optionD": "Razia Sultan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में राष्ट्रपति भवन बनकर कब तैयार हुआ था ?",
+    "question": "When was the Rashtrapati Bhavan built and ready in Delhi?",
+    "optionA": "1925",
+    "optionB": "1921",
+    "optionC": "1929",
+    "optionD": "1933",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::संसद भवन का डिजाइन किसने बनाया था ?",
+    "question": "Who designed the Parliament building?",
+    "optionA": "Lutyens and Baker",
+    "optionB": "Lord Dalhousie",
+    "optionC": "Peter Thomas",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के सचिवालय का डिजाइन किसने बनाया था ?",
+    "question": "Who designed the Secretariat building in Delhi?",
+    "optionA": "Lutyens",
+    "optionB": "Herbert Baker",
+    "optionC": "George V",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में सचिवालय भवन बनकर कब तैयार हुआ था ?",
+    "question": "When was the Secretariat building completed in Delhi?",
+    "optionA": "In 1925 AD",
+    "optionB": "In 1930 AD",
+    "optionC": "In 1945 AD",
+    "optionD": "In 1940 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::संसद भवन स्थित है ?",
+    "question": "The Parliament building is located?",
+    "optionA": "Rajya Sabha",
+    "optionB": "Lok Sabha",
+    "optionC": "Library",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में स्थित संसद भवन के बरामदे में खम्भों की संख्या कितनी है ?",
+    "question": "How many pillars are there in the portico of the Parliament building located in Delhi?",
+    "optionA": "187",
+    "optionB": "122",
+    "optionC": "144",
+    "optionD": "127",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::एशिया का सबसे महत्वपूर्ण पुस्तकालय दिल्ली में कहॉं स्थित है ?",
+    "question": "Where is Asia's most important library located in Delhi?",
+    "optionA": "In Red Fort",
+    "optionB": "In Chandni Chowk",
+    "optionC": "In Rashtrapati Bhavan",
+    "optionD": "In Parliament building",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत के पूर्व राष्ट्रपति ज्ञानी जैल सिंह की समाधि है ?",
+    "question": "Where is the samadhi of former President of India Giani Zail Singh?",
+    "optionA": "Samata Sthal",
+    "optionB": "Ekta Sthal",
+    "optionC": "Shanti Vatika",
+    "optionD": "Shakti Sthal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::खूनी दरवाजा कहा स्थित है ?",
+    "question": "Where is the Khooni Darwaza located?",
+    "optionA": "Agra",
+    "optionB": "Amritsar",
+    "optionC": "Allahabad",
+    "optionD": "Delhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में स्थित जंतर-मंतर का निर्माण किसने करवाया था ?",
+    "question": "Who built the Jantar Mantar located in Delhi?",
+    "optionA": "Muhammad Shah Rangeele",
+    "optionB": "Nasiruddin Mahmud Shah",
+    "optionC": "Raja Sawai Jai Singh of Jaipur",
+    "optionD": "Aurangzeb",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::जयपुर के राजा सवाई जयसिंह ने दिल्ली में जंतर-मंतर का निर्माण कब करवाया था ?",
+    "question": "When did Raja Sawai Jai Singh of Jaipur build the Jantar Mantar in Delhi?",
+    "optionA": "In 1730 AD",
+    "optionB": "In 1716 AD",
+    "optionC": "In 1707 AD",
+    "optionD": "In 1724 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में यमुना नदी किनारे पर स्थित राजघाट क्या है ?",
+    "question": "What is Rajghat located on the banks of Yamuna river in Delhi?",
+    "optionA": "Public religious bathing place",
+    "optionB": "Samadhi place of Mahatma Gandhi",
+    "optionC": "Samadhi place of Pt. Jawaharlal Nehru",
+    "optionD": "Samadhi place of Indira Gandhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत के किस शहर में राष्ट्रीय समाधि स्थल स्थित है ?",
+    "question": "In which city of India is the National Samadhi Sthal located?",
+    "optionA": "Mumbai",
+    "optionB": "Delhi",
+    "optionC": "Agra",
+    "optionD": "Ahmedabad",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत के पहले प्रधानमंत्री जवाहरलाल नेहरू के समाधि को किस नाम से जाना जाता है ?",
+    "question": "What is the samadhi of India's first Prime Minister Jawaharlal Nehru known as?",
+    "optionA": "Shanti Vatika",
+    "optionB": "Vijay Ghat",
+    "optionC": "Vir Bhumi",
+    "optionD": "Shakti Sthal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में विजय घाट स्मारक है ?",
+    "question": "The Vijay Ghat memorial in Delhi is of?",
+    "optionA": "Lal Bahadur Shastri",
+    "optionB": "Chaudhary Charan Singh",
+    "optionC": "Rajiv Gandhi",
+    "optionD": "Indira Gandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में राष्ट्रपति भवन कहॉं स्थित है ?",
+    "question": "Where is the Rashtrapati Bhavan located in Delhi?",
+    "optionA": "Connaught Place",
+    "optionB": "Daryaganj",
+    "optionC": "Chanakyapuri",
+    "optionD": "On Raisina Hill",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::पूर्व प्रधानमंत्री राजीवगांधी के स्मारक को कहा जाता है ?",
+    "question": "What is the memorial of former Prime Minister Rajiv Gandhi called?",
+    "optionA": "Kisan Ghat",
+    "optionB": "Samata Sthal",
+    "optionC": "Ekta Sthal",
+    "optionD": "Virbhumi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::किस व्यक्ति की समाधि स्थल को किसान घाट कहा जाता है ?",
+    "question": "Whose samadhi is called Kisan Ghat?",
+    "optionA": "Babu Jagjivan Ram",
+    "optionB": "Chaudhary Charan Singh",
+    "optionC": "Lal Bahadur Shastri",
+    "optionD": "Giani Zail Singh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत के पूर्व उपप्रधान मंत्री बाबू जगजीवनराम का समाधि स्थल है ?",
+    "question": "What is the samadhi of former Deputy Prime Minister of India Babu Jagjivan Ram?",
+    "optionA": "Ekta Sthal",
+    "optionB": "Virbhumi",
+    "optionC": "Samata Sthal",
+    "optionD": "Shakti Sthal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में चूड़ी वाली की हवेली किसे कहते है ?",
+    "question": "What is Choodi Wali Haveli called in Delhi?",
+    "optionA": "Bhool Bhulaiya",
+    "optionB": "Khari Baoli",
+    "optionC": "Bhagirath Palace",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में बेगम समरू की कोठी के नाम से जाना जाता है ?",
+    "question": "What is known as Begum Samru's Kothi in Delhi?",
+    "optionA": "Bhagirath Palace",
+    "optionB": "Khuni Darwaza",
+    "optionC": "Bhool Bhulaiya",
+    "optionD": "Khari Baoli",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस क्षेत्र में खारी बाओली स्थित है ?",
+    "question": "In which area of Delhi is Khari Baoli located?",
+    "optionA": "In New Delhi",
+    "optionB": "In Old Delhi",
+    "optionC": "In Jor Bagh",
+    "optionD": "In Chandni Chowk",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में स्थित सफदरजंग के मकबरे का निर्माण कब हुआ था ?",
+    "question": "When was the construction of Safdarjung's Tomb in Delhi done?",
+    "optionA": "In 1750-51 AD",
+    "optionB": "In 1740-41 AD",
+    "optionC": "In 1759-60 AD",
+    "optionD": "In 1753-54 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में भूल भुलैया कहॉं स्थित है ?",
+    "question": "Where is Bhool Bhulaiya located in Delhi?",
+    "optionA": "Between Fatehpuri Masjid and Lahori Gate",
+    "optionB": "On Qutub-Mehrauli Road",
+    "optionC": "Chandni Chowk",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस मुगल शासक के शासनकाल में अतगा खां न्याय मंत्री था ?",
+    "question": "Under which Mughal ruler of Delhi was Ataga Khan the Minister of Justice?",
+    "optionA": "Shah Alam",
+    "optionB": "Alauddin Khilji",
+    "optionC": "Akbar",
+    "optionD": "Nadir Shah",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में अतगा खां का मकबरा निजामुद्दीन इलाके में स्थित है, इस मकबरे का निर्माण किसके शासन काल में हुआ था ?",
+    "question": "Ataga Khan's tomb is located in the Nizamuddin area of Delhi, during whose reign was this tomb built?",
+    "optionA": "Shah Jahan",
+    "optionB": "Akbar",
+    "optionC": "Aurangzeb",
+    "optionD": "Jahangir",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में किसको वास्त कला का नगीना कहा जाता है ?",
+    "question": "Which of the following is called the 'Nagina' of Mughal architecture?",
+    "optionA": "Sher Mandal",
+    "optionB": "Ataga Khan's Tomb",
+    "optionC": "Red Fort",
+    "optionD": "Madrasa Hauz Khas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1352 ई. ने दिल्ली के किस शासक ने मदरसा हौजखास की मदद करवायी थी ?",
+    "question": "Which ruler of Delhi helped in the construction of Madrasa Hauz Khas in 1352 AD?",
+    "optionA": "Sher Shah Suri",
+    "optionB": "Firoz Shah Tughlaq",
+    "optionC": "Humayun",
+    "optionD": "Akbar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किस शहर में मदरसा हौजखास स्थित है ?",
+    "question": "In which of the following cities is Madrasa Hauz Khas located?",
+    "optionA": "Agra",
+    "optionB": "Delhi",
+    "optionC": "Allahabad",
+    "optionD": "Mathura",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में कालकाजी मन्दिर स्थित है ?",
+    "question": "Where is Kalkaji Temple located in Delhi?",
+    "optionA": "On Hari Krishna Hill",
+    "optionB": "In Red Fort",
+    "optionC": "South of Nehru Place",
+    "optionD": "Chandni Chowk",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किस मन्दिर को लक्ष्मी नारायण मंदिर के नाम से जाना जाता है ?",
+    "question": "Which of the following temples is known as the Lakshmi Narayan Temple?",
+    "optionA": "Chattarpur Temple",
+    "optionB": "Shri Radha Parthasarathi Temple",
+    "optionC": "Birla Temple",
+    "optionD": "Akshardham Temple",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में दिगम्बर जैन मंदिर का निर्माण कब हुआ था ?",
+    "question": "When was the Digambar Jain Temple in Delhi built?",
+    "optionA": "In 1207 AD",
+    "optionB": "In 1302 AD",
+    "optionC": "In 1526 AD",
+    "optionD": "In 1190 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में पुराना किला कहॉं स्थित है ?",
+    "question": "Where is the Old Fort located in Delhi?",
+    "optionA": "Agra Road",
+    "optionB": "South Delhi",
+    "optionC": "Chandni Chowk",
+    "optionD": "Mathura Road",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के पुराने किले के अंदर शेरमंडल का निर्माण किसने करवाया था ?",
+    "question": "Who built the Sher Mandal inside the Old Fort of Delhi?",
+    "optionA": "Humayun",
+    "optionB": "Akbar",
+    "optionC": "Alauddin Khilji",
+    "optionD": "Sher Shah Suri",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में बिड़ला मन्दिर की नींव धौलपुर के महाराणा उदय मानसिंह के द्वारा कब रखी गई थी ?",
+    "question": "When was the foundation stone of the Birla Temple in Delhi laid by Maharaja Uday Singh of Dholpur?",
+    "optionA": "On July 12, 1945",
+    "optionB": "On August 27, 1940",
+    "optionC": "On March 26, 1933",
+    "optionD": "On March 20, 1930",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में स्थित लाल किले के निर्माण में कितना समय लगा था ?",
+    "question": "How much time was taken in the construction of the Red Fort located in Delhi?",
+    "optionA": "11 years 5 months",
+    "optionB": "9 years 3 months",
+    "optionC": "5 years 3 months",
+    "optionD": "7 years 8 months",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में \"सेंट स्टीफेंस चर्च\" कहा स्थित है ?",
+    "question": "Where is the \"Saint Stephen's Church\" located in Delhi?",
+    "optionA": "Near Connaught Place",
+    "optionB": "Fatehpuri Chandni Chowk",
+    "optionC": "In Old Delhi",
+    "optionD": "In Rakabganj",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में मछली पालन विभाग की स्थापना कब हुई थी ?",
+    "question": "When was the Fisheries Department established in Delhi?",
+    "optionA": "1940",
+    "optionB": "1945",
+    "optionC": "1947",
+    "optionD": "1943",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में रिंग रोड किस मार्ग को कहा जाता है ?",
+    "question": "What road is called Ring Road in Delhi?",
+    "optionA": "Sher Shah Suri Marg",
+    "optionB": "Mal Road",
+    "optionC": "Mahatma Gandhi Marg",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली नगर निगम का पहला आम चुनाव कब हुआ था ?",
+    "question": "When was the first general election of Delhi Municipal Corporation held?",
+    "optionA": "1950",
+    "optionB": "1958",
+    "optionC": "1965",
+    "optionD": "1968",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::देश में सबसे अधिक हिंसक अपराध वाला शहर कौन-सा है ?",
+    "question": "Which is the city with the most violent crimes in the country?",
+    "optionA": "Delhi",
+    "optionB": "Kanpur",
+    "optionC": "Mumbai",
+    "optionD": "Patna",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दुनिया का दूसरा सबसे अधिक आबादी वाला शहर कौन-सा है ?",
+    "question": "Which is the second most populous city in the world?",
+    "optionA": "Delhi",
+    "optionB": "Beijing",
+    "optionC": "London",
+    "optionD": "Tokyo",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली मेट्रो रेल कॉपोरेशन प्रबन्ध निदेशक कौन है ?",
+    "question": "Who is the Managing Director of Delhi Metro Rail Corporation?",
+    "optionA": "Mangu Singh",
+    "optionB": "Maninder Singh Dhir",
+    "optionC": "Anant Kumar",
+    "optionD": "Bhimsen Bassi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली महिला आयोग की अध्यक्ष है ?",
+    "question": "Who is the chairperson of the Delhi Women's Commission?",
+    "optionA": "Sujata Singh",
+    "optionB": "Barkha Singh",
+    "optionC": "Smriti Irani",
+    "optionD": "Kiran Bedi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::पश्चिम दिल्ली क्षेत्र से 2014 के चुनाव में लोकसभा सदस्य चुना गया है ?",
+    "question": "Who was elected as a Member of Parliament from the West Delhi constituency in the 2014 elections?",
+    "optionA": "Manoj Tiwari",
+    "optionB": "Meenakshi Lekhi",
+    "optionC": "Praveesh Varma",
+    "optionD": "Udit Raj",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::उत्तर-पूर्वी दिल्ली क्षेत्र से 2014 के चुनाव में लोकसभा सदस्य चुना गया है ?",
+    "question": "Who was elected as a Member of Parliament from the North-East Delhi constituency in the 2014 elections?",
+    "optionA": "Mahesh Giri",
+    "optionB": "Harshvardhan",
+    "optionC": "Ramesh Vidhudi",
+    "optionD": "Manoj Tiwari",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दक्षिणी दिल्ली क्षेत्र से 2014 में लोकसभा सदस्य चुना गया है ?",
+    "question": "Who was elected as a Member of Parliament from the South Delhi constituency in 2014?",
+    "optionA": "Mahesh Giri",
+    "optionB": "Harshvardhan",
+    "optionC": "Ramesh Vidhudi",
+    "optionD": "Pravesh Verma",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::उत्तर-पश्चिम दिल्ली से 2014 के लोकसभा चुवाव में सदस्य है ?",
+    "question": "Who was the member from North-West Delhi in the 2014 Lok Sabha elections?",
+    "optionA": "Meenakshi Lekhi",
+    "optionB": "Pravesh Verma",
+    "optionC": "Udit Raj",
+    "optionD": "Mahesh Giri",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली पुलिस आयुक्त कौन है ?",
+    "question": "Who is the Commissioner of Delhi Police?",
+    "optionA": "Maninder Singh Dhingra",
+    "optionB": "Mangu Singh",
+    "optionC": "Udit Raj",
+    "optionD": "Bhimsen Bassi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::किस मुगल शासक की मृत्यु के बाद मुगल साम्राज्य का पतन शुरु हो गया था ?",
+    "question": "After whose death did the decline of the Mughal Empire begin?",
+    "optionA": "Bahadur Shah Zafar",
+    "optionB": "Muhammad Shah",
+    "optionC": "Aurangzeb",
+    "optionD": "Jahangir",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::चुनाव 2014 में नई दिल्ली लोकसभा क्षेत्र सदस्य कौन है ?",
+    "question": "Who was the member of the New Delhi Lok Sabha constituency in the 2014 elections?",
+    "optionA": "Meenakshi Lekhi",
+    "optionB": "Udit Raj",
+    "optionC": "Manoj Tiwari",
+    "optionD": "Harshvardhan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::औरंगजेब की मृत्यु कब हुई थी ?",
+    "question": "When did Aurangzeb die?",
+    "optionA": "1703 AD",
+    "optionB": "1710 AD",
+    "optionC": "1712 AD",
+    "optionD": "1707 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किसने खालसा पंथ की स्थापना की थी ?",
+    "question": "Who established the Khalsa Panth?",
+    "optionA": "Guru Arjun Dev",
+    "optionB": "Guru Gobind Singh",
+    "optionC": "Guru Tegh Bahadur",
+    "optionD": "Guru Nanak",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस शासक ने गद्दी पर बैठते समय \"आलमगीर\" की उपाधि धारण की थी ?",
+    "question": "Which ruler of Delhi assumed the title of 'Alamgir' upon ascending the throne?",
+    "optionA": "Shah Jahan",
+    "optionB": "Jahangir",
+    "optionC": "Akbar",
+    "optionD": "Aurangzeb",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::औरंगजेब दिल्ली की राजगद्दी पर कब बैठा था ?",
+    "question": "When did Aurangzeb ascend the throne of Delhi?",
+    "optionA": "In 1652 AD",
+    "optionB": "In 1655 AD",
+    "optionC": "In 1658 AD",
+    "optionD": "In 1665 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::सम्पूर्ण नई दिल्ली का निर्माण कब पुरा हुआ था ?",
+    "question": "When was the construction of New Delhi completed?",
+    "optionA": "1931 AD",
+    "optionB": "1918 AD",
+    "optionC": "1911 AD",
+    "optionD": "1937 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत की राजधानी कोलकाता से दिल्ली स्थानान्तरित की गई ?",
+    "question": "When was the capital of India transferred from Kolkata to Delhi?",
+    "optionA": "1911",
+    "optionB": "1915",
+    "optionC": "1914",
+    "optionD": "1913",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1912 ई. में किसको दिल्ली में मुख्य वास्तुकार नियुक्त किया गया था ?",
+    "question": "Who was appointed as the chief architect in Delhi in 1912 AD?",
+    "optionA": "Sir David Aitchtornelli",
+    "optionB": "Edwin Lutyens",
+    "optionC": "Lord Clive",
+    "optionD": "Herbert Baker",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1912 ई. में भारत की राजधानी दिल्ली के सुसज्जित करने का दायित्व किसे दिया गया ?",
+    "question": "In 1912 AD, who was given the responsibility of decorating the capital of India, Delhi?",
+    "optionA": "Edwin Lutyens",
+    "optionB": "Lord Clive",
+    "optionC": "Herbert Baker",
+    "optionD": "Sir David Aitchtornelli",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का पहला शहर था ?",
+    "question": "What was the first city of Delhi?",
+    "optionA": "Siri",
+    "optionB": "Rai Pithora",
+    "optionC": "Firozabad",
+    "optionD": "Tughlaqabad",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का प्रथम रेजिडेंट और चीफ कमिश्नर था ?",
+    "question": "Who was the first Resident and Chief Commissioner of Delhi?",
+    "optionA": "Edwin Lutyens",
+    "optionB": "Sir David Ochterlony",
+    "optionC": "Lord Wellesley",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::बुझा है चिराग-ए-दिल्ली दिल्ली के लिए ऐसा किसने कहा था ?",
+    "question": "It is said that 'Chirag-e-Dilli' was said for Delhi by whom?",
+    "optionA": "The residents of Delhi",
+    "optionB": "The English",
+    "optionC": "The Mughals",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस शासक द्वारा दो गज जमीं भीं न मिली कूचे-ऐ-यार में नामक कविता है ?",
+    "question": "Which ruler of Delhi wrote the poem 'Do Gaj Zameen Bhi Nahin Mili Kooche-e-Yaar Mein'?",
+    "optionA": "Bahadur Shah Zafar",
+    "optionB": "Shah Alam",
+    "optionC": "Aurangzeb",
+    "optionD": "Muhammad Shah",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1857 ई. में बहादुरशाह को अंग्रेजों ने कैद करके किस जेल में भेजा जहां उसकी मृत्यु हो गई ?",
+    "question": "In 1857 AD, Bahadur Shah was imprisoned by the English and sent to which jail where he died?",
+    "optionA": "Mumbai",
+    "optionB": "Delhi",
+    "optionC": "Lahore",
+    "optionD": "Rangoon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1857 ई. में हिन्दु-मुस्लिमों ने अंग्रेजों के खिलाफ आजादी आवाज उठाई उस समय दिल्ली का बादशाह कौन था ?",
+    "question": "In 1857 AD, Hindus and Muslims raised the voice of freedom against the English, who was the emperor of Delhi at that time?",
+    "optionA": "Shah Alam",
+    "optionB": "Ahmad Shah",
+    "optionC": "Bahadur Shah Zafar",
+    "optionD": "Muhammad Shah",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किसको डंका बेगम की उपाधि मिली थी ?",
+    "question": "Who among the following was given the title of 'Durga Begum'?",
+    "optionA": "Jahanara Begum",
+    "optionB": "Razia Sultan",
+    "optionC": "Mumtaz Mahal",
+    "optionD": "Noor Jahan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किस दिल्ली के बादशाह की पत्नी का नाम जीनत महल था ?",
+    "question": "Among the following, whose wife's name was Jahanara Begum?",
+    "optionA": "Bahadur Shah Zafar",
+    "optionB": "Shah Alam",
+    "optionC": "Ahmad Shah",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::कुतुबमीनार का निर्माण पूरा किस शासक ने करवाया था ?",
+    "question": "Which ruler completed the construction of Qutub Minar?",
+    "optionA": "Babar",
+    "optionB": "Alauddin Masud",
+    "optionC": "Iltutmish",
+    "optionD": "Razia Sultan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मराठा व शाहआलम के बीच पटपरगंज की लड़ाई कब हुई थी ?",
+    "question": "When did the Battle of Patparganj take place between the Marathas and Shah Alam?",
+    "optionA": "1809",
+    "optionB": "1803",
+    "optionC": "1885",
+    "optionD": "1996",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::अहमदशाह किसने कैद कर लिया था ?",
+    "question": "Who had imprisoned Ahmad Shah?",
+    "optionA": "His minister Imad-ul-Mulk",
+    "optionB": "Shah Alam",
+    "optionC": "Bahadur Shah Zafar",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मुगल काल में सबसे पहले दिल्ली में एक मदरसे का निर्माण किस शासक ने करवाया था ?",
+    "question": "Which ruler built the first madrasa in Delhi during the Mughal period?",
+    "optionA": "Humayun",
+    "optionB": "Akbar",
+    "optionC": "Jahangir",
+    "optionD": "Babar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में मुज्जी कालेज किसके शासन के समय खोला गया था ?",
+    "question": "During whose reign was Muj College opened in Delhi?",
+    "optionA": "Aurangzeb",
+    "optionB": "Iltutmish",
+    "optionC": "Babar",
+    "optionD": "Humayun",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में शिक्षा के लिए मदरसा-ई-मुज्जी किस शासक के द्वारा स्थापित किया गया था ?",
+    "question": "Madrasa-e-Mujji was established in Delhi for education by which ruler?",
+    "optionA": "Qutbuddin Aibak",
+    "optionB": "Iltutmish",
+    "optionC": "Balban",
+    "optionD": "Razia Sultan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गुलाम वंश के शासक अल्तमश (इल्तुतमिश) की मृत्यु कब हुई थी ?",
+    "question": "When did Iltutmish, the ruler of the Slave dynasty in Delhi, die?",
+    "optionA": "In 1235 AD",
+    "optionB": "In 1225 AD",
+    "optionC": "In 1230 AD",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की प्रथम महिला शासक रजिया सुल्तान किसकी पुत्री थी ?",
+    "question": "Razia Sultan, the first woman ruler of Delhi, was the daughter of whom?",
+    "optionA": "Muhammad Ghori",
+    "optionB": "Bahram Khan",
+    "optionC": "Qutbuddin Aibak",
+    "optionD": "Iltutmish",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में किस गुलाम शासक ने चालीस अमीरों व सरदारों का एक दल बनाया था ?",
+    "question": "In Delhi, which slave ruler formed a group of forty nobles and chieftains?",
+    "optionA": "Razia Sultan",
+    "optionB": "Qutbuddin Aibak",
+    "optionC": "Iltutmish",
+    "optionD": "Nasiruddin",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली इस्लामिक शिक्षा क महत्वपूर्ण केन्द्र किस काल में रहा ?",
+    "question": "In which period was Delhi an important center of Islamic education?",
+    "optionA": "In the modern period",
+    "optionB": "In the medieval period",
+    "optionC": "In the ancient period",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में बालाकृष्णन समिति के सम्बन्ध में सही है ?",
+    "question": "Regarding the Balakrishnan Committee in Delhi, which is correct?",
+    "optionA": "To give its recommendations on the possibility of forming a union administration",
+    "optionB": "The committee submitted its report on December 14, 1989",
+    "optionC": "To study various issues related to the administration of Delhi, a union territory",
+    "optionD": "All the above relations are correct",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में पूर्ण राज्य विधायिका मंत्रिमंडल की निरंतर मांग होने से सरकारिता आयोग का गठन कब किया गया था ?",
+    "question": "Due to the continuous demand for a full state legislature and council of ministers in Delhi, when was the Governance Commission constituted?",
+    "optionA": "On May 12, 1988",
+    "optionB": "On July 3, 1985",
+    "optionC": "On December 24, 1987",
+    "optionD": "On April 20, 1986",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में महानगरीय परिषद् का गठन कब हुआ था ?",
+    "question": "When was the Metropolitan Council established in Delhi?",
+    "optionA": "1966",
+    "optionB": "1964",
+    "optionC": "1965",
+    "optionD": "1967",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के मुगल शासक शाहजहां की मृत्यु कब हुई थी ?",
+    "question": "When did the Mughal ruler Shah Jahan of Delhi die?",
+    "optionA": "1645 A.D.",
+    "optionB": "1666 A.D.",
+    "optionC": "1665 A.D.",
+    "optionD": "1650 A.D.",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली राज्य में यमुना नदी किस गांव में प्रवेश करती है ?",
+    "question": "In which village does the Yamuna river enter the state of Delhi?",
+    "optionA": "Pala village",
+    "optionB": "Jaitpur",
+    "optionC": "Rampur",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली को कब केन्द्र प्रशासित क्षेत्र बनाया गया था ?",
+    "question": "When was Delhi made a Union Territory?",
+    "optionA": "In November, 1956",
+    "optionB": "In May, 1967",
+    "optionC": "In December, 1961",
+    "optionD": "In November, 1966",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::तुजुक-ए-जहांगीरी किसने लिखी है ?",
+    "question": "Who wrote Tuzuk-e-Jahangiri?",
+    "optionA": "Noor Jahan",
+    "optionB": "Abkar",
+    "optionC": "Jahangir",
+    "optionD": "Shah Jahan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::बाबरनामा किसने लिखा था ?",
+    "question": "Who wrote Baburnama?",
+    "optionA": "Akbar",
+    "optionB": "Hamida Banu",
+    "optionC": "Babur",
+    "optionD": "Humayun",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::अलाउद्दीन खिलजी की मृत्यु के बाद दिल्ली के सिंहासन पर कौन बैठा ?",
+    "question": "After the death of Alauddin Khilji, who ascended the throne of Delhi?",
+    "optionA": "Nasiruddin",
+    "optionB": "Daulat Khan",
+    "optionC": "Khizr Khan",
+    "optionD": "Ghiyasuddin Tughlaq",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1192 ई. में तराइन का द्वितीय युद्ध मोहम्मद गोरी और किसके बीच हुआ था ?",
+    "question": "In 1192 A.D., the Second Battle of Tarain was fought between whom?",
+    "optionA": "Jai Chand",
+    "optionB": "Jaipal",
+    "optionC": "Prithviraj Chauhan",
+    "optionD": "Vigraharaj",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1191 ई. में तराइन का युद्ध मोहम्मद गोरी और किसके बीच हुआ था ?",
+    "question": "In 1191 A.D., the Battle of Tarain was fought between whom?",
+    "optionA": "Vigraharaj",
+    "optionB": "Jai Chand",
+    "optionC": "Jaipal",
+    "optionD": "Prithviraj Chauhan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में किसके शासनकाल में मुहम्मद गोरी ने दिल्ली पर आक्रमण किया था ?",
+    "question": "During whose reign in Delhi did Muhammad Ghori attack Delhi?",
+    "optionA": "During the reign of Prithviraj Chauhan",
+    "optionB": "During the reign of Anangpal",
+    "optionC": "During the reign of Vigraharaj",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::किस गुलाम वंश के शासक ने दिल्ली सल्तनत को मजबूत बनाने के लिए रक्त और तलवार (कठोर नीति) अपनाई थी ?",
+    "question": "Which ruler of the Slave Dynasty adopted blood and iron (stern policy) to strengthen the Delhi Sultanate?",
+    "optionA": "Razia Sultan",
+    "optionB": "Nasiruddin",
+    "optionC": "Balban",
+    "optionD": "Iltutmish",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1206 ई. में मुहम्मद गोरी की मृत्यु के पश्चात किस शासक ने अपने को दिल्ली का पहला सुल्तान घोषित किया ?",
+    "question": "In 1206 AD, after the death of Muhammad Ghori, which ruler declared himself as the first Sultan of Delhi?",
+    "optionA": "Qutbuddin Aibak did",
+    "optionB": "Ruknuddin did",
+    "optionC": "Iltutmish did",
+    "optionD": "Aram Shah did",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किसको पहले आल इंडिया वार मेमोरियल के नाम से जाना जाता था ?",
+    "question": "Which of the following was earlier known as the All India War Memorial?",
+    "optionA": "India Gate was",
+    "optionB": "Parliament House was",
+    "optionC": "Lutyens' Zone was",
+    "optionD": "Teen Murti Bhavan was",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::देश में दिल्ली हरियाली में कौन-से स्थान पर है ?",
+    "question": "In the country, Delhi is at which position in terms of greenery?",
+    "optionA": "First",
+    "optionB": "Fourth",
+    "optionC": "Third",
+    "optionD": "Second",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में स्थित इंडिया गेट की ऊंचाई कितनी है ?",
+    "question": "What is the height of India Gate located in Delhi?",
+    "optionA": "60 meters",
+    "optionB": "50 meters",
+    "optionC": "33 meters",
+    "optionD": "42 meters",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1938 ई. में दिल्ली में बिड़ला मन्दिर बनवाया था ?",
+    "question": "In 1938 AD, Birla Mandir was built in Delhi?",
+    "optionA": "Harkishan built it",
+    "optionB": "Harsukh Rai built it",
+    "optionC": "Raja Baldev Das built it",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::वनों की सुरक्षा के लिए दिल्ली में ट्री एंबुलेंस का उद्घाटन किसने किया था ?",
+    "question": "Who inaugurated the Tree Ambulance in Delhi for the protection of forests?",
+    "optionA": "Sheila Dikshit did",
+    "optionB": "Manmohan Singh did",
+    "optionC": "Pranab Mukherjee did",
+    "optionD": "Sonia Gandhi did",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली राज्य के कितने प्रतिशत भू-भाग पर वनों का विस्तार है ?",
+    "question": "What percentage of the geographical area of Delhi state is covered by forests?",
+    "optionA": "11.88 percent",
+    "optionB": "13.12 percent",
+    "optionC": "12.50 percent",
+    "optionD": "10.08 percent",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::वर्तमान में प्रदेश के कितने वर्ग किमी. क्षेत्र पर वनों का विस्तार है ?",
+    "question": "Currently, over how many square kilometers of the state is covered by forests?",
+    "optionA": "176 sq km",
+    "optionB": "297 sq km",
+    "optionC": "130 sq km",
+    "optionD": "250 sq km",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की कितनी प्रतिशत आबादी कृषि कार्य करती है ?",
+    "question": "What percentage of Delhi's population is engaged in agricultural work?",
+    "optionA": "20 percent",
+    "optionB": "50 percent",
+    "optionC": "40 percent",
+    "optionD": "30 percent",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के शहरी क्षेत्रों में निवास करने वाली जनसंख्या का प्रतिशत है ?",
+    "question": "What is the percentage of population residing in urban areas of Delhi?",
+    "optionA": "98 percent",
+    "optionB": "94.50 percent",
+    "optionC": "95 percent",
+    "optionD": "97.50 percent",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में नवभारत टाइम्स का प्रकाशन किस भाषा में होता था ?",
+    "question": "In which language was Navbharat Times published in Delhi?",
+    "optionA": "English",
+    "optionB": "Hindi",
+    "optionC": "Urdu",
+    "optionD": "Punjabi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::आकाशवाणी भवन दिल्ली से दूरदर्शन का पहला प्रसारण कब किया था ?",
+    "question": "When was the first broadcast of Doordarshan from Akashvani Bhavan, Delhi?",
+    "optionA": "On May 12, 1945",
+    "optionB": "On August 25, 1942",
+    "optionC": "On September 15, 1959",
+    "optionD": "On July 5, 1948",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में हिन्दी में प्रकाशित होने वाला कौन-सा अखबार सबसे ज्यादा लोकप्रिय है ?",
+    "question": "Which Hindi newspaper published in Delhi is the most popular?",
+    "optionA": "Sandhya Times",
+    "optionB": "Navbharat Times",
+    "optionC": "Dainik Jagran",
+    "optionD": "Hindustan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::कौन-सा अंग्रेजी अखबार दिल्ली में सबसे ज्यादा लोकप्रिय है ?",
+    "question": "Which English newspaper is the most popular in Delhi?",
+    "optionA": "The Times of India",
+    "optionB": "The Indian Express",
+    "optionC": "The Hindustan Times",
+    "optionD": "Mid-Day Delhi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में रेडियोम स्टेशनों की स्थापना कब हुई थी ?",
+    "question": "When were radio stations established in Delhi?",
+    "optionA": "In 1935",
+    "optionB": "In 1937",
+    "optionC": "In 1933",
+    "optionD": "In 1940",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत में सबसे पहले रेडियों स्टेशन कहॉं स्थापित किए गए थे ?",
+    "question": "Where was the first radio station established in India?",
+    "optionA": "Mumbai",
+    "optionB": "Allahabad",
+    "optionC": "Delhi",
+    "optionD": "Kolkata",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::समाचार एजेंसी प्रेस ट्रस्ट ऑफ इंडिया लि. (पी.टी. आई) ने अपनी सेवाएं आरम्भ कर दी थी ?",
+    "question": "When did the news agency Press Trust of India Ltd. (PTI) start its services?",
+    "optionA": "May 2, 1948",
+    "optionB": "July 16, 1950",
+    "optionC": "February 1, 1949",
+    "optionD": "August 15, 1947",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::सबसे बड़ी समाचार एजेंसी, प्रेस ट्रस्ट ऑफ इंडिया लि. (पी.टी. आई) की स्थापना कब हुई थी ?",
+    "question": "When was the largest news agency, Press Trust of India Ltd. (PTI), established?",
+    "optionA": "August 27, 1947",
+    "optionB": "March 10, 1930",
+    "optionC": "January 20, 1946",
+    "optionD": "October 12, 1945",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से कौन-सा अंग्रेजी समाचार-पत्र नहीं है ?",
+    "question": "Which of the following is not an English newspaper?",
+    "optionA": "The Indian Express",
+    "optionB": "Navbharat Times",
+    "optionC": "The Hindustan Times",
+    "optionD": "The Times of India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मराठा व शाहआलम के बीच पटपरगंज की लड़ाई कब हुई थी",
+    "question": "When was the Battle of Patparganj fought between the Marathas and Shah Alam?",
+    "optionA": "1809",
+    "optionB": "1803",
+    "optionC": "1885",
+    "optionD": "1996",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मुहम्मदशाह के बाद दिल्ली की राज गद्दी पर कौन बैठा ?",
+    "question": "Who ascended the throne of Delhi after Muhammad Shah?",
+    "optionA": "Bahadur Shah Zafar",
+    "optionB": "Ahmad Shah",
+    "optionC": "Shah Alam",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की जामा मस्जिद के पास एक शाही कॉलेज की स्थापना किसने करवायी थी, जो 1857 में नष्ट हो गया ?",
+    "question": "Who established a royal college near Jama Masjid in Delhi, which was destroyed in 1857?",
+    "optionA": "Shah Jahan",
+    "optionB": "Aurangzeb",
+    "optionC": "Jahangir",
+    "optionD": "Akbar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के पुराने किले के पश्चिम में माहम अंगा ने एक मदरसे का निर्माण कब करवाया था ?",
+    "question": "When did Maham Anga construct a madrasa to the west of the Old Fort in Delhi?",
+    "optionA": "1561 AD",
+    "optionB": "1597 AD",
+    "optionC": "1526 AD",
+    "optionD": "1515 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::द हिन्दुस्तान टाइम्स समाचार पत्र प्रकाशन कब शुरु हुआ था ?",
+    "question": "When was The Hindustan Times newspaper publication started?",
+    "optionA": "1920 AD",
+    "optionB": "1918 AD",
+    "optionC": "1930 AD",
+    "optionD": "1924 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का पहला अंग्रेजी समाचार-पत्र कौन-सा था ?",
+    "question": "What was the first English newspaper in Delhi?",
+    "optionA": "The Hindustan Times",
+    "optionB": "The Indian Express",
+    "optionC": "Delhi Mail",
+    "optionD": "The Times of India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1920 ई. में स्वतंत्रता नामक अखबार किसने निकाला था ?",
+    "question": "Who started the newspaper 'Swarajya' in 1920 AD?",
+    "optionA": "Ambika Prasad Bajpai",
+    "optionB": "Bal Gangadhar Tilak",
+    "optionC": "Lala Lajpat Rai",
+    "optionD": "Swami Shraddhanand",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1837 ई. में सैय्यद अहमद खान ने कौन-सा अखबार निकाला था ?",
+    "question": "Which newspaper did Syed Ahmad Khan start in 1837 AD?",
+    "optionA": "Sayed-ul-Akhbar",
+    "optionB": "The Statesman",
+    "optionC": "The Tej",
+    "optionD": "Mazhar-e-Haq",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में किस शासक ने अलाई दरवाजा किस द्वारा बनवाया गया ?",
+    "question": "Which ruler in Delhi built the Alai Darwaza?",
+    "optionA": "Alauddin Khilji",
+    "optionB": "Sikandar Lodi",
+    "optionC": "Humayun",
+    "optionD": "Akbar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का पहला समाचार-पत्र कौन-सा था ?",
+    "question": "What was the first newspaper in Delhi?",
+    "optionA": "Delhi Akhbar",
+    "optionB": "Mazhar-e-Haq",
+    "optionC": "Safir-e-Hind",
+    "optionD": "Zia-ul-Akhbar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::फिरोजशाह कोटला का अशोक स्तम्भ निम्न में से किस शहर में है ?",
+    "question": "In which city is the Ashoka Pillar of Firoz Shah Kotla located?",
+    "optionA": "Delhi",
+    "optionB": "Agra",
+    "optionC": "Karnal",
+    "optionD": "Amritsar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::कुतुब साहिब की दरगाह का निर्माण किसने करवाया था ?",
+    "question": "Who had the construction of the dargah of Qutub Sahib done?",
+    "optionA": "Razia Sultan",
+    "optionB": "Alauddin Khilji",
+    "optionC": "Altamash",
+    "optionD": "Balban",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::हजरत निजामुद्दीन औलिया की दरगाह कहॉं स्थित है ?",
+    "question": "Where is the dargah of Hazrat Nizamuddin Auliya located?",
+    "optionA": "In Delhi",
+    "optionB": "In Hyderabad",
+    "optionC": "In Ajmer",
+    "optionD": "In Agra",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का पहला अखबार कब प्रकाशित हुआ था ?",
+    "question": "When was Delhi's first newspaper published?",
+    "optionA": "1825 AD",
+    "optionB": "1827 AD",
+    "optionC": "1830 AD",
+    "optionD": "1836 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से अलाई मीनार किस शहर में स्थित है ?",
+    "question": "Among the following, in which city is the Alai Minar located?",
+    "optionA": "Delhi",
+    "optionB": "Bhopal",
+    "optionC": "Ajmer",
+    "optionD": "Agra",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::देश के कुल क्षेत्रफल का कितना प्रतिशत क्षेत्रफल दिल्ली में आता है ?",
+    "question": "What percentage of the total area of the country comes in Delhi?",
+    "optionA": "0.05 percent",
+    "optionB": "0.10 percent",
+    "optionC": "5 percent",
+    "optionD": "0.05 percent",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::लालकिले के भीतर मोती मस्जिद का निर्माण किसने करवाया था ?",
+    "question": "Who built the Moti Masjid inside the Red Fort?",
+    "optionA": "Bahadur Shah Zafar",
+    "optionB": "Aurangzeb",
+    "optionC": "Akbar Shah II",
+    "optionD": "Bahadur Shah Zafar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में लाल किले को यूनेस्को द्वारा विश्व धरोहर कब घोषित किया गया ?",
+    "question": "When was the Red Fort in Delhi declared a World Heritage by UNESCO?",
+    "optionA": "January 1, 2002",
+    "optionB": "December 15, 2013",
+    "optionC": "May 20, 2010",
+    "optionD": "June 28, 2007",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1235 ई. में दिल्ली में शमसुद्दीन अल्तमश के मकबरे का निर्माण किसने करवाया था ?",
+    "question": "Who built the tomb of Shamsuddin Altamash in Delhi in 1235 AD?",
+    "optionA": "Razia Sultan",
+    "optionB": "Alauddin Masud",
+    "optionC": "Bahram Khan",
+    "optionD": "Ruknuddin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में सुल्तानगढ़ी का मकबरा भारत का सबसे पुराना मकबरा है इस मकबरे का निर्माण किसने करवाया था ?",
+    "question": "The tomb of Sultan Garhi in Delhi is the oldest tomb in India. Who built this tomb?",
+    "optionA": "Altamash",
+    "optionB": "Ghiyasuddin Tughlaq",
+    "optionC": "Razia Sultan",
+    "optionD": "Alauddin Khilji",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::गयासुद्दीन का मकबरा कहॉं स्थित है ?",
+    "question": "Where is the tomb of Ghiyasuddin located?",
+    "optionA": "Allahabad",
+    "optionB": "Delhi",
+    "optionC": "Mathura",
+    "optionD": "Agra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के किस शासक ने अलाई मीनार का काम शुरु करवाया था, बीच में ही शासक की मृत्यु हो जाने पर मीनार अधूरा रह गया ?",
+    "question": "Which ruler of Delhi started the work of Alai Minar, but the minar remained incomplete due to the death of the ruler in between?",
+    "optionA": "Firoz Tughlaq",
+    "optionB": "Ghiyasuddin Tughlaq",
+    "optionC": "Humayun",
+    "optionD": "Alauddin Khilji",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में औसत वर्षा कितनी होती हैं ?",
+    "question": "What is the average rainfall in Delhi?",
+    "optionA": "367.10 mm",
+    "optionB": "467.1 mm",
+    "optionC": "459.15 mm",
+    "optionD": "427.70 mm",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::भारत की राजधानी कलकत्ता से दिल्ली कब स्थानान्तरित की गई ?",
+    "question": "When was the capital of India transferred from Kolkata to Delhi?",
+    "optionA": "In 1911 AD",
+    "optionB": "In 1914 AD",
+    "optionC": "In 1912 AD",
+    "optionD": "In 1913 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली किस नदी के किनारे पर बसी हुई है ?",
+    "question": "On the banks of which river is Delhi situated?",
+    "optionA": "Sutlej",
+    "optionB": "Yamuna",
+    "optionC": "Mandakini",
+    "optionD": "Beas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली से मयूर सिंहासन व कोहिनूर हीरा लूटकर पर्शिया ले जाने वाला कौन था ?",
+    "question": "Who looted the Peacock Throne and the Kohinoor diamond from Delhi and took them to Persia?",
+    "optionA": "Shah Alam",
+    "optionB": "Ahmad Shah",
+    "optionC": "Imad",
+    "optionD": "Nadir Shah",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1658 ई. में शाहजहां को जेल में किसने डाला था, और स्वयं राजगद्दी पर बैठ गया ?",
+    "question": "In 1658, who imprisoned Shah Jahan and ascended the throne himself?",
+    "optionA": "Aurangzeb",
+    "optionB": "Shah Alam",
+    "optionC": "Nadir Shah",
+    "optionD": "Muhammad Shah",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1611 ई. में जहांगीर ने मेहरूनिसा के पति मारकर उसके साथ विवाह किया, मेहरूनिसा के पति का क्या नाम था ?",
+    "question": "In 1611, Jahangir killed Meherunisa's husband and married her. What was Meherunisa's husband's name?",
+    "optionA": "Alamgir",
+    "optionB": "Islam Khan",
+    "optionC": "Ahmad Shah",
+    "optionD": "Sher Khan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में किस मुगल शासक द्वारा जामा मस्जिद का निर्माण करवाया गया था ?",
+    "question": "Which Mughal ruler had the Jama Masjid built in Delhi?",
+    "optionA": "Akbar",
+    "optionB": "Aurangzeb",
+    "optionC": "Shah Jahan",
+    "optionD": "Babur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::किस मुगल शासक ने दिल्ली में लाल किला बनवाया था ?",
+    "question": "Which Mughal ruler had the Red Fort built in Delhi?",
+    "optionA": "Shah Jahan",
+    "optionB": "Akbar",
+    "optionC": "Jahangir",
+    "optionD": "Aurangzeb",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में किसने आइने-अकबरी व अकबरनामा नामक पुस्तक लिखी है ?",
+    "question": "Who wrote the books Ain-i-Akbari and Akbarnama?",
+    "optionA": "Abdul Rahim",
+    "optionB": "Abul Fazl",
+    "optionC": "Hakim Humam",
+    "optionD": "Faizi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::किस मुगल शासक ने भारत में ईसाइयों को धर्म का प्रचार करने की अनुमति दी थी ?",
+    "question": "Which Mughal ruler gave permission to Christians to propagate their religion in India?",
+    "optionA": "Muhammad Adil Shah",
+    "optionB": "Aurangzeb",
+    "optionC": "Hemu",
+    "optionD": "Akbar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1556 ई. में पानीपत का दूसरा युद्ध अकबर और किसके बीच हुआ था ?",
+    "question": "In 1556, the Second Battle of Panipat was fought between Akbar and whom?",
+    "optionA": "Islam Shah",
+    "optionB": "Hemu",
+    "optionC": "Muhammad Adil Shah",
+    "optionD": "Sher Shah Suri",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1555 ई. में सरहिन्द की लड़ाई हुई थी ?",
+    "question": "In 1555, the Battle of Sirhind was fought between whom?",
+    "optionA": "Adil Shah and Humayun",
+    "optionB": "Humayun and Sher Shah Suri",
+    "optionC": "Hemu and Akbar",
+    "optionD": "Bairam Khan and Hemu",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में किसने दिल्ली व आगरा को जीतकर विक्रमादित्य की उपाधि धारण की ?",
+    "question": "Who captured Delhi and Agra and assumed the title Vikramaditya?",
+    "optionA": "Hemu",
+    "optionB": "Humayun",
+    "optionC": "Adil Shah",
+    "optionD": "Sher Shah Suri",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::मुगल शासक अकबर का बचपन में संरक्षक कौन था ?",
+    "question": "Who was the protector of Mughal ruler Akbar in his childhood?",
+    "optionA": "Hakim Humam",
+    "optionB": "Bairam Khan",
+    "optionC": "Mubarak Shah",
+    "optionD": "Hemu",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दीन-ए-इलाही धर्म किस मुगल शासक ने चलाया था ?",
+    "question": "Which Mughal ruler propagated the Din-i-Ilahi religion?",
+    "optionA": "Shah Jahan",
+    "optionB": "Aurangzeb",
+    "optionC": "Akbar",
+    "optionD": "Jahangir",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::सिखों के पांचवे गुरु अर्जुनदेव की हत्या किस मुगल शासक ने करवायी थी ?",
+    "question": "Which Mughal ruler had the fifth Sikh Guru Arjun Dev killed?",
+    "optionA": "Aurangzeb",
+    "optionB": "Shah Jahan",
+    "optionC": "Jahangir",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::1615 ई. में इंगलैंड के शासक जेम्स प्रथम का राजदूत सर टामस रो किसके के शासन काल में भारत यात्रा पर आया था ?",
+    "question": "In 1615, Thomas Roe, the ambassador of King James I of England, came to India during whose reign?",
+    "optionA": "Jahangir",
+    "optionB": "Firuz Tughlaq",
+    "optionC": "Alauddin Khilji",
+    "optionD": "Sikandar Lodi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::जी. टी. रोड (कोलकाता से पेशावर) को दिल्ली के किस शासक ने बनवाया था ?",
+    "question": "Which ruler of Delhi built the GT Road (from Kolkata to Peshawar)?",
+    "optionA": "Sikandar Lodi",
+    "optionB": "Sher Shah Suri",
+    "optionC": "Ghiyasuddin Tughlaq",
+    "optionD": "Humayun",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की महिला शासक रजिया सुल्तान की शादी किससे हुई थी ?",
+    "question": "To whom was the female ruler of Delhi, Razia Sultan, married?",
+    "optionA": "Jalal Khan",
+    "optionB": "Yakut, a nobleman",
+    "optionC": "Bahram Khan",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से दिल्ली में गुलाम वंश के शासक है ?",
+    "question": "Among the following, who was the ruler of the Slave Dynasty in Delhi?",
+    "optionA": "Altamash",
+    "optionB": "Qutbuddin Aibak",
+    "optionC": "Balban",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गुलाम वंश के शासक बलबन की मृत्यु किस वर्ष हुई थी ?",
+    "question": "In which year did the death of Balban, the ruler of the Slave Dynasty in Delhi, occur?",
+    "optionA": "1281 AD",
+    "optionB": "1288 AD",
+    "optionC": "1288 AD",
+    "optionD": "1280 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में खिलजी वंश का अन्त होने पर किस वंश का शासन आरम्भ हुआ ?",
+    "question": "After the end of the Khilji dynasty in Delhi, which dynasty's rule began?",
+    "optionA": "Mughal dynasty",
+    "optionB": "Tughlaq dynasty",
+    "optionC": "Lodi dynasty",
+    "optionD": "Sayyid dynasty",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में अलाउद्दीन खिलजी का शासन कब रहा था ?",
+    "question": "When was the reign of Alauddin Khilji in Delhi?",
+    "optionA": "From 1296 AD to 1316 AD",
+    "optionB": "From 1206 AD to 1290 AD",
+    "optionC": "From 1296 AD to 1310 AD",
+    "optionD": "From 1290 AD to 1304 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्न में से किस शासक द्वारा दिल्ली का दूसरा शहर \"सीरी\" बसाया था ?",
+    "question": "Which ruler built Delhi's second city, 'Siri'?",
+    "optionA": "Alauddin Khilji",
+    "optionB": "Jalaluddin Khilji",
+    "optionC": "Ghiyasuddin Tughlaq",
+    "optionD": "Muhammad Tughlaq",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::खिलजी राजवंश का संस्थापक कौन था ?",
+    "question": "Who was the founder of the Khilji dynasty?",
+    "optionA": "Jalaluddin Khilji",
+    "optionB": "Nasiruddin",
+    "optionC": "Alauddin Khilji",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में खिलजी वंश का शासनकाल माना जाता है ?",
+    "question": "The reign of the Khilji dynasty in Delhi is considered to be?",
+    "optionA": "From 1285 AD to 1324 AD",
+    "optionB": "From 1280 AD to 1340 AD",
+    "optionC": "From 1180 AD to 1320 AD",
+    "optionD": "From 1290 AD to 1320 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में गुलाम वंश का अंतिम शासक कौन था ?",
+    "question": "Who was the last ruler of the Slave Dynasty in Delhi?",
+    "optionA": "Khusro Khan",
+    "optionB": "Kaiqubad",
+    "optionC": "Balban",
+    "optionD": "Khusro Khan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::साइकिल उद्योग के प्रमुख केंद्र है ?",
+    "question": "What are the major centers of the bicycle industry?",
+    "optionA": "Faridabad",
+    "optionB": "Jind-Jind",
+    "optionC": "Sonipat",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के पहले उपराज्यपाल कौन थे ?",
+    "question": "Who was the first Lieutenant Governor of Delhi?",
+    "optionA": "M.C. Chitkule",
+    "optionB": "Aditya Nath Jha",
+    "optionC": "Sunder Lal Khurana",
+    "optionD": "Baleshwar Prasad",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली की पहली महिला मुख्यमंत्री कौन हैं?",
+    "question": "Who was the first female Chief Minister of Delhi?",
+    "optionA": "Sheila Dixit",
+    "optionB": "Meera Kumar",
+    "optionC": "Pratibha Patil",
+    "optionD": "Sushma Swaraj",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::क्या दिल्ली के उत्तर, पश्चिम और दक्षिण में कोई राज्य स्थित है ?",
+    "question": "Is there any state situated to the north, west, and south of Delhi?",
+    "optionA": "Himachal Pradesh",
+    "optionB": "Uttarakhand",
+    "optionC": "Uttar Pradesh",
+    "optionD": "Haryana",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली का पुराना नाम क्या था ?",
+    "question": "What was the old name of Delhi?",
+    "optionA": "Magadha",
+    "optionB": "Indraprastha",
+    "optionC": "Hastinapur",
+    "optionD": "Patliputra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::पहला जंतर मंतर कहाँ बनाया गया था ?",
+    "question": "Where was the first Jantar Mantar built?",
+    "optionA": "In Mathura",
+    "optionB": "In Delhi",
+    "optionC": "In Ujjain",
+    "optionD": "In Banaras",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::निम्नलिखित में से कौन दिल्ली पर शासन करने वाला पहला राजवंश था ?",
+    "question": "Which of the following was the first dynasty to rule over Delhi?",
+    "optionA": "Khilji",
+    "optionB": "Tughlaq",
+    "optionC": "Gulam",
+    "optionD": "Lodi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली में लाल किला (लाल किला) किसने बनवाया था ?",
+    "question": "In Delhi, who built the Red Fort (Lal Qila)?",
+    "optionA": "Jahangir",
+    "optionB": "Shah Jahan",
+    "optionC": "Aurangzeb",
+    "optionD": "Akbar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "delhi-gk-in-hindi::दिल्ली के पहले मुख्यमंत्री कौन थे ?",
+    "question": "Who was the first Chief Minister of Delhi?",
+    "optionA": "Gurmukh Nihal Singh",
+    "optionB": "Madan Lal Khurana",
+    "optionC": "Sahib Singh Verma",
+    "optionD": "Chaudhary Brahm Prakash",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::हरियाणा में कि तने ‘मत्स्य स्वास्थ सुरक्षा केन्द्र’ है ?",
+    "question": "How many 'Fish Health Security Centers' are there in Haryana?",
+    "optionA": "10",
+    "optionB": "19",
+    "optionC": "24",
+    "optionD": "20",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "delhi-gk-in-hindi::स्मार्ट ग्रिड योजना संबंधित है ?",
+    "question": "The Smart Grid scheme is related to?",
+    "optionA": "Solar energy",
+    "optionB": "Transport",
+    "optionC": "Electricity",
+    "optionD": "Sports",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "delhi-gk-in-hindi::हरियाणा में सबसे कम नगरों वाला जिला कौन-सा है ?",
+    "question": "Which is the district with the least number of cities in Haryana?",
+    "optionA": "Faridabad",
+    "optionB": "Rohtak",
+    "optionC": "Hisar",
+    "optionD": "Kurukshetra",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "delhi-gk-in-hindi::राजदूत मोटर साइकिल फैक्टरी अवस्थित है ?",
+    "question": "Where is the Ambassador Motorcycle Factory located?",
+    "optionA": "Ambala",
+    "optionB": "Mahendragarh",
+    "optionC": "Faridabad",
+    "optionD": "Hisar",
+    "correctAnswer": "C"
+  }
+]

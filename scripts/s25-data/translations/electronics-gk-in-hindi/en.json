@@ -1,0 +1,1298 @@
+[
+  {
+    "id": "electronics-gk-in-hindi::लाईट परिपथ के लिए MCB काम में लेंगे ?",
+    "question": "For a light circuit, which MCB will be used?",
+    "optionA": "With green knob",
+    "optionB": "With red knob",
+    "optionC": "With blue knob",
+    "optionD": "With black knob",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::टंगस्टन का प्रतिरोध तापमान के बढ़ने से ?",
+    "question": "What happens to the resistance of tungsten when temperature increases?",
+    "optionA": "It decreases",
+    "optionB": "It increases",
+    "optionC": "There is no change",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सोल्डर तार बनाया जाता है ?",
+    "question": "Solder wire is made of?",
+    "optionA": "Lead and tin",
+    "optionB": "Zinc and copper",
+    "optionC": "Copper and lead",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कैपेसीटर शक्ति गुणांक बढ़ाने के लिए लगाये जाते हैं ?",
+    "question": "To increase the power factor of a capacitor, they are connected?",
+    "optionA": "In parallel with the supply",
+    "optionB": "By inserting a resistance in the supply",
+    "optionC": "In series with the supply",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::छतों में फैन बॉक्स लगाए जाते हैं ?",
+    "question": "Fan boxes are installed in ceilings?",
+    "optionA": "In casing-capping wiring",
+    "optionB": "In cleat wiring",
+    "optionC": "In conduit wiring",
+    "optionD": "In wiring",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::गिलबर्ट मात्रक है ?",
+    "question": "Gilbert is a unit of?",
+    "optionA": "Magnetomotive force",
+    "optionB": "Electromotive force",
+    "optionC": "Conductivity",
+    "optionD": "Permittivity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::अधिक क्षमता के मोटर जनरेटर सेट में प्रयुक्त मोटर प्रायः ?",
+    "question": "In high capacity motor generator sets, the motor used is usually?",
+    "optionA": "Squirrel cage induction motor",
+    "optionB": "Synchronous motor",
+    "optionC": "D.C. compound motor",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::इलेक्ट्रॉन गन मुख्य भाग है ?",
+    "question": "Electron gun is a main part of?",
+    "optionA": "Cathode ray oscilloscope",
+    "optionB": "Transistor tester",
+    "optionC": "Signal generator",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से किस हिटिंग विधि में पावर फैक्टर उच्चतम होता है ?",
+    "question": "In which heating method is the power factor highest?",
+    "optionA": "Resistance heating",
+    "optionB": "Induction heating",
+    "optionC": "Arc heating",
+    "optionD": "Dielectric heating",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::रेफ्रीजरेटरों में लगने वाली रिले होती है ?",
+    "question": "The relay used in refrigerators is?",
+    "optionA": "Magnetic type",
+    "optionB": "By ordinary switch",
+    "optionC": "Non-magnetic",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सैकण्डरी विद्युत यंत्र होते हैं ?",
+    "question": "Secondary electrical machines are?",
+    "optionA": "Depalacting torque ones",
+    "optionB": "Controlling torque ones",
+    "optionC": "Damping torque ones",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सिलिका जैल में रखा जाता है ?",
+    "question": "What is kept in silica gel?",
+    "optionA": "In conservator",
+    "optionB": "In breather",
+    "optionC": "In Buchholz relay",
+    "optionD": "Inside the tank",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफॉर्मर में प्राथमिक एवं द्वितीयक कुण्डलियों का युग्मन होता है ?",
+    "question": "In transformer, coupling of primary and secondary coils occurs?",
+    "optionA": "Electrical",
+    "optionB": "Mechanical",
+    "optionC": "Magnetic",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से रोटर का बलाघूर्णा उच्चतम होगा ?",
+    "question": "Among the following, the rotor torque will be highest?",
+    "optionA": "Shaded pole motor",
+    "optionB": "Universal motor",
+    "optionC": "Capacitor motor",
+    "optionD": "All of the above will be equal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::छोटी आकृति का परन्तु अधिक क्षमता का कैपेसिटर होता है ?",
+    "question": "Which capacitor is of small shape but has high capacity?",
+    "optionA": "Mica capacitor",
+    "optionB": "Paper capacitor",
+    "optionC": "Ceramic capacitor",
+    "optionD": "Electrolytic capacitor",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कैपेसिटरों को सिरीज में जोड़ने पर क्षमता ?",
+    "question": "When capacitors are connected in series, the capacity?",
+    "optionA": "Neither increases nor decreases",
+    "optionB": "Increases",
+    "optionC": "Decreases",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::चालकों को चुम्बकीय क्षेत्र के मध्य घुमाने पर विद्युत उत्पन्न होती है ?",
+    "question": "When conductors are rotated in a magnetic field, electricity is produced?",
+    "optionA": "Moving",
+    "optionB": "Stationary",
+    "optionC": "Both stationary and dynamic",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::फिलामेन्ट लैम्प में विद्युत् के किस प्रभाव का उपयोग होता है ?",
+    "question": "Which effect of electricity is used in a filament lamp?",
+    "optionA": "Thermal effect",
+    "optionB": "Magnetic effect",
+    "optionC": "Gas ionization",
+    "optionD": "Chemical effect",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वोल्टमीटर को परिपथ में लगते हैं ?",
+    "question": "Voltmeter is connected in the circuit?",
+    "optionA": "In parallel",
+    "optionB": "In series",
+    "optionC": "In series-parallel",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::विद्युत् दबाव को मापने का यंत्र है ?",
+    "question": "The instrument for measuring electric pressure is?",
+    "optionA": "Ammeter",
+    "optionB": "Wattmeter",
+    "optionC": "Voltmeter",
+    "optionD": "Power factor meter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्यूब लगाने हेतु फ्लोरेसेन्ट ट्यूब में काम लेते हैं ?",
+    "question": "What is used in a fluorescent tube for installing the tube?",
+    "optionA": "Starter holder",
+    "optionB": "Tube holder",
+    "optionC": "Connector",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बैटरी का इलेक्ट्रोड ?",
+    "question": "Battery electrode?",
+    "optionA": "Should be a semiconductor",
+    "optionB": "Should be an electrical insulator",
+    "optionC": "Should be a good electrical conductor",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::धातु प्लेट दि टकरी में प्रयुक्त धातु ?",
+    "question": "Metal used in metal plate diode?",
+    "optionA": "Copper oxide and copper",
+    "optionB": "Zinc chloride and carbon",
+    "optionC": "Germanium and silicon",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::इलेक्ट्रॉन गन, मुख्य भाग है ?",
+    "question": "Electron gun, main part is?",
+    "optionA": "Of cathode ray oscilloscope",
+    "optionB": "Of transistor tester",
+    "optionC": "Of signal generator",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::विकर्षण मोटर अभिलक्षण में किस मोटर के समान है ?",
+    "question": "In characteristics, repulsion motor is similar to which motor?",
+    "optionA": "Slip ring motor",
+    "optionB": "Series motor",
+    "optionC": "Compound motor",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एकल क्लीय मोटर को स्टार्ट करने का सबसे सस्ता उपाय ?",
+    "question": "What is the cheapest method to start a single phase motor?",
+    "optionA": "Resistance starting",
+    "optionB": "Inductance starting",
+    "optionC": "Capacitor starting",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::रोटर स्पीड को कहते हैं ?",
+    "question": "Rotor speed is measured by?",
+    "optionA": "Pyrometer",
+    "optionB": "Tachometer",
+    "optionC": "Multimeter",
+    "optionD": "Megger",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफार्मर में प्राथमिक एवं द्वितीयक कुण्डलियों युग्मन होता है ?",
+    "question": "In a transformer, the coupling between primary and secondary windings is?",
+    "optionA": "Mechanical",
+    "optionB": "Electrical",
+    "optionC": "Magnetic",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::स्पेलाइजर में कौन-सा ट्रांसफॉर्मर लगाया जाता है ?",
+    "question": "Which transformer is used in a splicer?",
+    "optionA": "Current transformer",
+    "optionB": "Power transformer",
+    "optionC": "Distributor transformer",
+    "optionD": "Auto transformer",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::स्टीम टरबाइनों से चलने वाली मशीन कहलाती है ?",
+    "question": "Machine running on steam turbines is called?",
+    "optionA": "Hydro generator",
+    "optionB": "Turbo alternator",
+    "optionC": "Gasis alternator",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तुल्यकाली मोटर में किस हानि में भार के साथ परिवर्तन नहीं होते ?",
+    "question": "In a synchronous motor, which loss does not change with load?",
+    "optionA": "Copper losses",
+    "optionB": "Hysteresis losses",
+    "optionC": "Windage friction losses",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::पेंटोड का प्रवर्धन गुणांक है ?",
+    "question": "The amplification factor of a pentode is?",
+    "optionA": "High",
+    "optionB": "Low",
+    "optionC": "Infinite",
+    "optionD": "Zero",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मूविंग आयरन यंत्र प्रकृकृकृकार्य करते हैं ?",
+    "question": "Moving iron instruments work on?",
+    "optionA": "Electrostatic effect",
+    "optionB": "Electromagnetic effect",
+    "optionC": "Chemical effect",
+    "optionD": "Thermal effect",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::थरमल रनवे किस युक्ति से संबंधित है ?",
+    "question": "Thermal runway is related to which device?",
+    "optionA": "Diode and transistor",
+    "optionB": "Only transistor",
+    "optionC": "Only diode",
+    "optionD": "Pentode",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तापन एलिमेंट के लिए अनुपयुक्त पदार्थ है ?",
+    "question": "Unsuitable material for heating element is?",
+    "optionA": "Nichrome",
+    "optionB": "Chromium",
+    "optionC": "Copper",
+    "optionD": "Iron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तिरोध हीटिंग में प्रयुक्त एलीमैंट का एक महत्वपूर्ण गुण है ?",
+    "question": "An important property of the element used in resistance heating is?",
+    "optionA": "High coefficient",
+    "optionB": "High resistivity",
+    "optionC": "Low resistance temperature coefficient",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::विद्युत् प्रैस में नाइक्रोम एलिमेंट लिपटी रहती है ?",
+    "question": "In electric press, nichrome element is wound with?",
+    "optionA": "Mica",
+    "optionB": "Bakelite",
+    "optionC": "Ebonite",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वेव तथा लैप वाइंडिंग में पृष्ठ पिच बराबर होता है ?",
+    "question": "In wave and lap winding, the back pitch is equal to?",
+    "optionA": "Coil pitch",
+    "optionB": "Average pitch",
+    "optionC": "Resultant pitch",
+    "optionD": "Commutator pitch",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वेव वाइंडिंग में समांतर रास्ते होते हैं ?",
+    "question": "In wave winding, there are parallel paths?",
+    "optionA": "One",
+    "optionB": "Two",
+    "optionC": "Three",
+    "optionD": "Four",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बिजली के प्रकाश स्त्रोत से ल्यूमिनेशन की जा सकती है ?",
+    "question": "Lumination can be obtained from electric light source?",
+    "optionA": "Semi direct",
+    "optionB": "Indirect lighting",
+    "optionC": "Direct lighting",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कुण्डली का वह अंश जो स्टेटर कोड से बाहर रहता है कहलाता है ?",
+    "question": "That part of the coil which remains outside the stator core is called?",
+    "optionA": "Useless material",
+    "optionB": "Inactive winding",
+    "optionC": "Active winding",
+    "optionD": "Coil wire",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::अपकेंद्रीय स्विच खुला होने का अर्थ है कि ?",
+    "question": "An off-center switch being open means that?",
+    "optionA": "The winding is short",
+    "optionB": "The switch is short",
+    "optionC": "The winding is grounded",
+    "optionD": "The winding is open",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सिंगल फेज व थ्री फेज पावर फैक्टर मीटर किस टाइप के होते हैं ?",
+    "question": "Single phase and three phase power factor meters are of which type?",
+    "optionA": "Electrodynamometer",
+    "optionB": "Induction",
+    "optionC": "Thermocouple type",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मूविंग क्वायल विद्युत यंत्र में डैम्पिंग की जाती है ?",
+    "question": "Damping is provided in moving coil instruments by?",
+    "optionA": "Eddy current",
+    "optionB": "Air",
+    "optionC": "Fluid",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तिरोध तापन में प्रयुक्त एलिमेंट के पदार्थो का गुण है ?",
+    "question": "The property of the material used in resistance heating is?",
+    "optionA": "High resistivity",
+    "optionB": "Low melting point",
+    "optionC": "High temperature coefficient",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रायोड की अन्योय चालकता का मात्रक है ?",
+    "question": "The unit of mutual conductance of a triode is?",
+    "optionA": "Ohm",
+    "optionB": "Mho",
+    "optionC": "Henry",
+    "optionD": "Volt",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एम्लीफिकेशन का मात्रक है ?",
+    "question": "The unit of amplification is?",
+    "optionA": "Volt",
+    "optionB": "Decibel",
+    "optionC": "Ampere",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मूविंग आयरन यंत्रों में डिफ्लेक्शन टॉर्क सीधे अनुपात में होता है ?",
+    "question": "In moving iron instruments, deflecting torque is directly proportional to?",
+    "optionA": "Square of current",
+    "optionB": "Square root of current",
+    "optionC": "Cube root of current",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::टेकोमीटर मापता है ?",
+    "question": "Tachometer measures?",
+    "optionA": "Synchronous speed",
+    "optionB": "Rotor speed",
+    "optionC": "Motor efficiency",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कैपेसिटर की रेटिंग आती है ?",
+    "question": "The rating of a capacitor comes in?",
+    "optionA": "Micro ohms",
+    "optionB": "Pico ohms",
+    "optionC": "Micro farads",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::रियोस्टेटिक स्टार्टर में प्रतिरोध लगाया जाता है ?",
+    "question": "In rheostatic starter, resistance is made of?",
+    "optionA": "Nichrome wire",
+    "optionB": "Eureka wire",
+    "optionC": "Copper wire",
+    "optionD": "Tungsten wire",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सिन्कोनस मोटर की स्पीड होती है ?",
+    "question": "The speed of a synchronous motor is?",
+    "optionA": "Decreasing with load",
+    "optionB": "Variable",
+    "optionC": "Constant",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तुल्यकाली मोटर की रचना ?",
+    "question": "The construction of a synchronous motor is?",
+    "optionA": "Similar to induction motor.",
+    "optionB": "Similar to a DC compound motor.",
+    "optionC": "Similar to a DC shunt motor.",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तुल्यकाली मोटर का रोटर किस प्रकार का होता है ?",
+    "question": "The rotor of a synchronous motor is of?",
+    "optionA": "Salient pole type",
+    "optionB": "Cylindrical type",
+    "optionC": "Squirrel cage type",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तिष्ठमंता संगत है ?",
+    "question": "Resistivity is related to?",
+    "optionA": "Conductivity",
+    "optionB": "Permeability",
+    "optionC": "Resistance",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::आर्मेचर लेमिनेशन परस्पर ?",
+    "question": "Armature lamination per sparsh?",
+    "optionA": "Kuch doori par rakhe jaate hain.",
+    "optionB": "Sparsh weld kar diye jaate hain.",
+    "optionC": "Vidyut roop se sparsh karte hain.",
+    "optionD": "Visnavahit hote hain.",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::लोड बढ़ाने पर dc शंट मोटर की स्पीड ?",
+    "question": "Load badhane par dc shunt motor ki speed?",
+    "optionA": "Kuch badhti hai",
+    "optionB": "Kuch ghathti hai",
+    "optionC": "Sthir rehti hai",
+    "optionD": "Uparyukth mein koi nahi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एक जले हुए प्रतिरोध को ओम मीटर द्वारा चैक करने पर प्राप्त पाठ्यांक का मान होगा ?",
+    "question": "Ek jale hue pratirodh ko oh meter dwara check karne par prapt pathyank ka man hoga?",
+    "optionA": "Pratirodh ka doguna",
+    "optionB": "Pratirodh ka aadha",
+    "optionC": "Shoonya",
+    "optionD": "Anant",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::न्यूक्लियर पावर प्लांट में न्यूक्लियर के टूटने की क्रिया को कहते हैं ?",
+    "question": "Nuclear power plant mein nuclear ke tutne kriya ko kahate hain?",
+    "optionA": "Fission",
+    "optionB": "Fusion",
+    "optionC": "Imishan",
+    "optionD": "Uparyukth sabhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::रेफ्रीजरेटरों में लगने वाले रिले होती है ?",
+    "question": "Refrigeratoron mein lagne wale relay hoti hai?",
+    "optionA": "Sadarhan switch dwara",
+    "optionB": "Non-magnetic",
+    "optionC": "Magnetic type",
+    "optionD": "Uparyukth sabhi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से किस हीटिंग विधि में पावर फैक्टर उच्चतम होता है ?",
+    "question": "Nimn mein se kis heating vidhi mein power factor uchchhot hota hai?",
+    "optionA": "Induction heating",
+    "optionB": "Arc heating",
+    "optionC": "Dilalectric heating",
+    "optionD": "Pratirodh heating",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से किस परीक्षण द्वारा ट्रांसफॉर्मर ला नियमन एवं दक्षता बिना भार दिए ज्ञात की जाती है ?",
+    "question": "Nimn mein se kis parikshan dwara transformer la niyaman evn dakshta bina bhar diye gyat ki jaati hai?",
+    "optionA": "Laghu paripath parikshan",
+    "optionB": "Khula paripath parikshan",
+    "optionC": "Sampanar parikshan",
+    "optionD": "Inmein koi nahi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफॉर्मर का शक्ति गुणक ?",
+    "question": "Transformer ka shakti gunak?",
+    "optionA": "Sadav 0.8 rehta hai",
+    "optionB": "Sadav ikai hota hai",
+    "optionC": "Bhar ke shakti gunak par nirbhar karta hai",
+    "optionD": "Sadav paschagami hoti hai",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफॉर्मर के ब्रीदर में प्रयुक्त किया जाने वाला रसायन ?",
+    "question": "Transformer ke breeder mein prayukt kiya jaane wala rasayan?",
+    "optionA": "Jal",
+    "optionB": "Silika jel",
+    "optionC": "Sodium chloride",
+    "optionD": "Khanij tail",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::शिरोपरी लाइन में खम्भे काम में लेते हैं ?",
+    "question": "Shiropari line mein khambhe kaam mein lete hain?",
+    "optionA": "Pipe type khambhe",
+    "optionB": "Tower",
+    "optionC": "Lakdi ke khambhe",
+    "optionD": "Uparyukth sabhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कीरोना हानि से संरचना लाइन की ?",
+    "question": "Kirona hani se sanrachna line ki?",
+    "optionA": "Dhara adhik ho jaati hai",
+    "optionB": "Dakshta adhik ho jaati hai",
+    "optionC": "Voltata kam ho jaati hai",
+    "optionD": "Dakshta kam ho jaati hai",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::दो खंभों के बीच की दूरी को कहते हैं ?",
+    "question": "Do khambon ke beech doori ko kahate hain?",
+    "optionA": "Span",
+    "optionB": "Sang",
+    "optionC": "Bading",
+    "optionD": "Uparyukth sabhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मर्करी दि टकारी में आर्क वोल्टपात निर्भर करता है ?",
+    "question": "Mercury di takari mein arc voltapat nirbhar karta hai?",
+    "optionA": "Arc ke tap par",
+    "optionB": "Arc ki lambai par",
+    "optionC": "Pare ki shudhata par",
+    "optionD": "Uparyukth sabhi par",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से किस मोटर को पश्चगामी अथवा अग्रगामी शक्ति गुणक पर सरलता से प्रचलित किया जा सकता है ?",
+    "question": "Nimn mein se kis motor ko paschagami athava agragami shakti gunak par saralata se prachalit kiya ja sakta hai?",
+    "optionA": "Tulyakaali motor",
+    "optionB": "Pinjara prurupi motor",
+    "optionC": "Slip-ring prernan motor",
+    "optionD": "Uparyukth sabhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::टंगस्टन तन्तु लैम्प की निर्गत निर्भर करती है ?",
+    "question": "On what does the output of a tungsten filament lamp depend?",
+    "optionA": "On the shape of the lamp",
+    "optionB": "On the temperature of the filament",
+    "optionC": "On the shape of the bulb",
+    "optionD": "On all of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मनुष्य शरीर के लिए घातक धारा है ?",
+    "question": "What is the fatal current for the human body?",
+    "optionA": "1 mA",
+    "optionB": "1 A",
+    "optionC": "50 mA",
+    "optionD": "30 mA",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::रिलेक्टेन्स की इकाई है ?",
+    "question": "What is the unit of reluctance?",
+    "optionA": "Ampere turn",
+    "optionB": "Ampere turn/Weber",
+    "optionC": "Weber",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::हिस्टेरिसिस लूप का क्षेत्रफल पदार्थ के किस गन की माप है ?",
+    "question": "The area of the hysteresis loop is a measure of which property of a material?",
+    "optionA": "Magnetism",
+    "optionB": "Electricity",
+    "optionC": "Energy wasted in the cycle",
+    "optionD": "Magnetic flux",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::फ्यूज वायर बनाया जाता है ?",
+    "question": "Fuse wire is made of?",
+    "optionA": "Lead and tin",
+    "optionB": "Copper and tin",
+    "optionC": "Copper and zinc",
+    "optionD": "Zinc and tin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसमिशन लाइन, डिस्ट्रीब्यूशन लाइन और कंडेंसर में दो चालकों के मध्य इंसुलेटर की तरह प्रयोग में लेते हैं ?",
+    "question": "What is used as an insulator between two conductors in transmission lines, distribution lines, and capacitors?",
+    "optionA": "Dry air",
+    "optionB": "Slate",
+    "optionC": "Bakelite",
+    "optionD": "Mica nitrate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::चालक का वह गुण जो धारा के बढ़ने में सहायक होता है कहलाता है ?",
+    "question": "The property of a conductor that helps in the increase of current is called?",
+    "optionA": "Permittivity",
+    "optionB": "Resistance",
+    "optionC": "Conductivity",
+    "optionD": "The above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::इलेक्ट्रॉन में होता है ?",
+    "question": "An electron has?",
+    "optionA": "Negative charge",
+    "optionB": "Positive charge",
+    "optionC": "No charge",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::द्वितीयक सैल द्वारा एकत्रित ऊर्जा कहलाती है ?",
+    "question": "The energy collected by a secondary cell is called?",
+    "optionA": "Electrical energy",
+    "optionB": "Chemical energy",
+    "optionC": "Heat energy",
+    "optionD": "Light energy",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बिजली की लगी आग पर डालना चाहिए ?",
+    "question": "What should be thrown on an electrical fire?",
+    "optionA": "Acid",
+    "optionB": "Dry sand",
+    "optionC": "Water",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::जी. आई की चादरों में काम में लेंगे ?",
+    "question": "What is used in GI sheets?",
+    "optionA": "Iron",
+    "optionB": "Bronze",
+    "optionC": "Hydrochloric acid",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::गंधकके अम्ल में पानी मिलाने पर ?",
+    "question": "When water is added to sulphuric acid?",
+    "optionA": "The color of the acid changes",
+    "optionB": "Excessive heat is produced",
+    "optionC": "The water starts boiling",
+    "optionD": "The acid turns into a base",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कम्पाउण्ड मोटर में सबसे कम प्रतिरोध होता है ?",
+    "question": "In a compound motor, the lowest resistance is of?",
+    "optionA": "Shunt winding",
+    "optionB": "Series winding",
+    "optionC": "Armature",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::अस्थायी कार्यों हेतु वायरिंग का चयन करेंगे ?",
+    "question": "For temporary work, wiring is selected?",
+    "optionA": "Batten wiring",
+    "optionB": "PVC conduit wiring",
+    "optionC": "Cleat wiring",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::शुद्ध कैपेसिटिव परिपथ का पावर फैक्टर होता है ?",
+    "question": "What is the power factor of a pure capacitive circuit?",
+    "optionA": "Unity",
+    "optionB": "Zero leading",
+    "optionC": "Zero lagging",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::पोल वाइंडिंग जो आर्मेचर के सिरीज में जुडी रहती है, कहलाती है ?",
+    "question": "Pole winding which remains connected in series with the armature, is called?",
+    "optionA": "Shunt field winding",
+    "optionB": "Exciter winding",
+    "optionC": "Damper winding",
+    "optionD": "Interpole winding",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::स्ट्रेन्डिड तार लगाए जाते हैं ?",
+    "question": "Stranded wires are fitted?",
+    "optionA": "In overhead lines",
+    "optionB": "In chock binding",
+    "optionC": "In binding",
+    "optionD": "In house wiring",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ोटॉन में होता है ?",
+    "question": "Proton has?",
+    "optionA": "Negative charge",
+    "optionB": "Chargeless",
+    "optionC": "Positive charge",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्न में से किस डिवाइस में विद्युत के उष्मीय प्रभाव का उपयोग होता है ?",
+    "question": "In which device is the thermal effect of electricity used?",
+    "optionA": "Transformer",
+    "optionB": "Generator",
+    "optionC": "Electric motor",
+    "optionD": "Electric boiler",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::स्थिर वोल्टता स्त्रोत की मुख्य विशेषता है ?",
+    "question": "The main characteristic of a constant voltage source is?",
+    "optionA": "Low internal resistance",
+    "optionB": "High output resistance",
+    "optionC": "Constant current characteristic",
+    "optionD": "Low efficiency",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एम्पियर मीटर परिपथ में लगता है ?",
+    "question": "Ammeter is connected in the circuit?",
+    "optionA": "In series",
+    "optionB": "In parallel",
+    "optionC": "In series-parallel",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वे पदार्थ जिनकी चुंबकीय फ्लक्स को काटता है, तब इसमें वि. वा. बल उत्पन्न होता है, इस तथ्य का कारण है ?",
+    "question": "The reason for the fact that when a substance cuts magnetic flux, an emf is generated in it is?",
+    "optionA": "Joule's law",
+    "optionB": "Weber's law",
+    "optionC": "Coulomb's law",
+    "optionD": "Faraday's law",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वे पदार्थ जिनकी चुंबकशीलता इकाई से कम होती है, कहलाते है ?",
+    "question": "Substances whose magnetic susceptibility is less than unity are called?",
+    "optionA": "Diamagnetic substances",
+    "optionB": "Paramagnetic substances",
+    "optionC": "Dipolar substances",
+    "optionD": "Ferromagnetic substances",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::पारगम्यता की इकाई है ?",
+    "question": "The unit of permeability is?",
+    "optionA": "Weber/meter",
+    "optionB": "Newton/meter",
+    "optionC": "Farad/meter",
+    "optionD": "Farad Newton-meter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सीसा संचायक सैल का वि. वा. निर्भर करता है ?",
+    "question": "The emf of a lead-acid cell depends on?",
+    "optionA": "The size of the electrodes",
+    "optionB": "The nature of the electrodes",
+    "optionC": "The shape of the cell",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::डी. सी. मशीन के योक निर्माण हेतु प्रयुक्त धातु है ?",
+    "question": "The metal used for the construction of yoke in DC machine is?",
+    "optionA": "Stainless steel",
+    "optionB": "Diamagnetic material",
+    "optionC": "Cast steel",
+    "optionD": "Copper",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::हिस्टेरिसिस हानि निर्भर करती है ?",
+    "question": "Hysteresis loss depends on?",
+    "optionA": "Frequency",
+    "optionB": "Temperature of the material",
+    "optionC": "Volume of the material",
+    "optionD": "All of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::आग से व रासायनिक पदार्थों से सुरक्षित वायरिंग होती है ?",
+    "question": "Wiring that is safe from fire and chemicals is?",
+    "optionA": "Casing-capping wiring",
+    "optionB": "Concealed wiring",
+    "optionC": "Conduit wiring",
+    "optionD": "Batten wiring",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::जो ट्रांसफॉर्मर अधिक वोल्टेज को कम वोल्टेज कर देते हैं ?",
+    "question": "Which transformers convert high voltage to low voltage?",
+    "optionA": "Step down",
+    "optionB": "Step up",
+    "optionC": "Both A and B",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सिलिका जैल का प्रयोग किया जाता है ?",
+    "question": "Silica gel is used?",
+    "optionA": "For absorbing moisture",
+    "optionB": "For cooling oil",
+    "optionC": "For controlling transformer voltage",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सिन्क्रोनस मोटर पर लोड बढ़ाने पर आघूर्ण कोण ?",
+    "question": "What happens to the torque angle in a synchronous motor when the load is increased?",
+    "optionA": "Increases",
+    "optionB": "Decreases",
+    "optionC": "Remains unchanged",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफार्मर में कंजरवेटर का कार्य ?",
+    "question": "What is the function of a conservator in a transformer?",
+    "optionA": "To improve the power factor",
+    "optionB": "To prevent moisture",
+    "optionC": "To prevent air from entering the oil",
+    "optionD": "To accommodate the expansion and contraction of oil",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ऑल्टरनेटर में रोटर की गति ?",
+    "question": "What is the speed of the rotor in an alternator?",
+    "optionA": "Depends on the number of poles",
+    "optionB": "Synchronous",
+    "optionC": "Depends on the load current",
+    "optionD": "All of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::यदि आर्मेचर धारा प्रेरित वि. वा. बल की कला में है, तब आर्मेचर प्रतिक्रिया का प्रभाव होगा ?",
+    "question": "If the armature current is in the direction of the field, what will be the effect of armature reaction?",
+    "optionA": "Magnetizing",
+    "optionB": "Demagnetizing",
+    "optionC": "Cross-magnetizing",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::अधिकतर तीन फेज सप्लाई के कनेक्शन होते हैं ?",
+    "question": "Most three-phase supply connections are made in?",
+    "optionA": "Star and Delta",
+    "optionB": "Series and parallel combination",
+    "optionC": "Delta or parallel",
+    "optionD": "Series and Star",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::किसी साइकिल में करेंट या वोल्टेज के उच्चतम मान को कहते हैं ?",
+    "question": "What is the highest value of current or voltage in a cycle called?",
+    "optionA": "Average value",
+    "optionB": "Frequency",
+    "optionC": "RMS value",
+    "optionD": "Amplitude",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::किस मोटर में आघूर्ण में समान वृद्धि पर आर्मेचर धारा में न्यूनतम वृद्धि होती है ?",
+    "question": "In which motor is the minimum increase in armature current for a given increase in torque?",
+    "optionA": "Series motor",
+    "optionB": "Shunt motor",
+    "optionC": "Cumulative compound motor",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बैटरी चार्ज हेतु जनरेटर प्रयोग में लिया जाता है ?",
+    "question": "Which generator is used for battery charging?",
+    "optionA": "Differential compound generator",
+    "optionB": "Shunt generator",
+    "optionC": "Cumulative compound generator",
+    "optionD": "Series generator",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::घरेलू फ्रिज में प्रयुक्त मोटर होती है ?",
+    "question": "What type of motor is used in a domestic refrigerator?",
+    "optionA": "Capacitor motor",
+    "optionB": "DC shunt motor",
+    "optionC": "DC series motor",
+    "optionD": "Universal motor",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::थ्री फ्रेज मोटर की टर्मिनल प्लेट बनी होती है ?",
+    "question": "Terminal plates of three-phase motors are made of?",
+    "optionA": "Bakelite",
+    "optionB": "Mica",
+    "optionC": "Rubber",
+    "optionD": "Ebonite",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कूलर के पम्प में मोटर लगाई जाती है ?",
+    "question": "What type of motor is used in cooler pumps?",
+    "optionA": "Stepper",
+    "optionB": "Shaded pole",
+    "optionC": "Both A and B",
+    "optionD": "Repulsion induction motor",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मशीनों को ठण्डा रखने के लिए प्रयोग की जाती है ?",
+    "question": "Which gas is used for cooling machines?",
+    "optionA": "Helium gas",
+    "optionB": "Hydrogen gas",
+    "optionC": "Nitrogen gas",
+    "optionD": "Carbon-dioxide",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::निम्नलिखित में से कौन-से लैम्प के प्रचालन के लिए डी. सी. सप्लाई आवश्यक है ?",
+    "question": "Which of the following lamps requires DC supply for operation?",
+    "optionA": "Mercury vapor lamp",
+    "optionB": "Arc lamp",
+    "optionC": "Fluorescent lamp",
+    "optionD": "Sodium vapor lamp",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::कैपेसिटिव परिपथ में पावर फैक्टर का मान होता है ?",
+    "question": "What is the power factor in a capacitive circuit?",
+    "optionA": "Zero lagging",
+    "optionB": "Zero leading",
+    "optionC": "Zero",
+    "optionD": "Unity",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सोडियम वेपर लैम्प का स्विच ऑन करने पर पहले प्रकाश का रंग होता है ?",
+    "question": "What is the color of the light when a sodium vapor lamp is switched on?",
+    "optionA": "Yellow",
+    "optionB": "Pink-red",
+    "optionC": "Green",
+    "optionD": "Blue",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::लकलांची सैल में पॉजिटिव प्लेट होती है ?",
+    "question": "In a Leclanché cell, the positive plate is made of?",
+    "optionA": "Carbon rod",
+    "optionB": "Copper rod",
+    "optionC": "Steel rod",
+    "optionD": "Zinc rod",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वर्तमान में घरेलू प्रयोग हेतु बड़े स्तर पर बनायी जाती है ?",
+    "question": "Currently, which motor is manufactured on a large scale for domestic use?",
+    "optionA": "Capacitor motor",
+    "optionB": "Stepper motors",
+    "optionC": "Universal motors",
+    "optionD": "Repulsion motors",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::डेनियल सैल में नेगेटिव इलेक्ट्रॉड होता है ?",
+    "question": "In a Daniel cell, the negative electrode is made of?",
+    "optionA": "Brass",
+    "optionB": "Zinc",
+    "optionC": "Copper",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बांये हाथ के नियम में अंगूठा प्रदर्शित करता है ?",
+    "question": "In the left-hand rule, the thumb represents?",
+    "optionA": "Current",
+    "optionB": "Magnetic field",
+    "optionC": "Voltage",
+    "optionD": "Force on the conductor",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::भवन के पास अर्थिंग की जाती है ?",
+    "question": "Earthing is done near a building?",
+    "optionA": "On the roof of the building",
+    "optionB": "Ten meters away from the corner",
+    "optionC": "Two meters away from the corner",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::अर्थ के प्रतिरोध को प्रभावित करने वाले तथ्य हैं ?",
+    "question": "The factors affecting earth resistance are?",
+    "optionA": "Depth of the electrode",
+    "optionB": "Temperature of the soil",
+    "optionC": "Condition of the earth's soil",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::नयी वायरिंग को टैस्ट करने के तरीके हैं ?",
+    "question": "The methods to test new wiring are?",
+    "optionA": "Earth test of conductors",
+    "optionB": "Open circuit test",
+    "optionC": "Short circuit test",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::चुम्बकीय तीव्रता तथा चुंबकीय बल के अनुपात को कहते हैं ?",
+    "question": "The ratio of magnetic intensity to magnetic force is called?",
+    "optionA": "Relative permeability",
+    "optionB": "Magnetic permeability",
+    "optionC": "Flux density",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::बैटरी को लगातार अधिक चार्ज एवं डिस्चार्ज करने से ?",
+    "question": "When a battery is continuously overcharged and discharged?",
+    "optionA": "The plates start to bend",
+    "optionB": "The plates start to break",
+    "optionC": "Sulfation occurs",
+    "optionD": "Depolarization occurs",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::गाड़ियों में डायनमों होता है ?",
+    "question": "In vehicles, dynamo is?",
+    "optionA": "Compound generator",
+    "optionB": "Series generator",
+    "optionC": "DC shunt generator",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::डी. सी. मशीनों में आर्मेचर परिभ्र्रमण हेतु प्रयुक्त होता है ?",
+    "question": "In DC machines, ball and roller bearings are used for armature rotation?",
+    "optionA": "Ball and roller bearing",
+    "optionB": "Bushing bearing",
+    "optionC": "Thrust bearing",
+    "optionD": "Magnetic bearing",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::वार्ड लियोनार्ड नियंत्रण में मोटर की गति परिवर्तित होने का मुख्य कारण है ?",
+    "question": "In Ward Leonard control, the main reason for the change in motor speed is?",
+    "optionA": "Motor field excitation",
+    "optionB": "Supply voltage",
+    "optionC": "Motor armature current",
+    "optionD": "Voltage applied to the armature",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एम्पायर स्लीव काम आती है ?",
+    "question": "Where is the empire sleeve used?",
+    "optionA": "When it is inside the slot",
+    "optionB": "On top of the terminal plate",
+    "optionC": "To be placed on the connection lead",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::किस मोटर का उपयोग, स्थिर गति वाली मशीन उदाहरणतः लेथ ब्लोअर्स फैन आदि में किया जाता है ?",
+    "question": "Which motor is used in machines with constant speed, such as lathe blowers, fans, etc.?",
+    "optionA": "DC shunt motor",
+    "optionB": "Cumulative compound motor",
+    "optionC": "DC series motor",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एक चालक एक चुम्ब्कीय क्षेत्र में रोटेट करता है, किन स्थितियों में उत्पन्न वोल्टेज शून्य होगी ?",
+    "question": "A conductor is rotated in a magnetic field, under what conditions will the induced voltage be zero?",
+    "optionA": "At every position",
+    "optionB": "Perpendicular to the magnetic field",
+    "optionC": "In the direction of the axis of the magnetic field",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::चालक पदार्थो को गर्म करने की उपर्युक्त विधि है ?",
+    "question": "What is the above-mentioned method for heating conductors?",
+    "optionA": "Eddy current method",
+    "optionB": "Induction method",
+    "optionC": "Radiation method",
+    "optionD": "Indirect method",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::प्लास्टिक पदार्थो के ऊष्मन की उपर्युक्त विधि है ?",
+    "question": "What is the above-mentioned method for heating plastic materials?",
+    "optionA": "Dielectric heating",
+    "optionB": "Resistance heating",
+    "optionC": "Heating in coal-fired furnace",
+    "optionD": "Oil-fired furnace",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::एक नए थर्मोस्टेट स्विच का प्रतिरोध होना चाहिए ?",
+    "question": "What should be the resistance of a new thermostat switch?",
+    "optionA": "Only total ohm or zero",
+    "optionB": "Only ohm",
+    "optionC": "Mega ohm",
+    "optionD": "Infinite",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::आसमानी विद्युत से ओवर हैड लाइनों की सुरक्षा हेतु लगाए जाते हैं ?",
+    "question": "What are installed for the protection of overhead power lines?",
+    "optionA": "Relay",
+    "optionB": "Lightning arrester",
+    "optionC": "Starter",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मूविंग आयरन यंत्रो की स्केल ?",
+    "question": "What is the scale of moving iron instruments?",
+    "optionA": "It is uniform",
+    "optionB": "It is narrow in the middle",
+    "optionC": "It is narrow at the beginning and end",
+    "optionD": "All of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::किस प्रकार के ऐसी से डी. सी. कन्वर्टर में क्षतियाँ कम है और दक्षता अधिक है ?",
+    "question": "In which type of AC to DC converter are the losses less and efficiency more?",
+    "optionA": "MG set",
+    "optionB": "Rotary converter",
+    "optionC": "Metal rectifier",
+    "optionD": "Mercury arc rectifier",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सबसे अच्छा इंसुलेटिंग लिक्विड ट्रांसफार्मर के लिए होता है ?",
+    "question": "What is the best insulating liquid for transformers?",
+    "optionA": "Grade mineral oil",
+    "optionB": "Mineral oil",
+    "optionC": "Water",
+    "optionD": "Hydrogen liquid",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::मास्टर स्विच कौन-सी वायरिंग में लगाया जाता है ?",
+    "question": "In which wiring is the master switch installed?",
+    "optionA": "Godown wiring",
+    "optionB": "Conduit wiring",
+    "optionC": "Corridor wiring",
+    "optionD": "Hostel wiring",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::सावधानी के तौर पर गीजर का नियंत्रक स्विच, लगान चाहिए ?",
+    "question": "As a precaution, the controller switch for a geyser should be installed?",
+    "optionA": "Inside the bathroom",
+    "optionB": "Outside the bathroom",
+    "optionC": "Near the main switch",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तिदीप्त दीपों में नवीनतम दीप है ?",
+    "question": "What is the latest lamp in fluorescent lamps?",
+    "optionA": "Glow lamp",
+    "optionB": "Pre-heated lamp",
+    "optionC": "Quick start lamp",
+    "optionD": "Instant start lamp",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "electronics-gk-in-hindi::फ़्लैशिंग परिपथ में प्रयोग किया जा सकने वाला प्रतिदीप्त दीप है ?",
+    "question": "Which fluorescent lamp can be used in flashing circuits?",
+    "optionA": "Quick start lamp",
+    "optionB": "Pre-heated lamp",
+    "optionC": "Ballast lamp",
+    "optionD": "Instant start lamp",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ओपन सर्किट टैस्ट द्वारा ज्ञात की जाती है ?",
+    "question": "What is determined by an open circuit test?",
+    "optionA": "Voltage loss",
+    "optionB": "Copper loss",
+    "optionC": "Iron loss",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "electronics-gk-in-hindi::ट्रांसफार्मर एक ?",
+    "question": "A transformer is a?",
+    "optionA": "Amplifier",
+    "optionB": "Rotating machine",
+    "optionC": "Rotary converter",
+    "optionD": "Static machine working on the principle of induction",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::तुल्यकाली मोटर में हटिंग का कारण है ?",
+    "question": "What is the cause of heating in a synchronous motor?",
+    "optionA": "Excessive friction in bearings",
+    "optionB": "Zero load",
+    "optionC": "Increase in air gap",
+    "optionD": "Variable load",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "electronics-gk-in-hindi::फ़्लोरसेन्ट लैम्प से प्रति वाट उत्सर्जित प्रकाश होता है ?",
+    "question": "How much light is emitted per watt from a fluorescent lamp?",
+    "optionA": "60 lumens",
+    "optionB": "10 lumens",
+    "optionC": "20 lumens",
+    "optionD": "200 lumens",
+    "correctAnswer": "A"
+  }
+]

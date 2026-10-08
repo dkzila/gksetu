@@ -1,0 +1,920 @@
+[
+  {
+    "id": "brain-quiz::लोटा को इंग्लिश में क्या कहते हैं ?",
+    "question": "What is Lota called in English?",
+    "optionA": "Lauta",
+    "optionB": "Pot",
+    "optionC": "Metal Pot",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::अगर आंख को मुंह, मुंह को नाक, नाक को कान और कान को जीभ कहते तो आप किससे सुनते ?",
+    "question": "If eye is called mouth, mouth is called nose, nose is called ear and ear is called tongue, then what do you hear with?",
+    "optionA": "Mouth",
+    "optionB": "Nose",
+    "optionC": "Ear",
+    "optionD": "Tongue",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::राजेश एक महिला के बारे में बताता है कि वह मेरी पत्नी के पति की मां की बेटी है, तो उस महिला का राजेश से क्या रिश्ता है ?",
+    "question": "Rajesh describes a woman that she is the daughter of my wife's husband's mother, what is the relationship of that woman with Rajesh?",
+    "optionA": "Wife's relationship",
+    "optionB": "Sister's relationship",
+    "optionC": "Sister-in-law's relationship",
+    "optionD": "Daughter's relationship",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::दो बाप और दो बेटे खाना खाने गये प्रत्येक ने 45 रुपये का खाना खाया तो बिल कितने का बनेगा ?",
+    "question": "Two fathers and two sons went to eat, each ate food worth 45 rupees, then what will be the bill amount?",
+    "optionA": "90",
+    "optionB": "180",
+    "optionC": "135",
+    "optionD": "45",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::ऐसी कौन सी चीज है जिसके पैर नहीं हैं फिर भी वह चढ़ती भी है और उतरती भी है ?",
+    "question": "What is such a thing that has no feet but still climbs up and comes down?",
+    "optionA": "Stairs",
+    "optionB": "Liquor",
+    "optionC": "Air",
+    "optionD": "Snake",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::ऐसा कौन सा फल है जो कभी ख़रीदा नहीं जा सकता ?",
+    "question": "What is such a fruit that can never be bought?",
+    "optionA": "Water fruit",
+    "optionB": "Bitter fruit",
+    "optionC": "Fruit of hard work",
+    "optionD": "Salty fruit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::वह कौन है जो हमेशा पीटने के लिए ही बना है ?",
+    "question": "What is it that is always made for beating?",
+    "optionA": "Dhol",
+    "optionB": "Ball",
+    "optionC": "Pati",
+    "optionD": "Football",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::एक फूल है काले रंग का ,सिर पर सदा सुहाए, तेज धूप में खिल-खिल जाता ,पर छाया में मुरझाये ?",
+    "question": "There is a flower of black color, always looks good on the head, blooms in the hot sun, but wilts in the shade?",
+    "optionA": "Sunflower",
+    "optionB": "Tulip",
+    "optionC": "Pansy",
+    "optionD": "Umbrella",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::ऊँट की बैठक हिरन सी तेज चाल , वो कौन सा जानवर जिसके पूँछ न बाल ?",
+    "question": "Camel's sitting, deer-like fast speed, which animal is it that has no tail?",
+    "optionA": "Gecko",
+    "optionB": "Frog",
+    "optionC": "Turtle",
+    "optionD": "Ant",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::बिन बताए रात को आते हैं, बिना चोरी किये गायब हो जाते हैं, बताओं वो क्या है ?",
+    "question": "They come at night without being told, disappear without being stolen, tell me what is it?",
+    "optionA": "Peacock",
+    "optionB": "Moon",
+    "optionC": "Thief",
+    "optionD": "Stars",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::तीन अक्षर मेरा नाम, उलटा सीधा एक समान, वो अक्षर कौन सा है ?",
+    "question": "Three letters is my name, reverse and straight are the same, what is that letter?",
+    "optionA": "Jatan",
+    "optionB": "Bhajan",
+    "optionC": "Agar",
+    "optionD": "Jahaz",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::खुशबू है पर फूल नहीं जलती है पर ईर्ष्या नहीं बताओ क्या है वो ?",
+    "question": "It has fragrance but is not a flower, it burns but not with envy, tell me what is it?",
+    "optionA": "Matchstick",
+    "optionB": "Flower garland",
+    "optionC": "Incense stick",
+    "optionD": "Coal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::एक बहादुर ऐसा वीर गाना गाकर मारे तीर, बताओ कौन है वो बीर ?",
+    "question": "A brave hero kills an arrow by singing a song, tell me who is that hero?",
+    "optionA": "Arjun",
+    "optionB": "Lakshman",
+    "optionC": "Mosquito",
+    "optionD": "Elephant",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::सफेद हाथियों का देश किसे कहा जाता है ?",
+    "question": "Which country is called the land of white elephants?",
+    "optionA": "Nepal",
+    "optionB": "India",
+    "optionC": "Japan",
+    "optionD": "Thailand",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::जब राम की उम्र 8 साल थी तो उसके पिता की उम्र 31 साल थी. अब राम के पिता की उम्र राम की उम्र से दुगनी है, बताओ इस समय राम की कितनी उम्र है ?",
+    "question": "When Ram was 8 years old, his father's age was 31 years. Now Ram's father's age is double of Ram's age, tell me what is Ram's age at this time?",
+    "optionA": "23",
+    "optionB": "31",
+    "optionC": "16",
+    "optionD": "62",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::कद के छोटे कर्म के हीन बीन बजाने के शोकीन बताओ वो कौन ?",
+    "question": "Who is known for playing the small bean instrument with sorrowful tunes?",
+    "optionA": "Mosquito",
+    "optionB": "Bee",
+    "optionC": "Snake",
+    "optionD": "Frog",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::आप खाली पेट कितने केले खा सकते हैं ?",
+    "question": "How many bananas can you eat on an empty stomach?",
+    "optionA": "Only one",
+    "optionB": "Only two",
+    "optionC": "Only five",
+    "optionD": "As many as you want",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::ऐसी कोण सी चीज है जिसे हम कैद करके नहीं रख सकते ?",
+    "question": "What is something that we cannot keep by capturing it?",
+    "optionA": "Our thought",
+    "optionB": "Emotion",
+    "optionC": "Shadow",
+    "optionD": "Result",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::ऐसी कौन सी चीज है जो आपके पास जितनी ज्यादा होगी, आपको उतना ही कम दिखाई देगा ?",
+    "question": "What is something that the more you have of it, the less it will appear to you?",
+    "optionA": "Money",
+    "optionB": "Darkness",
+    "optionC": "Knowledge",
+    "optionD": "Water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::कर्क रेखा भारत के कितने राज्यों से होकर गुजरती है ?",
+    "question": "Through how many states does the Tropic of Cancer pass in India?",
+    "optionA": "Through 5 states",
+    "optionB": "Through 7 states",
+    "optionC": "Through 8 states",
+    "optionD": "Through 10 states",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::किस देश में हरा सूर्य दिखाई देता है ?",
+    "question": "In which country does the green sun appear?",
+    "optionA": "In Iceland",
+    "optionB": "In Norway",
+    "optionC": "In Congo",
+    "optionD": "In China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::सबसे बड़ा अंडा किस पक्षी का होता है ?",
+    "question": "Whose bird's egg is the largest?",
+    "optionA": "Parrot's",
+    "optionB": "Hen's",
+    "optionC": "Ostrich's",
+    "optionD": "Cuckoo's",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::कौन सा जानवर दूध और अंडे दोनों देता है ?",
+    "question": "Which animal gives both milk and eggs?",
+    "optionA": "Rabbit",
+    "optionB": "Mouse",
+    "optionC": "Platypus",
+    "optionD": "Giraffe",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::वीवो किस देश की कंपनी है ?",
+    "question": "Which country's company is Vivo?",
+    "optionA": "Pakistan",
+    "optionB": "China",
+    "optionC": "Sri Lanka",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::वह कौन सी धातु है जिसे चाकू से काटा जा सकता है ?",
+    "question": "Which metal can be cut with a knife?",
+    "optionA": "Steel",
+    "optionB": "Sodium",
+    "optionC": "Gold",
+    "optionD": "Iron",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::एशिया महाद्वीप का सर्वाधिक जनसंख्या वाला देश कौन सा है ?",
+    "question": "Which is the most populous country in the Asian continent?",
+    "optionA": "Indonesia",
+    "optionB": "China",
+    "optionC": "Pakistan",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::दांतो तले उंगली दबाना मुहावरे का सही अर्थ क्या है ?",
+    "question": "What is the correct meaning of the idiom 'to press finger under the teeth'?",
+    "optionA": "To have a hobby",
+    "optionB": "To be surprised",
+    "optionC": "To make an excuse",
+    "optionD": "To lag behind",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::भारत का सबसे बड़ा बैंक कौन सा है ?",
+    "question": "Which is the largest bank in India?",
+    "optionA": "Allahabad Bank",
+    "optionB": "Punjab National Bank",
+    "optionC": "Reserve Bank of India",
+    "optionD": "State Bank of India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::किस जानवर के दूध में सबसे ज्यादा प्रोटीन होता है ?",
+    "question": "Whose animal's milk contains the most protein?",
+    "optionA": "Buffalo's",
+    "optionB": "Camel's",
+    "optionC": "Goat's",
+    "optionD": "Cow's",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::कौन सी सब्जी खाने से खून साफ होता है ?",
+    "question": "Which vegetable, when eaten, purifies the blood?",
+    "optionA": "Papaya's",
+    "optionB": "Lauki's",
+    "optionC": "Banana's",
+    "optionD": "Potato's",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::भारत का राष्ट्रीय खेल कौन सा है ?",
+    "question": "What is the national sport of India?",
+    "optionA": "Football",
+    "optionB": "Hockey",
+    "optionC": "Kabaddi",
+    "optionD": "Cricket",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::सास बहू मंदिर कहां स्थित है ?",
+    "question": "Where is the Saas Bahu Mandir located?",
+    "optionA": "Jodhpur",
+    "optionB": "Assam",
+    "optionC": "Kerala",
+    "optionD": "Udaipur",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::किस देश के लोग भारत नहीं घूम सकते ?",
+    "question": "Which country's people cannot travel to India?",
+    "optionA": "North Korea",
+    "optionB": "Pakistan",
+    "optionC": "Saudi Arabia",
+    "optionD": "Israel",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किस देश में सबसे कठोर कानून बनाया गया है ?",
+    "question": "In which country were the strictest laws made?",
+    "optionA": "America",
+    "optionB": "Israel",
+    "optionC": "Saudi Arabia",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::किस जानवर के शरीर में सबसे ज्यादा खून होता है ?",
+    "question": "Which animal has the most blood in its body?",
+    "optionA": "Bear",
+    "optionB": "Camel",
+    "optionC": "Deer",
+    "optionD": "Elephant",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::कौन सा फूल 36 साल में एक बार खिलता है ?",
+    "question": "Which flower blooms once in 36 years?",
+    "optionA": "Lotus",
+    "optionB": "Queen of the Night",
+    "optionC": "Jasmine",
+    "optionD": "Rose",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::विश्व का सबसे बड़ा स्कूल कहां है ?",
+    "question": "Where is the world's largest school?",
+    "optionA": "In Germany",
+    "optionB": "In England",
+    "optionC": "In India",
+    "optionD": "In America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::नीले रंग का अंडा देने वाली मुर्गी किस देश में पाई जाती है ?",
+    "question": "In which country is the chicken that lays blue eggs found?",
+    "optionA": "In Tibet",
+    "optionB": "In Egypt",
+    "optionC": "In Chile",
+    "optionD": "In Nigeria",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::किस पेड़ के नीचे सोने से इंसान मर सकता है ?",
+    "question": "Under which tree can a person die by sleeping?",
+    "optionA": "Banana",
+    "optionB": "Mango",
+    "optionC": "Neem",
+    "optionD": "Peepal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::पृथ्वी पर सबसे पहले कौन सी सब्जी उगाई गई थी ?",
+    "question": "Which vegetable was first grown on Earth?",
+    "optionA": "Tomato",
+    "optionB": "Potato",
+    "optionC": "Rice",
+    "optionD": "Wheat",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मनुष्य की एक आंख का वजन कितना होता है ?",
+    "question": "What is the weight of one human eye?",
+    "optionA": "8 grams",
+    "optionB": "10 grams",
+    "optionC": "12 grams",
+    "optionD": "5 grams",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::विश्व में सबसे ज्यादा डॉक्टर किस देश में है ?",
+    "question": "In which country are there the most doctors in the world?",
+    "optionA": "In Russia",
+    "optionB": "In India",
+    "optionC": "In England",
+    "optionD": "In America",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::कौन सा जीव पानी में रहता है लेकिन पानी नहीं पिता है ?",
+    "question": "Which creature lives in water but does not drink water?",
+    "optionA": "Fish",
+    "optionB": "Turtle",
+    "optionC": "Frog",
+    "optionD": "Water Snake",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::इंसान अपनी जिंदगी में कितने साल सोते हुए बिताता है ?",
+    "question": "How many years does a human spend sleeping in their life?",
+    "optionA": "20 years",
+    "optionB": "25 years",
+    "optionC": "30 years",
+    "optionD": "15 years",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मोबाइल को हिंदी में क्या कहतें है ?",
+    "question": "What is mobile called in Hindi?",
+    "optionA": "Sandesh Yantra",
+    "optionB": "Bachat Yantra",
+    "optionC": "Dorabhash Yantra",
+    "optionD": "Mobile Yantra",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::मनुष्य के खून में कौन सा धातु पाया जाता हैं ?",
+    "question": "Which metal is found in human blood?",
+    "optionA": "Iron",
+    "optionB": "Gold",
+    "optionC": "Copper",
+    "optionD": "Silver",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::सबसे अधिक ऑक्सीजन कौन सा पेड़ देता है ?",
+    "question": "Which tree gives the most oxygen?",
+    "optionA": "Mango",
+    "optionB": "Peepal",
+    "optionC": "Jamun",
+    "optionD": "Neem",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::नीला सेब कहा पाया जाता है ?",
+    "question": "Where is blue apple found?",
+    "optionA": "China",
+    "optionB": "Japan",
+    "optionC": "India",
+    "optionD": "Sri Lanka",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::भारत में रेल गाड़ी के पहिए कहा बनाए जाते हैं ?",
+    "question": "Where are railway wheels made in India?",
+    "optionA": "In Varanasi",
+    "optionB": "In Kapurthala",
+    "optionC": "In Bengaluru",
+    "optionD": "In Mumbai",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::भारत का राष्ट्रीय पेड़ कौन सा है ?",
+    "question": "What is the national tree of India?",
+    "optionA": "Neem",
+    "optionB": "Banyan",
+    "optionC": "Peepal",
+    "optionD": "Mango",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मनुष्य ने सबसे पहले किस जानवर का दूध पिया था ?",
+    "question": "Which animal's milk did humans drink first?",
+    "optionA": "Cow",
+    "optionB": "Goat",
+    "optionC": "Buffalo",
+    "optionD": "Sheep",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::किस पेड़ को काटने पर खून निकलता है ?",
+    "question": "Which tree bleeds when cut?",
+    "optionA": "Jamun",
+    "optionB": "Banyan",
+    "optionC": "Bloodwood Tree",
+    "optionD": "Peepal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::बैगनी गुलाब किस देश में पाया जाता है ?",
+    "question": "Where is purple rose found?",
+    "optionA": "In Turkey",
+    "optionB": "In China",
+    "optionC": "In India",
+    "optionD": "In Japan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किसकी कार पर नंबर प्लेट नहीं होती है ?",
+    "question": "Whose car does not have a number plate?",
+    "optionA": "President",
+    "optionB": "Chief Minister",
+    "optionC": "Home Minister",
+    "optionD": "Prime Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::लिपिस्टिक में किस जानवर का खून मिलाया जाता है ?",
+    "question": "Which animal's blood is added to lipstick?",
+    "optionA": "Pig",
+    "optionB": "Goat",
+    "optionC": "Dog",
+    "optionD": "Cow",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किस जीव का खून सफेद होता है ?",
+    "question": "Which animal has white blood?",
+    "optionA": "Mouse",
+    "optionB": "Frog",
+    "optionC": "Cockroach",
+    "optionD": "Snake",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::चांद की रोशनी को धरती पर पहुंचने में कितना समय लगता है ?",
+    "question": "How much time does it take for moonlight to reach Earth?",
+    "optionA": "3 seconds",
+    "optionB": "1.3 seconds",
+    "optionC": "3.5 seconds",
+    "optionD": "2 seconds",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::भगवान गणेश की फोटो किस देश के नोट पर छपती है ?",
+    "question": "Whose photo is printed on the notes of which country?",
+    "optionA": "Nepal",
+    "optionB": "Indonesia",
+    "optionC": "Pakistan",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::पूरी दुनिया में सबसे अधिक पीने लायक पानी किस देश में है ?",
+    "question": "Which country has the most drinking water in the world?",
+    "optionA": "China",
+    "optionB": "Brazil",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::किस देश के राष्ट्रपति का शासन काल सिर्फ एक वर्ष का होता है ?",
+    "question": "Which country's president has a term of only one year?",
+    "optionA": "Pakistan",
+    "optionB": "Switzerland",
+    "optionC": "Netherlands",
+    "optionD": "America",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::किस रंग को शांति का प्रतीक माना जाता है ?",
+    "question": "Which color is considered a symbol of peace?",
+    "optionA": "Yellow color",
+    "optionB": "Green color",
+    "optionC": "White color",
+    "optionD": "Red color",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::दुनिया का सबसे बड़ा फल कौन सा है ?",
+    "question": "Which is the largest fruit in the world?",
+    "optionA": "Jackfruit",
+    "optionB": "Coconut",
+    "optionC": "Papaya",
+    "optionD": "Watermelon",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किस जानवर का दूध इंसान नहीं पचा सकता है ?",
+    "question": "Whose milk cannot humans digest?",
+    "optionA": "Lioness's",
+    "optionB": "Donkey's",
+    "optionC": "Camel's",
+    "optionD": "Elephant's",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किस फल में सभी विटामिन्स पाए जाते है ?",
+    "question": "In which fruit are all vitamins found?",
+    "optionA": "Orange",
+    "optionB": "Papaya",
+    "optionC": "Pomegranate",
+    "optionD": "Banana",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मानव खोपड़ी में कुल कितनी हड्डियां होती है ?",
+    "question": "How many bones are there in the human skull?",
+    "optionA": "24 bones",
+    "optionB": "14 bones",
+    "optionC": "8 bones",
+    "optionD": "22 bones",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::किस जानवर का दूध पीने से दिमाग तेज होता है ?",
+    "question": "Whose milk makes the brain sharp when consumed?",
+    "optionA": "Buffalo's",
+    "optionB": "Sheep's",
+    "optionC": "Goat's",
+    "optionD": "Cow's",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::किस जानवर का दूध पीते ही इंसान बेहोश हो जाता है ?",
+    "question": "Whose milk makes a person unconscious when consumed?",
+    "optionA": "Camel's",
+    "optionB": "Elephant's",
+    "optionC": "Donkey's",
+    "optionD": "Sheep's",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::रोजाना चावल खाने से कौन सी बीमारी हो सकती है ?",
+    "question": "Which disease can be caused by eating rice daily?",
+    "optionA": "Cancer",
+    "optionB": "Arthritis",
+    "optionC": "Kidney stones",
+    "optionD": "Sugar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::मकड़ी बिना खाए पिए कितने वर्षों तक जीवित रह सकती है ?",
+    "question": "How many years can a spider live without eating or drinking?",
+    "optionA": "5 years",
+    "optionB": "10 years",
+    "optionC": "15 years",
+    "optionD": "2 years",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::किस जीव का दिमाग उसके शरीर से बड़ा होता है ?",
+    "question": "Which animal's brain is larger than its body?",
+    "optionA": "Fish",
+    "optionB": "Snake",
+    "optionC": "Dog",
+    "optionD": "Ant",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::किस देश में चप्पल पहन कर गाड़ी चलाने पर सजा दी जाती है ?",
+    "question": "In which country is there a penalty for driving a vehicle while wearing slippers?",
+    "optionA": "Japan",
+    "optionB": "America",
+    "optionC": "Saudi Arabia",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::पपीता खाने से कौन सा रोग ठीक होता है ?",
+    "question": "Which disease is cured by eating papaya?",
+    "optionA": "Sugar",
+    "optionB": "Heart disease",
+    "optionC": "Brain disease",
+    "optionD": "Cancer",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::चारमीनार कहा स्थित है ?",
+    "question": "Where is Charminar located?",
+    "optionA": "In Secunderabad",
+    "optionB": "In Vijayawada",
+    "optionC": "In New Delhi",
+    "optionD": "In Hyderabad",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::सफेद शेर कहां पाए जाते हैं ?",
+    "question": "Where are white lions found?",
+    "optionA": "In India",
+    "optionB": "In Norway",
+    "optionC": "In South Africa",
+    "optionD": "In America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::कौन सा जीव जो कभी पानी नहीं पीता हैं ?",
+    "question": "Which animal never drinks water?",
+    "optionA": "Kangaroo",
+    "optionB": "Cat",
+    "optionC": "Elephant",
+    "optionD": "Cheetah",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::भारत सबसे ज्यादा हथियार किस देश से खरीदा ता है ?",
+    "question": "Which country does India buy the most weapons from?",
+    "optionA": "From China",
+    "optionB": "From America",
+    "optionC": "From France",
+    "optionD": "From Russia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::सैमसंग किस देश की कंपनी है ?",
+    "question": "Samsung is a company of which country?",
+    "optionA": "Of America",
+    "optionB": "Of South Korea",
+    "optionC": "Of China",
+    "optionD": "Of Russia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मिनी ताजमहल किसे कहा जाता है ?",
+    "question": "Mini Taj Mahal is called what?",
+    "optionA": "Your correct answer is BB's tomb",
+    "optionB": "India Gate",
+    "optionC": "Jantar Mantar",
+    "optionD": "Red Fort",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::भारत के किस राज्य में लाल भिंडी पाया जाता है ?",
+    "question": "In which state of India is Red Bindi found?",
+    "optionA": "In Bihar",
+    "optionB": "Uttar Pradesh",
+    "optionC": "Assam",
+    "optionD": "In Rajasthan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::स्कूटर का आविष्कार किस देश में हुआ था ?",
+    "question": "In which country was the scooter invented?",
+    "optionA": "In China",
+    "optionB": "In America",
+    "optionC": "In Britain",
+    "optionD": "In India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::काला टमाटर किस देश में पाया जाता है ?",
+    "question": "Black tomato is found in which country?",
+    "optionA": "In Japan",
+    "optionB": "In England",
+    "optionC": "In America",
+    "optionD": "In India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::नींबू पानी किस रोग को ठीक करता है ?",
+    "question": "Lemon water cures which disease?",
+    "optionA": "Constipation",
+    "optionB": "Piles",
+    "optionC": "Fever",
+    "optionD": "Cancer",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::क्या खाने से किडनी हमेशा स्वस्थ रहती है ?",
+    "question": "Does eating keep the kidneys always healthy?",
+    "optionA": "Almonds",
+    "optionB": "Onion",
+    "optionC": "Tomato",
+    "optionD": "Cashew",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::छिपकली का 1 मिनट में दिल कितना बार धड़कता है ?",
+    "question": "How many times does a lizard's heart beat in 1 minute?",
+    "optionA": "100 times",
+    "optionB": "500 times",
+    "optionC": "250 times",
+    "optionD": "1000 times",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::कौन सा जीव दूध पीते मर जाता है ?",
+    "question": "Which animal dies after drinking milk?",
+    "optionA": "Snake",
+    "optionB": "Dog",
+    "optionC": "Rabbit",
+    "optionD": "Cat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::दुनिया के किस देश में हरा सूर्य दिखता है ?",
+    "question": "In which country of the world does the green sun appear?",
+    "optionA": "In Norway",
+    "optionB": "In China",
+    "optionC": "In Japan",
+    "optionD": "In India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::भारत में सर्वाधिक लोहा का उत्पादन किस राज्य में होता है ?",
+    "question": "In which state of India is the maximum production of iron done?",
+    "optionA": "Bihar",
+    "optionB": "Odisha",
+    "optionC": "Karnataka",
+    "optionD": "Jharkhand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::किस देश में एक भी नदी नहीं है ?",
+    "question": "In which country is there not a single river?",
+    "optionA": "Nepal",
+    "optionB": "America",
+    "optionC": "Saudi Arabia",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::भारत का सबसे पुराना खेल कौन सा है ?",
+    "question": "What is the oldest sport of India?",
+    "optionA": "Cricket",
+    "optionB": "Hockey",
+    "optionC": "Kabaddi",
+    "optionD": "Wrestling",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::सफ़ेद सांप किस देश में पाए जाते है ?",
+    "question": "White snakes are found in which country?",
+    "optionA": "Australia",
+    "optionB": "India",
+    "optionC": "Bhutan",
+    "optionD": "Nepal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::किस जीव को कोरोना वायरस नही होता है ?",
+    "question": "Which animal does not get coronavirus?",
+    "optionA": "Mouse",
+    "optionB": "Elephant",
+    "optionC": "Goat",
+    "optionD": "Cat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::मच्छर के मुंह में कितने दांत होते है ?",
+    "question": "How many teeth are there in a mosquito's mouth?",
+    "optionA": "42 teeth",
+    "optionB": "32 teeth",
+    "optionC": "82 teeth",
+    "optionD": "22 teeth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::किस फल का उपयोग जूता साफ करने के लिए किया जाता है ?",
+    "question": "Which fruit is used to clean shoes?",
+    "optionA": "Pomegranate",
+    "optionB": "Guava",
+    "optionC": "Papaya",
+    "optionD": "Banana",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::बैगनी टमाटर किस देश में पाया जाता है ?",
+    "question": "Purple tomato is found in which country?",
+    "optionA": "India",
+    "optionB": "England",
+    "optionC": "Japan",
+    "optionD": "China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::दुनिया के किस देश में सिर्फ 40 मिनट की रात होती है ?",
+    "question": "In which country of the world is there only a 40-minute night?",
+    "optionA": "Brazil",
+    "optionB": "Norway",
+    "optionC": "Russia",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "brain-quiz::मधुमक्खी किस फूल के रस को सबसे ज्यादा चुस्ती है ?",
+    "question": "Which flower's nectar does the bee like the most?",
+    "optionA": "Mustard",
+    "optionB": "Lotus",
+    "optionC": "Henna",
+    "optionD": "Rose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::भारत फ्रांस से जो लड़ाकू विमान खरीदा उसका क्या नाम है ?",
+    "question": "What is the name of the fighter aircraft that India bought from France?",
+    "optionA": "Rafale",
+    "optionB": "Mirage",
+    "optionC": "Jaguar",
+    "optionD": "Sukhoi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "brain-quiz::ट्विटर की शुरुआत कब हुई थी ?",
+    "question": "When was Twitter started?",
+    "optionA": "In June 2003",
+    "optionB": "In April 2006",
+    "optionC": "In July 2005",
+    "optionD": "In March 2006",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::किस देश में लाल रंग की गाय रखने पर जुर्माना लगता है ?",
+    "question": "In which country is there a penalty for keeping a red cow?",
+    "optionA": "Japan",
+    "optionB": "America",
+    "optionC": "Saudi Arabia",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "brain-quiz::भारत की पहली करेंसी नोट प्रेस किस शहर में स्थित है ?",
+    "question": "In which city is India's first currency note press located?",
+    "optionA": "In Gujarat",
+    "optionB": "In Kolkata",
+    "optionC": "In Nashik",
+    "optionD": "In Hyderabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::दुनिया में सबसे ज्यादा शाकाहारी लोग किस देश में पाया जाता है ?",
+    "question": "In which country of the world are the most vegetarian people found?",
+    "optionA": "China",
+    "optionB": "Russia",
+    "optionC": "India",
+    "optionD": "America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "brain-quiz::ऐसा कौन सा जीव है जिसका जीभ नहीं होता है ?",
+    "question": "Which animal does not have a tongue?",
+    "optionA": "Fly",
+    "optionB": "Ant",
+    "optionC": "Fish",
+    "optionD": "Mosquito",
+    "correctAnswer": "C"
+  }
+]

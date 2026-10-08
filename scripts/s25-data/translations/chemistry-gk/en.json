@@ -169,5 +169,2525 @@
     "optionC": "Digestion of food",
     "optionD": "Respiration",
     "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::लिटमस रंजक बैंगनी रंग का होता है, जो निकला जाता है ?",
+    "question": "Litmus dye is purple, which is obtained from?",
+    "optionA": "Red",
+    "optionB": "Lichen",
+    "optionC": "Cabbage leaf",
+    "optionD": "Petunia flower",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ाकृतिक गैस का दहन किस प्रकार का रासायनिक अभिक्रिया है ?",
+    "question": "Combustion of natural gas is what type of chemical reaction?",
+    "optionA": "Combination reaction",
+    "optionB": "Decomposition reaction",
+    "optionC": "Exothermic reaction",
+    "optionD": "Disintegration reaction",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::कॉपर चूर्ण को वायु में गर्म करने पर उसके सतह पर कॉपर ऑक्साइड की एक परत जम जाती है । इस परत का रंग कैसा है ?",
+    "question": "When copper powder is heated in air, a layer of copper oxide forms on its surface. What is the color of this layer?",
+    "optionA": "Black",
+    "optionB": "White",
+    "optionC": "Yellow",
+    "optionD": "Brown",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::शाक- सब्जियों का विघटित होकर कम्पोस्ट बनना किस अभिक्रिया का उदाहरण है ?",
+    "question": "Decomposition of vegetables into compost is an example of which reaction?",
+    "optionA": "Endothermic",
+    "optionB": "Exothermic",
+    "optionC": "Displacement",
+    "optionD": "Double displacement",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सोडियम हाइड्रॉक्साइड का pH मान लगभग है ?",
+    "question": "The pH value of sodium hydroxide is approximately?",
+    "optionA": "11",
+    "optionB": "12",
+    "optionC": "13",
+    "optionD": "14",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::किसी उदासीन विलयन का pH मान है ?",
+    "question": "The pH value of a neutral solution is?",
+    "optionA": "7",
+    "optionB": "2",
+    "optionC": "9",
+    "optionD": "11",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::दाँत का मसूरा किस पदार्थ का बना है जो काफी कठोर है ?",
+    "question": "The enamel of teeth is made of which substance that is very hard?",
+    "optionA": "Copper chloride",
+    "optionB": "Calcium phosphate",
+    "optionC": "Calcium carbide",
+    "optionD": "Calcium carbonate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::इमली में कौन-सा अम्ल है ?",
+    "question": "Which acid is found in tamarind?",
+    "optionA": "Methanoic acid",
+    "optionB": "Tartaric acid",
+    "optionC": "Lactic acid",
+    "optionD": "Oxalic acid",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::उपचयन-अपचयन अभिक्रिया को क्या कहते हैं ?",
+    "question": "What is an oxidation-reduction reaction called?",
+    "optionA": "Endothermic reaction",
+    "optionB": "Redox reaction",
+    "optionC": "Precipitation reaction",
+    "optionD": "Exothermic reaction",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::दानेदार जस्ता पर तनु सल्फ्यूरिक अम्ल डालने पर कौन-सा गैस उत्सर्जित होता है ?",
+    "question": "When dilute sulfuric acid is added to granulated zinc, which gas is evolved?",
+    "optionA": "Hydrogen gas",
+    "optionB": "Sulfur dioxide",
+    "optionC": "Oxygen gas",
+    "optionD": "No gas",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::सूर्य प्रकाश की उपस्थिति में पोधे CO2 और जल से अपना भोजन (ग्लूकोज) तैयार करते हैं । यह कौन-सी अभिक्रिया है ?",
+    "question": "In the presence of sunlight, plants prepare their food (glucose) from CO2 and water. Which reaction is this?",
+    "optionA": "Displacement",
+    "optionB": "Decomposition",
+    "optionC": "Photosynthesis",
+    "optionD": "Precipitation",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::जिंक तथा लेड, कॉपर की अपेक्षा ?",
+    "question": "Zinc and lead, compared to copper?",
+    "optionA": "Are less reactive",
+    "optionB": "Are more reactive",
+    "optionC": "Are equally reactive",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::अंगूर का किण्वन करना एक ?",
+    "question": "Fermentation of grapes is a?",
+    "optionA": "Chemical change",
+    "optionB": "Physical change",
+    "optionC": "Both chemical and physical change",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::मैग्नीशियम के रिबन के दहन होने पर किस प्रकृति का लौ उत्सर्जित होता है ?",
+    "question": "When magnesium ribbon burns, what type of flame is emitted?",
+    "optionA": "Red and shiny",
+    "optionB": "Blue shiny",
+    "optionC": "White shiny",
+    "optionD": "Green shiny",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सिरका में कौन-सा अम्ल पाया जाता है ?",
+    "question": "Which acid is found in vinegar?",
+    "optionA": "Lactic acid",
+    "optionB": "Citric acid",
+    "optionC": "Methanoic acid",
+    "optionD": "Acetic acid",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन विजातीय यौगिक है ?",
+    "question": "Which of the following is a heterogeneous compound?",
+    "optionA": "Plaster of Paris",
+    "optionB": "Khadia",
+    "optionC": "Marble",
+    "optionD": "Limestone",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::नींबू के रस का pH मान लगभग होता है ?",
+    "question": "The pH value of lemon juice is approximately?",
+    "optionA": "10",
+    "optionB": "2.2",
+    "optionC": "12",
+    "optionD": "14",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::मधुमक्खी के डंक मारने पर किस पदार्थ से उपचार करना लाभकारी है?",
+    "question": "What substance is beneficial for treatment after a bee sting?",
+    "optionA": "Baking soda",
+    "optionB": "Sodium carbonate",
+    "optionC": "Sodium chloride",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::मुँह साफ करने के लिए किस प्रकार के मंजन का व्यवहार करना चाहिए जिससे कि दंतक्षय रोका जा सके ?",
+    "question": "What type of toothpaste should be used to clean the mouth so that dental caries can be prevented?",
+    "optionA": "Acidic toothpaste",
+    "optionB": "Alkaline toothpaste",
+    "optionC": "Neutral toothpaste",
+    "optionD": "All",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन अधातु विद्युत का सुचालक है ?",
+    "question": "Which of the following is a non-metallic conductor of electricity?",
+    "optionA": "Graphite",
+    "optionB": "Copper",
+    "optionC": "Sulfur",
+    "optionD": "Diamond",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से किस धातु को चाकू से काटा जा सकता है ?",
+    "question": "Which of the following metals can be cut with a knife?",
+    "optionA": "Magnesium",
+    "optionB": "Sulfur",
+    "optionC": "Sodium",
+    "optionD": "Chromium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::जस्ता के अयस्क है ?",
+    "question": "The ore of zinc is?",
+    "optionA": "Zinc blend",
+    "optionB": "Bauxite",
+    "optionC": "Sodium chloride",
+    "optionD": "Sinnawar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::एलुमिना का विद्युत अपघटन करने पर एनोड पर कौन सी गैस जमा होती है ?",
+    "question": "Which gas accumulates at the anode during the electrolysis of alumina?",
+    "optionA": "Hydrogen gas",
+    "optionB": "Nitrogen gas",
+    "optionC": "Carbon dioxide gas",
+    "optionD": "Oxygen gas",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::इस्पात में कितना प्रतिशत कार्बन है ?",
+    "question": "What percentage of carbon is in steel?",
+    "optionA": "3%",
+    "optionB": "4%",
+    "optionC": "2%",
+    "optionD": "5%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::कौन-सी धातु है जो अधिक ताप पर भी ऑक्सीजन से अभिक्रिया नहीं करती है ?",
+    "question": "Which metal does not react with oxygen even at high temperature?",
+    "optionA": "Iron",
+    "optionB": "Gold",
+    "optionC": "Potassium",
+    "optionD": "Aluminum",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::कौन-सा धातु जल में डालने पर तैरने लगता है ?",
+    "question": "Which metal starts to float when placed in water?",
+    "optionA": "Calcium",
+    "optionB": "Nickel",
+    "optionC": "Magnesium",
+    "optionD": "Potassium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::एक धातु के टुकड़े से पतले तार खींचें जा सकते हैं । यह धातु के किस गुणधर्म के लिए उत्तरदायी है ?",
+    "question": "Thin wires can be drawn from a piece of metal. This property of metal is responsible for which characteristic?",
+    "optionA": "Ductility",
+    "optionB": "Hardness",
+    "optionC": "Malleability",
+    "optionD": "Conductivity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::इनमें से कौन-सी अधातु चमकीला है ?",
+    "question": "Which of these non-metals is lustrous?",
+    "optionA": "Carbon",
+    "optionB": "Iodine",
+    "optionC": "Sulfur",
+    "optionD": "Bromine",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::धातु के बरतन में खाना बनाया जाता है, क्योंकि यह ऊष्मा का -",
+    "question": "Food is cooked in metal vessels because it is a -",
+    "optionA": "Conductor of heat",
+    "optionB": "Semiconductor",
+    "optionC": "Insulator",
+    "optionD": "Both conductor and insulator",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::कौन-सी धातु जल के साथ अभिक्रिया करती है ?",
+    "question": "Which metal reacts with water?",
+    "optionA": "Gold",
+    "optionB": "Potassium",
+    "optionC": "Silver",
+    "optionD": "Lead",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::आयनिक यौगिक के गलनांक एवं क्वथनांक -",
+    "question": "The melting point and boiling point of ionic compounds -",
+    "optionA": "are low",
+    "optionB": "are high",
+    "optionC": "are normal",
+    "optionD": "all statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::मैग्नीशियम के दहन से जो उत्पादक बनते हैं वह -",
+    "question": "The products formed by the combustion of magnesium are -",
+    "optionA": "acidic",
+    "optionB": "neutral",
+    "optionC": "alkaline",
+    "optionD": "all",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सोडियम, लीथियम, कैल्सियम और निकेल में से किस धातु को चाकू से काटा जा सकता है ?",
+    "question": "Which of the metals sodium, lithium, calcium and nickel can be cut with a knife?",
+    "optionA": "Sodium",
+    "optionB": "Lithium",
+    "optionC": "Calcium",
+    "optionD": "All",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::आभूषण बनने वाला सोना होता है ?",
+    "question": "The gold used for making ornaments is?",
+    "optionA": "22 carat",
+    "optionB": "24 carat",
+    "optionC": "16 carat",
+    "optionD": "23 carat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::सिल्वर तथा कॉपर ऊष्मा के ?",
+    "question": "Silver and copper are?",
+    "optionA": "best conductors of heat",
+    "optionB": "poor conductors",
+    "optionC": "insulators",
+    "optionD": "best insulators",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::इनमें से कौन-सी धातु द्रव अवस्था में पायी जाती है ?",
+    "question": "Which of these metals is found in liquid state?",
+    "optionA": "Iron",
+    "optionB": "Mercury",
+    "optionC": "Silver",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से किस धातु को किरोसिन में डुबा कर रखते हैं ?",
+    "question": "Which of the following metals is stored by immersing in kerosene?",
+    "optionA": "Sodium",
+    "optionB": "Magnesium",
+    "optionC": "Zinc",
+    "optionD": "All",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन अधातु पानी में डुबा कर रखी जाती है ?",
+    "question": "Which non-metal is stored by immersing in water?",
+    "optionA": "Sulfur",
+    "optionB": "White Phosphorus",
+    "optionC": "Red Phosphorus",
+    "optionD": "Iodine",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन-सी धातु तार के रूप में उपलब्ध है ?",
+    "question": "Which of the following metals is available in the form of wire?",
+    "optionA": "Calcium",
+    "optionB": "Magnesium",
+    "optionC": "Copper",
+    "optionD": "Lead",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::भूपर्पटी में स्वतंत्र अवस्था में पायी जाने वाले धातुएँ निम्नांकित में से कौन है ?",
+    "question": "Which of the following metals is found in free state in the earth's crust?",
+    "optionA": "Ag",
+    "optionB": "Mg",
+    "optionC": "Al",
+    "optionD": "Zn",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से कौन अधातु है ?",
+    "question": "Which of the following is a non-metal?",
+    "optionA": "Cobalt",
+    "optionB": "Hydrogen",
+    "optionC": "Iron",
+    "optionD": "Gold",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ताम्र एवं टीन के मिश्रधातु को क्या कहते हैं ?",
+    "question": "What is the alloy of copper and tin called?",
+    "optionA": "Brass",
+    "optionB": "Duralumin",
+    "optionC": "Bronze",
+    "optionD": "Solder",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::कौन-सा अधातु कमरे के ताप पर द्रव होता है ?",
+    "question": "Which non-metal is liquid at room temperature?",
+    "optionA": "Mercury",
+    "optionB": "Aluminum",
+    "optionC": "Bromine",
+    "optionD": "Copper",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सीसा और टीन की मिश्रधातु को कहते हैं ?",
+    "question": "The alloy of lead and tin is called?",
+    "optionA": "Steel",
+    "optionB": "Semimetal",
+    "optionC": "Gunmetal",
+    "optionD": "Solder",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::कार्बन का कौन-सा अपरूप अधिक कठोर होता है ?",
+    "question": "Which allotrope of carbon is harder?",
+    "optionA": "Graphite",
+    "optionB": "Diamond",
+    "optionC": "Coal",
+    "optionD": "Charcoal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::कॉपर को वायु में जलाने पर कौन सा यौगिक बनता है ?",
+    "question": "What compound is formed when copper is burned in air?",
+    "optionA": "Copper Hydroxide",
+    "optionB": "Copper Hydride",
+    "optionC": "Copper Oxide",
+    "optionD": "None",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सिलिका क्या है ?",
+    "question": "What is silica?",
+    "optionA": "Metalloid",
+    "optionB": "Metal",
+    "optionC": "Non-metal",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::धातुओं को पीटकर पत्तर बनाना आसान है । यह धातु के किस गुणधर्म को बतलाता है ?",
+    "question": "It is easy to make sheets by beating metals. This indicates which property of metal?",
+    "optionA": "Hardness",
+    "optionB": "Malleability",
+    "optionC": "Conductivity",
+    "optionD": "Reactivity",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::अगर किसी मिश्रधातु में एक धातु पारद है तो इसे क्या कहते हैं ?",
+    "question": "If a metal in an alloy is mercury, what is it called?",
+    "optionA": "Mercury Alloy",
+    "optionB": "Iron Alloy",
+    "optionC": "Amalgam",
+    "optionD": "Zinc Alloy",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::लोहे पर भाप की अभिक्रिया से कौन-सा गैस उत्पन होता है ?",
+    "question": "Which gas is produced by the reaction of steam on iron?",
+    "optionA": "Hydrogen Gas",
+    "optionB": "Oxygen Gas",
+    "optionC": "Ammonia Gas",
+    "optionD": "Nitrogen Gas",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन सा गुण कार्बनिक यौगिकों में प्रायः नहीं होता है ?",
+    "question": "Which of the following properties is not usually found in organic compounds?",
+    "optionA": "Soluble in water",
+    "optionB": "Low melting point",
+    "optionC": "Flammability",
+    "optionD": "All",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन विद्युत का सुचालक है ?",
+    "question": "Which of the following is a conductor of electricity?",
+    "optionA": "Ethanol",
+    "optionB": "Graphite",
+    "optionC": "Diamond",
+    "optionD": "Alkene",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन कार्बन के अपरूप है ?",
+    "question": "Which of the following is an allotrope of carbon?",
+    "optionA": "Diamond",
+    "optionB": "Fullerene",
+    "optionC": "Graphite",
+    "optionD": "All",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन एल्कोहल पेय के लिए उपयुक्त है ?",
+    "question": "Which of the following is suitable for alcoholic beverages?",
+    "optionA": "Methanol",
+    "optionB": "Ethanol",
+    "optionC": "Hexanol",
+    "optionD": "Propanol",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::कार्बन क्या है ?",
+    "question": "What is carbon?",
+    "optionA": "Non-metal",
+    "optionB": "Metal",
+    "optionC": "Metalloid",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::क्लोरोफॉर्म का क्वथनांक है ?",
+    "question": "What is the boiling point of chloroform?",
+    "optionA": "391K",
+    "optionB": "334K",
+    "optionC": "351K",
+    "optionD": "111K",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::साबुन द्वारा सफाई का काम अच्छी तरह होता है ?",
+    "question": "Cleaning work is done well by soap?",
+    "optionA": "In hard water",
+    "optionB": "In soft water",
+    "optionC": "In both types of water",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्न में कौन जल में अविलेय है ?",
+    "question": "Which of the following is insoluble in water?",
+    "optionA": "Ethyne",
+    "optionB": "Glucose",
+    "optionC": "Ethanoic acid",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::हीरा और ग्रेफाइट कार्बन के क्या है ?",
+    "question": "What are diamond and graphite of carbon?",
+    "optionA": "Allotropes",
+    "optionB": "Isotopes",
+    "optionC": "Polymers",
+    "optionD": "Isomers",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::उस हाइड्रोकार्बन का नाम बतावें जिससे एथनॉल बना है ?",
+    "question": "Name the hydrocarbon from which ethanol is made?",
+    "optionA": "Methane",
+    "optionB": "Butane",
+    "optionC": "Ethane",
+    "optionD": "Benzene",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::पेन्सिल बनाने में कार्बन के किस अपरूप का उपयोग किया जाता है ?",
+    "question": "Which allotrope of carbon is used to make pencils?",
+    "optionA": "Coke",
+    "optionB": "Isoprene",
+    "optionC": "Graphite",
+    "optionD": "Charcoal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::रबर निम्न में किसका बहुलक है ?",
+    "question": "Rubber is a polymer of which of the following?",
+    "optionA": "Isoprene",
+    "optionB": "Propene",
+    "optionC": "Ethylene",
+    "optionD": "Acetylene",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में कौन ऊष्मा और विद्युत का सुचालक है ?",
+    "question": "Which of the following is a conductor of heat and electricity?",
+    "optionA": "Diamond",
+    "optionB": "Charcoal",
+    "optionC": "Graphite",
+    "optionD": "Methane",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::तेल लगा कागज होता है ?",
+    "question": "Oil paper is?",
+    "optionA": "Transparent",
+    "optionB": "Opaque",
+    "optionC": "Translucent",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::एक ही प्रकार के परमाणुओं से मिलकर बना पदार्थ क्या कहलाता है ?",
+    "question": "A substance made up of atoms of the same type is called?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Liquid",
+    "optionD": "Element",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::दो या दो से अधिक तत्वों के मात्रा के विचार से एक निश्चित अनुपात में संयोग करने से बना पदार्थ कहलाता है ?",
+    "question": "A substance formed by the combination of two or more elements in a fixed ratio by mass is called?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Liquid",
+    "optionD": "Element",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::दो या दो से अधिक शुद्ध पदार्थों को किसी भी अनुपात में मिला देने से बनता क्या बनता है ?",
+    "question": "What is formed by mixing two or more pure substances in any ratio?",
+    "optionA": "Liquid",
+    "optionB": "Solid",
+    "optionC": "Mixture",
+    "optionD": "Gas",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::ऐसे तत्व जिनमें धातु और अधातु दोनों के गुण पाये जाते हैं, कहलाते हैं ?",
+    "question": "Elements that have properties of both metals and non-metals are called?",
+    "optionA": "Metalloids",
+    "optionB": "Metallic oxides",
+    "optionC": "Alloy",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन धातु होते हुए भी विद्युत का कुचालक है ?",
+    "question": "Which of the following is a metal but an insulator of electricity?",
+    "optionA": "Lead",
+    "optionB": "Tin",
+    "optionC": "Copper",
+    "optionD": "Nickel",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस अधातु में धातुई चमक पायी जाती है ?",
+    "question": "In which of the following non-metals is a metallic luster found?",
+    "optionA": "Iodine",
+    "optionB": "Graphite",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में कौन एक यौगिक है ?",
+    "question": "Which of the following is a compound?",
+    "optionA": "Ammonia",
+    "optionB": "Ozone",
+    "optionC": "Air",
+    "optionD": "Mercury",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस पदार्थ में ऑक्सीजन नहीं है ?",
+    "question": "In which of the following substances is there no oxygen?",
+    "optionA": "Soil oil",
+    "optionB": "Glass",
+    "optionC": "Sand",
+    "optionD": "Cement",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::वायु क्या है ?",
+    "question": "What is air?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Liquid",
+    "optionD": "Solution",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::स्टेनलेस स्टील क्या है ?",
+    "question": "What is stainless steel?",
+    "optionA": "Compound",
+    "optionB": "Element",
+    "optionC": "Solid",
+    "optionD": "Mixture",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन न तो तत्व है और न ही यौगिक ?",
+    "question": "Which of the following is neither an element nor a compound?",
+    "optionA": "Mercury",
+    "optionB": "Water",
+    "optionC": "Air",
+    "optionD": "Sodium chloride",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::पदार्थ का चतुर्थ अवस्था क्या है ?",
+    "question": "What is the fourth state of matter?",
+    "optionA": "Plasma",
+    "optionB": "Liquid",
+    "optionC": "Gas",
+    "optionD": "Solid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन एक यौगिक है ?",
+    "question": "Which of the following is a compound?",
+    "optionA": "Brass",
+    "optionB": "Steel",
+    "optionC": "Sand",
+    "optionD": "Diamond",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::विरंजक चूर्ण क्या है ?",
+    "question": "What is bleaching powder?",
+    "optionA": "Element",
+    "optionB": "Compound",
+    "optionC": "Mixture",
+    "optionD": "Solution",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::बारूद होता है ?",
+    "question": "What is gunpowder?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Liquid",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::\" विश्व का प्रत्येक पदार्थ अत्यन्त सूक्ष्म कणों से मिलकर बना होता है \", यह सर्वप्रथम किसने कहा ?",
+    "question": "\"Every substance in the world is made up of extremely small particles\", who said this first?",
+    "optionA": "Rutherford",
+    "optionB": "Dalton",
+    "optionC": "Kanada",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::कोयला क्या है ?",
+    "question": "What is coal?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Element",
+    "optionD": "Solid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::हीरा क्या है ?",
+    "question": "What is diamond?",
+    "optionA": "Compound",
+    "optionB": "Mixture",
+    "optionC": "Solid",
+    "optionD": "Element",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से रासायनिक यौगिक कौन-सा है ?",
+    "question": "Which of the following is a chemical compound?",
+    "optionA": "Ammonia",
+    "optionB": "Air",
+    "optionC": "Mercury",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::शुद्ध तत्व कौन-सा है ?",
+    "question": "Which is a pure element?",
+    "optionA": "Glass",
+    "optionB": "Cement",
+    "optionC": "Sodium",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::किस वैज्ञानिक ने &#39; परमाणु सिद्धांत &#39; की खोज की ?",
+    "question": "Which scientist discovered the 'Atomic Theory'?",
+    "optionA": "John Dalton",
+    "optionB": "Madam Curie",
+    "optionC": "Rutherford",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन एक अस्थायी कण है ?",
+    "question": "Which of the following is a temporary particle?",
+    "optionA": "Neutron",
+    "optionB": "Electron",
+    "optionC": "Proton",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन एक आवेश रहित कण है ?",
+    "question": "Which of the following is a chargeless particle?",
+    "optionA": "Proton",
+    "optionB": "Electron",
+    "optionC": "Neutron",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::परमाणु विद्युततः क्या होते है ?",
+    "question": "What is the atomic electric?",
+    "optionA": "Negative",
+    "optionB": "Positive",
+    "optionC": "Dipolar",
+    "optionD": "Neutral",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::इलेक्ट्रॉन की खोज किसने की थी ?",
+    "question": "Who discovered the electron?",
+    "optionA": "John Dalton",
+    "optionB": "Thomson",
+    "optionC": "Rutherford",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ोटॉन की खोज किसने की थी ?",
+    "question": "Who discovered the proton?",
+    "optionA": "Madam Curie",
+    "optionB": "Faraday",
+    "optionC": "Rutherford",
+    "optionD": "John Dalton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::न्यूट्रॉन की खोज किसने की थी ?",
+    "question": "Who discovered the neutron?",
+    "optionA": "Chadwick",
+    "optionB": "Newton",
+    "optionC": "Faraday",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::परमाणवीय नाभिक किसने खोज था ?",
+    "question": "Who discovered the atomic nucleus?",
+    "optionA": "Thomson",
+    "optionB": "Rutherford",
+    "optionC": "Chadwick",
+    "optionD": "John Dalton",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::एक भारतीय वैज्ञानिक जिसका नाम एक विशिष्ठ मूल कण के साथ जुड़ा है ?",
+    "question": "An Indian scientist whose name is associated with a fundamental particle?",
+    "optionA": "Bose",
+    "optionB": "Raman",
+    "optionC": "Saha",
+    "optionD": "Chandrasekhar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस परमाणु के नाभिक में न्यूट्रॉन नहीं होता है ?",
+    "question": "Which of the following atoms does not have neutrons in its nucleus?",
+    "optionA": "Helium",
+    "optionB": "Tritium",
+    "optionC": "Hydrogen",
+    "optionD": "Lithium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::इलेक्ट्रॉन के तरंग प्रकृति की खोज सर्वप्रथम किसने की थी ?",
+    "question": "Who first discovered the wave nature of the electron?",
+    "optionA": "de Broglie",
+    "optionB": "Rutherford",
+    "optionC": "Thomson",
+    "optionD": "Linnaeus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::तत्व के सबसे छोटे भाग को क्या कहा जाता है ?",
+    "question": "What is the smallest part of an element called?",
+    "optionA": "Atom",
+    "optionB": "Anion",
+    "optionC": "Cation",
+    "optionD": "Molecule",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::डॉल्टन के परमाणु सिद्धांत के अनुसार कौन-सा सबसे छोटा कण स्वतंत्र रूप से रह सकता है ?",
+    "question": "According to Dalton's atomic theory, which is the smallest particle that can exist independently?",
+    "optionA": "Molecule",
+    "optionB": "Cation",
+    "optionC": "Atom",
+    "optionD": "Anion",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::किसी परमाणु के गुण निर्भर करते हैं ?",
+    "question": "The properties of an atom depend on?",
+    "optionA": "Electronic configuration",
+    "optionB": "Number of neutrons",
+    "optionC": "Atomic weight",
+    "optionD": "Number of protons",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::न्यूट्रॉन और प्रोटॉन के संख्याओं के योगफल को क्या कहते हैं ?",
+    "question": "What is the sum of the number of neutrons and protons called?",
+    "optionA": "Quantum number",
+    "optionB": "Mass number",
+    "optionC": "Atomic number",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::किन किरणों के प्रकीर्णन से नाभिक के आकार का आकलन किया जा सकता है ?",
+    "question": "From the scattering of which rays can the size of the nucleus be estimated?",
+    "optionA": "γ-particles",
+    "optionB": "β-particles",
+    "optionC": "δ-particles",
+    "optionD": "α-particles",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::नाभिक के धनावेशित होने की खोज की थी ?",
+    "question": "Who discovered that the nucleus is positively charged?",
+    "optionA": "John Dalton",
+    "optionB": "Rutherford",
+    "optionC": "Aristotle",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::परमाणु भार का अंतर्राष्ट्रीय मानक है ?",
+    "question": "What is the international standard for atomic weight?",
+    "optionA": "H-1",
+    "optionB": "N-15",
+    "optionC": "O-16",
+    "optionD": "C-12",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसने आण्विक सिद्धान्त प्रतिपादित किया था ?",
+    "question": "Who proposed the molecular theory?",
+    "optionA": "John Dalton",
+    "optionB": "Madam Curie",
+    "optionC": "Chadwick",
+    "optionD": "Faraday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::किसी परमाणु के बाह्यतम कक्षा में कितने इलेक्ट्रॉन रह सकते हैं ?",
+    "question": "How many electrons can be in the outermost shell of an atom?",
+    "optionA": "10",
+    "optionB": "8",
+    "optionC": "6",
+    "optionD": "20",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सोडियम परमाणु में कोर इलेक्ट्रॉन की संख्या है ?",
+    "question": "The number of core electrons in a sodium atom is?",
+    "optionA": "9",
+    "optionB": "8",
+    "optionC": "11",
+    "optionD": "10",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::परमाणु का द्रव्यमान किन मौलिक कणों पर निर्भर करता है ?",
+    "question": "On which fundamental particles does the mass of an atom depend?",
+    "optionA": "Electron and proton",
+    "optionB": "Electron and neutron",
+    "optionC": "Neutron and proton",
+    "optionD": "Proton, electron and neutron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::अनिश्चितता के सिद्धान्त का प्रतिपादन किया ?",
+    "question": "Who formulated the uncertainty principle?",
+    "optionA": "Heisenberg",
+    "optionB": "Pauli",
+    "optionC": "Rutherford",
+    "optionD": "Trevirenus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::नाभिक की खोज रदरफोर्ड ने किन कणों की सहायता से की ?",
+    "question": "With the help of which particles did Rutherford discover the nucleus?",
+    "optionA": "γ-particles",
+    "optionB": "β-particles",
+    "optionC": "X-particles",
+    "optionD": "α-particles",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::किसी तत्व की रासायनिक प्रकृति निर्भर करते हैं ?",
+    "question": "The chemical nature of an element depends on?",
+    "optionA": "Electron",
+    "optionB": "Neutron",
+    "optionC": "Valence electron",
+    "optionD": "Proton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::किसी तत्व के रसायनिक गुण निर्भर करते हैं ?",
+    "question": "The chemical properties of an element depend on?",
+    "optionA": "Atomic number",
+    "optionB": "Mass number",
+    "optionC": "Atomic mass weight",
+    "optionD": "Atomic weight",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसे विभाजित नहीं किया जा सकता है ?",
+    "question": "Which of the following cannot be divided?",
+    "optionA": "Positive ion",
+    "optionB": "Atom",
+    "optionC": "Nucleus",
+    "optionD": "Photon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::रेडियोसक्रियता की खोज सर्वप्रथम किस वैज्ञानिक ने की ?",
+    "question": "Who first discovered radioactivity?",
+    "optionA": "Henri Becquerel",
+    "optionB": "Irène Curie",
+    "optionC": "Madam Curie",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::रेडियोसक्रियता किसका गुण ?",
+    "question": "Radioactivity is a property of?",
+    "optionA": "Neutron",
+    "optionB": "Electron",
+    "optionC": "Proton",
+    "optionD": "Nucleus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::रेडियोसक्रियता की इकाई क्या है ?",
+    "question": "What is the unit of radioactivity?",
+    "optionA": "Fermi",
+    "optionB": "Curie",
+    "optionC": "Candela",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::अल्फा और बीटा किरणों की खोज किसने की थी ?",
+    "question": "Who discovered alpha and beta rays?",
+    "optionA": "Villard",
+    "optionB": "Dalton",
+    "optionC": "Faraday",
+    "optionD": "Rutherford",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::एक्स किरणों की खोज किसने की थी?",
+    "question": "Who discovered X-rays?",
+    "optionA": "Faraday",
+    "optionB": "Newton",
+    "optionC": "Rutherford",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::गामा किरणों की खोज किसने की थी ?",
+    "question": "Who discovered gamma rays?",
+    "optionA": "Rutherford",
+    "optionB": "Faraday",
+    "optionC": "Chadwick",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसके उत्सर्जन से समभारिक का निर्माण होता है ?",
+    "question": "From the emission of which of the following is an isobar formed?",
+    "optionA": "X-ray",
+    "optionB": "Gamma ray",
+    "optionC": "Beta ray",
+    "optionD": "Alpha ray",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसमें ऋणात्मक आवेश होती है ?",
+    "question": "Which of the following has a negative charge?",
+    "optionA": "Alpha ray",
+    "optionB": "Gamma ray",
+    "optionC": "X-ray",
+    "optionD": "Beta ray",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::β- किरणे किस प्रकार का आवेश वहन करता है ?",
+    "question": "What type of charge does β-rays carry?",
+    "optionA": "Negative",
+    "optionB": "Positive",
+    "optionC": "Zero charge",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस किरण की आयतन क्षमता सबसे कम है ?",
+    "question": "Among the following, which ray has the lowest ionization capacity?",
+    "optionA": "Alpha ray",
+    "optionB": "Beta ray",
+    "optionC": "Gamma ray",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस किरण की वेधन क्षमता सबसे अधिक है ?",
+    "question": "Among the following, which ray has the highest penetrating power?",
+    "optionA": "Alpha ray",
+    "optionB": "Gamma ray",
+    "optionC": "Beta ray",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::पृथ्वी की आयु का आकलन किया जाता है ?",
+    "question": "The age of the Earth is estimated by?",
+    "optionA": "Carbon dating",
+    "optionB": "Biological clock",
+    "optionC": "Uranium dating",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::परमाणु बम का आविष्कार किसने किया था ?",
+    "question": "Who invented the atomic bomb?",
+    "optionA": "Rutherford",
+    "optionB": "Otto Hahn",
+    "optionC": "Madam Curie",
+    "optionD": "Rutherford and Madam Curie",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::परमाणु शक्ति संयंत्र किस सिद्धान्त पर काम करता है ?",
+    "question": "On which principle does a nuclear power plant work?",
+    "optionA": "Thermal combustion",
+    "optionB": "Fusion",
+    "optionC": "Fission",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सूर्य से ऊर्जा उत्सर्जित होती है ?",
+    "question": "Energy is emitted from the Sun by?",
+    "optionA": "Chemical reaction",
+    "optionB": "Coal burning",
+    "optionC": "Nuclear fission",
+    "optionD": "Nuclear fusion",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::कार्बन डेटिंग निम्नलिखित में से किसकी आयु निर्धारण हेतु प्रयुक्त होता है ।",
+    "question": "Carbon dating is used to determine the age of which of the following?",
+    "optionA": "Plants",
+    "optionB": "Rocks",
+    "optionC": "Fossils",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::हाइड्रोजन के समस्थानिकों की संख्या कितनी है ?",
+    "question": "How many isotopes of hydrogen are there?",
+    "optionA": "5",
+    "optionB": "3",
+    "optionC": "2",
+    "optionD": "4",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सर्वाधिक संख्या में समस्थानिक किसके पाये जाते हैं ?",
+    "question": "The largest number of isotopes are found in which element?",
+    "optionA": "Lead",
+    "optionB": "Uranium",
+    "optionC": "Polonium",
+    "optionD": "Hydrogen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसके उत्सर्जन से समभारिक उत्पन्न होते हैं ?",
+    "question": "From the emission of which of the following are isobars produced?",
+    "optionA": "Alpha ray",
+    "optionB": "Beta ray",
+    "optionC": "Gamma ray",
+    "optionD": "X-ray",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस यौगिक की आकृति चतुष्फलकीय होती है ?",
+    "question": "Which of the following compounds has a tetrahedral shape?",
+    "optionA": "Water",
+    "optionB": "Ammonia",
+    "optionC": "Acetylene",
+    "optionD": "Carbon tetrachloride",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित यौगिकों में से किसमें आयनिक बंध नहीं है ?",
+    "question": "Which of the following compounds does not have an ionic bond?",
+    "optionA": "Calcium chloride",
+    "optionB": "Methane",
+    "optionC": "Sodium chloride",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::पोलोनियम के समस्थानिकों की संख्या है ?",
+    "question": "The number of isotopes of polonium is?",
+    "optionA": "20",
+    "optionB": "25",
+    "optionC": "27",
+    "optionD": "24",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::रक्त कैंसर को नियंत्रित करने के लिए उपयोग किया जाने वाला रेडियो आइसोटोप कौन-सा है ?",
+    "question": "Which radioisotope is used to control blood cancer?",
+    "optionA": "Cobalt-60",
+    "optionB": "Sodium-24",
+    "optionC": "Iodine-131",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::हाइड्रोजन के जलने से संबद्ध प्रक्रिया क्या है ?",
+    "question": "What is the process associated with the burning of hydrogen?",
+    "optionA": "Reduction",
+    "optionB": "Hydrogenation",
+    "optionC": "Combustion",
+    "optionD": "Oxidation",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::लोहें पर जंग लगना किसका उदाहरण है ?",
+    "question": "Rusting of iron is an example of?",
+    "optionA": "Galvanization",
+    "optionB": "Polymerization",
+    "optionC": "Oxidation",
+    "optionD": "Combustion",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::काश ऑक्सीकरण प्रक्रिया शुरू की जाती है ?",
+    "question": "Photo-oxidation process is initiated by?",
+    "optionA": "Catalyst",
+    "optionB": "Light",
+    "optionC": "Heat",
+    "optionD": "Oxygen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::वे पदार्थ जो जलकर उष्मा प्रदान करते हैं क्या कहलाते हैं ?",
+    "question": "What are the substances that burn and provide heat called?",
+    "optionA": "Coal",
+    "optionB": "Fuel",
+    "optionC": "Thermogenic",
+    "optionD": "Igniter",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ाकृतिक गैस में मुख्यतः क्या रहता है ?",
+    "question": "What is mainly found in natural gas?",
+    "optionA": "Ethane",
+    "optionB": "Butane",
+    "optionC": "Propane",
+    "optionD": "Methane",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::गोबर गैस में मुख्यतः होता है ?",
+    "question": "What is mainly found in biogas?",
+    "optionA": "Methane",
+    "optionB": "Acetylene",
+    "optionC": "Ethylene",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::अम्ल और क्षारों की अभिक्रिया के फलस्वरूप बने पदार्थ को क्या कहते हैं ?",
+    "question": "What is the substance formed as a result of the reaction between acids and bases called?",
+    "optionA": "Salt",
+    "optionB": "Ester",
+    "optionC": "Alcohol",
+    "optionD": "Acid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::अमोनियम क्लोराइड का जलीय विलयन होता है ?",
+    "question": "What is the aqueous solution of ammonium chloride?",
+    "optionA": "Neutral",
+    "optionB": "Colored",
+    "optionC": "Alkaline",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::किसी एक सामान्य व्यक्ति के रक्त का PH स्तर क्या होता है ?",
+    "question": "What is the pH level of blood in a normal person?",
+    "optionA": "3.5 - 4.5",
+    "optionB": "7.35 - 7.45",
+    "optionC": "5.45 - 6.55",
+    "optionD": "7.35 - 7.55",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हाइड्रोजन के खोजकर्ता कौन हैं ?",
+    "question": "Who are the discoverers of hydrogen?",
+    "optionA": "Priestley",
+    "optionB": "Cavendish",
+    "optionC": "Urey",
+    "optionD": "Lewiser",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::किस तत्व को रसायन में अवारा तत्व की संज्ञा दी गई है ?",
+    "question": "Which element is called the parent element in chemistry?",
+    "optionA": "Oxygen",
+    "optionB": "Nitrogen",
+    "optionC": "Hydrogen",
+    "optionD": "Carbon",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन अधातु नहीं है ?",
+    "question": "Which of the following is not a non-metal?",
+    "optionA": "Sulfur",
+    "optionB": "Aluminum",
+    "optionC": "Carbon",
+    "optionD": "Nitrogen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::पौधे नाइट्रोजन को किस रूप में लेते हैं ?",
+    "question": "In what form do plants take nitrogen?",
+    "optionA": "Nitrite",
+    "optionB": "Nitrogen oxide",
+    "optionC": "Nitrous oxide",
+    "optionD": "Nitrates",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से कौन एकपरमाण्विक गैस है ?",
+    "question": "Which of the following is a monatomic gas?",
+    "optionA": "Chlorine",
+    "optionB": "Helium",
+    "optionC": "Nitrogen",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किसको सार्वत्रिक विलायक कहते हैं ?",
+    "question": "Which of the following is called a universal solvent?",
+    "optionA": "Water",
+    "optionB": "Benzene",
+    "optionC": "Alcohol",
+    "optionD": "Acid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्न पदार्थों में से कौन केवल एक ही तत्व से बना है ?",
+    "question": "Which of the following is made up of only one element?",
+    "optionA": "Glass",
+    "optionB": "Water",
+    "optionC": "Diamond",
+    "optionD": "Sand",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::वह गैस जो वनस्पति के निर्माण में प्रयुक्त होती है, वह है ?",
+    "question": "The gas used in the construction of plants is?",
+    "optionA": "Oxygen",
+    "optionB": "Hydrogen",
+    "optionC": "Nitrogen",
+    "optionD": "Helium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::तत्व जो उर्वरक में नहीं पाया जाता है ?",
+    "question": "Element which is not found in fertilizers?",
+    "optionA": "Hydrogen",
+    "optionB": "Chlorine",
+    "optionC": "Nitrogen",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से सबसे कठोर पदार्थ कौन है ?",
+    "question": "Which of the following is the hardest substance?",
+    "optionA": "Steel",
+    "optionB": "Stone",
+    "optionC": "Diamond",
+    "optionD": "Graphite",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सा पदार्थ एक अतिशीतित द्रव है ?",
+    "question": "Which of the following is a cryogenic liquid?",
+    "optionA": "Wood",
+    "optionB": "Glass",
+    "optionC": "Ice cream",
+    "optionD": "Ammonia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन हरित गृह गैस है ?",
+    "question": "Which of the following is a greenhouse gas?",
+    "optionA": "Sulfur dioxide",
+    "optionB": "Methane",
+    "optionC": "Carbon dioxide",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::फॉस्फोरस प्रचुरता से किसमें पाया जाता है ?",
+    "question": "In which is phosphorus found in abundance?",
+    "optionA": "Vitamin",
+    "optionB": "Protein",
+    "optionC": "Fat",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हीरे का एक कैरेट कितने मिलिग्राम का होता है ?",
+    "question": "How many milligrams is one carat of diamond?",
+    "optionA": "155 mg",
+    "optionB": "250 mg",
+    "optionC": "200 mg",
+    "optionD": "150 mg",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::अधातु के ऑक्साइड प्रायः होते हैं ?",
+    "question": "Non-metal oxides are usually?",
+    "optionA": "Acidic",
+    "optionB": "Neutral",
+    "optionC": "Basic",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::आग बुझाने वाली गैस कौन-सा है ?",
+    "question": "Which gas is used to extinguish fire?",
+    "optionA": "Nitrogen",
+    "optionB": "Carbon dioxide",
+    "optionC": "Oxygen",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हँसाने वाली गैस है ?",
+    "question": "The gas that makes you laugh is?",
+    "optionA": "Helium",
+    "optionB": "Nitrogen",
+    "optionC": "Nitrous oxide",
+    "optionD": "Hydrogen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::सूर्य में होता है ?",
+    "question": "What is found in the sun?",
+    "optionA": "Hydrogen and Helium",
+    "optionB": "Nitrogen",
+    "optionC": "Oxygen",
+    "optionD": "Phosphorus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::मानव शरीर में प्रचुर मात्रा में कौन-सा तत्व होता है ?",
+    "question": "Which element is found in abundance in the human body?",
+    "optionA": "Oxygen",
+    "optionB": "Carbon",
+    "optionC": "Nitrogen",
+    "optionD": "Iron",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::रबड़ के वल्कनीकरण के लिए उसमें मिलाया जाता है ?",
+    "question": "What is added to rubber for vulcanization?",
+    "optionA": "Carbon",
+    "optionB": "Phosphorus",
+    "optionC": "Methane",
+    "optionD": "Sulfur",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::नाभिकीय रिएक्टरों में ग्रेफाइट का प्रयोग किया जाता है ?",
+    "question": "In nuclear reactors, graphite is used as?",
+    "optionA": "As a lubricant",
+    "optionB": "As a moderator",
+    "optionC": "As a fuel",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सी गैस न्यूनतम तापमान पर द्रव में बदल जाती है ?",
+    "question": "Which of the following gases turns into liquid at the lowest temperature?",
+    "optionA": "Nitrogen",
+    "optionB": "Helium",
+    "optionC": "Oxygen",
+    "optionD": "Hydrogen",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::आटोमोबाइल द्वारा निष्कासित मुख्य नुकसानदेह गैस जिससे वायु प्रदूषण होता है, निम्नलिखित में से कौन-सी है ?",
+    "question": "Which of the following is the main harmful gas emitted by automobiles that causes air pollution?",
+    "optionA": "Carbon dioxide",
+    "optionB": "Carbon monoxide",
+    "optionC": "Methane",
+    "optionD": "Ozone gas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::विसंक्रमण के बाद जल में उपलब्ध क्लोरीन की मात्रा को कहते हैं ?",
+    "question": "The amount of chlorine available in water after disinfection is called?",
+    "optionA": "Available free chlorine",
+    "optionB": "Available combined chlorine",
+    "optionC": "Free chlorine",
+    "optionD": "Residual chlorine",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सी ग्रीन हाउस गैस नहीं है ?",
+    "question": "Which of the following is not a greenhouse gas?",
+    "optionA": "Carbon dioxide",
+    "optionB": "Chlorofluoro carbon",
+    "optionC": "Hydrogen",
+    "optionD": "Nitric oxide",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::जल का शुद्धतम रूप है ?",
+    "question": "The purest form of water is?",
+    "optionA": "Distilled water",
+    "optionB": "Rain water",
+    "optionC": "Ground water",
+    "optionD": "River water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::बैटरी में निम्न में से किस एक एसिड का प्रयोग किया जाता है ?",
+    "question": "Which of the following acids is used in a battery?",
+    "optionA": "Hydrochloric acid",
+    "optionB": "Sulphurous acid",
+    "optionC": "Sulphuric acid",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से प्रमुख ग्रीन हाउस गैस कौन-सी है ?",
+    "question": "Which of the following is the main greenhouse gas?",
+    "optionA": "Carbon dioxide",
+    "optionB": "Carbon monoxide",
+    "optionC": "Freon",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::मौसमी गुब्बारों में कौन-सी गैस भरी रहती है ?",
+    "question": "Which gas is filled in weather balloons?",
+    "optionA": "Air",
+    "optionB": "Helium",
+    "optionC": "Hydrogen",
+    "optionD": "Nitrogen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हीरा और ग्रेफाइड होते हैं ?",
+    "question": "Diamond and graphite are?",
+    "optionA": "Isomorphous",
+    "optionB": "Isobars",
+    "optionC": "Allotropes",
+    "optionD": "Isomers",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::कार्बन डेटिंग निम्न की आयु निर्धारण हेतु प्रयुक्त होती है ?",
+    "question": "Carbon dating is used to determine the age of?",
+    "optionA": "Plants",
+    "optionB": "Rocks",
+    "optionC": "Fossils",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::दियासलाई की नोक में क्या रहता है ?",
+    "question": "What is present at the tip of a matchstick?",
+    "optionA": "Red phosphorus",
+    "optionB": "White phosphorus",
+    "optionC": "Phosphorus trichloride",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::हीरे का खनिजीय बनावट क्या है ?",
+    "question": "What is the mineral composition of diamond?",
+    "optionA": "Nitrogen",
+    "optionB": "Carbon",
+    "optionC": "Zinc",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हीलियम की खोज किसने की थी ?",
+    "question": "Who discovered helium?",
+    "optionA": "Sheele",
+    "optionB": "Loecaire",
+    "optionC": "Henry Cavendish",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सर्वाधिक यौगिक बनाने वाली अक्रिय गैस है ?",
+    "question": "The inert gas that forms the most compounds is?",
+    "optionA": "Xenon",
+    "optionB": "Argon",
+    "optionC": "Helium",
+    "optionD": "Oxygen",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::ओजोन परत मुख्यतः कहाँ अवस्थित रहती है ?",
+    "question": "Where is the ozone layer mainly located?",
+    "optionA": "Ionosphere",
+    "optionB": "Troposphere",
+    "optionC": "Stratosphere",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::ग्रीन हाउस गैसों के उत्सर्जन में किस देश का सर्वाधिक योगदान है ?",
+    "question": "Which country contributes the most to greenhouse gas emissions?",
+    "optionA": "USA",
+    "optionB": "India",
+    "optionC": "China",
+    "optionD": "Japan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::कठोर जल से कैल्सियम और मैग्नीशियम निकालने की प्रक्रिया को क्या कहते हैं ?",
+    "question": "What is the process of removing calcium and magnesium from hard water called?",
+    "optionA": "Water softening",
+    "optionB": "Filtration",
+    "optionC": "Sedimentation",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस एक को स्ट्रेन्जर गैस भी कहते हैं ?",
+    "question": "Which of the following is also called a noble gas?",
+    "optionA": "Argon",
+    "optionB": "Helium",
+    "optionC": "Neon",
+    "optionD": "Xenon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::वायु में कौन-सी नोबल गैस नहीं होती है ?",
+    "question": "Which noble gas is not found in air?",
+    "optionA": "Argon",
+    "optionB": "Helium",
+    "optionC": "Radon",
+    "optionD": "Neon",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::एक विद्युत बल्ब के जीवन को बढ़ाने के लिए सामान्यतः उसे किससे भरा जाता है ?",
+    "question": "To increase the life of an electric bulb, it is generally filled with what?",
+    "optionA": "Nitrogen",
+    "optionB": "Argon",
+    "optionC": "Hydrogen",
+    "optionD": "Krypton",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::विद्युत् बल्ब में प्रयुक्त गैस कौन-सी है ?",
+    "question": "Which gas is used in an electric bulb?",
+    "optionA": "Hydrogen",
+    "optionB": "Radon",
+    "optionC": "Inert gas",
+    "optionD": "Argon",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::मौसम विज्ञान सम्बन्धी प्रेक्षण के लिए निम्नलिखित में से किसको गुब्बारों में भरने में उपयोग में लाया जाता है ?",
+    "question": "For meteorological observations, which of the following is used to fill balloons?",
+    "optionA": "Helium",
+    "optionB": "Hydrogen",
+    "optionC": "Nitrogen",
+    "optionD": "Methane",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::अक्रिय गैसों की खोज करने का श्रेय किसे प्राप्त है ?",
+    "question": "Who is credited with the discovery of inert gases?",
+    "optionA": "Ramsay",
+    "optionB": "Lothar Meyer",
+    "optionC": "Scheele",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::भू-पर्पटी में सबसे कम मात्रा में पाया जाने वाला तत्व है ?",
+    "question": "The element found in the smallest amount in the earth's crust is?",
+    "optionA": "Astatine",
+    "optionB": "Chlorine",
+    "optionC": "Manganese",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::काँच पर लिखने के लिए किस अम्ल का प्रयोग किया जाता है ?",
+    "question": "Which acid is used for writing on glass?",
+    "optionA": "Hydrogen fluoride",
+    "optionB": "Nitric acid",
+    "optionC": "Sulfuric acid",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::मानव अमाशय में पाया जाने वाला अम्ल है ?",
+    "question": "The acid found in the human stomach is?",
+    "optionA": "HF",
+    "optionB": "HI",
+    "optionC": "HCl",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::हाइड्रोक्लोरिक अम्ल का अन्य नाम क्या है ?",
+    "question": "What is the other name of hydrochloric acid?",
+    "optionA": "Muriatic acid",
+    "optionB": "Muriatic acid",
+    "optionC": "Oleum",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::वायुयानों के टायरों में भरने में निम्न गैस का प्रयोग किया जाता है ?",
+    "question": "Which gas is used to fill aircraft tires?",
+    "optionA": "Nitrogen",
+    "optionB": "Helium",
+    "optionC": "Hydrogen",
+    "optionD": "Oxygen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सामान्यतः निम्न में किसे भविष्य का ईंधन कहा जाता है ?",
+    "question": "Which of the following is generally called the fuel of the future?",
+    "optionA": "Methane",
+    "optionB": "Hydrogen",
+    "optionC": "Natural gas",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::सामान्य किस्म का कोयला है ?",
+    "question": "Common variety of coal is?",
+    "optionA": "Bituminous",
+    "optionB": "Peat",
+    "optionC": "Lignite",
+    "optionD": "Coal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::खाना पकाने के तेल को किस प्रक्रिया द्वारा वनस्पति घी में परिवर्तित किया जा सकता है ?",
+    "question": "By which process can cooking oil be converted to vegetable ghee?",
+    "optionA": "Distillation",
+    "optionB": "Oxidation",
+    "optionC": "Hydrogenation",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::भारी जल एक प्रकार का है ?",
+    "question": "Heavy water is a type of?",
+    "optionA": "Refrigerant",
+    "optionB": "Fuel",
+    "optionC": "Coolant",
+    "optionD": "Ore",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::सभी जैव योगिकों का अनिवार्य मूल तत्व क्या है ?",
+    "question": "What is the essential element of all organic compounds?",
+    "optionA": "Oxygen",
+    "optionB": "Carbon",
+    "optionC": "Nitrogen",
+    "optionD": "Sulphur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::पेन्सिल का लेड है ?",
+    "question": "The lead of a pencil is?",
+    "optionA": "Charcoal",
+    "optionB": "Coal",
+    "optionC": "Graphite",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::ऑक्सीजन की खोज किसने की ?",
+    "question": "Who discovered oxygen?",
+    "optionA": "Rutherford",
+    "optionB": "Davy",
+    "optionC": "Priestley",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से किस एक का ईंधन मान अधिकतम होता है ?",
+    "question": "Which of the following has the maximum calorific value?",
+    "optionA": "Natural gas",
+    "optionB": "Hydrogen",
+    "optionC": "Charcoal",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::जिस न्यूनतम ताप पर कोई पदार्थ जलना शुरू करता है, उसे उस पदार्थ को कहतें है ?",
+    "question": "The minimum temperature at which a substance catches fire is called?",
+    "optionA": "Ignition temperature",
+    "optionB": "Thermal temperature",
+    "optionC": "Calorific value",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::श्वसन किस प्रकार की दहन क्रिया है ?",
+    "question": "Respiration is a type of combustion?",
+    "optionA": "Slow combustion",
+    "optionB": "Explosive combustion",
+    "optionC": "Rapid combustion",
+    "optionD": "Spontaneous combustion",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::भूरा कोयला के नाम से जाना जाता है ?",
+    "question": "Brown coal is known as?",
+    "optionA": "Lignite",
+    "optionB": "Bituminous",
+    "optionC": "Peat",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन जीवाश्म ईंधन नहीं है ?",
+    "question": "Which of the following is not a fossil fuel?",
+    "optionA": "Coal",
+    "optionB": "Nitrogen",
+    "optionC": "Petroleum",
+    "optionD": "Water gas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन ईंधन तत्व नहीं है ?",
+    "question": "Which of the following is not a fuel element?",
+    "optionA": "Radium",
+    "optionB": "Thorium",
+    "optionC": "Helium",
+    "optionD": "Uranium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस ईंधन से वातावरण में न्यूनतम प्रदूषण फैलता है ?",
+    "question": "Which of the following fuels causes minimum pollution in the atmosphere?",
+    "optionA": "Hydrogen",
+    "optionB": "Diesel",
+    "optionC": "Coal",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::ेट्रोल से लगनेवाली आग के लिए किस प्रकार के अग्निशामक का प्रयोग किया जाता है ?",
+    "question": "What type of fire extinguisher is used for fire caused by petrol?",
+    "optionA": "Soda acid based",
+    "optionB": "Powder based",
+    "optionC": "Foam based",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::वायु से हल्की गैस है ?",
+    "question": "Which gas is lighter than air?",
+    "optionA": "Propane",
+    "optionB": "Oxygen",
+    "optionC": "Chlorine",
+    "optionD": "Ammonia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::गैसीय समीकरण pV = nRT में R क्या सूचित करता है ?",
+    "question": "In the gas equation pV = nRT, what does R represent?",
+    "optionA": "One gram of gas",
+    "optionB": "One mole of gas",
+    "optionC": "One liter of gas",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सा नियम गैसों से सम्बन्धित नहीं है ?",
+    "question": "Which of the following laws is not related to gases?",
+    "optionA": "Faraday's law",
+    "optionB": "Boyle's law",
+    "optionC": "Charles's law",
+    "optionD": "Gay-Lussac's law",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::भिन्न-भिन्न नियत तापों पर गैसों के आयतन दाब आचरण को दर्शाने के लिए आरेखित चक्र रेखा क्या कहलाती है ?",
+    "question": "What is the name of the curved line plotted to show the volume-pressure behavior of gases at different constant temperatures?",
+    "optionA": "Isothermals",
+    "optionB": "Isocors",
+    "optionC": "Isochores",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::आदर्श गैस की ऊर्जा निर्भर करती है ?",
+    "question": "The energy of an ideal gas depends on?",
+    "optionA": "Volume",
+    "optionB": "Number of moles",
+    "optionC": "Pressure",
+    "optionD": "Temperature",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::तापमान एवं दबाव की समान स्थितियों के अंतर्गत सभी गैसों के समान आयतन में अणुओं की संख्या समान होती है । यह नियम क्या कहलाता है ?",
+    "question": "Under the same conditions of temperature and pressure, equal volumes of all gases contain an equal number of molecules. What is this law called?",
+    "optionA": "Boyle's law",
+    "optionB": "Charles's law",
+    "optionC": "Avogadro's law",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::उत्प्रेरक की खोज किसने की ?",
+    "question": "Who discovered the catalyst?",
+    "optionA": "Rutherford",
+    "optionB": "Lewis",
+    "optionC": "Berzelius",
+    "optionD": "Kossel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::तत्वों का सबसे पहला वर्गीकरण किसने किया था ?",
+    "question": "Who made the first classification of elements?",
+    "optionA": "Lothar Meyer",
+    "optionB": "Mendeleev",
+    "optionC": "Döbereiner",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::तत्वों के वर्गीकरण से सम्बन्धित त्रिक के नियम का प्रतिपादन किसने किया ?",
+    "question": "Who formulated the law of triads related to the classification of elements?",
+    "optionA": "Mendeleev",
+    "optionB": "Döbereiner",
+    "optionC": "Rutherford",
+    "optionD": "Newlands",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::तत्वों के वर्गीकरण से सम्बन्धित अष्टक नियम का प्रतिपादन किसने किया ?",
+    "question": "Who formulated the law of octaves related to the classification of elements?",
+    "optionA": "Lothar Meyer",
+    "optionB": "Newlands",
+    "optionC": "Mendeleev",
+    "optionD": "Döbereiner",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::किस वैज्ञानिक ने सर्वप्रथम आवर्त सारणी का निर्माण किया ?",
+    "question": "Which scientist first constructed the periodic table?",
+    "optionA": "Rutherford",
+    "optionB": "Lewis",
+    "optionC": "Mendeleev",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::चाकू से काटी जा सकने वाली धातु है ?",
+    "question": "Which metal can be cut with a knife?",
+    "optionA": "Iron",
+    "optionB": "Lead",
+    "optionC": "Sodium",
+    "optionD": "Copper",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::साधारण नमक है ?",
+    "question": "Common salt is?",
+    "optionA": "Sodium carbonate",
+    "optionB": "Sodium chloride",
+    "optionC": "Sodium hydroxide",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::डबल रोटी बनाने में प्रयुक्त किये जाने वाले बेकिंग पाउडर क्या होता है ?",
+    "question": "What is baking powder used in making double roti?",
+    "optionA": "Sodium chloride",
+    "optionB": "Sodium sulfate",
+    "optionC": "Sodium bicarbonate",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्न लवणों में से सागरीय जल की लवणता में किसका अधिकतम योगदान है ?",
+    "question": "Among the following salts, which contributes the most to the salinity of seawater?",
+    "optionA": "Sodium chloride",
+    "optionB": "Sodium sulfate",
+    "optionC": "Calcium chloride",
+    "optionD": "Sodium bicarbonate",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::फोटोग्राफी में स्थायीकर के रूप में प्रयुक्त होने वाला रसायन है ?",
+    "question": "The chemical used as a fixer in photography is?",
+    "optionA": "Sodium sulfate",
+    "optionB": "Sodium thiosulfate",
+    "optionC": "Calcium chloride",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::कौन-सी धातु अपने ही ऑक्साइड से रक्षित होता है ?",
+    "question": "Which metal is protected by its own oxide?",
+    "optionA": "Aluminium",
+    "optionB": "Silver",
+    "optionC": "Gold",
+    "optionD": "Iron",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::रॉकेट को चलाने में प्रयुक्त ईंधन कहलाते हैं ?",
+    "question": "The fuel used to run a rocket is called?",
+    "optionA": "Coal gas",
+    "optionB": "Propellant",
+    "optionC": "Coke",
+    "optionD": "Biomass",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सा ईंधन न्यूनतम पर्यावरणीय प्रदूषण उत्पन्न करता है ?",
+    "question": "Which of the following fuels produces the least environmental pollution?",
+    "optionA": "Coal",
+    "optionB": "Kerosene",
+    "optionC": "Hydrogen",
+    "optionD": "Diesel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::गैस एजेन्सियों द्वारा सिलिण्डरों में भरकर दी जाने वाली कुकिंग गैस है ?",
+    "question": "The cooking gas filled in cylinders by gas agencies is?",
+    "optionA": "Gas",
+    "optionB": "Solid",
+    "optionC": "Liquid",
+    "optionD": "A solution",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::धातु की प्रकृति कैसी होती है ?",
+    "question": "What is the nature of a metal?",
+    "optionA": "Neutral",
+    "optionB": "Electronegative",
+    "optionC": "Electropositive",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::इनमें से कौन ठोस नहीं है ?",
+    "question": "Which of these is not a solid?",
+    "optionA": "Potassium",
+    "optionB": "Mercury",
+    "optionC": "Sodium",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ऐल्युमिनियम का प्रमुख अयस्क कौन-सा है ?",
+    "question": "What is the main ore of aluminium?",
+    "optionA": "Lignite",
+    "optionB": "Bauxite",
+    "optionC": "Dolomite",
+    "optionD": "Copper",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में कौन-सी मिश्रधातु नहीं है ?",
+    "question": "Which of the following is not an alloy?",
+    "optionA": "Brass",
+    "optionB": "Steel",
+    "optionC": "Copper",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित धातुओं में से सर्वाधिक हीन चालक कौन-सा है ?",
+    "question": "Which of the following metals is the poorest conductor?",
+    "optionA": "Gold",
+    "optionB": "Silver",
+    "optionC": "Lead",
+    "optionD": "Iron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में सबसे भारी धातु है ?",
+    "question": "Which of the following is the heaviest metal?",
+    "optionA": "Silver",
+    "optionB": "Tin",
+    "optionC": "Aluminium",
+    "optionD": "Uranium",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्न में से कौन सीमेन्ट का मुख्य संघटक है ?",
+    "question": "Which of the following is the main component of cement?",
+    "optionA": "Ash",
+    "optionB": "Gypsum",
+    "optionC": "Limestone",
+    "optionD": "Clay",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::मानव निर्मित तत्व की पहचान कीजिए ?",
+    "question": "Identify the man-made element?",
+    "optionA": "Calcium",
+    "optionB": "Californium",
+    "optionC": "Carbon",
+    "optionD": "Gold",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::कृति में स्वतंत्र अवस्था में भी पाया जाता है ?",
+    "question": "Which is also found in the free state?",
+    "optionA": "Gold",
+    "optionB": "Copper",
+    "optionC": "Silver",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस धातु का गलनांक इतना कम है की वह हाथ में ही पिघल जाती है ?",
+    "question": "Which of the following metals has a melting point so low that it melts in the hand itself?",
+    "optionA": "Gallium",
+    "optionB": "Sodium",
+    "optionC": "Potassium",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::सोडियम बाइकार्बोनेट का वाणिज्यिक नाम है ?",
+    "question": "What is the commercial name of sodium bicarbonate?",
+    "optionA": "Washing soda",
+    "optionB": "Soda ash",
+    "optionC": "Baking soda",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::जो लवण अम्लीय हाइड्रोजन परमाणु या हाइड्रॉक्सिल आयन से मुक्त रहते हैं, कहलाते हैं ?",
+    "question": "Salts that are free from acidic hydrogen atoms or hydroxyl ions are called?",
+    "optionA": "Normal salts",
+    "optionB": "Mixed salts",
+    "optionC": "Acid salts",
+    "optionD": "Basic salts",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::हाइड्रोजन सभी अम्लों का एक आवश्यक अवयव है, यह सर्वप्रथम किसने कहा था ?",
+    "question": "Hydrogen is an essential component of all acids, who first said this?",
+    "optionA": "Bronsted",
+    "optionB": "Lorry",
+    "optionC": "Davy",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::भस्मों का स्वाद होता है ?",
+    "question": "What is the taste of ashes?",
+    "optionA": "Sweet",
+    "optionB": "Tasteless",
+    "optionC": "Sour",
+    "optionD": "Salty",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::नीले लिटमस पत्र को लाल कर देता है ?",
+    "question": "What turns blue litmus paper red?",
+    "optionA": "Base",
+    "optionB": "Ash",
+    "optionC": "Acid",
+    "optionD": "Salt",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::आधुनिक आवर्त नियम के प्रवर्तक हैं ?",
+    "question": "The propounders of the modern periodic law are?",
+    "optionA": "Moseley",
+    "optionB": "Avogadro",
+    "optionC": "Dalton",
+    "optionD": "Mendeleev",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::सबसे अधिक विद्युत् ऋणात्मक तत्व है ?",
+    "question": "The most electronegative element is?",
+    "optionA": "Sodium",
+    "optionB": "Lithium",
+    "optionC": "Chlorine",
+    "optionD": "Fluorine",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::पृथ्वी पर सबसे अधिक मात्रा में पाया जाने वाला धातु तत्व है ?",
+    "question": "The most abundant metallic element on Earth is?",
+    "optionA": "Silicon",
+    "optionB": "Iron",
+    "optionC": "Oxygen",
+    "optionD": "Aluminium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::त्येक आवर्त का अन्तिम सदस्य होता है ?",
+    "question": "The last member of each period is?",
+    "optionA": "A halogen",
+    "optionB": "A metal",
+    "optionC": "An inert gas",
+    "optionD": "A metalloid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::त्येक आवर्त का प्रथम सदस्य होता है ?",
+    "question": "The first member of each period is?",
+    "optionA": "An inert gas",
+    "optionB": "An alkali metal",
+    "optionC": "A metalloid",
+    "optionD": "A halogen",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::चूना-पत्थर का रासायनिक नाम है ?",
+    "question": "The chemical name of limestone is?",
+    "optionA": "Calcium chloride",
+    "optionB": "Calcium sulfate",
+    "optionC": "Calcium oxide",
+    "optionD": "Calcium carbonate",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::मोती मुख्य रूप से बना होता है ?",
+    "question": "Pearl is mainly made up of?",
+    "optionA": "Calcium sulfate",
+    "optionB": "Calcium carbonate",
+    "optionC": "Calcium oxide",
+    "optionD": "Calcium oxalate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::ताप जिप्सम क्या है ?",
+    "question": "Plaster of Paris is?",
+    "optionA": "Lime",
+    "optionB": "Blue vitriol",
+    "optionC": "Bleaching powder",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सी धातु जल के साथ अभिक्रिया करके ऑक्सीजन पैदा नहीं करती है ?",
+    "question": "Which of the following metals does not produce oxygen by reacting with water?",
+    "optionA": "Cadmium",
+    "optionB": "Lithium",
+    "optionC": "Sodium",
+    "optionD": "Potassium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::रासायनिक दृष्टि से सिन्दूर है ?",
+    "question": "From a chemical perspective, what is sindoor?",
+    "optionA": "Mercuric sulfide",
+    "optionB": "Potassium nitrate",
+    "optionC": "Calcium carbonate",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::ओडियो और वीडियो टेप पर कौन-सा रासायनिक पदार्थ का लेप रहता है ?",
+    "question": "Which chemical substance is coated on audio and video tapes?",
+    "optionA": "Iron oxide",
+    "optionB": "Silver iodide",
+    "optionC": "Sodium hydroxide",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::जर्मन सिल्वर में निम्नलिखित में से कौन-सा नहीं होता है ?",
+    "question": "Which of the following is not present in German silver?",
+    "optionA": "Copper",
+    "optionB": "Zinc",
+    "optionC": "Silver",
+    "optionD": "Nickel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::स्टील में कार्बन का प्रतिशत होता है ?",
+    "question": "What is the percentage of carbon in steel?",
+    "optionA": "0.1 to 1.5",
+    "optionB": "1.5 to 3.0",
+    "optionC": "3.0 to 4.0",
+    "optionD": "4.0 to 6.0",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन सबसे अधिक मात्रा में समुद्र में पाया जाता है ?",
+    "question": "Which of the following is found in the largest quantity in the sea?",
+    "optionA": "Aluminum",
+    "optionB": "Lithium",
+    "optionC": "Iron",
+    "optionD": "Magnesium",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::यूरेनियम के रेडियो एक्टिव विद्युतन के फलस्वरूप अन्ततः क्या बनता है ?",
+    "question": "As a result of the radioactive disintegration of uranium, what is ultimately formed?",
+    "optionA": "Radium",
+    "optionB": "Lead",
+    "optionC": "Polonium",
+    "optionD": "Thorium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से सर्वोत्तम ऊष्मा सुचालक है ?",
+    "question": "Which of the following is the best conductor of heat?",
+    "optionA": "Alcohol",
+    "optionB": "Water",
+    "optionC": "Ether",
+    "optionD": "Mercury",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::काँच को गहरा नीला रंग किससे मिलता है ?",
+    "question": "From what does glass get its deep blue color?",
+    "optionA": "Cobalt oxide",
+    "optionB": "Nickel oxide",
+    "optionC": "Ferrous oxide",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::स्वचालित वाहन निर्वातक का सर्वाधिक अविषालु धातु प्रदूषक है ?",
+    "question": "The most toxic metal pollutant in automobile exhaust is?",
+    "optionA": "Lead",
+    "optionB": "Mercury",
+    "optionC": "Cadmium",
+    "optionD": "Copper",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::पीतल में कौन-सी धातुएँ होती हैं ?",
+    "question": "Which metals are present in brass?",
+    "optionA": "Copper and Iron",
+    "optionB": "Copper and Nickel",
+    "optionC": "Copper and Zinc",
+    "optionD": "Nickel and Iron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::प्लास्टर ऑफ पेरिस रासायनिक रूप से है ?",
+    "question": "Plaster of Paris is chemically?",
+    "optionA": "Calcium oxide",
+    "optionB": "Calcium sulfate",
+    "optionC": "Calcium carbonate",
+    "optionD": "Calcium oxalate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::मायोग्लोबिन में कौन-सी धातु होती है ?",
+    "question": "Which metal is present in myoglobin?",
+    "optionA": "Copper",
+    "optionB": "Iron",
+    "optionC": "Gold",
+    "optionD": "Silver",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::आतिशबाजी में हरा रंग किसकी उपस्थिति के कारण होता है ?",
+    "question": "The green color in fireworks is due to the presence of?",
+    "optionA": "Sodium",
+    "optionB": "Strontium",
+    "optionC": "Barium",
+    "optionD": "Magnesium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::प्याज-लहसून में गंध किस तत्व की उपस्थिति के कारण होता है ?",
+    "question": "The smell in onion-garlic is due to the presence of which element?",
+    "optionA": "Lithium",
+    "optionB": "Chlorine",
+    "optionC": "Potassium",
+    "optionD": "Sodium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::भारत में प्रचुर मात्रा में उपलब्ध नाभिकीय ईंधन है ?",
+    "question": "The nuclear fuel available in abundance in India is?",
+    "optionA": "Uranium",
+    "optionB": "Plutonium",
+    "optionC": "Radium",
+    "optionD": "Thorium",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन-सा एक यशद पुष्प कहलाता है ?",
+    "question": "Which of the following is called zinc flower?",
+    "optionA": "Zinc Oxide",
+    "optionB": "Zinc Chloride",
+    "optionC": "Zinc Nitrate",
+    "optionD": "Zinc Bromide",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से किस एक में रजत नहीं होता है ?",
+    "question": "Which of the following does not contain silver?",
+    "optionA": "German Silver",
+    "optionB": "Horn Silver",
+    "optionC": "Ruby Silver",
+    "optionD": "Lunar Caustic",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::माणिक्य और नीलम रासायनिक रूप से कैसे जाने जाते हैं ?",
+    "question": "What are ruby and sapphire chemically known as?",
+    "optionA": "Silicon Dioxide",
+    "optionB": "Borinitrate",
+    "optionC": "Aluminum Oxide",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::फिटकरी गंदले पानी को किस प्रक्रिया द्वारा स्वच्छ करती है ?",
+    "question": "By which process does alum clean muddy water?",
+    "optionA": "Absorption",
+    "optionB": "Dissolution",
+    "optionC": "Coagulation",
+    "optionD": "Desorption",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::शुष्क सेल में विध्रुवक का कार्य करता है ?",
+    "question": "What acts as a depolarizer in a dry cell?",
+    "optionA": "Sodium Chloride",
+    "optionB": "Potassium Hydroxide",
+    "optionC": "Manganese Dioxide",
+    "optionD": "Sulphuric Acid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::हैलोजनों में सर्वाधिक अभिक्रिया है ?",
+    "question": "Which of the halogens is the most reactive?",
+    "optionA": "Chlorine",
+    "optionB": "Iodine",
+    "optionC": "Fluorine",
+    "optionD": "Bromine",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::निम्नलिखित में से कौन सामान्य ताप पर ठोस अवस्था में पाया जाता है ?",
+    "question": "Which of the following is found in solid state at normal temperature?",
+    "optionA": "Iodine",
+    "optionB": "Chlorine",
+    "optionC": "Bromine",
+    "optionD": "Fluorine",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::स्फटिक निम्नलिखित में से किसका क्रिस्टलीय रूप है ?",
+    "question": "Crystal is the crystalline form of which of the following?",
+    "optionA": "Alumina",
+    "optionB": "Limestone",
+    "optionC": "Glass",
+    "optionD": "Silica",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "chemistry-gk::वह तत्व जिसका परमाणु क्रमांक तथा परमाणु भार दोनों एक-समान होता है ?",
+    "question": "Which element has both atomic number and atomic weight the same?",
+    "optionA": "Hydrogen",
+    "optionB": "Chlorine",
+    "optionC": "Oxygen",
+    "optionD": "Lithium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::हीरे का जवाहरात के रूप में उपयोग उसके किस गुण पर निर्भर करता है ?",
+    "question": "The use of diamond as a jewel depends on which of its properties?",
+    "optionA": "Refractive Index",
+    "optionB": "Conductivity",
+    "optionC": "High Value",
+    "optionD": "Extreme Hardness",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "chemistry-gk::भारी जल का अणु भार है ?",
+    "question": "What is the molecular weight of heavy water?",
+    "optionA": "18",
+    "optionB": "20",
+    "optionC": "22",
+    "optionD": "25",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::इलेक्ट्रॉन त्यागने की प्रवृति क्या कहलाती है ?",
+    "question": "What is the tendency of losing electrons called?",
+    "optionA": "Electropositivity",
+    "optionB": "Reduction",
+    "optionC": "Oxidation",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "chemistry-gk::इलेक्ट्रॉन ग्रहण करने की प्रवृति क्या कहलाती है ?",
+    "question": "What is the tendency of gaining electrons called?",
+    "optionA": "Oxidation",
+    "optionB": "Reduction",
+    "optionC": "Electropositivity",
+    "optionD": "Catalysis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "chemistry-gk::हीलियम को छोड़कर अन्य सभी अक्रिय गैसों की बाह्य कक्षा में कितने इलेक्ट्रॉन होते है ?",
+    "question": "How many electrons are there in the outermost shell of all other inert gases except helium?",
+    "optionA": "5",
+    "optionB": "8",
+    "optionC": "10",
+    "optionD": "18",
+    "correctAnswer": "B"
   }
 ]
