@@ -1,0 +1,1928 @@
+[
+  {
+    "id": "world-gk::पृथ्वी पर कुल कितने महासागर है ?",
+    "question": "How many oceans are there on Earth?",
+    "optionA": "6",
+    "optionB": "9",
+    "optionC": "5",
+    "optionD": "4",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::पृथ्वी पर कुल कितने महाद्वीप है ?",
+    "question": "How many continents are there on Earth?",
+    "optionA": "9",
+    "optionB": "7",
+    "optionC": "8",
+    "optionD": "6",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा महाद्वीप है ?",
+    "question": "Which is the largest continent in the world?",
+    "optionA": "Africa",
+    "optionB": "South America",
+    "optionC": "Australia",
+    "optionD": "Asia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व का प्रथम विश्वविद्यालय कौन है ?",
+    "question": "Which is the first university in the world?",
+    "optionA": "University of Paris",
+    "optionB": "University of Allahabad",
+    "optionC": "University of Taxila",
+    "optionD": "University of Assam",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::अन्तरिक्ष में कृत्रिम उपग्रह प्रक्षेपण करने वाला विश्व का प्रथम देश कौन है ?",
+    "question": "Which is the first country in the world to launch an artificial satellite into space?",
+    "optionA": "Italy",
+    "optionB": "Iraq",
+    "optionC": "Russia",
+    "optionD": "China",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::अन्तरिक्ष में पहुँचने वाला विश्व का प्रथम व्यक्ति कौन है ?",
+    "question": "Who was the first person in the world to go into space?",
+    "optionA": "Major Yuri Gagarin",
+    "optionB": "Valentina Tereshkova",
+    "optionC": "Rakesh Sharma",
+    "optionD": "Neil Armstrong",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::चन्द्रमा पर मानव भेजने वाला विश्व का प्रथम देश कौन है ?",
+    "question": "Which is the first country in the world to send a human to the moon?",
+    "optionA": "Bangladesh",
+    "optionB": "Brazil",
+    "optionC": "Russia",
+    "optionD": "United States",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::चन्द्रमा में उतरने वाला विश्व का प्रथम व्यक्ति ?",
+    "question": "Who was the first person to land on the moon?",
+    "optionA": "Rakesh Sharma",
+    "optionB": "Neil Armstrong",
+    "optionC": "Yuri Gagarin",
+    "optionD": "Bachendri Pal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::वायुयान से उड़ान भरने वाला विश्व का प्रथम व्यक्ति ?",
+    "question": "Who was the first person to fly an aircraft?",
+    "optionA": "Plato",
+    "optionB": "Wright Brothers",
+    "optionC": "Rakesh Sharma",
+    "optionD": "Clement Attlee",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का प्रथम कागजी मुद्रा जारी करने वाला देश ?",
+    "question": "Which is the first country in the world to issue paper currency?",
+    "optionA": "Japan",
+    "optionB": "China",
+    "optionC": "Russia",
+    "optionD": "United States",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का प्राचीनतम धर्म जो अस्तित्व में है ?",
+    "question": "What is the oldest existing religion in the world?",
+    "optionA": "Buddhism",
+    "optionB": "Judaism",
+    "optionC": "Sanatan Dharma",
+    "optionD": "Zoroastrianism",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का प्रथम नगर जिस पर परमाणु बम गिराया गया ?",
+    "question": "Which was the first city in the world on which an atomic bomb was dropped?",
+    "optionA": "Laos",
+    "optionB": "Delhi",
+    "optionC": "Hiroshima",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का प्रथम पुस्तक मुद्रित करने वाला देश ?",
+    "question": "Which was the first country in the world to print a book?",
+    "optionA": "Bhutan",
+    "optionB": "Australia",
+    "optionC": "India",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व की प्रथम महिला प्रधान मन्त्री ?",
+    "question": "Who was the first woman Prime Minister in the world?",
+    "optionA": "S. Bandaranaike (Sri Lanka)",
+    "optionB": "Indira Gandhi (India)",
+    "optionC": "Benazir Bhutto (Pakistan)",
+    "optionD": "Golda Meir (Israel)",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा द्वीपसमूह है ?",
+    "question": "Which is the largest archipelago in the world?",
+    "optionA": "Indonesia",
+    "optionB": "Andaman",
+    "optionC": "Scotland",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे अधिक आबादी वाला शहर कौन है ?",
+    "question": "Which is the most populous city in the world?",
+    "optionA": "Seoul",
+    "optionB": "Tokyo",
+    "optionC": "Shanghai",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे छोटी महाद्वीप है ?",
+    "question": "Which is the smallest continent in the world?",
+    "optionA": "Europe",
+    "optionB": "Africa",
+    "optionC": "Australia",
+    "optionD": "Antarctica",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा देश ?",
+    "question": "Which is the largest country in the world?",
+    "optionA": "Germany",
+    "optionB": "Russia",
+    "optionC": "Indonesia",
+    "optionD": "United States",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा डेल्टा ?",
+    "question": "Which is the largest delta in the world?",
+    "optionA": "Sundarbans Delta",
+    "optionB": "Nile Delta",
+    "optionC": "Ganges Delta",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा बांध ?",
+    "question": "Which is the largest dam in the world?",
+    "optionA": "Boulder Dam",
+    "optionB": "Bhakra Dam",
+    "optionC": "Grand Dam",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का सर्वाधिक मतदाताओं वाला देश कौन है ?",
+    "question": "Which country in the world has the most voters?",
+    "optionA": "India",
+    "optionB": "Bhutan",
+    "optionC": "Bangladesh",
+    "optionD": "Russia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा महाकाव्य है ?",
+    "question": "What is the largest epic in the world?",
+    "optionA": "Raghuvansham",
+    "optionB": "Kurukshetra",
+    "optionC": "Mahabharata",
+    "optionD": "Ramayana",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे बड़ा द्वीप है ?",
+    "question": "What is the largest island in the world?",
+    "optionA": "Greenland",
+    "optionB": "Iceland",
+    "optionC": "Jambu Island",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे बड़ा द्वीप समुद्र ?",
+    "question": "What is the largest island sea in the world?",
+    "optionA": "Galapagos",
+    "optionB": "Mediterranean Sea",
+    "optionC": "Tethys Sea",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व की उच्चतम पर्वत चोटी है ?",
+    "question": "What is the highest mountain peak in the world?",
+    "optionA": "Mount Everest",
+    "optionB": "Himalayas",
+    "optionC": "Parasnath",
+    "optionD": "Belukha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे बड़ा महासागर कौन सा है ?",
+    "question": "Which is the largest ocean in the world?",
+    "optionA": "Atlantic Ocean",
+    "optionB": "Pacific Ocean",
+    "optionC": "Indian Ocean",
+    "optionD": "Southern Ocean",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे अधिक वितरण वाला अंग्रेजी अखबार कौन सा है ?",
+    "question": "Which is the most widely distributed English newspaper in the world?",
+    "optionA": "The New York Times",
+    "optionB": "The Guardian",
+    "optionC": "The Times of India",
+    "optionD": "India Express",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे लम्बा रेलवे प्लेटफार्म कहाँ है ?",
+    "question": "Where is the longest railway platform in the world?",
+    "optionA": "Kharagpur",
+    "optionB": "Solapur",
+    "optionC": "Gorakhpur",
+    "optionD": "Jodhpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे बड़ा जनसंख्या वाला देश है ?",
+    "question": "Which is the most populous country in the world?",
+    "optionA": "Russia",
+    "optionB": "China",
+    "optionC": "India",
+    "optionD": "United States",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे लम्बा नदी कौन सा है ?",
+    "question": "Which is the longest river in the world?",
+    "optionA": "Nile River",
+    "optionB": "Narmada River",
+    "optionC": "Ganges River",
+    "optionD": "Brahmaputra River",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे लंबी सुरंग ?",
+    "question": "What is the world's longest tunnel?",
+    "optionA": "Seikan Tunnel",
+    "optionB": "Mount Cenis Tunnel",
+    "optionC": "Norway Tunnel",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा दीवार ?",
+    "question": "What is the world's largest wall?",
+    "optionA": "Berlin Wall",
+    "optionB": "Great Wall of China",
+    "optionC": "Chaukhandi Stupa Wall",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का उच्चतम झरना ?",
+    "question": "What is the world's highest waterfall?",
+    "optionA": "Venezuela",
+    "optionB": "Tugela Falls",
+    "optionC": "Yumbilla Falls",
+    "optionD": "Three Sisters Falls",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में सबसे बड़ा रेडियोदूरबीन ?",
+    "question": "What is the world's largest radio telescope?",
+    "optionA": "New Mexico",
+    "optionB": "Great Mew Wave",
+    "optionC": "Radio Telescope",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा पक्षी ?",
+    "question": "What is the world's largest bird?",
+    "optionA": "Sarus Crane",
+    "optionB": "Ostrich",
+    "optionC": "Peacock",
+    "optionD": "Harial",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे छोटी पक्षी ?",
+    "question": "What is the world's smallest bird?",
+    "optionA": "Parrot",
+    "optionB": "Pigeon",
+    "optionC": "Bee Hummingbird",
+    "optionD": "Nilkanth Bird",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व स्वास्थ्य संगठन की महानिदेशक हैं ?",
+    "question": "Who is the Director-General of the World Health Organization?",
+    "optionA": "Wangari Maathai",
+    "optionB": "Margaret Chan",
+    "optionC": "Kiran Bedi",
+    "optionD": "Arun Jaitley",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::वर्ल्ड रेडक्रॉस डे प्रतिवर्ष किस दिन मनाया जाता है ?",
+    "question": "World Red Cross Day is celebrated every year on which day?",
+    "optionA": "16 May",
+    "optionB": "11 May",
+    "optionC": "8 May",
+    "optionD": "5 May",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::उस विश्व संस्था का नाम बताएं जो 1920 में स्थापित हुई और 1946 में भांग कर दी गई ?",
+    "question": "Name the world organization that was established in 1920 and dissolved in 1946?",
+    "optionA": "Treaty of Crimea",
+    "optionB": "League of Nations",
+    "optionC": "Warsaw Pact",
+    "optionD": "Eurasian Pact",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::जातीय पक्षपात का निराकरण के लिए अन्तर्राष्ट्रीय दिन कब मनाया जाता है ?",
+    "question": "When is the International Day for the Elimination of Racial Discrimination celebrated?",
+    "optionA": "21 March",
+    "optionB": "21 April",
+    "optionC": "21 June",
+    "optionD": "21 May",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व खाद्य दिवस किस दिन मनाया जाता है ?",
+    "question": "On which day is World Food Day celebrated?",
+    "optionA": "15 October",
+    "optionB": "21 October",
+    "optionC": "23 October",
+    "optionD": "16 October",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::यूनेस्को ने किस मन्दिर को विश्व विरासत स्थल के रूप में घोषित किया ?",
+    "question": "Which temple did UNESCO declare as a World Heritage Site?",
+    "optionA": "Varadaraja",
+    "optionB": "Mahabodhi",
+    "optionC": "Kali Ghat",
+    "optionD": "Chamundeshwari",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व जल दिवस कब मनाया जाता है ?",
+    "question": "When is World Water Day celebrated?",
+    "optionA": "5 March",
+    "optionB": "17 March",
+    "optionC": "20 March",
+    "optionD": "22 March",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::अन्तर्राष्ट्रीय महिला दिवस कब मनाया जाता है ?",
+    "question": "When is International Women's Day celebrated?",
+    "optionA": "8 April",
+    "optionB": "8 May",
+    "optionC": "8 March",
+    "optionD": "8 June",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व के किस महाद्वीप में जल-विद्युत् शक्ति की संभाव्यता सर्वाधिक है ?",
+    "question": "On which continent of the world is the potential for hydropower the highest?",
+    "optionA": "Africa",
+    "optionB": "Europe",
+    "optionC": "Asia",
+    "optionD": "South America",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में लिग्नाइट कोयला का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which is the world's largest producer of lignite coal?",
+    "optionA": "India",
+    "optionB": "France",
+    "optionC": "China",
+    "optionD": "Germany",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में कोयला का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which is the world's largest producer of coal?",
+    "optionA": "Britain",
+    "optionB": "India",
+    "optionC": "Japan",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में उत्पादित कुल कोयला का कितना प्रतिशत हिस्सा बिटुमिनस कोयला का होता है ?",
+    "question": "What percentage of the total coal produced in the world is bituminous coal?",
+    "optionA": "93%",
+    "optionB": "97%",
+    "optionC": "80%",
+    "optionD": "75%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा कोबाल्ट उत्पादक देश है ?",
+    "question": "Which is the world's largest producer of cobalt?",
+    "optionA": "Canada",
+    "optionB": "Zaire",
+    "optionC": "United States",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में निकेल का सबसे बड़ा निर्यातक देश है ?",
+    "question": "Which is the world's largest exporter of nickel?",
+    "optionA": "United States",
+    "optionB": "Canada",
+    "optionC": "France",
+    "optionD": "China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::संसार में ताबाँ का अग्रणी उत्पादक है ?",
+    "question": "Which is the leading producer of copper in the world?",
+    "optionA": "Britain",
+    "optionB": "India",
+    "optionC": "New Zealand",
+    "optionD": "America",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व का सर्वाधिक स्वर्ण उत्पादक देश निम्नलिखित में से कौन-सा है ?",
+    "question": "Which country is the largest producer of gold in the world?",
+    "optionA": "Canada",
+    "optionB": "United States",
+    "optionC": "England",
+    "optionD": "South Africa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में चाँदी का सबसे बड़ा उत्पादक है ?",
+    "question": "Which is the largest producer of silver in the world?",
+    "optionA": "Mexico",
+    "optionB": "India",
+    "optionC": "Canada",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का कौन-सा देश टिन का सर्वाधिक उत्पादन करता है ?",
+    "question": "Which country produces the most tin in the world?",
+    "optionA": "America",
+    "optionB": "Thailand",
+    "optionC": "Indonesia",
+    "optionD": "Malaysia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व का कौन-सा देश टिन का सर्वाधिक निर्यात करता है ?",
+    "question": "Which country exports the most tin in the world?",
+    "optionA": "Canada",
+    "optionB": "France",
+    "optionC": "Malaysia",
+    "optionD": "Thailand",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व विख्यात डोनवास कोयला क्षेत्र किस देश में स्थित है ?",
+    "question": "In which country is the famous Donbas coal region located?",
+    "optionA": "Ukraine",
+    "optionB": "Kazakhstan",
+    "optionC": "Russia",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में स्वच्छ जल की मछली का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which country is the largest producer of freshwater fish in the world?",
+    "optionA": "Indonesia",
+    "optionB": "Bangladesh",
+    "optionC": "India",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में बॉक्साइट का सर्वाधिक संचित भण्डार कहाँ पाया जाता है ?",
+    "question": "Where are the largest reserves of bauxite found in the world?",
+    "optionA": "Guyana",
+    "optionB": "Australia",
+    "optionC": "Brazil",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का एक प्रमुख मत्स्यन क्षेत्र डाँगर बैंक कहाँ स्थित है ?",
+    "question": "Where is the major fishing area Dogger Bank located?",
+    "optionA": "In the North Sea",
+    "optionB": "In the English Channel",
+    "optionC": "In the Baltic Sea",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का वृहत्तम मत्स्य आहरण क्षेत्र है ?",
+    "question": "Which is the largest fishing area in the world?",
+    "optionA": "Grand Bank",
+    "optionB": "Chesapeake Bay",
+    "optionC": "Caribbean Sea",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा लौंग उत्पादक देश है ?",
+    "question": "Which is the world's largest clove producing country?",
+    "optionA": "Zanzibar",
+    "optionB": "Guatemala",
+    "optionC": "Canada",
+    "optionD": "Indonesia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में मोटे अनाज का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which is the world's largest coarse grain producer?",
+    "optionA": "Guyana",
+    "optionB": "Brazil",
+    "optionC": "India",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में प्राकृतिक रबड़ का सबसे बड़ा उत्पादक है ?",
+    "question": "Which is the world's largest natural rubber producer?",
+    "optionA": "Malaysia",
+    "optionB": "Indonesia",
+    "optionC": "Thailand",
+    "optionD": "Bangladesh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में सिन्थेटिक रबड़ का सबसे बड़ा उत्पादक है ?",
+    "question": "Which is the world's largest synthetic rubber producer?",
+    "optionA": "United States",
+    "optionB": "Malaysia",
+    "optionC": "Bangladesh",
+    "optionD": "Brazil",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में तम्बाकू का सबसे बड़ा उत्पादक देश है ?",
+    "question": "Which is the world's largest tobacco producing country?",
+    "optionA": "Guatemala",
+    "optionB": "China",
+    "optionC": "Indonesia",
+    "optionD": "Thailand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में इलायचीं का सबसे प्रमुख उत्पादक देश कौन है ?",
+    "question": "Which is the world's leading cardamom producing country?",
+    "optionA": "Madagascar",
+    "optionB": "Guatemala",
+    "optionC": "China",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में अफीम का सर्वाधिक उत्पादन देश कौन है ?",
+    "question": "Which is the world's largest opium producing country?",
+    "optionA": "Australia",
+    "optionB": "Afghanistan",
+    "optionC": "Pakistan",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में सर्वाधिक आलू कहाँ पैदा होता है ?",
+    "question": "Where are the most potatoes produced in the world?",
+    "optionA": "United States",
+    "optionB": "Russia",
+    "optionC": "France",
+    "optionD": "Poland",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में अंगूर का सर्वाधिक उत्पादन करने वाला देश है ?",
+    "question": "Which is the world's largest grape producing country?",
+    "optionA": "Italy",
+    "optionB": "Netherlands",
+    "optionC": "Spain",
+    "optionD": "Turkey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में जैतून विस्तृत क्षेत्र में उगाया जाता है ?",
+    "question": "Where is olive grown on a large scale in the world?",
+    "optionA": "In France",
+    "optionB": "In Russia",
+    "optionC": "In China",
+    "optionD": "In Poland",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में केले का सबसे बड़ा उत्पादक है ?",
+    "question": "Which is the world's largest producer of bananas?",
+    "optionA": "Netherlands",
+    "optionB": "India",
+    "optionC": "Spain",
+    "optionD": "Turkey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::दुग्ध उत्पादन में किस देश का विश्व में प्रथम स्थान है ?",
+    "question": "Which country ranks first in the world in milk production?",
+    "optionA": "Guatemala",
+    "optionB": "India",
+    "optionC": "Germany",
+    "optionD": "China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में उन का सर्वाधिक उत्पादन करने वाला देश है ?",
+    "question": "Which is the world's largest producer of wool?",
+    "optionA": "New Zealand",
+    "optionB": "Ukraine",
+    "optionC": "Australia",
+    "optionD": "Argentina",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में कपास की कृषि के अन्तगर्त सर्वाधिक क्षेत्रफल किस देश में पाया जाता है ?",
+    "question": "In which country is the largest area under cotton cultivation found in the world?",
+    "optionA": "United States",
+    "optionB": "CIS",
+    "optionC": "China",
+    "optionD": "India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में कपास का वृहत्तम उत्पादक है ?",
+    "question": "Which is the world's largest producer of cotton?",
+    "optionA": "China",
+    "optionB": "India",
+    "optionC": "United States",
+    "optionD": "Egypt",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में कपास का सबसे बड़ा निर्यातक देश निम्न में से कौन है ?",
+    "question": "Which is the world's largest exporter of cotton?",
+    "optionA": "Pakistan",
+    "optionB": "Australia",
+    "optionC": "United States",
+    "optionD": "Netherlands",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व की कहवा मण्डी के नाम से कौन प्रसिद्ध है ?",
+    "question": "Who is famous as the world's coffee market?",
+    "optionA": "Sao Paulo",
+    "optionB": "Santos",
+    "optionC": "Manaus",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा मुंगफली उत्पादक देश है ?",
+    "question": "Which is the world's largest producer of peanuts?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Poland",
+    "optionD": "Netherlands",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में नारियल का सबसे अधिक उत्पादन करता है ?",
+    "question": "Which produces the most coconuts in the world?",
+    "optionA": "Malaysia",
+    "optionB": "Indonesia",
+    "optionC": "Philippines",
+    "optionD": "Thailand",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में चाय का सबसे अधिक उत्पादन करता है ?",
+    "question": "Which produces the most tea in the world?",
+    "optionA": "United States",
+    "optionB": "Russia",
+    "optionC": "Brazil",
+    "optionD": "India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व में सर्वाधिक कागज तैयार करने वाला देश कनाडा किस प्राकृतिक प्रदेश में स्थित है ?",
+    "question": "Which natural region is Canada, the world's largest paper-producing country, located in?",
+    "optionA": "Mediterranean region",
+    "optionB": "Hot desert region",
+    "optionC": "Taiga region",
+    "optionD": "Steppe region",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का प्राकृतिक प्रदेशों में बाँटने का प्रथम प्रयास किसने किया ?",
+    "question": "Who made the first attempt to divide the world into natural regions?",
+    "optionA": "Taylor",
+    "optionB": "Herbertson",
+    "optionC": "Hartshorne",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व के सर्वाधिक वर्षा के क्षेत्र है ?",
+    "question": "Which are the world's regions with the highest rainfall?",
+    "optionA": "China-like region",
+    "optionB": "Monsoon region",
+    "optionC": "Equatorial region",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व में कुल भू-भाग के लगभग कितने भाग पर घासभूमियों का विस्तार पाया जाता है ?",
+    "question": "On what part of the total land area of the world are grasslands found?",
+    "optionA": "1/2",
+    "optionB": "1/4",
+    "optionC": "1/6",
+    "optionD": "1/5",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::सबसे अधिक टैगा वन किस क्षेत्र में पाये जाते हैं ?",
+    "question": "In which region are the most Taiga forests found?",
+    "optionA": "Siberia",
+    "optionB": "Chile",
+    "optionC": "Australia",
+    "optionD": "Afghanistan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे व्यस्ततम बन्दरगाह माना जाता है ?",
+    "question": "Which is considered the busiest port in the world?",
+    "optionA": "London",
+    "optionB": "Hamburg",
+    "optionC": "Rotterdam",
+    "optionD": "Antwerp",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किसे विश्व का कहवा पत्तन कहते हैं ?",
+    "question": "Which of the following is called the coffee port of the world?",
+    "optionA": "Sao Paulo",
+    "optionB": "Santos",
+    "optionC": "Buenos Aires",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::सर्वाधिक संख्या में स्थलरुद्ध देश किस महाद्वीप में है ?",
+    "question": "In which continent are the largest number of landlocked countries?",
+    "optionA": "S. America",
+    "optionB": "Europe",
+    "optionC": "Asia",
+    "optionD": "Africa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::क्षेत्रफल की दृष्टि से विश्व का सबसे बड़ा भू-आवेष्ठित देश कौन-सा है ?",
+    "question": "Which is the world's largest landlocked country by area?",
+    "optionA": "Chad",
+    "optionB": "Mongolia",
+    "optionC": "Niger",
+    "optionD": "Zambia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व की सबसे व्यस्त व्यापारिक नदी है ?",
+    "question": "Which is the world's busiest commercial river?",
+    "optionA": "Rhône",
+    "optionB": "Rhine",
+    "optionC": "Mississippi",
+    "optionD": "Nile",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::&#39;अन्तर्राष्ट्रीय महिला दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;International Women&#39;s Day&#39; is celebrated on which day?",
+    "optionA": "8 March",
+    "optionB": "8 February",
+    "optionC": "8 January",
+    "optionD": "8 August",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व जनसंख्या दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Population Day&#39; is celebrated on which day?",
+    "optionA": "11 July",
+    "optionB": "11 November",
+    "optionC": "11 October",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व वन्य जीव दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Wildlife Day&#39; is celebrated on which day?",
+    "optionA": "8 October",
+    "optionB": "8 November",
+    "optionC": "4 November",
+    "optionD": "3 March",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::&#39;विश्व एड्स दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World AIDS Day&#39; is celebrated on which day?",
+    "optionA": "1 August",
+    "optionB": "1 September",
+    "optionC": "1 December",
+    "optionD": "1 February",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व मानवाधिकार दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Human Rights Day&#39; is celebrated on which day?",
+    "optionA": "4 September",
+    "optionB": "6 February",
+    "optionC": "10 December",
+    "optionD": "15 January",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व वानिकी दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Forestry Day&#39; is celebrated on which day?",
+    "optionA": "21 January",
+    "optionB": "21 February",
+    "optionC": "21 March",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व मितव्ययिता दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Thrift Day&#39; is celebrated on which day?",
+    "optionA": "6 October",
+    "optionB": "14 October",
+    "optionC": "11 October",
+    "optionD": "30 October",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::&#39;विश्व स्वस्थ दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Health Day&#39; is celebrated on which day?",
+    "optionA": "7 April",
+    "optionB": "23 May",
+    "optionC": "13 June",
+    "optionD": "17 July",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व पर्यटन दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Tourism Day&#39; is celebrated on which day?",
+    "optionA": "27 September",
+    "optionB": "27 December",
+    "optionC": "27 February",
+    "optionD": "19 April",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व मानक दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "&#39;World Standards Day&#39; is celebrated on which day?",
+    "optionA": "14 August",
+    "optionB": "14 September",
+    "optionC": "14 October",
+    "optionD": "14 November",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व उपभोक्ता अधिकार दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Consumer Rights Day' celebrated?",
+    "optionA": "2 March",
+    "optionB": "15 March",
+    "optionC": "18 March",
+    "optionD": "24 March",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::&#39;विश्व डाक दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Post Day' celebrated?",
+    "optionA": "9 June",
+    "optionB": "9 July",
+    "optionC": "9 October",
+    "optionD": "9 November",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व ऊर्जा दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Energy Day' celebrated?",
+    "optionA": "14 September",
+    "optionB": "14 December",
+    "optionC": "15 December",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::&#39;विश्व यूनीसेफ दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World UNICEF Day' celebrated?",
+    "optionA": "10 October",
+    "optionB": "10 November",
+    "optionC": "10 December",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व विकलांगता दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Disability Day' celebrated?",
+    "optionA": "23 January",
+    "optionB": "14 February",
+    "optionC": "20 March",
+    "optionD": "3 December",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::&#39;विश्व साक्षरता दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Literacy Day' celebrated?",
+    "optionA": "8 August",
+    "optionB": "8 September",
+    "optionC": "8 December",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::&#39;विश्व परिवेश दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Environment Day' celebrated?",
+    "optionA": "5 October",
+    "optionB": "21 February",
+    "optionC": "21 May",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व आदिवासी दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Tribal Day' celebrated?",
+    "optionA": "23 December",
+    "optionB": "8 September",
+    "optionC": "9 August",
+    "optionD": "1 February",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व पृथ्वी दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Earth Day' celebrated?",
+    "optionA": "11 May",
+    "optionB": "22 April",
+    "optionC": "13 June",
+    "optionD": "17 July",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::&#39;विश्व रेडक्रॉस दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Red Cross Day' celebrated?",
+    "optionA": "8 May",
+    "optionB": "1 June",
+    "optionC": "9 July",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::&#39;विश्व तम्बाकू निषेध दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "'World Tobacco Prohibition Day' is celebrated on which day?",
+    "optionA": "20 February",
+    "optionB": "30 June",
+    "optionC": "31 May",
+    "optionD": "22 April",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::&#39;विश्व गरीबी उन्मूलन दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "'World Poverty Eradication Day' is celebrated on which day?",
+    "optionA": "17 June",
+    "optionB": "17 July",
+    "optionC": "17 November",
+    "optionD": "17 October",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::संसार में सर्वाधिक ऊंचाई पर स्थित सड़क है ?",
+    "question": "Which road is located at the highest altitude in the world?",
+    "optionA": "Manali-Leh",
+    "optionB": "Jammu-Srinagar",
+    "optionC": "Srinagar-Leh",
+    "optionD": "Kargil-Leh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::द समर पालेस (The Summer Palace) कहाँ स्थित है ?",
+    "question": "Where is The Summer Palace located?",
+    "optionA": "England",
+    "optionB": "Russia",
+    "optionC": "Sweden",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::द ग्रांड पॅलेस (The Grand Palace) कहाँ स्थित है ?",
+    "question": "Where is The Grand Palace located?",
+    "optionA": "Thailand",
+    "optionB": "England",
+    "optionC": "Italy",
+    "optionD": "Turkey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::द टॉपकापी पॅलेस ( Topkapi Palace) कहाँ स्थित है ?",
+    "question": "Where is The Topkapi Palace located?",
+    "optionA": "Sweden",
+    "optionB": "Turkey",
+    "optionC": "Finland",
+    "optionD": "Tibet",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::दा स्टऑकहोल्म पॅलेस (The Stockholm Palace) कहाँ स्थित है ?",
+    "question": "Where is The Stockholm Palace located?",
+    "optionA": "England",
+    "optionB": "Russia",
+    "optionC": "Sweden",
+    "optionD": "Japan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::द विंटर पॅलेस (The Winter Palace) कहाँ निर्मित है ?",
+    "question": "Where was The Winter Palace built?",
+    "optionA": "Italy",
+    "optionB": "Canada",
+    "optionC": "Russia",
+    "optionD": "England",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व जनसंख्या कब 1 अरब से ऊपर पँहुच गई?",
+    "question": "When did the world population cross 1 billion?",
+    "optionA": "1770",
+    "optionB": "1600",
+    "optionC": "1800",
+    "optionD": "1900",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::फिलिप्स मशरूम म्यूज़ीयम कहाँ स्थित है ?",
+    "question": "Where is the Mushroom Museum located?",
+    "optionA": "Pennsylvania",
+    "optionB": "Amsterdam",
+    "optionC": "Norwich",
+    "optionD": "Texas",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::द म्यूज़ीयम ऑफ डॉग कॉलर्स कहाँ स्थित है ?",
+    "question": "Where is the Museum of Dog Collars located?",
+    "optionA": "Germany",
+    "optionB": "Russia",
+    "optionC": "Spain",
+    "optionD": "United Kingdom",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::कॉकरोच हॉल ऑफ फेम कहॉ स्थित है ?",
+    "question": "Where is the Cockroach Hall of Fame located?",
+    "optionA": "Japan",
+    "optionB": "China",
+    "optionC": "Texas",
+    "optionD": "Brazil",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::माउंट ताईं (Mount Tai) जो युनेसको ने विश्व-विरासत की सू्ची मे शमिल कर रखा है किस देश मे स्थित है ?",
+    "question": "Mount Tai, which has been included in the UNESCO World Heritage List, is located in which country?",
+    "optionA": "Indonesia",
+    "optionB": "Spain",
+    "optionC": "Japan",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::ग्रैंड कैनयन नॅशनल पार्क किस देश मे स्थित है ?",
+    "question": "In which country is the Grand Canyon National Park located?",
+    "optionA": "Mexico",
+    "optionB": "Greece",
+    "optionC": "The United States of America",
+    "optionD": "France",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::कोमोडो नेशनल पार्क कहाँ है ?",
+    "question": "Where is Komodo National Park?",
+    "optionA": "Chile",
+    "optionB": "West Indies",
+    "optionC": "Indonesia",
+    "optionD": "Greenland",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::द बकिंघम पॅलेस कहाँ पर स्थित है ?",
+    "question": "Where is Buckingham Palace located?",
+    "optionA": "India",
+    "optionB": "Pakistan",
+    "optionC": "Japan",
+    "optionD": "England",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::द रॉयल पॅलेस ऑफ मॅड्रिड कहाँ पर स्थित है ?",
+    "question": "Where is the Royal Palace of Madrid located?",
+    "optionA": "Bulgaria",
+    "optionB": "Sydney",
+    "optionC": "Spain",
+    "optionD": "Ukraine",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::कौन सा राष्ट्र कुख्यात \"सोनी हैक(Sony Hack) \" मामले में शामिल था ?",
+    "question": "Which country was involved in the infamous \"Sony Hack\" case?",
+    "optionA": "Israel",
+    "optionB": "South Korea",
+    "optionC": "North Korea",
+    "optionD": "China",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::किस राष्ट्र को \"लेबनान में तेल रिसाव से नुकसान के कारण\" संयुक्त राष्ट्र द्वारा दंडित किया गया है ?",
+    "question": "Which country was punished by the United Nations for \"damage caused by oil spills in Lebanon\"?",
+    "optionA": "Iran",
+    "optionB": "Iraq",
+    "optionC": "Israel",
+    "optionD": "Syria",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::इटली की तलवार किसे कहा गया है",
+    "question": "Who is known as the Sword of Italy?",
+    "optionA": "Mazzini",
+    "optionB": "Cavour",
+    "optionC": "Garibaldi",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व रंगमंच दिवस हर साल किस तारीख को विश्व स्तर पर मनाया जाता है?",
+    "question": "World Theatre Day is celebrated worldwide every year on which date?",
+    "optionA": "27 April",
+    "optionB": "27 January",
+    "optionC": "27 March",
+    "optionD": "27 May",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में कौन-सा देश \"Land of Thunderbolt\" के नाम से जाना जाता है ?",
+    "question": "Which of the following countries is known as the \"Land of Thunderbolt\"?",
+    "optionA": "Nepal",
+    "optionB": "New Zealand",
+    "optionC": "Ladakh",
+    "optionD": "Bhutan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::एल मिस्टी (El Misti) ज्वालामुखी किस देश में है ?",
+    "question": "In which country is the El Misti volcano located?",
+    "optionA": "Chile",
+    "optionB": "Peru",
+    "optionC": "Colombia",
+    "optionD": "Italy",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::उत्तरी गोलार्द्ध में व्यापारिक पवनें किस दिशा में बहती हैं ?",
+    "question": "In which direction do the trade winds blow in the Northern Hemisphere?",
+    "optionA": "North",
+    "optionB": "South-East",
+    "optionC": "North-East",
+    "optionD": "North-West",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::पिरेनीज पर्वत निम्नलिखित में से किन-किन देशों के बीच स्थित है?",
+    "question": "Between which of the following countries are the Pyrenees mountains located?",
+    "optionA": "France and Spain",
+    "optionB": "Bulgaria and Greece",
+    "optionC": "Italy and France",
+    "optionD": "England and Ireland",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::क्यूराइल द्वीपों को लेकर विवाद किन-किन के मध्य हैं ?",
+    "question": "Between which countries is there a dispute over the Kuril Islands?",
+    "optionA": "North Korea and North Vietnam",
+    "optionB": "Russia and Japan",
+    "optionC": "China and Japan",
+    "optionD": "Cyprus and Turkey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किसको \"वेनिशिंग ओशन\" (छिपता हुआ महासागर) कहा जाता है?",
+    "question": "Which of the following is called the \"Vanishing Ocean\" (hidden ocean)?",
+    "optionA": "Arctic Ocean",
+    "optionB": "Atlantic Ocean",
+    "optionC": "Pacific Ocean",
+    "optionD": "Indian Ocean",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::चूना पत्थर की चट्टान कायांतरित हो जाती है, तब बनती है -",
+    "question": "When limestone rock is transformed, it forms -",
+    "optionA": "Graphite",
+    "optionB": "Marble",
+    "optionC": "Granite",
+    "optionD": "Quartzite",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व की सबसे बड़ी अवरोधक प्रवाल भित्ति (Great Barrier Reef) कहाँ स्थित है?",
+    "question": "Where is the world's largest coral reef system (Great Barrier Reef) located?",
+    "optionA": "Along the western coast of New Zealand",
+    "optionB": "Along the eastern coast of South America",
+    "optionC": "Along the southern coast of Africa",
+    "optionD": "Along the eastern coast of Australia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::बाल्टिक सागर और उत्तरी सागर (North Sea) को मिलाती है ?",
+    "question": "What connects the Baltic Sea and the North Sea?",
+    "optionA": "Suez Canal",
+    "optionB": "Panama Canal",
+    "optionC": "Kiel Canal",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन-सा एक बंदरगाह विश्व के कॉफ़ी बन्दरगाह (Coffee Port) के रूप में जाना जाता है?",
+    "question": "Which of the following ports is known as the Coffee Port of the world?",
+    "optionA": "Sao Paulo",
+    "optionB": "Buenos Aires",
+    "optionC": " Santos",
+    "optionD": "Rio de Janeiro",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व रेडियो दिवस कब मनाया जाता है ?",
+    "question": "When is World Radio Day celebrated?",
+    "optionA": "10 February",
+    "optionB": "3 February",
+    "optionC": "23 February",
+    "optionD": "13 February",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व की सबसे व्यस्त व्यापारिक नदी है?",
+    "question": "Which is the busiest commercial river in the world?",
+    "optionA": "Mississippi",
+    "optionB": "Rhine",
+    "optionC": "Rhone",
+    "optionD": "Nile",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::चीन का शोक किस नदी के लिए प्रयोग किया जाता है?",
+    "question": "For which river is the sorrow of China used?",
+    "optionA": "Yangtze",
+    "optionB": "Salween",
+    "optionC": "Huangho",
+    "optionD": "Amur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::महाबली गंगा किस देश की सबसे बड़ी नदी है?",
+    "question": "Mahabali Ganga is the largest river of which country?",
+    "optionA": "Thailand",
+    "optionB": "Indonesia",
+    "optionC": "Sri Lanka",
+    "optionD": "Myanmar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस देश में से यूफ्रेटस व टिगरिस नदियाँ बहती हैं?",
+    "question": "From which of the following countries do the Euphrates and Tigris rivers flow?",
+    "optionA": "Iran",
+    "optionB": "Iraq",
+    "optionC": "Kuwait",
+    "optionD": "Jordan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::नाइनटी ईस्ट रिज नामक जलमग्न ज्वालामुखी कटक किस महासागर में स्थित है?",
+    "question": "The Ninety East Ridge, a submerged volcanic ridge, is located in which ocean?",
+    "optionA": "Atlantic Ocean",
+    "optionB": "Indian Ocean",
+    "optionC": "Pacific Ocean",
+    "optionD": "Arctic Ocean",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::हिरोशिमा और नागासाकी शहर किन द्वीपों में स्थित हैं?",
+    "question": "Hiroshima and Nagasaki cities are located on which islands?",
+    "optionA": "Honshu and Shikoku",
+    "optionB": "Kyushu and Shikoku",
+    "optionC": "Hokkaido and Kyushu",
+    "optionD": "Honshu and Kyushu",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::जिब्राल्टर जलडमरूमध्य किन दो देशों को अलग करता है?",
+    "question": "Which two countries does the Strait of Gibraltar separate?",
+    "optionA": "Algeria and Spain",
+    "optionB": "Algeria and Portugal",
+    "optionC": "Portugal and Morocco",
+    "optionD": "Morocco and Spain",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::गुआनो नामक प्राकृतिक उर्वरक किस क्षेत्र में पाया जाता है?",
+    "question": "Where is the natural fertilizer guano found?",
+    "optionA": "Atacama Desert",
+    "optionB": "Coastal region of Peru",
+    "optionC": "Tierra del Fuego",
+    "optionD": "Minas Gerais of Brazil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::अफ्रीका के पेम्बा और जंजीबार द्वीप किसकी खेती व निर्यात के लिए जाने जाते हैं?",
+    "question": "For which crop are the African islands of Pemba and Zanzibar known?",
+    "optionA": "Sugarcane",
+    "optionB": "Cloves",
+    "optionC": "Coffee",
+    "optionD": "Tobacco",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::समरकंद नामक स्थान मध्य एशिया में कहाँ पर स्थित है?",
+    "question": "Where is the place of Samarkand located in Central Asia?",
+    "optionA": "Turkmenistan",
+    "optionB": "Uzbekistan",
+    "optionC": "Afghanistan",
+    "optionD": "Iran",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस प्रक्रिया से वायुमंडल की निम्न परतों में ऊष्मा का संचार होता है?",
+    "question": "By which of the following processes is heat transferred in the lower layers of the atmosphere?",
+    "optionA": "Terrestrial radiation",
+    "optionB": "Solar radiation",
+    "optionC": "Convection",
+    "optionD": "Conduction",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::महासागर अथवा झील की सबसे निम्न स्तर को क्या कहा जाता है?",
+    "question": "What is the lowest level of an ocean or lake called?",
+    "optionA": "Pelagic",
+    "optionB": "Dimersal",
+    "optionC": "Neritic",
+    "optionD": "Benthic",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::कंपास की सुई किस दिशा की ओर संकेत करती है?",
+    "question": "In which direction does the needle of a compass point?",
+    "optionA": "Magnetic North Pole",
+    "optionB": "Geographic North",
+    "optionC": "Magnetic South Pole",
+    "optionD": "Geomagnetic North Pole",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन सी जैव-भौगोलिक सीमा इंडोमलय एकोज़ोंन को ऑस्ट्रलएशिया वनस्पति क्षेत्र से अलग करती है?",
+    "question": "Which of the following biogeographical boundaries separates the Indomalayan ecozone from the Australasia flora region?",
+    "optionA": "Makassar Strait",
+    "optionB": "Sunda Strait",
+    "optionC": "Malacca Strait",
+    "optionD": "Lombok Strait",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::ब्रिटेन और अर्जेंटीना के बीच निम्नलिखित में से किस द्वीप को लेकर विवाद है?",
+    "question": "Which of the following islands is the subject of a dispute between Britain and Argentina?",
+    "optionA": "Seychelles",
+    "optionB": "Queensland",
+    "optionC": "Falkland",
+    "optionD": "Abruka",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा यूरेनियम उत्पादक देश कौन सा है?",
+    "question": "Which is the world's largest uranium-producing country?",
+    "optionA": "China",
+    "optionB": "Kazakhstan",
+    "optionC": "Australia",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::रेगिस्तान नामक मरुस्थल किस देश का हिस्सा है?",
+    "question": "The desert named Registan is part of which country?",
+    "optionA": "Afghanistan",
+    "optionB": "Turkmenistan",
+    "optionC": "Pakistan",
+    "optionD": "Tajikistan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::अफ़ग़ानिस्तान का हेलमंद प्रांत किसकी खेती के लिए प्रसिद्ध है?",
+    "question": "Which crop is the Helmand province of Afghanistan famous for?",
+    "optionA": "Opium",
+    "optionB": "Cotton",
+    "optionC": "Tobacco",
+    "optionD": "Wheat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::अफ्रीकी देश गाम्बिया किस एक मात्र देश से घिरा हुआ है?",
+    "question": "Which single country is surrounded by the African country of Gambia?",
+    "optionA": "Senegal",
+    "optionB": "Ghana",
+    "optionC": "Angola",
+    "optionD": "Sudan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::हमजा भूमिगत नदी किस नदी के बेसिन के नीचे पायी जाती है?",
+    "question": "Under which river basin is the Hamza underground river found?",
+    "optionA": "Amazon River",
+    "optionB": "Congo River",
+    "optionC": "Mississippi River",
+    "optionD": "Nile River",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::मैकमर्डो शुष्क घाटी कहाँ पर स्थित है?",
+    "question": "Where is the McMurdo Dry Valley located?",
+    "optionA": "Central Asia",
+    "optionB": "Africa",
+    "optionC": "Antarctica",
+    "optionD": "North America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::पृथ्वी के मेग्नेटोस्फीयर कहाँ पर स्थित है?",
+    "question": "Where is the Earth's magnetosphere located?",
+    "optionA": "Below the ionosphere",
+    "optionB": "Near the center of the Earth",
+    "optionC": "12-16 kilometers below the Earth's surface",
+    "optionD": "Above the ionosphere",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे शुष्क स्थान कौन सा है?",
+    "question": "What is the driest place in the world?",
+    "optionA": "Atacama",
+    "optionB": "Kalahari",
+    "optionC": "Tabernas Desert",
+    "optionD": "Mojave Desert",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस देश में हीलियम से भरपूर प्राकृतिक गैस फील्ड स्थित है?",
+    "question": "In which of the following countries is a natural gas field rich in helium located?",
+    "optionA": "China",
+    "optionB": "Australia",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::भूगर्भिक रिफ्ट अथवा भ्रंश का कारण किस स्थलाकृति की रचना होती है?",
+    "question": "Which landform is formed due to geological rift or fault?",
+    "optionA": "Talus",
+    "optionB": "Rift Valley",
+    "optionC": "Yardang",
+    "optionD": "Crevasse",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे बड़ा एकीकृत सिंचित क्षेत्र कौन सा है?",
+    "question": "What is the largest integrated irrigated area in the world?",
+    "optionA": "Brahmaputra Valley",
+    "optionB": "Indus Valley",
+    "optionC": "Mahanadi Basin",
+    "optionD": "Ganga Basin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::अन्य क्षेत्रों की तुलना में किस क्षेत्र में दिन और रात के तापमान में सर्वाधिक अंतर किस क्षेत्र में होता है?",
+    "question": "In which region is the greatest difference between day and night temperatures compared to other regions?",
+    "optionA": "Tundra",
+    "optionB": "Tropical Desert",
+    "optionC": "Equatorial Region",
+    "optionD": "Mediterranean Sea",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::जोहोर जलडमरूमध्य किन दो देशों को अलग करता है?",
+    "question": "Which two countries does the Johor Strait separate?",
+    "optionA": "Singapore and Malaysia",
+    "optionB": "South Korea and Japan",
+    "optionC": "Singapore and Indonesia",
+    "optionD": "Denmark and Sweden",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::मकरान निम्नलिखित में से किस स्थान पर स्थित है?",
+    "question": "Where is Makaran located?",
+    "optionA": "Bay of Bengal",
+    "optionB": "Mediterranean Sea",
+    "optionC": "In the Indian Ocean on the southern coast of Sri Lanka",
+    "optionD": "Arabian Sea",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::वखान कॉरिडोर किन दो देशों के बीच थल सीमा का निर्माण करता है?",
+    "question": "Between which two countries does the Wakhan Corridor form a land border?",
+    "optionA": "Afghanistan and Uzbekistan",
+    "optionB": "Afghanistan and Tajikistan",
+    "optionC": "Afghanistan and China",
+    "optionD": "Afghanistan and Kyrgyzstan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::समुद्रतल से अंटार्कटिका की औसत ऊंचाई कितनी है?",
+    "question": "What is the average height of Antarctica from sea level?",
+    "optionA": "5,500 feet",
+    "optionB": "4,500 feet",
+    "optionC": "7,500 feet",
+    "optionD": "6,500 feet",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::चुकची सागर कहाँ पर स्थित है?",
+    "question": "Where is the Chukchi Sea located?",
+    "optionA": "North Atlantic Ocean",
+    "optionB": "Western Pacific Ocean",
+    "optionC": "Arctic Ocean",
+    "optionD": "South Pacific Ocean",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस देश में कपास की बेल का वज़न सर्वाधिक होता है?",
+    "question": "In which country does the cotton boll weigh the most?",
+    "optionA": "China",
+    "optionB": "Egypt",
+    "optionC": "France",
+    "optionD": "America",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व में कपास उत्पादन करने वाले सबसे बड़ा क्षेत्र (एक स्थान पर केन्द्रित) किस देश में स्थित है?",
+    "question": "In which country is the largest area for cotton production (concentrated in one place) located in the world?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Pakistan",
+    "optionD": "America",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::चेरिएराना कॉफ़ी किस देश में उत्पादित की जाती है?",
+    "question": "Where is Cherriana coffee produced?",
+    "optionA": "Cameroon",
+    "optionB": "Vietnam",
+    "optionC": "Yemen",
+    "optionD": "Liberia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::फ़ेडरेटेड स्टेट्स ऑफ़ माइक्रोनेशिया किस स्थान पर स्थित है?",
+    "question": "Where is the Federated States of Micronesia located?",
+    "optionA": "Atlantic Ocean",
+    "optionB": "Western Pacific Ocean",
+    "optionC": "Arabian Sea",
+    "optionD": "Indian Ocean",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::सुदूर दक्षिण में स्थित लैंडलॉक्ड देश कौन सा है?",
+    "question": "Which landlocked country is located in the far south?",
+    "optionA": "Malawi",
+    "optionB": "Lesotho",
+    "optionC": "Niger",
+    "optionD": "Mali",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::किलीमंजारो पर्वत किस देश में स्थित है?",
+    "question": "Kilimanjaro mountain is located in which country?",
+    "optionA": "Kenya",
+    "optionB": "Ghana",
+    "optionC": "Namibia",
+    "optionD": "Tanzania",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::अस्थेनोस्फीयर कहाँ पर स्थित है ?",
+    "question": "Where is the asthenosphere located?",
+    "optionA": "Below the lithosphere",
+    "optionB": "Above the lithosphere",
+    "optionC": "Above the troposphere",
+    "optionD": "Below the ionosphere",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व में प्राकृतिक गैस का सबसे अधिक भंडार किस देश में विद्यमान है?",
+    "question": "In which country is the largest reserve of natural gas in the world?",
+    "optionA": "Russia",
+    "optionB": "China",
+    "optionC": "Australia",
+    "optionD": "America",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::न्यूकैसल बंदरगाह, विश्व का सबसे बड़ा कोयला निर्यातक बंदरगाह किस देश में स्थित है?",
+    "question": "Newcastle Harbour, the world's largest coal exporting port, is located in which country?",
+    "optionA": "Australia",
+    "optionB": "Canada",
+    "optionC": "America",
+    "optionD": "Mexico",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::माउंट लोगन किस देश का सबसे ऊँचा बिंदु है?",
+    "question": "Mount Logan is the highest point of which country?",
+    "optionA": "Canada",
+    "optionB": "America",
+    "optionC": "Brazil",
+    "optionD": "Mexico",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::भारत में विश्व की कुल मैन्ग्रोव वनस्पति का कितना हिस्सा पाया जाता है?",
+    "question": "What percentage of the world's total mangrove vegetation is found in India?",
+    "optionA": "6%",
+    "optionB": "3%",
+    "optionC": "12%",
+    "optionD": "9%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन सा दिन ऑस्ट्रेलिया में सर्वाधिक लम्बा होगा?",
+    "question": "Which of the following days will be the longest in Australia?",
+    "optionA": "22 December",
+    "optionB": "21 June",
+    "optionC": "22 September",
+    "optionD": "23 March",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व का सबसे गर्म स्थान अल अजीजिया किस देश में स्थित है?",
+    "question": "The hottest place in the world, Al Azizia, is located in which country?",
+    "optionA": "Libya",
+    "optionB": "Sudan",
+    "optionC": "Congo",
+    "optionD": "Nigeria",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस स्थान पर सर्वाधिक पवनें प्रवाहित होती हैं?",
+    "question": "At which of the following places do the maximum winds flow?",
+    "optionA": "Gobi Desert",
+    "optionB": "North Pole",
+    "optionC": "Indian Ocean",
+    "optionD": "Antarctica",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::वोल्टा नदी किस देश में बहती है?",
+    "question": "In which country does the Volta River flow?",
+    "optionA": "Ghana",
+    "optionB": "Kenya",
+    "optionC": "Congo",
+    "optionD": "Nigeria",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::दक्षिण एशिया में एकमात्र सक्रीय ज्वालामुखी किस देश में स्थित है?",
+    "question": "In which country is the only active volcano in South Asia located?",
+    "optionA": "Sri Lanka",
+    "optionB": "India",
+    "optionC": "Mauritius",
+    "optionD": "Maldives",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से दक्षिण एशिया में किस देश का जनसँख्या घनत्व सर्वाधिक है?",
+    "question": "Which country in South Asia has the highest population density?",
+    "optionA": "Pakistan",
+    "optionB": "Bangladesh",
+    "optionC": "Maldives",
+    "optionD": "Sri Lanka",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से विश्व का सबसे बड़ा चाय निर्यातक देश कौन सा है?",
+    "question": "Which of the following is the world's largest tea exporting country?",
+    "optionA": "Kenya",
+    "optionB": "Sri Lanka",
+    "optionC": "China",
+    "optionD": "India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::कुरिल द्वीप से सम्बंधित विवाद किन दो देशों के बीच में है?",
+    "question": "Between which two countries is the dispute related to the Kuril Islands?",
+    "optionA": "Russia and China",
+    "optionB": "Russia and North Korea",
+    "optionC": "Russia and Japan",
+    "optionD": "Japan and China",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::येओनप्येओंग द्वीप निम्नलिखित में से किन दो देशों के बीच विवादित क्षेत्र है?",
+    "question": "Which of the following is the disputed area between which two countries for Yeonpyeong Island?",
+    "optionA": "North Korea and Japan",
+    "optionB": "North Korea and South Korea",
+    "optionC": "South Korea and Japan",
+    "optionD": "North Korea and China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::कैतिमोर निम्नलिखित में से किस फसल की संकर वैरायटी है?",
+    "question": "Katimore is a hybrid variety of which of the following crops?",
+    "optionA": "Chili",
+    "optionB": "Coffee",
+    "optionC": "Tobacco",
+    "optionD": "Cotton",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन सा द्वीप ब्रूनेई, इंडोनेशिया और मलेशिया में बंटा हुआ है?",
+    "question": "Which of the following islands is divided among Brunei, Indonesia, and Malaysia?",
+    "optionA": "Borneo Island",
+    "optionB": "Sebatik Island",
+    "optionC": "Bintan Island",
+    "optionD": "Madura Island",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::अंतर्राष्ट्रीय बांस व रत्तन नेटवर्क (इनबार) का मुख्यालय कहाँ पर स्थित है?",
+    "question": "Where is the headquarters of the International Bamboo and Rattan Network (INBAR)?",
+    "optionA": "Colombo",
+    "optionB": "Guwahati",
+    "optionC": "Dhaka",
+    "optionD": "Beijing",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::मार्गोसा तेल निम्नलिखित में से किस पेड़ से प्राप्त किया जाता है?",
+    "question": "Margosa oil is obtained from which of the following trees?",
+    "optionA": "Neem",
+    "optionB": "Babul",
+    "optionC": "Bamboo",
+    "optionD": "Ficus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::विश्व के कुल कितने लैंडलॉक्ड विकासशील देश हैं?",
+    "question": "How many landlocked developing countries are there in the world?",
+    "optionA": "32",
+    "optionB": "33",
+    "optionC": "34",
+    "optionD": "35",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::शेक्सपियर बीच किस देश में स्थित है?",
+    "question": "Shakespeare Beach is located in which country?",
+    "optionA": "Canada",
+    "optionB": "Italy",
+    "optionC": "England",
+    "optionD": "France",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::चिली में स्थित चुकीमाता स्थान किस अयस्क के लिए प्रसिद्ध है?",
+    "question": "The Chuquicamata site located in Chile is famous for which ore?",
+    "optionA": "Zinc",
+    "optionB": "Uranium",
+    "optionC": "Copper",
+    "optionD": "Iron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस सागर की तटरेखा नहीं है?",
+    "question": "Which of the following does not have a coastline?",
+    "optionA": "White Sea",
+    "optionB": "Tasman Sea",
+    "optionC": "Sea of Japan",
+    "optionD": "Sargasso Sea",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस देश में कॉफ़ी के पौधे की उत्पत्ति हुई थी?",
+    "question": "In which country did the coffee plant originate?",
+    "optionA": "Vietnam",
+    "optionB": "Ethiopia",
+    "optionC": "Peru",
+    "optionD": "Brazil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::विश्व के सबसे बड़े सोलर हीटर के लिए प्रसिद्ध सोलर वैली किस देश में स्थित है?",
+    "question": "Solar Valley, famous for the world's largest solar heater, is located in which country?",
+    "optionA": "Australia",
+    "optionB": "Germany",
+    "optionC": "China",
+    "optionD": "Japan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस समयकाल के दौरान महाद्वीपीय विस्थापन की प्रक्रिया लगभग रुक गयी थी?",
+    "question": "During which of the following time periods did the continental drift process almost stop?",
+    "optionA": "Neogene Period",
+    "optionB": "Quaternary Period",
+    "optionC": "Cenozoic Era",
+    "optionD": "Paleogene Period",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::अकास्ता नीस किस देश में पायी जाती है?",
+    "question": "Agasta Nice is found in which country?",
+    "optionA": "Chile",
+    "optionB": "Brazil",
+    "optionC": "Peru",
+    "optionD": "Canada",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन सा महाद्वीप औसत ऊंचाई के आधार पर विश्व का सबसे ऊँचा महाद्वीप है?",
+    "question": "Which continent is the highest in the world based on average elevation?",
+    "optionA": "Asia",
+    "optionB": "North America",
+    "optionC": "Antarctica",
+    "optionD": "South America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::मोहोरोविसिच दरार किसके बीच में सीमा बनाती है?",
+    "question": "The Mohorovičić discontinuity forms a boundary between what?",
+    "optionA": "Sial and Sima",
+    "optionB": "Earth's crust and mantle",
+    "optionC": "Lithosphere and asthenosphere",
+    "optionD": "Mantle and Earth's core",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किसे विश्व का कॉफ़ी बंदरगाह कहा जाता है?",
+    "question": "Which of the following is called the coffee port of the world?",
+    "optionA": "Buenos Aires",
+    "optionB": "Santos",
+    "optionC": "Santiago",
+    "optionD": "Rio de Janeiro",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से किस देश का जनसँख्या घनत्व सबसे कम है?",
+    "question": "Among the following, which country has the lowest population density?",
+    "optionA": "Mauritius",
+    "optionB": "Maldives",
+    "optionC": "Nepal",
+    "optionD": "Bhutan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन सा देश यूरेनियम का सबसे बड़ा उत्पादक है?",
+    "question": "Among the following, which country is the largest producer of uranium?",
+    "optionA": "Canada",
+    "optionB": "Australia",
+    "optionC": "France",
+    "optionD": "Kazakhstan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "world-gk::थाईलैंड की खाड़ी कंबोडिया की किस सीमा की निर्माण करती है?",
+    "question": "Which border of Cambodia is formed by the Gulf of Thailand?",
+    "optionA": "Eastern",
+    "optionB": "Southern",
+    "optionC": "Northern",
+    "optionD": "Western",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "world-gk::निम्नलिखित में से कौन से टीले सबसे दुर्लभ होते हैं?",
+    "question": "Among the following, which type of hills are the rarest?",
+    "optionA": "Linear hills",
+    "optionB": "Crescentic hills",
+    "optionC": "Dome-shaped hills",
+    "optionD": "Star-shaped hills",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "world-gk::अंतर्राष्ट्रीय स्ट्रेटिटोग्राफी आयोग का नवीनतम टाइम स्केल कौन सा है?",
+    "question": "What is the most recent time scale of the International Commission on Stratigraphy?",
+    "optionA": "Quaternary Period",
+    "optionB": "Tertiary Period",
+    "optionC": "Cretaceous Period",
+    "optionD": "Oligocene",
+    "correctAnswer": "A"
+  }
+]
