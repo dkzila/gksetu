@@ -1,0 +1,2018 @@
+[
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक के लिए सबसे मूल्यवान ?",
+    "question": "What is most valuable for a teacher?",
+    "optionA": "His job",
+    "optionB": "His dignity and status",
+    "optionC": "The trust of students",
+    "optionD": "His faith in teaching",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अच्छा अध्यापक वह है जो ?",
+    "question": "A good teacher is one who?",
+    "optionA": "Is intelligent and hardworking",
+    "optionB": "Has genuine concern for his students",
+    "optionC": "Always spends his life teaching",
+    "optionD": "Is proficient in his subject",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा के प्रचार एवं प्रसार से ?",
+    "question": "From the promotion and spread of education?",
+    "optionA": "Democracy is strengthened",
+    "optionB": "Superstition decreases",
+    "optionC": "The rate of economic development increases",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आप स्कूल के बाहर अपने किसी छात्र से किस प्रकार से व्यवहार करेंगें ?",
+    "question": "How would you behave with one of your students outside the school?",
+    "optionA": "Like a stranger",
+    "optionB": "You would not like to talk to him",
+    "optionC": "Very seriously",
+    "optionD": "Like a friend",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण क्या है ?",
+    "question": "What is teaching?",
+    "optionA": "A skill",
+    "optionB": "An art",
+    "optionC": "Just an activity",
+    "optionD": "A penance",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा तभी सार्थक होगी जब ?",
+    "question": "Education will be meaningful only when?",
+    "optionA": "It is curriculum-centered",
+    "optionB": "It is student-centered",
+    "optionC": "It is employment-centered",
+    "optionD": "It is society-centered",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण की समस्याओं को हल करने का दायित्व किसका है ?",
+    "question": "Whose responsibility is it to solve the problems of teaching?",
+    "optionA": "The principal's",
+    "optionB": "The teachers'",
+    "optionC": "The government's",
+    "optionD": "The educationists'",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षक की योग्यता एवं आचरण का सबसे अच्छा मूल्यांकन करते हैं ?",
+    "question": "Who evaluates a teacher's qualification and conduct the best?",
+    "optionA": "His principal",
+    "optionB": "His students",
+    "optionC": "The respected people of society",
+    "optionD": "Experts",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके विचार में शिक्षा का उद्देश्य होना चाहिए ?",
+    "question": "In your opinion, what should be the purpose of education?",
+    "optionA": "A job after receiving education",
+    "optionB": "Development of students' mental abilities",
+    "optionC": "Making students literate",
+    "optionD": "Holistic development of children",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::पाठ्यक्रम निर्माण में किस बात को मुख्य रूप से ध्यान में रखना चाहिए ?",
+    "question": "What should be mainly kept in mind in curriculum construction?",
+    "optionA": "The objectives of education",
+    "optionB": "The needs, interests and abilities of students",
+    "optionC": "Teaching researches",
+    "optionD": "Both A and B",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक प्रधानाचार्य को होना चाहिए ?",
+    "question": "What should a principal be?",
+    "optionA": "Inspirational for students",
+    "optionB": "Having a sense of equality for teachers",
+    "optionC": "Efficient manager",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके अनुसार शिक्षण की योजना पद्धति होनी चाहिए ?",
+    "question": "According to you, what should be the planning method of teaching?",
+    "optionA": "Teacher-centered",
+    "optionB": "Project-centered",
+    "optionC": "Textbook-centered",
+    "optionD": "Child-centered",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक अध्यापक का श्रेष्ठतम गुण है ?",
+    "question": "What is the best quality of a teacher?",
+    "optionA": "Complete dedication towards the teacher",
+    "optionB": "High character towards the teacher",
+    "optionC": "High thinking towards the teacher",
+    "optionD": "Secularism of the teacher",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक मुख्य रूप से किसके प्रति जवाबदेह होता है ?",
+    "question": "Towards whom is a teacher mainly responsible?",
+    "optionA": "Towards society and students",
+    "optionB": "Towards the principal",
+    "optionC": "Towards parents",
+    "optionD": "Towards the government",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ग्रामीण अंचलों में बच्चों के स्कूल से भागने तथा पढ़ाई छोड़ने का कारण है ?",
+    "question": "What is the reason for children running away from school and dropping out of studies in rural areas?",
+    "optionA": "Dull atmosphere of the school",
+    "optionB": "Desire of students to become child laborers",
+    "optionC": "Fear of students from the teacher",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक की कार्यक्षमता को बढ़ाया जा सकता है ?",
+    "question": "How can a teacher's efficiency be increased?",
+    "optionA": "By giving promotion according to examination results",
+    "optionB": "By strict school administration",
+    "optionC": "By evaluating the teacher's work",
+    "optionD": "By giving good salary",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा शक्ति एवं सत्ता का स्त्रोत है ?",
+    "question": "Education is a source of power and authority?",
+    "optionA": "For women",
+    "optionB": "For the backward classes",
+    "optionC": "For boys",
+    "optionD": "Both A and B",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारत में शिक्षित बेरोजगारी का प्रमुख कारण है ?",
+    "question": "What is the main cause of educated unemployment in India?",
+    "optionA": "Lack of concrete policy for government employment",
+    "optionB": "Widespread spread of education",
+    "optionC": "Aimless education",
+    "optionD": "Poor quality education",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::हमे शिक्षा ग्रहण करनी चाहिए क्योंकि शिक्षा ?",
+    "question": "We should acquire education because education?",
+    "optionA": "Makes a person learned",
+    "optionB": "Makes a person self-reliant",
+    "optionC": "Makes a person capable of earning",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किस प्रकार का कक्षा नेतृत्व सबसे उत्तम माना गया है ?",
+    "question": "What type of classroom leadership is considered the best?",
+    "optionA": "Authoritarian",
+    "optionB": "Mixed form of all",
+    "optionC": "Democratic",
+    "optionD": "Pragmatic",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अभिभावक मुलाकात दिवस की सबसे अधिक आवश्यकता पड़ती है ?",
+    "question": "The greatest need for a Parent-Teacher Meeting Day is felt in?",
+    "optionA": "Primary classes",
+    "optionB": "Secondary classes",
+    "optionC": "Secondary classes",
+    "optionD": "Colleges",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ग्रामीण क्षेत्रों के उत्थान का लक्ष्य होना चाहिए ?",
+    "question": "The goal for the development of rural areas should be?",
+    "optionA": "Spread of primary and adult education",
+    "optionB": "Expansion of urban amenities",
+    "optionC": "Spread of higher education",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::धानाचार्य अपने अध्यापकों से आशा करता है ?",
+    "question": "What does the Chancellor expect from his teachers?",
+    "optionA": "Dedication and loyalty",
+    "optionB": "Obedient attitude",
+    "optionC": "Competence and knowledge",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अभिभावक अपने बालकों के लिए अध्यापकों से आशा करते हैं ?",
+    "question": "What do parents expect from teachers for their children?",
+    "optionA": "Impartial behavior",
+    "optionB": "Sympathy and love",
+    "optionC": "Competence and knowledge",
+    "optionD": "Both A and B",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि आपसे किसी गम्भीर विषय पर भाषण देने के लिए कहा जाये, तो आप ?",
+    "question": "If you are asked to give a speech on a serious topic, you will?",
+    "optionA": "Take advice from friends on this topic",
+    "optionB": "Clearly refuse",
+    "optionC": "Readily prepare",
+    "optionD": "Ask for some time",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आज के वैज्ञानिक युग में छात्रों को आध्यात्मिकता का ज्ञान देना ?",
+    "question": "In today's scientific age, giving students knowledge of spirituality?",
+    "optionA": "Is backwardness",
+    "optionB": "Is necessary",
+    "optionC": "Is unnecessary",
+    "optionD": "Is impossible",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::विद्यालय के सभी कार्यक्रमों में भाग लेना चाहिए क्योंकि इससे ?",
+    "question": "One should participate in all school programs because it?",
+    "optionA": "Provides opportunities to learn",
+    "optionB": "Develops personality",
+    "optionC": "Helps in developing self-confidence",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किसी भी विषय वस्तु को छात्रों को सरलता से सिखाने के लिए अध्यापक का सर्वप्रथम गुण होना चाहिए ?",
+    "question": "For teaching any subject matter to students easily, the first quality a teacher should have is?",
+    "optionA": "Self-confidence",
+    "optionB": "Knowledge of the subject matter",
+    "optionC": "Effective expression",
+    "optionD": "Compassion",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::विद्यालय में खेलों के आयोजन का उद्देश्य होता है ?",
+    "question": "The purpose of organizing games in school is?",
+    "optionA": "To engage students in some work",
+    "optionB": "To make the body healthy and strong",
+    "optionC": "To prepare for competitive games",
+    "optionD": "To ensure the all-round development of the child",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक छात्र की दृष्टि से विद्यालय में छात्र-संघ संगठन के बारे में आपकी धारण है ?",
+    "question": "From a student's perspective, your view about the student union organization in school is?",
+    "optionA": "There is no benefit from these",
+    "optionB": "Bullying spreads in school",
+    "optionC": "It is a means to fight against the injustices of teachers",
+    "optionD": "It increases the feeling of leadership among students",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिशुओं के लिए शिशुशाला में आवश्यक है ?",
+    "question": "What is necessary for infants in a nursery?",
+    "optionA": "Providing opportunities for play",
+    "optionB": "Giving general knowledge",
+    "optionC": "Teaching language",
+    "optionD": "Telling stories",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक अच्छी पाठ्य-पुस्तक वह है जो अन्य विशेषताओं के अतिरिक्त अनिवार्य रूप से सम्मिलित करती है ?",
+    "question": "A good textbook is one that, in addition to other characteristics, essentially includes?",
+    "optionA": "Instructions for examiners",
+    "optionB": "Practice exercises for homework",
+    "optionC": "Instructions for teachers",
+    "optionD": "A long list of cases",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::वर्तमान समय में प्राइमरी शिक्षा की दुर्दशा का मुख्य कारण है ?",
+    "question": "What is the main reason for the plight of primary education in the present time?",
+    "optionA": "Nuclear family",
+    "optionB": "Students spending more time watching television",
+    "optionC": "Dependence on guide books",
+    "optionD": "Imbalanced teacher-student ratio",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::सभी बच्चों की एक ही समस्या है तो आप उनकी समस्या का समाधन करते हैं ?",
+    "question": "If all children have the same problem, how do you solve their problem?",
+    "optionA": "One by one",
+    "optionB": "Collectively",
+    "optionC": "First of the small children",
+    "optionD": "First of the big children",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जो आपकी सही आलोचना करता है तो उसके साथ आपका व्यवहार अपेक्षित होगा ?",
+    "question": "What is your expected behavior towards someone who criticizes you correctly?",
+    "optionA": "As a friend",
+    "optionB": "As a fool",
+    "optionC": "As a criticism",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक प्रभावी अध्यापक के लिए आवश्यक नहीं मानते हैं ?",
+    "question": "Which one is not considered necessary for an effective teacher?",
+    "optionA": "To be only a punisher",
+    "optionB": "To make the subject interesting",
+    "optionC": "To be creative",
+    "optionD": "To be an excellent speaker",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भावी संप्रेषण संभव हो सकता है ?",
+    "question": "Future communication can be possible?",
+    "optionA": "By knowing the level of the listener",
+    "optionB": "By using your appropriate words",
+    "optionC": "By your extensive knowledge",
+    "optionD": "By speaking loudly",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::नैतिक शिक्षा का उत्तरदायित्व होना चाहिए ?",
+    "question": "The responsibility of moral education should be?",
+    "optionA": "On the school",
+    "optionB": "On the society",
+    "optionC": "On the parents",
+    "optionD": "On the religious guru",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छोटे बच्चों की शिक्षा देना जरूरी है परन्तु उनके ऊपर किस प्रकार का बोझ अपेक्षित नहीं है ?",
+    "question": "It is necessary to educate small children but what kind of burden should not be expected on them?",
+    "optionA": "The burden of writing",
+    "optionB": "The burden of reading",
+    "optionC": "The burden of homework",
+    "optionD": "The burden of going to school",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जब आपके छात्र उन्नति करते हैं तो आप महसूस करते हैं ?",
+    "question": "When your students progress, you feel?",
+    "optionA": "The feeling of self-satisfaction",
+    "optionB": "The feeling of happiness",
+    "optionC": "The feeling of jealousy",
+    "optionD": "The feeling of self-pity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा के माध्यम से कल्याण होता है ?",
+    "question": "Through education, welfare happens?",
+    "optionA": "Of all classes of society",
+    "optionB": "Of an ideal family",
+    "optionC": "Of human personality",
+    "optionD": "Of students and girl students",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक अध्यापक के रूप में आप प्राथमिकता देंगे ?",
+    "question": "As a teacher, you will give priority to?",
+    "optionA": "To science subjects",
+    "optionB": "To scientific perspective and thought",
+    "optionC": "To high thoughts",
+    "optionD": "To faith",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके अध्यापन करते समय यदि कोई छात्र आपकी त्रुटियों की ओर संकेत करती है तो आप ?",
+    "question": "While you are teaching, if a student points out your mistakes, you?",
+    "optionA": "Will ask the student to meet after class",
+    "optionB": "Will ask the student to remain quiet",
+    "optionC": "Will accept them",
+    "optionD": "Will go the next day after good preparation",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपको मालूम हुआ है कि आपके प्रधानाचार्य संस्था में कुछ गलत कार्य कर रहे हैं तो आप ?",
+    "question": "You come to know that your principal is doing some wrong work in the institution, then you?",
+    "optionA": "Will complain to higher authorities",
+    "optionB": "Will try to make them understand",
+    "optionC": "Will ignore it from that side",
+    "optionD": "Will take any decision only after consulting colleagues",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ौढ़ शिक्षा किन व्यक्तियों के अधिकार में होनी चाहिए ?",
+    "question": "Adult education should be in the right of which individuals?",
+    "optionA": "In the hands of the government",
+    "optionB": "In the hands of educated individuals",
+    "optionC": "In the hands of non-government committees",
+    "optionD": "In the hands of all the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि कोई अभिभावक आपसे मिलने कभी नहीं आता है तो आप क्या करेंगे ?",
+    "question": "If a parent never comes to meet you, then what will you do?",
+    "optionA": "Will start punishing the child",
+    "optionB": "Will not pay attention to the child",
+    "optionC": "Will go to meet them yourself",
+    "optionD": "Will write to the parent",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षकों के बीच संघर्ष का सबसे दूषित परिणाम होता है ?",
+    "question": "What is the most corrupting result of conflict among teachers?",
+    "optionA": "Less teaching time",
+    "optionB": "Deterioration of students' behavior",
+    "optionC": "Impact on co-curricular activities",
+    "optionD": "Deterioration of the relationship between principal and teachers",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में अनुशासन बनाये रखने के लिए एक शिक्षक की कौन-सी भूमिका सराहनीय है ?",
+    "question": "Which role of a teacher is appreciable for maintaining discipline among students?",
+    "optionA": "The teacher's own qualification",
+    "optionB": "The teacher's thought",
+    "optionC": "The teacher's personality",
+    "optionD": "The teacher's classroom management ability",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किस विद्वान ने यह कहा था कि शिशु का मस्तिष्क कोरी स्लेट होता है ?",
+    "question": "Which scholar had said that the brain of an infant is like a clean slate?",
+    "optionA": "Rousseau",
+    "optionB": "Plato",
+    "optionC": "Adler",
+    "optionD": "Butler",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किस विद्वान ने सिखने के पांच चरण बताए थे ?",
+    "question": "Which scholar had told five stages of learning?",
+    "optionA": "Froebel",
+    "optionB": "Herbert",
+    "optionC": "Plato",
+    "optionD": "Comenius",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अनुशासन भंग करने वाले छात्र को दिया गया दंड ऐसा होना चाहिए कि ?",
+    "question": "The punishment given to a student who breaks discipline should be such that?",
+    "optionA": "No student should break discipline out of fear",
+    "optionB": "The student should tremble by always remembering it",
+    "optionC": "The student receiving punishment should improve himself",
+    "optionD": "His discussion should spread throughout the school",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किंडरगार्टेन स्कूल सबसे पहले किस देश में खोले गए थे ?",
+    "question": "In which country were kindergarten schools opened first?",
+    "optionA": "England",
+    "optionB": "Italy",
+    "optionC": "Germany",
+    "optionD": "France",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भाषा सीखने का प्रभावी उपाय है ?",
+    "question": "An effective way of learning a language is?",
+    "optionA": "Reading textbooks",
+    "optionB": "Reading supplementary books",
+    "optionC": "Reading newspapers",
+    "optionD": "Conversing",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों के चरित्र-निर्माण में सबसे अधिक महत्वपूर्ण भूमिका किसकी होती है ?",
+    "question": "Whose role is most important in the character building of students?",
+    "optionA": "Of the teacher's sermons",
+    "optionB": "Of the teacher's own ideal character",
+    "optionC": "Of reading the life stories of great men",
+    "optionD": "Of religious education",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::निम्नलिखित शिक्षण-विधियों में से कौन-सी विधि वास्तविक अनुभवों को प्रदान करने के दृष्टिकोण से उत्तम है ?",
+    "question": "Which of the following teaching methods is the best from the perspective of providing real experiences?",
+    "optionA": "Tour method",
+    "optionB": "Project method",
+    "optionC": "Lecture method",
+    "optionD": "Textbook method",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::निःशुल्क और अनिवार्य प्राइमरी शिक्षा लागू होने के फलस्वरूप ?",
+    "question": "As a result of the implementation of free and compulsory primary education?",
+    "optionA": "Literacy has increased among boys",
+    "optionB": "Literacy has increased in rural areas",
+    "optionC": "Literacy has increased in the country",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::नर्सरी स्कूलों की शुरुआत किसने की थी ?",
+    "question": "Who started nursery schools?",
+    "optionA": "Dalton",
+    "optionB": "John Dewey",
+    "optionC": "Froebel",
+    "optionD": "Annie Besant",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा के क्षेत्र में सर्वाधिक महत्वपूर्ण तत्व &#39;अभिरुचि&#39; है, यह विचार किसका था ?",
+    "question": "The idea that the most important element in the field of education is 'interest', whose idea was it?",
+    "optionA": "Rousseau",
+    "optionB": "Maria Montessori",
+    "optionC": "McDougall",
+    "optionD": "T.P. Nunn",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आजकल के आवासीय स्कूलों की तरह भारतीय पद्धति के स्कूल थे ?",
+    "question": "The schools of the Indian system were like the residential schools of today?",
+    "optionA": "Madrasas",
+    "optionB": "Ashrams",
+    "optionC": "Gurukuls",
+    "optionD": "Maktabs",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारत में स्त्री शिक्षा के एक महान समर्थक थे ?",
+    "question": "A great supporter of women's education in India was?",
+    "optionA": "Mahatma Gandhi",
+    "optionB": "Rabindranath Tagore",
+    "optionC": "Karve",
+    "optionD": "Arvindo",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बच्चों का प्रथम अध्यापक कौन होता है ?",
+    "question": "Who is the first teacher of children?",
+    "optionA": "Their own conscious mind",
+    "optionB": "Their environment",
+    "optionC": "Their parents",
+    "optionD": "Teacher",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण का कार्य ?",
+    "question": "The work of teaching?",
+    "optionA": "Everyone can do it",
+    "optionB": "Not in everyone's control",
+    "optionC": "A literate person can do it",
+    "optionD": "Even many teachers cannot do it",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::सीखने का मुख्य तत्त्व है ?",
+    "question": "The main element of learning is?",
+    "optionA": "Desire to learn",
+    "optionB": "Favorable environment",
+    "optionC": "Motivation",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::डेवी के अनुसार शिक्षा एक ?",
+    "question": "According to Dewey, education is a?",
+    "optionA": "Social need",
+    "optionB": "Personal need",
+    "optionC": "Psychological need",
+    "optionD": "Theoretical need",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::खेल के माध्यम से शिक्षा ?",
+    "question": "Education through play?",
+    "optionA": "Is psychological",
+    "optionB": "Is non-psychological",
+    "optionC": "Suppresses creative tendencies",
+    "optionD": "Suppresses group tendencies",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा की खेल विधि का अर्थ है ?",
+    "question": "What is the meaning of the play method of education?",
+    "optionA": "Education through play activities",
+    "optionB": "Entertainment through play activities",
+    "optionC": "Education of play",
+    "optionD": "Emphasis on activity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::पाठ-योजना तभी सही बन सकेगी जब शिक्षक को ?",
+    "question": "A lesson plan can be prepared correctly only when the teacher?",
+    "optionA": "Knows the students' prior knowledge",
+    "optionB": "Has knowledge of various teaching methods",
+    "optionC": "Has knowledge of teaching principles",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अभ्यास से क्या होता है ?",
+    "question": "What happens through practice?",
+    "optionA": "Knowledge is acquired",
+    "optionB": "Training of senses takes place",
+    "optionC": "It is memorized",
+    "optionD": "The habit of doing homework regularly develops",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों के आवेगों का दमन करने से सम्भतः ?",
+    "question": "What might happen by suppressing the impulses of students?",
+    "optionA": "They start to accept discipline",
+    "optionB": "A feeling of rebellion develops in them",
+    "optionC": "Their creative power is stifled",
+    "optionD": "Both B and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा में प्रयोजनवाद की विचारधारा का प्रवर्तक कौन था ?",
+    "question": "Who was the promoter of the philosophy of pragmatism in education?",
+    "optionA": "Kilpatrick",
+    "optionB": "Pestalozzi",
+    "optionC": "William James",
+    "optionD": "John Dewey",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण की डाल्टन विधि आरम्भ करने का श्रेय किसे है ?",
+    "question": "Who is credited with starting the Dalton method of teaching?",
+    "optionA": "Dr. Dalton",
+    "optionB": "Parkhurst",
+    "optionC": "Kilpatrick",
+    "optionD": "Pestalozzi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा मनोविज्ञान का जनक किसे कहा जाता है ?",
+    "question": "Who is considered the father of educational psychology?",
+    "optionA": "Herbert",
+    "optionB": "Spencer",
+    "optionC": "Pestalozzi",
+    "optionD": "DV",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::\"बच्चों के लिए सबसे उत्तम शिक्षक वह है, जो स्वयं बालक जैसा हो ।\" यह कथन किसका है ?",
+    "question": "\"The best teacher for children is one who is like a child himself.\" Whose statement is this?",
+    "optionA": "Mecken",
+    "optionB": "Aristotle",
+    "optionC": "Rousseau",
+    "optionD": "John Locke",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कक्षा में सम्प्रेषण की सबसे शक्तिशाली बाधा है ?",
+    "question": "What is the most powerful barrier to communication in the classroom?",
+    "optionA": "External interference",
+    "optionB": "Lack of teaching material",
+    "optionC": "Confusion at the teacher's level",
+    "optionD": "Noise in the classroom",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भावकारी शिक्षण फलन है ?",
+    "question": "Effective teaching is a function of?",
+    "optionA": "Clear and factual communication",
+    "optionB": "Proper classroom discipline",
+    "optionC": "Regular study",
+    "optionD": "Coming to class immediately and regularly without delay",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छोटे बच्चों के लिए शिक्षा का माध्यम होना चाहिए ?",
+    "question": "What should be the medium of education for young children?",
+    "optionA": "Mother tongue",
+    "optionB": "English language",
+    "optionC": "Regional language",
+    "optionD": "National language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::सन्दर्भ पुस्तकों एवं अन्य पाठ्य-सामग्रियों के अध्ययन से क्या लाभ है ?",
+    "question": "What is the benefit of studying reference books and other study materials?",
+    "optionA": "It broadens knowledge",
+    "optionB": "Good marks are obtained in examinations",
+    "optionC": "Pleasure is obtained",
+    "optionD": "Decision-making power develops",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::गणित शिक्षण के लिए निम्न में से कौन-सी सम्प्रेषण रणनीति सर्वाधिक उपयुक्त है ?",
+    "question": "Which of the following communication strategies is most suitable for teaching mathematics?",
+    "optionA": "Continuous prose strategy",
+    "optionB": "Decision table",
+    "optionC": "Algorithm",
+    "optionD": "Exploration strategy",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में आपराधिक प्रवृति एवं युवा अपराधिता का प्रमुख कारण है ?",
+    "question": "What is the main cause of criminal tendencies and juvenile delinquency among students?",
+    "optionA": "Non-fulfillment of needs",
+    "optionB": "Mental retardation",
+    "optionC": "Maladjustment",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षक की योग्यताओं, प्रयासों एवं उसके व्यवहार का सही मूल्यांकन किया जा सकता है ?",
+    "question": "The teacher's qualifications, efforts and behavior can be properly evaluated by?",
+    "optionA": "The principal",
+    "optionB": "His colleagues",
+    "optionC": "His students",
+    "optionD": "Experts",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ाचीन काल में औपचारिक शिक्षा का स्वरूप था ?",
+    "question": "What was the form of formal education in ancient times?",
+    "optionA": "Development of intellectual skills",
+    "optionB": "Knowledge of religious rituals",
+    "optionC": "Transmission of human values",
+    "optionD": "Vocational education",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::&#39;ऑपरेशन ब्लैक बोर्ड&#39; नामक कार्यक्रम किसके लिए है ?",
+    "question": "For whom is the program 'Operation Black Board' intended?",
+    "optionA": "For primary schools",
+    "optionB": "For middle schools",
+    "optionC": "For secondary schools",
+    "optionD": "For all schools",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्कूल अनुशासन में निम्न में से किसे प्राथमिक दी जाती है ?",
+    "question": "In school discipline, which of the following is given primary importance?",
+    "optionA": "Control of undesirable behaviors",
+    "optionB": "Planned development of students",
+    "optionC": "Compliance with the principal's orders",
+    "optionD": "Willing observance of social rules",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आधुनिक अनुशासन का मौलिक दर्शन है ?",
+    "question": "What is the fundamental philosophy of modern discipline?",
+    "optionA": "Reinforcement of desired behaviors",
+    "optionB": "Strict adherence to rules",
+    "optionC": "Healthy guidance and counseling",
+    "optionD": "Making schools noise-free",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षक के किस गुण को छात्र सबसे अधिक पसंद करते हैं ?",
+    "question": "Which quality of a teacher do students like the most?",
+    "optionA": "His impartiality",
+    "optionB": "His humor",
+    "optionC": "His punctuality",
+    "optionD": "His discipline-loving nature",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक के रूप में आप छात्रों की निजी समस्याएं ?",
+    "question": "As a teacher, you will regarding students' personal problems?",
+    "optionA": "Never listen to them",
+    "optionB": "Always listen to them",
+    "optionC": "Listen to them and then inform the principal",
+    "optionD": "Listen to them only when something special happens",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक बनने के बाद आपके विचारानुसार हर अध्यापक के घर पर किस वस्तु का होना जरूरी है ?",
+    "question": "According to you, after becoming a teacher, what is essential in every teacher's home?",
+    "optionA": "Library",
+    "optionB": "Furnished drawing room",
+    "optionC": "Television",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा के स्तर को ऊँचा उठाने के लिए निम्नलिखित में से क्या आवश्यक है ?",
+    "question": "What is necessary to raise the level of education?",
+    "optionA": "Continuous evaluation of textbooks",
+    "optionB": "Revision in curriculum",
+    "optionC": "Continuous evaluation of students",
+    "optionD": "Higher salary for teachers",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक का कार्य छात्रों में पढ़ाई के प्रति ?",
+    "question": "The teacher's work is to in students towards studies?",
+    "optionA": "Create faith",
+    "optionB": "Create attachment",
+    "optionC": "Create belief",
+    "optionD": "Create interest",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कक्षा-शिक्षण में दृश्य सामग्री का प्रयोग करने में आप किस बात का ध्यान रखेंगे ?",
+    "question": "In classroom teaching, when using visual material, what will you keep in mind?",
+    "optionA": "Present it dramatically",
+    "optionB": "It should not be known to children beforehand",
+    "optionC": "It should lead children from unknown to known",
+    "optionD": "It should be in accordance with the subject matter",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों का विश्वास प्राप्त करने हेतु शिक्षक को उनके साथ ?",
+    "question": "To gain the trust of students, a teacher should behave with them like a ?",
+    "optionA": "mother",
+    "optionB": "friend",
+    "optionC": "guru",
+    "optionD": "father",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में किसका विकास आपकी दृष्टि में सबसे महत्वपूर्ण है ?",
+    "question": "In your view, what is the most important development among students?",
+    "optionA": "dedication to work",
+    "optionB": "religious devotion",
+    "optionC": "importance of labor",
+    "optionD": "self-confidence",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::निम्नलिखित में से किसने कह था - प्रेरणा छात्र में रूचि उतपन्न करने की कला है ?",
+    "question": "Who said - Motivation is the art of creating interest in students?",
+    "optionA": "Thomson",
+    "optionB": "Rabindranath Tagore",
+    "optionC": "Macaulay",
+    "optionD": "Kothari",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कठिन शब्दों का अर्थ समझाने का व्यावहारिक ढंग है ?",
+    "question": "What is a practical method of explaining the meaning of difficult words?",
+    "optionA": "telling their synonyms",
+    "optionB": "telling by using them in sentences",
+    "optionC": "telling their antonyms",
+    "optionD": "all of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ऋग्वेद में कहा गया है कि शिक्षा ?",
+    "question": "It is said in the Rigveda that education?",
+    "optionA": "is the sign of a civilized society",
+    "optionB": "is knowledge",
+    "optionC": "is the ultimate goal of life",
+    "optionD": "is the source of light",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा संस्कृति का परिरक्षण ही नहीं करती वरन उसको ?",
+    "question": "Education not only preserves culture but also?",
+    "optionA": "enriches it",
+    "optionB": "makes it entertaining",
+    "optionC": "makes it spiritual",
+    "optionD": "defines it",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::गाँधी जी की बेसिक शिक्षा का उद्देश्य बालक को ?",
+    "question": "The objective of Gandhi ji's basic education was to?",
+    "optionA": "make the child an ocean of knowledge",
+    "optionB": "teach the lesson of non-violence and truth",
+    "optionC": "mold the child according to the needs of society",
+    "optionD": "make the child realize truth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::मनोविश्लेषण विचारधारा का प्रमुख प्रवर्तक किसे मन जाता है ?",
+    "question": "Who is considered the main proponent of the psychoanalytic school of thought?",
+    "optionA": "Karen Horney",
+    "optionB": "Thorndike",
+    "optionC": "Froebel",
+    "optionD": "Sigmund Freud",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण में भिन्न भिन्न शिक्षण-विधि का प्रयोग करने से क्या होता है ?",
+    "question": "What happens when different teaching methods are used in teaching?",
+    "optionA": "students' attention remains focused",
+    "optionB": "students understand well",
+    "optionC": "classroom study becomes interesting",
+    "optionD": "all of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षक को कक्षा-शिक्षण के दौरान इस बात का पूरा ध्यान रखना चाहिए कि ?",
+    "question": "A teacher should pay full attention during class teaching that?",
+    "optionA": "students study with pleasure",
+    "optionB": "the task of teaching is completed within the period",
+    "optionC": "the objectives of the lesson are fulfilled",
+    "optionD": "no student pays attention elsewhere",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कक्षा शिक्षण के दौरान आप छात्रों से कैसे प्रश्न पूछेंगे ?",
+    "question": "During class teaching, how will you ask questions from students?",
+    "optionA": "Related to the lesson taught first",
+    "optionB": "Related to the lesson being taught at that time",
+    "optionC": "Related to the complete knowledge of the child",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बहरों के लिए शिक्षा व्यवस्था के क्षेत्र में किसका नाम उल्लेखनीय है ?",
+    "question": "In the field of education system for the deaf, whose name is notable?",
+    "optionA": "Annie Besant",
+    "optionB": "Maria Montessori",
+    "optionC": "William Jones",
+    "optionD": "Helen Keller",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::\"शिक्षक की कथनी और करनी में भेद नहीं होना चाहिए\" यह कथन किसका है ?",
+    "question": "\"There should be no difference between what a teacher says and does\" - this statement is by whom?",
+    "optionA": "Rabindranath Tagore",
+    "optionB": "Mahatma Gandhi",
+    "optionC": "Zakir Hussain",
+    "optionD": "Madan Mohan Malaviya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक प्रभावी संसूचक के रूप में आप सबसे पहले निम्न कदमों में से किस पर विचार करेंगे ?",
+    "question": "As an effective communicator, which of the following steps would you consider first?",
+    "optionA": "Selection of communication media",
+    "optionB": "Planning the evaluation procedure",
+    "optionC": "Specifying the purpose of communication",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कक्षा के भौतिक वातावरण को बेहतर बनाने के लिए निम्न में से किसे महत्व दिया जाना चाहिए ?",
+    "question": "To improve the physical environment of the classroom, which of the following should be given importance?",
+    "optionA": "Control on air pollution",
+    "optionB": "Prevention of noise pollution",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कारगर शिक्षण कुल मिलाकर किस का प्रकार्य है ?",
+    "question": "Overall, effective teaching is a function of what?",
+    "optionA": "The teacher's erudition",
+    "optionB": "The teacher's honesty",
+    "optionC": "The teacher's interest in the teaching profession",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक कॉलेज की अध्यापिका वास्तव में विद्यार्थियों की सहायता करती है यदि वह ?",
+    "question": "A college teacher actually helps students if she?",
+    "optionA": "Makes students take notes in class",
+    "optionB": "Completes the curriculum before time",
+    "optionC": "Is impartial in evaluation",
+    "optionD": "Encourages students to ask questions",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कक्षा नायक का चयन करते समय अध्यापक को किस बात को ध्यान में रखना चाहिए ?",
+    "question": "While selecting a class leader, what should a teacher keep in mind?",
+    "optionA": "The student's intellectual ability",
+    "optionB": "The student's loyalty towards discipline",
+    "optionC": "The preference of other students",
+    "optionD": "The student's academic achievement",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारतीय समाज के परिप्रेक्ष्य में शिक्षण एक चुनौती से भी अधिक है ?",
+    "question": "From the perspective of Indian society, teaching is more than just a challenge?",
+    "optionA": "Due to fanaticism and unreasonableness",
+    "optionB": "Due to communal hatred",
+    "optionC": "Due to caste discrimination",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में वैज्ञानिक दृष्टिकोण उत्पन्न किया जा सकता है ?",
+    "question": "A scientific attitude can be developed in students?",
+    "optionA": "By teaching science",
+    "optionB": "By presenting rational thoughts",
+    "optionC": "By teaching philosophy and psychology",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक को निम्न में से किसे महत्त्व देना चाहिए ?",
+    "question": "What importance should a teacher give to the following?",
+    "optionA": "Maintains good relations with the principal",
+    "optionB": "Teaching with dedication in the classroom",
+    "optionC": "To be concerned about the future of students",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि किसी कक्षा में अधिकांश छात्र प्रायः ऊंघते हुए पाए जायें तो ?",
+    "question": "If most students in a class are found sleeping often?",
+    "optionA": "There might be a deficiency in students",
+    "optionB": "There might be a deficiency in the physical environment of the classroom",
+    "optionC": "There might be a deficiency in teaching",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अच्छा शिक्षण प्रकार्य है ?",
+    "question": "Good teaching is?",
+    "optionA": "Of good leadership of the principal",
+    "optionB": "Of honesty and devotion to the teaching profession",
+    "optionC": "Of high level of erudition of teachers",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::ाइमरी स्तर पर छात्रों को मातृ भाषा के माध्यम से पढ़ाना होता है क्योंकि ?",
+    "question": "Students should be taught through mother tongue at the primary level because?",
+    "optionA": "Through this, children get education in a natural environment",
+    "optionB": "Through this, the teacher gets convenience in sharing experiences",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::क्या अभिभावकों को अपने बच्चों को गृह कार्य करवाने में सहयोग देना चाहिए ?",
+    "question": "Should parents help their children with homework?",
+    "optionA": "No, children should do homework themselves",
+    "optionB": "No, it is an extra burden on parents",
+    "optionC": "Yes, children will definitely do homework by doing this",
+    "optionD": "Yes, through this parents will keep getting information about their children's progress",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::क्या अध्यापकों के लिए कोई आचार-संहिता होनी चाहिए ?",
+    "question": "Should there be a code of conduct for teachers?",
+    "optionA": "No, it is difficult to implement",
+    "optionB": "Yes, because it will increase their accountability",
+    "optionC": "No, because the work of teaching is very complex",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::निम्न में से कौन-सा कथन सत्य नहीं है ?",
+    "question": "Which of the following statements is not true?",
+    "optionA": "Teaching is an art",
+    "optionB": "Teachers are born",
+    "optionC": "Teachers can be trained",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा परम धर्म है क्योंकि ?",
+    "question": "Education is supreme religion because?",
+    "optionA": "No one can steal it",
+    "optionB": "No one can snatch it",
+    "optionC": "The more it is shared, the more it will grow",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्कूल के बाद अपने खाली समय में अध्यापक को क्या करना चाहिए ?",
+    "question": "What should a teacher do in his free time after school?",
+    "optionA": "Should help wife in household chores",
+    "optionB": "Should develop himself through self-study",
+    "optionC": "Should have fun with friends",
+    "optionD": "Should increase his income and knowledge through tuition",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में &#39;श्रम का महत्व&#39; भावना का क्या अर्थ है ?",
+    "question": "What does the feeling of 'importance of labor' in students mean?",
+    "optionA": "Physical labor does not reduce dignity",
+    "optionB": "All works are equally respectable",
+    "optionC": "No work is small or big",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण के लिए ज्ञान, प्रशिक्षण, अनुभव तथा अनुसन्धान के आलावा और किस बात की आवश्यकता पड़ती है ?",
+    "question": "Besides knowledge, training, experience and research for teaching, what else is required?",
+    "optionA": "Interest",
+    "optionB": "Positive attitude",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण अभिरुचि का एक महत्त्वपूर्ण पहलू यह भी है ?",
+    "question": "An important aspect of teaching interest is also this?",
+    "optionA": "The ability to make teaching student-oriented",
+    "optionB": "The ability to control students' activity",
+    "optionC": "The ability to make teaching employment-oriented",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यह शिक्षक में न्याय और निष्पक्षता का गुण न हो तो इसका क्या परिणाम होता है ?",
+    "question": "If this quality of justice and impartiality is not present in a teacher, what is its result?",
+    "optionA": "The interest of students is not served",
+    "optionB": "The soul of the teacher dies",
+    "optionC": "The teacher loses trust and does not get respect",
+    "optionD": "Teachers become autocratic",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारत में प्रौढ़ शिक्षा कार्यक्रम की असफलता का कारण है ?",
+    "question": "The reason for the failure of the adult education program in India is?",
+    "optionA": "Carelessness of instructors and other workers",
+    "optionB": "No provision of any additional motivation for adults",
+    "optionC": "Lack of proper supervision",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्कूलों में नैतिक शिक्षा दिए जाने के सम्बन्ध में आप का क्या विचार है ?",
+    "question": "What is your opinion regarding giving moral education in schools?",
+    "optionA": "Moral education should definitely be given in schools",
+    "optionB": "This type of education should be given by the teacher through their behavior",
+    "optionC": "There is no need to give this education in schools",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक शिक्षक का निजी जीवन कैसा होना चाहिए ?",
+    "question": "What should a teacher's personal life be like?",
+    "optionA": "It should be in accordance with the dignity of the position",
+    "optionB": "It should be very serious and ostentatious",
+    "optionC": "It doesn't matter what it is like",
+    "optionD": "It should be in accordance with the school's standards",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्वतन्त्र भारत में शिक्षा के माध्यम की समस्या हल न होने का प्रमुख कारण क्या है ?",
+    "question": "What is the main reason for the problem of the medium of education not being solved in independent India?",
+    "optionA": "Dominance of English",
+    "optionB": "India being a multilingual country",
+    "optionC": "Politics of India",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा का माध्यम ऐसी भाषा को बनाना चाहिए ?",
+    "question": "The medium of education should be made such a language?",
+    "optionA": "Which is dominated by the general public",
+    "optionB": "In which good analogy is available",
+    "optionC": "Which is rich",
+    "optionD": "Which is useful for employment later",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जीवन में सफलता प्राप्त करने के लिए आवश्यक है ?",
+    "question": "What is necessary to achieve success in life?",
+    "optionA": "To be favorable to fate",
+    "optionB": "To shield oneself in adverse circumstances and not run away from hard work",
+    "optionC": "To have the ability to get opportunities",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके विचार में प्राइमरी शिक्षा निःशुल्क करने से ?",
+    "question": "In your opinion, making primary education free?",
+    "optionA": "Teachers will not take it seriously",
+    "optionB": "The level of education in schools will fall",
+    "optionC": "Literacy will increase",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक को अपने उस छात्र पर गर्व करना चाहिए जो ?",
+    "question": "A teacher should be proud of that student who?",
+    "optionA": "If he becomes a teacher, he will always strive for the benefit of the students with dedication",
+    "optionB": "Shows peaceful opposition against immorality",
+    "optionC": "Is firm on his life's ideals",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि वाद-विवाद प्रतियोग्यता के लिए आपको निर्णायक मण्डल में शामिल कर लिया जाये तो आप ?",
+    "question": "If you are included in the jury panel for a debate competition, then you?",
+    "optionA": "Will give decisions according to the performance of the participants",
+    "optionB": "Will experience pride",
+    "optionC": "Will give decisions keeping the fellow judges in mind",
+    "optionD": "Will not pay attention to the subject matter at all",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::नई-नई बातें सीखने के लिए आवश्यक है कि ?",
+    "question": "It is necessary to learn new things that?",
+    "optionA": "New books should be studied",
+    "optionB": "New places should be traveled to",
+    "optionC": "The company of experienced and knowledgeable people should be sought",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::मुझे सबसे अधिक परेशानी महसूस होती है ?",
+    "question": "I feel the most troubled by?",
+    "optionA": "Decline in life values",
+    "optionB": "Indifference of parents",
+    "optionC": "My principal",
+    "optionD": "My students",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि आपका लेख आपका कोई अन्य साथी अध्यापक अपने नाम से प्रकाशित करा देता है तो आप ?",
+    "question": "If your article is published by another fellow teacher in his own name, then you?",
+    "optionA": "Will forgive him",
+    "optionB": "Will inform the publisher through a legal notice",
+    "optionC": "Will call him and talk",
+    "optionD": "Will not pay attention to this matter",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक ही कक्षा में पढ़ने वाले बच्चों की उपलब्धि में भिन्नता पाए जाने का प्रमुख कारण सभी है सिवाय एक के ?",
+    "question": "The main reason for the difference in achievement of children studying in the same class is all except?",
+    "optionA": "Deficiency in teachers' teaching",
+    "optionB": "Difference in environment",
+    "optionC": "Difference in labor and concentration among children",
+    "optionD": "Difference in innate ability",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::परीक्षाओं में अनुचित साधनों के प्रयोग का मूल कारण है ?",
+    "question": "The root cause of the use of improper means in examinations is?",
+    "optionA": "Faulty examination system",
+    "optionB": "Decline in moral values",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि कोई प्रधानाचार्य अपने स्कूल का अच्छा परीक्षाफल चाहता है तो उसे क्या करना चाहिए ?",
+    "question": "If a principal wants good examination results of his school, then what should he do?",
+    "optionA": "Should only admit meritorious students in the school",
+    "optionB": "Should try to maintain a high level of teaching in the school",
+    "optionC": "Should advise his students to take tuition",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक डॉक्टर तथा अध्यापक में यह समानता है कि ?",
+    "question": "The similarity between a doctor and a teacher is that?",
+    "optionA": "Both adopt therapeutic methods only after diagnosis",
+    "optionB": "Both are professionals",
+    "optionC": "Both come after receiving the same kind of education initially",
+    "optionD": "Both are social workers",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक/अध्यापिकाओं की प्रतिष्ठा एवं मान में काफी गिरावट आई है इसका मुख्य कारण है ?",
+    "question": "There has been a significant decline in the prestige and respect of teachers, the main reason for this is?",
+    "optionA": "Their greedy tendency for tuition",
+    "optionB": "Decline in their conduct",
+    "optionC": "Their carelessness towards teaching",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::उसी शिक्षक को समाज में वास्तविक मान-सम्मान मिलना चाहिए जो ?",
+    "question": "That teacher should receive real respect in society who?",
+    "optionA": "is very popular among students",
+    "optionB": "is very scholarly",
+    "optionC": "gives importance to good examination results",
+    "optionD": "faithfully and diligently performs his duties",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि किसी छात्रा का अभिभावक जो आपके लिए अपरिचित है आपसे घर पर मिलना चाहे तो अध्यापिका के रूप में आप क्या करेंगी ?",
+    "question": "If a student's parent, who is unknown to you, wants to meet you at home, what will you do as a teacher?",
+    "optionA": "will not meet them",
+    "optionB": "will take permission from the parents to meet them",
+    "optionC": "will welcome them in a meeting",
+    "optionD": "will meet them standing at the door of the house",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आजकल अध्यापकों तथा छात्रों के बीच अच्छे सम्बन्धों की कमी का कारण है ?",
+    "question": "What is the reason for the lack of good relations between teachers and students these days?",
+    "optionA": "indifference of teachers towards their profession",
+    "optionB": "lack of dedication and commitment in teachers",
+    "optionC": "heavy burden of curriculum on students",
+    "optionD": "Both A and B",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में साहस की भावना पैदा करने के लिए अध्यापक को क्या करना चाहिए ?",
+    "question": "What should a teacher do to instill a sense of courage in students?",
+    "optionA": "should tell them stories of courage and bravery",
+    "optionB": "should involve students in adventurous activities",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारतीय समाज में नैतिकता के ह्रास का प्रमुख कारण है ?",
+    "question": "What is the main reason for the decline of morality in Indian society?",
+    "optionA": "teachers not fulfilling their responsibilities",
+    "optionB": "unscientific beliefs",
+    "optionC": "materialistic outlook",
+    "optionD": "running behind the times",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्कूलों में पर्यावरण शिक्षा आवश्यक है ?",
+    "question": "Is environmental education necessary in schools?",
+    "optionA": "to create environmental awareness among students",
+    "optionB": "to make students scholars by providing knowledge about the environment",
+    "optionC": "to boost the morale of environmentalists",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::धर्म के विषय में आपका क्या विचार है ?",
+    "question": "What is your view on religion?",
+    "optionA": "it promotes extremism",
+    "optionB": "it is a means of personal purification",
+    "optionC": "believing or not believing in it is the same",
+    "optionD": "it disrupts society",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारत में विभिन्न छात्रों के बीच शिक्षा की विषमता के क्या कारण है ?",
+    "question": "What are the reasons for educational disparity among different students in India?",
+    "optionA": "different levels of education in both private and government schools",
+    "optionB": "inequality between different state curricula",
+    "optionC": "different levels of evaluation in different parts of the country",
+    "optionD": "Both A and B",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक अध्यापक का सबसे बड़ा शत्रु हो सकता है ?",
+    "question": "Who can be the biggest enemy of a teacher?",
+    "optionA": "the principal",
+    "optionB": "his greed for money",
+    "optionC": "his arrogant student",
+    "optionD": "his ego which does not allow qualitative improvement in him",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::एक अध्यापक के लिए निम्न में से सबसे कठिन काम क्या हो सकता है ?",
+    "question": "What can be the most difficult task for a teacher?",
+    "optionA": "improving his teaching",
+    "optionB": "preparing supplementary teaching material",
+    "optionC": "maintaining good relations with fellow teachers",
+    "optionD": "correcting the anti-social behavior of students",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कभी-कभी बहुत विद्वान व्यक्ति भी अच्छा शिक्षक नहीं बन पाता, इसका सम्भावित कारण हो सकता है ?",
+    "question": "Sometimes a very learned person cannot become a good teacher, what could be the possible reason for this?",
+    "optionA": "Misuse of the scholar",
+    "optionB": "Immaturity in teaching skills",
+    "optionC": "Not considering the level of students while transmitting information in the classroom",
+    "optionD": "Both B and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अद्यापकों संगठन का दायित्व होना चाहिए ?",
+    "question": "What should be the responsibility of teachers' organizations?",
+    "optionA": "To act as a mediator between teachers and the government",
+    "optionB": "To consider the problems of teachers and try to solve them",
+    "optionC": "To organize strikes and rallies",
+    "optionD": "To put pressure on the government",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि कोई छात्र अध्यापक के निरन्तर प्रयास के बावजूद बार-बार कक्षा में फेल हो रहा है तो इसका सम्भावित कारण हो सकता है ?",
+    "question": "If a student is repeatedly failing in class despite the teacher's constant efforts, what could be the possible reason?",
+    "optionA": "The student's intelligence being much below average",
+    "optionB": "Parents not paying attention to him",
+    "optionC": "The student being arrogant",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि कोई छात्र अपनी आशा से कम अंक पता है तो उसे क्या कह कर सांत्वना देंगे ?",
+    "question": "If a student gets fewer marks than his expectations, what would you say to console him?",
+    "optionA": "It's possible that due to the strangeness of your answers, the examiner did not understand",
+    "optionB": "The examiner's carelessness could also be behind getting fewer marks in the exam, come on",
+    "optionC": "You should have faith in your hard work",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण व्यवसाय अन्य व्यवसायों से इसलिए उत्तम है क्योंकि इसमें ?",
+    "question": "The teaching profession is better than other professions because in it?",
+    "optionA": "The value of the product cannot be determined",
+    "optionB": "The products become a means of the teacher's soul satisfaction in living form",
+    "optionC": "There are too many holidays in a year",
+    "optionD": "The teacher is given a high place in society",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::स्कूलों में विभिन्न कक्षाओं में प्रवेश देने हेतु आरक्षण का आधार होना चाहिए ?",
+    "question": "What should be the basis for admission to different classes in schools?",
+    "optionA": "The student's poor economic condition",
+    "optionB": "The student's caste and religion",
+    "optionC": "The student's uneducated and backward family environment",
+    "optionD": "Both A and C",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::उत्तरदायित्व की भावना को परखने के लिए निम्न में से किस पर ध्यान नहीं दिया जाता ?",
+    "question": "For which of the following is attention not paid to test the sense of responsibility?",
+    "optionA": "Not considering work as a burden for oneself",
+    "optionB": "Completing the work on time",
+    "optionC": "Completing the work with beauty but late",
+    "optionD": "Experiencing happiness by doing work",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके अनुसार प्राथमिक स्तर पर किस प्रकार सहशिक्षा लाभप्रद है ?",
+    "question": "In your opinion, how is co-education beneficial at the primary level?",
+    "optionA": "Equality develops among children",
+    "optionB": "Children's thoughts become better",
+    "optionC": "Children's all-round development takes place",
+    "optionD": "Children have interest in studying together",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि आप सहशिक्षा स्कूल में पढ़ाते हैं तो आप ?",
+    "question": "If you teach in a co-education school, then you?",
+    "optionA": "Will pay more attention to girls",
+    "optionB": "Will pay equal attention to all",
+    "optionC": "Will pay more attention to backward girls",
+    "optionD": "Will pay more attention to boys",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षकों के अधिकारों की रक्षा के सम्बन्ध में आपके विचार में ?",
+    "question": "In your opinion, regarding the protection of teachers' rights?",
+    "optionA": "Teachers should have a union",
+    "optionB": "The rights of teachers have always been respected",
+    "optionC": "The protection of teachers' rights is the responsibility of society",
+    "optionD": "There should be a teachers' rights act",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण समस्याओं को हल करने की जिम्मेदारी आपके अनुसार किसकी होनी चाहिए ?",
+    "question": "According to you, whose responsibility should it be to solve teaching problems?",
+    "optionA": "Of the principal",
+    "optionB": "Of the parents",
+    "optionC": "Of the teachers",
+    "optionD": "Of no one",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::असामाजिक लोगों के साथ आपका व्यवहार होता है ?",
+    "question": "How do you behave with unsocial people?",
+    "optionA": "As a sociable person",
+    "optionB": "As a reformer",
+    "optionC": "As a critic",
+    "optionD": "As a normal person",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::दुःख हो या सुख लोगों को रहना चाहिए, आपका मत है ?",
+    "question": "Whether there is sorrow or happiness, what is your opinion about how people should live?",
+    "optionA": "Sad in sorrow",
+    "optionB": "Should always keep smiling",
+    "optionC": "Same in both situations",
+    "optionD": "Happy in happiness",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::लड़कियों को उतनी ही शिक्षा देनी चाहिए जितनी शिक्षा के द्वारा वे ?",
+    "question": "Girls should be given as much education as through which they can?",
+    "optionA": "Fulfill the responsibility of a capable housewife",
+    "optionB": "Become self-reliant",
+    "optionC": "Give primary education to children",
+    "optionD": "Become a successful assistant teacher",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अच्छे पारिवारिक परिवेश वाले बच्चे ही आगे बढ़ पाते हैं इस संदर्भ में आपका मत है कि :",
+    "question": "Children with good family environment only move forward, in this context your opinion is that:",
+    "optionA": "All comforts are present in their children",
+    "optionB": "There is no burden on their children",
+    "optionC": "No distress is found in a good family environment",
+    "optionD": "Their children remain in contact with good people",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किसी कार्य योजना को बनाते समय बहुत सी बातों को तब की तब सोची जायेगी उक्ति पर छोड़ा जाता है इस पर आप क्या सोचते हैं ?",
+    "question": "While making a work plan, many things will be thought of as and when needed, this statement is left aside, what do you think about it?",
+    "optionA": "A pessimistic thought",
+    "optionB": "A foolish thought",
+    "optionC": "A best thought",
+    "optionD": "An optimistic thought",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किसी कार्य को करने से पहले उसकी योजना बनाने के संबंध में, आपका विचार है ?",
+    "question": "Regarding making a plan before doing any work, your opinion is?",
+    "optionA": "A waste of time",
+    "optionB": "An indicator of the success of the work",
+    "optionC": "A personal thought",
+    "optionD": "A proper use of time",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों में असामाजिक गुण विकसित होते हैं आपका विचार है ?",
+    "question": "What is your opinion about the development of unsocial qualities in students?",
+    "optionA": "In the school premises",
+    "optionB": "Through punitive treatment by teachers and parents",
+    "optionC": "Inside the four walls of the house",
+    "optionD": "In bad company",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जटिल समस्याएं आपको प्रेरित करती हैं ?",
+    "question": "Do complex problems motivate you?",
+    "optionA": "To build self-confidence",
+    "optionB": "To do more work",
+    "optionC": "To disappoint",
+    "optionD": "To do less work",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::विद्यालय में अनुशासनहीनता उत्पन्न होने का कारण आप मानते हैं कि ?",
+    "question": "What do you believe is the reason for indiscipline in schools?",
+    "optionA": "Poverty and unemployment",
+    "optionB": "Inequality in the education system",
+    "optionC": "Daily transfer of education officials",
+    "optionD": "Lack of responsibility among teachers",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छोटी उम्र के बच्चों को अधिक योग्य बनाने के लिए आपको किस तरह का व्यवहार करना चाहिए ?",
+    "question": "What kind of behavior should you adopt to make young children more capable?",
+    "optionA": "You should ask them to work hard",
+    "optionB": "They should be kept in a good environment",
+    "optionC": "They should be prevented from copying others",
+    "optionD": "They should be given more love and affection",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किसी व्यक्ति का चरित्र सबसे ज्यादा प्रभावित होता है, आप क्या मानते हैं ?",
+    "question": "A person's character is most influenced by what do you believe?",
+    "optionA": "From the family environment",
+    "optionB": "From the hostel environment",
+    "optionC": "From living with friends",
+    "optionD": "From the school environment",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::समाज में छात्रों की भागीदारी किस प्रकार की वांछनीय है, आपका विचार है ?",
+    "question": "What kind of participation of students in society do you consider desirable?",
+    "optionA": "Aspiration for mutual cooperation",
+    "optionB": "Feeling of creative cooperation",
+    "optionC": "Feeling of instructional cooperation",
+    "optionD": "Feeling of active cooperation",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अपने बच्चों का व्यवसाय चुनने के लिए आप निम्न में से किस विचार से सहमत होंगे ?",
+    "question": "Which of the following views would you agree with regarding choosing a profession for your children?",
+    "optionA": "Because the child is just a child, where does he have experience like elders",
+    "optionB": "Children should have the freedom to choose a profession according to their interest and ability",
+    "optionC": "Children should discuss with parents before choosing a profession",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::न्यायालय ने कक्षा में बच्चों को शारीरिक दंड देने पर रोक लगा दी है, आप सोचते हैं ?",
+    "question": "The court has banned giving physical punishment to children in the classroom, what do you think?",
+    "optionA": "The court's decision is appropriate",
+    "optionB": "This will create the problem of indiscipline",
+    "optionC": "By imposing a ban on physical punishment, the court has spoiled the children",
+    "optionD": "There is a contradiction in this",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आजकल समाज में शिक्षक को पहले जैसी प्रतिष्ठा प्राप्त नहीं है, उस प्रतिष्ठा को पुनः प्राप्त करने के लिए आपका विचार अपेक्षित है ?",
+    "question": "Nowadays teachers do not have the same prestige in society as before, what is your view expected to be to regain that prestige?",
+    "optionA": "Teachers should leave the profession of tuition",
+    "optionB": "Teachers should faithfully perform their duties",
+    "optionC": "Teachers should improve their conduct",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि शिक्षक कहे कि मैं जो करता हूँ उसकी और ध्यान मत दो, मैं जो कहता हूँ उस पर आचरण करो तो समाज पर इसका क्या प्रभाव पड़ेगा ?",
+    "question": "If a teacher says, don't pay attention to what I do, act on what I say, what will be its impact on society?",
+    "optionA": "There will be doubt on the teacher",
+    "optionB": "Society will follow the teacher",
+    "optionC": "Society will become directionless",
+    "optionD": "He is worthy of being called a teacher",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि कोई छात्र ईमानदारीपूर्वक कार्य नहीं करे तो आप ?",
+    "question": "If a student does not work honestly, then you?",
+    "optionA": "You will reward honest students to embarrass him",
+    "optionB": "You will inform the student's parents",
+    "optionC": "You will force him to work honestly by giving strict punishment",
+    "optionD": "Honesty is the best policy, you will tell him that",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपके छोटे भाई-बहन समय का सही उपयोग नहीं करते हैं तथा पढ़ने के समय टी. वी. देखने हैं आप ?",
+    "question": "Your younger siblings do not use time properly and watch TV while studying, you?",
+    "optionA": "You will stop them from watching",
+    "optionB": "You will explain to them to use time properly",
+    "optionC": "You will explain to them to use time properly",
+    "optionD": "You will explain to them not to watch TV while studying",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जब आप पढ़ने के लिए बैठते हैं तो टेलीफोन आ जाता है जिससे आपके कार्य बाधित हो जाते हैं, तो आप ?",
+    "question": "When you sit to study, the telephone comes which interrupts your work, then you?",
+    "optionA": "You will not listen to the telephone",
+    "optionB": "You will get the telephone installed in another room",
+    "optionC": "You will like to listen to the telephone, maybe there is some important matter",
+    "optionD": "You will keep the receiver down",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आप विद्यालय में पढ़ा रहे हैं और कोई छात्र आपकी कोई गलती पकड़ता है तो आप ?",
+    "question": "You are teaching in a school and a student catches one of your mistakes, then you?",
+    "optionA": "Tell the student to remain quiet and meet later",
+    "optionB": "Try to explain to that student and accept your mistake if it is a mistake",
+    "optionC": "Prove that student wrong but later improve yourself",
+    "optionD": "Make fun of him in front of all the children",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अगर कोई छात्र स्कूल पोशाक में नहीं आ रहा है तो आप ?",
+    "question": "If a student is not coming to school in school uniform, then you?",
+    "optionA": "Explain to him the importance of wearing school uniform",
+    "optionB": "Give him physical and financial punishment",
+    "optionC": "Tell his parents to get the school uniform made",
+    "optionD": "Will not allow him to enter the classroom",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपकी परीक्षा सन्निकट है और आपका कोई मित्र अक्सर आपका समय बर्बाद करता है तो आप ?",
+    "question": "Your exam is near and your friend often wastes your time, then you?",
+    "optionA": "Will tell him not to waste his time",
+    "optionB": "Will give him a book 'Use Time Wisely' to read",
+    "optionC": "Will ask another friend of yours to convey your message to him",
+    "optionD": "Will only discuss about time",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जो छात्र विद्यालय की प्रातः कालीन सभा में भाग नहीं लेता है तो आप ?",
+    "question": "If a student does not participate in the morning assembly of the school, then you?",
+    "optionA": "Will offer to get his name canceled from the school",
+    "optionB": "Will complain to the principal about him",
+    "optionC": "Will try to explain to him that if discipline is not followed, strict punishment will be given",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अगर कोई खिलाड़ी खेल के नियमों को भंग करता है तो आप ?",
+    "question": "If a player breaks the rules of the game, then you?",
+    "optionA": "Will throw him out of the field",
+    "optionB": "Will give a lecture on discipline",
+    "optionC": "Will give him a chance to improve once",
+    "optionD": "Will impose a financial penalty on him",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि किसी बालक में सभी तरह की गन्दी आदतें विद्यमान हैं तो उसके व्यवहार में परिवर्तन लाने के लिए आप ?",
+    "question": "If a boy has all kinds of bad habits, then to bring change in his behavior you?",
+    "optionA": "Would like to punish him first",
+    "optionB": "Would like to hand him over to the police",
+    "optionC": "Would like to find out the reasons for his bad habits and improve him",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि किसी बच्चे को स्कूल जाने में रूचि नहीं है तो आप ?",
+    "question": "If a child has no interest in going to school, then you?",
+    "optionA": "Will send him to school forcefully",
+    "optionB": "Will give suggestions to create interest in him",
+    "optionC": "Will call his teacher",
+    "optionD": "Will explain to him and take him to school with you",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::कुछ बच्चे अपने से बड़ों के प्रति आदरसूचक शब्दों का प्रयोग नहीं करता हैं तो आप ?",
+    "question": "Some children do not use respectful words for elders, then you?",
+    "optionA": "Will give a lecture about human qualities",
+    "optionB": "Will motivate them to behave politely",
+    "optionC": "Will tell them to respect and honor elders",
+    "optionD": "Will scold them and tell them to use respectful words for elders",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अगर आप महात्मा गाँधी जैसे होते तो विद्यार्थियों को सीखना चाहते ?",
+    "question": "If you were like Mahatma Gandhi, what would you want the students to learn?",
+    "optionA": "To earn respect by doing social service",
+    "optionB": "To bring discipline among students",
+    "optionC": "To become great by speaking the truth",
+    "optionD": "To follow truth and non-violence",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::पाठ्यक्रम में कार्यानुभव को स्थान मिलना चाहिए, इस संबंध में आपका विचार है ?",
+    "question": "Experience should be given a place in the curriculum, what is your opinion regarding this?",
+    "optionA": "Through experience, time is wasted",
+    "optionB": "Knowledge gained through experience is permanent",
+    "optionC": "Through experience, a feeling of inferiority is awakened in students",
+    "optionD": "Through experience, students study less and work more",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::माता के रूप में आप बच्चों के प्रति सोचती है ?",
+    "question": "As a mother, what do you think about children?",
+    "optionA": "Whatever is written in destiny will happen",
+    "optionB": "You will nurture them with lots of love",
+    "optionC": "You will make them teachers by educating them",
+    "optionD": "You will inspire them to develop good virtues",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बच्चों में सामान्य ज्ञान विकसित करने के लिए आप ?",
+    "question": "To develop general knowledge in children, you?",
+    "optionA": "Will increase general knowledge",
+    "optionB": "Will ask them to go to libraries",
+    "optionC": "Will ask them to read newspapers daily",
+    "optionD": "Will motivate them to know general knowledge",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::विद्यालय में पर्यावरण शिक्षा से आपका अभिप्राय है ?",
+    "question": "What do you mean by environmental education in school?",
+    "optionA": "Students should have knowledge of the environment",
+    "optionB": "Environment can be saved from getting polluted",
+    "optionC": "Students should be entertained",
+    "optionD": "To put extra burden on students",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षा में भ्रष्टाचार फैल रहा है, इस संबंध में आपका का मत है ?",
+    "question": "Corruption is spreading in education, what is your opinion in this matter?",
+    "optionA": "Teachers don't teach in class, but teach those children in tuition",
+    "optionB": "Teachers taking money and giving marks, teachers getting less salary",
+    "optionC": "Teachers getting less salary",
+    "optionD": "Both A and B",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आदर्श शिक्षक के बारे में आपकी धारणा है कि ?",
+    "question": "What is your concept of an ideal teacher?",
+    "optionA": "He does other work along with teaching",
+    "optionB": "He motivates students to study",
+    "optionC": "He goes to school on time",
+    "optionD": "He is only interested in teaching",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::किसी व्यक्ति की सफलता के बारे में आपका विचार है कि ?",
+    "question": "What is your view about a person's success?",
+    "optionA": "It is the reward of his hard work and efforts",
+    "optionB": "This success must have been earned by dishonesty",
+    "optionC": "He will have truthfulness in him",
+    "optionD": "He will do his work on time",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::सरकारी स्कूलों में शिक्षा के स्तर को ऊंचा उठाने के लिए आप का क्या सुझाव है ?",
+    "question": "What is your suggestion to raise the level of education in government schools?",
+    "optionA": "To link the decrease in product quality with the negligence of teachers",
+    "optionB": "To make laws to tighten the noose on teachers",
+    "optionC": "Improvement in evaluation process",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपकी दृष्टि में शिक्षण कैसा काम है ?",
+    "question": "In your view, what kind of work is teaching?",
+    "optionA": "It is a challenging and enjoyable work",
+    "optionB": "It is a confusing work",
+    "optionC": "It is an easy work that enhances prestige",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अंग्रेजी भाषा के माध्यम से उच्च शिक्षा प्रदान करना ?",
+    "question": "Providing higher education through English language?",
+    "optionA": "It is necessary for acquiring knowledge",
+    "optionB": "It is the demand of the situation arising due to globalization",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भावी शिक्षण के लिए निम्न में से किस शर्त को सर्वाधिक महत्त्व दिया जाना चाहिए ?",
+    "question": "Which of the following conditions should be given the most importance for future teaching?",
+    "optionA": "Giving notes in class",
+    "optionB": "Using exact and pure language in front of students",
+    "optionC": "Clarifying the subject matter by giving practical examples",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपकी दृष्टि में पति पत्नी दोनों का काम पर जाना कैसा है ?",
+    "question": "In your view, what is the idea of both husband and wife going to work?",
+    "optionA": "It is necessary to fulfill the educational needs of children",
+    "optionB": "It is necessary to make the family prosperous",
+    "optionC": "It increases prestige in society",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षक राष्ट्र का निर्माता है, इस कथन पर आपकी क्या प्रतिक्रिया है ?",
+    "question": "What is your reaction to the statement 'A teacher is the builder of the nation'?",
+    "optionA": "This is just an ideal statement",
+    "optionB": "In front of corrupt leaders, teachers have no say",
+    "optionC": "This is a reality because children grow up to play an active role in the nation",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक बन जाने के बाद आप किस कार्य में अधिक रूचि लेंगे ?",
+    "question": "After becoming a teacher, in which work will you take more interest?",
+    "optionA": "In the knowledge enhancement and personality development of students",
+    "optionB": "In raising the standards of teaching",
+    "optionC": "In taking students' complaints to the principal",
+    "optionD": "In earning money through tuition",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बालिका शिक्षा आवश्यक है क्योंकि ?",
+    "question": "Girl education is necessary because?",
+    "optionA": "Girls will grow up to guide their children in the right path",
+    "optionB": "Girls always get better marks than boys",
+    "optionC": "When they get a job after education, the family income will increase",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि सरकार शिक्षकों की मांगे न मने तो शिक्षकों को क्या करना चाहिए ?",
+    "question": "If the government does not accept the demands of teachers, what should teachers do?",
+    "optionA": "Teachers should boycott teaching work",
+    "optionB": "They should knock the doors of the court for their demands",
+    "optionC": "They should get their problems discussed in the media",
+    "optionD": "They should not take salary until the demands are met",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::समुदाय अध्यापक से यह अपेक्षा करता है कि ?",
+    "question": "What does the community expect from a teacher?",
+    "optionA": "His conduct and behavior should be an example of idealism and truthfulness",
+    "optionB": "He should not discriminate with students in any way",
+    "optionC": "He should give proper attention to both weak and intelligent children",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::जिस ईश्वर ने जाति बनाई हमें उस ईश्वर को त्याग देना चाहिए, नारायण गुरु का यह कथन आपकी दृष्टि में है ?",
+    "question": "In your view, what is Narayan Guru's statement 'We should renounce that God who created caste'?",
+    "optionA": "It is atheistic",
+    "optionB": "It is a satire on the caste system",
+    "optionC": "It is an opposition to the varna system",
+    "optionD": "It is an indicator of social reform sentiment",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::यदि आपका स्थानान्तरण दूर दराज किसी ऐसे स्थान पर हो जाता है जो आप को पसन्द नहीं है तो आप क्या करेंगे ?",
+    "question": "If your transfer is to a distant place which you do not like, what will you do?",
+    "optionA": "You will put aside the likes and dislikes and work with dedication",
+    "optionB": "You will try to get transferred again from there by giving bribes to officials",
+    "optionC": "You will take long leave without pay",
+    "optionD": "You will somehow pass your time in school",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक का छात्रों के साथ स्कूल में खेलना कैसा है ?",
+    "question": "How is it for a teacher to play with students in school?",
+    "optionA": "It is appropriate, it reduces the distance between both",
+    "optionB": "It is not appropriate, it reduces the teacher's respect among students",
+    "optionC": "Nothing can be said definitely about this",
+    "optionD": "It is appropriate on special occasions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपकी दृष्टि में शिक्षण व्यवसाय ?",
+    "question": "In your view, the teaching profession?",
+    "optionA": "In the present time, it is a business of loss",
+    "optionB": "Even in the present time, it is superior",
+    "optionC": "It is profitable",
+    "optionD": "It is for fun and enjoyment",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षण में श्रव्य-दृश्य सामग्री का प्रयोग आपकी दृष्टि में कैसा है ?",
+    "question": "In your view, what is the use of audio-visual material in teaching?",
+    "optionA": "Its use increases the learning rate many times",
+    "optionB": "Its use is a burden for the teacher",
+    "optionC": "Its use keeps creating obstacles in the teaching process",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::छात्रों को गणित शिक्षण में कैलकुलेटर का प्रयोग नहीं करने देना चाहिए क्योंकि ?",
+    "question": "Students should not be allowed to use calculators in mathematics teaching because?",
+    "optionA": "This will make the student comfort-loving",
+    "optionB": "He will not use his memory power",
+    "optionC": "This will reduce his practice ability and he will not be able to learn further",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::भारत में सतत् मूल्यांकन प्रणाली स्कूलों में लागू न होने का कारण है ?",
+    "question": "The reason for the continuous evaluation system not being implemented in schools in India is?",
+    "optionA": "Government's indifference towards education",
+    "optionB": "Principals following the strict rules of the education department",
+    "optionC": "Lack of planned teaching",
+    "optionD": "Both B and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बच्चों को स्वास्थ्य सफाई के लिए प्रेरित करने के लिए अध्यापक को चाहिए कि वह ?",
+    "question": "To motivate children for health cleanliness, the teacher should?",
+    "optionA": "Come to the classroom clean and tidy himself",
+    "optionB": "Every day give lectures to children about the importance of health",
+    "optionC": "Should keep checking whether children's nails etc. are cut",
+    "optionD": "Both A and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::बच्चों को स्कूल में नैतिक मूल्य सिखाने का सबसे अच्छा तरीका यह है कि ?",
+    "question": "The best way to teach moral values to children in school is that?",
+    "optionA": "The teacher himself presents a good example before them",
+    "optionB": "Social service should be done from children",
+    "optionC": "Every chapter should include a lesson on morality",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::सरकारी स्कूलों में दोपहर के भोजन की योजना से लाभ यह है कि ?",
+    "question": "The benefit of the mid-day meal scheme in government schools is that?",
+    "optionA": "Children will not need to carry tiffin to school",
+    "optionB": "Poor children can be saved from malnutrition",
+    "optionC": "If children are hungry, they will not be motivated to study",
+    "optionD": "Both B and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::उत्तम शैक्षणिक नेतृत्व के लिए चाहिए ?",
+    "question": "For good educational leadership, one should have?",
+    "optionA": "Good personality and equal behavior with all",
+    "optionB": "Continuous evaluation of plans",
+    "optionC": "Strict control over the group",
+    "optionD": "Feeling of dedication towards the group and high morale",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::विद्यालय में अध्यापक का प्राथमिक कर्त्तव्य यह है कि वह ?",
+    "question": "The primary duty of a teacher in a school is that he?",
+    "optionA": "Should keep student interest supreme and act accordingly",
+    "optionB": "Keets praising the principal all around",
+    "optionC": "Increases the prestige of his principal and school through his actions",
+    "optionD": "Should pay special attention to completing the curriculum",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::आपकी दृष्टि में अच्छे स्कूलों की स्थापना की जनि चाहिए ?",
+    "question": "In your view, where should good schools be established?",
+    "optionA": "In the middle of dense colonies so that more students can get to the school",
+    "optionB": "In a natural environment",
+    "optionC": "Outside the city",
+    "optionD": "In rural remote areas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::शिक्षकों के चयन में चयन बोर्ड को प्राथमिकता देनी चाहिए ?",
+    "question": "In the selection of teachers, priority should be given to the selection board for?",
+    "optionA": "People of backward classes",
+    "optionB": "People of minority communities",
+    "optionC": "People of all classes based on their eligibility and aptitude",
+    "optionD": "Women",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::मैं शिक्षण अधिगम प्रक्रिया में टी. वी. कंप्यूटर आदि के प्रयोगों को ?",
+    "question": "In the teaching-learning process, I consider the use of T.V., computer, etc. as?",
+    "optionA": "I understand it well",
+    "optionB": "I don't consider it right, a lot of time is wasted in it",
+    "optionC": "I consider it appropriate and necessary",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::अध्यापक की दैनिक दिनचर्या का अंग होता है ?",
+    "question": "Which is a part of a teacher's daily routine?",
+    "optionA": "Going to the library daily and studying newspapers and magazines",
+    "optionB": "Spending time at religious places on holidays",
+    "optionC": "To constantly be thoughtful to increase the learning rate among students and to try new experiments in the class",
+    "optionD": "Both A and C",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::पढ़ाते समय कक्षा में अध्यापक का विश्वास कब डगमगाता है ?",
+    "question": "When does a teacher's confidence waver in the class while teaching?",
+    "optionA": "When he does not use tricks to increase the interest of students",
+    "optionB": "When he does not have control over his students",
+    "optionC": "When he does not come to the class after full preparation of the lesson",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "teaching-aptitude-in-hindi::निम्न में से कौन-सा काम एक शिक्षक के लिए बिल्कुल अनुपयुक्त है ?",
+    "question": "Which of the following tasks is completely unsuitable for a teacher?",
+    "optionA": "A teacher being a public servant",
+    "optionB": "A teacher being interested only in solving students' problems",
+    "optionC": "A teacher taking tests in the class every week and evaluating copies",
+    "optionD": "Doing any of the above by reducing the importance of teaching",
+    "correctAnswer": "D"
+  }
+]

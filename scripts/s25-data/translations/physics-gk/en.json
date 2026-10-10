@@ -133,5 +133,2543 @@
     "optionC": "Reflection and refraction",
     "optionD": "None of these",
     "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::दर्पण की चौड़ाई को दर्पण का कहा जाता है ?",
+    "question": "What is the width of a mirror called?",
+    "optionA": "Focus",
+    "optionB": "Pole",
+    "optionC": "Aperture",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सोलर कूकर में प्रयोग किये जाते हैं ?",
+    "question": "What is used in a solar cooker?",
+    "optionA": "Concave mirror",
+    "optionB": "Convex mirror",
+    "optionC": "Plane mirror",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::रोगियों के नाक, कान, गले आदि की जाँच के लिए डॉक्‍टर प्रयोग करते है ?",
+    "question": "What do doctors use to examine the nose, ears, throat, etc. of patients?",
+    "optionA": "Plane mirror",
+    "optionB": "Convex mirror",
+    "optionC": "Concave mirror",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::हीरा का अपवर्तनांक है ?",
+    "question": "What is the refractive index of diamond?",
+    "optionA": "1.77",
+    "optionB": "1.47",
+    "optionC": "1.44",
+    "optionD": "2.42",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::मोटरगाड़ी के चालक के सामने लगा रहता है ?",
+    "question": "What is placed in front of the driver of a car?",
+    "optionA": "Concave mirror",
+    "optionB": "Plane mirror",
+    "optionC": "Convex mirror",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::टॉर्च से किस प्रकार के प्रकाश पुंज की प्राप्ति होती है ?",
+    "question": "What type of light beam is obtained from a torch?",
+    "optionA": "Parallel beam of light",
+    "optionB": "Divergent beam of light",
+    "optionC": "Convergent beam of light",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सामान्य नेत्र की रेटिना पर बननेवाला प्रतिबिंब होता है ?",
+    "question": "What kind of image is formed on the retina of a normal eye?",
+    "optionA": "Virtual and erect",
+    "optionB": "Real and erect",
+    "optionC": "Real and inverted",
+    "optionD": "Virtual and inverted",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::नेत्र लेंस में समायोजन की क्रिया होती है ?",
+    "question": "In the eye lens, the process of accommodation occurs?",
+    "optionA": "By the iris",
+    "optionB": "By the eye lens",
+    "optionC": "By the ciliary muscles",
+    "optionD": "By the cornea",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::किसी नेत्र का निकट बिंदु है ?",
+    "question": "What is the near point of an eye?",
+    "optionA": "2.5 cm",
+    "optionB": "25 cm",
+    "optionC": "2.5 m",
+    "optionD": "3 m",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::आँख की पुतली किस प्रकार क्रार्य करती है ?",
+    "question": "How does the pupil of the eye function?",
+    "optionA": "Like a variable aperture",
+    "optionB": "Like the optic nerve",
+    "optionC": "Like the iris",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::सामान्य मानव नेत्र का दूर बिंदु होता है ?",
+    "question": "What is the far point of a normal human eye?",
+    "optionA": "It is at 25 cm",
+    "optionB": "It is at infinity",
+    "optionC": "It is at 25 mm",
+    "optionD": "It is at 25 m",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सिनेमा के पर्दे पर किस प्रकार का प्रतिबिंब बनता है ?",
+    "question": "What type of image is formed on the cinema screen?",
+    "optionA": "Virtual image",
+    "optionB": "Real image",
+    "optionC": "Both",
+    "optionD": "All statements are true",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::कौन रंग है जिसका खतरे के सिग्लन में उपयोग होता है ?",
+    "question": "Which color is used in danger signals?",
+    "optionA": "Yellow color",
+    "optionB": "Purple color",
+    "optionC": "Blue color",
+    "optionD": "Red color",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::किलोवाट घंटा मात्रक है ?",
+    "question": "Kilowatt-hour is a unit of?",
+    "optionA": "Electric charge",
+    "optionB": "Energy",
+    "optionC": "Electric potential difference",
+    "optionD": "Power",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::विद्युत बल्ब का फिलामेंट होता है ?",
+    "question": "The filament of an electric bulb is made of?",
+    "optionA": "Copper",
+    "optionB": "Platinum",
+    "optionC": "Tungsten",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::तिरोधकता का मात्रक है ?",
+    "question": "The unit of resistivity is?",
+    "optionA": "Ohm-meter",
+    "optionB": "Ohm/meter",
+    "optionC": "Meter",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::विद्युत धारा उतपन्न करने की युक्ति को कहते हैं ?",
+    "question": "The device used to produce electric current is called?",
+    "optionA": "Ammeter",
+    "optionB": "Galvanometer",
+    "optionC": "Generator",
+    "optionD": "Meter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निकट दृष्टि दोष वाला व्यक्ति के चश्में में लगा होता है ?",
+    "question": "What is used in the spectacles of a person with nearsightedness?",
+    "optionA": "Convex lens",
+    "optionB": "Concave lens",
+    "optionC": "Bifocal lens",
+    "optionD": "Cylindrical lens",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::दीर्घ दृष्टि दोष वाला व्यक्ति के चश्में में लगा होता है ?",
+    "question": "What is used in the spectacles of a person with farsightedness?",
+    "optionA": "Concave lens",
+    "optionB": "Bifocal lens",
+    "optionC": "Convex lens",
+    "optionD": "Cylindrical lens",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::तेज प्रकाश में पुतली का आकर कैसे हो जाता है ?",
+    "question": "How does the pupil of the eye change in bright light?",
+    "optionA": "It becomes large",
+    "optionB": "It becomes small",
+    "optionC": "There is no change",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::दूर-दृष्टि दोष वाली आँखे साफ-साफ देख सकती हैं ?",
+    "question": "Can eyes with farsightedness see clearly?",
+    "optionA": "Near objects",
+    "optionB": "Large objects",
+    "optionC": "Distant objects",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::मानव-नेत्र में जो बिंदु प्रकाश के लिए बिल्कुल सुग्राही नहीं रहता होता, उसे कहते हैं ?",
+    "question": "In the human eye, the point that is not sensitive to light at all is called?",
+    "optionA": "Yellow spot",
+    "optionB": "Blind spot",
+    "optionC": "Near point",
+    "optionD": "Far point",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::मानव-नेत्र में होता है ?",
+    "question": "What is present in the human eye?",
+    "optionA": "Concave lens",
+    "optionB": "Convex mirror",
+    "optionC": "Convex lens",
+    "optionD": "Concave mirror",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::उदय और अस्त होते समय सूर्य दिखाइ देता है ?",
+    "question": "At sunrise and sunset, the sun appears?",
+    "optionA": "Red",
+    "optionB": "Blue",
+    "optionC": "Black",
+    "optionD": "Yellow",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::वास्तविक सूर्यास्त और आभासी सूर्यास्त के बीच लगभग कितने समय का अंतर होता है?",
+    "question": "What is the approximate time difference between actual sunset and apparent sunset?",
+    "optionA": "2 minutes",
+    "optionB": "1 minute",
+    "optionC": "4 minutes",
+    "optionD": "3 minutes",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::इन्द्रधनुष किस प्रकार का स्पेक्ट्म है ?",
+    "question": "What type of spectrum is a rainbow?",
+    "optionA": "Natural spectrum",
+    "optionB": "Artificial spectrum",
+    "optionC": "Artificial spectrum and natural spectrum",
+    "optionD": "All statements are true",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::अत्यधिक ऊँचाई पर आकाश में वायुयान से सफर करने पर आकाश का रंग कैसा दिखता है ?",
+    "question": "What color does the sky appear when traveling by aircraft at very high altitudes?",
+    "optionA": "Red",
+    "optionB": "Black",
+    "optionC": "Yellow",
+    "optionD": "Blue",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::किसी वस्तु का प्रतिबिंब आँख के जिस भाग पर पड़ता है, वह है ?",
+    "question": "On which part of the eye does the image of an object fall?",
+    "optionA": "Cornea",
+    "optionB": "Retina",
+    "optionC": "Iris",
+    "optionD": "Pupil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::चुम्बकीय क्षेत्र का मात्रक होता है ?",
+    "question": "What is the unit of magnetic field?",
+    "optionA": "Newton",
+    "optionB": "Tesla",
+    "optionC": "Ampere",
+    "optionD": "Meter",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::डायनेमो से किस प्रकार की धारा प्राप्त होती है ?",
+    "question": "What type of current is obtained from a dynamo?",
+    "optionA": "Direct current",
+    "optionB": "Alternating current",
+    "optionC": "Both currents",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::व्यवसायिक मोटरों में किस प्रकार के चुम्बक का उपयोग होता है ?",
+    "question": "What type of magnet is used in commercial motors?",
+    "optionA": "Permanent magnet",
+    "optionB": "Horse-shoe magnet",
+    "optionC": "Electromagnet",
+    "optionD": "General bar magnet",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::मानव के वे दो महत्वपूर्ण भाग कौन हैं जिनमे चुंबकीय क्षेत्र का उत्पन्न होना अनिवार्य है ?",
+    "question": "What are the two important parts of the human body where the generation of a magnetic field is essential?",
+    "optionA": "Hands and feet",
+    "optionB": "Muscles and heart",
+    "optionC": "Heart and brain",
+    "optionD": "Eyes and optic nerve",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::विद्युत चुम्बक बनाने के लिए प्रायः किस पदार्थ के छड़ का उपयोग होता है ?",
+    "question": "What material's bar is commonly used to make an electromagnet?",
+    "optionA": "Steel",
+    "optionB": "Soft iron",
+    "optionC": "Brass",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::विद्युत चुम्बकीय प्रेरण की खोज किसने की थी ?",
+    "question": "Who discovered electromagnetic induction?",
+    "optionA": "Maxwell",
+    "optionB": "Fleming",
+    "optionC": "Faraday",
+    "optionD": "Ampere",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::नाभिकीय ऊर्जा प्राप्त करने हेतु आवश्यक है ?",
+    "question": "What is required to obtain nuclear energy?",
+    "optionA": "Chromium",
+    "optionB": "Silicon",
+    "optionC": "Uranium",
+    "optionD": "Aluminum",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::शारीरिक कार्यों को करने के लिए किस प्रकार की ऊर्जा का उपयोग किया जाता है ?",
+    "question": "For performing physical work, what type of energy is used?",
+    "optionA": "Electrical energy",
+    "optionB": "Solar energy",
+    "optionC": "Muscular energy",
+    "optionD": "Chemical energy",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ऊर्जा के सभी रूप में अन्ततः स्त्रोत किसे माना जाता है ?",
+    "question": "Ultimately, what is considered the source of all forms of energy?",
+    "optionA": "Coal",
+    "optionB": "Atom",
+    "optionC": "Water",
+    "optionD": "Sun",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::इनमें से कौन नवीकरणीय ऊर्जा है ?",
+    "question": "Which of these is renewable energy?",
+    "optionA": "Coal",
+    "optionB": "Solar energy",
+    "optionC": "Natural gas",
+    "optionD": "Petrol",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पृथ्वी पर ऊर्जा का सबसे विशाल स्त्रोत है ?",
+    "question": "What is the largest source of energy on Earth?",
+    "optionA": "Sun",
+    "optionB": "Wood",
+    "optionC": "Moon",
+    "optionD": "Coal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::डेनमार्क को कहा जाता है ?",
+    "question": "Denmark is called?",
+    "optionA": "Country of industries",
+    "optionB": "Country of hydroelectricity",
+    "optionC": "Country of winds",
+    "optionD": "Country of minerals",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सौर सेल बनाने के लिए किस धातु का उपयोग किया जाता है ?",
+    "question": "Which metal is used to make solar cells?",
+    "optionA": "Steel",
+    "optionB": "Silicon",
+    "optionC": "Bronze",
+    "optionD": "Glass",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सौर सेल सौर ऊर्जा को किस ऊर्जा में रूपान्तरित करते हैं ?",
+    "question": "Into what energy do solar cells convert solar energy?",
+    "optionA": "Into electrical energy",
+    "optionB": "Into kinetic energy",
+    "optionC": "Into mechanical energy",
+    "optionD": "Into thermal energy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्न में से किसका उपयोग खाना बनाने वाले ईंधन के रूप नहीं किया जाता है ?",
+    "question": "Which of the following is not used as fuel for cooking?",
+    "optionA": "LPG",
+    "optionB": "Biogas",
+    "optionC": "CNG",
+    "optionD": "Coal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::काशसंश्लेषी अंगक इनमें से कौन है ?",
+    "question": "Which of these is a photosynthetic organ?",
+    "optionA": "Stomata",
+    "optionB": "Root",
+    "optionC": "Chloroplast",
+    "optionD": "Leaf",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कार्य का मात्रक है ?",
+    "question": "The unit of work is?",
+    "optionA": "Watt",
+    "optionB": "Joule",
+    "optionC": "Newton",
+    "optionD": "Ampere",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::काश वर्ष इकाई है ?",
+    "question": "काश वर्ष इकाई है ?",
+    "optionA": "समय की",
+    "optionB": "द्रव्यमान की",
+    "optionC": "दूरी की",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::पारसेक इकाई है ?",
+    "question": "पारसेक इकाई है ?",
+    "optionA": "द्रव्यमान की",
+    "optionB": "चुम्बकीय बल की",
+    "optionC": "समय की",
+    "optionD": "दूरी की",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में समय कोन-सा का मात्रक नहीं है ?",
+    "question": "निम्नलिखित में समय कोन-सा का मात्रक नहीं है ?",
+    "optionA": "प्रकाश वर्ष",
+    "optionB": "अधि वर्ष",
+    "optionC": "चन्द्र माह",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::दाब का मात्रक है ?",
+    "question": "दाब का मात्रक है ?",
+    "optionA": "डाइन",
+    "optionB": "जूल",
+    "optionC": "वाट",
+    "optionD": "पास्कल",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::ज्योति तीव्रता का मात्रक है ?",
+    "question": "ज्योति तीव्रता का मात्रक है ?",
+    "optionA": "ऑप्टर",
+    "optionB": "कैण्डेला",
+    "optionC": "न्यूटन",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::मात्रकों की अन्तर्राष्ट्रीय पद्धति कब लागू की गई ?",
+    "question": "मात्रकों की अन्तर्राष्ट्रीय पद्धति कब लागू की गई ?",
+    "optionA": "1965",
+    "optionB": "1971",
+    "optionC": "1991",
+    "optionD": "1985",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::खाद्य ऊर्जा को हम किस इकाई में माप सकते हैं ?",
+    "question": "खाद्य ऊर्जा को हम किस इकाई में माप सकते हैं ?",
+    "optionA": "जूल",
+    "optionB": "कैलोरी",
+    "optionC": "अर्ग",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::विद्युत मात्रा की इकाई क्या है ?",
+    "question": "विद्युत मात्रा की इकाई क्या है ?",
+    "optionA": "ओम",
+    "optionB": "वोल्ट",
+    "optionC": "एम्पियर",
+    "optionD": "वाट",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::SI पद्धति में लेंस की शक्ति की इकाई क्या है ?",
+    "question": "SI पद्धति में लेंस की शक्ति की इकाई क्या है ?",
+    "optionA": "वाट",
+    "optionB": "ऑप्टर",
+    "optionC": "डायोप्टर",
+    "optionD": "न्यूटन",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::एम्पियर क्या नापने की इकाई है ?",
+    "question": "एम्पियर क्या नापने की इकाई है ?",
+    "optionA": "करेन्ट",
+    "optionB": "प्रतिरोध",
+    "optionC": "पावर",
+    "optionD": "वोल्टेज",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन वेक्टर मात्रा है ?",
+    "question": "Which of the following is a vector quantity?",
+    "optionA": "Energy",
+    "optionB": "Temperature",
+    "optionC": "Force",
+    "optionD": "Speed",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन एक सदिश राशि नहीं है ?",
+    "question": "Which of the following is not a vector quantity?",
+    "optionA": "Velocity",
+    "optionB": "Momentum",
+    "optionC": "Mass",
+    "optionD": "Angular velocity",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::अदिश राशि है ?",
+    "question": "Scalar quantity is?",
+    "optionA": "Torque",
+    "optionB": "Energy",
+    "optionC": "Momentum",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में कौन-सी एक सदिश राशि है ?",
+    "question": "Which of the following is a vector quantity?",
+    "optionA": "Pressure",
+    "optionB": "Energy",
+    "optionC": "Momentum",
+    "optionD": "Work",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::पदार्थ के संवेग और वेग के अनुपात से कौन-सी भौतिक राशि प्राप्त की जाती है ?",
+    "question": "Which physical quantity is obtained from the ratio of momentum and velocity of a substance?",
+    "optionA": "Velocity",
+    "optionB": "Mass",
+    "optionC": "Angular velocity",
+    "optionD": "Acceleration",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::रॉकेट किस के सिद्धान्त पर कार्य करता है ?",
+    "question": "On which principle does a rocket work?",
+    "optionA": "Energy conservation",
+    "optionB": "Bernoulli's theorem",
+    "optionC": "Momentum conservation",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::गुरुत्वाकर्षण के सार्वभौमिक नियम का प्रतिपादन किसने किया ?",
+    "question": "Who formulated the universal law of gravitation?",
+    "optionA": "Galileo",
+    "optionB": "Newton",
+    "optionC": "Copernicus",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पास्कल इकाई है ?",
+    "question": "Pascal is the unit of?",
+    "optionA": "Pressure",
+    "optionB": "Rainfall",
+    "optionC": "Humidity",
+    "optionD": "Temperature",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::क्यूसेक से क्या मापा जाता है ?",
+    "question": "What is measured by cubic sec?",
+    "optionA": "Water flow",
+    "optionB": "Water depth",
+    "optionC": "Water volume",
+    "optionD": "Water purity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन सबसे अधिक प्रत्यास्थ है ?",
+    "question": "Which of the following is the most elastic?",
+    "optionA": "Wet soil",
+    "optionB": "Plastic",
+    "optionC": "Rubber",
+    "optionD": "Steel",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::वह कौन-सा बल है जिसके कारण पिण्ड धरती के केन्द्र की और खींचा चला जाता है ?",
+    "question": "Which force pulls objects toward the center of the Earth?",
+    "optionA": "Mass",
+    "optionB": "Impulsive force",
+    "optionC": "Gravity",
+    "optionD": "Momentum",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::पृथ्वी के गुरुत्वाकर्षण का कितना भाग चन्द्रमा के गुरुत्वाकर्षण के सबसे नजदीक है ?",
+    "question": "What fraction of Earth's gravity is closest to the Moon's gravity?",
+    "optionA": "1/2",
+    "optionB": "1/4",
+    "optionC": "1/6",
+    "optionD": "1/5",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::आर्किमिडीज का नियम निम्नलिखित में से किससे सम्बन्धित है ?",
+    "question": "Archimedes' principle is related to which of the following?",
+    "optionA": "Law of gravitation",
+    "optionB": "Law of right-angled triangle",
+    "optionC": "Law of buoyancy",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::श्यानता की इकाई है ?",
+    "question": "What is the unit of viscosity?",
+    "optionA": "Poise",
+    "optionB": "Poiseuille",
+    "optionC": "Pascal",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::दूध से क्रीम निकालने में कौन-सा बल लगता है ?",
+    "question": "Which force is applied when extracting cream from milk?",
+    "optionA": "Frictional force",
+    "optionB": "Centripetal force",
+    "optionC": "Centrifugal force",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::चाभी भरी घड़ी में कौन-सी ऊर्जा होती है ?",
+    "question": "What type of energy is present in a wind-up clock?",
+    "optionA": "Potential energy",
+    "optionB": "Kinetic energy",
+    "optionC": "Stored energy",
+    "optionD": "Mechanical energy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::सूर्य की ऊर्जा उत्पन्न होती है ?",
+    "question": "How is the Sun's energy produced?",
+    "optionA": "By oxidation",
+    "optionB": "By nuclear fission",
+    "optionC": "By ionization",
+    "optionD": "By nuclear fusion",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::वस्तु की मात्रा बदलने पर क्या अपरिवर्तित रहेगा ?",
+    "question": "What remains unchanged when the amount of a substance is changed?",
+    "optionA": "Volume",
+    "optionB": "Density",
+    "optionC": "Mass",
+    "optionD": "Weight",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::जल में तैरना न्यूटन की गति के किस नियम के कारण सम्भव है ?",
+    "question": "Floating in water is possible due to which law of motion of Newton?",
+    "optionA": "First law",
+    "optionB": "Second law",
+    "optionC": "Third law",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सी राशि सदिश नहीं है ?",
+    "question": "Which of the following quantities is not a vector?",
+    "optionA": "Velocity",
+    "optionB": "Volume",
+    "optionC": "Displacement",
+    "optionD": "Force",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::एंगस्ट्रम क्या मापता है ?",
+    "question": "What does angstrom measure?",
+    "optionA": "Wavelength",
+    "optionB": "Period",
+    "optionC": "Frequency",
+    "optionD": "Time",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::किस वैज्ञानिक ने सर्वप्रथम बर्फ के दो टुकड़ों को आपस में घिसकर पिघला दिया ?",
+    "question": "Which scientist first melted two pieces of ice by rubbing them together?",
+    "optionA": "Celsius",
+    "optionB": "Joule",
+    "optionC": "Davy",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::उष्मा एक प्रकार की ऊर्जा है जिसे कार्य में बदला जा सकता है । इसका प्रत्यक्ष प्रमाण सबसे पहले किसने दिया ?",
+    "question": "Heat is a form of energy that can be converted into work. Who first gave direct evidence of this?",
+    "optionA": "Celsius",
+    "optionB": "Davy",
+    "optionC": "Joule",
+    "optionD": "Rumford",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::लोहे की सुई पानी की सतह पर तैरती है । इस परिघटना का कारण क्या है ?",
+    "question": "An iron needle floats on the surface of water. What is the reason for this phenomenon?",
+    "optionA": "Viscosity",
+    "optionB": "Gravitational acceleration",
+    "optionC": "Surface tension",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किस द्रव का घनत्व सबसे कम है ?",
+    "question": "Which of the following liquids has the lowest density?",
+    "optionA": "Mercury",
+    "optionB": "Petrol",
+    "optionC": "Clean water",
+    "optionD": "Salt water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::एक हॉर्स पावर कितने वाट के बराबर होता है ?",
+    "question": "How many watts is equal to one horsepower?",
+    "optionA": "450 watts",
+    "optionB": "600 watts",
+    "optionC": "734 watts",
+    "optionD": "746 watts",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::बर्नोली प्रमेय आधारित है ?",
+    "question": "Bernoulli's theorem is based on?",
+    "optionA": "Conservation of energy",
+    "optionB": "Conservation of momentum",
+    "optionC": "Conservation of charge",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::बर्फ पर दाब बढ़ाने से उसका गलनांक क्या होगा ?",
+    "question": "What will happen to the melting point of ice if pressure is increased on it?",
+    "optionA": "It will decrease",
+    "optionB": "It will increase",
+    "optionC": "It will become zero",
+    "optionD": "It will remain unchanged",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::किसी मनुष्य के शरीर का सामान्य तापक्रम होता है ?",
+    "question": "What is the normal temperature of a human body?",
+    "optionA": "65 degrees",
+    "optionB": "95 degrees",
+    "optionC": "98 degrees",
+    "optionD": "99 degrees",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::उष्मा का सबसे अच्छा चालक है ?",
+    "question": "What is the best conductor of heat?",
+    "optionA": "Silver",
+    "optionB": "Gold",
+    "optionC": "Copper",
+    "optionD": "Aluminum",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसकी ऊष्मा धारिता अधिक है ?",
+    "question": "Which of the following has higher heat capacity?",
+    "optionA": "Benzene",
+    "optionB": "Water",
+    "optionC": "Piece of gold",
+    "optionD": "Piece of iron",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसके द्वारा अधिक ज्वालक पैदा होता है ?",
+    "question": "Which of the following produces more kindling?",
+    "optionA": "Steam",
+    "optionB": "Hot air",
+    "optionC": "Sun's rays",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसमें सर्वोच्च विशिष्ट उष्मा का मान होता है ?",
+    "question": "Which of the following has the highest specific heat value?",
+    "optionA": "Copper",
+    "optionB": "Lead",
+    "optionC": "Water",
+    "optionD": "Glass",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ऊष्मा का सबसे अच्छा चालक है ?",
+    "question": "What is the best conductor of heat?",
+    "optionA": "Silver",
+    "optionB": "Copper",
+    "optionC": "Gold",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::आण्विक संघटन के द्वारा ऊष्मा का सम्प्रेषण क्या कहलाता है ?",
+    "question": "What is the transmission of heat by molecular structure called?",
+    "optionA": "Convection",
+    "optionB": "Radiation",
+    "optionC": "Conduction",
+    "optionD": "Scattering",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित द्रवों में कौन-सा ऊष्मा का बहुत अच्छा चालक है ?",
+    "question": "Which of the following liquids is a very good conductor of heat?",
+    "optionA": "Ether",
+    "optionB": "Benzene",
+    "optionC": "Mercury",
+    "optionD": "Water",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ठोस से द्रव में पदार्थ के अवस्था परिवर्तन को कहते हैं ?",
+    "question": "What is the change of state of matter from solid to liquid called?",
+    "optionA": "Evaporation",
+    "optionB": "Melting",
+    "optionC": "Boiling",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::ठोस कपूर से कपूर वाष्प बनाने की प्रक्रिया को क्या कहते हैं ?",
+    "question": "What is the process of making camphor vapor from solid camphor called?",
+    "optionA": "Sublimation",
+    "optionB": "Evaporation",
+    "optionC": "Melting",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::किसी द्रव का उसके क्वथनांक से पूर्व उसके वाष्प में बदलने की प्रक्रिया को क्या कहते हैं ?",
+    "question": "What is the process of a liquid changing into its vapor before its boiling point called?",
+    "optionA": "Condensation",
+    "optionB": "Freezing",
+    "optionC": "Evaporation",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::उष्मागतिकी के प्रथम नियम से संरक्षित होता है ?",
+    "question": "What is conserved by the first law of thermodynamics?",
+    "optionA": "Momentum",
+    "optionB": "Energy",
+    "optionC": "Both energy and momentum",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::यदि किसी स्थान के तापमान में सहसा वृद्धि होती है तो आपेक्षिक आद्रता क्या होती है ?",
+    "question": "If the temperature of a place suddenly increases, what happens to the relative humidity?",
+    "optionA": "Increases",
+    "optionB": "Decreases",
+    "optionC": "Remains constant",
+    "optionD": "Keeps fluctuating",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::ध्वनि तरंगो की प्रकृति होती है ?",
+    "question": "What is the nature of sound waves?",
+    "optionA": "Longitudinal",
+    "optionB": "Transverse",
+    "optionC": "Progressive",
+    "optionD": "Electromagnetic",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::ध्वनि की चाल अधिकतम होती है ?",
+    "question": "The speed of sound is maximum in?",
+    "optionA": "Water",
+    "optionB": "Air",
+    "optionC": "Vacuum",
+    "optionD": "Steel",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::कौन-सी प्रक्रिया प्रकाश और ध्वनि दोनों में घटित नहीं होती है ?",
+    "question": "Which process does not occur in both light and sound?",
+    "optionA": "Polarization",
+    "optionB": "Refraction",
+    "optionC": "Diffraction",
+    "optionD": "Reflection",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::ध्वनि तरंगे किसके कारण प्रतिध्वनि उत्पन्न करते हैं ?",
+    "question": "Due to what do sound waves produce echo?",
+    "optionA": "Diffraction",
+    "optionB": "Refraction",
+    "optionC": "Reflection",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::रेडियो का समस्वरण स्टेशन उदहारण है ?",
+    "question": "Radio tuning station is an example of?",
+    "optionA": "Resonance",
+    "optionB": "Refraction",
+    "optionC": "Interference",
+    "optionD": "Reflection",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::डॉप्लर प्रभाव सम्बन्धित है ?",
+    "question": "Doppler effect is related to?",
+    "optionA": "Currency",
+    "optionB": "Psychology",
+    "optionC": "Sound",
+    "optionD": "Population",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कौन-सी तरंगें शून्य में संचरण नहीं कर सकती ?",
+    "question": "Which waves cannot travel in vacuum?",
+    "optionA": "Heat",
+    "optionB": "Sound",
+    "optionC": "Light",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::ध्वनि नहीं गुजर सकती है ?",
+    "question": "Sound cannot pass through?",
+    "optionA": "Air",
+    "optionB": "Vacuum",
+    "optionC": "Steel",
+    "optionD": "Water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::वायुमण्डन में बादलों के तैरने का कारण है ?",
+    "question": "What is the reason for clouds floating in the atmosphere?",
+    "optionA": "Pressure",
+    "optionB": "Density",
+    "optionC": "Temperature",
+    "optionD": "Velocity",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सबसे अधिक तीव्रता की ध्वनि उत्पन्न करता है ?",
+    "question": "Which produces the most intense sound?",
+    "optionA": "Tiger",
+    "optionB": "Gorilla",
+    "optionC": "Monkey",
+    "optionD": "Chimpanzee",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::ध्वनि का वेग अधिकतम होता है ?",
+    "question": "The speed of sound is maximum in?",
+    "optionA": "Iron",
+    "optionB": "Air",
+    "optionC": "Water",
+    "optionD": "Mercury",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::जब ध्वनि तरंग चलती है तो वे अपने साथ क्या ले जाती हैं ?",
+    "question": "When sound waves travel, what do they carry with them?",
+    "optionA": "Mass",
+    "optionB": "Sound",
+    "optionC": "Energy",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::जब प्रकाश के लाल, हरा व नीला रंगों को समान अनुपात में मिलाया जाता है तो परिणामी रंग होगा ?",
+    "question": "When red, green and blue colors of light are mixed in equal proportion, the resulting color will be?",
+    "optionA": "Black",
+    "optionB": "Dark",
+    "optionC": "White",
+    "optionD": "Magenta",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कैमरे में किस प्रकार का लेन्स उपयोग में लाया जाता है ?",
+    "question": "What type of lens is used in a camera?",
+    "optionA": "Convex",
+    "optionB": "Circular",
+    "optionC": "Uniform thickness",
+    "optionD": "Concave",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::नेत्र दान में दाता की आँख के किस हिस्से को प्रतिरोपित किया जाता है ?",
+    "question": "In eye donation, which part of the donor's eye is transplanted?",
+    "optionA": "Lens",
+    "optionB": "Cornea",
+    "optionC": "Entire eye",
+    "optionD": "Retina",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::मनुष्य के आँख में प्रकाश तरंगे किस स्थान पर स्नायु उद्वेगों में परवर्तित होती है ?",
+    "question": "In the human eye, at which place do light waves get converted into nerve impulses?",
+    "optionA": "In the pupil",
+    "optionB": "From the retina",
+    "optionC": "From the lens",
+    "optionD": "From the cornea",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::मायोपिया से क्या तात्पर्य है ?",
+    "question": "What is meant by myopia?",
+    "optionA": "Near sightedness defect",
+    "optionB": "Color blindness",
+    "optionC": "Far sightedness defect",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::दूरबीन का आविष्कार किया था ?",
+    "question": "Who invented the telescope?",
+    "optionA": "Edison",
+    "optionB": "Gutenberg",
+    "optionC": "Galileo",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पानी से भरे तालाब की गहराई किस कारण कम दिखायी देती है ?",
+    "question": "Why does the depth of a pond filled with water appear less?",
+    "optionA": "Refraction",
+    "optionB": "Reflection",
+    "optionC": "Diffraction",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::साबुन के बुलबुले के चमकीले रंग निम्नलिखित में से किसके कारण होते हैं ?",
+    "question": "What causes the bright colors of soap bubbles?",
+    "optionA": "Scattering",
+    "optionB": "Dispersion",
+    "optionC": "Diffraction",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसमें उच्चतम ऊर्जा होती है ?",
+    "question": "Which of the following has the highest energy?",
+    "optionA": "Blue light",
+    "optionB": "Red light",
+    "optionC": "Yellow light",
+    "optionD": "Green light",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित प्रक्रमों में से किस एक के साथ पद CMYK सम्बन्धित है ?",
+    "question": "With which of the following processes is the term CMYK related?",
+    "optionA": "Offset printing",
+    "optionB": "Voting machine",
+    "optionC": "Railway signaling",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::जल में वायु का बुलबुला किसकी भाँति व्यवहार करेगा ?",
+    "question": "How will an air bubble in water behave?",
+    "optionA": "As a convex lens",
+    "optionB": "As a convex mirror",
+    "optionC": "As a concave lens",
+    "optionD": "As a concave mirror",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::काश की गति किसके बीच से जाते हुए न्यूनतम होती है ?",
+    "question": "The speed of light is minimum when it passes through?",
+    "optionA": "Air",
+    "optionB": "Water",
+    "optionC": "Glass",
+    "optionD": "Vacuum",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::किसी तारे के रंग से तारे का क्या पता चलता है ?",
+    "question": "What can be known about a star from its color?",
+    "optionA": "The distance of the star",
+    "optionB": "The temperature of the star",
+    "optionC": "The mass of the star",
+    "optionD": "The size of the star",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित तिथियों में से किसमें दोपहर को आपकी छाया सबसे छोटी होती है ?",
+    "question": "On which of the following dates will your shadow be the shortest at noon?",
+    "optionA": "12 April",
+    "optionB": "2 March",
+    "optionC": "18 March",
+    "optionD": "21 June",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::पीले रंग का पूरक रंग है ?",
+    "question": "What is the complementary color of yellow?",
+    "optionA": "Orange",
+    "optionB": "Red",
+    "optionC": "Blue",
+    "optionD": "Green",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::पानी के ऊपर तेल परत का चमकना उदाहरण है ?",
+    "question": "The shining of an oil layer on water is an example of?",
+    "optionA": "Interference",
+    "optionB": "Scattering",
+    "optionC": "Refraction",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::तरण ताल वास्तविक गहराई से कम गहरा दिखाई देता है इसका क्या कारण है ?",
+    "question": "Why does a swimming pool appear shallower than its actual depth?",
+    "optionA": "Scattering",
+    "optionB": "Interference",
+    "optionC": "Refraction",
+    "optionD": "Light",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::बाह्य अंतरिक्ष में किसी अंतरिक्ष यात्री को आकाश दिखायी देगा ?",
+    "question": "What will the sky appear to an astronaut in outer space?",
+    "optionA": "Black",
+    "optionB": "Red",
+    "optionC": "White",
+    "optionD": "Blue",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::अबिन्दुकता का दोष दूर करने के लिए निम्नलिखित में से किस लेंस का प्रयोग करना चाहिए ?",
+    "question": "Which lens should be used to remove the defect of astigmatism?",
+    "optionA": "Concave lens",
+    "optionB": "Convex lens",
+    "optionC": "Cylindrical lens",
+    "optionD": "Bifocal lens",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::एक प्रिज्म से गुजरने पर जो प्रकाश सबसे अधिक अपवर्तित होता है, वह है ?",
+    "question": "Which light is refracted the most when passing through a prism?",
+    "optionA": "Green",
+    "optionB": "Violet",
+    "optionC": "Red",
+    "optionD": "Orange",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::वस्तुओं का आवेशन किसके स्थानान्तरण के फलस्वरूप होता है ?",
+    "question": "The charging of objects is the result of the transfer of which particles?",
+    "optionA": "Neutron",
+    "optionB": "Proton",
+    "optionC": "Electron",
+    "optionD": "Positron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::अतिचालक का लक्षण है ?",
+    "question": "What is the characteristic of a superconductor?",
+    "optionA": "High conductivity",
+    "optionB": "Infinite conductivity",
+    "optionC": "Zero conductivity",
+    "optionD": "Low conductivity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::शुष्क सेल है ?",
+    "question": "A dry cell is?",
+    "optionA": "Primary cell",
+    "optionB": "Secondary cell",
+    "optionC": "Tertiary cell",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::तड़ित चालक का अविष्कार किसने किया ?",
+    "question": "Who invented the lightning conductor?",
+    "optionA": "Lord Lister",
+    "optionB": "Benjamin Franklin",
+    "optionC": "Graham Bell",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::विद्युत् उत्पन्न करने के लिए कौन-सी धातु का उपयोग होता है ?",
+    "question": "Which metal is used to generate electricity?",
+    "optionA": "Iron",
+    "optionB": "Uranium",
+    "optionC": "Copper",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::विद्युत् ऊर्जा को यांत्रिक ऊर्जा में बदलने की युक्ति है ?",
+    "question": "The device that converts electrical energy into mechanical energy is?",
+    "optionA": "Dynamo",
+    "optionB": "Electric motor",
+    "optionC": "Transformer",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::एकीकृत परिपथ में प्रयुक्त अर्द्धचालक चिप निम्न की बनी होती है ?",
+    "question": "An integrated circuit semiconductor chip is made of which of the following?",
+    "optionA": "Silicon",
+    "optionB": "Zircon",
+    "optionC": "Carbon",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::त्यावर्ती धारा को दिष्ट धारा में परिवर्तित करने वाली युक्ति को क्या कहते हैं ?",
+    "question": "What is the device called that converts alternating current to direct current?",
+    "optionA": "Rectifier",
+    "optionB": "Transformer",
+    "optionC": "Transmitter",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::स्थायी चुम्बक बनाये जाते हैं ?",
+    "question": "Permanent magnets are made of?",
+    "optionA": "Copper",
+    "optionB": "Steel",
+    "optionC": "Soft iron",
+    "optionD": "All of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::शुष्क सेल में जो ऊर्जा संग्रहित रहती है वह है ?",
+    "question": "What energy is stored in a dry cell?",
+    "optionA": "Thermal energy",
+    "optionB": "Chemical energy",
+    "optionC": "Electrical energy",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::बिजली के पंखे की गति बदलने के लिए प्रयुक्त साधन है ?",
+    "question": "The device used to change the speed of an electric fan is?",
+    "optionA": "Switch",
+    "optionB": "Rectifier",
+    "optionC": "Regulator",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::फैराडे का नियम किस प्रकिया से सम्बन्धित है ?",
+    "question": "Faraday's law is related to which process?",
+    "optionA": "Pressure of gases",
+    "optionB": "Reaction of gases",
+    "optionC": "Temperature and pressure",
+    "optionD": "Electrolysis",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्न में कौन विधुत अचुम्बकीय है ?",
+    "question": "Which of the following is diamagnetic?",
+    "optionA": "Cobalt",
+    "optionB": "Chromium",
+    "optionC": "Copper",
+    "optionD": "Nickel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::चुम्बकीय याम्योत्तर और भौगोलिक याम्योत्तर के बीच के कोण को कहते हैं ?",
+    "question": "The angle between magnetic meridian and geographic meridian is called?",
+    "optionA": "Magnetic moment",
+    "optionB": "Magnetic dip",
+    "optionC": "Magnetic declination",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सा एक प्रकृति में अनुचुम्बकीय है ?",
+    "question": "Which of the following is paramagnetic in nature?",
+    "optionA": "Hydrogen",
+    "optionB": "Oxygen",
+    "optionC": "Nitrogen",
+    "optionD": "Iron",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन एक अचुम्बकीय पदार्थ है ?",
+    "question": "Which of the following is a non-magnetic substance?",
+    "optionA": "Iron",
+    "optionB": "Nickel",
+    "optionC": "Brass",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::भौतिकी में चतुर्थ आयाम का परिचय किसने दिया ?",
+    "question": "Who introduced the fourth dimension in physics?",
+    "optionA": "Newton",
+    "optionB": "Niels Bohr",
+    "optionC": "Einstein",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::रडार का आविष्कारक कौन था ?",
+    "question": "Who was the inventor of radar?",
+    "optionA": "Fleming",
+    "optionB": "Robert Watson",
+    "optionC": "Austin",
+    "optionD": "Newton",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पोजिट्रॉन की खोज किसने की थी ?",
+    "question": "Who discovered the positron?",
+    "optionA": "Chadwick",
+    "optionB": "Anderson",
+    "optionC": "Newton",
+    "optionD": "Galileo",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::चुम्बकीय सूई किस तरफ संकेत करती है ?",
+    "question": "Which direction does the magnetic needle point to?",
+    "optionA": "North",
+    "optionB": "Sky",
+    "optionC": "East",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सा पदार्थ चुम्बकीय है ?",
+    "question": "Which of the following substances is magnetic?",
+    "optionA": "Nickel",
+    "optionB": "Aluminum",
+    "optionC": "Bismuth",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::विद्युत् मोटर किस सिद्धान्त के अनुसार कार्य करती है ?",
+    "question": "According to which principle does an electric motor work?",
+    "optionA": "Ohm's law",
+    "optionB": "Lenz's law",
+    "optionC": "Faraday's law",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::विद्युत् चुम्बक बनाने के लिए सामान्यतः किस धातु का प्रयोग किया जाता है ?",
+    "question": "Which metal is generally used to make an electromagnet?",
+    "optionA": "Copper",
+    "optionB": "Cobalt",
+    "optionC": "Iron",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सा धातु अर्द्धचालक की तरह ट्रांजिस्टर में प्रयोग होती है ?",
+    "question": "Which of the following metals is used in transistors like a semiconductor?",
+    "optionA": "Silver",
+    "optionB": "Graphite",
+    "optionC": "Germanium",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::नाभिकीय रिएक्टर में भारी जल का प्रयोग किस रूप में किया जाता है ?",
+    "question": "In what form is heavy water used in nuclear reactors?",
+    "optionA": "Coolant",
+    "optionB": "Controller",
+    "optionC": "Moderator",
+    "optionD": "Shield",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कूलिज नलिका का प्रयोग क्या उत्पन्न करने के लिए किया जाता है ?",
+    "question": "For what is a Coolidge tube used?",
+    "optionA": "Micro waves",
+    "optionB": "Radio waves",
+    "optionC": "X-rays",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ट्रान्जिस्टर के संविरचन में किस वस्तु का प्रयोग होता है ?",
+    "question": "What is used in the construction of a transistor?",
+    "optionA": "Silicon",
+    "optionB": "Silver",
+    "optionC": "Aluminum",
+    "optionD": "Copper",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::सिलिकॉन क्या है ?",
+    "question": "What is silicon?",
+    "optionA": "Insulator",
+    "optionB": "Conductor",
+    "optionC": "Semiconductor",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::X-किरणें किसको पार नहीं कर सकती ?",
+    "question": "Through which can X-rays not pass?",
+    "optionA": "Skin",
+    "optionB": "Bone",
+    "optionC": "Flesh",
+    "optionD": "Wood",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::माइक्रोफोन का आविष्कारक किसे माना जाता है ?",
+    "question": "Who is considered the inventor of the microphone?",
+    "optionA": "Stephen Hawking",
+    "optionB": "Galileo",
+    "optionC": "Graham Bell",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::टेलीविजन का अविष्कार किसने किया था ?",
+    "question": "Who invented television?",
+    "optionA": "J.L. Baird",
+    "optionB": "Johnson",
+    "optionC": "Galileo",
+    "optionD": "Stephen",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::टेलिस्कोप का आविष्कारक किसे माना जाता है ?",
+    "question": "Who is considered the inventor of the telescope?",
+    "optionA": "Johnson",
+    "optionB": "Rutherford",
+    "optionC": "Galileo",
+    "optionD": "Newton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::गुरुत्वाकर्षण नियमों के आविष्कारक किसे माना जाता है ?",
+    "question": "Who is considered the inventor of the laws of gravitation?",
+    "optionA": "Newton",
+    "optionB": "Niels Bohr",
+    "optionC": "Rutherford",
+    "optionD": "J.L. Baird",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::एक जूल में कितने कैलोरी होते हैं ?",
+    "question": "How many calories are in one joule?",
+    "optionA": "0.25",
+    "optionB": "0.41",
+    "optionC": "0.24",
+    "optionD": "0.76",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::वह उपकरण कौन-सा है जिससे समुद्रों की गहराई को मापने के लिए ध्वनि तरंग का प्रयोग किया जाता है ?",
+    "question": "Which is the device that uses sound waves to measure the depth of oceans?",
+    "optionA": "Sonar",
+    "optionB": "Altimeter",
+    "optionC": "Radar",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सा यंत्र प्रत्यावर्ती धारा को एकदिश धारा में परिवर्तित करता है ?",
+    "question": "Which device converts alternating current into direct current?",
+    "optionA": "Alternator",
+    "optionB": "Condenser",
+    "optionC": "Transformer",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::साइक्लोट्रान किसको त्वरित करने के लिए प्रयुक्त किया जाता है ?",
+    "question": "For what is a cyclotron used to accelerate?",
+    "optionA": "Atom",
+    "optionB": "Ion",
+    "optionC": "Proton",
+    "optionD": "All of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित युग्मों में से किन भौतिक राशियों के समान विमीय सूत्र नहीं है ?",
+    "question": "Which of the following pairs do not have the same dimensional formula for physical quantities?",
+    "optionA": "Force and pressure",
+    "optionB": "Weight and force",
+    "optionC": "Impulse and momentum",
+    "optionD": "Work and energy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::एक नदी में चलता हुआ जहाज समुद्र में आता है तब जहाज का स्तर ?",
+    "question": "When a ship moving in a river comes to the sea, the ship's level?",
+    "optionA": "Will be the same as before",
+    "optionB": "Will come down a little",
+    "optionC": "Will come up a little",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::एक बीकर में पानी पर बर्फ तैर रही है, जब बर्फ पूर्णतः पिघल जाएगी तो बीकर में पानी का तल ?",
+    "question": "Ice is floating on water in a beaker, when the ice melts completely, the water level in the beaker?",
+    "optionA": "Will increase",
+    "optionB": "Will first increase then decrease",
+    "optionC": "Will decrease",
+    "optionD": "Will remain the same",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::जब किसी बोतल में पानी भरा जाता है और उसे जमने दिया जाता है तो बोतल टूट जाती है क्योंकि ?",
+    "question": "When a bottle is filled with water and allowed to freeze, the bottle breaks because?",
+    "optionA": "The bottle contracts at freezing point",
+    "optionB": "Water expands when heated",
+    "optionC": "The temperature outside is more than inside",
+    "optionD": "Water expands when it freezes",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::पहाड़ी पर चढ़ता एक व्यक्ति आगे की ओर झुक जाता है क्योंकि ?",
+    "question": "A person climbing a mountain bends forward because?",
+    "optionA": "To walk fast",
+    "optionB": "To increase stability",
+    "optionC": "For conservation of energy",
+    "optionD": "To reduce the chance of slipping",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::यदि हम भूमध्य रेखा से ध्रुवों की और जाते हैं तो g का मान ?",
+    "question": "If we go from the equator towards the poles, the value of g?",
+    "optionA": "Increases",
+    "optionB": "Remains the same",
+    "optionC": "Decreases",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::बल गुणनफल है ?",
+    "question": "Force is the product of?",
+    "optionA": "Mass and velocity",
+    "optionB": "Weight and acceleration",
+    "optionC": "Mass and acceleration",
+    "optionD": "Weight and velocity",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::शून्य में स्वतंत्र रूप से गिरने वाली वस्तुओं का ?",
+    "question": "Objects falling freely in vacuum?",
+    "optionA": "Have the same velocity",
+    "optionB": "Have the same force",
+    "optionC": "Have the same speed",
+    "optionD": "Have the same acceleration",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::एक लकड़ी झूले पर बैठी स्थिति में झूला झूल रही है, उस लड़की के खड़े हो जाने पर दोलनों का आवर्त काल ?",
+    "question": "A girl is sitting on a swing and swinging, when the girl stands up, the period of oscillation?",
+    "optionA": "Will decrease",
+    "optionB": "Will remain unchanged",
+    "optionC": "Will increase",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::यदि किसी वस्तु का वेग दुगना कर दिया जाए तो ?",
+    "question": "If the velocity of an object is doubled, then?",
+    "optionA": "Momentum becomes double",
+    "optionB": "Kinetic energy becomes four times",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में सदिश राशि है ?",
+    "question": "Which of the following is a vector quantity?",
+    "optionA": "Velocity",
+    "optionB": "Length",
+    "optionC": "Time",
+    "optionD": "Mass",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::न्यूटन की गति का प्रथम नियम क्या कहलाता है ?",
+    "question": "What is Newton's first law of motion called?",
+    "optionA": "Law of conservation of momentum",
+    "optionB": "Law of motion",
+    "optionC": "Law of inertia",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::दो वेक्टर जिनका मान अलग है ?",
+    "question": "Two vectors whose magnitudes are different?",
+    "optionA": "Their directions will be different",
+    "optionB": "Their resultant will be zero",
+    "optionC": "Their resultant cannot be zero",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::बर्फ पर स्केटिंग करना प्रदर्शित करता है कि दाब बढ़ाने पर बर्फ का गलनांक ?",
+    "question": "Skating on ice shows that when pressure is increased, the melting point of ice?",
+    "optionA": "Decreases",
+    "optionB": "Increases",
+    "optionC": "Remains unchanged",
+    "optionD": "First decreases then increases",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::जब कोई नाव नदी से समुद्र में प्रवेश करती है तो ?",
+    "question": "When a boat enters from a river to the sea?",
+    "optionA": "It rises a little upwards",
+    "optionB": "It sinks a little",
+    "optionC": "It remains unchanged",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसमें गतिज ऊर्जा नहीं है ?",
+    "question": "Which of the following does not have kinetic energy?",
+    "optionA": "A moving bullet",
+    "optionB": "A drawn bow",
+    "optionC": "A moving hammer",
+    "optionD": "Flowing water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::जब एक चल वस्तु की गति दुगुनी हो जाती है तो उसकी गतिज ऊर्जा ?",
+    "question": "When the speed of a moving object is doubled, its kinetic energy?",
+    "optionA": "Becomes double",
+    "optionB": "Increases three times",
+    "optionC": "Remains the same",
+    "optionD": "Becomes four times",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::जब दूध को बिलोया जाता है तो उसमें से मक्खन अलग हो जाता है, इसका कारण है ?",
+    "question": "When milk is churned, butter separates from it, the reason is?",
+    "optionA": "Gravitational force",
+    "optionB": "Frictional force",
+    "optionC": "Centrifugal force",
+    "optionD": "Heat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कोई साईकिल सवार किसी मोड़ में घूमता है, तो वह ?",
+    "question": "A cyclist moves in a curve, then he?",
+    "optionA": "Leans outward",
+    "optionB": "Leans inward",
+    "optionC": "Leans forward",
+    "optionD": "Does not lean at all",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::जब हम रबड़ के गद्दे वाले सीट पर बैठते हैं या गद्दे पर लेटते है तो उसका आकर परिवर्तित हो जाता है, ऐसे पदार्थ में पाया जाता है ?",
+    "question": "When we sit on a rubber cushioned seat or lie on a cushion, its shape changes, such a substance is found in?",
+    "optionA": "Kinetic energy",
+    "optionB": "Dissociation energy",
+    "optionC": "Stored energy",
+    "optionD": "Potential energy",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन-सा नियम इस कथन को वैध ठहराता है कि द्रव्य का न तो सृजन किया जा सकता है और न ही विनाश ?",
+    "question": "Which of the following laws validates the statement that matter can neither be created nor destroyed?",
+    "optionA": "Law of conservation of energy",
+    "optionB": "Law of osmosis",
+    "optionC": "Law of conservation of mass",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::कोई भी नाव डूब जाएगी, यदि वह पानी हटाती है, अपने ?",
+    "question": "Any boat will sink, if it displaces water, equal to its?",
+    "optionA": "Volume",
+    "optionB": "Surface area",
+    "optionC": "Density",
+    "optionD": "Weight",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::द्रव में आंशिक या पूर्णतः डूबे हुए किसी ठोस द्वारा प्राप्त उछाल की मात्रा निर्भर करती है ?",
+    "question": "The amount of buoyancy obtained by a solid partially or completely submerged in a fluid depends on?",
+    "optionA": "The volume of fluid displaced by the solid",
+    "optionB": "On the weight of the solid",
+    "optionC": "On the mass of the solid",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::लैम्प की बत्ती में तेल चढ़ता है, क्योंकि ?",
+    "question": "Oil rises in the lamp's wick, because?",
+    "optionA": "Oil is very light",
+    "optionB": "Due to capillary action",
+    "optionC": "Due to decrease in surface tension",
+    "optionD": "Oil is volatile",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सूई का पानी के ऊपर तैरने का कारण है ?",
+    "question": "The reason for a needle floating on water is?",
+    "optionA": "Surface tension",
+    "optionB": "Adhesion",
+    "optionC": "Cohesion",
+    "optionD": "Capillarity",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::पानी से निकलने पर सेविंग ब्रश के बाल आपस में चिपक जाते हैं, इसका कारण हैं ?",
+    "question": "When taken out of water, the bristles of a shaving brush stick together, the reason is?",
+    "optionA": "Friction",
+    "optionB": "Surface tension",
+    "optionC": "Elasticity",
+    "optionD": "Viscosity",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::द्रव की बूंद की आकृति गोलाकार होने का कारण है ?",
+    "question": "The reason for the spherical shape of a liquid drop is?",
+    "optionA": "Viscosity",
+    "optionB": "Low weight",
+    "optionC": "Surface tension",
+    "optionD": "Atmospheric pressure",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::यदि लोलक की लम्बाई चार गुणी कर दी जाए तो लोलक के झूलने का समय ?",
+    "question": "If the length of a pendulum is quadrupled, the time period of the pendulum?",
+    "optionA": "Decreases",
+    "optionB": "Becomes four times",
+    "optionC": "Becomes one-fourth",
+    "optionD": "Doubles",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::वाशिंग मशीन का कार्य सिद्धांत है ?",
+    "question": "The working principle of a washing machine is?",
+    "optionA": "Centripetal",
+    "optionB": "Diffusion",
+    "optionC": "Centrifugal",
+    "optionD": "Dissolution",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::एक लिफ्ट में किसी व्यक्ति का प्रत्यक्ष भार वास्तविक भार से कम होता है, जब लिफ्ट जा रही है ?",
+    "question": "When a person's apparent weight in a lift is less than their actual weight, the lift is going?",
+    "optionA": "Up with acceleration",
+    "optionB": "Down with uniform speed",
+    "optionC": "Up with uniform speed",
+    "optionD": "Down with acceleration",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::पानी में लोहे की सुई डूब जाती है लेकिन जहाज तैरता रहता है, यह किस सिद्धान्त पर आधारित है ?",
+    "question": "An iron needle sinks in water but a ship floats, on which principle is this based?",
+    "optionA": "Pascal's principle",
+    "optionB": "Archimedes' principle",
+    "optionC": "Law of gravitation",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पानी के एक गिलास में एक बर्फ का टुकड़ा तैर रहा है, जब बर्फ पिघलती है तप पानी के स्तर पर क्या प्रभाव होगा ?",
+    "question": "A piece of ice is floating in a glass of water, when the ice melts, what effect will it have on the water level?",
+    "optionA": "It will increase",
+    "optionB": "It will first increase then decrease",
+    "optionC": "It will remain the same",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::भारहीनता की अवस्था में एक मोमबत्ती की ज्वाला का आकर हो जाएगा ?",
+    "question": "In a state of weightlessness, the shape of a candle flame will be?",
+    "optionA": "More elongated",
+    "optionB": "It will remain the same",
+    "optionC": "Spherical",
+    "optionD": "More smaller",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसकी इकाई न्यूटन-मीटर नहीं है ?",
+    "question": "Which of the following does not have the unit Newton-meter?",
+    "optionA": "Force",
+    "optionB": "Energy",
+    "optionC": "Work",
+    "optionD": "Kinetic energy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::वस्तु को गर्म करने पर उसके अणुओं ?",
+    "question": "When an object is heated, its molecules?",
+    "optionA": "Their speed will increase",
+    "optionB": "Their weight will decrease",
+    "optionC": "Their weight will increase",
+    "optionD": "Their energy will decrease",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::इनमें से कौन ऊष्मा का मात्रक नहीं है ?",
+    "question": "Which of these is not a unit of heat?",
+    "optionA": "Calorie",
+    "optionB": "Degree Celsius",
+    "optionC": "Joule",
+    "optionD": "Kilocalorie",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::इनमें में जब जल ऊंचाई से गिरता है तो उसका ताप ?",
+    "question": "When water falls from a height, its temperature?",
+    "optionA": "Decreases",
+    "optionB": "Increases",
+    "optionC": "Neither decreases nor increases",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::चावल को पकाने में कहाँ अधिक समय लगेगा ?",
+    "question": "Where will it take more time to cook rice?",
+    "optionA": "At the seashore",
+    "optionB": "In Shimla",
+    "optionC": "On Mount Everest",
+    "optionD": "In the depth of the sea",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::वह ताप जिस पर बर्फ, पानी और वाष्प संतुलन में रहता है, कहा जाता है ?",
+    "question": "The temperature at which ice, water, and vapor remain in equilibrium is called?",
+    "optionA": "Freezing point",
+    "optionB": "Triple point",
+    "optionC": "Critical temperature",
+    "optionD": "Boiling point",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::किसी द्रव का वाष्पीकरण होने से उसका तापमान ?",
+    "question": "What happens to the temperature of a liquid when it evaporates?",
+    "optionA": "It will increase",
+    "optionB": "It will remain unchanged",
+    "optionC": "It will increase rapidly",
+    "optionD": "It will decrease",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नतापी इंजनों का अनुप्रयोग होता है ?",
+    "question": "What is the application of cryogenic engines?",
+    "optionA": "In submarine propulsion",
+    "optionB": "In research related to superconductivity",
+    "optionC": "In rocket technology",
+    "optionD": "In frost-free refrigerators",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::वायुमण्डल में प्रकाश के विसरण का कारण है ?",
+    "question": "What is the cause of the scattering of light in the atmosphere?",
+    "optionA": "Carbon dioxide",
+    "optionB": "Water vapor",
+    "optionC": "Helium",
+    "optionD": "Dust particles",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::आकाश का रंग नीला प्रतीत होता है ?",
+    "question": "Why does the sky appear blue?",
+    "optionA": "Due to diffraction",
+    "optionB": "Due to scattering",
+    "optionC": "Due to reflection",
+    "optionD": "Due to refraction",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::इंद्रधनुष कितने रंग दिखाता है ?",
+    "question": "How many colors does a rainbow show?",
+    "optionA": "7",
+    "optionB": "10",
+    "optionC": "12",
+    "optionD": "5",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::मृगतृष्णा बनने का कारण है ?",
+    "question": "What is the cause of mirage?",
+    "optionA": "Total internal reflection",
+    "optionB": "Refraction",
+    "optionC": "Reflection",
+    "optionD": "Scattering",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::पूर्ण आन्तरिक परावर्तन होता है, जब प्रकाश जाता है ?",
+    "question": "Total internal reflection occurs when light goes?",
+    "optionA": "From water to glass",
+    "optionB": "From air to water",
+    "optionC": "From diamond to glass",
+    "optionD": "From air to glass",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::किस गुण-धर्म के कारण पानी से भरे बर्तन में डुबाई गई छड़ी मुड़ी हुई प्रतीत होती है ?",
+    "question": "Due to which property does a stick immersed in a water-filled vessel appear bent?",
+    "optionA": "Scattering",
+    "optionB": "Capillarity",
+    "optionC": "Refraction",
+    "optionD": "Reflection",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सूर्य ग्रहण कब होता है ?",
+    "question": "When does a solar eclipse occur?",
+    "optionA": "On Pratipada",
+    "optionB": "On the day of the quarter moon",
+    "optionC": "On Purnima",
+    "optionD": "On any day",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::काश का वेग सर्वप्रथम किसने ज्ञात किया ?",
+    "question": "Who first determined the speed of light?",
+    "optionA": "Galileo",
+    "optionB": "Michelson",
+    "optionC": "Roemer",
+    "optionD": "Newton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::काश में ध्रुवण की घटना से यह सिद्ध होता है कि प्रकाश तरंगें हैं ?",
+    "question": "From the phenomenon of polarization of light, it is proved that light waves are?",
+    "optionA": "Like waves",
+    "optionB": "Not like waves and particles",
+    "optionC": "Like both waves and particles",
+    "optionD": "Like particles",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::काश का वेग अधिकतम होता है ?",
+    "question": "The speed of light is maximum in?",
+    "optionA": "Diamond",
+    "optionB": "Glass",
+    "optionC": "Water",
+    "optionD": "Vacuum",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::माध्यम के तापमान में वृद्धि के साथ प्रकाश की गति ?",
+    "question": "With the increase in temperature of the medium, the speed of light?",
+    "optionA": "Increases",
+    "optionB": "Suddenly decreases",
+    "optionC": "Remains the same",
+    "optionD": "Decreases",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सूर्य ग्रहण के समय सूर्य का कौन-सा भाग दिखाई देता है ?",
+    "question": "During a solar eclipse, which part of the sun is visible?",
+    "optionA": "Chromosphere",
+    "optionB": "Corona",
+    "optionC": "Photosphere",
+    "optionD": "No part",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::काश तरंग किस प्रकार की तरंग है ?",
+    "question": "What type of wave is light wave?",
+    "optionA": "Longitudinal wave",
+    "optionB": "Transverse wave",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::डेसीबल होता है ?",
+    "question": "Decibel is?",
+    "optionA": "A musical note",
+    "optionB": "A measure of sound level",
+    "optionC": "A musical instrument",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सोनार अधिकांशतः प्रयोग में लाया जाता है ?",
+    "question": "Sonar is mostly used by?",
+    "optionA": "Astronauts",
+    "optionB": "Navigators",
+    "optionC": "Engineers",
+    "optionD": "Doctors",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::अशुद्धियों के कारण द्रव का क्वथनांक ?",
+    "question": "Due to impurities, the boiling point of a liquid?",
+    "optionA": "Remains the same",
+    "optionB": "Increases",
+    "optionC": "Decreases",
+    "optionD": "There is no relation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::कमरे को ठंडा किया जा सकता है ?",
+    "question": "A room can be cooled by?",
+    "optionA": "Cooking gas",
+    "optionB": "Melting a solid",
+    "optionC": "Releasing compressed gas",
+    "optionD": "Flowing water",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ऊष्मा गतिकी का प्रथम नियम किस अवधारणा की पुष्टि करता है ?",
+    "question": "The first law of thermodynamics confirms which concept?",
+    "optionA": "Conservation of energy",
+    "optionB": "Conservation of heat",
+    "optionC": "Conservation of work",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::हीरा चमकदार दिखायी देता है ?",
+    "question": "Why does a diamond appear shiny?",
+    "optionA": "Due to refraction",
+    "optionB": "Due to scattering",
+    "optionC": "Due to reflection",
+    "optionD": "Due to total internal reflection",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्न में से कौन-सा धातु चुम्बक द्वारा आकर्षित नहीं होता है ?",
+    "question": "Which of the following metals is not attracted by a magnet?",
+    "optionA": "Iron",
+    "optionB": "Cobalt",
+    "optionC": "Nickel",
+    "optionD": "Bismuth",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::चुम्बकीय फ्लक्स का मात्रक है ?",
+    "question": "What is the unit of magnetic flux?",
+    "optionA": "Weber",
+    "optionB": "Tesla",
+    "optionC": "Gauss",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::त्यावर्तीधारा को दिष्ट धारा में बदला जाता है ?",
+    "question": "Alternating current is converted to direct current by?",
+    "optionA": "Transformer",
+    "optionB": "Rectifier",
+    "optionC": "Oscillator",
+    "optionD": "Dynamo",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::गैस इंजन की खोज किसने की ?",
+    "question": "Who discovered the gas engine?",
+    "optionA": "Diesel",
+    "optionB": "Charles",
+    "optionC": "Daimler",
+    "optionD": "Davy",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::परमाणु बम का विकास किसने किया ?",
+    "question": "Who developed the atomic bomb?",
+    "optionA": "Wernher von Braun",
+    "optionB": "J. Robert Oppenheimer",
+    "optionC": "Samuel Cohen",
+    "optionD": "Edward Teller",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::क्षेपास्त्र का विकास किसने किया ?",
+    "question": "Who developed the missile?",
+    "optionA": "Wernher von Braun",
+    "optionB": "J. Robert Oppenheimer",
+    "optionC": "Edward Teller",
+    "optionD": "Samuel Cohen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::हाइड्रोजन बम किसने विकसित किया ?",
+    "question": "Who developed the hydrogen bomb?",
+    "optionA": "J. Robert Oppenheimer",
+    "optionB": "Edward Teller",
+    "optionC": "Samuel Cohen",
+    "optionD": "Wernher von Braun",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::लेसर का अविष्कार किसने किया था ?",
+    "question": "Who invented the laser?",
+    "optionA": "Sir Frank Whittle",
+    "optionB": "Seymour Cray",
+    "optionC": "Fred Morrison",
+    "optionD": "T. H. Maiman",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::कृष्ण छिद्र सिद्धान्त को प्रतिपादित किया था ?",
+    "question": "Who proposed the black hole theory?",
+    "optionA": "S. Chandrasekhar",
+    "optionB": "Har Gobind Khorana",
+    "optionC": "H. J. Bhabha",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::चर्म रोग के उपचार में प्रयोग किया जाने वाला रेडियो आइसोटोप है?",
+    "question": "Which radioisotope is used in the treatment of skin diseases?",
+    "optionA": "Radio Cobalt",
+    "optionB": "Radio Lead",
+    "optionC": "Radio Iodine",
+    "optionD": "Radio Phosphorus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::बहुत अधिक ऊंचाई पर मनुष्य की लाल रुधिर कणिकाओं?",
+    "question": "At very high altitudes, human red blood cells?",
+    "optionA": "increase in number",
+    "optionB": "increase in size",
+    "optionC": "decrease in number",
+    "optionD": "decrease in size",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::फोटोग्राफी में मुख्य रंग कौसने होते है?",
+    "question": "What are the primary colors in photography?",
+    "optionA": "Red, Yellow, Green",
+    "optionB": "Red, Blue, Yellow",
+    "optionC": "Blue, Yellow, Green",
+    "optionD": "Red, Blue, Green",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::जब नींबू के रस को खाने के सोडे पर डाला जाता है तब उसमें तेज उत्फुलन होता है, क्योंकि उससे उत्पन्न गैस होती है?",
+    "question": "When lemon juice is poured on baking soda, it fizzes vigorously because which gas is produced?",
+    "optionA": "Oxygen",
+    "optionB": "Hydrogen",
+    "optionC": "Carbon Dioxide",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::रेडियोएक्टिवता की परिघटना की खोज की थी?",
+    "question": "Who discovered the phenomenon of radioactivity?",
+    "optionA": "J.J. Thomson",
+    "optionB": "Madam Curie",
+    "optionC": "Becquerel",
+    "optionD": "Roentgen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौनसी गैस उच्चतम उष्मीय मान रखती है?",
+    "question": "Which of the following gases has the highest calorific value?",
+    "optionA": "Producer Gas",
+    "optionB": "Natural Gas",
+    "optionC": "Indane Gas",
+    "optionD": "Coal Gas",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::इनसैट-2 ई कहाँ से प्रमोचित किया गया?",
+    "question": "Where was INSAT-2E launched from?",
+    "optionA": "Kourou",
+    "optionB": "Baikonur",
+    "optionC": "Chandipur",
+    "optionD": "Sriharikota",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::नीचे दिए ईंधन में किसमें सर्वाधिक उष्मीय मान है?",
+    "question": "Which of the following fuels has the highest calorific value?",
+    "optionA": "Coal",
+    "optionB": "Coke",
+    "optionC": "Natural Gas",
+    "optionD": "Wood",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सागर में बहते हिमखण्ड के द्रव्यमान के कुल दस भागों में कितना जल तल के ऊपर होगा?",
+    "question": "In a floating iceberg, how much of its total mass will be above the water level?",
+    "optionA": "One part",
+    "optionB": "Two parts",
+    "optionC": "Four parts",
+    "optionD": "Six parts",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::चन्द्रमा पर क्या नहीं होने के कारण, वहां किसी प्रकार का जीवन नहीं है?",
+    "question": "Due to the absence of what on the moon, there is no form of life there?",
+    "optionA": "Sulfur",
+    "optionB": "Nitrogen",
+    "optionC": "Water",
+    "optionD": "Oxygen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::नाभिकीय रिएक्टर में इनमें से कौनसा ईंधन का काम करता है?",
+    "question": "Which of the following acts as fuel in a nuclear reactor?",
+    "optionA": "Uranium",
+    "optionB": "Coal",
+    "optionC": "Diesel",
+    "optionD": "Radium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से किसका प्रयोग, प्रशीतन में किया जाता है?",
+    "question": "Which of the following is used in refrigeration?",
+    "optionA": "Chlorine",
+    "optionB": "Sulfur Dioxide",
+    "optionC": "Phosphine",
+    "optionD": "Freon",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौनसी ग्रीन हाउस गैस है?",
+    "question": "Which of the following is a greenhouse gas?",
+    "optionA": "Nitrogen",
+    "optionB": "Oxygen",
+    "optionC": "Ozone",
+    "optionD": "Carbon Dioxide",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::अति लघु समय अन्तरालों को सही-सही मापने के लिए निम्नलिखित में से किसका प्रयोग किया जाता है?",
+    "question": "Which of the following is used to measure very short time intervals accurately?",
+    "optionA": "Quartz Clocks",
+    "optionB": "Pulsar",
+    "optionC": "White Dwarf",
+    "optionD": "Atomic Clocks",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::यूरेनियम अन्तत: किस तत्व के स्थायी आइसोटोप में बदल जाता है?",
+    "question": "Ultimately, uranium changes into which stable isotope of an element?",
+    "optionA": "Thorium",
+    "optionB": "Radium",
+    "optionC": "Polonium",
+    "optionD": "Lead",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से वह व्यक्ति कौन है, जिसे भारतीय मिसाइल प्रौद्योगिकी का पिता कहा जाता है?",
+    "question": "Which of the following persons is known as the father of Indian missile technology?",
+    "optionA": "Dr. A.P.J. Abdul Kalam",
+    "optionB": "Dr. U. R. Rao",
+    "optionC": "Dr. Homi Bhabha",
+    "optionD": "Dr. Chidambaram",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::यूरेनियम के रेडियोएक्टिव विघटन के फलस्वरूप अन्तत: क्या बनता है?",
+    "question": "What is ultimately formed as a result of radioactive decay of uranium?",
+    "optionA": "Thorium",
+    "optionB": "Radium",
+    "optionC": "Lead",
+    "optionD": "Polonium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::कोयले की किस किस्म में मूल पादप द्रव्य के अभिज्ञेय अवशेष पाए जाते है?",
+    "question": "In which type of coal are the remains of original plant material found?",
+    "optionA": "Lignite",
+    "optionB": "Anthracite",
+    "optionC": "Bitumen",
+    "optionD": "Peat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::किसी रेडियोसक्रिय पदार्थ का आधा जीवन चार महीनों का होता है, उसका तीन-चौथाई भाग कितने महीनों में नष्ट हो जाता है?",
+    "question": "If the half-life of a radioactive substance is four months, in how many months will three-fourths of it be destroyed?",
+    "optionA": "4 months",
+    "optionB": "6 months",
+    "optionC": "8 months",
+    "optionD": "12 months",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से वह व्यक्ति कौन है जिसने एक महत्वपूर्ण नैदानिक यंत्र के एम.आर.आई. के विकास में सहायता की और उसके लिए नोबेल पुरस्कार प्राप्त किया?",
+    "question": "Who among the following assisted in the development of MRI, an important diagnostic instrument, and received the Nobel Prize for it?",
+    "optionA": "Paul C. Lauterbur",
+    "optionB": "Sydney Brenner",
+    "optionC": "H. Robert Horvitz",
+    "optionD": "John E. Sulston",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::न्यूक्लीय रिएक्टर में भारी जल का प्रयोग किस रूप में किया जाता है?",
+    "question": "In what form is heavy water used in a nuclear reactor?",
+    "optionA": "Fuel",
+    "optionB": "Coolant",
+    "optionC": "Moderator",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::परमाणु रीएक्टर में प्रयुक्त ईंधन है?",
+    "question": "The fuel used in a nuclear reactor is?",
+    "optionA": "Petrol",
+    "optionB": "Coal",
+    "optionC": "Uranium",
+    "optionD": "Combustible gases",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::नाभिकीय रिएक्टरों में ग्रेफाइट का प्रयोग किया जाता है?",
+    "question": "Graphite is used in nuclear reactors?",
+    "optionA": "As a moderator",
+    "optionB": "As a fuel",
+    "optionC": "As a lubricant",
+    "optionD": "As an insulator",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::भारत में निर्मित कौन सा मध्यवर्ती परास परमाणु क्षमता योग्य प्रक्षेपास्त्र है?",
+    "question": "Which intermediate-range nuclear-capable missile is manufactured in India?",
+    "optionA": "Prithvi",
+    "optionB": "Agni",
+    "optionC": "Trishul",
+    "optionD": "Nag",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::“ज्यामिति का जनक” किसे कहते है?",
+    "question": "Who is known as the 'Father of Geometry'?",
+    "optionA": "Euclid",
+    "optionB": "Pythagoras",
+    "optionC": "Kepler",
+    "optionD": "Aristotle",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से उन रेखाओं को क्या कहा जाता है जो उन स्थानों पर मिलती है जहाँ तड़ित-झंझा आती है?",
+    "question": "What are the lines called that meet at places where thunderstorms occur?",
+    "optionA": "Isochrones",
+    "optionB": "Isohyets",
+    "optionC": "Isobars",
+    "optionD": "Isohyets",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::तापमान घटने के साथ-साथ्किसी वस्तु का प्रतिरोध?",
+    "question": "With a decrease in temperature, the resistance of a substance?",
+    "optionA": "Decreases",
+    "optionB": "Increases",
+    "optionC": "Remains unchanged",
+    "optionD": "First decreases and then increases",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::पोर्टलैंड सीमेंट का अविष्कार किसने किया था?",
+    "question": "Who invented Portland cement?",
+    "optionA": "Denis Gason",
+    "optionB": "Leonardo-da-Vinci",
+    "optionC": "Percy L. Spencer",
+    "optionD": "Joseph Aspdin",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से वह धातु कौनसी है जो पानी को अत्यधिक प्रदूषित करती है?",
+    "question": "Which of the following metal pollutes water excessively?",
+    "optionA": "Lead",
+    "optionB": "Arsenic",
+    "optionC": "Magnesium",
+    "optionD": "Potassium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::यूरेनियम विखण्डन की सतत प्रक्रिया को जारी रखने में किस कण की जरूरत होती है?",
+    "question": "Which particle is needed to continue the fission process of uranium?",
+    "optionA": "Proton",
+    "optionB": "Electron",
+    "optionC": "Neutron",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ट्राई नाइट्रोटॉलुइन का विस्फोटक निम्नलिखित में से किसके मिश्रण द्वारा किया जाता है?",
+    "question": "The explosive trinitrotoluene is made by mixing which of the following?",
+    "optionA": "Ammonium nitrite",
+    "optionB": "Ammonium chloride",
+    "optionC": "Ammonium nitrate",
+    "optionD": "Ammonium sulphate",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::सौर ऊर्जा का कारण है?",
+    "question": "What is the cause of solar energy?",
+    "optionA": "Fission reactions",
+    "optionB": "Fusion reactions",
+    "optionC": "Chemical reactions",
+    "optionD": "Combustion reactions",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से कौन निर्गम उपकरण नहीं है?",
+    "question": "Which of the following is not an output device?",
+    "optionA": "Optical character reader",
+    "optionB": "Inkjet printer",
+    "optionC": "Speaker",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::सूर्य का प्रकाश, तापमान, वर्षा, दाब तथा वायु वेग एक साथ क्या बनाते है?",
+    "question": "What do the sun's light, temperature, rainfall, pressure and wind velocity together make?",
+    "optionA": "Atmosphere",
+    "optionB": "Environment",
+    "optionC": "Biological compound",
+    "optionD": "Climatic factors",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::‘सौर प्रणाली’ की खोज किसने की थी?",
+    "question": "Who discovered the 'Solar System'?",
+    "optionA": "J. L. Baird",
+    "optionB": "Galileo",
+    "optionC": "Kepler",
+    "optionD": "Copernicus",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::‘2G स्पेक्ट्रम’ में प्रयुक्त ‘G’ अक्षर क्या द्योतित करता है?",
+    "question": "What does the letter 'G' used in '2G Spectrum' denote?",
+    "optionA": "Global",
+    "optionB": "Google",
+    "optionC": "Generation",
+    "optionD": "Governance",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::ऑटोहॉन किस अविष्कार के लिए प्रसिद्ध है?",
+    "question": "Autohon is famous for which invention?",
+    "optionA": "Safety lamp for mining",
+    "optionB": "Atom bomb",
+    "optionC": "X-rays",
+    "optionD": "Television",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::किसी प्रशीतित्र में ‘शीतल प्रणाली’ सदैव?",
+    "question": "In a refrigerator, the 'cooling system' is always?",
+    "optionA": "At the bottom",
+    "optionB": "At the top",
+    "optionC": "Can be anywhere",
+    "optionD": "In the middle",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::‘हीलियम’ गैस को गुब्बारों में क्यों भरा जाता है?",
+    "question": "Why is 'helium' gas filled in balloons?",
+    "optionA": "It is lighter than air",
+    "optionB": "Its atomic number is 2",
+    "optionC": "It is a noble gas",
+    "optionD": "It is one of the components of water",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::‘अग्नि’ का सही वर्णन निम्नलिखित में से किसके द्वारा होता है?",
+    "question": "Which of the following correctly describes 'Agni'?",
+    "optionA": "Multi-barrel tank",
+    "optionB": "Fighter aircraft",
+    "optionC": "Long-range cannon",
+    "optionD": "Long-range missile",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::भारत में समस्त अन्तरिक्ष यान प्रचालन का मर्म केंद्र एम.सी.एफ. का मुख्यालय कहाँ है?",
+    "question": "Where is the headquarters of the MCF, the nerve center of all spacecraft operations in India?",
+    "optionA": "Thumba - Kerala",
+    "optionB": "Hyderabad - Andhra Pradesh",
+    "optionC": "Hassan - Karnataka",
+    "optionD": "Sriharikota - Andhra Pradesh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::तारकोल वाली सड़कों पर टूट-फूट तब होती है, जब उनमें?",
+    "question": "Breaks occur on tarred roads when?",
+    "optionA": "There is excessive traffic",
+    "optionB": "Water stagnates on the road",
+    "optionC": "There is no slope",
+    "optionD": "There is no maintenance",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::पिक्नोमीटर नामक उपकरण का प्रयोग किसे मापने के लिए किया जाता है?",
+    "question": "For what is the instrument named pycnometer used to measure?",
+    "optionA": "Intensity of solar radiation",
+    "optionB": "Density",
+    "optionC": "High temperature",
+    "optionD": "Intensity of earthquake",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "physics-gk::सूखी बर्फ क्या है?",
+    "question": "What is dry ice?",
+    "optionA": "Benzoic acid",
+    "optionB": "Solid ice without water",
+    "optionC": "Solid carbon dioxide",
+    "optionD": "Glacial acetic acid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::भारत की मिसाइल अग्नि-2 है?",
+    "question": "India's missile Agni-2 is?",
+    "optionA": "Earth-to-air missile",
+    "optionB": "Nuclear acid",
+    "optionC": "Earth-to-sea missile",
+    "optionD": "Earth-to-earth missile",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "physics-gk::घरेलू प्रशीतित्र में सामान्यत: कौनसा प्रशीतक प्रयोग में लाते है?",
+    "question": "Which refrigerant is generally used in domestic refrigerators?",
+    "optionA": "Oxygen",
+    "optionB": "Neon",
+    "optionC": "Freon",
+    "optionD": "Nitrogen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "physics-gk::निम्नलिखित में से सजीवन उत्पन्न करने वाली वह कौनसी तकनीक है जिसमें एक प्रतिबिम्ब दूसरे में बदल जाता है?",
+    "question": "Which of the following is the technique of generating holography in which one image changes into another?",
+    "optionA": "Volumetric representation",
+    "optionB": "Internal installation",
+    "optionC": "Sequential viewing",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "physics-gk::एस. चन्द्रशेखर का नाम निम्नलिखित में से किस क्षेत्र में साथ जुड़ा हुआ है?",
+    "question": "With which of the following fields is the name of S. Chandrasekhar associated?",
+    "optionA": "Chemistry",
+    "optionB": "Fluid Mechanics",
+    "optionC": "Astrophysics",
+    "optionD": "None of these",
+    "correctAnswer": "C"
   }
 ]

@@ -1,0 +1,2261 @@
+[
+  {
+    "id": "gk-interesting-question-in-hindi::पे टी एम किस देश की कंपनी है ?",
+    "question": "PTM is a company of which country?",
+    "optionA": "America",
+    "optionB": "Russia",
+    "optionC": "India",
+    "optionD": "China",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::टूटे पैर को ठीक होने मे कितना समय लगता है ?",
+    "question": "How much time does it take for a broken bone to heal?",
+    "optionA": "1 to 4 weeks",
+    "optionB": "6 to 8 weeks",
+    "optionC": "5 to 7 weeks",
+    "optionD": "2 to 3 weeks",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पे टी एम की स्थापना कब हुई थी ?",
+    "question": "When was PTM established?",
+    "optionA": "August 2010",
+    "optionB": "August 2011",
+    "optionC": "August 2009",
+    "optionD": "August 2012",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन से फल मे सबसे ज्यादा कैल्शियम होता है ?",
+    "question": "Which fruit has the most calcium?",
+    "optionA": "Apple",
+    "optionB": "Mango",
+    "optionC": "Kiwi",
+    "optionD": "Pomegranate",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हड्डी जोड़ने वाला तेल कौन सा है ?",
+    "question": "Which oil is good for bones?",
+    "optionA": "Coconut oil",
+    "optionB": "Almond oil",
+    "optionC": "Olive oil",
+    "optionD": "Mustard oil",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सी सब्जी मे सबसे ज्यादा कैल्शियम होता है ?",
+    "question": "Which vegetable has the most calcium?",
+    "optionA": "Brinjal",
+    "optionB": "Spinach",
+    "optionC": "Peas",
+    "optionD": "Cabbage",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::इंडिया मे सबसे महंगा दूध किसका है ?",
+    "question": "Whose milk is the most expensive in India?",
+    "optionA": "Donkey",
+    "optionB": "Cow",
+    "optionC": "Goat",
+    "optionD": "Buffalo",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मच्छरों को कौन सा खून पसंद है ?",
+    "question": "Which blood do mosquitoes prefer?",
+    "optionA": "Positive",
+    "optionB": "O Blood",
+    "optionC": "Sweet blood",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सी सब्जी खाने से खून बढ़ता है ?",
+    "question": "Which vegetable increases blood when eaten?",
+    "optionA": "Cabbage",
+    "optionB": "Capsicum",
+    "optionC": "Spinach",
+    "optionD": "Tomato",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अमेजॉन की एक दिन की कमाई कितनी है ?",
+    "question": "How much does Amazon earn in a day?",
+    "optionA": "310 crore",
+    "optionB": "300 crore",
+    "optionC": "240 crore",
+    "optionD": "340 crore",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया की सबसे बड़ी ई कॉमर्स कंपनी कौन सी है ?",
+    "question": "Which is the world's largest e-commerce company?",
+    "optionA": "meesho",
+    "optionB": "amazon",
+    "optionC": "ajo",
+    "optionD": "Flipkart",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::meesho किस देश की कंपनी है ?",
+    "question": "Which country's company is meesho?",
+    "optionA": "India",
+    "optionB": "Russia",
+    "optionC": "China",
+    "optionD": "Japan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अमेजॉन कंपनी भारत मे कब आई है ?",
+    "question": "When did Amazon company come to India?",
+    "optionA": "February 2011",
+    "optionB": "February 2012",
+    "optionC": "February 2015",
+    "optionD": "February 2013",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व मे सबसे ज्यादा हथियार किड देश के पास है ?",
+    "question": "Which country has the most weapons in the world?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Russia",
+    "optionD": "Israel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::देश का सबसे महंगा फल कौन सा है ?",
+    "question": "Which is the most expensive fruit in the country?",
+    "optionA": "Pear",
+    "optionB": "Yubari melon",
+    "optionC": "Watermelon",
+    "optionD": "Pomegranate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया का सबसे सस्ता फल कौन सा है ?",
+    "question": "Which is the cheapest fruit in the world?",
+    "optionA": "Banana",
+    "optionB": "Mango",
+    "optionC": "Jamun",
+    "optionD": "Sapota",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे बड़ा देश कौन सा है ?",
+    "question": "Which is the largest country?",
+    "optionA": "Russia",
+    "optionB": "India",
+    "optionC": "China",
+    "optionD": "Pakistan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::जनसंख्या मे सबसे बड़ा देश कौन सा है ?",
+    "question": "Which is the largest country by population?",
+    "optionA": "India",
+    "optionB": "America",
+    "optionC": "China",
+    "optionD": "Russia",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::ऐसा कौन सा देश है जिसमे 27 लोग रहते है ?",
+    "question": "Which is a country where 27 people live?",
+    "optionA": "England",
+    "optionB": "Sealand",
+    "optionC": "Asia",
+    "optionD": "Britain",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के कितने लोग शराब पीते है ?",
+    "question": "How many people in India drink alcohol?",
+    "optionA": "16 crore",
+    "optionB": "25 crore",
+    "optionC": "30 crore",
+    "optionD": "20 crore",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस शहर की पिंक सिटी कहा जाता है ?",
+    "question": "Which city in India is known as the Pink City?",
+    "optionA": "Udaipur",
+    "optionB": "Jaipur",
+    "optionC": "Raipur",
+    "optionD": "Rajasthan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::घोड़ा का जीवन काल कितने वर्ष का होता है ?",
+    "question": "What is the lifespan of a horse?",
+    "optionA": "62 years",
+    "optionB": "63 years",
+    "optionC": "64 years",
+    "optionD": "65 years",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में कोयले का सबसे ज्यादा उत्पादन होता है ?",
+    "question": "In which country is the most coal produced?",
+    "optionA": "India",
+    "optionB": "America",
+    "optionC": "Pakistan",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::बिहार का शोक किस नदी को कहा जाता है ?",
+    "question": "Which river is called the sorrow of Bihar?",
+    "optionA": "Bhagirathi",
+    "optionB": "Koshi",
+    "optionC": "Gandak",
+    "optionD": "Gomati",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस राज्य में बांस की खेती सबसे अधिक होती है ?",
+    "question": "In which state of India is bamboo cultivation the highest?",
+    "optionA": "UP",
+    "optionB": "Goa",
+    "optionC": "MP",
+    "optionD": "Bihar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::जिराफ की उम्र का पता कैसे लगाते हैं ?",
+    "question": "How is the age of a giraffe determined?",
+    "optionA": "Color of the body spots",
+    "optionB": "Color of the nose",
+    "optionC": "Length of the legs",
+    "optionD": "Length of the tail",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::जलिया वाला बाग हत्याकांड कब हुआ था ?",
+    "question": "When did the Jallianwala Bagh massacre happen?",
+    "optionA": "In 1915",
+    "optionB": "In 1919",
+    "optionC": "In 1917",
+    "optionD": "In 1913",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::वाटर लिली किस देश का राष्ट्रीय चिन्ह है ?",
+    "question": "Water Lily is the national emblem of which country?",
+    "optionA": "America",
+    "optionB": "Bangladesh",
+    "optionC": "Germany",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::राष्ट्रीय विज्ञान दिवस कब मनाया जाता है ?",
+    "question": "When is National Science Day celebrated?",
+    "optionA": "29 February",
+    "optionB": "28 February",
+    "optionC": "26 February",
+    "optionD": "27 February",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::काला सागर किस देश के दक्षिण में स्थित है ?",
+    "question": "Which country is the Black Sea located to the south of?",
+    "optionA": "Russia",
+    "optionB": "France",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में कितने वर्ष के अंतराल पर जनगणना होती है ?",
+    "question": "How many years interval is there between census in India?",
+    "optionA": "7 years",
+    "optionB": "8 years",
+    "optionC": "9 years",
+    "optionD": "10 years",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::बागो का शहर को कहा जाता है ?",
+    "question": "What is the city of Bago called?",
+    "optionA": "Lucknow",
+    "optionB": "Ranchi",
+    "optionC": "Banaras",
+    "optionD": "Delhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पूरी दुनिया में सबसे ज्यादा विश्व विद्यालय कहा पर है ?",
+    "question": "Where are the most universities in the whole world?",
+    "optionA": "China",
+    "optionB": "India",
+    "optionC": "Japan",
+    "optionD": "America",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में एक भी हवाई अड्डा नही है ?",
+    "question": "In which country is there not even a single airport?",
+    "optionA": "Pakistan",
+    "optionB": "Sri Lanka",
+    "optionC": "India",
+    "optionD": "Vatican City",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दूध उत्पादन में भारत का कौन सा स्थान है ?",
+    "question": "What is India's position in milk production?",
+    "optionA": "Second",
+    "optionB": "Third",
+    "optionC": "Fourth",
+    "optionD": "First",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा जानवर भोजन करते वक्त रोता है ?",
+    "question": "Which animal cries while eating?",
+    "optionA": "Crocodile",
+    "optionB": "Monkey",
+    "optionC": "Elephant",
+    "optionD": "Bear",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व का सबसे सुरक्षित देश कौन सा है ?",
+    "question": "Which is the safest country in the world?",
+    "optionA": "Pakistan",
+    "optionB": "Iceland",
+    "optionC": "Japan",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दिल्ली से पहले भारत की राजधानी कहा पर थी ?",
+    "question": "Where was the capital of India before Delhi?",
+    "optionA": "Lucknow",
+    "optionB": "Kanpur",
+    "optionC": "Agra",
+    "optionD": "Kolkata",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अमेरिका का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of America?",
+    "optionA": "Hockey",
+    "optionB": "Baseball",
+    "optionC": "Ludo",
+    "optionD": "Cricket",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::इंडोनेशिया का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of Indonesia?",
+    "optionA": "Hockey",
+    "optionB": "Baseball",
+    "optionC": "Ludo",
+    "optionD": "Badminton",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे कम भूकंप किस देश में आते हैं ?",
+    "question": "In which country do the least earthquakes occur?",
+    "optionA": "In Bhutan country",
+    "optionB": "In Nepal country",
+    "optionC": "In Bangladesh country",
+    "optionD": "In India country",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सबसे बड़ा बैंक कौन सा है ?",
+    "question": "Which is the largest bank in India?",
+    "optionA": "SBI",
+    "optionB": "CBI",
+    "optionC": "PNB",
+    "optionD": "RBI",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में सबसे सस्ता पेट्रोल किस राज्य में मिलता है ?",
+    "question": "In which state of India is the cheapest petrol available?",
+    "optionA": "Maharashtra",
+    "optionB": "Goa",
+    "optionC": "Odisha",
+    "optionD": "Uttar Pradesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::“नाश कर देना” मुहावरे का अर्थ क्या होगा ?",
+    "question": "What is the meaning of the idiom 'naash kar dena'?",
+    "optionA": "To become water",
+    "optionB": "To turn water",
+    "optionC": "To fill water",
+    "optionD": "To set fire in water",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::शेर के मुंह में कितने दांत होते हैं ?",
+    "question": "How many teeth are there in a lion's mouth?",
+    "optionA": "22",
+    "optionB": "23",
+    "optionC": "25",
+    "optionD": "26",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भगवान श्री राम जी के पिता का क्या नाम था ?",
+    "question": "What was the name of Lord Shri Ram's father?",
+    "optionA": "Janak",
+    "optionB": "Sudama",
+    "optionC": "Aj",
+    "optionD": "Dasharath",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया में सुअर सबसे अधिक पालने वाला देश कौन सा है ?",
+    "question": "Which country in the world raises the most pigs?",
+    "optionA": "Pakistan country",
+    "optionB": "China country",
+    "optionC": "America country",
+    "optionD": "India country",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::राष्ट्रपति चुनाव संबंधी मामले किसके पास भेजे जाते है ?",
+    "question": "To whom are matters related to presidential elections sent?",
+    "optionA": "Supreme Court",
+    "optionB": "Election",
+    "optionC": "Vice President",
+    "optionD": "Parliament",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत की सबसे बड़ी सरकारी नौकरी कौन सी है ?",
+    "question": "Which is the biggest government job in India?",
+    "optionA": "Of IAS",
+    "optionB": "Of BSF",
+    "optionC": "Of IPS",
+    "optionD": "Of ARMY",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मणिपुर की राजधानी कहा है ?",
+    "question": "Where is the capital of Manipur?",
+    "optionA": "Imphal",
+    "optionB": "Itapur",
+    "optionC": "Dispur",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश के लोग सबसे ज्यादा चाय पीते हैं ?",
+    "question": "किस देश के लोग सबसे ज्यादा चाय पीते हैं ?",
+    "optionA": "भूटान",
+    "optionB": "चीन",
+    "optionC": "जापान",
+    "optionD": "भारत",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के राष्ट्रीय मिठाई का नाम है ?",
+    "question": "भारत के राष्ट्रीय मिठाई का नाम है ?",
+    "optionA": "गुलाब जामुन",
+    "optionB": "बर्फी",
+    "optionC": "जलेबी",
+    "optionD": "रसगुल्ला",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गुलाब का शहर किसे कहा जाता है ?",
+    "question": "गुलाब का शहर किसे कहा जाता है ?",
+    "optionA": "चंडीगढ़ को",
+    "optionB": "बनारस को",
+    "optionC": "लखनऊ",
+    "optionD": "पंजाब को",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पुरे विश्व में सबसे ज्यादा आलू कहा पैदा होते हैं ?",
+    "question": "पुरे विश्व में सबसे ज्यादा आलू कहा पैदा होते हैं ?",
+    "optionA": "रूस",
+    "optionB": "अमेरिका",
+    "optionC": "चीन",
+    "optionD": "भारत",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे बड़ा सांप कौन सा है ?",
+    "question": "सबसे बड़ा सांप कौन सा है ?",
+    "optionA": "चित्ती दार",
+    "optionB": "अजगर",
+    "optionC": "कोबरा",
+    "optionD": "पाईथन",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मनुष्य के एक आंख का वजन कितना होता है ?",
+    "question": "मनुष्य के एक आंख का वजन कितना होता है ?",
+    "optionA": "10 ग्राम",
+    "optionB": "20 ग्राम",
+    "optionC": "30 ग्राम",
+    "optionD": "8 ग्राम",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारतीय रेल का राष्ट्रीय रेलकरण कब हुआ था ?",
+    "question": "भारतीय रेल का राष्ट्रीय रेलकरण कब हुआ था ?",
+    "optionA": "1950",
+    "optionB": "1948",
+    "optionC": "1954",
+    "optionD": "1949",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में सबसे बड़ा बस स्टैंड किस शहर में स्थित है ?",
+    "question": "भारत में सबसे बड़ा बस स्टैंड किस शहर में स्थित है ?",
+    "optionA": "गोरखपुर में",
+    "optionB": "चेन्नई",
+    "optionC": "नई दिल्ली में",
+    "optionD": "बनारस में",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मनुष्य पहली बार चंद्रमा पर कब उतरा था ?",
+    "question": "मनुष्य पहली बार चंद्रमा पर कब उतरा था ?",
+    "optionA": "1969 में",
+    "optionB": "1970 में",
+    "optionC": "1975 में",
+    "optionD": "1960 में",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में दुनिया की सबसे चौड़ी सड़क है ?",
+    "question": "In which country is the widest road in the world?",
+    "optionA": "In America",
+    "optionB": "In Indonesia",
+    "optionC": "In Brazil",
+    "optionD": "In India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अधिकतम लंबाई वाली सड़क किस राज्य में है ?",
+    "question": "In which state is the longest road?",
+    "optionA": "In Punjab",
+    "optionB": "Uttar Pradesh",
+    "optionC": "Madhya Pradesh",
+    "optionD": "In Maharashtra",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अमेरिका किस देश का गुलाम रह चुका है ?",
+    "question": "Which country has America been a slave of?",
+    "optionA": "Of Japan",
+    "optionB": "Of China",
+    "optionC": "Of Russia",
+    "optionD": "Of Great Britain",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अंग्रेजो का सर्वाधिक विरोध किसने किया था ?",
+    "question": "Who opposed the English the most?",
+    "optionA": "The Marathas",
+    "optionB": "The Rajputs",
+    "optionC": "The Sikhs",
+    "optionD": "The Mughals",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::प्याज का सबसे ज्यादा उत्पादक वाला देश है ?",
+    "question": "Which country is the largest producer of onions?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Japan",
+    "optionD": "America",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::रानी लक्ष्मी बाई के घोड़े का क्या नाम था ?",
+    "question": "What was the name of Rani Lakshmi Bai's horse?",
+    "optionA": "Sarangi",
+    "optionB": "Badal",
+    "optionC": "Pawan",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे पहले नोट बंदी किस देश में हुई थी ?",
+    "question": "Where was the first note ban implemented?",
+    "optionA": "In Ghana",
+    "optionB": "In America",
+    "optionC": "In China",
+    "optionD": "In India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश के प्रधान मंत्री को शपथ लेते ही फांसी देने की सजा दी गई थी ?",
+    "question": "In which country was the Prime Minister sentenced to be hanged immediately after taking the oath?",
+    "optionA": "Of Sri Lanka",
+    "optionB": "Of Russia",
+    "optionC": "Of China",
+    "optionD": "Of Pakistan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा विटामिन घाव भरने में मदद करता है ?",
+    "question": "Which vitamin helps in healing wounds?",
+    "optionA": "Vitamin B",
+    "optionB": "Vitamin D",
+    "optionC": "Vitamin K",
+    "optionD": "Vitamin A",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::“राम नाम जपना, पराया मॉल अपना” मुहावरे का अर्थ क्या होगा ?",
+    "question": "What is the meaning of the idiom 'Ram Naam Japna, Paraya Maal Apna'?",
+    "optionA": "To be omniscient",
+    "optionB": "To accumulate wealth through deception",
+    "optionC": "To take money from others",
+    "optionD": "To donate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चांद पर सबसे पहले पानी की खोज किस देश ने की थी ?",
+    "question": "चांद पर सबसे पहले पानी की खोज किस देश ने की थी ?",
+    "optionA": "भारत ने",
+    "optionB": "चीन ने",
+    "optionC": "जापान ने",
+    "optionD": "अमेरिका ने",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में सफेद हाथी पाए जाते हैं ?",
+    "question": "किस देश में सफेद हाथी पाए जाते हैं ?",
+    "optionA": "थाईलैंड में",
+    "optionB": "रूस में",
+    "optionC": "अमेरिका में",
+    "optionD": "भारत में",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::ऊंट का लगभग जीवन काल कितने वर्ष का होता है ?",
+    "question": "ऊंट का लगभग जीवन काल कितने वर्ष का होता है ?",
+    "optionA": "22 वर्ष",
+    "optionB": "25 वर्ष",
+    "optionC": "20 वर्ष",
+    "optionD": "30 वर्ष",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::राष्ट्रीय खेल दिवस कब मनाया जाता है ?",
+    "question": "राष्ट्रीय खेल दिवस कब मनाया जाता है ?",
+    "optionA": "29 अगस्त",
+    "optionB": "30 अगस्त",
+    "optionC": "27 अगस्त",
+    "optionD": "28 अगस्त",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::इंद्र धनुष में कितने रंग होते है ?",
+    "question": "इंद्र धनुष में कितने रंग होते है ?",
+    "optionA": "5 रंग",
+    "optionB": "6 रंग",
+    "optionC": "7 रंग",
+    "optionD": "8 रंग",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सबसे प्रदूषित शहर कौन सा है ?",
+    "question": "भारत का सबसे प्रदूषित शहर कौन सा है ?",
+    "optionA": "दिल्ली",
+    "optionB": "महाराष्ट्र",
+    "optionC": "कानपुर",
+    "optionD": "लखनऊ",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::स्टेट बैंक ऑफ इंडिया का पुराना नाम क्या था ?",
+    "question": "स्टेट बैंक ऑफ इंडिया का पुराना नाम क्या था ?",
+    "optionA": "बैंक ऑफ स्टेट",
+    "optionB": "बैंक ऑफ हिंदुस्तान",
+    "optionC": "बैंक ऑफ भारत",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर का दूध कभी नहीं फटता है ?",
+    "question": "किस जानवर का दूध कभी नहीं फटता है ?",
+    "optionA": "भैंस का",
+    "optionB": "बकरी का",
+    "optionC": "ऊंट का",
+    "optionD": "गाय का",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व का सबसे पुराना खेल कौन सा है ?",
+    "question": "विश्व का सबसे पुराना खेल कौन सा है ?",
+    "optionA": "फुटबाल का",
+    "optionB": "पोलो का",
+    "optionC": "लूडो का",
+    "optionD": "क्रिकेट का",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर का सिर काटने पर भी जिंदा रहता है ?",
+    "question": "Which animal remains alive even after its head is cut off?",
+    "optionA": "Cockroach",
+    "optionB": "Bee",
+    "optionC": "Peacock",
+    "optionD": "Butterfly",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर का खून नीला होता है ?",
+    "question": "Which animal has blue blood?",
+    "optionA": "Octopus",
+    "optionB": "Peacock",
+    "optionC": "Pigeon",
+    "optionD": "Tiger",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::संसार की पहली नोट किस देश में बनी थी ?",
+    "question": "In which country was the first note of the world made?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Japan",
+    "optionD": "America",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश के लोग कुत्ते का दूध पीते हैं ?",
+    "question": "In which country do people drink dog's milk?",
+    "optionA": "China country",
+    "optionB": "Mongolia country",
+    "optionC": "Iran country",
+    "optionD": "Pakistan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कबड्डी खेल में कितने खिलाड़ी होते हैं ?",
+    "question": "How many players are there in Kabaddi game?",
+    "optionA": "6 players",
+    "optionB": "8 players",
+    "optionC": "10 players",
+    "optionD": "7 players",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे ज्यादा किस देश में झील पाई जाती है ?",
+    "question": "In which country are the most lakes found?",
+    "optionA": "India",
+    "optionB": "Canada",
+    "optionC": "China",
+    "optionD": "Japan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सी मछली का पेट सर में होता है ?",
+    "question": "Which fish's stomach is in its head?",
+    "optionA": "Whale",
+    "optionB": "Prawn",
+    "optionC": "Queen",
+    "optionD": "Dolphin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::Sabse ज्यादा अंडा देने वाली पक्षी कौन सी है ?",
+    "question": "Which bird lays the most eggs?",
+    "optionA": "Parrot bird",
+    "optionB": "Pigeon bird",
+    "optionC": "Filly bird",
+    "optionD": "Cuckoo bird",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में 2 बच्चे से ज्यादा पैदा करने पर सजा मिलती है ?",
+    "question": "In which country is there a penalty for having more than 2 children?",
+    "optionA": "In Bhutan",
+    "optionB": "In China",
+    "optionC": "In North Korea",
+    "optionD": "In India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अग्रेंज सबसे पहले भारत कब आए थे ?",
+    "question": "When did the English first come to India?",
+    "optionA": "20 August 1498",
+    "optionB": "20 May 1498",
+    "optionC": "20 April 1498",
+    "optionD": "20 March 1498",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में सबसे ज्यादा लोग बेरोजगार घूमते हैं ?",
+    "question": "In which country do the most unemployed people wander around?",
+    "optionA": "In America",
+    "optionB": "In India",
+    "optionC": "In Nepal",
+    "optionD": "In China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में सबसे ज्यादा विद्यालय किस राज्य में है ?",
+    "question": "In which state of India are there the most schools?",
+    "optionA": "In Goa",
+    "optionB": "In Maharashtra",
+    "optionC": "In Bihar",
+    "optionD": "In Uttar Pradesh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चूहा 1 साल में कितने बच्चे को पैदा कर सकता है ?",
+    "question": "How many babies can a mouse give birth to in 1 year?",
+    "optionA": "200 babies",
+    "optionB": "500 babies",
+    "optionC": "100 babies",
+    "optionD": "1000 babies",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश के लोग सबसे ज्यादा पिज्जा खाते है ?",
+    "question": "In which country do people eat the most pizza?",
+    "optionA": "People of America",
+    "optionB": "People of Russia",
+    "optionC": "People of Japan",
+    "optionD": "People of India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस राज्य में सबसे अधिक मात्रा में पशु है ?",
+    "question": "In which state are there the largest number of animals?",
+    "optionA": "In Madhya Pradesh",
+    "optionB": "In Haryana",
+    "optionC": "In Maharashtra",
+    "optionD": "In Punjab",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में कपास का सबसे बड़ा उत्पादक राज्य कौन सा है ?",
+    "question": "Which is the largest cotton producing state in India?",
+    "optionA": "Gujarat",
+    "optionB": "Madhya Pradesh",
+    "optionC": "Assam",
+    "optionD": "Uttar Pradesh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस राज्य में दूध की सबसे ज्यादा खपत होती है ?",
+    "question": "In which state of India is the highest consumption of milk?",
+    "optionA": "In Rajasthan",
+    "optionB": "In Bihar",
+    "optionC": "In Madhya Pradesh",
+    "optionD": "In Uttar Pradesh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश का झंडा दोहरे त्रिभुज में है ?",
+    "question": "Which country's flag is in double triangle?",
+    "optionA": "Of Bhutan",
+    "optionB": "Of Cuba",
+    "optionC": "Of Nepal",
+    "optionD": "Of Bangladesh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जीव का दिल 1 मिनट में 1000 बार धड़कता है ?",
+    "question": "Whose heart beats 1000 times in 1 minute?",
+    "optionA": "Of a lizard",
+    "optionB": "Of a scorpion",
+    "optionC": "Of a snake",
+    "optionD": "Of a frog",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::Google की स्थापना कब हुई थी ?",
+    "question": "When was Google founded?",
+    "optionA": "1999",
+    "optionB": "2000",
+    "optionC": "1985",
+    "optionD": "1988",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मसालों का राजा किसे कहते है ?",
+    "question": "Who is called the king of spices?",
+    "optionA": "Cardamom",
+    "optionB": "Red chili",
+    "optionC": "Green chili",
+    "optionD": "Black pepper",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस पेड़ मे लकड़ी नहीं होती है ?",
+    "question": "Which tree does not have wood?",
+    "optionA": "Grape",
+    "optionB": "Banana",
+    "optionC": "Mahua",
+    "optionD": "Mango",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::बाबर ने भारत पर कितने बार आक्रमण किया था ?",
+    "question": "How many times did Babur attack India?",
+    "optionA": "Once",
+    "optionB": "Twice",
+    "optionC": "Three times",
+    "optionD": "Five times",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कोहिनूर हीरा किसके पास है ?",
+    "question": "Who has the Kohinoor diamond?",
+    "optionA": "China",
+    "optionB": "America",
+    "optionC": "India",
+    "optionD": "Britain",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मंदिरों एवं घाटों का नगर किसे कहा जाता है ?",
+    "question": "Which city is known as the city of temples and ghats?",
+    "optionA": "Prayagraj",
+    "optionB": "Varanasi",
+    "optionC": "Lucknow",
+    "optionD": "Sarnath",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सबसे ऊंचा बांध कौन सा है ?",
+    "question": "What is the highest dam in India?",
+    "optionA": "Tehri",
+    "optionB": "Nagarjuna",
+    "optionC": "Matatila",
+    "optionD": "Hirakud",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत की सबसे पवित्र नदी कौन सी है ?",
+    "question": "Which is the most sacred river in India?",
+    "optionA": "Ganga River",
+    "optionB": "Kaveri River",
+    "optionC": "Ghaghra River",
+    "optionD": "Yamuna River",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अंग्रेजों ने अपनी भारत मे पहली फैक्ट्री कहाँ स्थापित की थी ?",
+    "question": "Where did the English establish their first factory in India?",
+    "optionA": "In Gujarat",
+    "optionB": "In Surat",
+    "optionC": "In Punjab",
+    "optionD": "In Delhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::काशी की बहन से किस शहर को जाना जाता है ?",
+    "question": "Which city is known as the sister of Kashi?",
+    "optionA": "Ghazipur",
+    "optionB": "Mughalsarai",
+    "optionC": "Sarnath",
+    "optionD": "Jaunpur",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कोयल किस राज्य की राजकीय पक्षी है ?",
+    "question": "Which state's state bird is the koel?",
+    "optionA": "Bihar",
+    "optionB": "Jharkhand",
+    "optionC": "Punjab",
+    "optionD": "Uttar Pradesh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हॉकी का जादूगर किसे कहते है ?",
+    "question": "हॉकी का जादूगर किसे कहते है ?",
+    "optionA": "विजय कुमार",
+    "optionB": "मेजर ध्यानचंद",
+    "optionC": "बजरंग पुनिया",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पाकिस्तान का राष्ट्रीय फल क्या है ?",
+    "question": "पाकिस्तान का राष्ट्रीय फल क्या है ?",
+    "optionA": "अंगूर",
+    "optionB": "संतरा",
+    "optionC": "लीची",
+    "optionD": "आम",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दक्षिण भारत की गंगा किस नदी को कहते है ?",
+    "question": "दक्षिण भारत की गंगा किस नदी को कहते है ?",
+    "optionA": "कावेरी",
+    "optionB": "सतलज",
+    "optionC": "मंदाकिनी",
+    "optionD": "यमुना",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश के लोग सबसे ज्यादा पूजा करते है ?",
+    "question": "किस देश के लोग सबसे ज्यादा पूजा करते है ?",
+    "optionA": "इटली",
+    "optionB": "श्रीलंका",
+    "optionC": "भारत",
+    "optionD": "अमेरिका",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::संयुक्त राज्य अमेरिका का राष्ट्रीय खेल क्या है ?",
+    "question": "संयुक्त राज्य अमेरिका का राष्ट्रीय खेल क्या है ?",
+    "optionA": "आइस हॉकी",
+    "optionB": "हैंड बाल",
+    "optionC": "फुटबाल",
+    "optionD": "बेसबाल",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का प्रवेश द्वार किस राज्य को कहते है ?",
+    "question": "भारत का प्रवेश द्वार किस राज्य को कहते है ?",
+    "optionA": "शिमला",
+    "optionB": "मुंबई",
+    "optionC": "जम्मू कश्मीर",
+    "optionD": "गोवा",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया का पहला कंप्युटर वायरस किस देश ने बनाया था ?",
+    "question": "दुनिया का पहला कंप्युटर वायरस किस देश ने बनाया था ?",
+    "optionA": "भारत",
+    "optionB": "पाकिस्तान",
+    "optionC": "जापान",
+    "optionD": "चीन",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::महाभारत का पुराना नाम क्या था ?",
+    "question": "महाभारत का पुराना नाम क्या था ?",
+    "optionA": "जय सहिंता",
+    "optionB": "रामायण",
+    "optionC": "गोत्र",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कुत्ते के अलावा किस जीव को बम ढूँढना सिखाया जाता है ?",
+    "question": "कुत्ते के अलावा किस जीव को बम ढूँढना सिखाया जाता है ?",
+    "optionA": "बाघ",
+    "optionB": "मधुमखी",
+    "optionC": "कबूतर",
+    "optionD": "बंदर",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::खुशबूओ का शहर किसे कहा जाता है ?",
+    "question": "Which city is known as the city of fragrances?",
+    "optionA": "Meerut",
+    "optionB": "Jaipur",
+    "optionC": "Kannauj",
+    "optionD": "Ahmedabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में दहेज लेने पर फांसी की सजा सुनाई जाती है ?",
+    "question": "In which country is the death penalty awarded for taking dowry?",
+    "optionA": "India",
+    "optionB": "China",
+    "optionC": "Sudan",
+    "optionD": "Italy",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व में सबसे अधिक डाकघर किस देश में है ?",
+    "question": "Which country has the most post offices in the world?",
+    "optionA": "China",
+    "optionB": "Pakistan",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हवा महल कहां स्थित है ?",
+    "question": "Where is Hawa Mahal located?",
+    "optionA": "In Jaipur",
+    "optionB": "In Odisha",
+    "optionC": "In Assam",
+    "optionD": "In Raipur",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे कम क्षेत्रफल वाला राज्य कौन सा है ?",
+    "question": "Which state has the smallest area?",
+    "optionA": "Uttar Pradesh",
+    "optionB": "Goa",
+    "optionC": "Madhya Pradesh",
+    "optionD": "Rajasthan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर के दूध का दही नहीं जमता है ?",
+    "question": "The milk of which animal does not curdle?",
+    "optionA": "Camel",
+    "optionB": "Rabbit",
+    "optionC": "Cow",
+    "optionD": "Goat",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में लाइसेंस प्राप्त करने की आयु क्या है ?",
+    "question": "What is the age for getting a license in India?",
+    "optionA": "16 years",
+    "optionB": "21 years",
+    "optionC": "18 years",
+    "optionD": "15 years",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पर्वतों की रानी किसको कहा जाता है ?",
+    "question": "Who is called the Queen of Mountains?",
+    "optionA": "Mussoorie",
+    "optionB": "Ladakh",
+    "optionC": "Nainital",
+    "optionD": "Jammu",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस धातु का प्रयोग मानव द्वारा सबसे पहले किया गया था ?",
+    "question": "Which metal was first used by humans?",
+    "optionA": "Copper",
+    "optionB": "Gold",
+    "optionC": "Silver",
+    "optionD": "Iron",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::”सुंदर” शब्द का स्त्रीलिंग क्या है ?",
+    "question": "What is the feminine form of the word 'sundar'?",
+    "optionA": "Saundarya",
+    "optionB": "Beautiful",
+    "optionC": "Sushil",
+    "optionD": "Sundarta",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे तेज बढ़ने वाला पौधा कौन सा है ?",
+    "question": "Which is the fastest growing plant?",
+    "optionA": "Of the bamboo",
+    "optionB": "Of the bamboo",
+    "optionC": "Of the banana",
+    "optionD": "Of the neem",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सबसे महंगा नगर कौन सा है ?",
+    "question": "Which is the most expensive city in India?",
+    "optionA": "Mumbai",
+    "optionB": "Goa",
+    "optionC": "Varanasi",
+    "optionD": "Delhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का राष्ट्रीय पुष्प क्या है ?",
+    "question": "What is the national flower of India?",
+    "optionA": "Rose",
+    "optionB": "Marigold",
+    "optionC": "Sunflower",
+    "optionD": "Lotus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में सबसे अधिक वर्षा कहां होती है ?",
+    "question": "Where does the most rainfall occur in India?",
+    "optionA": "In Meghalaya",
+    "optionB": "In Shimla",
+    "optionC": "In Kerala",
+    "optionD": "In Haridwar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा मुगल शासक पढ़ा लिखा नहीं था ?",
+    "question": "Which Mughal ruler was illiterate?",
+    "optionA": "Akbar",
+    "optionB": "Babur",
+    "optionC": "Humayun",
+    "optionD": "Jahangir",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सबसे अधिक कंप्यूटर वाला देश कौन सा है ?",
+    "question": "Which country has the most computers?",
+    "optionA": "Japan",
+    "optionB": "America",
+    "optionC": "India",
+    "optionD": "China",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::वयस्क मनुष्य के शरीर में कुल कितनी हड्डियां होती है ?",
+    "question": "How many bones are there in the adult human body?",
+    "optionA": "203",
+    "optionB": "204",
+    "optionC": "206",
+    "optionD": "202",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सर्वोच्च नागरिक सम्मान कौन सा है ?",
+    "question": "What is the highest civilian honor of India?",
+    "optionA": "Bharat Ratna",
+    "optionB": "Param Vir Chakra",
+    "optionC": "Ashoka Chakra",
+    "optionD": "Padma Vibhushan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::स्वर्ण मंदिर कहां स्थित है ?",
+    "question": "Where is the Golden Temple located?",
+    "optionA": "Ludhiana",
+    "optionB": "Amritsar",
+    "optionC": "Odisha",
+    "optionD": "In Jammu and Kashmir",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::वह कौन सा जानवर है जो घायल होने पर आदमी की तरह रोता है ?",
+    "question": "Which animal cries like a man when injured?",
+    "optionA": "Deer",
+    "optionB": "Giraffe",
+    "optionC": "Bear",
+    "optionD": "Kangaroo",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गिलहरी कौन सा रंग नहीं देख सकती है ?",
+    "question": "Which color cannot a squirrel see?",
+    "optionA": "Black color",
+    "optionB": "Blue color",
+    "optionC": "Purple color",
+    "optionD": "Red color",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::लालगढ़ महल कहां स्थित है ?",
+    "question": "Where is Lalgadh Palace located?",
+    "optionA": "In Raipur",
+    "optionB": "In Lucknow",
+    "optionC": "In Bikaner",
+    "optionD": "In Jaipur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा जीव अपने माता पिता दोनों का दूध पीता है ?",
+    "question": "Which animal drinks milk from both its mother and father?",
+    "optionA": "Rabbit",
+    "optionB": "Cat",
+    "optionC": "Mouse",
+    "optionD": "Monkey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कागज का आविष्कार किस देश ने किया था ?",
+    "question": "Which country invented paper?",
+    "optionA": "India",
+    "optionB": "Russia",
+    "optionC": "America",
+    "optionD": "China",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सूर्य का प्रकाश पृथ्वी तक पहुंचने में कितना समय लेता है ?",
+    "question": "How much time does it take for sunlight to reach Earth?",
+    "optionA": "200 seconds",
+    "optionB": "300 seconds",
+    "optionC": "400 seconds",
+    "optionD": "500 seconds",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में पहला फोन कब लांच किया गया था ?",
+    "question": "When was the first phone launched in India?",
+    "optionA": "In 1992",
+    "optionB": "In 1993",
+    "optionC": "In 1990",
+    "optionD": "In 1995",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सैमसंग मोबाइल कंपनी किस देश की कंपनी है ?",
+    "question": "Which country's company is Samsung Mobile?",
+    "optionA": "Of South Korea",
+    "optionB": "Of America",
+    "optionC": "Of India",
+    "optionD": "Of China",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का राष्ट्रीय फल कौन सा है ?",
+    "question": "What is the national fruit of India?",
+    "optionA": "Mango",
+    "optionB": "Pomegranate",
+    "optionC": "Papaya",
+    "optionD": "Banana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::काला गुलाब किस देश में पाया जाता है ?",
+    "question": "In which country is black rose found?",
+    "optionA": "In Australia",
+    "optionB": "In Japan",
+    "optionC": "In America",
+    "optionD": "In Turkey",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में आलू की खेती नहीं की जाती है ?",
+    "question": "In which country is potato cultivation not done?",
+    "optionA": "In Norway",
+    "optionB": "In China",
+    "optionC": "In Benin",
+    "optionD": "In America",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::वह कौन सा जानवर है जो पैदा होने के 2 महीने बाद तक सोता है और बच्चों की तरह रोता है ?",
+    "question": "वह कौन सा जानवर है जो पैदा होने के 2 महीने बाद तक सोता है और बच्चों की तरह रोता है ?",
+    "optionA": "हिरण",
+    "optionB": "कंगारू",
+    "optionC": "जिराफ",
+    "optionD": "भालू",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::रिजर्व बैंक ऑफ इंडिया का मुख्यालय कहां पर है ?",
+    "question": "रिजर्व बैंक ऑफ इंडिया का मुख्यालय कहां पर है ?",
+    "optionA": "मुम्बई",
+    "optionB": "हैदराबाद",
+    "optionC": "लखनऊ",
+    "optionD": "दिल्ली",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चीन देश में सबसे पहले अपनी बैंक शाखा खोलने वाला भारतीय बैंक कौन सा है ?",
+    "question": "चीन देश में सबसे पहले अपनी बैंक शाखा खोलने वाला भारतीय बैंक कौन सा है ?",
+    "optionA": "महाराष्ट्र बैंक",
+    "optionB": "भारतीय स्टेट बैंक",
+    "optionC": "सिंध बैंक",
+    "optionD": "पंजाब बैंक",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर को हर वस्तु दोगुनी बड़ी दिखाई देती है ?",
+    "question": "किस जानवर को हर वस्तु दोगुनी बड़ी दिखाई देती है ?",
+    "optionA": "बाघ",
+    "optionB": "चीता",
+    "optionC": "हाथी",
+    "optionD": "शेर",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश में रात में सूरज निकलता है ?",
+    "question": "किस देश में रात में सूरज निकलता है ?",
+    "optionA": "नार्वे देश में",
+    "optionB": "जापान देश में",
+    "optionC": "न्यूजीलैंड देश में",
+    "optionD": "अमेरिका देश में",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::नेपाल देश का राष्ट्रीय पशु कौन सा है ?",
+    "question": "नेपाल देश का राष्ट्रीय पशु कौन सा है ?",
+    "optionA": "गाय",
+    "optionB": "हाथी",
+    "optionC": "हिरण",
+    "optionD": "बाघ",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पिन कोड किस वर्ष लागू किया गया ?",
+    "question": "पिन कोड किस वर्ष लागू किया गया ?",
+    "optionA": "1970 में",
+    "optionB": "1960 में",
+    "optionC": "1980 में",
+    "optionD": "1972 में",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का सबसे पहला राज्य कौन सा है ?",
+    "question": "भारत का सबसे पहला राज्य कौन सा है ?",
+    "optionA": "असम",
+    "optionB": "बिहार",
+    "optionC": "पंजाब",
+    "optionD": "गोवा",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मनुष्य के पैर के पंजे में कितनी हड्डियां होती हैं ?",
+    "question": "मनुष्य के पैर के पंजे में कितनी हड्डियां होती हैं ?",
+    "optionA": "26 हड्डियां",
+    "optionB": "30 हड्डियां",
+    "optionC": "32 हड्डियां",
+    "optionD": "28 हड्डियां",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मसालों की रानी किसे कहा जाता है ?",
+    "question": "Which is called the queen of spices?",
+    "optionA": "Carom seeds",
+    "optionB": "Cardamom",
+    "optionC": "Red chili",
+    "optionD": "Cashew",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा पक्षी सिर्फ बारिश का ही पानी पीता है ?",
+    "question": "Which bird drinks only rain water?",
+    "optionA": "Ostrich",
+    "optionB": "Parrot",
+    "optionC": "Chatak bird",
+    "optionD": "Cuckoo",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस देश को मिनी पंजाब के नाम से भी जाना जाता है ?",
+    "question": "Which country is also known as Mini Punjab?",
+    "optionA": "Canada",
+    "optionB": "Nepal",
+    "optionC": "Indonesia",
+    "optionD": "France",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा जीव सिर कटने के बाद भी 7 दिनों तक जीवित रहता है ?",
+    "question": "Which creature remains alive for 7 days even after its head is cut off?",
+    "optionA": "Horse",
+    "optionB": "Cockroach",
+    "optionC": "Scorpion",
+    "optionD": "Elephant",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चेतक घोड़ा किसका घोड़ा था ?",
+    "question": "Whose horse was Chetak?",
+    "optionA": "Rani of Jhansi",
+    "optionB": "Akbar",
+    "optionC": "Sher Shah Suri",
+    "optionD": "Rana Pratap",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का प्रवेश द्वार किस राज्य को कहते हैं ?",
+    "question": "Which state is called the gateway of India?",
+    "optionA": "Shimla",
+    "optionB": "Mumbai",
+    "optionC": "Delhi",
+    "optionD": "Goa",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में मिसाइल मैन के नाम से किसे जाना जाता है ?",
+    "question": "In India, who is known as the Missile Man?",
+    "optionA": "Bhagat Singh",
+    "optionB": "APJ Abdul Kalam",
+    "optionC": "Rajendra Prasad",
+    "optionD": "Narendra Modi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हवाई जहाज का आविष्कार किस देश को माना जाता है ?",
+    "question": "Which country is credited with the invention of the airplane?",
+    "optionA": "Japan",
+    "optionB": "China",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मनुष्य के दिमाग में कितना प्रतिशत पानी होता है ?",
+    "question": "What percentage of water is present in the human brain?",
+    "optionA": "20%",
+    "optionB": "40%",
+    "optionC": "60%",
+    "optionD": "80%",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::खरगोश का जीवनकाल कितने वर्षों का होता है ?",
+    "question": "What is the lifespan of a rabbit?",
+    "optionA": "5 years",
+    "optionB": "8 years",
+    "optionC": "15 years",
+    "optionD": "4 years",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व की किस नदी में पानी हमेशा गर्म रहता है ?",
+    "question": "In which river of the world does the water always remain hot?",
+    "optionA": "Rhine River",
+    "optionB": "Brahmaputra River",
+    "optionC": "Amazon River",
+    "optionD": "Nile River",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस भारतीय बैंक की सबसे अधिक शाखाएं हैं ?",
+    "question": "Which Indian bank has the most branches?",
+    "optionA": "Sind Bank",
+    "optionB": "Punjab Bank",
+    "optionC": "State Bank of India",
+    "optionD": "Maharashtra Bank",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मनुष्य के खून में कौन सा धातु पाया जाता है ?",
+    "question": "Which metal is found in human blood?",
+    "optionA": "Gold",
+    "optionB": "Copper",
+    "optionC": "Iron",
+    "optionD": "Silver",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::नीरज चोपड़ा का संबंध किस खेल से है ?",
+    "question": "Neeraj Chopra is associated with which sport?",
+    "optionA": "Hockey",
+    "optionB": "Javelin Throw",
+    "optionC": "Football",
+    "optionD": "Cricket",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::₹10 का सिक्का बनाने में कितने का खर्चा आता है ?",
+    "question": "How much does it cost to make a ₹10 coin?",
+    "optionA": "2 rupees",
+    "optionB": "3 rupees",
+    "optionC": "5 rupees",
+    "optionD": "1 rupee",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस राज्य को कोयले का भंडार कहा जाता है ?",
+    "question": "Which state of India is called the storehouse of coal?",
+    "optionA": "Jharkhand",
+    "optionB": "Gujarat",
+    "optionC": "Rajasthan",
+    "optionD": "Odisha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया में सबसे तेज दौड़ने वाला जानवर कौन सा है ?",
+    "question": "Which is the fastest running animal in the world?",
+    "optionA": "Horse",
+    "optionB": "Tiger",
+    "optionC": "Cheetah",
+    "optionD": "Deer",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में पहली बार जनता कर्फ्यू कब लगा था ?",
+    "question": "When was the first Janata Curfew imposed in India?",
+    "optionA": "23 March 2021",
+    "optionB": "20 March 2020",
+    "optionC": "25 March 2019",
+    "optionD": "22 March 2020",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::फिरोज शाह कोटला क्रिकेट स्टेडियम कहां पर स्थित है ?",
+    "question": "Where is Feroz Shah Kotla Cricket Stadium located?",
+    "optionA": "Kolkata",
+    "optionB": "Chennai",
+    "optionC": "New Delhi",
+    "optionD": "Mumbai",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का ऐसा कौन सा राज्य है जो अंग्रेजों का गुलाम नहीं हुआ था ?",
+    "question": "Which state of India was never a slave to the British?",
+    "optionA": "Sikkim",
+    "optionB": "Goa",
+    "optionC": "Maharashtra",
+    "optionD": "Kerala",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चना में कौन सा विटामिन पाया जाता है ?",
+    "question": "Which vitamin is found in chickpeas?",
+    "optionA": "Vitamin B",
+    "optionB": "Vitamin C",
+    "optionC": "Vitamin D",
+    "optionD": "Vitamin A",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::उत्तर प्रदेश की राजकीय मिठाई कौन सी है ?",
+    "question": "What is the state sweet of Uttar Pradesh?",
+    "optionA": "Jalebi",
+    "optionB": "Samosa",
+    "optionC": "Rasgulla",
+    "optionD": "Ladoo",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::इंद्रधनुष के बीच में कौन सा रंग होता है ?",
+    "question": "Which color is in the middle of the rainbow?",
+    "optionA": "Black color",
+    "optionB": "Yellow color",
+    "optionC": "Red color",
+    "optionD": "Green color",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सोने की गाड़ियां किस देश में चलती है ?",
+    "question": "In which country do gold trains run?",
+    "optionA": "In India",
+    "optionB": "In Tokyo",
+    "optionC": "In Saudi Arabia",
+    "optionD": "In Singapore",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::उल्लू अपना सिर कितने डिग्री तक घूम आ सकता है ?",
+    "question": "How many degrees can an owl turn its head?",
+    "optionA": "270 degrees",
+    "optionB": "300 degrees",
+    "optionC": "360 degrees",
+    "optionD": "180 degrees",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गंगा को राष्ट्रीय नदी कब घोषित किया गया ?",
+    "question": "When was the Ganga declared as the national river?",
+    "optionA": "In 2004",
+    "optionB": "In 2005",
+    "optionC": "In 2002",
+    "optionD": "In 2008",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चाय पीने से कौन सी बीमारी होती है ?",
+    "question": "Which disease is caused by drinking tea?",
+    "optionA": "Sugar",
+    "optionB": "Pyorrhea",
+    "optionC": "Malaria",
+    "optionD": "Cancer",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व सबसे बड़ा मछली उत्पादक देश कौन सा है ?",
+    "question": "Which is the world's largest fish producing country?",
+    "optionA": "China",
+    "optionB": "Japan",
+    "optionC": "Russia",
+    "optionD": "India",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कुरकुरे के पैकेट में कौन सी गैस भरी जाती है ?",
+    "question": "Which gas is filled in packets of chips?",
+    "optionA": "Nitrogen",
+    "optionB": "Oxygen",
+    "optionC": "Argon",
+    "optionD": "Helium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत की सबसे ऊंची मीनार कौन सी है ?",
+    "question": "What is the tallest minaret in India?",
+    "optionA": "Jhulta Minar",
+    "optionB": "Shahid Minar",
+    "optionC": "Qutub Minar",
+    "optionD": "Char Minar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विद्युत बल्ब के अंदर कौन सी गैस भरी जाती है ?",
+    "question": "Which gas is filled inside an electric bulb?",
+    "optionA": "Nitrogen",
+    "optionB": "Oxygen",
+    "optionC": "Argon",
+    "optionD": "Helium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::औरत की साड़ी की लंबाई कितनी होती है ?",
+    "question": "What is the length of a woman's sari?",
+    "optionA": "5 meters",
+    "optionB": "5.5 meters",
+    "optionC": "7 meters",
+    "optionD": "4 meters",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::साइकिल का अविष्कार किस देश ने किया था ?",
+    "question": "Which country invented the bicycle?",
+    "optionA": "India",
+    "optionB": "Japan",
+    "optionC": "Russia",
+    "optionD": "Germany",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::लाल नदी किस देश में बहती है ?",
+    "question": "In which country does the Red River flow?",
+    "optionA": "China",
+    "optionB": "Vietnam",
+    "optionC": "Malaysia",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस वृक्ष को काटने पर बच्चो की तरह आवाज करता है ?",
+    "question": "Which tree makes a sound like children when cut?",
+    "optionA": "Deodar tree",
+    "optionB": "Shisham tree",
+    "optionC": "Banyan tree",
+    "optionD": "Mahogany tree",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के राष्ट्रीय गीत गाने की समय अवधि कितनी है ?",
+    "question": "What is the duration of singing India's national song?",
+    "optionA": "42 seconds",
+    "optionB": "65 seconds",
+    "optionC": "60 seconds",
+    "optionD": "52 seconds",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के राष्ट्रीय गान गाने की समय अवधि कितनी है ?",
+    "question": "What is the duration of singing India's national anthem?",
+    "optionA": "42 seconds",
+    "optionB": "65 seconds",
+    "optionC": "60 seconds",
+    "optionD": "52 seconds",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::ऐसा कौन सा जीव है जो लगातार 3 साल तक सोता है ?",
+    "question": "Which creature sleeps continuously for 3 years?",
+    "optionA": "Jelly",
+    "optionB": "Shark",
+    "optionC": "Snail",
+    "optionD": "Koala",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारतीय मुद्रा का नाम रूपया किसने रखा था ?",
+    "question": "Who named the Indian currency Rupee?",
+    "optionA": "Sher Shah",
+    "optionB": "Jahangir",
+    "optionC": "Humayun",
+    "optionD": "Akbar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::उगते सूर्य की भूमि किस देश को कहा जाता है ?",
+    "question": "Which country is called the land of the rising sun?",
+    "optionA": "Arunachal",
+    "optionB": "Japan",
+    "optionC": "Indonesia",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के कितने राज्य बांग्ला देश की सीमा से लगते हैं ?",
+    "question": "How many states of India share a border with Bangladesh?",
+    "optionA": "6 states",
+    "optionB": "7 states",
+    "optionC": "8 states",
+    "optionD": "5 states",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पाकिस्तान देश में कौन सी भाषा बोली जाती हैं ?",
+    "question": "Which language is spoken in Pakistan?",
+    "optionA": "English",
+    "optionB": "Urdu",
+    "optionC": "Persian",
+    "optionD": "Hindi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::झीलों की नगरी किस शहर को कहते हैं ?",
+    "question": "Which city is known as the city of lakes?",
+    "optionA": "Udaipur",
+    "optionB": "Raipur",
+    "optionC": "Rampur",
+    "optionD": "Jaipur",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस पेड़ की लड़की सोने से भी महंगी होती है ?",
+    "question": "The daughter of which tree is more expensive than gold?",
+    "optionA": "Bargad tree",
+    "optionB": "Red sandalwood tree",
+    "optionC": "Peepal tree",
+    "optionD": "Shisham tree",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के राष्ट्रीय चिन्हों में कितने शेर होते हैं ?",
+    "question": "How many lions are there in India's national emblem?",
+    "optionA": "4 lions",
+    "optionB": "6 lions",
+    "optionC": "8 lions",
+    "optionD": "2 lions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किसान दिवस’ किस दिन मनाया जाता है ?",
+    "question": "'Kisan Divas' is celebrated on which day?",
+    "optionA": "28 February",
+    "optionB": "14 March",
+    "optionC": "5 August",
+    "optionD": "23 December",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::नौसेना दिवस’ किस दिन मनाया जाता है ?",
+    "question": "'Nausena Divas' is celebrated on which day?",
+    "optionA": "16 September",
+    "optionB": "4 December",
+    "optionC": "8 February",
+    "optionD": "7 August",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::‘थल सेना दिवस’ किस दिन मनाया जाता है ?",
+    "question": "'Thal Sena Divas' is celebrated on which day?",
+    "optionA": "16 September",
+    "optionB": "4 December",
+    "optionC": "15 January",
+    "optionD": "7 December",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::‘वायु सेना दिवस’ किस दिन मनाया जाता है ?",
+    "question": "'Vayu Sena Divas' is celebrated on which day?",
+    "optionA": "16 September",
+    "optionB": "4 December",
+    "optionC": "8 October",
+    "optionD": "7 October",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मलेरिया दिवस कब मनाया जाता है ?",
+    "question": "When is Malaria Day celebrated?",
+    "optionA": "16 April",
+    "optionB": "25 April",
+    "optionC": "20 April",
+    "optionD": "7 April",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::टी वी(ट्यूबरक्यूलोसिस) दिवस कब मनाया जाता है ?",
+    "question": "When is TV (Tuberculosis) Day celebrated?",
+    "optionA": "24 March",
+    "optionB": "4 March",
+    "optionC": "24 April",
+    "optionD": "7 March",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व कैंसर दिवस कब मनाया जाता है ?",
+    "question": "When is World Cancer Day celebrated?",
+    "optionA": "5 February",
+    "optionB": "6 February",
+    "optionC": "7 February",
+    "optionD": "4 February",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व मलेरिया दिवस कब मनाया जाता है ?",
+    "question": "When is World Malaria Day celebrated?",
+    "optionA": "24 April",
+    "optionB": "25 April",
+    "optionC": "26 April",
+    "optionD": "23 April",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व रेडक्रास दिवस कब मनाया जाता है ?",
+    "question": "When is World Red Cross Day celebrated?",
+    "optionA": "8 May",
+    "optionB": "10 May",
+    "optionC": "7 May",
+    "optionD": "9 May",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अंतरराष्ट्रीय योग दिवस कब मनाया जाता है ?",
+    "question": "When is International Yoga Day celebrated?",
+    "optionA": "22 June",
+    "optionB": "21 June",
+    "optionC": "23 June",
+    "optionD": "20 June",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व जनसंख्या दिवस कब मनाया जाता है ?",
+    "question": "विश्व जनसंख्या दिवस कब मनाया जाता है ?",
+    "optionA": "10 जुलाई",
+    "optionB": "12 जुलाई",
+    "optionC": "11 जुलाई",
+    "optionD": "9 जुलाई",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व पर्यटन दिवस कब मनाया जाता है ?",
+    "question": "विश्व पर्यटन दिवस कब मनाया जाता है ?",
+    "optionA": "26 सितम्बर",
+    "optionB": "27 सितम्बर",
+    "optionC": "28 सितम्बर",
+    "optionD": "25 सितम्बर",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::संयुक्त राष्ट्र संघ दिवस कब मनाया जाता है ?",
+    "question": "संयुक्त राष्ट्र संघ दिवस कब मनाया जाता है ?",
+    "optionA": "24 अक्टूबर",
+    "optionB": "25 अक्टूबर",
+    "optionC": "26 अक्टूबर",
+    "optionD": "23 अक्टूबर",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::महात्मा गाँधी, जी की पत्नी का क्या नाम था ?",
+    "question": "महात्मा गाँधी, जी की पत्नी का क्या नाम था ?",
+    "optionA": "मदर टेरेसा",
+    "optionB": "सरोजिनी नायडू",
+    "optionC": ".इंदिरा गाँधी",
+    "optionD": "कस्तूरबा गाँधी",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत मे सबसे पहले बिजली किस शहर मे आई थी ?",
+    "question": "भारत मे सबसे पहले बिजली किस शहर मे आई थी ?",
+    "optionA": "कोलकाता मे",
+    "optionB": "कर्नाटक मे",
+    "optionC": "राजस्थान मे",
+    "optionD": "दिल्ली मे",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सी मछली हवा में उड़ती हैं ?",
+    "question": "Which fish flies in the air?",
+    "optionA": "Eel fish",
+    "optionB": "Shark fish",
+    "optionC": "Gurnard fish",
+    "optionD": "Dolphin fish",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::दुनिया का सबसे बड़ा देश कौन सा है ?",
+    "question": "Which is the largest country in the world?",
+    "optionA": "Russia",
+    "optionB": "India",
+    "optionC": "America",
+    "optionD": "China",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::मगरमच्छ के कितने दांत होते हैं ?",
+    "question": "How many teeth does a crocodile have?",
+    "optionA": "42 teeth",
+    "optionB": "80 teeth",
+    "optionC": "82 teeth",
+    "optionD": "43 teeth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::इंस्टाग्राम किस देश की कंपनी है ?",
+    "question": "Which country's company is Instagram?",
+    "optionA": "Japan",
+    "optionB": "China",
+    "optionC": "America",
+    "optionD": "India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गाँधी जी की फोटो नोट पर कब से आना शुरू हुई ?",
+    "question": "When did Gandhi ji's photo start appearing on notes?",
+    "optionA": "1937",
+    "optionB": "1950",
+    "optionC": "1945",
+    "optionD": "1996",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गौतम बुद्ध की मृत्यु का हुई थी ?",
+    "question": "Where did Gautam Buddha die?",
+    "optionA": "Lumbini",
+    "optionB": "Kushinagar",
+    "optionC": "Gaya",
+    "optionD": "Sarnath",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::पहली बार परमाणु बम कहाँ फेंका गया था ?",
+    "question": "Where was the atomic bomb dropped for the first time?",
+    "optionA": "India",
+    "optionB": "Singapore",
+    "optionC": "Hiroshima",
+    "optionD": "Japan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::घड़ी का आविष्कार किसने किया था ?",
+    "question": "Who invented the clock?",
+    "optionA": "Charles",
+    "optionB": "Peter",
+    "optionC": "Newton",
+    "optionD": "Thomson",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::कौन सा जीव पक्षियों की तरह घोंसला बनाकर रहता है ?",
+    "question": "Which animal builds a nest like birds?",
+    "optionA": "Squirrel",
+    "optionB": "Cat",
+    "optionC": "King Cobra",
+    "optionD": "Bat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस पेड़ को कभी घर के अंदर नहीं लगाना चाहिए ?",
+    "question": "Which tree should never be planted inside the house?",
+    "optionA": "Banana",
+    "optionB": "Mango",
+    "optionC": "Neem",
+    "optionD": "Peepal",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का पहला सोने का atm कहा खोला गया है ?",
+    "question": "Where was India's first gold ATM opened?",
+    "optionA": "Delhi",
+    "optionB": "Mumbai",
+    "optionC": "Gujarat",
+    "optionD": "Hyderabad",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत का स्वर्ग किसे कहा जाता है ?",
+    "question": "India's heaven is called what?",
+    "optionA": "Maharashtra",
+    "optionB": "Jammu and Kashmir",
+    "optionC": "Himachal Pradesh",
+    "optionD": "Shimla",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::तिरंगे पर अशोक चक्र किसने लगवाया था ?",
+    "question": "Who placed the Ashoka Chakra on the tricolor?",
+    "optionA": "Bhimrao Ambedkar",
+    "optionB": "Bhagat Singh",
+    "optionC": "Indira Gandhi",
+    "optionD": "Mahatma Gandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::खून की नदी किस नदी को कहा जाता है ?",
+    "question": "Which river is called the river of blood?",
+    "optionA": "Godavari River",
+    "optionB": "Lohit River",
+    "optionC": "Yamuna River",
+    "optionD": "Tapti River",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::बुर्ज खलीफा को बनाने में लगभग कितने वर्ष का समय लगा था ?",
+    "question": "How many years did it take to build Burj Khalifa?",
+    "optionA": "7 years",
+    "optionB": "10 years",
+    "optionC": "15 years",
+    "optionD": "5 years",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस राज्य में कुत्ते का मंदिर है ?",
+    "question": "In which state of India is there a dog temple?",
+    "optionA": "Gujarat",
+    "optionB": "Chhattisgarh",
+    "optionC": "Maharashtra",
+    "optionD": "Rajasthan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत के किस प्रधानमंत्री ने तीन शादी की थी ?",
+    "question": "Which Prime Minister of India married three times?",
+    "optionA": "Rajiv Gandhi",
+    "optionB": "Atal Ji",
+    "optionC": "Indira Gandhi",
+    "optionD": "Narendra Modi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हाथी उत्सव कहाँ मनाया जाता है ?",
+    "question": "Where is the Elephant Festival celebrated?",
+    "optionA": "Udaipur",
+    "optionB": "Gujarat",
+    "optionC": "Kerala",
+    "optionD": "Jaipur",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::ऐसा कौन सा जिव है जिसकी 5 आंखे होती है ?",
+    "question": "Which animal has 5 eyes?",
+    "optionA": "Ant",
+    "optionB": "Elephant",
+    "optionC": "Bee",
+    "optionD": "Mosquito",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गरीबो का सेब किसे कहा जाता है ?",
+    "question": "What is called the apple of the poor?",
+    "optionA": "Orange",
+    "optionB": "Banana",
+    "optionC": "Guava",
+    "optionD": "Lychee",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::ऐसा कौन सा पदार्थ है, जो कभी ख़राब नही होता है ?",
+    "question": "ऐसा कौन सा पदार्थ है, जो कभी ख़राब नही होता है ?",
+    "optionA": "देसी घी",
+    "optionB": "शहद",
+    "optionC": "रोटी",
+    "optionD": "आचार",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर के दूध में सबसे ज्यादा प्रोटीन होता है ?",
+    "question": "किस जानवर के दूध में सबसे ज्यादा प्रोटीन होता है ?",
+    "optionA": "भैंस के",
+    "optionB": "ऊँठ के",
+    "optionC": "भेड़ के",
+    "optionD": "गाय के",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::सौरमंडल का सबसे हल्का ग्रह कौन सा है ?",
+    "question": "सौरमंडल का सबसे हल्का ग्रह कौन सा है ?",
+    "optionA": "शुक्र ग्रह",
+    "optionB": "शनि ग्रह",
+    "optionC": "बुध ग्रह",
+    "optionD": "मंगल ग्रह",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::भारत में सबसे ज्यादा पुलिस स्टेशन किस राज्य में है ?",
+    "question": "भारत में सबसे ज्यादा पुलिस स्टेशन किस राज्य में है ?",
+    "optionA": "महाराष्ट्र",
+    "optionB": "तमिलनाडु",
+    "optionC": "उत्तर प्रदेश",
+    "optionD": "बिहार",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::समोसे खाने से कौन सी बीमारी होती है ?",
+    "question": "समोसे खाने से कौन सी बीमारी होती है ?",
+    "optionA": "शुगर",
+    "optionB": "कैंसर",
+    "optionC": "टी.बी",
+    "optionD": "कब्ज",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::विश्व में सबसे सस्ता ऊन किस देश में मिलता है ?",
+    "question": "In which country is the cheapest wool found in the world?",
+    "optionA": "In China",
+    "optionB": "In Russia",
+    "optionC": "In Australia",
+    "optionD": "In India",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::अंडों के उत्पादन में भारत का विश्व में कौन सा स्थान है ?",
+    "question": "What is India's rank in the world in egg production?",
+    "optionA": "First",
+    "optionB": "Second",
+    "optionC": "Third",
+    "optionD": "Fifth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::आँसुओं (Tears) में कौनसा पदार्थ घुला हुआ रहता है ?",
+    "question": "Which substance remains dissolved in tears?",
+    "optionA": "Sea",
+    "optionB": "Starch",
+    "optionC": "Glucose",
+    "optionD": "Common salt",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::बिल्ली को रात में अधिक किस कारण से दिखाई देता है ?",
+    "question": "Why does a cat appear more clearly at night?",
+    "optionA": "Due to the special structure of the pupil",
+    "optionB": "Due to sleeping during the day",
+    "optionC": "By nature",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::हड़प्पा सभ्यता की खोज की थी ?",
+    "question": "Who discovered the Harappan civilization?",
+    "optionA": "M. M. Vats",
+    "optionB": "Rakhaldas Bannerjee",
+    "optionC": "Dayaram Sahni",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस तेल को &#39;स्वर्ण तेल&#39; कहा जाता है ?",
+    "question": "Which oil is called 'golden oil'?",
+    "optionA": "Ghee",
+    "optionB": "Olive oil",
+    "optionC": "Ginger oil",
+    "optionD": "Mustard oil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::वड़ापाव किस भारतीय शहर की प्रमुख सड़क खाद्य है ?",
+    "question": "Vada Pav is a major street food of which Indian city?",
+    "optionA": "Delhi",
+    "optionB": "Mumbai",
+    "optionC": "Kolkata",
+    "optionD": "Bengaluru",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::गंदा पानी पीने से इंसान को कौन सी बीमारी होती है ?",
+    "question": "What disease does a person get from drinking dirty water?",
+    "optionA": "Stomach ache",
+    "optionB": "Cold",
+    "optionC": "Kidney damage",
+    "optionD": "Headache",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::चाय के साथ क्या खाने से आदमी मर भी सकता है ?",
+    "question": "What can a person eat with tea that can even kill him?",
+    "optionA": "Roti",
+    "optionB": "Bread",
+    "optionC": "Turmeric",
+    "optionD": "Biscuit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "gk-interesting-question-in-hindi::किस जानवर का दूध काले रंग का होता है ?",
+    "question": "Which animal's milk is black in color?",
+    "optionA": "Rhino",
+    "optionB": "Elephant",
+    "optionC": "Pig",
+    "optionD": "Lioness",
+    "correctAnswer": "A"
+  }
+]

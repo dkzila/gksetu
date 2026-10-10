@@ -1,0 +1,2621 @@
+[
+  {
+    "id": "science-gk::आँसुओं (Tears) में कौनसा पदार्थ घुला रहता है ?",
+    "question": "Which substance is dissolved in tears?",
+    "optionA": "Common salt",
+    "optionB": "Sea",
+    "optionC": "Starch",
+    "optionD": "Glucose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::लोहे पर जंग (Rust) लगती है ?",
+    "question": "Rust forms on iron?",
+    "optionA": "From ferric oxide",
+    "optionB": "From hydrated ferrous and ferric oxide",
+    "optionC": "From basic ferrous and ferric carbonate",
+    "optionD": "Due to all of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::इन्सुलिन (Insuline) की खोज की थी ?",
+    "question": "Who discovered insulin?",
+    "optionA": "Banting",
+    "optionB": "Domagk",
+    "optionC": "Ronald Ross",
+    "optionD": "Harvey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::वनस्पति तेलों को घी में परिवर्तित किया जाता है ?",
+    "question": "Vegetable oils are converted into ghee?",
+    "optionA": "By heat treatment",
+    "optionB": "By hydrogenation",
+    "optionC": "By oxygen",
+    "optionD": "By enzymes",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सी एक मिश्रधातु है ?",
+    "question": "Which of the following is an alloy?",
+    "optionA": "Zinc",
+    "optionB": "Steel",
+    "optionC": "Lead",
+    "optionD": "Aluminum",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सी ईंधन गैस (Fuel gas) नहीं है ?",
+    "question": "Which of the following is not a fuel gas?",
+    "optionA": "Water gas",
+    "optionB": "Producer gas",
+    "optionC": "Laughing gas",
+    "optionD": "Marsh gas",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौनसा तत्व प्रबल क्षारीय ऑक्साइड बनाता है जब ऑक्सीजन में जलता है ?",
+    "question": "Which element forms a strong basic oxide when burned in oxygen?",
+    "optionA": "Phosphorus",
+    "optionB": "Sodium",
+    "optionC": "Iron",
+    "optionD": "Sulfur",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::फेदम (Fathom) है ?",
+    "question": "What is a fathom?",
+    "optionA": "It is a fish",
+    "optionB": "It is the name of a plant",
+    "optionC": "It is called a vessel",
+    "optionD": "It is a measure",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::रिचर स्केल (Richter Scale) किसके नापने में प्रयोग होता है ?",
+    "question": "The Richter Scale is used to measure what?",
+    "optionA": "The intensity of earthquakes",
+    "optionB": "The speed of air",
+    "optionC": "The depth of the sea",
+    "optionD": "The temperature of the body",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::डायनामाइट के आविष्कारक निम्नलिखित में से कौन हैं ?",
+    "question": "Who among the following is the inventor of dynamite?",
+    "optionA": "Einstein",
+    "optionB": "Newton",
+    "optionC": "Alfred Nobel",
+    "optionD": "Madam Curie",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::प्लास्टर ऑफ पेरिस (Plaster of Paris) प्राप्त किया जाता है ?",
+    "question": "Plaster of Paris is obtained from?",
+    "optionA": "Sodium bicarbonate",
+    "optionB": "Gypsum",
+    "optionC": "Urea",
+    "optionD": "Carbon",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::चिकित्सा व युद्ध में उपयोग के लिए किन किरणों पर नवीनतम अनुसन्धान हो रहा है ?",
+    "question": "On which rays is the latest research being done for use in medicine and warfare?",
+    "optionA": "X-rays",
+    "optionB": "Laser rays",
+    "optionC": "Gamma rays",
+    "optionD": "Cathode rays",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::राडार (Radar) में किस प्रकार की तरंगें होती हैं ?",
+    "question": "What type of waves are there in radar?",
+    "optionA": "Electric waves",
+    "optionB": "Electromagnetic waves",
+    "optionC": "Sound waves",
+    "optionD": "None of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::आकाश के नीले दिखाई देने का मुख्य कारण है ?",
+    "question": "The main reason for the sky appearing blue is?",
+    "optionA": "The light of the sun is blue",
+    "optionB": "Scattering of sun rays by dust particles present in the atmosphere",
+    "optionC": "Reflection of light",
+    "optionD": "Refraction of light",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::तेज गति से आता हुआ वाहन हार्न बजाता है, तो उसका पिच ?",
+    "question": "When a vehicle coming at high speed blows its horn, its pitch?",
+    "optionA": "Sounds the same",
+    "optionB": "Sounds more",
+    "optionC": "Sounds less",
+    "optionD": "First less and then more",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::सूती और ऊनी रेशों में अन्तर ज्ञात किया जा सकता है ?",
+    "question": "How can the difference between cotton and wool fibers be determined?",
+    "optionA": "By touching",
+    "optionB": "By burning",
+    "optionC": "By reacting with NaOH",
+    "optionD": "By reacting with H2SO4",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::बर्फ पर दाब बढ़ाने से उसका गलनांक ?",
+    "question": "What happens to the melting point of ice when pressure is increased on it?",
+    "optionA": "It will decrease",
+    "optionB": "It will increase",
+    "optionC": "It will remain unchanged",
+    "optionD": "It will become zero",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::गर्मियों में सफेद कपड़े क्यों पहने जाते हैं ?",
+    "question": "Why are white clothes worn in summer?",
+    "optionA": "They are poor absorbers of heat",
+    "optionB": "They are cheap",
+    "optionC": "They are attractive",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से गलत कथन कौन सा है ?",
+    "question": "Which of the following statements is incorrect?",
+    "optionA": "Iron sinks in water",
+    "optionB": "Wood floats on water",
+    "optionC": "Mercury floats on water",
+    "optionD": "Iron floats in mercury",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::संतरे में कौन सा विटामिन अधिक होता है ?",
+    "question": "Which vitamin is more in orange?",
+    "optionA": "D",
+    "optionB": "A",
+    "optionC": "C",
+    "optionD": "B",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::चमगादड़ अँधेरे में भी उड़ सकते हैं, क्योंकि उन्हें सहायता प्राप्त होती है ?",
+    "question": "Bats can fly in the dark because they get help from?",
+    "optionA": "Ultraviolet waves",
+    "optionB": "Ultrasonic waves",
+    "optionC": "Radiation",
+    "optionD": "Special retina",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::एल्यूमिनियम किस खनिज से प्राप्त की जाती है ?",
+    "question": "Aluminum is obtained from which mineral?",
+    "optionA": "Monazite",
+    "optionB": "Anthracite",
+    "optionC": "Bauxite",
+    "optionD": "Thorium",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::ब्लैक होल क्या है ?",
+    "question": "What is a black hole?",
+    "optionA": "Nebulae",
+    "optionB": "Meteors",
+    "optionC": "Spots on the sun",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::जल में स्थाई कठोरता का कारण है ?",
+    "question": "What is the cause of permanent hardness in water?",
+    "optionA": "Magnesium carbonate",
+    "optionB": "Calcium chloride",
+    "optionC": "Zinc chloride",
+    "optionD": "Calcium bicarbonate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::कैलोरी की मापन इकाई है ?",
+    "question": "What is the unit of measurement for calorie?",
+    "optionA": "Heat",
+    "optionB": "Solid",
+    "optionC": "Liquid",
+    "optionD": "Sound",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सूर्य उदय होते समय व डूबते समय लाल क्यों दिखाई देता है ?",
+    "question": "Why does the sun appear red at sunrise and sunset?",
+    "optionA": "Radiation",
+    "optionB": "Water vapor",
+    "optionC": "Dust particles",
+    "optionD": "Scattering",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::घरों में विद्युत् संयंत्र जोड़े जाते हैं ?",
+    "question": "How are electrical appliances connected in homes?",
+    "optionA": "In series",
+    "optionB": "In parallel",
+    "optionC": "In mixed order",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::विधुत बल्ब (Bulb) का फिलामेंट किसका बना होता है ?",
+    "question": "The filament of an electric bulb is made of?",
+    "optionA": "Chromium",
+    "optionB": "Tungsten",
+    "optionC": "Copper",
+    "optionD": "Zinc",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::केतली में पानी का गर्म होना उदाहरण है ?",
+    "question": "Heating of water in a kettle is an example of?",
+    "optionA": "Conduction",
+    "optionB": "Convection",
+    "optionC": "Radiation",
+    "optionD": "Condensation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::एस. आई. में बल का मात्रक क्या है ?",
+    "question": "What is the unit of force in SI?",
+    "optionA": "Joule",
+    "optionB": "Newton",
+    "optionC": "Watt",
+    "optionD": "Cubic centimeter",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::वायु क्या है ?",
+    "question": "What is air?",
+    "optionA": "Element",
+    "optionB": "Mixture",
+    "optionC": "Compound",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::यान्त्रिक ऊर्जा को विद्युत ऊर्जा में किसके द्वारा बदला जाता है ?",
+    "question": "Mechanical energy is converted into electrical energy by?",
+    "optionA": "Transformer",
+    "optionB": "Ammeter",
+    "optionC": "Galvanometer",
+    "optionD": "Dynamo",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::यदि पृथ्वी पर से कोई चट्टान चन्द्रमा पर ले जाई जावेगी तो ?",
+    "question": "If a rock is taken from Earth to the Moon, then?",
+    "optionA": "There will be no change in its weight",
+    "optionB": "Its mass will decrease",
+    "optionC": "Its weight will decrease",
+    "optionD": "Its weight will increase",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::सल्फर का उपयोग होता है ?",
+    "question": "Sulfur is used in?",
+    "optionA": "Dynamite",
+    "optionB": "Gunpowder",
+    "optionC": "Matches",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::बिल्ली को रात में अधिक दिखाई देता है ?",
+    "question": "Why does a cat appear more clearly at night?",
+    "optionA": "By nature",
+    "optionB": "Due to the special structure of the pupil",
+    "optionC": "Because it sleeps during the day",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::ऊष्मा की सबसे अच्छी चालक कौन सी धातु है ?",
+    "question": "Which metal is the best conductor of heat?",
+    "optionA": "Gold",
+    "optionB": "Aluminum",
+    "optionC": "Silver",
+    "optionD": "Brass",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::गर्मी में मकान को सफेद रंग से पुतवाना क्यों पसन्द करते हैं ?",
+    "question": "Why do we prefer to paint houses white during summer?",
+    "optionA": "They look good to the eyes",
+    "optionB": "They are heat insulators",
+    "optionC": "They are good reflectors of heat",
+    "optionD": "They are heat conductors",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::केतली में लकड़ी का हेन्डल क्यों लगाते हैं ?",
+    "question": "Why is a wooden handle attached to a kettle?",
+    "optionA": "For fashion",
+    "optionB": "Wood is a heat insulator and the handle does not get hot",
+    "optionC": "It is light",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::“एक ही ताप एवं दाब पर समान आयतन वाली गैसों में अणुओं की संख्या समान होती है\" निम्नलिखित में से यह नियम कौनसा है ?",
+    "question": "\"At the same temperature and pressure, equal volumes of gases contain an equal number of molecules\" - which law is this?",
+    "optionA": "Boyle's Law",
+    "optionB": "Charles's Law",
+    "optionC": "Gay-Lussac's Law of Volumes",
+    "optionD": "Avogadro's Law",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::&#39;लोहे में जंग&#39; लगना है एक ?",
+    "question": "'Rust forming in iron' is a ?",
+    "optionA": "Physical action",
+    "optionB": "Chemical action",
+    "optionC": "Normal action",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::&#39;बायो गैस&#39; का मुख्य अवयव है ?",
+    "question": "The main component of 'Bio Gas' is ?",
+    "optionA": "Ethane",
+    "optionB": "Ammonia",
+    "optionC": "Methane",
+    "optionD": "Ethylene",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::जब हम वायुमण्डल में ऊपर की ओर जाते हैं तो ?",
+    "question": "When we go upwards in the atmosphere ?",
+    "optionA": "Temperature decreases and pressure increases",
+    "optionB": "Temperature increases and pressure decreases",
+    "optionC": "Both temperature and pressure increase",
+    "optionD": "Both temperature and pressure decrease",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::नेत्र के लैंस में फोकस दूरी किस के द्वारा सही रखी जाती है ?",
+    "question": "In the lens of the eye, focal distance is kept correct by ?",
+    "optionA": "By the retina",
+    "optionB": "By the iris",
+    "optionC": "By the ciliary muscles",
+    "optionD": "By the cornea",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::सूखी बर्फ (Dry Ice) होती है, ठोस ?",
+    "question": "Dry Ice is a solid ?",
+    "optionA": "Carbon monoxide",
+    "optionB": "Carbon dioxide",
+    "optionC": "Sulfur dioxide",
+    "optionD": "Hydrogen peroxide",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::साधारण नमक का वैज्ञानिक नाम क्या है ?",
+    "question": "What is the scientific name of common salt ?",
+    "optionA": "Sodium sulfate",
+    "optionB": "Sodium chloride",
+    "optionC": "Sodium bicarbonate",
+    "optionD": "Ammonium chloride",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::लुढ़कती हुई गेंद कुछ दूर लुढ़कने के बाद स्वयं रुक जाती है, निम्नलिखित में से किस कारण से ?",
+    "question": "A rolling ball stops after rolling some distance, due to which of the following reasons ?",
+    "optionA": "Friction force",
+    "optionB": "Gravity",
+    "optionC": "Inertia",
+    "optionD": "None of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::संगमरमर (Marble) किसका रूप है ?",
+    "question": "Marble is a form of ?",
+    "optionA": "Shale",
+    "optionB": "Neiss",
+    "optionC": "Limestone",
+    "optionD": "Sandstone",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::शहरों में तालाब का पानी शुद्ध करने के लिए कौनसी गैस प्रयोग की जाती है ?",
+    "question": "Which gas is used to purify pond water in cities ?",
+    "optionA": "Sulfur dioxide",
+    "optionB": "Chlorine",
+    "optionC": "Nitrogen",
+    "optionD": "Ammonia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::लोहे में जंग लगने का मुख्य कारक है ?",
+    "question": "The main factor in rusting of iron is ?",
+    "optionA": "Oxygen",
+    "optionB": "Hydrogen",
+    "optionC": "Nitrogen",
+    "optionD": "Neon",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::कुपोषण से सबसे अधिक किसकी कमी होती है ?",
+    "question": "Due to malnutrition, what is most deficient?",
+    "optionA": "Vitamin 'A'",
+    "optionB": "Carbohydrate",
+    "optionC": "Vitamin 'C'",
+    "optionD": "Protein",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::रोबोट (Robot) क्या है ?",
+    "question": "What is a Robot?",
+    "optionA": "A type of rocket",
+    "optionB": "A bomb",
+    "optionC": "A machine resembling a human that works on command",
+    "optionD": "An animal found in the forests of Africa",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::दो समानान्तर दर्पणों के बीच प्रतिबिम्ब बनते हैं ?",
+    "question": "How many images are formed between two parallel mirrors?",
+    "optionA": "Two",
+    "optionB": "Four",
+    "optionC": "Eight",
+    "optionD": "Infinite",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::जब कोई जहाज नदी में से समुद्र में प्रवेश करता है तो ?",
+    "question": "When a ship enters the sea from a river, it?",
+    "optionA": "Rises up",
+    "optionB": "Sinks down",
+    "optionC": "There is no change in its level",
+    "optionD": "All of the above",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::पृथ्वी पर कोई गतिशील पिण्ड विश्राम की अवस्था में निम्नलिखित कारण से आता है ?",
+    "question": "On Earth, a moving body comes to rest due to which of the following reasons?",
+    "optionA": "Due to the law of inertia",
+    "optionB": "Due to frictional force",
+    "optionC": "Due to momentum conservation",
+    "optionD": "Due to gravitational force",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::क्या कारण है कि गेंद किसी ऊँचे स्थान पर अधिक उछलती है ?",
+    "question": "Why does a ball bounce more at a higher place?",
+    "optionA": "Because at higher places, the air pressure is more compared to the fields",
+    "optionB": "Because at higher places, due to the rare atmosphere, the ball has to face less resistance",
+    "optionC": "Because at higher places, the gravitational force is less",
+    "optionD": "Because at higher places, the atmosphere is pure",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::मात्रा के साथ निम्नलिखित में कौनसा भौतिक गुण प्रभावित नहीं होता है ?",
+    "question": "Which of the following physical properties is not affected with quantity?",
+    "optionA": "Volume",
+    "optionB": "Mass",
+    "optionC": "Weight",
+    "optionD": "Density",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::जब सूर्य की रोशनी किसी प्रिज्म में से होकर गुजरती है तो बताइए निम्नलिखित में से किस रंग का अपवर्तन सबसे अधिक होता है ?",
+    "question": "When the light of the sun passes through a prism, tell which of the following colors has the most refraction?",
+    "optionA": "Blue",
+    "optionB": "Red",
+    "optionC": "Orange",
+    "optionD": "Green",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::मैक नम्बर सम्बन्धित है",
+    "question": "Mach number is related to",
+    "optionA": "Speed of sound",
+    "optionB": "Speed of a ship",
+    "optionC": "Speed of an airplane",
+    "optionD": "Speed of a spacecraft",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::जब कोई मनुष्य रोशनी से अंधेरे कमरे में घुसता है तो उसे कुछ समय तक कुछ नहीं दिखाई देता है. बाद में उसे दिखाई देना आरम्भ होता है, क्योंकि ?",
+    "question": "When a person enters a dark room from light, he cannot see anything for some time. Later, he starts to be seen, because?",
+    "optionA": "His eye's iris contracts",
+    "optionB": "His eye's iris expands",
+    "optionC": "The distance between his eye's lens and retina increases",
+    "optionD": "The length of his eye's lens increases",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::बिजली के हीटरों में नाइक्रोम (Nichrome) धातु का तत्व (element) उपयोग में लाया जाता है, क्योंकि ?",
+    "question": "Why is the element Nichrome metal used in electric heaters?",
+    "optionA": "It has higher resistance",
+    "optionB": "Its melting point is higher",
+    "optionC": "A more powerful electric current can be passed through it",
+    "optionD": "All of the above reasons",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सी विद्युत चुम्बकीय तरंगों का तरंगदैर्घ्य सबसे अधिक है ?",
+    "question": "Which of the following electromagnetic waves has the longest wavelength?",
+    "optionA": "Ultraviolet rays",
+    "optionB": "Sunlight",
+    "optionC": "Gamma rays",
+    "optionD": "Infrared rays",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::किस धातु का गलनांक सबसे अधिक है ?",
+    "question": "Which metal has the highest melting point?",
+    "optionA": "Osmium",
+    "optionB": "Tungsten",
+    "optionC": "Molybdenum",
+    "optionD": "Aluminium",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::सबसे हल्की धातु कौन सी होती है ?",
+    "question": "Which is the lightest metal?",
+    "optionA": "Lithium",
+    "optionB": "Iridium",
+    "optionC": "Aluminium",
+    "optionD": "Osmium",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::ध्वनि की गति सर्वाधिक होती है ?",
+    "question": "The speed of sound is highest in?",
+    "optionA": "Air",
+    "optionB": "Water",
+    "optionC": "Vacuum",
+    "optionD": "Steel",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::जब किसी धातु को गर्म किया जाता है तो उसका घनत्व ?",
+    "question": "When a metal is heated, its density?",
+    "optionA": "Increases",
+    "optionB": "There is no difference",
+    "optionC": "Decreases",
+    "optionD": "None of the above",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::लाल रंग का गुलाब हरी रोशनी में कैसा दिखाई देता है ?",
+    "question": "How does a red rose appear in green light?",
+    "optionA": "Yellow",
+    "optionB": "Pink",
+    "optionC": "Black",
+    "optionD": "Red",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::दूध की शुद्धता किस यंत्र द्वारा नापी जाती है ?",
+    "question": "The purity of milk is measured by which instrument?",
+    "optionA": "Manometer",
+    "optionB": "Hydrometer",
+    "optionC": "Lactometer",
+    "optionD": "Fedometer",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::डायनुमो का कार्य है ?",
+    "question": "The function of a dynamo is?",
+    "optionA": "To convert electrical energy into mechanical energy",
+    "optionB": "To convert mechanical energy into electrical energy",
+    "optionC": "To convert electrical energy into heat",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::टेलीविजन का आविष्कार किसने किया ?",
+    "question": "Who invented television?",
+    "optionA": "J.L. Baird",
+    "optionB": "Macmillan",
+    "optionC": "James Watt",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::हड्डियों और दाँतो में जो रासायनिक पदार्थ विद्यमान रहता है, उसे क्या कहते हैं ?",
+    "question": "What chemical substance is present in bones and teeth?",
+    "optionA": "Calcium Chloride",
+    "optionB": "Calcium Borate",
+    "optionC": "Calcium Phosphate",
+    "optionD": "Calcium Sulfate",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::लोहे के पाइप, जिनसे पानी की सप्लाई की जाती है, पर जस्ते (Zn) की परत इसलिए चढ़ाई जाती है कि जंग न लगे. इस परत चढ़ाने की प्रक्रिया को कहते हैं ?",
+    "question": "A layer of zinc (Zn) is applied to iron pipes used for water supply so that rust does not form. What is this process called?",
+    "optionA": "Anodization",
+    "optionB": "Vulcanization",
+    "optionC": "Galvanization",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::किस अम्ल का उपयोग निर्जलीकारक (Dehydrating Agent) के रूप में किया जाता है ?",
+    "question": "Which acid is used as a dehydrating agent?",
+    "optionA": "Hydrochloric Acid",
+    "optionB": "Sulfuric Acid",
+    "optionC": "Acetic Acid",
+    "optionD": "Nitric Acid",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::विलेय को विलयन से पृथक किया जा सकता है ?",
+    "question": "A solute can be separated from a solution by?",
+    "optionA": "Filtration",
+    "optionB": "Evaporation",
+    "optionC": "Decantation",
+    "optionD": "Sedimentation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सी गैस वायुमण्डल में नहीं होती है ?",
+    "question": "Which of the following gases is not present in the atmosphere?",
+    "optionA": "Nitrogen",
+    "optionB": "Helium",
+    "optionC": "Chlorine",
+    "optionD": "Krypton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::पोटैशियम क्लोरेट को गर्म करने पर ?",
+    "question": "When potassium chlorate is heated?",
+    "optionA": "Nitrogen gas is released",
+    "optionB": "Oxygen gas is released",
+    "optionC": "Hydrogen gas is released",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::समुद्र के पानी से नमक निकालने के लिए निम्नलिखित में से कौनसी विधि अपनाई जाती है ?",
+    "question": "Which method is used to extract salt from seawater?",
+    "optionA": "Sublimation",
+    "optionB": "Evaporation",
+    "optionC": "Crystallization",
+    "optionD": "Distillation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::किस प्रक्रिया द्वारा तेल को वेजीटेबिल घी (Vegetable Ghee) में परिवर्तित किया जाता है ?",
+    "question": "By which process is oil converted into vegetable ghee?",
+    "optionA": "Hydrogenation",
+    "optionB": "Distillation",
+    "optionC": "Oxidation",
+    "optionD": "Reduction",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सिरके की प्रकृति अम्लीय किसके कारण होती है ?",
+    "question": "The acidic nature of vinegar is due to?",
+    "optionA": "Citric Acid",
+    "optionB": "Sulfuric Acid",
+    "optionC": "Hydrochloric Acid",
+    "optionD": "Acetic Acid",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पॉलीथीन (Polythene) का औद्योगिक उत्पादन किसके बहुलीकरण (Polymerisation) द्वारा होता है ?",
+    "question": "The industrial production of polythene is done by the polymerization of which substance?",
+    "optionA": "Methane",
+    "optionB": "Acetylene",
+    "optionC": "Ethylene",
+    "optionD": "Styrene",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::खनिजों एवं चट्टानों में कौनसा तत्व सबसे अधिक पाया जाता है ?",
+    "question": "Which element is found the most in minerals and rocks?",
+    "optionA": "Carbon",
+    "optionB": "Silicon",
+    "optionC": "Hydrogen",
+    "optionD": "Boron",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सबसे अधिक यौगिक किस तत्व द्वारा हाइड्रोजन के साथ बनाए जाते हैं ?",
+    "question": "With which element are the most compounds formed with hydrogen?",
+    "optionA": "Oxygen",
+    "optionB": "Silicon",
+    "optionC": "Carbon",
+    "optionD": "Nitrogen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::गुब्बारों में हाइड्रोजन की अपेक्षा हीलियम भरना अधिक उपयोगी माना जाता है, क्योंकि ?",
+    "question": "Filling balloons with helium is considered more useful than hydrogen, because?",
+    "optionA": "It is cheaper",
+    "optionB": "It is less heavy",
+    "optionC": "It has more flying capability",
+    "optionD": "It does not form an explosive mixture with air",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::कार्बनिक पदार्थों के सड़ने पर जो मार्शी गैस उत्पन्न होती है और अधिकांशतः कोयला खदानों में पाई जाती है, उस गैस का नाम है ?",
+    "question": "What is the name of the marsh gas produced by the decomposition of organic matter and mostly found in coal mines?",
+    "optionA": "Ethane",
+    "optionB": "Methane",
+    "optionC": "Carbon dioxide",
+    "optionD": "Carbon monoxide",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::बैटरी बनाने में किस अम्ल का उपयोग होता है ?",
+    "question": "Which acid is used in making batteries?",
+    "optionA": "Sulfuric acid",
+    "optionB": "Nitric acid",
+    "optionC": "Hydrochloric acid",
+    "optionD": "Acetic acid",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::किण्वन प्रक्रिया में निम्न लिखित में से किसका उत्पादन आवश्यक रूप से होता है ?",
+    "question": "In the fermentation process, which of the following is necessarily produced?",
+    "optionA": "Ethyl alcohol",
+    "optionB": "Methyl alcohol",
+    "optionC": "Acetic acid",
+    "optionD": "Yeast",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::ाकृतिक रबड़ को कठोर तथा उछालने योग्य बनाने के लिए किस पदार्थ को मिलाया जाता है ?",
+    "question": "What substance is mixed to make natural rubber hard and bouncy?",
+    "optionA": "Petroleum jelly",
+    "optionB": "Sulfuric acid",
+    "optionC": "Sulfur",
+    "optionD": "Sponge",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::सोडियम को मिट्टी के तेल में क्यों रखा जाता है ?",
+    "question": "Why is sodium kept in kerosene oil?",
+    "optionA": "To keep it in its elemental form",
+    "optionB": "It starts oxidizing in air",
+    "optionC": "It starts evaporating in air",
+    "optionD": "It starts burning in air",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::गन पॉउडर मिश्रण होता है ?",
+    "question": "Gunpowder is a mixture of?",
+    "optionA": "Soil and TNT",
+    "optionB": "Sulfur, soil and charcoal",
+    "optionC": "Saltpeter, sulfur and charcoal",
+    "optionD": "TNT and charcoal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::किसी रासायनिक यौगिक की सबसे छोटी इकाई क्या होती है ?",
+    "question": "What is the smallest unit of a chemical compound?",
+    "optionA": "Atom",
+    "optionB": "Electron",
+    "optionC": "Proton",
+    "optionD": "Molecule",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::हाइपो जिसका उपयोग फोटोग्राफी में होता है, रासायनिक तौर पर कहलाता है ?",
+    "question": "Hypo used in photography is chemically called?",
+    "optionA": "Silver Bromide",
+    "optionB": "Sodium Thiosulphate",
+    "optionC": "Sodium Phosphate",
+    "optionD": "Sodium Nitrate",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::अप्राकृतिक रूप से फलों को पकाने के लिए किस गैस का उपयोग किया जाता है ?",
+    "question": "Which gas is used to ripen fruits artificially?",
+    "optionA": "Ethylene",
+    "optionB": "Ethane",
+    "optionC": "Carbon Dioxide",
+    "optionD": "Acetylene",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::तत्काल शक्ति के लिए खिलाड़ी किसका उपयोग करते है ?",
+    "question": "For instant power, players use?",
+    "optionA": "Sucrose",
+    "optionB": "Vitamin C",
+    "optionC": "Salt",
+    "optionD": "Milk",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में सबसे अधिक कोमल कौन सा है ?",
+    "question": "Which of the following is the softest?",
+    "optionA": "Fitches",
+    "optionB": "Diamond",
+    "optionC": "Tellurium",
+    "optionD": "Tourmaline",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::कण द्वारा चले मार्ग की प्रकृति निर्धारित होती है ?",
+    "question": "The nature of the path taken by a particle is determined by?",
+    "optionA": "Acceleration",
+    "optionB": "Velocity",
+    "optionC": "Displacement",
+    "optionD": "None of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्न में से कौनसा अ-संरक्षित बल है ?",
+    "question": "Which of the following is a non-conservative force?",
+    "optionA": "Force of gravity",
+    "optionB": "Force of viscosity",
+    "optionC": "Intermolecular force",
+    "optionD": "Electrostatic force",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::एटम बम की खोज किसने की थी ?",
+    "question": "Who discovered the atom bomb?",
+    "optionA": "Otto Hahn",
+    "optionB": "Albert Einstein",
+    "optionC": "Kepler",
+    "optionD": "Rutherford",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::वायुमण्डलीय दाब नापने वाला यन्त्र है ?",
+    "question": "The instrument used to measure atmospheric pressure is?",
+    "optionA": "Barometer",
+    "optionB": "Periscope",
+    "optionC": "Hydrometer",
+    "optionD": "Thermometer",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::टेलीविजन का आविष्कार किसने किया था ?",
+    "question": "Who invented television?",
+    "optionA": "Niels Bohr",
+    "optionB": "J.L. Baird",
+    "optionC": "Alexander Fleming",
+    "optionD": "Gram Bell",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::दूध की शुद्धता किस यन्त्र से मापी जाती है ?",
+    "question": "The purity of milk is measured by which instrument?",
+    "optionA": "Lactometer",
+    "optionB": "Manometer",
+    "optionC": "Pyrometer",
+    "optionD": "Tachometer",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::इन्सुलिन का आविष्कार किसके द्वारा किया गया ?",
+    "question": "Who invented insulin?",
+    "optionA": "Eijkman",
+    "optionB": "Banting",
+    "optionC": "Domagk",
+    "optionD": "H.G. Khorana",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::टोलमी (Ptolemy) पृथ्वी का सिद्धान्त है कि ?",
+    "question": "Ptolemy's theory about the Earth is that?",
+    "optionA": "The Earth is the center of the universe and the Sun revolves around it",
+    "optionB": "The Earth is not the center of the universe and the Sun does not revolve around it",
+    "optionC": "The Earth revolves along with its rotation",
+    "optionD": "The Earth is a satellite of the Sun",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::अन्तरिक्षीय दूरबीन (Telescope) का आविष्कार किसने किया था ?",
+    "question": "Who invented the telescope?",
+    "optionA": "Galileo",
+    "optionB": "Gram Bell",
+    "optionC": "Kepler",
+    "optionD": "None of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::बल्ब का आविष्कार किसने किया था ?",
+    "question": "Who invented the bulb?",
+    "optionA": "Rutherford",
+    "optionB": "Fleming",
+    "optionC": "Edison",
+    "optionD": "Ohm",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::अमरीका की खोज किसने की थी ?",
+    "question": "Who discovered America?",
+    "optionA": "Vasco da Gama",
+    "optionB": "Columbus",
+    "optionC": "Marconi",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::&#39;स्ट्रेप्टोमाइसिन&#39; की खोज किसने की ?",
+    "question": "Who discovered 'Streptomycin'?",
+    "optionA": "Waksman",
+    "optionB": "Rutherford",
+    "optionC": "Bushwell",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::शक्ति का मात्रक है ?",
+    "question": "The unit of power is?",
+    "optionA": "Newton",
+    "optionB": "Watt",
+    "optionC": "Joule",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::एक्सरे (X-Rays) का आविष्कार किसने किया था ?",
+    "question": "Who invented X-Rays?",
+    "optionA": "Rutherford",
+    "optionB": "Newton",
+    "optionC": "Roentgen",
+    "optionD": "Baird",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::छापेखाने का आविष्कार किसने किया था ?",
+    "question": "Who invented the printing press?",
+    "optionA": "William Caxton",
+    "optionB": "Robert Watson",
+    "optionC": "Roentgen",
+    "optionD": "Karl Benz",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सापेक्षता के सिद्धान्त की खोज किसने की थी ?",
+    "question": "Who discovered the theory of relativity?",
+    "optionA": "Einstein",
+    "optionB": "Edison",
+    "optionC": "Khorana",
+    "optionD": "Newton",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::अंधों के पढ़ने के लिए लेखन पद्धति का आविष्कार किसने किया था ?",
+    "question": "Who invented the writing system for the blind to read?",
+    "optionA": "Madam Curie",
+    "optionB": "Einstein",
+    "optionC": "Louis Braille",
+    "optionD": "Archimedes",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::D.N.A. की खोज किसने की थी ?",
+    "question": "Who discovered D.N.A.?",
+    "optionA": "Prof. Chandrasekhar",
+    "optionB": "Watson and Crick",
+    "optionC": "Dalton",
+    "optionD": "Khorana",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::फाउन्टेन पैन का आविष्कार किसने किया ?",
+    "question": "Who invented the fountain pen?",
+    "optionA": "Waterman",
+    "optionB": "Gillette",
+    "optionC": "Faraday",
+    "optionD": "Lead Steynier",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::इलेक्ट्रॉनिक कम्प्यूटर का आविष्कार किसने किया था ?",
+    "question": "Who invented the electronic computer?",
+    "optionA": "Pascal",
+    "optionB": "J.P. Eckert",
+    "optionC": "Charles Babbage",
+    "optionD": "Calder. Sheshta",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::माइनर्स सेफ्टी लेम्प की खोज किसने की ?",
+    "question": "Who discovered the miners safety lamp?",
+    "optionA": "Edison",
+    "optionB": "Humphry Davy",
+    "optionC": "Richard Arkwright",
+    "optionD": "Faraday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::आटोहान किस आविष्कार से सम्बन्धित है ?",
+    "question": "Autohan is related to which invention?",
+    "optionA": "Artificial radioactivity",
+    "optionB": "Nuclear fusion",
+    "optionC": "Nuclear fission",
+    "optionD": "Theory of relativity",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::वोल्ट किसका मात्रक है ?",
+    "question": "Volt is the unit of?",
+    "optionA": "Electric current",
+    "optionB": "Resistance",
+    "optionC": "Potential difference",
+    "optionD": "Specific resistance",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किस वैज्ञानिक ने वंशानुगति के सिद्धान्तों को खोजा था ?",
+    "question": "Which of the following scientists discovered the principles of heredity?",
+    "optionA": "Darwin",
+    "optionB": "Mendel",
+    "optionC": "De Vries",
+    "optionD": "Lamarck",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::पेन्सिलीन का आविष्कार किया था ?",
+    "question": "Who invented penicillin?",
+    "optionA": "Alexander Fleming",
+    "optionB": "Harvard",
+    "optionC": "Hanson",
+    "optionD": "Robert Koch",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::चेचक के टीके का आविष्कार किया था ?",
+    "question": "Who invented the smallpox vaccine?",
+    "optionA": "Priestley",
+    "optionB": "Ruffetin",
+    "optionC": "Edward Jenner",
+    "optionD": "Lloyd",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::काश वर्ष किसका मात्रक है ?",
+    "question": "What is the unit of a light year?",
+    "optionA": "Time",
+    "optionB": "Intensity of light",
+    "optionC": "Distance",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::पारद तापमापी के आविष्कारक कौन थे ?",
+    "question": "Who invented the mercury thermometer?",
+    "optionA": "Edison",
+    "optionB": "Fahrenheit",
+    "optionC": "Galileo",
+    "optionD": "Hicks",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::वह वैज्ञानिक कौन था जिसने इस तथ्य का आविष्कार किया था कि ग्रहमण्डल का केन्द्र सूर्य है, पृथ्वी नहीं ?",
+    "question": "Which scientist discovered that the center of the solar system is the sun, not the Earth?",
+    "optionA": "Copernicus",
+    "optionB": "Kepler",
+    "optionC": "Newton",
+    "optionD": "Galileo",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::ओह्म के नियम से किस राशि का मात्रक लिया गया है ?",
+    "question": "From whose law is the unit of resistance taken?",
+    "optionA": "Electric current",
+    "optionB": "Resistance",
+    "optionC": "Potential difference",
+    "optionD": "Electrical capacitance",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::अणु के कृत्रिम विभंजन की खोज की थी ?",
+    "question": "Who discovered the artificial fission of the atom?",
+    "optionA": "Dalton",
+    "optionB": "Fermi",
+    "optionC": "Rutherford",
+    "optionD": "Madam Curie",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::हाइड्रोजन की खोज किसने की थी ?",
+    "question": "Who discovered hydrogen?",
+    "optionA": "Priestley",
+    "optionB": "Boyle",
+    "optionC": "Charles",
+    "optionD": "Cavendish",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::जीवों के द्विनाम पद्धति (Binomial Nomenclature) के जन्मदाता थे ?",
+    "question": "Who was the father of Binomial Nomenclature of organisms?",
+    "optionA": "Mendel",
+    "optionB": "Linnaeus",
+    "optionC": "Lamarck",
+    "optionD": "Darwin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::कौन सी धातु कॉपर सल्फेट घोल से अभिक्रिया नहीं करती ?",
+    "question": "Which metal does not react with copper sulfate solution?",
+    "optionA": "Fe",
+    "optionB": "Ag",
+    "optionC": "Mg",
+    "optionD": "Zn",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::जब ब्लीचिंग पाउडर की कार्बन डाइ-आक्साइड के साथ क्रिया कराते हैं, तो ?",
+    "question": "When bleaching powder is reacted with carbon dioxide, then?",
+    "optionA": "It absorbs the gas",
+    "optionB": "Chlorine gas is released",
+    "optionC": "No reaction occurs",
+    "optionD": "Calcium chloride is formed",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::गुणसूत्रों में विभाजन न होकर जो कोशिका विभाजन होता है, उसे कहते हैं ?",
+    "question": "What is the cell division in which chromosomes do not divide?",
+    "optionA": "Mitosis",
+    "optionB": "Amitosis",
+    "optionC": "Meiosis",
+    "optionD": "Sporogenesis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::समस्त बहुकोशिकीय जन्तुओं को किस विशिष्ट समूह में रखा जाता है ?",
+    "question": "All multicellular animals are placed in which specific group?",
+    "optionA": "Metazoa",
+    "optionB": "Protozoa",
+    "optionC": "Porifera",
+    "optionD": "Arthropoda",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौनसा जीवाश्म ईंधन (Fossil Fuel) नहीं है ?",
+    "question": "Which of the following is not a fossil fuel?",
+    "optionA": "Natural gas",
+    "optionB": "Petrol",
+    "optionC": "Coal",
+    "optionD": "Wood charcoal",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::सबसे छोटी अन्तःस्रावी ग्रंथि (Endocrine gland) है ?",
+    "question": "The smallest endocrine gland is?",
+    "optionA": "Pituitary",
+    "optionB": "Parathyroid",
+    "optionC": "Adrenal",
+    "optionD": "Testis",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किसमें कोबाल्ट उपस्थित रहता है ?",
+    "question": "In which of the following is cobalt present?",
+    "optionA": "Hemoglobin",
+    "optionB": "Chlorophyll",
+    "optionC": "Vitamin C",
+    "optionD": "Vitamin B12",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::आयनोस्फीयर की ऊँचाई किलोमीटर में है ?",
+    "question": "The height of the ionosphere in kilometers is?",
+    "optionA": "1 km",
+    "optionB": "10 km",
+    "optionC": "100 km",
+    "optionD": "1000 km",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::नेत्र पर प्रकाश की मात्रा का नियमन करती है ?",
+    "question": "Regulates the amount of light on the eye?",
+    "optionA": "Cornea",
+    "optionB": "Iris",
+    "optionC": "Retina",
+    "optionD": "Sclera",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::स्तनधारियों (Mammals) में निषेचन होता है ?",
+    "question": "In mammals, fertilization occurs?",
+    "optionA": "In the fallopian tube",
+    "optionB": "In the uterus",
+    "optionC": "In the urethra",
+    "optionD": "In the ovary",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::चमगादड निम्नलिखित में से किस वर्ग में रखा जाता है ?",
+    "question": "Bat is placed in which of the following classes?",
+    "optionA": "Reptiles",
+    "optionB": "Birds",
+    "optionC": "Mammals",
+    "optionD": "Amphibians",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::एन्जाइम होते हैं ?",
+    "question": "Enzymes are?",
+    "optionA": "Bacteria",
+    "optionB": "Proteins",
+    "optionC": "Fungi",
+    "optionD": "Inorganic compounds",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::रिचर स्केल निम्नलिखित में से किसके मापन में प्रयुक्त होता है ?",
+    "question": "Richter scale is used to measure?",
+    "optionA": "Speed of air",
+    "optionB": "Body temperature",
+    "optionC": "Intensity of earthquake",
+    "optionD": "Depth of ocean",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::वनस्पति तेल के हाइड्रोजनीकरण में प्रयुक्त उत्प्रेरक है ?",
+    "question": "What is the catalyst used in the hydrogenation of vegetable oil?",
+    "optionA": "Iron",
+    "optionB": "Platinum",
+    "optionC": "Copper",
+    "optionD": "Nickel",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पत्तियों पर पाए जाने वाले स्टोमेटा के खोलने में महत्वपूर्ण कारक होता है ?",
+    "question": "What is the important factor in the opening of stomata found on leaves?",
+    "optionA": "Guard cells",
+    "optionB": "Amount of chlorophyll in cells",
+    "optionC": "Amount of hormone in cells",
+    "optionD": "Amount of protein in cells",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सफेद रक्त कणिकाओं का प्रमुख कार्य है ?",
+    "question": "What is the main function of white blood cells?",
+    "optionA": "Destroying harmful excretory substances produced in the body",
+    "optionB": "Distributing heat",
+    "optionC": "Helping in blood clotting",
+    "optionD": "Destroying bacteria",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पत्तियाँ हरी दिखाई देती हैं, क्योंकि वे ?",
+    "question": "Leaves appear green because they?",
+    "optionA": "Absorb green light",
+    "optionB": "Reflect green light",
+    "optionC": "Both absorb and reflect green light",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::लम्बे पौधों में जल को ऊपर खींचने में सबसे आवश्यक बल होता है ?",
+    "question": "What is the most essential force in pulling water upward in tall plants?",
+    "optionA": "Electromagnetic force",
+    "optionB": "Cohesive force of water",
+    "optionC": "Osmotic force",
+    "optionD": "Capillary force",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित प्रोटीनों में से कौन ऐसा है जो अधिकांश विषाणुओं (वायरसों) के लिए प्रभावी है ?",
+    "question": "Which of the following proteins is effective against most viruses?",
+    "optionA": "Glutamine",
+    "optionB": "Interferon",
+    "optionC": "Casein",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किस पौधे में लैटेक्स (Latex) नहीं पाया जाता ?",
+    "question": "In which of the following plants is latex not found?",
+    "optionA": "Papaya",
+    "optionB": "Banyan",
+    "optionC": "Ak or Madar",
+    "optionD": "Neem",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::हृदय की धड़कनों को अंकित करने वाले उपकरण को कहते हैं ?",
+    "question": "The device used to record heartbeats is called?",
+    "optionA": "Cardiograph",
+    "optionB": "Casco graph",
+    "optionC": "Crisco graph",
+    "optionD": "Sismograph",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::एक ज्योडेसीय उपग्रह अध्ययन करता है ?",
+    "question": "A geodetic satellite studies?",
+    "optionA": "The age of the Earth",
+    "optionB": "The geothermal sources of the Earth",
+    "optionC": "The movement of clouds",
+    "optionD": "The shape of the Earth",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::वाहनों के इंजन को ठण्डा करने वाले उपकरण/यंत्र को कहते हैं ?",
+    "question": "The device/instrument used to cool the engine of vehicles is called?",
+    "optionA": "Refrigerator",
+    "optionB": "Radiator",
+    "optionC": "Carburetor",
+    "optionD": "G.M. Counter",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौनसा रोग सबसे घातक है ?",
+    "question": "Which of the following diseases is the most deadly?",
+    "optionA": "Smallpox",
+    "optionB": "Polio",
+    "optionC": "Malaria",
+    "optionD": "AIDS",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::त्रिविध टीका (Triple antigen vaccine) किन तीन रोगों के लिए दिया जाता है ?",
+    "question": "For which three diseases is the triple antigen vaccine given?",
+    "optionA": "Diphtheria, smallpox and typhoid",
+    "optionB": "Diphtheria, smallpox and jaundice",
+    "optionC": "Diphtheria, whooping cough and tetanus",
+    "optionD": "Diphtheria, jaundice and typhoid",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन विद्युत् का सुचालक है ?",
+    "question": "Which of the following is a conductor of electricity?",
+    "optionA": "Inert gases",
+    "optionB": "Air",
+    "optionC": "Plasma",
+    "optionD": "Water vapor",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::पौधों के लिए अनिवार्य तत्वों की कमी किन-किन को देकर दूर की जा सकती है ?",
+    "question": "The deficiency of essential elements in plants can be overcome by giving which of the following?",
+    "optionA": "Nitrogen, potash and phosphorus",
+    "optionB": "Copper, nitrogen and iron",
+    "optionC": "Iron, magnesium and potash",
+    "optionD": "Zinc, boron and copper",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::जिप्सम के सबसे विशाल भण्डार देश के निम्नलिखित में से किस राज्य में पाए जाते हैं ?",
+    "question": "In which of the following states of the country are the largest deposits of gypsum found?",
+    "optionA": "Madhya Pradesh",
+    "optionB": "Rajasthan",
+    "optionC": "Karnataka",
+    "optionD": "Tamil Nadu",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::जस्ता तथा पारा तत्व ?",
+    "question": "Zinc and mercury elements?",
+    "optionA": "Allotropes",
+    "optionB": "Rare earth elements",
+    "optionC": "Common elements",
+    "optionD": "Transition elements",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पौधों में जल एक महत्वपूर्ण घटक है जो भाग लेता है ?",
+    "question": "In plants, water is an important component that participates in?",
+    "optionA": "Transpiration",
+    "optionB": "Cooling down",
+    "optionC": "Photosynthesis",
+    "optionD": "Respiration",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::ध्वनि तरंगों को विद्युत् तरंगों में परिवर्तित करने वाले यंत्र को कहते हैं ?",
+    "question": "What is the instrument called that converts sound waves into electrical waves?",
+    "optionA": "Microtome",
+    "optionB": "Loudspeaker",
+    "optionC": "Microphone",
+    "optionD": "Magnetometer",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सा प्रोटोनलयी एन्जाइम (Proteolytic Enzyme) है ?",
+    "question": "Which of the following is a proteolytic enzyme?",
+    "optionA": "Diastase",
+    "optionB": "Urease",
+    "optionC": "Trypsin",
+    "optionD": "Pepsin",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::द्रवों में आवेश का प्रवाह (Flow) होता है ?",
+    "question": "In liquids, the flow of charge occurs?",
+    "optionA": "By molecules",
+    "optionB": "By ions",
+    "optionC": "By electrons",
+    "optionD": "By atoms",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::डोलोमाइट का महत्वपूर्ण उपयोग किस उद्योग में होता है ?",
+    "question": "What is the important use of dolomite in which industry?",
+    "optionA": "Cement industry",
+    "optionB": "Steel and related industries",
+    "optionC": "In construction works",
+    "optionD": "Fertilizer industry",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::वह गैस कौनसी है जो अक्रिय (Inert) होते हुए भी स्थायी नहीं है ?",
+    "question": "Which gas is inert but not stable?",
+    "optionA": "Helium",
+    "optionB": "Radon",
+    "optionC": "Nitrogen",
+    "optionD": "Xenon",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::कोशिका में माइट्रोकोन्ड्रिया पाए जाते हैं ?",
+    "question": "Mitochondria are found in the cell?",
+    "optionA": "In the nucleus",
+    "optionB": "In the nucleolus",
+    "optionC": "In the cytoplasm",
+    "optionD": "In the cell wall",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::पौधों में प्रोटीन का संश्लेषण मुख्य रूप से होता है ?",
+    "question": "In plants, protein synthesis mainly occurs?",
+    "optionA": "In the roots",
+    "optionB": "In the leaves",
+    "optionC": "In the stems",
+    "optionD": "In meristematic and storage tissues",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::गेहूँ के दाने में पाई जाने वाली प्रोटीन को कहते हैं ?",
+    "question": "What is the protein found in wheat grains called?",
+    "optionA": "Albumin",
+    "optionB": "Globulin",
+    "optionC": "Glutenin",
+    "optionD": "Histone",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::विभव प्रवणता (Potential Gradient) का मापक होता है ?",
+    "question": "What is the unit of potential gradient?",
+    "optionA": "Coulomb",
+    "optionB": "Ohm cm",
+    "optionC": "Volt/cm",
+    "optionD": "Ampere",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::न्यूट्रॉन तथा प्रोटॉन की संख्याओं के योगफल को कहते हैं ?",
+    "question": "What is the sum of the numbers of neutrons and protons called?",
+    "optionA": "Quantum number",
+    "optionB": "Atomic number",
+    "optionC": "Mass number",
+    "optionD": "Avogadro number",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निकोटिन (Nicotine) पदार्थ किस पौधे में पाया जाता है ?",
+    "question": "In which plant is the substance nicotine found?",
+    "optionA": "Tobacco",
+    "optionB": "Cinchona",
+    "optionC": "Belladonna",
+    "optionD": "Sarpagandha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::पोलियो रोग किस वर्ग के रोगाणु द्वारा होता है ?",
+    "question": "Polio disease is caused by which class of germs?",
+    "optionA": "By virus",
+    "optionB": "By bacteria",
+    "optionC": "By fungi",
+    "optionD": "By algae",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किस पौधे की जड़ों पर ग्रंथियाँ (Nodules) पाई जाती हैं ?",
+    "question": "In which of the following plants are nodules found on the roots?",
+    "optionA": "Potato",
+    "optionB": "Tomato",
+    "optionC": "Maize",
+    "optionD": "Pea",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::कार्बोहाइड्रेट्स का निर्माण होता है ?",
+    "question": "Carbohydrates are made from?",
+    "optionA": "C, N, O",
+    "optionB": "C, H, S",
+    "optionC": "C, S, P",
+    "optionD": "C, H, O",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::टाइफॉइड तथा पेचिश रोग फैलते हैं ?",
+    "question": "Typhoid and dysentery diseases spread?",
+    "optionA": "From air pollution",
+    "optionB": "From water pollution",
+    "optionC": "From land pollution",
+    "optionD": "From radioactive pollution",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौनसा C4 पौधा है ?",
+    "question": "Which of the following is a C4 plant?",
+    "optionA": "Pea",
+    "optionB": "Coconut",
+    "optionC": "Maize",
+    "optionD": "Peepal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::समुद्री घोड़ा है ?",
+    "question": "Sea horse is?",
+    "optionA": "A marine mammal",
+    "optionB": "A fish",
+    "optionC": "A coral plant",
+    "optionD": "A marine algae",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::ाचीन चट्टानों पर अंकित होने वाले जीवों के अभिचिह्नों को कहते हैं ?",
+    "question": "What are the imprints of organisms on ancient rocks called?",
+    "optionA": "Homologous organs",
+    "optionB": "Analogous structures",
+    "optionC": "Fossils",
+    "optionD": "Vestigial organs",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौनसा अण्डे देने वाला जन्तु है ?",
+    "question": "Which of the following is an egg-laying animal?",
+    "optionA": "Kangaroo",
+    "optionB": "Mouse",
+    "optionC": "Bat",
+    "optionD": "Duckbill",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::परायूरेनियम तत्व (Transuranic Elements) होते हैं ?",
+    "question": "Transuranic elements are?",
+    "optionA": "Elements found beyond the planet Uranus",
+    "optionB": "Elements whose atomic number is greater than that of Uranium",
+    "optionC": "Gaseous elements",
+    "optionD": "Isotopic forms of elements",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::वायुमण्डल के दाब में होने वाले परिवर्तनों को मापते है ?",
+    "question": "What measures changes in atmospheric pressure?",
+    "optionA": "By barograph",
+    "optionB": "Crescograph",
+    "optionC": "By barometer",
+    "optionD": "By seismograph",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सा रोग सबसे घातक है ?",
+    "question": "Which of the following diseases is the most fatal?",
+    "optionA": "Smallpox",
+    "optionB": "Polio",
+    "optionC": "Malaria",
+    "optionD": "AIDS",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पौधों में श्वसन होता है ?",
+    "question": "Respiration in plants occurs?",
+    "optionA": "Only at night",
+    "optionB": "Only in the morning",
+    "optionC": "Only during the day",
+    "optionD": "During the day and mainly at night",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::&#39;कृषि शास्त्र&#39; में किसको उन्नत किया जाता है ?",
+    "question": "In 'Agricultural Science', what is developed?",
+    "optionA": "Plants and animals",
+    "optionB": "Crop plants",
+    "optionC": "Only fruit plants",
+    "optionD": "Agriculture",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::&#39;सघन खेती&#39; का संबंध किससे है ?",
+    "question": "What is the relation of 'Intensive Farming'?",
+    "optionA": "Production through intensive use of labor",
+    "optionB": "Production through intensive use of fertilizers",
+    "optionC": "Increasing production by large-scale use of imported inputs",
+    "optionD": "Increasing production through intensive use of existing land",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::&#39;ट्रक फार्मिंग&#39; (Truck farming) क्या है ?",
+    "question": "What is 'Truck farming'?",
+    "optionA": "Commercial cultivation of vegetables",
+    "optionB": "Commercial cultivation of fruits",
+    "optionC": "Commercial cultivation of flowers",
+    "optionD": "Operating a large number of trucks",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::फ्लोरीकल्चर&#39; के अंतर्गत किसका अध्ययन किया जाता है ?",
+    "question": "Under 'Floriculture', what is studied?",
+    "optionA": "Fruits",
+    "optionB": "Vegetables",
+    "optionC": "Forests",
+    "optionD": "Flowers",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::&#39;पोमोलॉजी&#39; के अंतर्गत किसका अध्ययन किया जाता है ?",
+    "question": "Under 'Pomology', what is studied?",
+    "optionA": "Fruits",
+    "optionB": "Flowers",
+    "optionC": "Vegetables",
+    "optionD": "Forests",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::ओलरीकल्चर शब्द का संबंध है ?",
+    "question": "The word 'Olericulture' is related to?",
+    "optionA": "Vegetable science",
+    "optionB": "Flower science",
+    "optionC": "Crop science",
+    "optionD": "Pulse science",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सिल्वीकल्चर के अंतर्गत किसका अध्ययन किया जाता है ?",
+    "question": "Under 'Silviculture', what is studied?",
+    "optionA": "Fruits",
+    "optionB": "Flowers",
+    "optionC": "Vegetables",
+    "optionD": "Forests",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::मोनोकल्चर एक विशिष्ट लक्षण है ?",
+    "question": "Monoculture is a specific characteristic of?",
+    "optionA": "Shifting cultivation system",
+    "optionB": "Subsistence farming",
+    "optionC": "Commercial grain farming",
+    "optionD": "Specific horticulture",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::मृदा के अध्ययन का उल्लेख करने के लिए प्रयुक्त शब्द क्या है ?",
+    "question": "What is the word used to denote the study of soil?",
+    "optionA": "Pedology",
+    "optionB": "Geology",
+    "optionC": "Doxology",
+    "optionD": "Ecology",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::मृदा से संबंधित विज्ञान क्या कहलाता है ?",
+    "question": "What is the science related to soil called?",
+    "optionA": "Soil science",
+    "optionB": "Education science",
+    "optionC": "Ecology",
+    "optionD": "Pomology",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::जीवित चीजों पर मुदा के प्रभाव का अध्ययन, मृदा विज्ञान की किस शाखा के अंतर्गत किया जाता है ?",
+    "question": "The study of the effect of soil on living things comes under which branch of soil science?",
+    "optionA": "Andrology",
+    "optionB": "Edaphology",
+    "optionC": "Agrobiology",
+    "optionD": "Desmology",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::भारतीय कृषि अनुसंधान समिति ने भारतीय मिट्टी को कितने वर्गों में विभाजित किया है ?",
+    "question": "Into how many groups has the Indian Council of Agricultural Research divided Indian soil?",
+    "optionA": "4",
+    "optionB": "6",
+    "optionC": "8",
+    "optionD": "11",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::नूतन जलोढ़ मिट्टी किस नाम से जानी जाती है ?",
+    "question": "What is the name of new alluvial soil?",
+    "optionA": "Khadar",
+    "optionB": "Bangar",
+    "optionC": "Bhawar",
+    "optionD": "Reh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::काली मिट्टी का काला रंग किसकी उपस्थिति के कारण होता है ?",
+    "question": "What is the reason for the black color of black soil?",
+    "optionA": "Organic matter",
+    "optionB": "Cow dung manure",
+    "optionC": "Titaniferous magnetite and humus",
+    "optionD": "Humus",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::किस मिट्टी में अधिक समय तक आर्द्रता बनाये रखने की क्षमता होती है ?",
+    "question": "Which soil has the ability to retain moisture for a long time?",
+    "optionA": "Red soil",
+    "optionB": "Black soil",
+    "optionC": "Alluvial soil",
+    "optionD": "Laterite soil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::किस मिट्टी में कृषि के लिए सिंचाई की आवश्यकता नहीं पड़ती है ?",
+    "question": "In which soil is there no need for irrigation for agriculture?",
+    "optionA": "Black soil",
+    "optionB": "Red soil",
+    "optionC": "Alluvial soil",
+    "optionD": "Laterite soil",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::किस मिट्टी का स्थानीय नाम रेगुड़ (Regur) है ?",
+    "question": "Which soil is locally known as Regur?",
+    "optionA": "Red soil",
+    "optionB": "Black soil",
+    "optionC": "Laterite soil",
+    "optionD": "Alluvial soil",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::मूंगफली की खेती के लिए कौन-सी मिट्टी उपयु होती है ?",
+    "question": "Which soil is suitable for growing peanuts?",
+    "optionA": "Black soil",
+    "optionB": "Red soil",
+    "optionC": "Laterite soil",
+    "optionD": "Alluvial soil",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::कपास की खेती के लिए इन सभी में से सर्वाधिक उपयुक्त मिट्टी कौन-सी है ?",
+    "question": "Which of these is the most suitable soil for growing cotton?",
+    "optionA": "Laterite soil",
+    "optionB": "Red soil",
+    "optionC": "Black soil",
+    "optionD": "Alluvial soil",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::बीजों के अंकुरण में कौन-सा कारक महत्वपूर्ण नहीं है ?",
+    "question": "Which factor is not important in seed germination?",
+    "optionA": "Air",
+    "optionB": "Moisture",
+    "optionC": "Suitable temperature",
+    "optionD": "Sunlight",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::खरीफ की फसल कब बोई जाती है ?",
+    "question": "When is the Kharif crop sown?",
+    "optionA": "In June-July",
+    "optionB": "In October-November",
+    "optionC": "In March-April",
+    "optionD": "In November-December",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::रबी की फसल कब बोई जाती है ?",
+    "question": "When is the Rabi crop sown?",
+    "optionA": "In March-April",
+    "optionB": "In November-December",
+    "optionC": "In June-July",
+    "optionD": "In October-November",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::शीतकालीन फसल ऋतु को भारत में किस नाम से जाना जाता है ?",
+    "question": "What is the winter crop season called in India?",
+    "optionA": "Rabi",
+    "optionB": "Sheetal",
+    "optionC": "Kharif",
+    "optionD": "Podu",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::भारतीय कृषि में जुलाई से अक्टूबर तक की अवधि को कहते हैं ?",
+    "question": "What is the period from July to October called in Indian agriculture?",
+    "optionA": "Rabi season",
+    "optionB": "Kharif season",
+    "optionC": "Pre-Kharif season",
+    "optionD": "Mandi season",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::खरीफ की फसल काटी जाती है ?",
+    "question": "When is the Kharif crop harvested?",
+    "optionA": "In March",
+    "optionB": "At the beginning of June",
+    "optionC": "At the beginning of November",
+    "optionD": "In December",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::ऐम्पियर मात्रक है ?",
+    "question": "Ampere is a unit of?",
+    "optionA": "Light intensity",
+    "optionB": "Electric charge",
+    "optionC": "Electric current",
+    "optionD": "Magnetic field",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से समय का मात्रक नहीं है ?",
+    "question": "Which of the following is not a unit of time?",
+    "optionA": "Adhi year",
+    "optionB": "Lunar month",
+    "optionC": "Light year",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::पारसेक (Parsec) इकाई है ?",
+    "question": "Parsec is a unit of?",
+    "optionA": "Distance",
+    "optionB": "Time",
+    "optionC": "Light brightness",
+    "optionD": "Magnetic force",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन-सा एक सुमेलित नहीं है ?",
+    "question": "Which of the following is not correctly matched?",
+    "optionA": "Decibel - unit of sound intensity",
+    "optionB": "Horsepower - unit of power",
+    "optionC": "Nautical mile - unit of distance",
+    "optionD": "Celsius - unit of heat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::ल्यूमेन (Lumen) किसका मात्रक है ?",
+    "question": "Lumen is a unit of?",
+    "optionA": "Light intensity",
+    "optionB": "Light flux",
+    "optionC": "Both A and B",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::पास्कल (Pa) इकाई है ?",
+    "question": "What is the unit of Pascal (Pa)?",
+    "optionA": "Humidity",
+    "optionB": "Pressure",
+    "optionC": "Rainfall",
+    "optionD": "Temperature",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन-सा सही है ?",
+    "question": "Which of the following is correct?",
+    "optionA": "Kharif crops are winter crops",
+    "optionB": "Rabi crops are monsoon crops",
+    "optionC": "Wheat is a rabi crop",
+    "optionD": "Mustard is a kharif crop",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन खरीफ की फसल नहीं है ?",
+    "question": "Which of the following is not a kharif crop?",
+    "optionA": "Jowar",
+    "optionB": "Rice",
+    "optionC": "Maize",
+    "optionD": "Gram",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन रबी की फसल नहीं है ?",
+    "question": "Which of the following is not a rabi crop?",
+    "optionA": "Groundnut",
+    "optionB": "Wheat",
+    "optionC": "Barley",
+    "optionD": "Lentil",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन खरीफ की फसल है ?",
+    "question": "Which of the following is a kharif crop?",
+    "optionA": "Barley",
+    "optionB": "Mustard",
+    "optionC": "Bajra",
+    "optionD": "Groundnut",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन रबी की फसल है ?",
+    "question": "Which of the following is a rabi crop?",
+    "optionA": "Rice",
+    "optionB": "Wheat",
+    "optionC": "Jowar",
+    "optionD": "Bajra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::गेहूँ बोने का उपयुक्त मौसम कौन-सा होता है ?",
+    "question": "What is the suitable season for sowing wheat?",
+    "optionA": "October-November",
+    "optionB": "November-December",
+    "optionC": "January-February",
+    "optionD": "March-April",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन कीट-आकर्षक फसल है ?",
+    "question": "Which of the following is a trap crop?",
+    "optionA": "Okra",
+    "optionB": "Spinach",
+    "optionC": "Sunflower",
+    "optionD": "Sesame",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में नकदी फसल है ?",
+    "question": "Which of the following is a cash crop?",
+    "optionA": "Maize",
+    "optionB": "Wheat",
+    "optionC": "Tobacco",
+    "optionD": "Rice",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नांकित फसलों में कौन-सी फसल नकदी फसल के रूप में जानी जाती है ?",
+    "question": "Which of the following crops is known as a cash crop?",
+    "optionA": "Rice",
+    "optionB": "Wheat",
+    "optionC": "Bajra",
+    "optionD": "Cotton",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित फलीदार पौधों में से कौन पेट्रो पादप भी है ?",
+    "question": "Which of the following leguminous plants is also a petro plant?",
+    "optionA": "Arhar",
+    "optionB": "Pea",
+    "optionC": "Gram",
+    "optionD": "Karanj",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित चार ऊर्जा फसलों में से एक की खेती एथेनॉल के लिए की जा सकती है ?",
+    "question": "Which of the following four energy crops can be cultivated for ethanol?",
+    "optionA": "Jatropha",
+    "optionB": "Maize",
+    "optionC": "Pongamia",
+    "optionD": "Sunflower",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::रेशा फसलें निम्नलिखित में से कौन-सी हैं ?",
+    "question": "Which of the following are fiber crops?",
+    "optionA": "Jute, sugarcane, linseed",
+    "optionB": "Cotton, maize, tobacco",
+    "optionC": "Cotton, jute, sunnhemp",
+    "optionD": "Sunnhemp, cotton, maize",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::जीवन की मूलभूत इकाई (Unit) क्या है ?",
+    "question": "What is the fundamental unit of life?",
+    "optionA": "Cell",
+    "optionB": "Organ",
+    "optionC": "Tissue",
+    "optionD": "Nucleus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::कोशिका के बारे में निम्न में से कौन-सा कथन सही नहीं है ?",
+    "question": "Which of the following statements about the cell is not correct?",
+    "optionA": "The size and shape of cells are related to their specific functions",
+    "optionB": "Some cells change their shape",
+    "optionC": "Each cell has its own capacity to perform",
+    "optionD": "All body tissues have the same type of cells",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन-सा कोशिकांग पादप कोशिका में पाया जाता है, किन्तु जन्तु कोशिका में नहीं पाया जाता है ?",
+    "question": "Which of the following organelles is found in a plant cell but not in an animal cell?",
+    "optionA": "Chloroplast",
+    "optionB": "Ribosome",
+    "optionC": "Mitochondria",
+    "optionD": "Endoplasmic Reticulum",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::कोशिका का जीवित अंश ‘जीवद्रव्य (Protoplasm) कहलाता है। यह किससे बना होता है ?",
+    "question": "The living part of the cell is called 'protoplasm'. What is it made of?",
+    "optionA": "Only cytoplasm",
+    "optionB": "Only nucleoplasm",
+    "optionC": "Cytoplasm and nucleoplasm",
+    "optionD": "Cytoplasm, nucleoplasm and other organelles",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::80% से अधिक कोशिका (Cell) में पाया जाने वाला पदार्थ है ?",
+    "question": "The substance found in more than 80% of the cell is?",
+    "optionA": "Protein",
+    "optionB": "Fat",
+    "optionC": "Mineral",
+    "optionD": "Water",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किन कोशिकाओं में नाभिक नहीं होता है ?",
+    "question": "In which of the following cells is there no nucleus?",
+    "optionA": "Root hair cell",
+    "optionB": "Red blood cell",
+    "optionC": "Platelet",
+    "optionD": "Monocyte",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्न में से कौन-से कोशिकाओं के आत्मघाती बैग कहे जाते हैं ?",
+    "question": "Which of the following are called suicidal bags of cells?",
+    "optionA": "Lysosomes",
+    "optionB": "Ribosomes",
+    "optionC": "Dictyosomes",
+    "optionD": "Phagosomes",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित कोशिका अंगकों में से कौन-सा एक अर्द्धपारगम्य है ?",
+    "question": "Which of the following cell organelles is semi-permeable?",
+    "optionA": "Cell membrane",
+    "optionB": "Plasma membrane",
+    "optionC": "Cell wall",
+    "optionD": "Nucleus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::कोशिका का शक्ति-स्रोत होता है ?",
+    "question": "What is the source of energy for the cell?",
+    "optionA": "Mitochondria",
+    "optionB": "Cell wall",
+    "optionC": "Ribosome",
+    "optionD": "Nucleus",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::मानव शरीर में मौजूद निम्नलिखित कोशिकाओं में से किसमें माइटोकॉण्ड्रिया नहीं पाया जाता ?",
+    "question": "In which of the following cells present in the human body is mitochondria not found?",
+    "optionA": "Red blood cell",
+    "optionB": "Liver cell",
+    "optionC": "Muscle cell",
+    "optionD": "White blood cell",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कोशिका का नियंत्रक केन्द्र कौन है ?",
+    "question": "Which of the following is the controlling center of the cell?",
+    "optionA": "Nucleus",
+    "optionB": "Plasma",
+    "optionC": "Lysosome",
+    "optionD": "Chromosome",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्नलिखित की कोशिका सूक्ष्मतम जीवित कोशिका है ?",
+    "question": "Which of the following has the smallest living cell?",
+    "optionA": "Bacteria",
+    "optionB": "Bread mold",
+    "optionC": "Mycoplasma",
+    "optionD": "Virus",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से किस एक कोशिकीय कोशिकांग समूह DNA होना है ?",
+    "question": "Which of the following cellular organelle groups has DNA?",
+    "optionA": "Chloroplast, Nucleus, Chlorophyll",
+    "optionB": "Chloroplast, Golgi body, Nucleus",
+    "optionC": "Chloroplast, Cytoplasm, Nucleus",
+    "optionD": "Chlorophyll, Nucleus, Ribosome",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::DNA की पॉलिन्यूक्लिओटाइड श्रृंखला में क्या समाविष्ट होता है ?",
+    "question": "What is included in the polynucleotide chain of DNA?",
+    "optionA": "A nitrogenous base, deoxyribose sugar, and phosphate group",
+    "optionB": "A nitrogenous base, ribose sugar, and phosphate group",
+    "optionC": "Deoxyribose sugar, ribose sugar, and phosphate group",
+    "optionD": "Only a nitrogen",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::गाय की सर्वाधिक दूध देने वाली नस्ल है ?",
+    "question": "Which is the highest milk yielding breed of cow?",
+    "optionA": "Haryana",
+    "optionB": "Amrit Mahal",
+    "optionC": "Sahiwal",
+    "optionD": "Nagaur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::&#39;थारपारकर&#39; किस पशु की नस्ल है ?",
+    "question": "'थारपारकर' किस पशु की नस्ल है ?",
+    "optionA": "गाय",
+    "optionB": "भैंस",
+    "optionC": "बकरी",
+    "optionD": "भेड़",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::&#39;सुजाता&#39; किस पशु की प्रजाति है ?",
+    "question": "'सुजाता' किस पशु की प्रजाति है ?",
+    "optionA": "गाय",
+    "optionB": "बकरी",
+    "optionC": "भेंड़",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::चिकनी अंतर्द्रव्यी जालिका के अनुपूरक कार्यों में से एक कार्य है ?",
+    "question": "चिकनी अंतर्द्रव्यी जालिका के अनुपूरक कार्यों में से एक कार्य है ?",
+    "optionA": "प्रोटीन संश्लेषण",
+    "optionB": "लिपिड संश्लेषण",
+    "optionC": "जैव अणुओं का भंडारण",
+    "optionD": "विषैले पदार्थों का निर्विषीकरण",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से क्या डी.एन.ए. में मौजूद रहता है किन्तु आर.एन.ए. में मौजूद नहीं रहता है ?",
+    "question": "निम्नलिखित में से क्या डी.एन.ए. में मौजूद रहता है किन्तु आर.एन.ए. में मौजूद नहीं रहता है ?",
+    "optionA": "थायमीन",
+    "optionB": "ऐडेनीन",
+    "optionC": "ग्वानीन",
+    "optionD": "साइटोसीन",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::RNA का प्राथमिक कार्य होता है ?",
+    "question": "RNA का प्राथमिक कार्य होता है ?",
+    "optionA": "प्रकाश संश्लेषण",
+    "optionB": "प्रोटीन संश्लेषण",
+    "optionC": "प्रतिकृति बनाना",
+    "optionD": "अनुवाद करना",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::राइबोजोम्स होते हैं ?",
+    "question": "राइबोजोम्स होते हैं ?",
+    "optionA": "डी.एन.ए.",
+    "optionB": "आर.एन.ए.",
+    "optionC": "प्रोटीन्स",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::आनुवंशिक यूनिट अर्थात् &#39;जीन&#39; होते हैं ?",
+    "question": "आनुवंशिक यूनिट अर्थात् 'जीन' होते हैं ?",
+    "optionA": "केन्द्रकीय झिल्ली में",
+    "optionB": "कोशिका कला में",
+    "optionC": "लाइसोसोम में",
+    "optionD": "गुणसूत्रों में",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::डी. एन. ए. की द्विकुंडलिनी संरचना किसके द्वारा दी गई थी ?",
+    "question": "डी. एन. ए. की द्विकुंडलिनी संरचना किसके द्वारा दी गई थी ?",
+    "optionA": "जैकब तथा मोनोड",
+    "optionB": "वाटसन तथा क्रिक",
+    "optionC": "एच. जी. खुराना",
+    "optionD": "उपर्युक्त में से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::सबसे पहले डीएनए (DNA) को अलग किसने किया था ?",
+    "question": "सबसे पहले डीएनए (DNA) को अलग किसने किया था ?",
+    "optionA": "फ्रेडरिक हॉफमिश्चर",
+    "optionB": "अल्ब्रेक्ट कोसेल",
+    "optionC": "फोबस लेवेने",
+    "optionD": "वाटसन और क्रिक",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::DNA के दो स्ट्रैण्ड बंधे होते हैं ?",
+    "question": "DNA के दो स्ट्रैण्ड बंधे होते हैं ?",
+    "optionA": "हाइड्रोजन बॉण्ड्स द्वारा",
+    "optionB": "सहसंयोजक बॉण्ड्स द्वारा",
+    "optionC": "स्थिर वैद्युत बल द्वारा",
+    "optionD": "वाण्डरवाल्स बलों द्वारा",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::DNA के एक तंतुगच्छ (स्टैंड) से RNA में आनुवंशिक सूचना के प्रतिरूपण की प्रक्रिया क्या कहलाती है ?",
+    "question": "What is the process of replication of genetic information from one strand (strand) of DNA to RNA called?",
+    "optionA": "Translocation",
+    "optionB": "Transcription",
+    "optionC": "Translation",
+    "optionD": "Mutation",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::योगशाला में सर्वप्रथम DNA का संश्लेषण किसने किया था ?",
+    "question": "Who first synthesized DNA in the laboratory?",
+    "optionA": "Miller",
+    "optionB": "Khorana",
+    "optionC": "De-Brij",
+    "optionD": "Kelvin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::DNA अंगुली छाप का प्रयोग किसकी पहचान के लिए किया जाता है ?",
+    "question": "DNA fingerprinting is used for the identification of whom?",
+    "optionA": "Parents",
+    "optionB": "Rapist",
+    "optionC": "Thief",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::डी.एन.ए. का संबंध जिस अति मूल प्रोटीन से है, उसे क्या कहते हैं ?",
+    "question": "What is the highly basic protein with which DNA is associated called?",
+    "optionA": "Non-albumin",
+    "optionB": "Histone",
+    "optionC": "Non-histone",
+    "optionD": "Albumin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::विषाणुओं में होता है ?",
+    "question": "What is present in viruses?",
+    "optionA": "Only DNA",
+    "optionB": "Only RNA",
+    "optionC": "Only DNA",
+    "optionD": "Either RNA or DNA",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::पौधों को संक्रमित करने वाले अधिकांश विषाणुओं में क्या होता है ?",
+    "question": "What is present in most viruses that infect plants?",
+    "optionA": "Single-stranded DNA",
+    "optionB": "Single-stranded RNA",
+    "optionC": "Double-stranded DNA and RNA",
+    "optionD": "Only double-stranded RNA",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::दूध के दही के रूप में जमने का कारण है ?",
+    "question": "What is the cause of milk curdling?",
+    "optionA": "Mycobacterium",
+    "optionB": "Staphylococcus",
+    "optionC": "Lactobacillus",
+    "optionD": "Yeast",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन सा नाइट्रोजन फिक्सिंग बैक्टीरिया है ?",
+    "question": "Which of the following is a nitrogen-fixing bacteria?",
+    "optionA": "Salmonella",
+    "optionB": "Rhizobium",
+    "optionC": "Pseudomonas",
+    "optionD": "E.coli",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::सिम्बिओटिक कीटाणु जो कि वातावरणीय नाइट्रोजन के स्थिरीकरण के लिए उत्तरदायी है, किसमें पाया जाता है ?",
+    "question": "Symbiotic bacteria responsible for fixing atmospheric nitrogen are found in which of the following?",
+    "optionA": "Pea",
+    "optionB": "Wheat",
+    "optionC": "Oats",
+    "optionD": "Maize",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::फलीदार पादपों की जड़ों में उपस्थित गाँठों में पाये जाने वाले नत्रजन स्थिरीकरण जीवाणु हैं ?",
+    "question": "The nitrogen-fixing bacteria found in the root nodules of leguminous plants are?",
+    "optionA": "Saprophytes",
+    "optionB": "Protozoans",
+    "optionC": "Symbionts",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::आनुवंशिक हेरफेर द्वारा, प्राकृतिक पृथक्कृतों से विकसित जीवाणुओं का कौन सा जीवाणु विभेद समुद्र में बिखरे तेल का निवारण करने के लिए उपयोग में लाया जा सकता है ?",
+    "question": "By genetic manipulation, which of the following bacteria developed from natural isolates can be used to clean up oil spills in the sea?",
+    "optionA": "Agrobacterium",
+    "optionB": "Clostridium",
+    "optionC": "Nitrosomonas",
+    "optionD": "Pseudomonas",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::शीतन (Refrigeration) खाद्य परिरक्षण में मदद करता है ?",
+    "question": "How does refrigeration help in food preservation?",
+    "optionA": "By killing bacteria",
+    "optionB": "By decreasing the rate of biochemical reactions",
+    "optionC": "By destroying enzyme action",
+    "optionD": "By covering the food with a layer of ice",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::अवायवीय स्थिति में जैविक पदार्थ के जीवाणु अपघटन को क्या कहते हैं ?",
+    "question": "What is the bacterial decomposition of organic matter in anaerobic conditions called?",
+    "optionA": "Fermentation",
+    "optionB": "Putrefaction",
+    "optionC": "Pollution",
+    "optionD": "Composting",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::जीवों के निम्नलिखित प्रकारों में से छत्रक किससे सम्बद्ध है ?",
+    "question": "Among the following types of organisms, with which is the mushroom associated?",
+    "optionA": "Algae",
+    "optionB": "Ferns",
+    "optionC": "Fungi",
+    "optionD": "Lichen",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::सामान्य खाद्य छत्रक (Mushroom) क्या होता है ?",
+    "question": "What is a common edible mushroom?",
+    "optionA": "A mass of fungal spores",
+    "optionB": "A type of fungal hyphae",
+    "optionC": "A tightly woven mat of fungal mycelium",
+    "optionD": "A structure used for asexual spore production",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::यीस्ट मिलाने पर गुंथे हुए आटे के उठने का क्या कारण है ?",
+    "question": "What causes kneaded dough to rise when yeast is added?",
+    "optionA": "Increase in temperature",
+    "optionB": "Increase in volume of the substance",
+    "optionC": "Increase in the number of yeast cells",
+    "optionD": "Release of carbon dioxide gas",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::ब्रेड बनाने में इस्तेमाल किया जाने वाला खमीर ?",
+    "question": "The yeast used in making bread?",
+    "optionA": "Acts as a catalyst for fermentation",
+    "optionB": "Does not help in the fermentation process",
+    "optionC": "Acts as a preservative",
+    "optionD": "Makes it tasty",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::निम्न में से किसे बडिंग के माध्यम से तैयार किया जाता है ?",
+    "question": "Which of the following is prepared by budding?",
+    "optionA": "Plasmodium",
+    "optionB": "Amoeba",
+    "optionC": "Paramecium",
+    "optionD": "Yeast",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::&#39;लाल सिन्धी&#39; है ?",
+    "question": "What is 'Lal Sindhi'?",
+    "optionA": "Breed of cows",
+    "optionB": "Breed of horses",
+    "optionC": "Breed of buffaloes",
+    "optionD": "Breed of humans",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::&#39;हल्लीकर&#39; नस्ल की गाय का मूल स्थान कहाँ माना जाता है ?",
+    "question": "Where is the origin of the 'Hallikar' breed of cattle considered to be?",
+    "optionA": "Bihar",
+    "optionB": "Mysore",
+    "optionC": "Uttar Pradesh",
+    "optionD": "Maharashtra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::थारपारकर प्रजाति कहाँ पायी जाती है ?",
+    "question": "Where is the Tharparkar breed found?",
+    "optionA": "Tribal areas",
+    "optionB": "Border areas of Rajasthan",
+    "optionC": "Hadoti region",
+    "optionD": "Totabati region",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::गाय की जो नस्ल अधिक दूध देती है, वह है ?",
+    "question": "Which breed of cow gives more milk?",
+    "optionA": "Tharparkar",
+    "optionB": "Sahiwal",
+    "optionC": "Haryana",
+    "optionD": "Gangatiri",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में से कौन विदेशी नस्ल की गाय नहीं है ?",
+    "question": "Which of the following is not a foreign breed of cow?",
+    "optionA": "Kankrej",
+    "optionB": "Brown Swiss",
+    "optionC": "Holstein Friesian",
+    "optionD": "Jersey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::&#39;गर्नसी&#39; गाय का मूल स्थान कहाँ है ?",
+    "question": "Where is the origin of the 'Guernsey' cow?",
+    "optionA": "England",
+    "optionB": "France",
+    "optionC": "Holland",
+    "optionD": "New Zealand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::भारत में कौन-सी गाय की संकर नस्ल पैदा की गई है ?",
+    "question": "Which cross-breed of cow has been developed in India?",
+    "optionA": "Karan Fries",
+    "optionB": "Guernsey",
+    "optionC": "Jersey",
+    "optionD": "Karan Swiss",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::गाय एवं भैंस कितने दिनों बाद पुनः ऋतुमयी होती हैं ?",
+    "question": "After how many days do cows and buffaloes become estrous again?",
+    "optionA": "18 days",
+    "optionB": "21 days",
+    "optionC": "23 days",
+    "optionD": "25 days",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::दुधारु गाय की क्या पहचान होती है ?",
+    "question": "What is the identification of a milch cow?",
+    "optionA": "Teats are fully developed",
+    "optionB": "Milk ducts remain prominent",
+    "optionC": "Milk ducts are curved",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::विश्व में सर्वाधिक भैंसें किस देश में पायी जाती हैं ?",
+    "question": "In which country are the most buffaloes found in the world?",
+    "optionA": "Sri Lanka",
+    "optionB": "Pakistan",
+    "optionC": "China",
+    "optionD": "India",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::निम्नलिखित में कौन भैस की नस्ल नहीं है ?",
+    "question": "निम्नलिखित में कौन भैस की नस्ल नहीं है ?",
+    "optionA": "सुरती",
+    "optionB": "मुर्रा",
+    "optionC": "नीली",
+    "optionD": "मेवाती",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "science-gk::भैंस के दूध में औसत वसा की मात्रा क्या होती है ?",
+    "question": "भैंस के दूध में औसत वसा की मात्रा क्या होती है ?",
+    "optionA": "7.2%",
+    "optionB": "4.5%",
+    "optionC": "9.0%",
+    "optionD": "10.0%",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सबसे ज्यादा वसा किस भैंस के दूध में पायी जाती है ?",
+    "question": "सबसे ज्यादा वसा किस भैंस के दूध में पायी जाती है ?",
+    "optionA": "मुर्रा",
+    "optionB": "भादवारी",
+    "optionC": "मेहसाना",
+    "optionD": "नागपुरी",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::भारत में दुग्ध में सर्वाधिक वसा प्रतिशत रखने वाली भैंस की नस्ल है ?",
+    "question": "भारत में दुग्ध में सर्वाधिक वसा प्रतिशत रखने वाली भैंस की नस्ल है ?",
+    "optionA": "मेहसाना",
+    "optionB": "भदावरी",
+    "optionC": "मुर्रा",
+    "optionD": "जाफराबादी",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्न में से सबसे अधिक औसत दूध देने वाली भैंस की नस्ल है ?",
+    "question": "निम्न में से सबसे अधिक औसत दूध देने वाली भैंस की नस्ल है ?",
+    "optionA": "मुर्रा",
+    "optionB": "जाफराबादी",
+    "optionC": "भदावारी",
+    "optionD": "नागपुरी",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::निम्न में से कौन बकरी अधिक दूध देने के लिए जानी जाती है ?",
+    "question": "निम्न में से कौन बकरी अधिक दूध देने के लिए जानी जाती है ?",
+    "optionA": "जमुनापारी",
+    "optionB": "बरबरी",
+    "optionC": "मेहसाना",
+    "optionD": "कश्मीरी",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::&#39;एग्लोनुबियन&#39; नस्ल की बकरी का मूल स्थान कहाँ है ?",
+    "question": "'एग्लोनुबियन' नस्ल की बकरी का मूल स्थान कहाँ है ?",
+    "optionA": "ब्रिटेन",
+    "optionB": "फ्रांस",
+    "optionC": "ऑस्ट्रेलिया",
+    "optionD": "भारत",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::बकरी की किस नस्ल को जर्सी भी कहा जाता है ?",
+    "question": "बकरी की किस नस्ल को जर्सी भी कहा जाता है ?",
+    "optionA": "सानेन",
+    "optionB": "अंगोरा",
+    "optionC": "एंग्लोनूबियन",
+    "optionD": "मराडी",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::&#39;विश्व की दूध की रानी&#39; किस नस्ल की बकरी को कहा जाता है ?",
+    "question": "'विश्व की दूध की रानी' किस नस्ल की बकरी को कहा जाता है ?",
+    "optionA": "अल्जेरियम",
+    "optionB": "सानेन",
+    "optionC": "मराडी",
+    "optionD": "अंगोरा",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "science-gk::&#39;शहरी बकरी&#39; (City Goat) के नाम से कौन जानी जाती है ?",
+    "question": "'शहरी बकरी' (City Goat) के नाम से कौन जानी जाती है ?",
+    "optionA": "जमुनापारी",
+    "optionB": "बीकानेरी",
+    "optionC": "बरबरी",
+    "optionD": "इनमें कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::सर्वाधिक दूध देने वाली बकरी है ?",
+    "question": "सर्वाधिक दूध देने वाली बकरी है ?",
+    "optionA": "थारपारकर",
+    "optionB": "मेरिनो",
+    "optionC": "जमुनापारी",
+    "optionD": "पश्मीना",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::&#39;मोहेर&#39; नामक ऊन अंगोरा नामक नस्ल से प्राप्त किया जाता है। यह किसकी नस्ल है ?",
+    "question": "'मोहेर' नामक ऊन अंगोरा नामक नस्ल से प्राप्त किया जाता है। यह किसकी नस्ल है ?",
+    "optionA": "बकरी",
+    "optionB": "भेड़",
+    "optionC": "खरगोश",
+    "optionD": "याक",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::गाय की दूध की तुलना में बकरी के दूध के संबंध में निम्नलिखित से क्या सत्य है ?",
+    "question": "गाय की दूध की तुलना में बकरी के दूध के संबंध में निम्नलिखित से क्या सत्य है ?",
+    "optionA": "लौह लवण अधिक होता है",
+    "optionB": "लौह लवण समान होता है",
+    "optionC": "लौह लवण बहुत कम होता है",
+    "optionD": "लौह लवण नहीं होता है",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::सबसे अच्छा ऊन निम्नलिखित में से किससे प्राप्त होता है ?",
+    "question": "सबसे अच्छा ऊन निम्नलिखित में से किससे प्राप्त होता है ?",
+    "optionA": "बकरी",
+    "optionB": "भेड़",
+    "optionC": "खरगोश",
+    "optionD": "याक",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "science-gk::ऊन के लिए विख्यात पशु ‘पश्मीना&#39; क्या है ?",
+    "question": "ऊन के लिए विख्यात पशु 'पश्मीना' क्या है ?",
+    "optionA": "भेंड़",
+    "optionB": "खरगोश",
+    "optionC": "बकरी",
+    "optionD": "याक",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "science-gk::बकरी का दूध अधिक सुपाच्य होता है, क्योंकि ?",
+    "question": "बकरी का दूध अधिक सुपाच्य होता है, क्योंकि ?",
+    "optionA": "प्रोटीन की मात्रा कम पायी जाती है",
+    "optionB": "वसा गोलिकाएँ छोटी-छोटी होती हैं",
+    "optionC": "वसा की मात्रा बहुत ही कम होती है",
+    "optionD": "उपर्युक्त सभी",
+    "correctAnswer": "B"
+  }
+]
