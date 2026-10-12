@@ -1,0 +1,1937 @@
+[
+  {
+    "id": "hindi-grammar-gk::तवर्ग का उच्चारण-स्थान है ?",
+    "question": "What is the pronunciation place of the तवर्ग?",
+    "optionA": "Murdha",
+    "optionB": "Dant",
+    "optionC": "Ostha",
+    "optionD": "Kantha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पवर्ग का उच्चारण स्थान है ?",
+    "question": "What is the pronunciation place of the पवर्ग?",
+    "optionA": "Dant",
+    "optionB": "Kantha",
+    "optionC": "Ostha",
+    "optionD": "Murdha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::चवर्ग का उच्चारण स्थान है ?",
+    "question": "What is the pronunciation place of the चवर्ग?",
+    "optionA": "Talu",
+    "optionB": "Ostha",
+    "optionC": "Kantha",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::वर्णों के समूह को क्या कहते हैं ?",
+    "question": "What is the group of letters called?",
+    "optionA": "Samuh Shabd",
+    "optionB": "Sanyukt Shabd",
+    "optionC": "Varnamala",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::क्ष्, त्र और ज्ञ ये तीनों कौन-सा व्यंजन है ?",
+    "question": "What type of consonant are क्ष्, त्र and ज्ञ?",
+    "optionA": "Sanyukt Vyanjan",
+    "optionB": "Ushma Vyanjan",
+    "optionC": "Tavargiya Vyanjan",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::पुस्तक कौन-सा शब्द है ?",
+    "question": "What type of word is पुस्तक?",
+    "optionA": "Tadbhav",
+    "optionB": "Tatsam",
+    "optionC": "Deshaaj",
+    "optionD": "Videshaj",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::आग कौन-सा शब्द है ?",
+    "question": "What type of word is आग?",
+    "optionA": "Tatsam",
+    "optionB": "Tadbhav",
+    "optionC": "Deshaaj",
+    "optionD": "Videshaj",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पृथ्वी कौन-सा शब्द है ?",
+    "question": "What type of word is पृथ्वी?",
+    "optionA": "Tatsam",
+    "optionB": "Tadbhav",
+    "optionC": "Deshaaj",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::टेबुल कौन-सा शब्द है ?",
+    "question": "What type of word is टेबुल?",
+    "optionA": "Deshaaj",
+    "optionB": "Tadbhav",
+    "optionC": "Videshaj",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::नाक कौन-सा शब्द है ?",
+    "question": "What type of word is नाक?",
+    "optionA": "Yogik",
+    "optionB": "Rudh",
+    "optionC": "Yogarudh",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::फूल कौन-सा संज्ञा है ?",
+    "question": "Flower is which type of noun?",
+    "optionA": "Collective",
+    "optionB": "Common",
+    "optionC": "Proper",
+    "optionD": "Abstract",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::ईमानदारी कौन-सा संज्ञा है ?",
+    "question": "Honesty is which type of noun?",
+    "optionA": "Proper",
+    "optionB": "Abstract",
+    "optionC": "Collective",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::लंबोदर कौन-सा शब्द है ?",
+    "question": "Lambodar is which type of word?",
+    "optionA": "Prakrit",
+    "optionB": "Compound",
+    "optionC": "Prakrit Compound",
+    "optionD": "All of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::सोना कौन-सा संज्ञा है ?",
+    "question": "Gold is which type of noun?",
+    "optionA": "Abstract",
+    "optionB": "Collective",
+    "optionC": "Material",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::मैं कौन-सा पुरुष है ?",
+    "question": "I am which person?",
+    "optionA": "First person",
+    "optionB": "Second person",
+    "optionC": "Third person",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::पुष्प कौन-सा शब्द है ?",
+    "question": "Pushp is which type of word?",
+    "optionA": "Tatsam",
+    "optionB": "Tadbhav",
+    "optionC": "Deshi",
+    "optionD": "Videshi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::खयाल कौन-सा शब्द है ?",
+    "question": "Khayal is which type of word?",
+    "optionA": "Deshi",
+    "optionB": "Videshi",
+    "optionC": "Tadbhav",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::तेंदुआ कौन-सा शब्द है ?",
+    "question": "Tendua is which type of word?",
+    "optionA": "Deshi",
+    "optionB": "Videshi",
+    "optionC": "Tatsam",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;कोई&#39; विशेषण है ?",
+    "question": "'कोई' विशेषण है ?",
+    "optionA": "परिमाणवाचक विशेषण",
+    "optionB": "सार्वनामिक विशेषण",
+    "optionC": "गुणवाचक विशेषण",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;तुम जा रहे हो&#39; ये कौन-सा काल है ?",
+    "question": "'तुम जा रहे हो' ये कौन-सा काल है ?",
+    "optionA": "वर्तमानकाल",
+    "optionB": "भूतकाल",
+    "optionC": "भविष्यत्काल",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::नाक कौन-सा लिंग है ?",
+    "question": "नाक कौन-सा लिंग है ?",
+    "optionA": "पुलिंग",
+    "optionB": "स्त्रीलिंग",
+    "optionC": "(A) और (B) दोनों",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::समास कितने प्रकार के होते हैं ?",
+    "question": "समास कितने प्रकार के होते हैं ?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "6",
+    "optionD": "8",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::नवयुवक कौन-सा समास है ?",
+    "question": "नवयुवक कौन-सा समास है ?",
+    "optionA": "कर्मधारय",
+    "optionB": "बहुव्रीहि",
+    "optionC": "द्वंद्व",
+    "optionD": "द्विगु",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::तिदिन कौन-सा समास है ?",
+    "question": "तिदिन कौन-सा समास है ?",
+    "optionA": "बहुव्रीहि",
+    "optionB": "द्वंद्व",
+    "optionC": "अव्ययीभाव",
+    "optionD": "द्विगु",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::देशभक्ति कौन-सा समास है ?",
+    "question": "देशभक्ति कौन-सा समास है ?",
+    "optionA": "कर्मधारय",
+    "optionB": "तत्पुरुष",
+    "optionC": "द्वंद्व",
+    "optionD": "द्विगु",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::नीलकंठ कौन-सा समास है ?",
+    "question": "नीलकंठ कौन-सा समास है ?",
+    "optionA": "कर्मधारय",
+    "optionB": "बहुव्रीहि",
+    "optionC": "अव्ययीभाव",
+    "optionD": "तत्पुरुष",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पाप-पुण्य कौन-सा समास है ?",
+    "question": "पाप-पुण्य कौन-सा समास है ?",
+    "optionA": "द्विगु",
+    "optionB": "अव्ययीभाव",
+    "optionC": "द्वंद्व",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::दोपहर कौन-सा समास है ?",
+    "question": "दोपहर कौन-सा समास है ?",
+    "optionA": "तत्पुरुष समास",
+    "optionB": "कर्मधारय समास",
+    "optionC": "बहुव्रीहि समास",
+    "optionD": "द्विगु समास",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;मैं आज नहीं पढूँगा&#39; कौन-सा वाक्य है ?",
+    "question": "'मैं आज नहीं पढूँगा' कौन-सा वाक्य है ?",
+    "optionA": "Negative sentence",
+    "optionB": "Imperative sentence",
+    "optionC": "Interrogative sentence",
+    "optionD": "Exclamatory sentence",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;ओह! यह पिट ही गया&#39; कौन-सा वाक्य है ?",
+    "question": "'ओह! यह पिट ही गया' कौन-सा वाक्य है ?",
+    "optionA": "Imperative sentence",
+    "optionB": "Exclamatory sentence",
+    "optionC": "Interrogative sentence",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;यदि तुम चलो तो मैं भी चलूँ&#39; कौन-सा वाक्य है ?",
+    "question": "'यदि तुम चलो तो मैं भी चलूँ' कौन-सा वाक्य है ?",
+    "optionA": "Exclamatory sentence",
+    "optionB": "Interrogative sentence",
+    "optionC": "Conditional sentence",
+    "optionD": "Negative sentence",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;तुम अपने काम में सफल रहो&#39; कौन-सा वाक्य है ?",
+    "question": "'तुम अपने काम में सफल रहो' कौन-सा वाक्य है ?",
+    "optionA": "Optative sentence",
+    "optionB": "Doubtful sentence",
+    "optionC": "Imperative sentence",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;रसभरा&#39; कौन-सा तत्पुरुष समास है ?",
+    "question": "'रसभरा' कौन-सा तत्पुरुष समास है ?",
+    "optionA": "Karma-tatpurusha",
+    "optionB": "Karana-tatpurusha",
+    "optionC": "Sampradana-tatpurusha",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;स्वर्गप्राप्त&#39; कौन-सा तत्पुरुष समास है ?",
+    "question": "'स्वर्गप्राप्त' कौन-सा तत्पुरुष समास है ?",
+    "optionA": "Karma-tatpurusha",
+    "optionB": "Karana-tatpurusha",
+    "optionC": "Sampradana-tatpurusha",
+    "optionD": "Sambandha-tatpurusha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;यथासंभव&#39; कौन-सा समास है ?",
+    "question": "'यथासंभव' कौन-सा समास है ?",
+    "optionA": "Dvigu",
+    "optionB": "Tatpurusha",
+    "optionC": "Avyayibhava",
+    "optionD": "Karmadharaya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;वीणापाणि&#39; कौन-सा समास है ?",
+    "question": "'वीणापाणि' कौन-सा समास है ?",
+    "optionA": "Karana-tatpurusha samasa",
+    "optionB": "Karmadharaya samasa",
+    "optionC": "Bahuvrihi samasa",
+    "optionD": "Dvandva samasa",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;दुअन्नी&#39; कौन-सा समास है ?",
+    "question": "'दुअन्नी' कौन-सा समास है ?",
+    "optionA": "Avyayibhava samasa",
+    "optionB": "Karmadharaya samasa",
+    "optionC": "Bahuvrihi samasa",
+    "optionD": "Dvigu samasa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::पदबंध कितने प्रकार है ?",
+    "question": "पदबंध कितने प्रकार है ?",
+    "optionA": "2",
+    "optionB": "3",
+    "optionC": "4",
+    "optionD": "5",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;आप&#39; कौन-सा सर्वनाम है ?",
+    "question": "'आप' कौन-सा सर्वनाम है ?",
+    "optionA": "निश्चयवाचक",
+    "optionB": "अनिश्चयवाचक",
+    "optionC": "निजवाचक",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;गोल&#39; विशेषण है ?",
+    "question": "'गोल' विशेषण है ?",
+    "optionA": "सार्वनामिक विशेषण",
+    "optionB": "परिमाणवाचक विशेषण",
+    "optionC": "गुणवाचक विशेषण",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में अशुद्ध शब्द है ?",
+    "question": "निम्नलिखित में अशुद्ध शब्द है ?",
+    "optionA": "एकत्र",
+    "optionB": "नीरस",
+    "optionC": "मंत्रीमंडल",
+    "optionD": "योगिराज",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से आग का पर्यायवाची शब्द नहीं है ?",
+    "question": "निम्नलिखित में से आग का पर्यायवाची शब्द नहीं है ?",
+    "optionA": "वायुसखा",
+    "optionB": "हुताशन",
+    "optionC": "विभावसु",
+    "optionD": "विपथगा",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से इच्छा का पर्यायवाची शब्द नहीं है ?",
+    "question": "निम्नलिखित में से इच्छा का पर्यायवाची शब्द नहीं है ?",
+    "optionA": "लिप्सा",
+    "optionB": "कामना",
+    "optionC": "यातना",
+    "optionD": "स्पृहा",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से पानी का पर्यायवाची शब्द नहीं है ?",
+    "question": "निम्नलिखित में से पानी का पर्यायवाची शब्द नहीं है ?",
+    "optionA": "अंबु",
+    "optionB": "सर",
+    "optionC": "मेघपुष्प",
+    "optionD": "नीर",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से घर का पर्यायवाची शब्द नहीं है ?",
+    "question": "निम्नलिखित में से घर का पर्यायवाची शब्द नहीं है ?",
+    "optionA": "पावक",
+    "optionB": "सदन",
+    "optionC": "शाला",
+    "optionD": "निकेतन",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::विशेषण कितनें प्रकार के होते हैं ?",
+    "question": "विशेषण कितनें प्रकार के होते हैं ?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "6",
+    "optionD": "3",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::सर्वनाम कितनें प्रकार के होते हैं ?",
+    "question": "सर्वनाम कितनें प्रकार के होते हैं ?",
+    "optionA": "3",
+    "optionB": "4",
+    "optionC": "5",
+    "optionD": "6",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::उत्पत्ति की दृष्टि से शब्दों के कितनें भेद हैं ?",
+    "question": "उत्पत्ति की दृष्टि से शब्दों के कितनें भेद हैं ?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "5",
+    "optionD": "7",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::रचना की दृष्टि से शब्दों के कितनें भेद हैं ?",
+    "question": "From the perspective of structure, how many types of word divisions are there?",
+    "optionA": "2",
+    "optionB": "3",
+    "optionC": "4",
+    "optionD": "5",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::संज्ञा के कितनें भेद हैं ?",
+    "question": "How many types of nouns are there?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "5",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::विकारी और अविकारी शब्दों के कितनें भेद हैं ?",
+    "question": "How many types of inflective and non-inflective words are there?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "6",
+    "optionD": "8",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन सा शब्द संज्ञा से बना हुआ विशेषण है?",
+    "question": "Which of these words is an adjective formed from a noun?",
+    "optionA": "कृपा",
+    "optionB": "जाति",
+    "optionC": "नमक",
+    "optionD": "कुलीन",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;यथासमय&#39; समास है ?",
+    "question": "&#39;यथासमय&#39; समास है ?",
+    "optionA": "तत्पुरुष",
+    "optionB": "अव्ययीभाव",
+    "optionC": "कर्मधारय",
+    "optionD": "बहुव्रीहि",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;प्रत्येक&#39; समास है ?",
+    "question": "&#39;प्रत्येक&#39; समास है ?",
+    "optionA": "द्वंद्व",
+    "optionB": "द्विगु",
+    "optionC": "अव्ययीभाव",
+    "optionD": "कर्मधारय",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;तिरंगा&#39; है ?",
+    "question": "&#39;तिरंगा&#39; है ?",
+    "optionA": "कर्मधारय समास",
+    "optionB": "बहुव्रीहि समास",
+    "optionC": "द्वंद्व समास",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;कवि&#39; का स्त्रीलिंग रूप क्या है ?",
+    "question": "&#39;कवि&#39; का स्त्रीलिंग रूप क्या है ?",
+    "optionA": "कवियत्री",
+    "optionB": "कवियाणी",
+    "optionC": "कवयित्री",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;सूर्य&#39; का स्त्रीलिंग रूप क्या है ?",
+    "question": "&#39;सूर्य&#39; का स्त्रीलिंग रूप क्या है ?",
+    "optionA": "सूर्याणी",
+    "optionB": "सूर्यी",
+    "optionC": "सूरा",
+    "optionD": "सूर्या",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;पेड़ से फल गिरा&#39; इस वाक्य में &#39;से&#39; किस कारक की विभक्ति है ?",
+    "question": "&#39;पेड़ से फल गिरा&#39; इस वाक्य में &#39;से&#39; किस कारक की विभक्ति है ?",
+    "optionA": "सम्बन्ध",
+    "optionB": "अपादान",
+    "optionC": "सम्प्रदान",
+    "optionD": "अधिकरण",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;वह कुल्हाड़ी से वृक्ष काटता है&#39; इस वाक्य में &#39;से&#39; किस कारक की विभक्ति है ?",
+    "question": "&#39;वह कुल्हाड़ी से वृक्ष काटता है&#39; इस वाक्य में &#39;से&#39; किस कारक की विभक्ति है ?",
+    "optionA": "अधिकरण",
+    "optionB": "सम्प्रदान",
+    "optionC": "करण",
+    "optionD": "अपादान",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;माँ ने बच्चे को सुलाया&#39; इस वाक्य में &#39;को&#39; किस कारक की विभक्ति है ?",
+    "question": "&#39;माँ ने बच्चे को सुलाया&#39; इस वाक्य में &#39;को&#39; किस कारक की विभक्ति है ?",
+    "optionA": "सम्प्रदान",
+    "optionB": "कर्म",
+    "optionC": "करण",
+    "optionD": "अपादान",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;अध्यापक&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "&#39;अध्यापक&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "optionA": "अध्यापिका",
+    "optionB": "अध्यापकी",
+    "optionC": "अध्यापका",
+    "optionD": "अध्यापिकी",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;नायक&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "&#39;नायक&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "optionA": "नायीका",
+    "optionB": "नायिकी",
+    "optionC": "नायिका",
+    "optionD": "नायका",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;महाशय&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "What is the feminine form of the word 'Mahashay' ?",
+    "optionA": "Mahashini",
+    "optionB": "Mahashayi",
+    "optionC": "Mahashaya",
+    "optionD": "Mahasiyi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;नेता&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "What is the feminine form of the word 'Neta' ?",
+    "optionA": "Netri",
+    "optionB": "Netin",
+    "optionC": "Netr",
+    "optionD": "Netaji",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;दाता&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "What is the feminine form of the word 'Data' ?",
+    "optionA": "Chhatra",
+    "optionB": "Datr",
+    "optionC": "Chhati",
+    "optionD": "Dartri",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;इन्द्र&#39; शब्द का स्त्रीलिंग रूप क्या है ?",
+    "question": "What is the feminine form of the word 'Indra' ?",
+    "optionA": "Indra",
+    "optionB": "Indrani",
+    "optionC": "Indrani",
+    "optionD": "Indrani",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;ञ&#39; का उच्चारण-स्थान क्या है ?",
+    "question": "What is the place of articulation for the letter 'ञ' ?",
+    "optionA": "Dant",
+    "optionB": "Dantal",
+    "optionC": "Tal",
+    "optionD": "Murdha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;उ&#39; ध्वनि का उच्चारण-स्थान क्या है ?",
+    "question": "What is the place of articulation for the sound 'उ' ?",
+    "optionA": "Tal",
+    "optionB": "Ostha",
+    "optionC": "Kanth",
+    "optionD": "Dantal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;समुच्चय&#39; का सही सन्धि-विच्छेद क्या है ?",
+    "question": "What is the correct Sandhi-Vichedh for 'Samuccaya' ?",
+    "optionA": "Samu + Cchaya",
+    "optionB": "Sam + Ut + Ay",
+    "optionC": "Sam + Uccaya",
+    "optionD": "Sam + Uccaya",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;सूर्योदय&#39; का सही सन्धि-विच्छेद क्या है ?",
+    "question": "What is the correct Sandhi-Vichedh for 'Suryodaya' ?",
+    "optionA": "Suryo + Daya",
+    "optionB": "Surye + Udaya",
+    "optionC": "Sury + Udaya",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::महेन्द्र का सन्धि विच्छेद क्या है ?",
+    "question": "What is the Sandhi-Vichedh for 'Mahendra' ?",
+    "optionA": "Maho+Indra",
+    "optionB": "Mahe+Indra",
+    "optionC": "Maha+Indra",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;क्या आप जा रहे हैं ?&#39; &#39;क्या&#39; में कौन-सा निपात है ?",
+    "question": "In the sentence 'Kya aap ja rahe hain?', which type of nipat is 'Kya'?",
+    "optionA": "Avdharanabodhak",
+    "optionB": "Prashrabodhak",
+    "optionC": "Adrabodhak",
+    "optionD": "Tulanabodhak",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;मैं भी यह जानता हूँ ।&#39; इस वाक्य में &#39;भी&#39; में कौन-सा निपात है ?",
+    "question": "&#39;मैं भी यह जानता हूँ ।&#39; इस वाक्य में &#39;भी&#39; में कौन-सा निपात है ?",
+    "optionA": "बलदायक निपात",
+    "optionB": "निषेधात्मक निपात",
+    "optionC": "नकारात्मक निपात",
+    "optionD": "स्वीकारात्मक निपात",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;झूठ मत बोलो&#39; । इस वाक्य में &#39;मत&#39; कौन-सा निपात है ?",
+    "question": "&#39;झूठ मत बोलो&#39; । इस वाक्य में &#39;मत&#39; कौन-सा निपात है ?",
+    "optionA": "सीमाबोधक",
+    "optionB": "अवधारणबोधक",
+    "optionC": "तुलनाबोधक",
+    "optionD": "निषेधबोधक",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;तुम्हें राम के आने तक प्रतीक्षा करनी होगी&#39; । इस वाक्य में &#39;तक&#39; कौन-सा निपात है ?",
+    "question": "&#39;तुम्हें राम के आने तक प्रतीक्षा करनी होगी&#39; । इस वाक्य में &#39;तक&#39; कौन-सा निपात है ?",
+    "optionA": "निषेधात्मक निपात",
+    "optionB": "नकारात्मक निपात",
+    "optionC": "बलदायक निपात",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;पशु-पक्षी ही अपना हित समझते हैं ।&#39; । इस वाक्य में &#39;ही&#39; कौन-सा निपात है ?",
+    "question": "&#39;पशु-पक्षी ही अपना हित समझते हैं ।&#39; । इस वाक्य में &#39;ही&#39; कौन-सा निपात है ?",
+    "optionA": "आदरबोधक",
+    "optionB": "बलदायक",
+    "optionC": "अवधारणबोधक",
+    "optionD": "तुलनाबोधक",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;काश ! आज वर्षा होती।&#39; । इस वाक्य में &#39;काश&#39; कौन-सा निपात है ?",
+    "question": "&#39;काश ! आज वर्षा होती।&#39; । इस वाक्य में &#39;काश&#39; कौन-सा निपात है ?",
+    "optionA": "आदरबोधक",
+    "optionB": "सीमाबोधक",
+    "optionC": "विस्मयादिबोधक",
+    "optionD": "अवधारणबोधक",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निपात कितने प्रकार के होते हैं ?",
+    "question": "निपात कितने प्रकार के होते हैं ?",
+    "optionA": "5",
+    "optionB": "7",
+    "optionC": "8",
+    "optionD": "9",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;उर्वरा&#39; शब्द के लिए वाक्यांश है ?",
+    "question": "&#39;उर्वरा&#39; शब्द के लिए वाक्यांश है ?",
+    "optionA": "ऊसर भूमि",
+    "optionB": "समतल भूमि",
+    "optionC": "बंजर भूमि",
+    "optionD": "उपजाऊ भूमि",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;व्याकरण जानने वाला&#39; वाक्य के लिए एक शब्द है ?",
+    "question": "&#39;व्याकरण जानने वाला&#39; वाक्य के लिए एक शब्द है ?",
+    "optionA": "व्याकरण-विशेषज्ञ",
+    "optionB": "व्याकरण पण्डित",
+    "optionC": "वैयाकरण",
+    "optionD": "व्याकरण ज्ञाता",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::गाल बजाना का अर्थ है ?",
+    "question": "गाल बजाना का अर्थ है ?",
+    "optionA": "पिटाई करना",
+    "optionB": "गाली देना",
+    "optionC": "डींग हाँकना",
+    "optionD": "क्रोधित होना",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::अगर-मगर करना का अर्थ है ?",
+    "question": "अगर-मगर करना का अर्थ है ?",
+    "optionA": "कपट करना",
+    "optionB": "बहाने बनाना",
+    "optionC": "इधर की बात उधर करना",
+    "optionD": "व्यर्थ समय गँवाना",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::शुद्ध शब्द कौन-सा है ?",
+    "question": "Which is the correct word?",
+    "optionA": "sachidananda",
+    "optionB": "saccidananda",
+    "optionC": "sachatananda",
+    "optionD": "saccchidananda",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::शुद्ध वर्तनी वाला शब्द कौन-सा है ?",
+    "question": "Which word has correct spelling?",
+    "optionA": "susapti",
+    "optionB": "susupti",
+    "optionC": "susupti",
+    "optionD": "susupti",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::सही वर्तनी छाँटिए ?",
+    "question": "Select the correct spelling?",
+    "optionA": "jayotsna",
+    "optionB": "jyotsna",
+    "optionC": "jyotsna",
+    "optionD": "jotsna",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::शुद्ध शब्द क्या है ?",
+    "question": "What is the correct word?",
+    "optionA": "sampurna",
+    "optionB": "sapurna",
+    "optionC": "sampurna",
+    "optionD": "sarmpurna",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::दयानन्द में प्रयुक्त संधि का नाम है ?",
+    "question": "The name of the sandhi used in Dayananda is?",
+    "optionA": "gun sandhi",
+    "optionB": "vyajjan sandhi",
+    "optionC": "dirgh sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::कपीश में प्रयुक्त संधि का नाम है ?",
+    "question": "The name of the sandhi used in Kapish is?",
+    "optionA": "vrddhi sandhi",
+    "optionB": "visarg sandhi",
+    "optionC": "vyajjan sandhi",
+    "optionD": "dirgh sandhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::सदैव में प्रयुक्त संधि का नाम है ?",
+    "question": "The name of the sandhi used in Sadayev is?",
+    "optionA": "swar sandhi",
+    "optionB": "visarg sandhi",
+    "optionC": "dirgh sandhi",
+    "optionD": "vyajjan sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::सन्मति का सही संधि-विच्छेद है ?",
+    "question": "The correct sandhi-viched of Sanmati is?",
+    "optionA": "sam + mati",
+    "optionB": "sat + mati",
+    "optionC": "sad + mati",
+    "optionD": "san + mati",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इत्यादि का सही संधि-विच्छेद है ?",
+    "question": "The correct sandhi-viched of Ityadi is?",
+    "optionA": "it + yadi",
+    "optionB": "iti + adi",
+    "optionC": "iti + yadi",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में कौन-सा शब्द वृद्धि संधि का उदाहरण नहीं है ?",
+    "question": "Which of the following words is not an example of Vrddhi sandhi?",
+    "optionA": "sadayev",
+    "optionB": "paramodaraya",
+    "optionC": "gurupadesh",
+    "optionD": "jalough",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में से दीर्घ संधि युक्त पद कौन-सा है ?",
+    "question": "Which of the following is a word with Dīrgha Sandhi?",
+    "optionA": "Maharshi",
+    "optionB": "Dayāri",
+    "optionC": "Suryodaya",
+    "optionD": "Devaendra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन स्वर संधि का उदाहरण है ?",
+    "question": "Which of these is an example of Varna Sandhi?",
+    "optionA": "Sanyog",
+    "optionB": "Pavan",
+    "optionC": "Namaskar",
+    "optionD": "Manohar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;पवन&#39; का सही संधि-विच्छेद है ?",
+    "question": "What is the correct Sandhi-Vichedh of 'Pavan'?",
+    "optionA": "Pa + Avan",
+    "optionB": "Po + An",
+    "optionC": "Pau + An",
+    "optionD": "Pa + Van",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित शब्दों में से किसमें व्यंजन संधि है ?",
+    "question": "Which of the following words has Vyanjan Sandhi?",
+    "optionA": "Saptarshi",
+    "optionB": "Satkar",
+    "optionC": "Himalaya",
+    "optionD": "Niradhar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित शब्दों में से किसमें विसर्ग संधि है ?",
+    "question": "Which of the following words has Visarg Sandhi?",
+    "optionA": "Narendra",
+    "optionB": "Sajjan",
+    "optionC": "Sadayev",
+    "optionD": "Ataev",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::उत् + हार के योग से कौन-सा शब्द बनेगा ?",
+    "question": "Which word will be formed by the combination of Ut + Har?",
+    "optionA": "Utār",
+    "optionB": "Uddhār",
+    "optionC": "Udār",
+    "optionD": "Āhār",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;पर्यावरण&#39; का सही संधि-विच्छेद है ?",
+    "question": "What is the correct Sandhi-Vichedh of 'Paryāvaran'?",
+    "optionA": "Paryā + Vaṇa",
+    "optionB": "Paridhi + Āvaraṇa",
+    "optionC": "Parid + Āvaraṇa",
+    "optionD": "Pari + Āvaraṇa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::अनुनासिक का संबंध होता है ?",
+    "question": "What is the relation of Anunāsik?",
+    "optionA": "Only from mouth",
+    "optionB": "Both from nose and mouth",
+    "optionC": "Only from nose",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::अनुनासिक व्यंजन कौन-से होते है ?",
+    "question": "Which are Anunāsik Vyanjan?",
+    "optionA": "Third letter of the varga",
+    "optionB": "First letter of the varga",
+    "optionC": "Fifth letter of the varga",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी वर्णमाला में स्वरों की संख्या है ?",
+    "question": "How many vowels are there in the Hindi alphabet?",
+    "optionA": "Eight",
+    "optionB": "Nine",
+    "optionC": "Eleven",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::जो पहले कभी न हुआ हो ?",
+    "question": "Which has never happened before?",
+    "optionA": "Adbhut",
+    "optionB": "Anupam",
+    "optionC": "Apurva",
+    "optionD": "Abhutapoorv",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::जो कहा न जा सके ?",
+    "question": "Which cannot be described?",
+    "optionA": "Akthanee",
+    "optionB": "Agamy",
+    "optionC": "Ajar",
+    "optionD": "Akshamy",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::समय की दृष्टि से अनुकूल ?",
+    "question": "Favorable from the perspective of time?",
+    "optionA": "Anukul",
+    "optionB": "Samayanukul",
+    "optionC": "Pratikul",
+    "optionD": "Samanukul",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::जो सबकुछ जानता है ?",
+    "question": "Who knows everything?",
+    "optionA": "Ajny",
+    "optionB": "Kritagy",
+    "optionC": "Visheshgy",
+    "optionD": "Sarvagy",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::जिसकी गर्दन सुंदर है ?",
+    "question": "Whose neck is beautiful?",
+    "optionA": "Sudarshan",
+    "optionB": "Sugreev",
+    "optionC": "Sugardan",
+    "optionD": "Sugat",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पुरुष एवं स्त्री का जोड़ा ?",
+    "question": "Couple of man and woman?",
+    "optionA": "Pati-Patni",
+    "optionB": "Dampati",
+    "optionC": "Yugal",
+    "optionD": "Yugm",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::कार्य को नए ढंग से करने की पद्धति ?",
+    "question": "Method of doing work in a new way?",
+    "optionA": "Parasparik",
+    "optionB": "Navagataroop",
+    "optionC": "Adhunikikaran",
+    "optionD": "Navinikaran",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::जंगल में लगने वाली आग ?",
+    "question": "Fire that breaks out in the forest?",
+    "optionA": "Davanal",
+    "optionB": "Kamanal",
+    "optionC": "Badvanal",
+    "optionD": "Jhtranal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::श्नादि के उत्तर की अपेक्षा करने वाला ?",
+    "question": "One who expects the answer to a question?",
+    "optionA": "Uttarayani",
+    "optionB": "Uttarapekshi",
+    "optionC": "Uttariy",
+    "optionD": "Uttaradhikari",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::ज्येष्ठ का विलोम शब्द है ?",
+    "question": "The antonym of 'Jyeshth' is?",
+    "optionA": "Purav",
+    "optionB": "Agaj",
+    "optionC": "Kanishth",
+    "optionD": "Bhoot",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::गमन का विलोम शब्द है ?",
+    "question": "What is the antonym of 'gaman'?",
+    "optionA": "Chadna",
+    "optionB": "Jaana",
+    "optionC": "Utranā",
+    "optionD": "Aagaman",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::अवनि का विलोम शब्द है ?",
+    "question": "What is the antonym of 'avani'?",
+    "optionA": "Aasmaan",
+    "optionB": "Gamana",
+    "optionC": "Ambar",
+    "optionD": "Aakaash",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::हेय का विलोम शब्द है ?",
+    "question": "What is the antonym of 'heya'?",
+    "optionA": "Haar",
+    "optionB": "Haasya",
+    "optionC": "Graahya",
+    "optionD": "Graamya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::श्रीगणेश का विलोम शब्द है ?",
+    "question": "What is the antonym of 'Shri Ganesh'?",
+    "optionA": "Vinaash",
+    "optionB": "Itishree",
+    "optionC": "Shri Radha",
+    "optionD": "Inmein se koi nahin",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::अथ का विलोम शब्द है ?",
+    "question": "What is the antonym of 'ath'?",
+    "optionA": "Ant",
+    "optionB": "Adh",
+    "optionC": "Arth",
+    "optionD": "Iti",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::अमिय का पर्यायवाची शब्द है ?",
+    "question": "What is the synonym of 'amiya'?",
+    "optionA": "Vish",
+    "optionB": "Aamra",
+    "optionC": "Madhup",
+    "optionD": "Sudha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::पृथ्वी का पर्यायवाची शब्द है ?",
+    "question": "What is the synonym of 'prithvi'?",
+    "optionA": "Ratnagarbha",
+    "optionB": "Svarnamayi",
+    "optionC": "Vasumati",
+    "optionD": "Hiranyagarbha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::भाषा शब्द संस्कृत के किस धातु से बना है ?",
+    "question": "From which Sanskrit root word is the word 'bhasha' formed?",
+    "optionA": "Bhaashya",
+    "optionB": "Bhaash",
+    "optionC": "Bhaas",
+    "optionD": "Bhaash",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;गिरीश&#39; में कौन सा संधि है ?",
+    "question": "'गिरीश' में कौन सा संधि है ?",
+    "optionA": "गुण संधि",
+    "optionB": "दीर्घ संधि",
+    "optionC": "वृद्धि संधि",
+    "optionD": "अयादि संधि",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न मे से अल्प प्राण वर्ण कौन से है ?",
+    "question": "निम्न मे से अल्प प्राण वर्ण कौन से है ?",
+    "optionA": "अ, आ",
+    "optionB": "फ, भ",
+    "optionC": "क, ग",
+    "optionD": "थ, ध",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन-सी शब्द शुद्ध है ?",
+    "question": "इनमें से कौन-सी शब्द शुद्ध है ?",
+    "optionA": "भष्म",
+    "optionB": "हिंदु",
+    "optionC": "चिन्ह",
+    "optionD": "प्राण",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन-सी शब्द अशुद्ध है ?",
+    "question": "इनमें से कौन-सी शब्द अशुद्ध है ?",
+    "optionA": "कलश",
+    "optionB": "पूण्य",
+    "optionC": "रसायण",
+    "optionD": "कल्याण",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन-सी युग्म शब्द गलत है ?",
+    "question": "इनमें से कौन-सी युग्म शब्द गलत है ?",
+    "optionA": "नशा- मद",
+    "optionB": "निसान- चिह्न",
+    "optionC": "नगर- शहर",
+    "optionD": "नारी- स्त्री",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::संधि कितने प्रकार के होते है ?",
+    "question": "संधि कितने प्रकार के होते है ?",
+    "optionA": "1",
+    "optionB": "2",
+    "optionC": "3",
+    "optionD": "7",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::दिए गए शब्दों में शुद्ध वर्तनी वाला शब्द कौन-सा है ?",
+    "question": "दिए गए शब्दों में शुद्ध वर्तनी वाला शब्द कौन-सा है ?",
+    "optionA": "सुसप्ति",
+    "optionB": "सुषप्ति",
+    "optionC": "सुषुप्ति",
+    "optionD": "सुसुप्ति",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::दिए गए शब्दों में शुद्ध वर्तनी वाला शब्द है",
+    "question": "दिए गए शब्दों में शुद्ध वर्तनी वाला शब्द है",
+    "optionA": "सर्वोतम",
+    "optionB": "कीर्ती",
+    "optionC": "स्रोत",
+    "optionD": "संसारिक",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;सिरतोड़&#39; में कौन सा समास है ?",
+    "question": "'सिरतोड़' में कौन सा समास है ?",
+    "optionA": "करण-तत्पुरुष",
+    "optionB": "अपादान- तत्पुरुष",
+    "optionC": "संप्रदान-तत्पुरुष",
+    "optionD": "कर्म- तत्पुरुष",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;महात्मा&#39; में कौन सा समास है ?",
+    "question": "'महात्मा' में कौन सा समास है ?",
+    "optionA": "तत्पुरुष समास",
+    "optionB": "अव्ययीभाव समास",
+    "optionC": "बहुव्रीहि समास",
+    "optionD": "कर्मधारय समास",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;तरुण&#39; का विपरीतार्थक शब्द बताइए ?",
+    "question": "What is the antonym of 'तरुण' ?",
+    "optionA": "Mand",
+    "optionB": "Vriddh",
+    "optionC": "Sust",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन-सी विपरीतार्थक शब्द &#39;पतझड़&#39; का अर्थ है ?",
+    "question": "Which of these is an antonym of 'पतझड़' ?",
+    "optionA": "Vasant",
+    "optionB": "Sheetal",
+    "optionC": "Sardi",
+    "optionD": "Vistar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से अलंकार के कौन सा भेद है ?",
+    "question": "Which of these is a type of Alankar ?",
+    "optionA": "Chekanupras",
+    "optionB": "Shadalankar",
+    "optionC": "Laatanupras",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::अर्थालंकार के कितने भेद होते है ?",
+    "question": "How many types of Arthalankar are there ?",
+    "optionA": "10",
+    "optionB": "11",
+    "optionC": "12",
+    "optionD": "15",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से रस के कौन सा भेद है ?",
+    "question": "Which of these is a type of Rasa ?",
+    "optionA": "Karun",
+    "optionB": "Roopak",
+    "optionC": "Ullekh",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::स्थान के आधार पर बताइए कि मूर्धन्य व्यंजन कौन-से हैं ?",
+    "question": "On the basis of place, which are the Murdhanya Vyanjan ?",
+    "optionA": "Ga, Gha",
+    "optionB": "Pa, Pha",
+    "optionC": "Da, Dha",
+    "optionD": "Ja, Jha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में से &#39;अल्पप्राण&#39; वर्ण कौन-से है ?",
+    "question": "Which of these are 'Alppran' Varn ?",
+    "optionA": "A, Aa",
+    "optionB": "Ph, Bha",
+    "optionC": "Ka, Ga",
+    "optionD": "Th, Dha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में से &#39;नासिक्य&#39; व्यंजन कौन-सा है ?",
+    "question": "Which of these is a 'Nasikya' Vyanjan ?",
+    "optionA": "Sha",
+    "optionB": "Ja",
+    "optionC": "Ga",
+    "optionD": "Nya",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी वर्णमाला में &#39;अयोगवाह&#39; वर्ण कौन-से है ?",
+    "question": "Which are the 'Ayogvah' Varn in Hindi Varnamala ?",
+    "optionA": "I, Ii",
+    "optionB": "U, Uu",
+    "optionC": "An, Ah",
+    "optionD": "A, Aa",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में बताइए कि किस शब्द में द्वित्व व्यंजन है ?",
+    "question": "Tell in which of the following words there is a Dwitya Vyanjan ?",
+    "optionA": "Punah",
+    "optionB": "Utsah",
+    "optionC": "Allahabad",
+    "optionD": "Delhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में से कौन-सा घोष वर्ण है ?",
+    "question": "Which of the following is a Ghosh Varna?",
+    "optionA": "Kha",
+    "optionB": "Tha",
+    "optionC": "Ma",
+    "optionD": "Cha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::कौन-सा अमानक वर्ण है ?",
+    "question": "Which is an Amanak Varna?",
+    "optionA": "Kha",
+    "optionB": "Ka",
+    "optionC": "Bha",
+    "optionD": "Dha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी में मूलतः वर्णो की संख्या कितनी है ?",
+    "question": "How many Varnas are there originally in Hindi?",
+    "optionA": "50",
+    "optionB": "51",
+    "optionC": "52",
+    "optionD": "53",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;क्ष&#39; ध्वनि किसके अन्तर्गत आती है ?",
+    "question": "Under which category does the 'Ksha' sound fall?",
+    "optionA": "Ghosh Varna",
+    "optionB": "Mool Swar",
+    "optionC": "Talavya",
+    "optionD": "Sanyukt Varna",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;ज्ञ&#39; वर्ण किन वर्णो के संयोग से बना है ?",
+    "question": "From which combination of Varnas is the 'Gnya' Varna formed?",
+    "optionA": "Ja + Nya",
+    "optionB": "J + Nya",
+    "optionC": "Ja + Nya",
+    "optionD": "Ja + Dha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::अघोष वर्ण कौन-सा है ?",
+    "question": "Which is an Agosh Varna?",
+    "optionA": "Sa",
+    "optionB": "A",
+    "optionC": "Ja",
+    "optionD": "Ha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;घ&#39; का उच्चारण स्थान कौन-सा है ?",
+    "question": "What is the pronunciation place of 'Gha'?",
+    "optionA": "Murdha",
+    "optionB": "Dant",
+    "optionC": "Taloo",
+    "optionD": "Kanth",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::जिन शब्दों के अंत में &#39;अ&#39; आता है, उन्हें क्या कहते है ?",
+    "question": "What are the words ending with 'A' called?",
+    "optionA": "Anuswar",
+    "optionB": "Akarant",
+    "optionC": "Antasth",
+    "optionD": "Ayogvah",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पुरोहित में उपसर्ग है ?",
+    "question": "What is the prefix in 'Purohit'?",
+    "optionA": "Pura",
+    "optionB": "Pur",
+    "optionC": "Puras",
+    "optionD": "Purah",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::अवनत शब्द में प्रयुक्त उपसर्ग है",
+    "question": "The prefix used in the word 'Avanat' is",
+    "optionA": "Nata",
+    "optionB": "Avan",
+    "optionC": "Av",
+    "optionD": "A",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::सावधानी शब्द में प्रयुक्त प्रत्यय है",
+    "question": "The suffix used in the word 'sāvadhānī' is",
+    "optionA": "ī",
+    "optionB": "ānī",
+    "optionC": "dhānī",
+    "optionD": "i",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन-सा भाववाचक संज्ञा है ?",
+    "question": "Which of these is a verbal noun?",
+    "optionA": "Shyam",
+    "optionB": "Water",
+    "optionC": "Childhood",
+    "optionD": "River",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::शिव का विशेषण क्या है ?",
+    "question": "What is the adjective of Shiva?",
+    "optionA": "Shiveś",
+    "optionB": "Shail",
+    "optionC": "Shaiv",
+    "optionD": "Shankar",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::भूतकाल के कितने भेद हैं ?",
+    "question": "How many forms of past tense are there?",
+    "optionA": "3",
+    "optionB": "5",
+    "optionC": "6",
+    "optionD": "7",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से अपादान कारक की विभक्ति क्या है ?",
+    "question": "Which of these is the case for the ablative case?",
+    "optionA": "ne",
+    "optionB": "ke liye",
+    "optionC": "se",
+    "optionD": "ko",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;यथार्थ में कौन-सी संधि है ?",
+    "question": "Which sandhi is in 'yathārtha'?",
+    "optionA": "Dīrgha",
+    "optionB": "Vṛddhi",
+    "optionC": "Guṇa",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में तत्सम शब्द का चयन कीजिये ?",
+    "question": "Select the tatsama word from the following?",
+    "optionA": "Varshā",
+    "optionB": "Ānsū",
+    "optionC": "Hāthī",
+    "optionD": "Bārāt",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;मतैक्य&#39; में कौन-सी संधि है ?",
+    "question": "Which sandhi is in 'mataikya'?",
+    "optionA": "Guṇa",
+    "optionB": "Vṛddhi",
+    "optionC": "Dīrgha",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी किस भाषा-परिवार की भाषा है ?",
+    "question": "Which language family does Hindi belong to?",
+    "optionA": "Dravidian",
+    "optionB": "Chinese-Tibetan",
+    "optionC": "Indo-European",
+    "optionD": "Austric",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी भाषा का जन्म हुआ है ?",
+    "question": "From which language was the Hindi language born?",
+    "optionA": "Laukik Sanskrit",
+    "optionB": "Vedic Sanskrit",
+    "optionC": "Pali-Prakrit",
+    "optionD": "Apabhramsha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::शुद्ध वर्तनी का चयन कीजिए ?",
+    "question": "Select the correct spelling?",
+    "optionA": "क्रर्पा",
+    "optionB": "कृपा",
+    "optionC": "क्रिपा",
+    "optionD": "क्रप",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::जाके पाँव न फटे बिवाई सो क्या जाने पीर पराई का अर्थ है ?",
+    "question": "What is the meaning of 'Jāke pā̃v na phate bivāī so kyā jāne pīr parāī'?",
+    "optionA": "जिसके ऊपर बीतती है वही जानता है",
+    "optionB": "दूसरे के कष्ट को अनुभव करना",
+    "optionC": "कठोर होना",
+    "optionD": "दयालु होना",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::जस दूल्हा तन बनी बराता का अर्थ है ?",
+    "question": "What is the meaning of 'Jas dūlhā tan banī barātā'?",
+    "optionA": "सभी साथी एक ही जैसे",
+    "optionB": "संगठन से ही कार्य सिद्ध होता है",
+    "optionC": "बेढंगा होना",
+    "optionD": "सुन्दर वस्तु के साथ ही सुन्दर वस्तु का मेल होना",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::बेइंसाफी में प्रयुक्त उपसर्ग है ?",
+    "question": "The prefix used in 'be-insāfī' is?",
+    "optionA": "इन",
+    "optionB": "बे",
+    "optionC": "बेइन",
+    "optionD": "बेई",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;बहाव&#39; शब्द में प्रयुक्त प्रत्यय कौन-सा है ?",
+    "question": "Which suffix is used in the word 'bahāv'?",
+    "optionA": "बह",
+    "optionB": "आवा",
+    "optionC": "आव",
+    "optionD": "हाव",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;पुरोहित&#39; में उपसर्ग है ?",
+    "question": "The prefix in 'purohit' is?",
+    "optionA": "पुरस्",
+    "optionB": "पुर",
+    "optionC": "पुरा",
+    "optionD": "पुरः",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::किस शब्द में &#39;आवा&#39; प्रत्यय नहीं है ?",
+    "question": "In which word is the suffix 'āvā' not used?",
+    "optionA": "दिखावा",
+    "optionB": "भुलावा",
+    "optionC": "लावा",
+    "optionD": "चढ़ावा",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::किस शब्द में उपसर्ग का प्रयोग हुआ है ?",
+    "question": "In which word is a prefix used?",
+    "optionA": "लाभदायक",
+    "optionB": "अपनापन",
+    "optionC": "उपकार",
+    "optionD": "पढ़ाई",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न में से किस शब्द में प्रत्यय का प्रयोग हुआ है ?",
+    "question": "In which of the following words is a suffix used?",
+    "optionA": "विकल",
+    "optionB": "धनिक",
+    "optionC": "पुलक",
+    "optionD": "अलक",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से किस शब्द में प्रत्यय लगा हुआ है ?",
+    "question": "In which of the following words is a suffix attached?",
+    "optionA": "सागर",
+    "optionB": "जादूगर",
+    "optionC": "नगर",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निर्वाह में प्रयुक्त उपसर्ग है ?",
+    "question": "Which prefix is used in 'निर्वाह'?",
+    "optionA": "नि",
+    "optionB": "निरि",
+    "optionC": "निर",
+    "optionD": "निः",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::किस शब्द की रचना प्रत्यय से हुई है ?",
+    "question": "Which word is formed by a suffix?",
+    "optionA": "अभियोग",
+    "optionB": "अपमान",
+    "optionC": "व्यायाम",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;चिरायु&#39; शब्द में प्रयुक्त उपसर्ग है ?",
+    "question": "Which prefix is used in the word 'चिरायु'?",
+    "optionA": "यु",
+    "optionB": "आयु",
+    "optionC": "चि",
+    "optionD": "चिर",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::किस शब्द में उपसर्ग नहीं है ?",
+    "question": "Which word does not have a prefix?",
+    "optionA": "पराजय",
+    "optionB": "ओढ़ना",
+    "optionC": "अपवाद",
+    "optionD": "प्रभाव",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें कौन-सा शब्द समूहवाचक प्रत्यय नहीं है ?",
+    "question": "Which of these is not a collective suffix?",
+    "optionA": "लोग",
+    "optionB": "प्रेस",
+    "optionC": "वर्ग",
+    "optionD": "गण",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::पवित्र में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'पवित्र'?",
+    "optionA": "गुण संधि",
+    "optionB": "अयादि संधि",
+    "optionC": "वृद्धि संधि",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में तत्सम शब्द का चयन कीजिए ?",
+    "question": "Select the tatsam word from the following?",
+    "optionA": "खेत",
+    "optionB": "अजीब",
+    "optionC": "उद्गम",
+    "optionD": "कोर्ट",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::पाठशाला किस प्रकार का शब्द है ?",
+    "question": "What type of word is 'पाठशाला'?",
+    "optionA": "रूढ़",
+    "optionB": "योगरूढ़",
+    "optionC": "यौगिक",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;क&#39; वर्ण किसके योग से बना है ?",
+    "question": "From which combination is the letter 'क' formed?",
+    "optionA": "ज्‌ + ञ",
+    "optionB": "क्‌ + ष",
+    "optionC": "क् ‌+ र",
+    "optionD": "क् ‌+ अ",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;उष्म और संयुक्त&#39; किसके प्रकार है ?",
+    "question": "What type is 'उष्म and संयुक्त'?",
+    "optionA": "व्यंजन",
+    "optionB": "स्वर",
+    "optionC": "(A) और (B) दोनों",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::स्पर्श व्यंजन कितने प्रकार के होते है ?",
+    "question": "How many types of sparsh vyajna are there?",
+    "optionA": "15",
+    "optionB": "20",
+    "optionC": "24",
+    "optionD": "25",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::श कौन सा व्यंजन है ?",
+    "question": "What type of consonant is 'sh'?",
+    "optionA": "Ushma vyajna",
+    "optionB": "Sanyukta vyajna",
+    "optionC": "Antastha vyajna",
+    "optionD": "Sparsh vyajna",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से किस शब्द में वर्ण संबंधी अशुद्धि है?",
+    "question": "In which of these words is there a varna-sambandhi ashudhi?",
+    "optionA": "Anadhikar",
+    "optionB": "Anukul",
+    "optionC": "Amarud",
+    "optionD": "Sthan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से किस शब्द में लिंगप्रत्यय-संबंधी अशुद्धियाँ है?",
+    "question": "In which of these words are ling-pratyay-sambandhi ashudhiya?",
+    "optionA": "Gaayika",
+    "optionB": "Nari",
+    "optionC": "Anatha",
+    "optionD": "Gopi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से किस शब्द में हलन्त-संबंधी अशुद्धियाँ नहीं है?",
+    "question": "In which of these words are halant-sambandhi ashudhiya not present?",
+    "optionA": "Bhavishyat",
+    "optionB": "Shreeman",
+    "optionC": "Satchit",
+    "optionD": "Buddhiman",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से किस शब्द में चन्द्रबिन्दु-संबंधी अशुद्धियाँ है?",
+    "question": "In which of these words are chandrabindu-sambandhi ashudhiya?",
+    "optionA": "Angana",
+    "optionB": "Pahunch",
+    "optionC": "Daant",
+    "optionD": "Chaand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से योजक चिह्न कौन सा है ?",
+    "question": "Which of these is a yojak chihn?",
+    "optionA": "।",
+    "optionB": "-",
+    "optionC": ",",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन सी जातिवाचक संज्ञा से भाववाचक संज्ञा बनाया गया है ?",
+    "question": "Which of these is made from a jatibhavak sanjna?",
+    "optionA": "Burhaapa",
+    "optionB": "Apanapan",
+    "optionC": "Sajavat",
+    "optionD": "Kathorta",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन सी शब्द समूहवाचक संज्ञा है ?",
+    "question": "Which of these words is a samuhvachak sanjna?",
+    "optionA": "Sabha",
+    "optionB": "Mithas",
+    "optionC": "Sona",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें से कौन सी शब्द पुंलिंग है ?",
+    "question": "Which of these words is Puling?",
+    "optionA": "Gilas",
+    "optionB": "Adalat",
+    "optionC": "(A) and (B) both",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से किस वाक्य में अकर्मक क्रिया है ?",
+    "question": "Which of the following sentences has an intransitive verb?",
+    "optionA": "Ram writes a letter",
+    "optionB": "I wake the child",
+    "optionC": "The wheat is being ground",
+    "optionD": "Madan is making Gopal laugh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित मिश्र वाक्यों में से कौन-सा विशेषण उपवाक्य है ?",
+    "question": "Which of the following mixed sentences is an adjectival clause?",
+    "optionA": "I want that you stay here",
+    "optionB": "When I reached the station, the train arrived",
+    "optionC": "I say that you go to Bhopal",
+    "optionD": "Lucknow, which is the capital of Uttar Pradesh, is a historical city",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;उसने कहा कि मैं घर जाऊँगा&#39; वाक्य है ?",
+    "question": "'He said that I will go home' is a?",
+    "optionA": "Interrogative sentence",
+    "optionB": "Complex sentence",
+    "optionC": "Simple sentence",
+    "optionD": "Compound sentence",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से कौन-सा अल्प विराम चिह्न है ?",
+    "question": "Which of the following is a comma?",
+    "optionA": "(,)",
+    "optionB": "(.)",
+    "optionC": "(;)",
+    "optionD": "(।)",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से कौन-सा अर्द्ध विराम चिह्न है ?",
+    "question": "Which of the following is a semicolon?",
+    "optionA": "(.)",
+    "optionB": "(,)",
+    "optionC": "(।)",
+    "optionD": "(;)",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;अरे ! उसने तो कमाल कर दिया&#39; वाक्य है ?",
+    "question": "'Oh! He has done a great job' is a?",
+    "optionA": "Interrogative",
+    "optionB": "Exclamatory",
+    "optionC": "Optative",
+    "optionD": "Negative",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::\"राम घर गया। उसने माँ को देखा।&#39;&#39; का संयुक्त वाक्य बनेगा ?",
+    "question": "'Ram went home. He saw his mother.' will become a compound sentence?",
+    "optionA": "Ram went home and saw his mother",
+    "optionB": "Ram went home, therefore he saw his mother",
+    "optionC": "Ram went home and he saw his mother",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::&#39;वह कौन-सा व्यक्ति है जिसने जवाहर लाल नेहरू का नाम न सुना हो&#39; वाक्य है ?",
+    "question": "'Which is the person who has not heard the name of Jawaharlal Nehru' is a?",
+    "optionA": "Compound sentence",
+    "optionB": "Complex sentence",
+    "optionC": "Simple sentence",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::वाक्य के घटक होते है ?",
+    "question": "What are the components of a sentence?",
+    "optionA": "Subject and predicate",
+    "optionB": "Doer and action",
+    "optionC": "Object and action",
+    "optionD": "Object and adjective",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न वाक्यों में से संयुक्त वाक्य कौन-सा है ?",
+    "question": "Which of the following sentences is a compound sentence?",
+    "optionA": "Rupa wants that she should do a job",
+    "optionB": "Geeta, in whose house she lives, is very dirty",
+    "optionC": "He ate food and went to sleep",
+    "optionD": "He ate food and then went to sleep",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्न वाक्यों में से मिश्र वाक्य कौन-सा है ?",
+    "question": "Which of the following sentences is a mixed sentence?",
+    "optionA": "Seeing the thief, the policeman ran to catch him",
+    "optionB": "Seth knows that the servant is honest",
+    "optionC": "Netaji gave a speech and left",
+    "optionD": "There was no electricity, so it was dark",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::निम्नलिखित में से विराम चिह्न नहीं है ?",
+    "question": "Which of the following is not a punctuation mark?",
+    "optionA": "Alpa viram",
+    "optionB": "Avatran",
+    "optionC": "Nirdeshak chihn",
+    "optionD": "Purna viram",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::इनमें कौन-सा विराम चिह्न ऐसा है जो हिन्दी में अंग्रेजी भाषा से नहीं लिया गया है ?",
+    "question": "Which punctuation mark is one that has not been taken from the English language in Hindi?",
+    "optionA": ",",
+    "optionB": "?",
+    "optionC": ";",
+    "optionD": "।",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::वाक्य के अशुद्ध भाग का चयन कीजिए ?",
+    "question": "Select the incorrect part of the sentence?",
+    "optionA": "Ram's bow broke as soon as",
+    "optionB": "of other kings",
+    "optionC": "snakes started coiling on the chest",
+    "optionD": "No error",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::समुद्र मंथन करना का अर्थ है ?",
+    "question": "What is the meaning of churning the ocean?",
+    "optionA": "To do severe penance",
+    "optionB": "To do hard work",
+    "optionC": "To make a firm resolution",
+    "optionD": "To achieve the goal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::विरोध करना के लिए सही मुहावरा है ?",
+    "question": "What is the correct idiom for opposing?",
+    "optionA": "To bow one's head",
+    "optionB": "To raise one's head",
+    "optionC": "To cut one's head",
+    "optionD": "To place one's head",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::नाश कर देना के लिए सही मुहावरा है ?",
+    "question": "What is the correct idiom for destroying?",
+    "optionA": "To set fire in water",
+    "optionB": "To fill water",
+    "optionC": "To turn water",
+    "optionD": "To become drop by drop",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::“रहिमन पानी राखिए बिन पानी सब सून” में कौन-सा अलंकार है?",
+    "question": "What figure of speech is in 'Rahiman paani rakhiye bin paani sab soon'?",
+    "optionA": "Yamak",
+    "optionB": "Shlesh",
+    "optionC": "Atishayokti",
+    "optionD": "Anupras",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::‘जुगुत्सा’ कौन-से रस का स्थायी भाव है?",
+    "question": "'Jugutsa' is the permanent sentiment of which rasa?",
+    "optionA": "Vibhatsa rasa",
+    "optionB": "Adbhuta rasa",
+    "optionC": "Karuna rasa",
+    "optionD": "Shanta rasa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::छन्द की रचना किसके द्वारा होती है?",
+    "question": "By what is the composition of a meter done?",
+    "optionA": "By adjusting the vowels",
+    "optionB": "By adjusting the ganas",
+    "optionC": "By adjusting the sounds",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-gk::ए, ऐ, ओ, औ कौन सा स्वर है ?",
+    "question": "ए, ऐ, ओ, औ कौन सा स्वर है ?",
+    "optionA": "दीर्घ स्वर",
+    "optionB": "संयुक्त स्वर",
+    "optionC": "हस्व स्वर",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-gk::उ, ऊ के उच्चारण स्थान है ?",
+    "question": "उ, ऊ के उच्चारण स्थान है ?",
+    "optionA": "कण्ठ",
+    "optionB": "दन्त",
+    "optionC": "होठों",
+    "optionD": "ओष्ठ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::मात्राएँ कितने प्रकार के होते है ?",
+    "question": "मात्राएँ कितने प्रकार के होते है ?",
+    "optionA": "पाँच",
+    "optionB": "सात",
+    "optionC": "तीन",
+    "optionD": "दो",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-gk::हिन्दी में व्यंजनवर्णो की संख्या कितनी है ?",
+    "question": "हिन्दी में व्यंजनवर्णो की संख्या कितनी है ?",
+    "optionA": "25",
+    "optionB": "29",
+    "optionC": "31",
+    "optionD": "33",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-gk::कवर्ग का उच्चारण-स्थान है ?",
+    "question": "कवर्ग का उच्चारण-स्थान है ?",
+    "optionA": "कण्ठ",
+    "optionB": "दन्त",
+    "optionC": "मूर्धा",
+    "optionD": "ओष्ठ",
+    "correctAnswer": "D"
+  }
+]
