@@ -1,0 +1,2009 @@
+[
+  {
+    "id": "sports-gk::युकी भांवरी का संंबंध किस खेल से है ?",
+    "question": "With which sport is Yuki Bhambri associated?",
+    "optionA": "Tennis",
+    "optionB": "Swimming",
+    "optionC": "Badminton",
+    "optionD": "Cricket",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::अर्जुन पुरस्कार किस क्षेत्र में उत्कृष्टता के लिए प्रदान किए जाते हैं ?",
+    "question": "In which field are the Arjuna Awards given for excellence?",
+    "optionA": "Cinema",
+    "optionB": "Literature",
+    "optionC": "Sports",
+    "optionD": "Science",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::D. C. M ट्रॉफी का सम्बन्ध किस खेल से है ?",
+    "question": "With which sport is the D.C.M. Trophy associated?",
+    "optionA": "Hockey",
+    "optionB": "Cricket",
+    "optionC": "Football",
+    "optionD": "Golf",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::माइकल फेल्प्स किस खेल से सम्बन्धित हैं ?",
+    "question": "With which sport is Michael Phelps associated?",
+    "optionA": "Cricket",
+    "optionB": "Billiards",
+    "optionC": "Chess",
+    "optionD": "Swimming",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::अर्जुन पुरस्कार कब प्रारम्भ हुआ ?",
+    "question": "When was the Arjuna Award started?",
+    "optionA": "1989",
+    "optionB": "1899",
+    "optionC": "1961",
+    "optionD": "1997",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सर डॉन ब्रैडमैन ने किस खेल में अंतर्राष्ट्रीय ख्याति प्राप्त की है ?",
+    "question": "In which sport did Sir Don Bradman achieve international fame?",
+    "optionA": "Football",
+    "optionB": "Boxing",
+    "optionC": "Cricket",
+    "optionD": "Chess",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::भारत के किस निशानेबाज ने लंदन ओलम्पिक खेलों (2012) में रजत पदक प्राप्त किया ?",
+    "question": "Which Indian shooter won a silver medal at the London Olympics (2012)?",
+    "optionA": "Vijay Kumar",
+    "optionB": "Rajyavardhan Singh Rathore",
+    "optionC": "Manavjit Singh Sandhu",
+    "optionD": "Samaresh Jung",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::स्पर्श रेखा किस खेल से सम्बन्धित हैं ?",
+    "question": "With which sport is the 'touchline' associated?",
+    "optionA": "Swimming",
+    "optionB": "Kabaddi",
+    "optionC": "Football",
+    "optionD": "Boxing",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::आस्ट्रेलियाई ओपन टेनिस-2012 के पुरुष एकल विजेता कौन हैं ?",
+    "question": "Who was the men's singles winner of the Australian Open-2012?",
+    "optionA": "Novak Djokovic",
+    "optionB": "Rajyavardhan Singh Rathore",
+    "optionC": "Marcos Baghdatis",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::थ्री सेकण्डस् किस खेल से सम्बन्धित हैं ?",
+    "question": "With which sport is 'three seconds' associated?",
+    "optionA": "Boxing",
+    "optionB": "Basketball",
+    "optionC": "Billiards",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::ईरानी कप का सम्बन्ध निम्नलिखित में से किस खेल से है ?",
+    "question": "The Irani Cup is associated with which of the following sports?",
+    "optionA": "Hockey",
+    "optionB": "Polo",
+    "optionC": "Cricket",
+    "optionD": "Football",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सानिया मिर्जा निम्नलिखित में से किस खेल के लिए चर्चित है ?",
+    "question": "For which of the following sports is Sania Mirza famous?",
+    "optionA": "Athletics",
+    "optionB": "Lawn Tennis",
+    "optionC": "Basketball",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::अपर कट किस खेल से सम्बन्धित हैं ?",
+    "question": "Upper cut is related to which sport?",
+    "optionA": "Boxing",
+    "optionB": "Cricket",
+    "optionC": "Swimming",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::खो-खो में कितनी क्रॉस लेन्स होती है ?",
+    "question": "How many cross lenses are there in kho-kho?",
+    "optionA": "5",
+    "optionB": "8",
+    "optionC": "11",
+    "optionD": "9",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::हॉकी का जादूगर किसे कहते हैं ?",
+    "question": "Who is known as the magician of hockey?",
+    "optionA": "Vijay Kumar",
+    "optionB": "Samresh Jung",
+    "optionC": "Major Dhyan Chand",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन हॉकी का खिलाड़ी नहीं है ?",
+    "question": "Who among the following is not a hockey player?",
+    "optionA": "Prithvi Singh",
+    "optionB": "Ashok Kumar",
+    "optionC": "G.S. Ramchand",
+    "optionD": "Balbir Singh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::अन्तर्राष्ट्रीय ओलम्पिक समिति के अध्यक्ष कौन हैं ?",
+    "question": "Who is the President of the International Olympic Committee?",
+    "optionA": "George Bush",
+    "optionB": "Jacques Rogge",
+    "optionC": "Jeff Howarth",
+    "optionD": "Kim Hughes",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::लंदन में 2012 में आयोजित 30 वें ओलम्पिक में सर्वाधिक स्वर्ण पदक किस देश ने जीते ?",
+    "question": "Which country won the most gold medals at the 30th Olympics held in London in 2012?",
+    "optionA": "America",
+    "optionB": "China",
+    "optionC": "Japan",
+    "optionD": "Russia",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::कनाडा का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of Canada?",
+    "optionA": "Baseball",
+    "optionB": "Ice Hockey",
+    "optionC": "Football",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::संयुक्त राज्य अमेरिका का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of the United States?",
+    "optionA": "Ice Hockey",
+    "optionB": "Football",
+    "optionC": "Baseball",
+    "optionD": "Handball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::भारत का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of India?",
+    "optionA": "Kabaddi",
+    "optionB": "Cricket",
+    "optionC": "Chess",
+    "optionD": "Hockey",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::जापान का राष्ट्रीय खेल क्या है ?",
+    "question": "What is the national sport of Japan?",
+    "optionA": "Cricket",
+    "optionB": "Kabaddi",
+    "optionC": "Chess",
+    "optionD": "Judo",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::पोलो खेल का प्रचलन भारत के किस राज्य में हुआ ?",
+    "question": "In which state of India did the sport of polo become popular?",
+    "optionA": "Bihar",
+    "optionB": "Manipur",
+    "optionC": "Assam",
+    "optionD": "Karnataka",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::भारत में पोलो खेल का प्रचलन किसने प्रारम्भ किया ?",
+    "question": "Who introduced the sport of polo in India?",
+    "optionA": "Turks",
+    "optionB": "Portuguese",
+    "optionC": "Greeks",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::कबड्डी खेल का जन्मदाता देश किसे कहा जाता है ?",
+    "question": "Which country is known as the birthplace of the sport of Kabaddi?",
+    "optionA": "China",
+    "optionB": "Japan",
+    "optionC": "India",
+    "optionD": "Russia",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::शतरंज खेल का जन्मदाता देश किसे कहा जाता है ?",
+    "question": "Which country is known as the birthplace of the sport of Chess?",
+    "optionA": "India",
+    "optionB": "Japan",
+    "optionC": "China",
+    "optionD": "England",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::क्रिकेट खेल का जन्मदाता देश किसे कहा जाता है ?",
+    "question": "Which country is known as the birthplace of the sport of Cricket?",
+    "optionA": "Japan",
+    "optionB": "England",
+    "optionC": "China",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::क्रिकेट के आधुनिक संस्करण &#39; सुपरमैक्स क्रिकेट &#39; की शुरुआत कहाँ हुई है ?",
+    "question": "Where did the modern version of cricket 'Supermax Cricket' begin?",
+    "optionA": "Russia",
+    "optionB": "Australia",
+    "optionC": "New Zealand",
+    "optionD": "India",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::वाटर पोलो में एक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in one team in Water Polo?",
+    "optionA": "9",
+    "optionB": "10",
+    "optionC": "8",
+    "optionD": "7",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::किस खिलाड़ी को वर्ष 2012 का राजीव गांधी खेलरत्न सम्मान प्रदान किया गया है ?",
+    "question": "Which player was awarded the Rajiv Gandhi Khel Ratna Award in 2012?",
+    "optionA": "Yogeshwar Dutt",
+    "optionB": "Sushil Kumar",
+    "optionC": "Vijay Kumar",
+    "optionD": "Vijender Singh",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::पोलो में प्रत्येक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in each team in polo?",
+    "optionA": "3",
+    "optionB": "2",
+    "optionC": "4",
+    "optionD": "9",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::बेसबॉल में प्रत्येक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in each team in baseball?",
+    "optionA": "7",
+    "optionB": "9",
+    "optionC": "11",
+    "optionD": "6",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::वालीबॉल की प्रत्येक टीम में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in each team in volleyball?",
+    "optionA": "6",
+    "optionB": "8",
+    "optionC": "10",
+    "optionD": "12",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::बास्केटबॉल के प्रत्येक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in each team in basketball?",
+    "optionA": "9",
+    "optionB": "10",
+    "optionC": "4",
+    "optionD": "5",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से किस खेल की टीम में महिला तथा पुरुष दोनों खिलाड़ी होते हैं ?",
+    "question": "In which of the following sports do both male and female players play in the same team?",
+    "optionA": "Baseball",
+    "optionB": "Softball",
+    "optionC": "Korfball",
+    "optionD": "Handball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::दादा के नाम से किसे जाना जाता है ?",
+    "question": "Who is known as Dada?",
+    "optionA": "Udham Singh",
+    "optionB": "Major Dhyan Chand",
+    "optionC": "Roop Singh",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::किसी अन्तर्राष्ट्रीय फुटबॉल मैच की सामान्य समयावधि कितनी होती है ?",
+    "question": "What is the normal duration of an international football match?",
+    "optionA": "45 minutes",
+    "optionB": "60 minutes",
+    "optionC": "80 minutes",
+    "optionD": "90 minutes",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::पोलवाल्ट का बादशाह किसे कहा जाता है ?",
+    "question": "Who is known as the King of Pole Vault?",
+    "optionA": "Ryan Brougha",
+    "optionB": "Sergei Bubka",
+    "optionC": "Emma George",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::क्रिकेट खिलाड़ियों के मध्य हॉलीवुड के नाम से जाना जाता है ?",
+    "question": "Who is known as Hollywood among cricket players?",
+    "optionA": "Virender Sehwag",
+    "optionB": "Shane Warne",
+    "optionC": "Sachin",
+    "optionD": "Saurav Ganguly",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::ग्रेट डिलेयर उपनाम से कौन अंतर्राष्ट्रीय क्रिकेट अम्पायर जाना जाता है ?",
+    "question": "By what name is the international cricket umpire known as 'Great Dealler'?",
+    "optionA": "Steve Bucknor",
+    "optionB": "Dickie Bird",
+    "optionC": "David Shepherd",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::बॉम्बे बॉम्बर किस अन्तर्राष्ट्रीय क्रिकेटर का उपनाम है ?",
+    "question": "Bombay Bomber is the nickname of which international cricketer?",
+    "optionA": "Sachin Tendulkar",
+    "optionB": "Virender Sehwag",
+    "optionC": "Saurav Ganguly",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::लिटिल मास्टर के नाम से कौन भारतीय क्रिकेट खिलाड़ी जाना जाता है ?",
+    "question": "Which Indian cricketer is known as 'Little Master'?",
+    "optionA": "Saurav Ganguly",
+    "optionB": "Sachin Tendulkar",
+    "optionC": "Sunil Gavaskar",
+    "optionD": "Virender Sehwag",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::टर्बिनेटर के नाम से जाने जाते हैं ?",
+    "question": "Who is known as 'The Terminator'?",
+    "optionA": "Murali Kartik",
+    "optionB": "Suresh Raina",
+    "optionC": "Mahendra Singh Dhoni",
+    "optionD": "Harbhajan Singh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::पोलवाल्ट के बादशाह सर्गेई बुबका का सम्बन्ध किस देश से है ?",
+    "question": "The 'King of Pole Vault' Sergei Bubka belongs to which country?",
+    "optionA": "Ukraine",
+    "optionB": "Russia",
+    "optionC": "Australia",
+    "optionD": "New Zealand",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::साइकिलिंग का खेल परिसर क्या कहलाता है ?",
+    "question": "What is the playing area of cycling called?",
+    "optionA": "Velodrome",
+    "optionB": "Rink",
+    "optionC": "Range",
+    "optionD": "Course",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::मुक्केबाजी का खेल परिसर क्या कहलाता है ?",
+    "question": "What is the playing area of boxing called?",
+    "optionA": "Diamond",
+    "optionB": "Rink",
+    "optionC": "Ring",
+    "optionD": "Range",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::घुड़सवारी का खेल परिसर क्या कहलाता है ?",
+    "question": "What is the playing area of equestrian called?",
+    "optionA": "Velodrome",
+    "optionB": "Arena",
+    "optionC": "Course",
+    "optionD": "Greens",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::गोल्फ खिलाड़ी विजय सिंह का संबंध किस देश से है ?",
+    "question": "Which country does golfer Vijay Singh belong to?",
+    "optionA": "Australia",
+    "optionB": "New Zealand",
+    "optionC": "Ukraine",
+    "optionD": "Fiji",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::स्केटिंग खेले जाने वाले स्थान को क्या कहा जाता है ?",
+    "question": "What is the place where skating is played called?",
+    "optionA": "Rink",
+    "optionB": "Range",
+    "optionC": "Course",
+    "optionD": "Greens",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::किस खेल का खेल परिसर कोर्स कहलाता है ?",
+    "question": "In which sport is the playing area called a course?",
+    "optionA": "Baseball",
+    "optionB": "Ice Hockey",
+    "optionC": "Golf",
+    "optionD": "Softball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से किस कप का सम्बन्ध लॉन टेनिस से है ?",
+    "question": "Which of the following cups is related to Lawn Tennis?",
+    "optionA": "Davis Cup",
+    "optionB": "Subroto Cup",
+    "optionC": "Nehru Cup",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::यूरो कप किससे संबंधित है ?",
+    "question": "The Euro Cup is related to which sport?",
+    "optionA": "Football",
+    "optionB": "Cricket",
+    "optionC": "Polo",
+    "optionD": "Boxing",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::ओलम्पिक खेल कितने वर्ष के अंतराल पर आयोजित किए जाते हैं ?",
+    "question": "How many years apart are the Olympic Games held?",
+    "optionA": "1",
+    "optionB": "3",
+    "optionC": "4",
+    "optionD": "2",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::किस वर्ष भारत ने ओलम्पिक खेलों में हॉकी का पहला स्वर्ण पदक जीता ?",
+    "question": "In which year did India win its first Olympic gold medal in hockey?",
+    "optionA": "1938",
+    "optionB": "1935",
+    "optionC": "1845",
+    "optionD": "1928",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::क्रिकेट में पिच की लम्बाई कितनी होती है ?",
+    "question": "What is the length of a cricket pitch?",
+    "optionA": "20.20 meters",
+    "optionB": "20.12 meters",
+    "optionC": "25 yards",
+    "optionD": "20.12 yards",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::क्रिकेट में बल्ले की अधिकतम अनुमत लम्बाई कितनी होती है ?",
+    "question": "What is the maximum allowed length of a cricket bat?",
+    "optionA": "33 inches",
+    "optionB": "35 inches",
+    "optionC": "38 inches",
+    "optionD": "30 inches",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::क्रिकेट में भूमि से स्टम्प्स की ऊँचाई कितनी होती है ?",
+    "question": "What is the height of the stumps from the ground in cricket?",
+    "optionA": "20 inches",
+    "optionB": "27 inches",
+    "optionC": "25 inches",
+    "optionD": "21 inches",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::फुटबॉल में गोल पोस्ट की चौड़ाई कितनी होती है ?",
+    "question": "What is the width of the goalposts in football?",
+    "optionA": "5.54 meters",
+    "optionB": "7.51 meters",
+    "optionC": "7.32 meters",
+    "optionD": "4.57 meters",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::हॉकी के मैदान में गोल पोस्ट की चौड़ाई कितनी होती है ?",
+    "question": "What is the width of the goalposts in a hockey field?",
+    "optionA": "2.25 meters",
+    "optionB": "3.75 meters",
+    "optionC": "3.66 meters",
+    "optionD": "2.66 meters",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::बैडमिंटन में नेट की जमीन से ऊँचाई कितनी होती है ?",
+    "question": "What is the height of the net from the ground in badminton?",
+    "optionA": "1.55 meters",
+    "optionB": "1.60 meters",
+    "optionC": "1.66 meters",
+    "optionD": "1.59 meters",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::खो-खो मैदान में कितनी क्रॉस लेन्स होती है ?",
+    "question": "How many cross lenses are there in a kho-kho field?",
+    "optionA": "5",
+    "optionB": "9",
+    "optionC": "8",
+    "optionD": "10",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से किस खेल मैदान का आकार सबसे बड़ा होता है ?",
+    "question": "Which of the following sports has the largest ground size?",
+    "optionA": "Polo",
+    "optionB": "Cricket",
+    "optionC": "Football",
+    "optionD": "Baseball",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::हॉकी में पेनाल्टी स्ट्रोक कितनी दूरी से मारा जाता है ?",
+    "question": "From what distance is the penalty stroke taken in hockey?",
+    "optionA": "7 yards",
+    "optionB": "8 yards",
+    "optionC": "8.5 yards",
+    "optionD": "7.5 yards",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::पोलो के मैदान का आकर होता है ?",
+    "question": "What is the shape of a polo ground?",
+    "optionA": "120 m * 225 m",
+    "optionB": "200 m * 150 m",
+    "optionC": "270 m * 180 m",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::विश्वविख्यात रौला गैरो का संबंध किस खेल से है ?",
+    "question": "Which sport is associated with the famous Wembley Stadium?",
+    "optionA": "Football",
+    "optionB": "Badminton",
+    "optionC": "Lawn Tennis",
+    "optionD": "Handball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::शतरंज के बिसात पर कुल कितने घर होते हैं ?",
+    "question": "How many squares are there on a chessboard?",
+    "optionA": "16",
+    "optionB": "32",
+    "optionC": "48",
+    "optionD": "64",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::ओलम्पिक खेलों में तैराकी के स्वीमिंग पुल में कुल कितने लेन होते हैं ?",
+    "question": "How many lanes are there in the swimming pool for swimming in the Olympic Games?",
+    "optionA": "10",
+    "optionB": "8",
+    "optionC": "9",
+    "optionD": "12",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::विश्व में क्रिकेट का मक्का के नाम से जाना जाता है ?",
+    "question": "What is known as the Mecca of cricket in the world?",
+    "optionA": "Eden Gardens",
+    "optionB": "Lord's",
+    "optionC": "Oval",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::मुक्केबाजी के लिए प्रसिद्ध स्थान है ?",
+    "question": "Which place is famous for boxing?",
+    "optionA": "Kentucky",
+    "optionB": "White City",
+    "optionC": "Madison Square Garden",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::बाराबती स्टेडियम कहाँ अवस्थित है ?",
+    "question": "Where is Barabati Stadium located?",
+    "optionA": "Bhubaneswar",
+    "optionB": "Kolkata",
+    "optionC": "Cuttack",
+    "optionD": "Pune",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::वानखेड़े स्टेडियम कहाँ अवस्थित है ?",
+    "question": "Where is Wankhede Stadium located?",
+    "optionA": "Kolkata",
+    "optionB": "Mumbai",
+    "optionC": "Kerala",
+    "optionD": "Pune",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::ग्रीन पार्क स्टेडियम कहाँ अवस्थित है ?",
+    "question": "Where is Green Park Stadium located?",
+    "optionA": "Chennai",
+    "optionB": "Kanpur",
+    "optionC": "Nagpur",
+    "optionD": "Kolkata",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::ईडन गार्डेन्स स्टेडियम कहाँ अवस्थित है ?",
+    "question": "Where is Eden Gardens Stadium located?",
+    "optionA": "Kolkata",
+    "optionB": "Mumbai",
+    "optionC": "New Delhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::साल्ट लेक स्टेडियम कहाँ अवस्थित है ?",
+    "question": "Where is Salt Lake Stadium located?",
+    "optionA": "Nagpur",
+    "optionB": "Chennai",
+    "optionC": "New Delhi",
+    "optionD": "Kolkata",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::फिरोजशाह कोटला ग्राउण्ड स्थित है ?",
+    "question": "Where is Feroz Shah Kotla Ground located?",
+    "optionA": "Pune",
+    "optionB": "Kolkata",
+    "optionC": "Delhi",
+    "optionD": "Mumbai",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सवाई मान सिंह स्थित है ?",
+    "question": "Where is Sawai Man Singh located?",
+    "optionA": "Jaipur",
+    "optionB": "Baroda",
+    "optionC": "Bhubaneswar",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::कोपा कप किस खेल से सम्बन्धित है ?",
+    "question": "Copa Cup is related to which sport?",
+    "optionA": "Tennis",
+    "optionB": "Football",
+    "optionC": "Hockey",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::सुदीरमन कप किस खेल से सम्बन्धित है ?",
+    "question": "Sudirman Cup is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Football",
+    "optionC": "Cricket",
+    "optionD": "Badminton",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::भारत का प्राचीनतम फुटबॉल टूर्नामेंट है ?",
+    "question": "India's oldest football tournament is?",
+    "optionA": "Durand Cup",
+    "optionB": "Santosh Trophy",
+    "optionC": "Davis Cup",
+    "optionD": "Subroto Cup",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::रॉबर्स कप किस खेल से सम्बन्धित है ?",
+    "question": "Roberts Cup is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Football",
+    "optionC": "Lawn Tennis",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::डेविस कप किस खेल से सम्बन्धित है ?",
+    "question": "Davis Cup is related to which sport?",
+    "optionA": "Lawn Tennis",
+    "optionB": "Hockey",
+    "optionC": "Badminton",
+    "optionD": "Table Tennis",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::थॉमस कप किस खेल से संबंधित है ?",
+    "question": "Thomas Cup is related to which sport?",
+    "optionA": "Lawn Tennis",
+    "optionB": "Kho-Kho",
+    "optionC": "Badminton",
+    "optionD": "Table Tennis",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::आयरन शब्द किस खेल से संबंधित है ?",
+    "question": "Iron word is related to which sport?",
+    "optionA": "Handball",
+    "optionB": "Golf",
+    "optionC": "Cricket",
+    "optionD": "Kabaddi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::चाइनामैन शब्द किस खेल से संबंधित है ?",
+    "question": "Chinaman word is related to which sport?",
+    "optionA": "Cricket",
+    "optionB": "Kabaddi",
+    "optionC": "Chess",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::डबल फॉल्ट शब्द किस खेल से संबंधित है ?",
+    "question": "Double Fault word is related to which sport?",
+    "optionA": "Carrom",
+    "optionB": "Tennis",
+    "optionC": "Softball",
+    "optionD": "Polo",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::जसपाल राणा का नाम निम्नलिखित में से किस खेल से संबंधित है ?",
+    "question": "Jaspal Rana's name is related to which of the following sports?",
+    "optionA": "Badminton",
+    "optionB": "Kabaddi",
+    "optionC": "Shooting",
+    "optionD": "Boxing",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::विश्व प्रसिद्ध टेनिस खिलाड़ी राफेल नाडाल निम्नलिखित में से किस देश से है ?",
+    "question": "World famous tennis player Rafael Nadal is from which of the following countries?",
+    "optionA": "Russia",
+    "optionB": "Italy",
+    "optionC": "Spain",
+    "optionD": "Ukraine",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सयाली गोखले का संबंध निम्नलिखित में से किस खेल से है ?",
+    "question": "Sayali Gokhale is associated with which of the following sports?",
+    "optionA": "Chess",
+    "optionB": "Football",
+    "optionC": "Polo",
+    "optionD": "Tennis",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन फॉर्मूला वन से संबंधित है ?",
+    "question": "Who among the following is associated with Formula One?",
+    "optionA": "Pankaj Advani",
+    "optionB": "Viswanathan Anand",
+    "optionC": "Narain Karthikeyan",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::अर्जुन अटवाल किस खेल से संबंधित है ?",
+    "question": "Arjun Atwal is associated with which sport?",
+    "optionA": "Golf",
+    "optionB": "Boxing",
+    "optionC": "Lawn Tennis",
+    "optionD": "Kabaddi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::विलियम्स बहनों की ख्याति का कारण क्या है ?",
+    "question": "What are the Williams sisters famous for?",
+    "optionA": "Cricket",
+    "optionB": "Shooting",
+    "optionC": "Tennis",
+    "optionD": "Softball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::अन्तर्राष्ट्रीय ओलम्पिक संस्था का मुख्यालय कहाँ है ?",
+    "question": "Where is the headquarters of the International Olympic Committee?",
+    "optionA": "Lausanne",
+    "optionB": "Bern",
+    "optionC": "Geneva",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::क्रिकेट की अन्तर्राष्ट्रीय संस्था है ?",
+    "question": "The international organization for cricket is?",
+    "optionA": "IHF",
+    "optionB": "ICC",
+    "optionC": "FIDE",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::हॉकी की अन्तर्राष्ट्रीय संस्था है ?",
+    "question": "The international organization for hockey is?",
+    "optionA": "IHF",
+    "optionB": "ICC",
+    "optionC": "FIDE",
+    "optionD": "FIFA",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन-सी अन्तर्राष्ट्रीय टेनिस खेल प्रतियोगिता घास के मैदान पर खेली जाती है ?",
+    "question": "Which of the following international tennis tournaments is played on grass courts?",
+    "optionA": "Wimbledon",
+    "optionB": "Australian Open",
+    "optionC": "French Open",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::ओलम्पिक खेलों में किस खेल के लिए बैल वार्कर कप प्रदान किया जाता है ?",
+    "question": "For which sport is the Walker Cup awarded in the Olympic Games?",
+    "optionA": "Tennis",
+    "optionB": "Hockey",
+    "optionC": "Boxing",
+    "optionD": "Swimming",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::राधामोहन कप का संबंध किस किस खेल से है ?",
+    "question": "The Radha Mohan Cup is associated with which sport?",
+    "optionA": "Cricket",
+    "optionB": "Tennis",
+    "optionC": "Football",
+    "optionD": "Polo",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::क्रिकेट के खेल में पॉपिंग क्रीज की माप होती है ?",
+    "question": "In the game of cricket, what is the measurement of the popping crease?",
+    "optionA": "2 feet",
+    "optionB": "5 feet",
+    "optionC": "4 feet",
+    "optionD": "6 feet",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::पूर्ण आकार के गोल्फ के मैदान में कितनी संख्या में होल्स होते हैं ?",
+    "question": "How many holes are there in a full-sized golf course?",
+    "optionA": "15",
+    "optionB": "18",
+    "optionC": "22",
+    "optionD": "25",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::पेनाल्टी स्ट्रोक कितने फासले से मारा जाता है ?",
+    "question": "From how many yards is a penalty stroke taken?",
+    "optionA": "6 yards",
+    "optionB": "8 yards",
+    "optionC": "9 yards",
+    "optionD": "13 yards",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से किस खेल को ओलम्पिक खेलों में शामिल नहीं किया जाता है ?",
+    "question": "Which of the following sports is not included in the Olympic Games?",
+    "optionA": "Hockey",
+    "optionB": "Shooting",
+    "optionC": "Cricket",
+    "optionD": "Boxing",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::ओलम्पिक शब्द ओलम्पस से आया है, जो नाम है एक ?",
+    "question": "The word Olympic comes from Olympus, which is the name of a?",
+    "optionA": "River",
+    "optionB": "Mountain",
+    "optionC": "Island",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::ज्योति रंधाता किस खेल से संबंधित हैं ?",
+    "question": "Jyoti Randhawa is associated with which sport?",
+    "optionA": "Golf",
+    "optionB": "Hockey",
+    "optionC": "Lawn Tennis",
+    "optionD": "Baseball",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::बैडमिंटन के कॉर्क का वजन क्या होता है ?",
+    "question": "What is the weight of a badminton shuttlecock?",
+    "optionA": "5.71 to 6.71 grams",
+    "optionB": "4.74 to 5.51 grams",
+    "optionC": "6.78 to 7.68 grams",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::क्रिकेट के गेंद की परिधि क्या होती है ?",
+    "question": "What is the circumference of a cricket ball?",
+    "optionA": "22.4 to 22.9 cm",
+    "optionB": "24.5 to 24.8 cm",
+    "optionC": "23.5 to 23.9 cm",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन-सा देश अंतर्राष्ट्रीय क्रिकेट नहीं खेलता है ?",
+    "question": "Which of the following countries does not play international cricket?",
+    "optionA": "New Zealand",
+    "optionB": "Australia",
+    "optionC": "Japan",
+    "optionD": "Russia",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::वाटर पोलो में खिलाड़ियों की संख्या होती है ?",
+    "question": "How many players are there in water polo?",
+    "optionA": "9",
+    "optionB": "7",
+    "optionC": "10",
+    "optionD": "6",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::सायना नेहवाल जिस खेल से जुड़ी है, वह है ?",
+    "question": "The sport associated with Saina Nehwal is?",
+    "optionA": "Football",
+    "optionB": "Badminton",
+    "optionC": "Kabaddi",
+    "optionD": "Cricket",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::भारत के प्रथम टेस्ट क्रिकेट कप्तान थे ?",
+    "question": "Who was the first Test cricket captain of India?",
+    "optionA": "Vinoo Mankad",
+    "optionB": "C. K. Nayudu",
+    "optionC": "Vijay Hazare",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::थम बार किस वर्ष 29 अगस्त राष्ट्रीय खेल दिवस के रूप में मनाया गया ?",
+    "question": "For the first time, in which year was August 29 celebrated as National Sports Day?",
+    "optionA": "1993",
+    "optionB": "1995",
+    "optionC": "1997",
+    "optionD": "2000",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::टेस्ट क्रिकेट में 6 गेदों का ओवर कब से प्रारम्भ हुआ ?",
+    "question": "When did the 6-ball over begin in Test cricket?",
+    "optionA": "1938",
+    "optionB": "1900",
+    "optionC": "1950",
+    "optionD": "1924",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::अर्जुन पुरस्कार की शुरुआत किस वर्ष हुई ?",
+    "question": "In which year was the Arjuna Award started?",
+    "optionA": "1955 में",
+    "optionB": "1961 में",
+    "optionC": "1965 में",
+    "optionD": "1971 में",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::भाग्यश्री थित्से का नाम किस खेल से जुड़ा है ?",
+    "question": "With which sport is Bhagyasree Thitse associated?",
+    "optionA": "कबड्डी",
+    "optionB": "पोलो",
+    "optionC": "हॉकी",
+    "optionD": "शतरंज",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::भारत का फ्लाइंग सिख किसे कहा गया है ?",
+    "question": "Who is known as the Flying Sikh of India?",
+    "optionA": "मिल्खा सिंह",
+    "optionB": "जोगिन्दर सिंह",
+    "optionC": "अजीत पाल सिंह",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::डेविस कप की शुरुआत कब हुई ?",
+    "question": "When was the Davis Cup started?",
+    "optionA": "1950",
+    "optionB": "1935",
+    "optionC": "1900",
+    "optionD": "1933",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::विश्व कप फुटबॉल का प्रथम विजेता देश है ?",
+    "question": "Which country was the first winner of the World Cup Football?",
+    "optionA": "उरुग्वे",
+    "optionB": "इटली",
+    "optionC": "ब्राजील",
+    "optionD": "अन्य",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::एशियाई खेलों का प्रथम आयोजक देश होने का श्रेय किसे प्राप्त है ?",
+    "question": "To which country is the credit of being the first host country of the Asian Games?",
+    "optionA": "जापान",
+    "optionB": "भारत",
+    "optionC": "थाईलैंड",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::सानिया मिर्जा का संबंध किस खेल से है ?",
+    "question": "With which sport is Sania Mirza associated?",
+    "optionA": "बेसबॉल",
+    "optionB": "लॉन टेनिस",
+    "optionC": "हैण्डबॉल",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::राष्ट्रीय खेल संस्थान कहाँ अवस्थित है ?",
+    "question": "Where is the National Sports Institute located?",
+    "optionA": "पटियाला",
+    "optionB": "कोलकाता",
+    "optionC": "नई दिल्ली",
+    "optionD": "अन्य",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::गोल किस प्रसिद्ध भारतीय हॉकी खिलाड़ी की आत्मकथा है ?",
+    "question": "Goal is the autobiography of which famous Indian hockey player?",
+    "optionA": "Roop Singh",
+    "optionB": "Surjit Singh",
+    "optionC": "Major Dhyan Chand",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::एस शब्द किस खेल से संबंधित है ?",
+    "question": "The word 'S' is related to which sport?",
+    "optionA": "Golf",
+    "optionB": "Lawn Tennis",
+    "optionC": "Table Tennis",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::एशेज शब्द किस खेल से संबंधित है ?",
+    "question": "The word 'Ashes' is related to which sport?",
+    "optionA": "Football",
+    "optionB": "Boxing",
+    "optionC": "Polo",
+    "optionD": "Cricket",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::बिशप शब्द किस खेल से संबंधित है ?",
+    "question": "The word 'Bishop' is related to which sport?",
+    "optionA": "Chess",
+    "optionB": "Football",
+    "optionC": "Kabaddi",
+    "optionD": "Hockey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::बेटन कप किस खेल से संबंधित है ?",
+    "question": "The 'Baton Cup' is related to which sport?",
+    "optionA": "Football",
+    "optionB": "Hockey",
+    "optionC": "Cricket",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::उबेर कप किस खेल से संबंधित है ?",
+    "question": "The 'Uber Cup' is related to which sport?",
+    "optionA": "Badminton",
+    "optionB": "Polo",
+    "optionC": "Baseball",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::एजरा कप किस खेल से संबंधित है ?",
+    "question": "The 'Ezra Cup' is related to which sport?",
+    "optionA": "Badminton",
+    "optionB": "Polo",
+    "optionC": "Bridge",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::भारत का सबसे पुरानी हॉकी टूर्नामेंट कौन-सी है ?",
+    "question": "Which is the oldest hockey tournament in India?",
+    "optionA": "Dhyan Chand Trophy",
+    "optionB": "Gold Cup",
+    "optionC": "Baton Cup",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::शतरंज के खिलाड़ी अलेक्सी शिरोव किसका प्रतिनिधित्व करते हैं ?",
+    "question": "Chess player Alexei Shirov represents which country?",
+    "optionA": "Albania",
+    "optionB": "Spain",
+    "optionC": "Kazakhstan",
+    "optionD": "Russia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::खिलाड़ी सोमा विश्वास संबंधित है ?",
+    "question": "Player Soma Biswas is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Badminton",
+    "optionC": "Athletics",
+    "optionD": "Cricket",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सिद्ध गोल्फ खिलाड़ी विजय सिंह निम्नलिखित देशों में से किससे संबंधित हैं ?",
+    "question": "Famous golfer Vijay Singh is associated with which of the following countries?",
+    "optionA": "Kenya",
+    "optionB": "India",
+    "optionC": "Fiji",
+    "optionD": "Malaysia",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::मेलेट शब्द किस खेल से संबंधित है ?",
+    "question": "The word 'Mallet' is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Bridge",
+    "optionC": "Football",
+    "optionD": "Kabaddi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::किस खेल का परिसर डायमण्ड कहलाता है ?",
+    "question": "The playing field of which sport is called a diamond?",
+    "optionA": "Softball",
+    "optionB": "Baseball",
+    "optionC": "Carromball",
+    "optionD": "Handball",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::तैराकी का खेल परिसर है ?",
+    "question": "The playing area of swimming is?",
+    "optionA": "Field",
+    "optionB": "Track",
+    "optionC": "Pool",
+    "optionD": "Arena",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सिद्ध शतरंज खिलाड़ी गाटा कामस्की किस देश के है ?",
+    "question": "Famous chess player Gata Kamsky is from which country?",
+    "optionA": "Russia",
+    "optionB": "U.S.A.",
+    "optionC": "Belarus",
+    "optionD": "Ukraine",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::स्कॉटलैंड का राष्ट्रीय खेल है ?",
+    "question": "The national sport of Scotland is?",
+    "optionA": "Football",
+    "optionB": "Rugby Football",
+    "optionC": "Baseball",
+    "optionD": "Ice Hockey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::स्पेन का राष्ट्रीय खेल है ?",
+    "question": "The national sport of Spain is?",
+    "optionA": "Bull Fighting",
+    "optionB": "Lacrosse",
+    "optionC": "Judo",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::आइस हॉकी किस देश का राष्ट्रीय खेल है ?",
+    "question": "Ice hockey is the national sport of which country?",
+    "optionA": "Denmark",
+    "optionB": "Canada",
+    "optionC": "Sweden",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::आधुनिक ओलम्पिक खेल का प्रथम आयोजन कब हुआ ?",
+    "question": "When were the first modern Olympic Games held?",
+    "optionA": "1988 A.D.",
+    "optionB": "1987 A.D.",
+    "optionC": "1896 A.D.",
+    "optionD": "1919 A.D.",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::राष्ट्रमंडल खेलों का प्रथम आयोजन कब हुआ था ?",
+    "question": "When were the first Commonwealth Games held?",
+    "optionA": "1970 A.D.",
+    "optionB": "1930 A.D.",
+    "optionC": "1945 A.D.",
+    "optionD": "1920 A.D.",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::एशियाई खेल का सर्वप्रथम आयोजन कब हुआ ?",
+    "question": "When was the first Asian Games held?",
+    "optionA": "1967 AD",
+    "optionB": "1948 AD",
+    "optionC": "1998 AD",
+    "optionD": "1951 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::ओलम्पिक ध्वज पर अंकित पाँच छल्ले किसके प्रतीक हैं ?",
+    "question": "What do the five rings on the Olympic flag represent?",
+    "optionA": "Five sports",
+    "optionB": "Five oceans",
+    "optionC": "Five continents",
+    "optionD": "Five nations",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::रणजी ट्रॉफी प्रतियोगता की शुरुआत किस वर्ष हुई ?",
+    "question": "In which year was the Ranji Trophy competition started?",
+    "optionA": "1953 AD",
+    "optionB": "1933 AD",
+    "optionC": "1944 AD",
+    "optionD": "1966 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::नॉक आउट शब्द किस खेल से संबंधित है ?",
+    "question": "The term 'knock out' is related to which sport?",
+    "optionA": "Boxing",
+    "optionB": "Archery",
+    "optionC": "Shooting",
+    "optionD": "Equestrian",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::बटर फ्लाई शब्द किस खेल से संबंधित है ?",
+    "question": "The term 'butterfly' is related to which sport?",
+    "optionA": "Swimming",
+    "optionB": "Polo",
+    "optionC": "Snooker",
+    "optionD": "Boxing",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से किस खेल में हैट-ट्रिक शब्द प्रयुक्त नहीं होता है ?",
+    "question": "In which of the following sports is the term 'hat-trick' not used?",
+    "optionA": "Cricket",
+    "optionB": "Lawn Tennis",
+    "optionC": "Football",
+    "optionD": "Hockey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::बुल्स आई शब्द किस खेल से संबंधित है ?",
+    "question": "The term 'bull's eye' is related to which sport?",
+    "optionA": "Shooting",
+    "optionB": "Kabaddi",
+    "optionC": "Golf",
+    "optionD": "Chess",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::गुगली शब्द किस खेल से संबंधित है ?",
+    "question": "The term 'googly' is related to which sport?",
+    "optionA": "Cricket",
+    "optionB": "Hockey",
+    "optionC": "Golf",
+    "optionD": "Football",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::ब्रेस्ट स्ट्रोक किस खेल से संबंधित है",
+    "question": "The term 'breast stroke' is related to which sport?",
+    "optionA": "Basketball",
+    "optionB": "Swimming",
+    "optionC": "Chess",
+    "optionD": "Tennis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::चुक्कर किस खेल से संबंधित है ?",
+    "question": "The term 'chukker' is related to which sport?",
+    "optionA": "Golf",
+    "optionB": "Bridge",
+    "optionC": "Billiards",
+    "optionD": "Polo",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::थर्ड आई खेल शब्दावली संबंधित है ?",
+    "question": "Third I sports terminology is related to?",
+    "optionA": "Archery",
+    "optionB": "Hockey",
+    "optionC": "Cricket",
+    "optionD": "Billiards",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::हॉकी के जादूगर मेजर ध्यानचंद की आत्मकथा का क्या नाम है ?",
+    "question": "What is the name of the autobiography of hockey wizard Major Dhyan Chand?",
+    "optionA": "My Side",
+    "optionB": "Golden Goal",
+    "optionC": "Goal",
+    "optionD": "Golden Hat-trick",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::ब्रेडमैन बेस्ट पुस्तक के लेखक कौन हैं ?",
+    "question": "Who is the author of the book Bradman Best?",
+    "optionA": "Roland Perry",
+    "optionB": "Tony Greig",
+    "optionC": "Don Bradman",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::जिग्गर किस खेल से संबंधित है ?",
+    "question": "Jigger is related to which sport?",
+    "optionA": "Tennis",
+    "optionB": "Golf",
+    "optionC": "Cricket",
+    "optionD": "Chess",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::अन्तर्राष्ट्रीय खेल संस्था फिडे किस खेल से संबंधित है ?",
+    "question": "The international sports organization FIDE is related to which sport?",
+    "optionA": "Football",
+    "optionB": "Cricket",
+    "optionC": "Chess",
+    "optionD": "Hockey",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::हाउ आई प्ले गोल्फ पुस्तक के लेखक हैं ?",
+    "question": "Who is the author of the book How I Play Golf?",
+    "optionA": "Tiger Woods",
+    "optionB": "Michael Campbell",
+    "optionC": "Tom Watson",
+    "optionD": "Jyoti Randhawa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::क्रिकेट से संबंधित प्रसिद्ध पुस्तक क्रिकेट माई स्टाइल के लेखक कौन है ?",
+    "question": "Who is the author of the famous cricket book Cricket My Style?",
+    "optionA": "Kapil Dev",
+    "optionB": "Vivian Richards",
+    "optionC": "Sandeep Patil",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन-सा पुरस्कार क्रिकेट का ऑस्कर कहलाता है ?",
+    "question": "Which of the following awards is called the Oscar of cricket?",
+    "optionA": "Naidu Award",
+    "optionB": "Seat Award",
+    "optionC": "ICC Award",
+    "optionD": "Wisden Award",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::आधुनिक ग्रीष्मकालीन ओलम्पिक खेल सर्वप्रथम कहाँ आयोजित किया गया ?",
+    "question": "Where were the modern Summer Olympic Games first held?",
+    "optionA": "Paris",
+    "optionB": "London",
+    "optionC": "Athens",
+    "optionD": "St. Louis",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन-सी तैराकी की शैली नहीं है ?",
+    "question": "Which of the following is not a swimming style?",
+    "optionA": "Freestyle",
+    "optionB": "Butterfly",
+    "optionC": "Backstroke",
+    "optionD": "Frontstroke",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से वह पहला भारतीय खिलाडी कौन था, जिसने अन्तर्राष्ट्रीय टेस्ट मैच हैट्रिक की ?",
+    "question": "Which of the following was the first Indian player to take a hat-trick in an international Test match?",
+    "optionA": "Kapil Dev",
+    "optionB": "V. S. Chandrasekhar",
+    "optionC": "Harbhajan Singh",
+    "optionD": "Jas Patel",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::इनमे से किस क्रिकेट टीम ने पहली बार विजय हजारे ट्रॉफी 2015 का खिताब जीता है?",
+    "question": "Which of these cricket teams won the Vijay Hazare Trophy 2015 title for the first time?",
+    "optionA": "Gujarat",
+    "optionB": "Andhra Pradesh",
+    "optionC": "Maharashtra",
+    "optionD": "Delhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::किस अन्तर्राष्ट्रीय क्रिकेट टीम ने हाल ही में, 1000 शतक पुरे कर लिए है?",
+    "question": "Which international cricket team has recently completed 1000 centuries?",
+    "optionA": "Sri Lanka",
+    "optionB": "India",
+    "optionC": "Australia",
+    "optionD": "England",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::इनमे से कौन ICC अम्पायर ऑफ़ द इयर के रूप में चुने गए है?",
+    "question": "Who among these has been selected as ICC Umpire of the Year?",
+    "optionA": "Richard Kettleborough",
+    "optionB": "Kumar Dharmasena",
+    "optionC": "Aleem Dar",
+    "optionD": "Ian Gould",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::इनमे से कौन खिलाड़ी ODI प्लेयर ऑफ़ द इयर 2015 के लिए चुने गए है?",
+    "question": "Which player has been selected for ODI Player of the Year 2015?",
+    "optionA": "Alistair Cook",
+    "optionB": "Steve Smith",
+    "optionC": "Virat Kohli",
+    "optionD": "A.B. de Villiers",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::हाल ही में, इनमे से किस किवी बल्लेबाज ने सन्यास की घोषणा कर दी है?",
+    "question": "Recently, which of these Kiwi batsmen has announced retirement?",
+    "optionA": "Cory Anderson",
+    "optionB": "Luke Ronchi",
+    "optionC": "Kane Williamson",
+    "optionD": "Brendon McCullum",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::इनमे से कौन व्यक्ति ओमान क्रिकेट टीम के गेंदबाजी कोच चुने गये है ?",
+    "question": "Which person has been appointed as the bowling coach of the Oman cricket team?",
+    "optionA": "Mohammad Hafeez",
+    "optionB": "Wasim Akram",
+    "optionC": "Sachin Tendulkar",
+    "optionD": "Sunil Joshi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::इनमे से कौनसा गेंदबाज सबसे तेज 150 विकेट लेने वाला भारतीय गेंदबाज बन गया है ?",
+    "question": "Which bowler has become the fastest Indian bowler to take 150 wickets?",
+    "optionA": "Amit Mishra",
+    "optionB": "Ravichandran Ashwin",
+    "optionC": "Ravindra Jadeja",
+    "optionD": "Umesh Yadav",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::इनमे से किस बल्लेबाज ने श्रीलंका के खिलाफ टेस्ट क्रिकेट में चौथी पारी में चार शतक का रिकॉर्ड तोड़ दिया है ?",
+    "question": "Which batsman broke the record of four centuries in the fourth innings against Sri Lanka in Test cricket?",
+    "optionA": "Virender Sehwag",
+    "optionB": "Shane Watson",
+    "optionC": "Younus Khan",
+    "optionD": "Misbah-ul-Haq",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::इनमे से किस क्रिकेट एसोसिएशन की सदस्यता आईसीसी द्वारा रद्द कर दी गई है?",
+    "question": "Which cricket association's membership has been cancelled by ICC?",
+    "optionA": "United States of America Cricket Association",
+    "optionB": "Cricket Australia",
+    "optionC": "BCCI",
+    "optionD": "Pakistan Cricket Board",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::इनमे से किसे \"पापुलर च्वाइस अवार्ड\" मिला है ?",
+    "question": "Among these, who has been given the \"Popular Choice Award\"?",
+    "optionA": "Anurith Singh",
+    "optionB": "Morne Morkel",
+    "optionC": "Kieron Pollard",
+    "optionD": "Manan Vohra",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::किस खिलाडी को लाइफटाइम अचीवमेंट अवार्ड द्वारा नवाज़ा गया ?",
+    "question": "Which player was honored with the Lifetime Achievement Award?",
+    "optionA": "Kapil Dev",
+    "optionB": "Rahul Dravid",
+    "optionC": "Sourav Ganguly",
+    "optionD": "Sunil Gavaskar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::काइल मिल्स ने क्रिकेट से सन्यास की घोषणा कब की ?",
+    "question": "When did Kyle Mills announce his retirement from cricket?",
+    "optionA": "On 30 March",
+    "optionB": "On 02 April",
+    "optionC": "On 31 March",
+    "optionD": "On 01 April",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::\"बॉक्सिंग डे\" टेस्ट मैच हमेशा किस देश में खेला जाता है ?",
+    "question": "The \"Boxing Day\" Test match is always played in which country?",
+    "optionA": "South Africa",
+    "optionB": "England",
+    "optionC": "New Zealand",
+    "optionD": "Australia",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::किसने एक दिवसीय अंतरराष्ट्रीय मैच में सबसे तेज दोहरा शतक स्कोरिंग के लिए विश्व रिकॉर्ड बनाया है ?",
+    "question": "Who has set a world record for scoring the fastest double century in a One Day International match?",
+    "optionA": "Chris Gayle",
+    "optionB": "Virender Sehwag",
+    "optionC": "Sachin Tendulkar",
+    "optionD": "Rohit Sharma",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::इनमे से किस टीम ने प्रो कुश्ती लीग के पहले संस्करण का खिताब जीता लिया है?",
+    "question": "Which of these teams has won the title of the first season of Pro Wrestling League?",
+    "optionA": "Mumbai Garuda",
+    "optionB": "Haryana Hammers",
+    "optionC": "UP Warriors",
+    "optionD": "Pun Royals",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन फुटबॉल का खिलाडी है ?",
+    "question": "Among the following, who is a football player?",
+    "optionA": "Lewis Hamilton",
+    "optionB": "Fernando Alonso",
+    "optionC": "Kimi Raikkonen",
+    "optionD": "Nicolas Anelka",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::एस विजयलक्ष्मी किस खेल से सम्बंधित हैं?",
+    "question": "With which sport is S Vijayalakshmi associated?",
+    "optionA": "Table Tennis",
+    "optionB": "Badminton",
+    "optionC": "Hockey",
+    "optionD": "Chess",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::वॉली, स्मैश, सर्विस शब्द किस खेल से सम्बंधित है?",
+    "question": "The words Volley, Smash, Service are related to which sport?",
+    "optionA": "Lawn Tennis",
+    "optionB": "Table Tennis",
+    "optionC": "Handball",
+    "optionD": "Volleyball",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::ओलिंपिक चिह्न का क्या अर्थ है?",
+    "question": "What is the meaning of the Olympic emblem?",
+    "optionA": "Challenge",
+    "optionB": "Passion for playing",
+    "optionC": "Integrity",
+    "optionD": "Continuity",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::स्वतंत्र भारत के लिए व्यक्तिगत रूप से पहला ओलंपिक पदक किसने जीता?",
+    "question": "Who won the first individual Olympic medal for independent India?",
+    "optionA": "Dhyan Chand",
+    "optionB": "K D Jadhav",
+    "optionC": "Harishchandra Bridar",
+    "optionD": "Milkha Singh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::फाइन लेग शब्द किस खेल से संबंधित है ?",
+    "question": "The term 'Fine Leg' is related to which sport?",
+    "optionA": "Polo",
+    "optionB": "Basketball",
+    "optionC": "Cricket",
+    "optionD": "Football",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::एशियन बॉक्सिंग चैंपियनशिप 2019 में भारत ने कितने पदक जीते ?",
+    "question": "How many medals did India win at the 2019 Asian Boxing Championship?",
+    "optionA": "6",
+    "optionB": "8",
+    "optionC": "11",
+    "optionD": "13",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::आईपीएल के इतिहास में 100 मैच जीतने वाले पहले कप्तान कौन बने है ?",
+    "question": "Who became the first captain to win 100 matches in IPL history?",
+    "optionA": "Ajinkya Rahane",
+    "optionB": "Rohit Sharma",
+    "optionC": "Ken Williams",
+    "optionD": "Mahendra Singh Dhoni",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::क्वींसबेरी नियम किस खेल से संबंधित है ?",
+    "question": "The Queensberry Rule is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Boxing",
+    "optionC": "Tennis",
+    "optionD": "Cricket",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::आधुनिक ओलम्पिक खेलों का आरम्भ कब हुआ ?",
+    "question": "When did the modern Olympic Games begin?",
+    "optionA": "1895 AD",
+    "optionB": "1898 AD",
+    "optionC": "1896 AD",
+    "optionD": "1892 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::राष्ट्रमण्डल खेल कितने वर्षों के अन्तराल पर आयोजित किए जाते हैं ?",
+    "question": "How many years apart are the Commonwealth Games held?",
+    "optionA": "Year 1930",
+    "optionB": "Year 1928",
+    "optionC": "Year 1932",
+    "optionD": "Year 1942",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::राष्ट्रमण्डल खेल वर्ष 2018 में कहाँ पर आयोजित हुए थे ?",
+    "question": "Where were the Commonwealth Games held in 2018?",
+    "optionA": "Glasgow",
+    "optionB": "Gold Coast",
+    "optionC": "Melbourne",
+    "optionD": "Tokyo",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::पहल एशियाई खेलों का आयोजन कब हुआ था ?",
+    "question": "When were the first Asian Games held?",
+    "optionA": "March, 1952",
+    "optionB": "March, 1953",
+    "optionC": "March, 1951",
+    "optionD": "March, 1950",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::वर्ष के एशियाई खेलों का आयोजन कहाँ हुआ था ?",
+    "question": "Where were the Asian Games of the year held?",
+    "optionA": "Delhi",
+    "optionB": "Incheon",
+    "optionC": "Jakarta",
+    "optionD": "Islamabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::राष्ट्रमण्डल खेल कितने वर्षों के अंतराल पर आयोजित किए जाते हैं ?",
+    "question": "How many years interval are the Commonwealth Games held?",
+    "optionA": "6 years",
+    "optionB": "4 years",
+    "optionC": "3 years",
+    "optionD": "2 years",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::भारत का राष्ट्रीय खेल खून-सा माना जाता है ?",
+    "question": "Which sport is considered the national sport of India?",
+    "optionA": "Hockey",
+    "optionB": "Cricket",
+    "optionC": "Baseball",
+    "optionD": "Kabaddi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::विजय हजारे ट्रॉफी किस खेल से संबन्धित है ?",
+    "question": "The Vijay Hazare Trophy is related to which sport?",
+    "optionA": "Baseball",
+    "optionB": "Cricket",
+    "optionC": "Tennis",
+    "optionD": "Hockey",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::बॉस्केटबॉल के खेल में एक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in one team in basketball?",
+    "optionA": "5",
+    "optionB": "9",
+    "optionC": "4",
+    "optionD": "11",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::वाटरपोलो खेल में एक पक्ष में खिलाडियों की संख्या कितनी होती है ?",
+    "question": "How many players are there in one team in water polo?",
+    "optionA": "6",
+    "optionB": "7",
+    "optionC": "8",
+    "optionD": "10",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::मुक्केबाजी खेल के खेल परिसर को किस नाम से जाना जाता है ?",
+    "question": "What is the playing area of boxing called?",
+    "optionA": "Pool",
+    "optionB": "Ring",
+    "optionC": "Course",
+    "optionD": "Alley",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::जुडो-कराटे, ताइक्वाण्डो के खेल, जिस परिसर में होते हैं, उसे खेल परिसर कहा जाता है ?",
+    "question": "What is the playing area of Judo-Karate, Taekwondo called?",
+    "optionA": "Course",
+    "optionB": "Ring",
+    "optionC": "Mat",
+    "optionD": "Court",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::बेसबॉल के खेल परिवार को कहा जाता है ?",
+    "question": "What is the playing area of baseball called?",
+    "optionA": "Field",
+    "optionB": "Ring",
+    "optionC": "Fort",
+    "optionD": "Diamond",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::दिया गया शब्द गैम्बिट किस खेल से संबन्धित है ?",
+    "question": "The given word Gambit is related to which sport?",
+    "optionA": "Hockey",
+    "optionB": "Cricket",
+    "optionC": "Volleyball",
+    "optionD": "Chess",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::दिया गया कौन-सा शब्द विलियड्र्स खेल से संबंधित है ?",
+    "question": "Which of the given words is related to billiards?",
+    "optionA": "Cue",
+    "optionB": "Voltige",
+    "optionC": "In off",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::कॉर्नर किक शब्द का संबंध किस खेल से है ?",
+    "question": "The term 'corner kick' is associated with which sport?",
+    "optionA": "Football",
+    "optionB": "Hockey",
+    "optionC": "Badminton",
+    "optionD": "Baseball",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::डूरण्ड कप रोवर्स कप का संबंध किस खेल से है ?",
+    "question": "The Durand Cup and Rovers Cup are associated with which sport?",
+    "optionA": "Hockey",
+    "optionB": "Badminton",
+    "optionC": "Football",
+    "optionD": "Cricket",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::फेडरेशन कप का संबंध किस खेल से है ?",
+    "question": "The Federation Cup is associated with which sport?",
+    "optionA": "Golf",
+    "optionB": "Cricket",
+    "optionC": "Basketball",
+    "optionD": "Bridge",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्न में से किस कप या ट्रॉफी का संबंध हॉकी खेल से नहीं है ?",
+    "question": "Which of the following cups or trophies is not associated with hockey?",
+    "optionA": "Batten Cup",
+    "optionB": "Rangaswami Cup",
+    "optionC": "Naranjan Cup",
+    "optionD": "Aga Khan Cup",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::शिवजी स्टेडियम जो दिल्ली में अवस्थित है, किस खेल से संबंधित है ?",
+    "question": "Shivaji Stadium, located in Delhi, is associated with which sport?",
+    "optionA": "Cricket",
+    "optionB": "Tennis",
+    "optionC": "Football",
+    "optionD": "Hockey",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::सवाई मानसिंह स्टेडियम, जो राजस्थान के जयपुर में अवस्थित है, किस खेल से संबंधित है ?",
+    "question": "Sawai Man Singh Stadium, located in Jaipur, Rajasthan, is associated with which sport?",
+    "optionA": "Hockey",
+    "optionB": "Badminton",
+    "optionC": "Football",
+    "optionD": "Cricket",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::खो-खो खेल में निम्न में से किन उपकरणों की आवश्यकता होती है ?",
+    "question": "Which of the following equipment are required in the game of Kho-Kho?",
+    "optionA": "Posts",
+    "optionB": "Cord",
+    "optionC": "Measuring tape, stopwatch",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::विजय मांजरेकर का संबंध किस खेल से रहा है ?",
+    "question": "With which sport was Vijay Manjrekar associated?",
+    "optionA": "Archery",
+    "optionB": "Polo",
+    "optionC": "Cricket",
+    "optionD": "Basketball",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सलीम दुर्रानी का संबंध किस कहे से रहा है ?",
+    "question": "With which sport was Salim Durrani associated?",
+    "optionA": "Cricket",
+    "optionB": "Polo",
+    "optionC": "Archery",
+    "optionD": "Hockey",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::राव राजा हणूत सिंह चैलेंज कप किस खेल से संबंधित है ?",
+    "question": "The Rao Raja Hanut Singh Challenge Cup is associated with which sport?",
+    "optionA": "Polo",
+    "optionB": "Basketball",
+    "optionC": "Women's Hockey",
+    "optionD": "Cricket",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "sports-gk::बृजमोहन बिड़ला मेमोरियल कप का संबंध किस खेल से है ?",
+    "question": "Which sport is the Brijmohan Birla Memorial Cup associated with?",
+    "optionA": "Cricket",
+    "optionB": "Basketball",
+    "optionC": "Polo",
+    "optionD": "Women's Hockey",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::सिरमौर कप किस खेल से संबंधित है ?",
+    "question": "Which sport is the Sirmour Cup associated with?",
+    "optionA": "Basketball",
+    "optionB": "Cricket",
+    "optionC": "Polo",
+    "optionD": "Women's Hockey",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::क्रिकेट के लिए प्रसिद्ध सवाई जयसिंह स्टेडियम कहाँ स्थित है ?",
+    "question": "Where is the famous Sawai Mansingh Stadium for Cricket located?",
+    "optionA": "Ajmer",
+    "optionB": "Bharatpur",
+    "optionC": "Jodhpur",
+    "optionD": "Jaipur",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::विश्व के जाने -माने तीरंदाज लिम्बा राम का संबंध राजस्थान के किस जिले से है ?",
+    "question": "Which district of Rajasthan is world famous archer Limba Ram associated with?",
+    "optionA": "Dungarpur",
+    "optionB": "Barmer",
+    "optionC": "Udaipur",
+    "optionD": "Banswara",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::निम्नलिखित में से कौन-महिला हॉकी की खिलाड़ी नहीं रही है ?",
+    "question": "Who among the following has not been a women's hockey player?",
+    "optionA": "Gangotri Bhandari",
+    "optionB": "Sunita Puri",
+    "optionC": "Varsha Soni",
+    "optionD": "Manjari Bhargava",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::किस क्षेत्र में श्रेष्ठता के लिए महाराणा प्रताप पुरस्कार दिया जाता है ?",
+    "question": "In which field is the Maharana Pratap Award given for excellence?",
+    "optionA": "Art Performance",
+    "optionB": "Science and Technology",
+    "optionC": "Sports",
+    "optionD": "Social Work",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "sports-gk::श्री श्यामलाल को तीरंदाजी के लिए किस सन् में अर्जुन पुरस्कार प्रदान किया गया ?",
+    "question": "In which year was Shri Shyamalal given the Arjuna Award for archery?",
+    "optionA": "1980 AD",
+    "optionB": "1989 AD",
+    "optionC": "1990 AD",
+    "optionD": "1992 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::महीपाल सिंह को किस खेल के लिए महाराणा प्रताप पुरस्कार प्रदान किया गया ?",
+    "question": "For which sport was Maharaj Singh given the Maharana Pratap Award?",
+    "optionA": "Cycling",
+    "optionB": "Wrestling",
+    "optionC": "Chess",
+    "optionD": "Basketball",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::जयवीर सिंह शेखावत को किस सन् में एथलेटिक्स के लिए महाराणा प्रताप पुरस्कार प्रदान किया गया ?",
+    "question": "In which year was Jayveer Singh Shekhawat given the Maharana Pratap Award for athletics?",
+    "optionA": "In the year 2000",
+    "optionB": "In the year 2001",
+    "optionC": "In the year 2002",
+    "optionD": "In the year 2003",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::मेजर राज्यवर्धन सिंह राठौर ने 28वें ओलम्पिक खेल में निशानेबाजी में कौन-सा पदक जीता ?",
+    "question": "What medal did Major Rajyavardhan Singh Rathore win in shooting at the 28th Olympic Games?",
+    "optionA": "Gold",
+    "optionB": "Silver",
+    "optionC": "Bronze",
+    "optionD": "Consolation Medal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::शिवाजी स्टेडियम, जो दिल्ली में अवस्थित है, किस खेल से संबंधित है ?",
+    "question": "Shivaji Stadium, which is located in Delhi, is related to which sport?",
+    "optionA": "Cricket",
+    "optionB": "Tennis",
+    "optionC": "Football",
+    "optionD": "Hockey",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "sports-gk::मन्जू बाला को किस खेल के लिए महाराणा प्रताप पुरस्कार प्रदान किया गया ?",
+    "question": "For which sport was Manju Bala awarded the Maharana Pratap Award?",
+    "optionA": "Archery",
+    "optionB": "Athletics",
+    "optionC": "Wrestling",
+    "optionD": "Chess",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::क्रिकेट की गेंद को किस कोण से मारा जाना चाहिए, ताकि वह अधिकतम क्षैतिज दूरी तक जा सके ?",
+    "question": "At what angle should a cricket ball be hit to achieve maximum horizontal distance?",
+    "optionA": "60 degrees from the horizontal",
+    "optionB": "45 degrees from the horizontal",
+    "optionC": "30 degrees from the horizontal",
+    "optionD": "15 degrees from the horizontal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "sports-gk::हाल ही में श्रीलंका के किस क्रिकेटर ने फ्रेंचाइजी क्रिकेट से सन्यास ले लिया है ?",
+    "question": "Which Sri Lankan cricketer recently retired from franchise cricket?",
+    "optionA": "Dinesh Chandimal",
+    "optionB": "Upul Tharanga",
+    "optionC": "Nuwan Pradeep",
+    "optionD": "Lasith Malinga",
+    "correctAnswer": "D"
+  }
+]
