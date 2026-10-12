@@ -1,1 +1,1919 @@
-[]
+[
+  {
+    "id": "haryana-gk-in-hindi::ाचीन काल में हरियाणा राज्य अन्य किस नाम से जाना जाता था ?",
+    "question": "In ancient times, Haryana state was known by which other name?",
+    "optionA": "Brahmavart Pradesh",
+    "optionB": "Brahma's Uttarvedi",
+    "optionC": "Brahmarshi Pradesh",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का स्थापना दिवस कब है ?",
+    "question": "When is Haryana Foundation Day?",
+    "optionA": "1 November 1966",
+    "optionB": "1 November 1967",
+    "optionC": "1 November 1968",
+    "optionD": "1 November 1969",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में कितने जिले है ?",
+    "question": "How many districts are there in Haryana?",
+    "optionA": "19",
+    "optionB": "21",
+    "optionC": "22",
+    "optionD": "29",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में उप-मण्डल है ?",
+    "question": "How many sub-divisions are there in Haryana?",
+    "optionA": "58",
+    "optionB": "71",
+    "optionC": "84",
+    "optionD": "87",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का प्रथम राजयपाल ?",
+    "question": "Who was the first Governor of Haryana?",
+    "optionA": "Birendra Narayan Chakraborty",
+    "optionB": "Ranjit Singh Narula",
+    "optionC": "Dharam Veera",
+    "optionD": "Mahavir Prasad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का प्रथम मुख्यमंत्री ?",
+    "question": "Who was the first Chief Minister of Haryana?",
+    "optionA": "Rao Birendra Singh",
+    "optionB": "Bhagwat Dayal Sharma",
+    "optionC": "Bansilal",
+    "optionD": "Banarsi Das Gupta",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::क्षेत्रफल की दृष्टि से भारत में हरियाणा का स्थान है ?",
+    "question": "What is Haryana's rank in terms of area in India?",
+    "optionA": "19th",
+    "optionB": "20th",
+    "optionC": "21st",
+    "optionD": "23rd",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का सर्वाधिक क्षेत्रफल वाला जिला है ?",
+    "question": "Which is the largest district of Haryana in terms of area?",
+    "optionA": "Ambala",
+    "optionB": "Karnal",
+    "optionC": "Kurukshetra",
+    "optionD": "Sirsa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का सबसे कम क्षेत्रफल वाला जिला है ?",
+    "question": "Which is the smallest district of Haryana in terms of area?",
+    "optionA": "Sonipat",
+    "optionB": "Faridabad",
+    "optionC": "Panipat",
+    "optionD": "Yamunanagar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का सबसे अधिक जनसंख्या वाला जिला है ?",
+    "question": "Which is the most populous district of Haryana?",
+    "optionA": "Faridabad",
+    "optionB": "Hisar",
+    "optionC": "Bhiwani",
+    "optionD": "Gurgaon",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का सबसे कम जनसंख्या वाला जिला है ?",
+    "question": "Which is the least populous district of Haryana?",
+    "optionA": "Yamunanagar",
+    "optionB": "Panchkula",
+    "optionC": "Mahendragarh",
+    "optionD": "Kurukshetra",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जनसंख्या की दृष्टि से भारत में हरियाणा का स्थान है ?",
+    "question": "What is Haryana's rank in terms of population in India?",
+    "optionA": "15th",
+    "optionB": "16th",
+    "optionC": "17th",
+    "optionD": "18th",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का राजकीय खेल है ?",
+    "question": "What is the state sport of Haryana?",
+    "optionA": "Wrestling",
+    "optionB": "Carrom",
+    "optionC": "Chess",
+    "optionD": "Shatranj",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का राजकीय पशु है ?",
+    "question": "What is the state animal of Haryana?",
+    "optionA": "Horse",
+    "optionB": "Rabbit",
+    "optionC": "Monkey",
+    "optionD": "Blackbuck",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का राजकीय पक्षी है ?",
+    "question": "What is the state bird of Haryana?",
+    "optionA": "Crow",
+    "optionB": "Swan",
+    "optionC": "Black Francolin",
+    "optionD": "Owl",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस भाग में वर्षा अधिक होती है ?",
+    "question": "In which part of Haryana does more rainfall occur?",
+    "optionA": "South-western part",
+    "optionB": "South-western part",
+    "optionC": "North-western part",
+    "optionD": "North-eastern part",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस भाग में शिवालिक पर्वत श्रेणियां स्थित हैं ?",
+    "question": "In which part of Haryana are the Shivalik mountain ranges located?",
+    "optionA": "North-western",
+    "optionB": "South-eastern",
+    "optionC": "South-western",
+    "optionD": "North-eastern",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में भिवानी नहर किस नहर से निकाली गई है ?",
+    "question": "From which canal is the Bhivani canal taken out in Haryana?",
+    "optionA": "From Bhakra canal",
+    "optionB": "From Eastern Yamuna canal",
+    "optionC": "From Western Yamuna canal",
+    "optionD": "From Gurgaon canal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की प्रसिद्ध बड़खल झील का निर्माण कब किया गया था ?",
+    "question": "When was the famous Badkhal lake of Haryana built?",
+    "optionA": "In the year 1940",
+    "optionB": "In the year 1947",
+    "optionC": "In the year 1950",
+    "optionD": "In the year 1974",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सिद्ध बड़खल झील हरियाणा के किस जिले में स्थित है ?",
+    "question": "In which district of Haryana is the famous Badkhal lake located?",
+    "optionA": "Gurugram Bhivani",
+    "optionB": "Rohtak",
+    "optionC": "Faridabad",
+    "optionD": "Rohtak",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से कौन सी झील हरियाणा में स्थित है ?",
+    "question": "Which of the following lakes is located in Haryana?",
+    "optionA": "Khalipur lake",
+    "optionB": "Damdama lake",
+    "optionC": "Kotla lake",
+    "optionD": "All",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश के कुल कितने खण्ड है ?",
+    "question": "How many total blocks are there in Haryana state?",
+    "optionA": "95",
+    "optionB": "140",
+    "optionC": "115",
+    "optionD": "130",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा को कुल कितने मंडलों में बांटा गया है ?",
+    "question": "Into how many divisions has Haryana been divided in total?",
+    "optionA": "In 6 divisions",
+    "optionB": "In 5 divisions",
+    "optionC": "In 4 divisions",
+    "optionD": "In 8 divisions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का कुल क्षेत्रफल कितने वर्ग किमी है ?",
+    "question": "What is the total area of Haryana in square kilometers?",
+    "optionA": "38,150",
+    "optionB": "44,212 square kilometers",
+    "optionC": "50,210 square kilometers",
+    "optionD": "52, 300 square kilometers",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के कितने प्रतिशत भू-भाग में वन क्षेत्र है ?",
+    "question": "What percentage of the total area of Haryana is forest area?",
+    "optionA": "2.5%",
+    "optionB": "3.58%",
+    "optionC": "5%",
+    "optionD": "8.5%",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला भिवानी में किस स्थान पर ग्रेनाइट नामक पत्थर मिलता है ?",
+    "question": "In which place of Bhiwani district is granite stone found?",
+    "optionA": "Village Niganakalan",
+    "optionB": "Rewasa",
+    "optionC": "Delheri",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश के किस जिले में सबसे ज्यादा वन हैं ?",
+    "question": "In which district of Haryana state are there the most forests?",
+    "optionA": "Hisar",
+    "optionB": "Jind",
+    "optionC": "Rohtak",
+    "optionD": "Yamunanagar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के जीन्द जिले में निम्नलिखित में से कौन से वृक्ष अधिक मात्रा में पाए जाते हैं ?",
+    "question": "Which of the following trees are found in large quantities in Jind district of Haryana?",
+    "optionA": "Sheesham",
+    "optionB": "Safeda",
+    "optionC": "Khejri",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला रोहतक में निम्नलिखित में से कौन-सा खनिज पदार्थ पाया जाता है ?",
+    "question": "Which mineral is found in Rohtak district?",
+    "optionA": "Lime",
+    "optionB": "Mica",
+    "optionC": "Manganese",
+    "optionD": "Copper",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में प्रमुख रूप से किस खाद्यान्न की कृषि की जाती है ?",
+    "question": "Which food crop is mainly cultivated in Haryana?",
+    "optionA": "Wheat",
+    "optionB": "Rice",
+    "optionC": "Gram",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश के कृषि विश्वविद्यालय हिसार में धान पर शोधकार्य कब शुरू किया गया ?",
+    "question": "When was research work on paddy started at the Haryana Agricultural University, Hisar?",
+    "optionA": "In 1966",
+    "optionB": "In 1970",
+    "optionC": "In 1974",
+    "optionD": "In 1989",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::कुरुक्षेत्र में किस स्थान पर गन्ना मिल है ?",
+    "question": "At which place in Kurukshetra is a sugar mill located?",
+    "optionA": "Shahabad Markanda",
+    "optionB": "Babain",
+    "optionC": "Ladwa",
+    "optionD": "Pehwa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की जवाहर लाल नेहरू किस नहर से निकली गई है ?",
+    "question": "From which canal is the Jawaharlal Nehru canal in Haryana derived?",
+    "optionA": "From Bhakra canal",
+    "optionB": "From Yamuna canal",
+    "optionC": "From Gurgaon canal",
+    "optionD": "From Bhiwani canal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::एशिया का सबसे बड़ा पशु-फॉर्म हरियाणा में कहाँ स्थित है ?",
+    "question": "Where is Asia's largest livestock farm located in Haryana?",
+    "optionA": "Rohtak",
+    "optionB": "Jind",
+    "optionC": "Panchkula",
+    "optionD": "Hisar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला हिसार ने कहाँ पर अश्व स्टेलियन केंद्र कार्यरत है ?",
+    "question": "Where in Hisar district is the Equine Stallion Center operational?",
+    "optionA": "Tohana",
+    "optionB": "Siwani",
+    "optionC": "Hansi",
+    "optionD": "Fatehabad",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में निम्नलिखित में से किस स्थान पर सहकारी दूध संयन्त्र खुले हुए है ?",
+    "question": "At which of the following places in Haryana are cooperative milk plants established?",
+    "optionA": "Jind",
+    "optionB": "Bhiwani",
+    "optionC": "Ambala",
+    "optionD": "At all the above places",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की किस नस्ल की भैंस सारे भारत में प्रसिद्ध है ?",
+    "question": "Which breed of buffalo from Haryana is famous throughout India?",
+    "optionA": "Tura",
+    "optionB": "Chhatri",
+    "optionC": "Puspa",
+    "optionD": "Murrah",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा गौवंश संरक्षण एवं गौ संवर्द्धन एक्ट किस साल लागू हुआ है ?",
+    "question": "In which year was the Haryana Cattle Conservation and Cow Promotion Act implemented?",
+    "optionA": "2017",
+    "optionB": "2015",
+    "optionC": "2016",
+    "optionD": "2014",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में \"भिवानी टैक्सटाइल मिल\" की स्थापना कब हुई थी ?",
+    "question": "When was the 'Bhiwani Textile Mill' established in Haryana?",
+    "optionA": "In 1930",
+    "optionB": "In 1933",
+    "optionC": "In 1937",
+    "optionD": "In 1942",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::यमुनानगर में यमुना गैसेस लि. स्थापना कब की गई ?",
+    "question": "When was Yamuna Gases Ltd. established in Yamunanagar?",
+    "optionA": "In 1973",
+    "optionB": "In 1975",
+    "optionC": "In 1980",
+    "optionD": "In 1982",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सरस्वती शुगर मिल, हरियाणा के किस जिले में स्थित है ?",
+    "question": "Saraswati Sugar Mill, in which district of Haryana is located?",
+    "optionA": "Rohtak",
+    "optionB": "Faridabad",
+    "optionC": "Yamunanagar",
+    "optionD": "Panipat",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में निम्नलिखित में से किस जिले में अमोनिया प्लांट स्थापित है ?",
+    "question": "In which of the following districts of Haryana is Ammonia Plant established?",
+    "optionA": "Panipat district",
+    "optionB": "Karnal district",
+    "optionC": "Gurugram district",
+    "optionD": "Kaithal district",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की कौन-सी नहर दिल्ली में अखोला नामक स्थान से यमुना नदी से निकाली गई है ?",
+    "question": "Which canal of Haryana has been taken out from Yamuna river at a place called Akhola in Delhi?",
+    "optionA": "Bhakra Canal",
+    "optionB": "Eastern Yamuna Canal",
+    "optionC": "Gurugram Canal",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हथली कुण्ड बैराज परियोजना हरियाणा के किस जिले से संबंधित है ?",
+    "question": "Hathli Kund Barrage Project is related to which district of Haryana?",
+    "optionA": "Yamunanagar",
+    "optionB": "Faridabad",
+    "optionC": "Rohtak",
+    "optionD": "Gurugram",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गुरुगांव के अतिरिक्त किस जिले में गुड़गावं नहर द्वारा सिंचाई की जाती है ?",
+    "question": "In which district, besides Gurugram, is irrigation done by Gurugram Canal?",
+    "optionA": "Panipat",
+    "optionB": "Kaithal",
+    "optionC": "Sonipat",
+    "optionD": "Faridabad",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा सरकार द्वारा स्वतंत्रत सेनानियों को सम्मानित करने का निर्णय किस वर्ष लिया गया था ?",
+    "question": "In which year did the Haryana government decide to honor freedom fighters?",
+    "optionA": "In the year 1980",
+    "optionB": "In the year 1981",
+    "optionC": "In the year 1985",
+    "optionD": "In the year 1997",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में रैपिड मेट्रो की शुरुआत सर्वप्रथम किस शहर में हुई ?",
+    "question": "In which city was the Rapid Metro first started in Haryana?",
+    "optionA": "Faridabad",
+    "optionB": "Sonipat",
+    "optionC": "Panipat",
+    "optionD": "Gurugram",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा ने शराबबंदी कानून कब लागू किया गया था ?",
+    "question": "When was the prohibition law implemented in Haryana?",
+    "optionA": "On 1 July 1996",
+    "optionB": "On 1 May 1997",
+    "optionC": "On 1 June 1993",
+    "optionD": "On 1 December 1991",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में निम्नलिखित में से किस स्थान पर ताप बिजलीघर स्थित है ?",
+    "question": "At which of the following places in Haryana is a thermal power plant located?",
+    "optionA": "Hisar",
+    "optionB": "Faridabad",
+    "optionC": "Jind",
+    "optionD": "Kaithal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा राज्य में प्रत्येक गाँव में बिजली पहुंचाने का कार्य कब पूर्ण किया गया ?",
+    "question": "When was the work of providing electricity to every village in Haryana state completed?",
+    "optionA": "On 10 June 1966",
+    "optionB": "On 29 November 1970",
+    "optionC": "On 15 April 1968",
+    "optionD": "On 25 March 1971",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::तिलियार नामक पर्यटक स्थल हरियाणा के किस जिले में स्थित है ?",
+    "question": "Tiliyar namek tourist sthal Haryana ke kis jile mein sthith hai?",
+    "optionA": "Jila Jind",
+    "optionB": "Jila Kaithal",
+    "optionC": "Jila Rohtak",
+    "optionD": "Jila Mahendragarh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::ऑफिस नामक पर्यटक स्थल हरियाणा में कहाँ पर स्थित है ?",
+    "question": "Office namek tourist sthal Haryana mein kahan par sthith hai?",
+    "optionA": "Faridabad",
+    "optionB": "Rewari",
+    "optionC": "Uchchana",
+    "optionD": "Bhiwani",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के कैथल नगर में प्रताप गेट के निकट निम्नलिखित में से कौन सा गुरुद्वारा स्थित है ?",
+    "question": "Haryana ke Kaithal nagar mein Pratap Gate ke nikat nimnalikhit mein kaun sa Gurudwara sthith hai?",
+    "optionA": "Gurudwara Neem Sahib",
+    "optionB": "Gurudwar Chathi Patshahi",
+    "optionC": "Raghdhar Gurudwara",
+    "optionD": "Gurudwara Navin Patshahi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गुरुद्वारा मांजी साहिब हरियाणा के किस नगर में स्थित है ?",
+    "question": "Gurudwara Manji Sahib Haryana ke kis nagar mein sthith hai?",
+    "optionA": "Panipat",
+    "optionB": "Ambala",
+    "optionC": "Karnal",
+    "optionD": "Kaithal",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में किस स्थान को नवग्रह कुण्डों के स्थित होने के कारण छोटी काशी भी कहा जाता है ?",
+    "question": "Haryana mein kis sthan ko Navagrah kundon ke sthith hone kaaran chhoti Kashi bhi kaha jaata hai?",
+    "optionA": "Narnaul ko",
+    "optionB": "Kurukshetra ko",
+    "optionC": "Gurgaon ko",
+    "optionD": "Kaithal ko",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::कुरुक्षेत्र में थानेसर सिटी स्टेशन के समीप निम्नलिखित में से कौन सा प्रसिद्ध तीर्थ स्थल है ?",
+    "question": "Kurukshetra mein Thanesar City Station ke samyak nimnalikhit mein kaun sa prasiddh tirth sthal hai?",
+    "optionA": "Dhosi tirth sthal",
+    "optionB": "Brahm Sarovar",
+    "optionC": "Hatkeshwar",
+    "optionD": "Pundrika Sarovar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में कैथल के कुछ दुरी पर किस महापुरुष की समाधि स्थित है जिस पर प्रत्येक वर्ष दशहरे से अगले दिन भारी मेला लगता है ?",
+    "question": "Haryana mein Kaithal ke kuch doori par kish mahapurush ki samadhi sthith hai jis par pratyek varsh Dasahere se agle din bhaari mela lagta hai?",
+    "optionA": "Baba Haridas ki",
+    "optionB": "Baba Ramdas ki",
+    "optionC": "Baba Ladana ki",
+    "optionD": "Baba Kali Kamli Wale ki",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पंचवटी नामक तीर्थस्थल कहा पर स्थित है ?",
+    "question": "Panchvati namek tirthsthal kaha par sthith hai?",
+    "optionA": "Ballabhgarh mein",
+    "optionB": "Palwal mein",
+    "optionC": "Hodal mein",
+    "optionD": "Hathin mein",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::राजघाट गुरुद्वारा हरियाणा में कहाँ पर स्थित है ?",
+    "question": "Rajghat Gurudwara Haryana mein kahan par sthith hai?",
+    "optionA": "Yamunanagar mein",
+    "optionB": "Bhiwani mein",
+    "optionC": "Kurukshetra mein",
+    "optionD": "Kaithal mein",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::कुरुक्षेत्र जिले में वह कौन सा धार्मिक स्थल है जहाँ पर बाबा लक्ष्मण गिरी महाराज द्वारा जीवित समाधि ली गयी थी ?",
+    "question": "Kurukshetra jile vah kaun sa dharmik sthal hai jahan par Baba Lakshman Giri Maharaj dwara jeevit samadhi li gayee thi?",
+    "optionA": "Banganga",
+    "optionB": "Valmiki Ashram",
+    "optionC": "Gaudiya Math",
+    "optionD": "Prachi Tirth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला कुरुक्षेत्र में किस स्थान पर श्रीकृष्ण ने अर्जुन को गीता का उपदेश दिया था ?",
+    "question": "In which place of Kurukshetra district did Lord Krishna give the sermon of Gita to Arjuna?",
+    "optionA": "Brahm Sarovar",
+    "optionB": "Jyotisar Sarovar",
+    "optionC": "Prachetirtha",
+    "optionD": "Kamal Nabhi Tirth",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला पलवल के होडल क्षेत्र में निम्नलिखित में से कौन सा धार्मिक स्थल स्थित है ?",
+    "question": "Which religious place is located in the Hodal area of Palwal district?",
+    "optionA": "Ramrai",
+    "optionB": "Panchavati",
+    "optionC": "Kaleshwar Mahadev Math",
+    "optionD": "Sati Ka Sthan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से कौन सा तीर्थस्थल हरियाणा के जिला कुरुक्षेत्र में स्थित नहीं है ?",
+    "question": "Which of the following pilgrimage sites is not located in Kurukshetra district of Haryana?",
+    "optionA": "Kaleshwar Tirth",
+    "optionB": "Kuber Tirth",
+    "optionC": "Dhosi Tirth",
+    "optionD": "Prachi Tirth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::भक्तिकाल से संबंधित गौड़ीय मठ नामक धार्मिक स्थल हरियाणा के किस जिले में स्थित है ?",
+    "question": "In which district of Haryana is the religious place called Gaudiya Math related to Bhakti period located?",
+    "optionA": "In Ambala district",
+    "optionB": "In Mahendragarh district",
+    "optionC": "In Kurukshetra district",
+    "optionD": "In Jind district",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::ताजेवाला हैडवर्क्स नामक प्रसिद्ध पर्यटक स्थल हरियाणा के किस जिले में स्थित है ?",
+    "question": "In which district of Haryana is the famous tourist place called Tajewala Headworks located?",
+    "optionA": "Darangon Tourist Place",
+    "optionB": "Jal Tarang",
+    "optionC": "Tiliyar Tourist Place",
+    "optionD": "Goraya Tourist Place",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में चौधरी देवीलाल विश्वविद्यालय निम्नलिखित में से किस स्थान पर स्थित है ?",
+    "question": "At which of the following places is Chaudhary Devi Lal University located in Haryana?",
+    "optionA": "Kurukshetra",
+    "optionB": "Sirsa",
+    "optionC": "Rohtak",
+    "optionD": "Hisar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में पंजाबी भाषा को बढ़ावा देने के उद्देश्य से पंजाबी भाषा को किस स्थान पर रखा गया है ?",
+    "question": "For the purpose of promoting Punjabi language in Haryana, at which place has Punjabi language been placed?",
+    "optionA": "First",
+    "optionB": "Fourth",
+    "optionC": "Third",
+    "optionD": "Second",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::महर्षि दयानन्द विश्वविद्यालय हरियाणा के किस नगर में स्थित है ?",
+    "question": "In which city of Haryana is Maharshi Dayanand University located?",
+    "optionA": "Rohtak",
+    "optionB": "Rewari",
+    "optionC": "Faridabad",
+    "optionD": "Hisar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::चौधरी चरण सिंह कृषि विश्वविद्यालय प्रदेश के किस नगर में स्थित है ?",
+    "question": "In which city of the state is Chaudhary Charan Singh Agricultural University located?",
+    "optionA": "Jind",
+    "optionB": "Kurukshetra",
+    "optionC": "Hisar",
+    "optionD": "Gurugram",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश के किस जिले की साक्षरता दर सबसे कम है ?",
+    "question": "In which district of the country is the literacy rate the lowest?",
+    "optionA": "Kithal",
+    "optionB": "Panipat",
+    "optionC": "Nuh",
+    "optionD": "Karnal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस जिले की साक्षरता दर सबसे ज्यादा है ?",
+    "question": "In which district of Haryana is the literacy rate the highest?",
+    "optionA": "Jhajjar",
+    "optionB": "Palwal",
+    "optionC": "Rohtak",
+    "optionD": "Gurugram",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में निम्नलखित में से किस स्थान पर नवोदय विद्यालय स्थित है ?",
+    "question": "At which of the following places in Haryana is Navodaya Vidyalaya located?",
+    "optionA": "Odhra",
+    "optionB": "Titram",
+    "optionC": "Deorala",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से कौन सा प्राचीन कवि हरियाणा से संबंधित नहीं है ?",
+    "question": "Which of the following ancient poets is not related to Haryana?",
+    "optionA": "Mahatma Haridas",
+    "optionB": "Narottam Das",
+    "optionC": "Banarasi Das",
+    "optionD": "Virbhan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में कांग्रेस की स्वर्ण-जयन्ती कब मनाई गई थी ?",
+    "question": "When was the golden jubilee of Congress celebrated in Haryana?",
+    "optionA": "On August 18, 1930",
+    "optionB": "On December 28, 1935",
+    "optionC": "On December 10, 1936",
+    "optionD": "On January 30, 1935",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गाँधी जी पलवल में कब गिरफ्तार हुए थे ?",
+    "question": "When were Gandhi ji arrested in Palwal?",
+    "optionA": "On January 5, 1919",
+    "optionB": "On April 8, 1919",
+    "optionC": "On May 8, 1920",
+    "optionD": "On April 17, 1921",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस नगर में इब्राहिम लोदी का मकबरा स्थित है ?",
+    "question": "In which city of Haryana is the tomb of Ibrahim Lodi located?",
+    "optionA": "Gurugram",
+    "optionB": "Faridabad",
+    "optionC": "Jind",
+    "optionD": "Panipat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पानीपत में इब्राहिम लोदी और बाबर के बीच प्रसिद्ध युद्ध कब हुआ था जिसमें इब्राहिम लोदी पराजित होकर मारा गया था ?",
+    "question": "When did the famous battle between Ibrahim Lodi and Babur take place in Panipat, in which Ibrahim Lodi was defeated and killed?",
+    "optionA": "1526",
+    "optionB": "1527",
+    "optionC": "1530",
+    "optionD": "1533",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पानीपत के समीप वह कौन सा स्थान है जहाँ पर सन 1761 ई. में पानीपत का तीसरा युद्ध हुआ था ?",
+    "question": "Which place is near Panipat where the third battle of Panipat took place in 1761 AD?",
+    "optionA": "Kala Amb",
+    "optionB": "Bapauli",
+    "optionC": "Israna",
+    "optionD": "Samalkha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सलारगंज गेट हरियाणा के किस नगर में स्थित है ?",
+    "question": "In which city of Haryana is Salarganj Gate located?",
+    "optionA": "Hisar",
+    "optionB": "Ambala",
+    "optionC": "Panipat",
+    "optionD": "Rohtak",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::मुगलकालीन &#39;मटिया किला&#39; हरियाणा में कहा पर स्थित है ?",
+    "question": "Where is the Mughal-era 'Matia Fort' located in Haryana?",
+    "optionA": "Hodal",
+    "optionB": "Faridabad",
+    "optionC": "Palwal",
+    "optionD": "Ballabhgarh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::फरीदाबाद जिले में किस स्थान पर तीन सौ वर्ष पुरानी एक सराय स्थित है ?",
+    "question": "Where is a 300-year-old sarai located in Faridabad district?",
+    "optionA": "Jaunpur",
+    "optionB": "Ballabhgarh",
+    "optionC": "Hathin",
+    "optionD": "Gauon Sarai Khwaja",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गऊकर्ण नामक तालाब किस जिले में स्थित है ?",
+    "question": "In which district is the Gaukarn pond located?",
+    "optionA": "In Rewari district",
+    "optionB": "In Rohtak district",
+    "optionC": "In Sonipat district",
+    "optionD": "In Jhajjar district",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::श्रीकृष्ण संग्रहालय हरियाणा में कहाँ पर स्थित है ?",
+    "question": "Where is the Shri Krishna Museum located in Haryana?",
+    "optionA": "In Panipat",
+    "optionB": "In Faridabad",
+    "optionC": "In Kurukshetra",
+    "optionD": "In Rohtak",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::राजा नाहर सिंह का किला हरियाणा में कहाँ पर स्थित है ?",
+    "question": "Where is Raja Nahar Singh's Fort located in Haryana?",
+    "optionA": "In Mahendragarh",
+    "optionB": "In Ballabhgarh",
+    "optionC": "In Yamunanagar",
+    "optionD": "In Rohtak",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के जींद नगर को जीतकर गजपत सिंह द्वारा एक विशाल किले का निर्माण कब करवाया गया ?",
+    "question": "When did Gajpat Singh build a huge fort after conquering Jind town in Haryana?",
+    "optionA": "In 1725 AD",
+    "optionB": "In 1775 AD",
+    "optionC": "In 1778 AD",
+    "optionD": "In 1995 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गोहाना नामक ऐतिहासिक कस्बा हरियाणा के किस जिले में स्थित है ?",
+    "question": "In which district of Haryana is the historical town of Gohana located?",
+    "optionA": "Panipat district",
+    "optionB": "Rewari district",
+    "optionC": "Sonipat district",
+    "optionD": "Sirsa district",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्न में से कौन वर्ष 2016 में हरियाणा का वाँ जिला बना है ?",
+    "question": "Which of the following became the 22nd district of Haryana in 2016?",
+    "optionA": "Tohana",
+    "optionB": "Loharu",
+    "optionC": "Charkhi Dadri",
+    "optionD": "Badra",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के बहादुरगढ़ नामक ऐतिहासिक कस्बे का प्राचीन नाम क्या था ?",
+    "question": "What was the ancient name of the historical town of Bahadurgarh in Haryana?",
+    "optionA": "Charkhabad",
+    "optionB": "Betwabad",
+    "optionC": "Sharafabad",
+    "optionD": "Hasanpur",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::आदि बद्री नामक पौराणिक गाँव किसे जिले में स्थित है ?",
+    "question": "In which district is the mythical village of Adi Badri located?",
+    "optionA": "Bhiwani district",
+    "optionB": "Sirsa district",
+    "optionC": "Yamunanagar district",
+    "optionD": "Rewari district",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::महाभारतकालीन प्राचीन गांव अमीन हरियाणा के किस जिले में स्थित है ?",
+    "question": "In which district of Haryana is the Mahabharata-era ancient village Amin located?",
+    "optionA": "Rohtak district",
+    "optionB": "Sirsa district",
+    "optionC": "Jind district",
+    "optionD": "Karnal district",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::बेरी नामक प्राचीन कस्बा हरियाणा के किस जिले में स्थित है ?",
+    "question": "Which district of Haryana is the ancient town of Beri located in?",
+    "optionA": "Kurukshetra district",
+    "optionB": "Karnal district",
+    "optionC": "Yamunanagar district",
+    "optionD": "Rohtak district",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::यमुनानगर के समीप किस स्थान पर महाभारत कालीन पातालेश्वर महादेव मंदिर स्थित है ?",
+    "question": "Near Yamunanagar, at which place is the ancient Mahabharata-era Pataleshwar Mahadev temple located?",
+    "optionA": "Sadhaura",
+    "optionB": "Radaur",
+    "optionC": "Jagadhari",
+    "optionD": "Bhuria",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस जिले में रामसराय और भूतेश्वर के प्रसिद्ध मेले लगते है ?",
+    "question": "In which district of Haryana are the famous fairs of Ramsarai and Bhuteshwar held?",
+    "optionA": "Faridabad district",
+    "optionB": "Jhajjar district",
+    "optionC": "Rohtak district",
+    "optionD": "Jind district",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जगाधरी के समीप बिलासपुर नामक स्थान पर कार्तिक पूर्णिया के दिन कौन सा मेला लगता है ?",
+    "question": "Near Jagadhari, at a place called Bilaspur, which fair is held on the day of Kartik Purnima?",
+    "optionA": "Adi Badri Mela",
+    "optionB": "Panchmukhi Mela",
+    "optionC": "Kapal Mochan Mela",
+    "optionD": "Mela Kali Mai",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला भिवानी में किस स्थान पर रक्षा बंधन के दिन बाबा खेडेवाला का मेला लगता है ?",
+    "question": "In Bhiwani district, at which place is the Baba Khedewala fair held on the day of Raksha Bandhan?",
+    "optionA": "Rewas",
+    "optionB": "Naurangabad",
+    "optionC": "Tosham",
+    "optionD": "Khark Kalan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला गुरुग्राम के खोरी नामक स्थान पर अप्रैल, मई में कौन सा मेला लगता है ?",
+    "question": "In Gurgaon district, at a place called Khori, which fair is held in April and May?",
+    "optionA": "Shiva Ka Mela",
+    "optionB": "Shah Chokha Khori Mela",
+    "optionC": "Nagapuja Mela",
+    "optionD": "Baba Mastnath Ka Mela",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में मंगलमय पीलिया, लोकगीत किस अवसर पर गया जाता है ?",
+    "question": "In Haryana state, on which occasion is the Mangalmay Peeliya, a folk song, sung?",
+    "optionA": "On the month of Sawan",
+    "optionB": "In the month of Phagun",
+    "optionC": "On the occasion of marriage",
+    "optionD": "On the occasion of the birth of a son",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में निम्नलिखित में से किस अवसर पर लोकगीत गए जाते है ?",
+    "question": "In Haryana state, on which of the following occasions are folk songs sung?",
+    "optionA": "In the month of Sawan",
+    "optionB": "On the occasion of festivals",
+    "optionC": "At the time of the birth of a son",
+    "optionD": "All of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में बागर क्षेत्र में होली के मौसम में निम्नलिखित में से कौन सा नृत्य किया जाता है ?",
+    "question": "In Haryana state, in the Bagar region during the Holi season, which of the following dances is performed?",
+    "optionA": "Ghoda Dance",
+    "optionB": "Damru Dance",
+    "optionC": "Manjira Dance",
+    "optionD": "Loo Dance",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में प्रचलित लोकनृत्यों में से कौन-सा नृत्य स्त्री-पुरुषों दोनों के द्वारा किया जाता है ?",
+    "question": "Among the folk dances prevalent in Haryana, which dance is performed by both men and women?",
+    "optionA": "Teej Dance",
+    "optionB": "Phag Dance",
+    "optionC": "Khoria Dance",
+    "optionD": "Loo Dance",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में प्रचलित लोक नृत्यों में से कौन-सा नृत्य पुरुषों द्वारा किया जाता है ?",
+    "question": "Which of the following folk dances prevalent in the country is performed by men?",
+    "optionA": "Chhathi dance",
+    "optionB": "Khodia dance",
+    "optionC": "Damru dance",
+    "optionD": "Teej dance",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में प्रचलित धोड़ा लोकनृत्य का आयोजन प्रमुख रूप से किस अवसर पर किया जाता है ?",
+    "question": "On which occasion is the Dholu folk dance prevalent in Haryana mainly organized?",
+    "optionA": "In the month of Phagun",
+    "optionB": "In the month of Sawan",
+    "optionC": "On the occasion of the birth of a son",
+    "optionD": "On the occasion of marriage",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में स्थानेश्वर मंदिर का पुनर्निर्माण निम्नलिखित में से किसके द्वारा करवाया गया था ?",
+    "question": "Who rebuilt the Shaneswar Temple in Haryana?",
+    "optionA": "By Chandragupta Vikramaditya",
+    "optionB": "By Naravardhana",
+    "optionC": "By Harshavardhana",
+    "optionD": "By Maratha Sadashiv Rao",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::ग्यारह रुद्री शिव मंदिर हरियाणा के किस नगर में स्थित है ?",
+    "question": "In which city of Haryana is the Eleven Rudreshwar Shiv Temple located?",
+    "optionA": "Panipat",
+    "optionB": "Kaithal",
+    "optionC": "Jind",
+    "optionD": "Hisar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::रोहतक जिले के बेरी गाँव के रूढ़मल मंदिर में स्थित शिवालय का निर्माण कब करवाया गया था ?",
+    "question": "When was the Shivalaya located in the Roodhmal Temple of Beri village in Rohtak district built?",
+    "optionA": "In the year 1825",
+    "optionB": "In the year 1875",
+    "optionC": "In the year 1892",
+    "optionD": "In the year 1995",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::माता शीतला देवी का प्रसिद्ध और प्राचीन मंदिर हरियाणा में कहाँ पर स्थित है ?",
+    "question": "Where is the famous and ancient temple of Mata Sheetla Devi located in Haryana?",
+    "optionA": "In Narnaul",
+    "optionB": "In Rewari",
+    "optionC": "In Gurugram",
+    "optionD": "In Jind",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में पुरुषों द्वारा पहनी जाने वाली पगड़ी क्या कहलाती है ?",
+    "question": "What is the pagri worn by men in Haryana called?",
+    "optionA": "Khandwa",
+    "optionB": "Pagri",
+    "optionC": "Toda",
+    "optionD": "Pagg",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में राजपूती ढंग की बड़ी पगड़ी को क्या कहते हैं ?",
+    "question": "What is the large Rajputi style pagri called in Haryana?",
+    "optionA": "Safa",
+    "optionB": "Dohra",
+    "optionC": "Pag",
+    "optionD": "Topi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में प्रचलित निम्नलिखित में से कौन-सा आभूषण गले में नहीं पहना जाता है ?",
+    "question": "Which of the following ornaments prevalent in the country is not worn around the neck?",
+    "optionA": "Phool",
+    "optionB": "Button",
+    "optionC": "Hansla",
+    "optionD": "Galshree",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में प्रचलित निम्नलिखित में से कौन-सा आभूषण हाथों में नहीं पहना जाता है ?",
+    "question": "Which of the following ornaments prevalent in the country is not worn on the hands?",
+    "optionA": "Paochi",
+    "optionB": "Bankadi",
+    "optionC": "Kadulla",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में निम्नलिखित में से कौन-सा आभूषण मुंह और सर पर पहना जाता है ?",
+    "question": "Which of the following jewelry is worn on the mouth and head in Haryana?",
+    "optionA": "Singar Patti",
+    "optionB": "Bessar",
+    "optionC": "Tagga",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में खेलों को बढ़ावा देने के उद्देश्य से प्रदेश सरकार द्वारा कौन-सी महत्वपूर्ण योजना चलाई जा रही है ?",
+    "question": "For the purpose of promoting sports in Haryana, which important scheme is being run by the state government?",
+    "optionA": "Grant to sports institutions",
+    "optionB": "Sports Stadium",
+    "optionC": "Training program",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::खिलाडियों को आधुनिक और वैज्ञानिक ढंग से प्रशिषण देने के लिए हरियाणा में किस स्थान पर खेल छात्रावास की स्थापना की गई है ?",
+    "question": "At which place in Haryana has a sports hostel been established to give training to players in modern and scientific ways?",
+    "optionA": "In Rohtak",
+    "optionB": "In Panipat",
+    "optionC": "In Faridabad",
+    "optionD": "In Gurugram",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से भारतीय क्रिकेट का कौन सा सर्वप्रमुख खिलाडी हरियाणा से संबंधित है ?",
+    "question": "Which of the following most prominent Indian cricketer is related to Haryana?",
+    "optionA": "Kapil Dev",
+    "optionB": "Azharuddin",
+    "optionC": "Ajay Jadeja",
+    "optionD": "Sunil Gavaskar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की प्रसिद्ध महिला खिलाड़ी ममता खरब का संबंध किस खेल से है ?",
+    "question": "Which sport is related to Mamta Khara, the famous female player of Haryana?",
+    "optionA": "Hockey",
+    "optionB": "Handball",
+    "optionC": "Judo",
+    "optionD": "Kabaddi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की प्रसिद्ध महिला खिलाडी गीता जुत्शी किस खेल से संबंधित है ?",
+    "question": "Which sport is related to Geeta Jutshi, the famous female player of Haryana?",
+    "optionA": "Tennis",
+    "optionB": "Gymnastic",
+    "optionC": "Race",
+    "optionD": "Badminton",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के खिलाडी सतीश कुमार का संबंध किस खेल से है ?",
+    "question": "Which sport is related to Satish Kumar, the player of Haryana?",
+    "optionA": "Handball",
+    "optionB": "Cricket",
+    "optionC": "Hockey",
+    "optionD": "Judo",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से किस प्रमुख आदिकवि को हरियाणा का माना जाता है ?",
+    "question": "Which prominent Adikavi is considered of Haryana?",
+    "optionA": "Goswami Tulsidas",
+    "optionB": "Rahim Das",
+    "optionC": "Kavi Chandbardai",
+    "optionD": "Kabirdas",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में भारी वाहन चालक प्रशिक्षण संस्थान निम्नलिखित में से किस स्थान पर स्थित है ?",
+    "question": "Where is the Heavy Vehicle Driver Training Institute located in Haryana?",
+    "optionA": "Charkhi Dadri",
+    "optionB": "Murthal",
+    "optionC": "Ambala",
+    "optionD": "Taoru",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में बड़े परिवहन बस डिपुओं की संख्या कितनी है ?",
+    "question": "How many major transport bus depots are there in Haryana?",
+    "optionA": "12",
+    "optionB": "13",
+    "optionC": "19",
+    "optionD": "23",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा सरकार द्वारा यात्री-परिवहन का सम्पूर्ण राष्ट्रीयकरण कब किया गया ?",
+    "question": "When did the Haryana government completely nationalize passenger transport?",
+    "optionA": "In 1972",
+    "optionB": "In 1976",
+    "optionC": "In 1980",
+    "optionD": "In 1985",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का कौन-सा जिला खुम्बी की फसल के उत्पादन में भारत में अग्रणी है ?",
+    "question": "Which district of Haryana is leading in the production of khumbhi crop in India?",
+    "optionA": "Ambala district",
+    "optionB": "Yamunanagar district",
+    "optionC": "Sonipat district",
+    "optionD": "Sirsa district",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की कौन सी नहर दिल्ली में ओखला नामक स्थान से यमुना नदी से निकली गई है ?",
+    "question": "Which canal of Haryana has been taken out from the Yamuna river at a place called Okhla in Delhi?",
+    "optionA": "Eastern Yamuna Canal",
+    "optionB": "Bhakra Canal",
+    "optionC": "Gurgaon Canal",
+    "optionD": "None",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::अकबर और हेमचन्द्र के बीच पानीपत का प्रसिद्ध द्वितीय युद्ध कब लड़ा गया था ?",
+    "question": "When was the famous Second Battle of Panipat fought between Akbar and Hemchandra?",
+    "optionA": "In 1550 AD",
+    "optionB": "In 1552 AD",
+    "optionC": "In 1554 AD",
+    "optionD": "In 1556 AD",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सिद्ध मुग़ल शासक अकबर के समय में रिवाड़ी का शासक कौन था ?",
+    "question": "Who was the ruler of Rewari during the time of the great Mughal ruler Akbar?",
+    "optionA": "Tularam",
+    "optionB": "Phoolsingh",
+    "optionC": "Hemchandra",
+    "optionD": "Karnsingh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::1526 ई. में हरियाणा में किस स्थान पर बाबर और इब्राहिम लोदी के बीच प्रसिद्ध युद्ध हुआ था ?",
+    "question": "At which place in Haryana was the famous battle fought between Babur and Ibrahim Lodi in 1526 AD?",
+    "optionA": "Panipat",
+    "optionB": "Jind",
+    "optionC": "Rohtak",
+    "optionD": "Kurukshetra",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित में से हरियाणा के किस नगर पर तैमूर ने आक्रमण किया था ?",
+    "question": "On which city of Haryana did Timur attack?",
+    "optionA": "Sirsa",
+    "optionB": "Hisar",
+    "optionC": "Fatehabad",
+    "optionD": "All of them",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::मुग़ल-काल में इस प्रदेश में जनपदों का स्थान किसने लिया था ?",
+    "question": "Who took the place of janapads in this region during the Mughal period?",
+    "optionA": "Gan Sangha took",
+    "optionB": "Panchayat took",
+    "optionC": "Khapos took",
+    "optionD": "Gan-system took",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::विमुक्त जाति के बच्चों के लिए प्रदेश में किस स्थान पर छात्रावास खोला गया है ?",
+    "question": "At which place in the state has a hostel been opened for the children of Vimukta Jati?",
+    "optionA": "Rohtak",
+    "optionB": "Gurgaon",
+    "optionC": "Faridabad",
+    "optionD": "Jind",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::ाचीन काल में बहादुरगढ़ नामक नगर किस नाम से जाना जाता था ?",
+    "question": "What was the ancient name of the city of Bahadurgarh?",
+    "optionA": "Shahfirabad",
+    "optionB": "Balramgarh",
+    "optionC": "Bahawalgarh",
+    "optionD": "Sharafabad",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::बल्लभगढ़ नामक नगर प्रदेश के किस जिले के अंतर्गत आता है ?",
+    "question": "Which district does the city of Ballabhgarh come under in the state?",
+    "optionA": "Faridabad",
+    "optionB": "Karnal",
+    "optionC": "Gurgaon",
+    "optionD": "Rohtak",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पलवल को जिले का दर्जा किस वर्ष मिला ?",
+    "question": "In which year did Palwal get the status of a district?",
+    "optionA": "2006 में",
+    "optionB": "2005 में",
+    "optionC": "2008 में",
+    "optionD": "2007 में",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का ऐसा कौन सा जिला है जिसका जिला मुख्यालय नारलौन नगर में स्थित है ?",
+    "question": "Which district of Haryana has its district headquarters located in the city of Narnaul?",
+    "optionA": "Hisar",
+    "optionB": "Karnal",
+    "optionC": "Mahendragarh",
+    "optionD": "Faridabad",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::1858 ई. में हरियाणा का कौन सा जिला पंजाब प्रान्त में सम्मिलित कर दिया गया था ?",
+    "question": "In 1858 AD, which district of Haryana was included in the Punjab province?",
+    "optionA": "Gurgaon",
+    "optionB": "Faridabad",
+    "optionC": "Mahendragarh",
+    "optionD": "Hisar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::करनाल जिले के अमीन नामक गांव में निम्लिखित में से कौन सा प्राचीन मंदिर स्थित है ?",
+    "question": "Which ancient temple is located in the village of Amin in Karnal district?",
+    "optionA": "Panchavati Temple",
+    "optionB": "Dau Ji Ka Mandir",
+    "optionC": "Aditi Ka Mandir",
+    "optionD": "Shiv Mandir",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::नारनौल नगर में स्थित चामुण्डा देवी के मंदिर का निर्माण व जीर्णाद्वार किसके द्वारा करवाया गया था ?",
+    "question": "Who constructed and renovated the Chamunda Devi temple located in Narnaul city?",
+    "optionA": "By Raja Dilip",
+    "optionB": "By the Pandavas",
+    "optionC": "By Raja Noonkaran",
+    "optionD": "By Raja Parikshit",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::रोहतक जिले में स्थित बेरी गावं के रूढीमल मंदिर के शिवालय का पहली बार जीर्णाद्वार कब करवाया गया था ?",
+    "question": "When was the Shiv temple of the Rudhimal temple in the village of Beri in Rohtak district renovated for the first time?",
+    "optionA": "In 1953",
+    "optionB": "In 1963",
+    "optionC": "In 1965",
+    "optionD": "In 1970",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::ाचीन शिव मंदिर जहाँ बाबा ठंडीपुरी की समाधि भी है प्रदेश में कहाँ स्थित है ?",
+    "question": "Where is the ancient Shiva temple, where the samadhi of Baba Thandipuri is also located, situated in the state?",
+    "optionA": "Pundrik Tirtha",
+    "optionB": "Rohtak",
+    "optionC": "Hisar",
+    "optionD": "Gurgaon",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में कुल कितने गाँव है ?",
+    "question": "How many villages are there in total in Haryana state?",
+    "optionA": "4,522",
+    "optionB": "5,278",
+    "optionC": "6,841",
+    "optionD": "6,149",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::महमूद गजनवी ने थानेश्वर पर कब आक्रमण किया था ?",
+    "question": "When did Mahmud Ghaznavi attack Thanesar?",
+    "optionA": "In 1013 AD",
+    "optionB": "In 1014 AD",
+    "optionC": "In 1016 AD",
+    "optionD": "In 1017 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश का थानेश्वर नामक नगर किस प्रसिद्ध राजा की राजधानी था ?",
+    "question": "Which famous king's capital was the city of Thaneswar in the country?",
+    "optionA": "Harshavardhana",
+    "optionB": "Kanishka",
+    "optionC": "Chandragupta Vikramaditya",
+    "optionD": "Ashoka",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::किस भरतवंशी शासक ने हरियाणा प्रदेश से अपना विजय अभियान शुरू किया था ?",
+    "question": "Which Bharatvanshi ruler started his victory campaign from Haryana province?",
+    "optionA": "Sudas",
+    "optionB": "Bhishma",
+    "optionC": "Bharat",
+    "optionD": "Arjun",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::तुगलक शासक फिरोज तुगलक ने प्रदेश के हिसार जिले में कौन सा नगर बसाया था ?",
+    "question": "Which city did the Tughlaq ruler Firoz Tughlaq establish in the district of Hisar in the state?",
+    "optionA": "Tohana",
+    "optionB": "Fatehabad",
+    "optionC": "Siwani",
+    "optionD": "Hansi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::भगवान श्रीकृष्ण द्वारा विश्व प्रसिद्ध गीता का उपदेश हरियाणा में किस स्थान पर दिया गया था ?",
+    "question": "At which place in Haryana was the world-famous Gita sermon given by Lord Shri Krishna?",
+    "optionA": "Rewari",
+    "optionB": "Panipat",
+    "optionC": "Kurukshetra",
+    "optionD": "Pehwa",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सन् 1809-10 में समस्त हरियाणा किसके अधिकार में था ?",
+    "question": "In 1809-10, entire Haryana was under whose control?",
+    "optionA": "Marathas",
+    "optionB": "English",
+    "optionC": "Mughals",
+    "optionD": "Satnamis",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस स्थान को जार्ज टॉमस ने अपनी राजधानी बनाया था ?",
+    "question": "Which place in Haryana did George Thomas make his capital?",
+    "optionA": "Rania",
+    "optionB": "Baharampur",
+    "optionC": "Hansi Fort",
+    "optionD": "Tohana",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::दिल्ली-अलवर मार्ग पर अरावली की पहाड़ियों के मध्य हरियाणा का कौन-सा प्रसिद्ध पर्यटक स्थल है ?",
+    "question": "Which famous tourist destination of Haryana is located between the Aravalli hills on the Delhi-Alwar route?",
+    "optionA": "Shamshan",
+    "optionB": "Darrangon",
+    "optionC": "Sohna",
+    "optionD": "Blue Jay",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गुरग्राम-फरुखनगर मार्ग पर हरियाणा का कौन-सा पर्यटक स्थल स्थित है ?",
+    "question": "Which tourist destination of Haryana is located on the Gurgaam-Farukhnagar route?",
+    "optionA": "Oasis",
+    "optionB": "Dabbich",
+    "optionC": "Sultanpur Bird Sanctuary",
+    "optionD": "Ride Robin",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला रोहतक में प्रमुख रूप से किस चीज की खेती की जाती है ?",
+    "question": "What is mainly cultivated in the district of Rohtak?",
+    "optionA": "Wheat",
+    "optionB": "Sugarcane",
+    "optionC": "Jowar",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::बौद्धकाल के किन महाजनपदों में आधुनिक हरियाणा के भाग शामिल थे?",
+    "question": "In which Mahajanapadas of the Buddhist period were parts of modern Haryana included?",
+    "optionA": "Surasen and Avanti",
+    "optionB": "Assak and Ottas",
+    "optionC": "Kausal and Vajji",
+    "optionD": "Kuru and Panchal",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::बारहवीं शताब्दी में किस चौहान शासक ने हरियाणा के प्रदेश पर आक्रमण कर तोमरों को पराजित किया था?",
+    "question": "In the twelfth century, which Chauhan ruler attacked the region of Haryana and defeated the Tomars?",
+    "optionA": "Vigraharaj 2",
+    "optionB": "Vigraharaj 6",
+    "optionC": "Arnoraja",
+    "optionD": "Prithviraj Chauhan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::गुलाम वंश के शासक बलबन ने हरियाणा के शक्तिशाली मेवों की शक्ति को नष्ट करने का प्रयास कब किया था?",
+    "question": "When did the ruler of the Slave Dynasty, Balban, attempt to destroy the power of the powerful Meos of Haryana?",
+    "optionA": "1265 AD",
+    "optionB": "1266 AD",
+    "optionC": "1267 AD",
+    "optionD": "1260 AD",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::मराठों और अहमदशाह अब्दाली के बीच प्रदेश में कौन सा प्रसिद्ध युद्ध लड़ा गया था?",
+    "question": "Which famous war was fought in the region between the Marathas and Ahmad Shah Abdali?",
+    "optionA": "Second Battle of Panipat",
+    "optionB": "Third Battle of Panipat",
+    "optionC": "First Battle of Panipat",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::1802 ई० में जार्ज टॉमस की मृत्यु प्रदेश में किस स्थान पर हुई थी?",
+    "question": "In 1802 AD, at which place in the region did George Thomas die?",
+    "optionA": "Baharampur",
+    "optionB": "Mahendragarh",
+    "optionC": "Bawal",
+    "optionD": "Narnaul",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::आधुनिक हरियाणा राज्य का निर्माण कब किया गया था?",
+    "question": "When was the modern state of Haryana formed?",
+    "optionA": "5 January, 1967",
+    "optionB": "1 November, 1958",
+    "optionC": "15 August, 1947",
+    "optionD": "1 November, 1966",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::यौधेय-काल में हरियाणा प्रदेश को निम्नलिखित में से किस नाम की संज्ञा दी गई?",
+    "question": "What name was given to the region of Haryana during the Yaudheya period?",
+    "optionA": "Gan-pradesh",
+    "optionB": "Yaudheya Ganrajya",
+    "optionC": "Matsya Pradesh",
+    "optionD": "Bahudhanyak-pradesh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का कौन वीर सेनानी मेरठ क्रान्ति के समय मेरठ का नायब कोतवाल था?",
+    "question": "Which heroic soldier of Haryana was the Naib Kotwal of Meerut at the time of the Meerut Revolution?",
+    "optionA": "Vikram Singh",
+    "optionB": "Rao Krishna Gopal",
+    "optionC": "Rameshwar Dayal",
+    "optionD": "Abdus Samad Khan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::कांग्रेस के दूसरे 1886 के कलकत्ता अधिवेशन में हरियाणा का प्रतिनिधित्व किसने किया था?",
+    "question": "Who represented Haryana in the second session of the Congress in 1886 in Kolkata?",
+    "optionA": "Bal Mukund Gupta",
+    "optionB": "Lala Murlidhar",
+    "optionC": "Pandit Deendayal Sharma",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::कांग्रेस के नागपुर में हुए वार्षिक अधिवेशन में हरियाणा प्रान्त का प्रतिनिधित्व किसने किया था?",
+    "question": "Who represented the Haryana province in the annual session of the Congress held in Nagpur?",
+    "optionA": "Shyam Lal",
+    "optionB": "Pandit Nehru Ram Sharma",
+    "optionC": "Sardar Boota Singh Lala",
+    "optionD": "Ugrasen Babu",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::लाला लाजपत राय ने हरियाणा के किस स्थान को अपना राजनीतिक और सामाजिक कार्य-क्षेत्र बनाया था?",
+    "question": "Which place in Haryana did Lala Lajpat Rai make his political and social area of work?",
+    "optionA": "Sonipat",
+    "optionB": "Hisar",
+    "optionC": "Nuh",
+    "optionD": "Gurgaon",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पंजाब प्रदेश-कांग्रेस के आदेश पर पूरे हरियाणा में स्वतंत्रता दिवस कब मनाया गया?",
+    "question": "On the orders of the Punjab Pradesh Congress, when was Independence Day celebrated throughout Haryana?",
+    "optionA": "26 January, 1932",
+    "optionB": "15 August, 1935",
+    "optionC": "10 December, 1932",
+    "optionD": "12 January, 1932",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का मैदानी भाग समुद्रतल से कितनी ऊँचाई पर स्थित है?",
+    "question": "At what height is the plain part of Haryana situated from sea level?",
+    "optionA": "900 to 1100 feet",
+    "optionB": "800 to 1000 feet",
+    "optionC": "750 to 880 feet",
+    "optionD": "700 to 900 feet",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::शिवालिक की पहाड़ियों से हरियाणा प्रदेश की कौन सी नदी निकलती है?",
+    "question": "Which river of Haryana state originates from the Shivalik hills?",
+    "optionA": "Tangri",
+    "optionB": "Ghaggar",
+    "optionC": "Markanda",
+    "optionD": "All",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की कौन सी नदी मुलाना के समीप मारकण्डा नदी में मिलती है?",
+    "question": "Which river of Haryana meets the Markanda river near Mulana?",
+    "optionA": "Tangri river",
+    "optionB": "Krishnavati river",
+    "optionC": "Dohan river",
+    "optionD": "Sahibi river",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की कौन सी नहर जगाधरी-पोंटा सड़क पर स्थित ताजेवाला नामक स्थान से यमुना नदी से निकलती है?",
+    "question": "Which canal of Haryana originates from the Yamuna river at a place named Tajewala located on the Jagadhari-Ponta road?",
+    "optionA": "Western and Eastern Yamuna Canal",
+    "optionB": "Bhakra Canal",
+    "optionC": "Jawaharlal Nehru Canal",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के फरुखनगर खण्ड में निम्नलिखित में से कौन सी झील स्थित है?",
+    "question": "Which of the following lakes is located in the Faridabad division of Haryana?",
+    "optionA": "Khalilpur Lake",
+    "optionB": "Kotla Lake",
+    "optionC": "Damdama Lake",
+    "optionD": "Sultanpur Lake",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::भाखड़ा नहर द्वारा प्रदेश के किस जिले में सिंचाई कार्य किया जाता है?",
+    "question": "In which district of the state is irrigation work done by the Bhakra Canal?",
+    "optionA": "Rohtak",
+    "optionB": "Hisar",
+    "optionC": "Sirsa",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जवाहर लाल नेहरू नहर द्वारा प्रदेश के किस जिले में सिंचाई की जाती है?",
+    "question": "In which district of the state is irrigation done by the Jawaharlal Nehru Canal?",
+    "optionA": "In Jind district",
+    "optionB": "In Mahendragarh district",
+    "optionC": "In Rohtak district",
+    "optionD": "In Sirsa district",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में वर्तमान समय में कुल उप-मण्डल (सब-डिवीजन) कितने है?",
+    "question": "How many sub-divisions (sub-divisions) are there in Haryana state at present?",
+    "optionA": "71 sub-divisions",
+    "optionB": "40 sub-divisions",
+    "optionC": "37 sub-divisions",
+    "optionD": "35 sub-divisions",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में वर्तमान समय में कुल कितनी तहसीलें हैं?",
+    "question": "How many tehsils are there in Haryana at present?",
+    "optionA": "58",
+    "optionB": "85",
+    "optionC": "75",
+    "optionD": "93",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में वर्तमान समय में उप तहसीलों की कुल संख्या कितनी है?",
+    "question": "What is the total number of sub-divisions currently in Haryana state?",
+    "optionA": "30",
+    "optionB": "31",
+    "optionC": "40",
+    "optionD": "49",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सम्पूर्ण हरियाणा में आबाद गाँव कितने हैं?",
+    "question": "How many inhabited villages are there in entire Haryana?",
+    "optionA": "4,390",
+    "optionB": "6,754",
+    "optionC": "5,845",
+    "optionD": "4,950",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश के किस जिले में \"चौधरी देवीलाल प्राकृतिक पार्क\" विकसित किया गया है?",
+    "question": "In which district of the country has \"Chaudhary Devi Lal Natural Park\" been developed?",
+    "optionA": "Rohtak",
+    "optionB": "Panipat",
+    "optionC": "Yamunanagar",
+    "optionD": "Bhiwani",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश के किन जिलों में दो विशेष पर्यावरण न्यायालयों की स्थापना की गई है?",
+    "question": "In which districts of the country have two special environment courts been established?",
+    "optionA": "Bhiwani & Yamunanagar",
+    "optionB": "Sirsa & Jind",
+    "optionC": "Rewari & Mahendragarh",
+    "optionD": "Faridabad & Hisar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::राज्य में औषधि वृक्षों को रोपण हेतु &#39;वनस्पति वन योजना&#39; कब लागू की गई?",
+    "question": "When was the 'Vanaspati Van Yojana' implemented for planting medicinal trees in the state?",
+    "optionA": "1 November, 2003",
+    "optionB": "1 June, 2005",
+    "optionC": "1 September, 2005",
+    "optionD": "1 November, 2002",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में किस वर्ष सभी पर्यावरण कमेटियों को 30 हजार रुपए की अनुदान राशि देने का निर्णय लिया गया?",
+    "question": "In which year was the decision taken to give a grant amount of 30 thousand rupees to all environment committees in Haryana?",
+    "optionA": "In the year 1985-86",
+    "optionB": "In the year 1998-99",
+    "optionC": "In the year 1991-92",
+    "optionD": "In the year 1980-81",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जिला हिसार व करनाल में निम्नलिखित में से कौन सा खनिज पदार्थ उपलब्ध होता है?",
+    "question": "Which mineral substance is available in Hisar and Karnal districts?",
+    "optionA": "Mica",
+    "optionB": "Marble",
+    "optionC": "Saltpeter",
+    "optionD": "Raw iron",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस जिले को बासमती चावल के उत्पादन में विश्व प्रसिद्ध होने के कारण \"धान का कटोरा\" नाम से जाना जाता है?",
+    "question": "Which district of Haryana is known as the 'Bowl of Rice' due to its world fame in the production of basmati rice?",
+    "optionA": "Kurukshetra district",
+    "optionB": "Karnal district",
+    "optionC": "Jind district",
+    "optionD": "Hisar district",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा को उन्नत किस्म के प्रमाणित बीजों के प्रयोग करने में भारत भर में कौन सा स्थान प्राप्त है?",
+    "question": "What position has Haryana achieved in India for the use of certified seeds of improved varieties?",
+    "optionA": "First",
+    "optionB": "Second",
+    "optionC": "Third",
+    "optionD": "Fourth",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में निम्नलिखित में से किस साधन द्वारा सिंचाई की जाती है?",
+    "question": "By which of the following means is irrigation done in Haryana state?",
+    "optionA": "By wells",
+    "optionB": "By tube wells",
+    "optionC": "By canals",
+    "optionD": "By all of the above",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के रेतीले भाग में सिंचाई का साधन क्या है?",
+    "question": "What is the means of irrigation in the sandy parts of Haryana?",
+    "optionA": "With the help of tubewells through fountains",
+    "optionB": "By rain",
+    "optionC": "By wells",
+    "optionD": "By canals",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::भारतीय पुरातत्व सर्वेक्षण के एच.एल. श्रीवास्तव द्वारा हिसार में किस स्थान पर खुदाई कार्य करवाया था?",
+    "question": "At which place in Hisar was the excavation work carried out by H.L. Shrivastava of the Archaeological Survey of India?",
+    "optionA": "Agroha",
+    "optionB": "Adampur",
+    "optionC": "Fatehabad",
+    "optionD": "Uklana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस स्थान से हर्षवर्धन की तांबे की मुद्रा मिली है जिसमें थानेश्वर के पुष्पमूर्ति वंशावली का वृतांत मिलता है?",
+    "question": "From which place in Haryana has a copper coin of Harshavardhana been found, which contains an account of the Pushpamurti dynasty of Thaneshwar?",
+    "optionA": "Sirsa",
+    "optionB": "Gurugram",
+    "optionC": "Kaithal",
+    "optionD": "Sonipat",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::जगाधरी के किस शासक की सोने की मुद्रा प्राप्त हुई है?",
+    "question": "Whose gold coin has been found at Jagadhari?",
+    "optionA": "Kumargupta",
+    "optionB": "Pushpamitra Sunga",
+    "optionC": "Samudragupta",
+    "optionD": "Kanishka",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के किस इलाके में तीसरी शताब्दी में यैधेयों का बोलबाला था?",
+    "question": "In which area of Haryana did the Yaudheyas have dominance in the third century?",
+    "optionA": "In the area of Ambala",
+    "optionB": "In the area of Rohtak",
+    "optionC": "In the area of Hisar",
+    "optionD": "In the area of Panipat",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::समुद्रगुप्त का एक परशु प्रकार का सोने का सिक्का हरियाणा में कहाँ पर मिला है?",
+    "question": "Where in Haryana has a gold coin of the axe type of Samudragupta been found?",
+    "optionA": "Rohana (Hisar)",
+    "optionB": "Mithathal (Hisar)",
+    "optionC": "Rania (Sirsa)",
+    "optionD": "Kosli (Rewari)",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::आमीन जिला कुरुक्षेत्र से प्राप्त दो स्तम्भ किस काल की कला को दर्शाता है?",
+    "question": "The two pillars obtained from Amin district Kurukshetra represent the art of which period?",
+    "optionA": "Vardhan period",
+    "optionB": "Shunga period",
+    "optionC": "Gupta period",
+    "optionD": "Mauryan period",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में हड़प्पा संस्कृति का एक विराट टीला जीन्द के समीप किस स्थान पर है?",
+    "question": "Where near Jind in Haryana is a huge mound of the Indus Valley Civilization?",
+    "optionA": "Uchana",
+    "optionB": "Rakhigarhi",
+    "optionC": "Narwana",
+    "optionD": "Safidon",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में हड़प्पा परवर्ती संस्कृति व चित्रित स्लेटी पात्र सभ्यताओं के लोगों के साथ- साथ रहने का सर्वप्रथम प्रमाण कहाँ मिला है?",
+    "question": "Where has the first evidence of living together with the people of the post-Harappan culture and the painted grey ware culture been found in Haryana?",
+    "optionA": "Sirsa",
+    "optionB": "Bhagwanpur",
+    "optionC": "Mahendragarh",
+    "optionD": "Narnaol",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में अस्वच्छ व्यवसाय में लगॆ अनुसूचित जाति के बच्चों के लिए किस स्थान पर छात्रावास है?",
+    "question": "Where is the hostel for children of Scheduled Castes engaged in unclean occupations in the country?",
+    "optionA": "Ambala",
+    "optionB": "Faridabad",
+    "optionC": "Karnal",
+    "optionD": "In all of them",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::औद्योगिक कालीन-प्राग्हड़प्पा, हड़प्पा, परवर्ती हड़प्पा आदि संस्कृतियों के प्रमाण हरियाणा में किस स्थान से प्राप्त हुए हैं?",
+    "question": "Evidence of the Industrial Chalcolithic, Early Harappan, Harappan, Late Harappan, etc. cultures have been found in Haryana at which place?",
+    "optionA": "Mirzapur",
+    "optionB": "Soswal",
+    "optionC": "Banawali",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::महाभारत-काल से शताब्दियों पूर्व हुए आर्यवंशी कुरुओं ने इस प्रदेश में किस युग का प्रारम्भ किया था?",
+    "question": "Centuries before the Mahabharata period, the Aryan Kuru dynasty began which era in this region?",
+    "optionA": "Iron Age",
+    "optionB": "Copper Age",
+    "optionC": "Metal Age",
+    "optionD": "Agricultural Age",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सिद्ध चीनी यात्री ह्वेनसांग ने अपनी पुस्तक में हरियाणा के किस नगर के वैभव और समृद्धि का वर्णन किया है?",
+    "question": "The renowned Chinese traveler Hsuan Tsang described the grandeur and prosperity of which city of Haryana in his book?",
+    "optionA": "Thaneshwar",
+    "optionB": "Panipat",
+    "optionC": "Ambala",
+    "optionD": "Rohtak",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सन 1916 में चौधरी छोटूराम ने रोहतक में किस साप्ताहिक का संपादन शुरू किया था?",
+    "question": "In 1916, which weekly did Chhotu Ram start editing in Rohtak?",
+    "optionA": "Jat Gazette",
+    "optionB": "Sikh Gazette",
+    "optionC": "Hindu Gazette",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::श्री फजली हुसैन के साथ मिलकर चौधरी छोटूराम ने पंजाब में यूनियनिस्ट पार्टी की स्थापना कब की थी?",
+    "question": "With Fazl-i-Hussain, when did Chhotu Ram establish the Unionist Party in Punjab?",
+    "optionA": "In 1921",
+    "optionB": "In 1923",
+    "optionC": "In 1922",
+    "optionD": "In 1919",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा राज्य की स्थापना कब हुई?",
+    "question": "When was the state of Haryana established?",
+    "optionA": "January 26, 1966",
+    "optionB": "June 5, 1966",
+    "optionC": "November 1, 1966",
+    "optionD": "November 10, 1966",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::1995 में भारत सरकार द्वारा गठित राज्य पुनर्गठन आयोग ने किन दो स्थानों को हरियाणा क्षेत्र में शामिल करने की सिफारिश की थी?",
+    "question": "In 1995, the State Reorganization Commission constituted by the Government of India recommended which two places to be included in the Haryana region?",
+    "optionA": "Rohtak and Gurgaon",
+    "optionB": "Patiala and Hisar",
+    "optionC": "Panipat and Kaithal",
+    "optionD": "Mahendragarh and Jind",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::24मार्च, 1967 को हरियाणा के प्रथम गैर-कांग्रेसी मुख्यमंत्री का नाम बताइये ?",
+    "question": "Name the first non-Congress Chief Minister of Haryana on March 24, 1967?",
+    "optionA": "Rao Birendra Singh",
+    "optionB": "Devi Lal",
+    "optionC": "Bansi Lal",
+    "optionD": "Chaudhary Bhajan Lal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा का क्षेत्रफल कितना है?",
+    "question": "What is the area of Haryana?",
+    "optionA": "51,206 sq. km",
+    "optionB": "44,212 sq. km",
+    "optionC": "49,105 sq. km",
+    "optionD": "36,154 sq. km",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पूर्वी हरियाणा और उत्तर प्रदेश की सीमा पर निम्न में से कौन सी नदी बहती है?",
+    "question": "Which of the following rivers flows on the border of eastern Haryana and Uttar Pradesh?",
+    "optionA": "Saraswati River",
+    "optionB": "Yamuna River",
+    "optionC": "Ghaggar River",
+    "optionD": "Ganga River",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के मैदानी भाग में अधिकांशतः किस प्रकार की मिट्टी पाई जाती है?",
+    "question": "In which type of soil is mostly found in the plain part of Haryana?",
+    "optionA": "Sandy soil",
+    "optionB": "Stony soil",
+    "optionC": "Sandy loam soil",
+    "optionD": "Yellow-brown fertile soil",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश के किस भाग में वर्षा कम होती है?",
+    "question": "In which part of the country does less rainfall occur?",
+    "optionA": "South-western part",
+    "optionB": "North-western part",
+    "optionC": "South-eastern part",
+    "optionD": "North-eastern part",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में मोरनी की पहाड़ियों पर किस प्रकार की मिट्टी पाई जाती है?",
+    "question": "What type of soil is found on the Morani hills in the country?",
+    "optionA": "Sandy loam soil",
+    "optionB": "Brown soil",
+    "optionC": "Stony soil",
+    "optionD": "Sandy soil",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा प्रदेश में वर्षा का वार्षिक औसत कितना है?",
+    "question": "What is the annual average rainfall in Haryana state?",
+    "optionA": "55 cm",
+    "optionB": "45 cm",
+    "optionC": "42 cm",
+    "optionD": "40 cm",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::सिद्ध वीवीपुर व नजफगढ नामक झीलें हरियाणा के किस प्राकृतिक क्षेत्र में स्थित हैं?",
+    "question": "The lakes named Siddh Vipur and Najafgarh are located in which natural region of Haryana?",
+    "optionA": "Shivalik mountainous region",
+    "optionB": "Sandy region",
+    "optionC": "Arid plain region of Aravalli hills",
+    "optionD": "Plain region",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::निम्नलिखित प्रदेशों में से कौन सा प्रदेश क्षेत्रफल की दृष्टि से हरियाणा से बड़ा नहीं है?",
+    "question": "Which of the following states is not larger than Haryana in terms of area?",
+    "optionA": "Bihar",
+    "optionB": "Himachal Pradesh",
+    "optionC": "Punjab",
+    "optionD": "Meghalaya",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में वर्ष 2014-15 में उर्वरकों का प्रयोग प्रति हेक्टेयर कितना हो गया है?",
+    "question": "How much fertilizer was used per hectare in Haryana in the year 2014-15?",
+    "optionA": "250 kg",
+    "optionB": "150 kg",
+    "optionC": "204 kg",
+    "optionD": "300 kg",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा में किस जिले के शिवालिक क्षेत्र में होने वाले भूमि कटाव को रोकने के लिए विश्व बैंक सहायता से समन्वित जलागम विकास (कान्डी) परियोजना चलाई जा रही है?",
+    "question": "In which district of Haryana is the Integrated Watershed Development (Kandi) project being run with the help of the World Bank to prevent soil erosion in the Shivalik region?",
+    "optionA": "Yamunanagar district",
+    "optionB": "Panchkula district",
+    "optionC": "Ambala district",
+    "optionD": "In all the above districts",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::देश में जिला अम्बाला में नहरी सिंचाई सुविधा किस सिंचाई परियोजना के बनने उपलब्ध हुई है?",
+    "question": "In which irrigation project was the canal irrigation facility made available in Ambala district in the country?",
+    "optionA": "Sevani Lift Irrigation Project",
+    "optionB": "Hathni Kund Barrage Project",
+    "optionC": "Jawaharlal Nehru Irrigation Project",
+    "optionD": "Nangal Uthan Irrigation Project",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::पश्चिमी यमुना नहर द्वारा हरियाणा के निम्नलिखित में से किस जिले में सिंचाई की जाती है?",
+    "question": "In which of the following districts of Haryana is irrigation done by the Western Yamuna Canal?",
+    "optionA": "Rohtak",
+    "optionB": "Karnal",
+    "optionC": "Sonipat",
+    "optionD": "In all the above districts",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "haryana-gk-in-hindi::महेन्द्रगढ जिले में कृषि की उन्नति के लिए कौन सी सिंचाई परियोजना चलाई गई?",
+    "question": "Which irrigation project was launched for the improvement of agriculture in Mahendragarh district?",
+    "optionA": "Hathni Kund Barrage Project",
+    "optionB": "Western Yamuna Canal Scheme",
+    "optionC": "J.L.N. Irrigation Project",
+    "optionD": "Loharu Lift Irrigation Project",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा की किस सिंचाई योजना द्वारा स्वरूप कलौदा, खुर्ल कलां, भीखेवाला, खरडवाला नेहरा, फुलिया कलां आदि गांवों को सिंचाई सुविधा प्राप्त हुई थी?",
+    "question": "Which irrigation scheme of Haryana provided irrigation facilities to villages like Swarup Kalouda, Khurl Kalan, Bhekhewala, Khardawala Nehra, Phuliya Kalan, etc.?",
+    "optionA": "Nangal Uthan Irrigation Project",
+    "optionB": "Nakhana Irrigation Project",
+    "optionC": "Jawaharlal Nehru Irrigation Scheme",
+    "optionD": "Jhajjar Uthan Irrigation Scheme",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "haryana-gk-in-hindi::हरियाणा के अहरिवाल क्षेत्र में सिंचाई सुविधा के अन्तर्गत निम्न में कौन सी सिंचाई स्कीम प्रारम्भ की गई है?",
+    "question": "Which irrigation scheme has been started under irrigation facilities in the Ahirwal region of Haryana?",
+    "optionA": "Scheme Bhakra Canal Irrigation Scheme",
+    "optionB": "Scheme Hathnikund Barrage Irrigation",
+    "optionC": "Scheme Mewat Uthan Irrigation",
+    "optionD": "Rewari Lift Irrigation",
+    "correctAnswer": "D"
+  }
+]
