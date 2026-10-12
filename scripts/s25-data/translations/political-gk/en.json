@@ -1,0 +1,1910 @@
+[
+  {
+    "id": "political-gk::राष्ट्रीय स्वयंसेवक संघ का निर्माण कब हुआ था ?",
+    "question": "When was the Rashtriya Swayamsevak Sangh established?",
+    "optionA": "26 November 1935",
+    "optionB": "15 August 1947",
+    "optionC": "27 September 1925",
+    "optionD": "26 January 1950",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::राष्ट्रीय स्वयंसेवक संघ का मुख्यालय कहाँ है ?",
+    "question": "Where is the headquarters of the Rashtriya Swayamsevak Sangh?",
+    "optionA": "Nagpur",
+    "optionB": "Bhopal",
+    "optionC": "Agra",
+    "optionD": "Ahmedabad",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राष्ट्रीय स्वयंसेवक संघ का संस्थापक कौन है ?",
+    "question": "Who is the founder of the Rashtriya Swayamsevak Sangh?",
+    "optionA": "Mohan Bhagwat",
+    "optionB": "Atal Bihari Vajpayee",
+    "optionC": "Morarji Desai",
+    "optionD": "Keshav Baliram Hedgewar",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय जनता पार्टी का स्थापना कब हुआ था ?",
+    "question": "When was the Bharatiya Janata Party founded?",
+    "optionA": "15 August 1947",
+    "optionB": "6 April 1980",
+    "optionC": "26 January 1950",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय जन संघ का स्थापना कब हुआ था ?",
+    "question": "When was the Bharatiya Jana Sangh founded?",
+    "optionA": "27 September 1925",
+    "optionB": "25 March 1960",
+    "optionC": "21 October 1951",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय जनता पार्टी का मुख्यालय कहाँ है ?",
+    "question": "Where is the headquarters of the Bharatiya Janata Party?",
+    "optionA": "New Delhi",
+    "optionB": "Gujarat",
+    "optionC": "Jharkhand",
+    "optionD": "Maharashtra",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय जनता पार्टी का चिन्ह क्या है ?",
+    "question": "What is the symbol of the Bharatiya Janata Party?",
+    "optionA": "Clock",
+    "optionB": "Lantern",
+    "optionC": "Elephant",
+    "optionD": "Lotus",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::आम आदमी पार्टी का स्थापना कब हुआ ?",
+    "question": "When was the Aam Aadmi Party founded?",
+    "optionA": "15 October 2012",
+    "optionB": "26 November 2012",
+    "optionC": "17 December 2013",
+    "optionD": "Other",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत का पहला विधि और न्याय(Law and Justice) का मंत्री है ?",
+    "question": "Who was the first Minister of Law and Justice of India?",
+    "optionA": "Ashok Kumar Sen",
+    "optionB": "Hans Raj Khanna",
+    "optionC": "Bhimrao Ramji Ambedkar",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::लोक सभा का उम्मीदवार होने के लिए अल्पतम उम्र क्या है ?",
+    "question": "What is the minimum age for a candidate to contest for the Lok Sabha?",
+    "optionA": "25",
+    "optionB": "30",
+    "optionC": "35",
+    "optionD": "18",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्य सभा का उम्मीदवार होने के लिए अल्पतम उम्र क्या है ?",
+    "question": "What is the minimum age to be a candidate for the Rajya Sabha?",
+    "optionA": "30",
+    "optionB": "40",
+    "optionC": "35",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::योजना आयोग कब बनाई गयी ?",
+    "question": "When was the Planning Commission established?",
+    "optionA": "1945",
+    "optionB": "1950",
+    "optionC": "1947",
+    "optionD": "1960",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::योजना आयोग का प्रतिस्थापना किस से हुआ है ?",
+    "question": "What replaced the Planning Commission?",
+    "optionA": "Central Commission",
+    "optionB": "Mukherjee Commission",
+    "optionC": "NITI Aayog",
+    "optionD": "Other",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::नीति आयोग कब बनाई गयी ?",
+    "question": "When was the NITI Aayog established?",
+    "optionA": "1 January 2015",
+    "optionB": "13 April 2014",
+    "optionC": "23 June 2015",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::स्वच्छ भारत अभियान कब आरम्भ हुआ ?",
+    "question": "When was the Swachh Bharat Abhiyan launched?",
+    "optionA": "1 April 2015",
+    "optionB": "9 December 2014",
+    "optionC": "2 October 2014",
+    "optionD": "26 January 2015",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::निर्मल भारत अभियान कब बनाई गयी थी ?",
+    "question": "When was the Nirmal Bharat Abhiyan launched?",
+    "optionA": "2005",
+    "optionB": "1998",
+    "optionC": "1999",
+    "optionD": "1995",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::आजाद हिन्द फौज कब सक्रिय हुआ था ?",
+    "question": "When was the Azad Hind Fauj active?",
+    "optionA": "1942",
+    "optionB": "1995",
+    "optionC": "1950",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राष्ट्रीय विकास परिषद कब बनाई गयी ?",
+    "question": "When was the National Development Council established?",
+    "optionA": "Sept 1950",
+    "optionB": "Aug 1953",
+    "optionC": "Aug 1952",
+    "optionD": "Jan 1899",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::राष्ट्रवाद की अवधारणा का जन्म किस घटना से माना जाता है ?",
+    "question": "Which event is considered to have given birth to the concept of nationalism?",
+    "optionA": "Renaissance",
+    "optionB": "Religious Reform Movement",
+    "optionC": "French Revolution",
+    "optionD": "Glorious Revolution",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::अखिल भारतीय हरिजन संघ की स्थापना निम्निलिखित में से किसके द्वारा की गई है ?",
+    "question": "Who established the All India Harijan Sangh?",
+    "optionA": "Raja Ram Mohan Roy",
+    "optionB": "Subhas Chandra Bose",
+    "optionC": "Mahatma Gandhi",
+    "optionD": "Jawaharlal Nehru",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::अखिल भारतीय ट्रेड यूनियन कांग्रेस के प्रथम अध्यक्ष थे ?",
+    "question": "Who was the first president of the All India Trade Union Congress?",
+    "optionA": "Dewan Chaman Lal",
+    "optionB": "Lala Rajpat Rai",
+    "optionC": "Swami Sahajanand",
+    "optionD": "Jawaharlal Nehru",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय राष्ट्रीय कांग्रेस का प्रथम अध्यक्ष कौन था ?",
+    "question": "Who was the first president of the Indian National Congress?",
+    "optionA": "W C Banerjee",
+    "optionB": "Motilal Nehru",
+    "optionC": "Sardar Vallabhbhai Patel",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारत का ग्रैण्ड ओल्ड मैन किसे कहा जाता है ?",
+    "question": "Who is known as the Grand Old Man of India?",
+    "optionA": "Dadabhai Naoroji",
+    "optionB": "Mahatma Gandhi",
+    "optionC": "Gopal Krishna Gokhale",
+    "optionD": "Subhas Chandra Bose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::किसने कहा था कि गांधीजी ने राष्ट्रीय आन्दोलन को एक क्रान्तिकारी आन्दोलन और जन आन्दोलन का रूप दिया ?",
+    "question": "Who said that Gandhi ji gave the national movement the form of a revolutionary movement and a mass movement?",
+    "optionA": "Coupland",
+    "optionB": "Louis Fischer",
+    "optionC": "Gokhale",
+    "optionD": "Subhas Chandra Bose",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::महात्मा गांधी ने कब हरिजन पत्रिका का प्रकाशन आरम्भ किया था ?",
+    "question": "When did Mahatma Gandhi start the publication of Harijan?",
+    "optionA": "1920",
+    "optionB": "1965",
+    "optionC": "1986",
+    "optionD": "1933",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::रौलेट एक्ट किस वर्ष में पारित हुआ था ?",
+    "question": "In which year was the Rowlatt Act passed?",
+    "optionA": "1951",
+    "optionB": "1919",
+    "optionC": "1819",
+    "optionD": "1958",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::स्टैफोर्ड क्रिप्स किस दल/समूह का था ?",
+    "question": "Which party/group was Stafford Cripps?",
+    "optionA": "Labor Party",
+    "optionB": "Liberal Party",
+    "optionC": "Royal Official",
+    "optionD": "Other",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::सुभाषचन्द्र बोस ने अंग्रेजों के विरुद्ध अपना आन्दोलन कहाँ से आरम्भ किया ?",
+    "question": "From where did Subhas Chandra Bose start his movement against the British?",
+    "optionA": "From Burma",
+    "optionB": "From Japan",
+    "optionC": "From Thailand",
+    "optionD": "From Singapore",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::कांग्रेस के संस्थापक कौन थे ?",
+    "question": "Who were the founders of the Congress?",
+    "optionA": "W C Banerjee",
+    "optionB": "A O Hume",
+    "optionC": "Lala Rajpat Rai",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::गांधीजी ने सर्वप्रथम भारत में सत्याग्रह का प्रयोग कहाँ किया ?",
+    "question": "Where did Gandhiji first use Satyagraha in India?",
+    "optionA": "Kheda",
+    "optionB": "Ahmedabad",
+    "optionC": "Champaran",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत छोड़ो आन्दोलन कांग्रेस ने कब शुरू किया था ?",
+    "question": "When did the Congress start the Quit India Movement?",
+    "optionA": "1935",
+    "optionB": "1950",
+    "optionC": "1947",
+    "optionD": "1942",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::स्वराज मेरा जन्मसिद्ध अधिकार है यह किसने कहा था ?",
+    "question": "'Swaraj is my birthright', who said this?",
+    "optionA": "Rabindranath Tagore",
+    "optionB": "Lokmanya Tilak",
+    "optionC": "Lala Lajpat Rai",
+    "optionD": "Mahatma Gandhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::महात्मा गांधीजी के असहयोग आन्दोलन के दौरान किसने अपनी वकालत छोड़ दी ?",
+    "question": "During Mahatma Gandhi's Non-Cooperation Movement, who gave up his advocacy?",
+    "optionA": "Motilal Nehru",
+    "optionB": "Jawaharlal Nehru",
+    "optionC": "Madan Mohan Malaviya",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::नमक सत्याग्रह के दौरान निम्नलिखित में से कौन गांधीजी से जुड़े ?",
+    "question": "During the Salt Satyagraha, who was associated with Gandhiji?",
+    "optionA": "Sardar Patel",
+    "optionB": "Sarojini Naidu",
+    "optionC": "Gopal Krishna Gokhale",
+    "optionD": "Dadabhai Naoroji",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत के उत्थान के लिए जन चेतना जगाने हेतु किसने लन्दन में ईस्ट इण्डिया ऐसोसिएशन की स्थापना की ?",
+    "question": "To awaken public consciousness for India's rise, who established the East India Association in London?",
+    "optionA": "Dadabhai Naoroji",
+    "optionB": "Mahatma Gandhi",
+    "optionC": "Pandit Jawaharlal Nehru",
+    "optionD": "Rabindranath Tagore",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारत में सामाजिक भेदभाव की बढ़ती घटनाओं को रोकने के लिए इलबर्ट बिल किसके द्वारा प्रस्तावित किया गया था ?",
+    "question": "To prevent the increasing incidents of social discrimination in India, by whom was the Ilbert Bill proposed?",
+    "optionA": "Curzon",
+    "optionB": "Lytton",
+    "optionC": "Ripon",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय राष्ट्रीय कांग्रेस से त्यागपत्र देने के बाद सुभाषचन्द्र बोस ने निम्नलिखित की स्थापना की ?",
+    "question": "After resigning from the Indian National Congress, what did Subhas Chandra Bose establish?",
+    "optionA": "Krishak Praja Party",
+    "optionB": "Congress Socialist Party",
+    "optionC": "Swaraj Party",
+    "optionD": "Forward Bloc",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::महात्मा गांधी द्वारा चम्पारण सत्याग्रह शुरू हुआ था ?",
+    "question": "When was the Champaran Satyagraha started by Mahatma Gandhi?",
+    "optionA": "1920",
+    "optionB": "1914",
+    "optionC": "1917",
+    "optionD": "1947",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::महात्मा गांधी द्वारा सम्पादित अंग्रेजी साप्ताहिक था ?",
+    "question": "Which English weekly was edited by Mahatma Gandhi?",
+    "optionA": "Kesari",
+    "optionB": "Young India",
+    "optionC": "Kesari",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन आजाद हिन्द फौज के एक प्रमुख अधिकारी थे ?",
+    "question": "Who among the following was a prominent officer of the Azad Hind Fauj?",
+    "optionA": "Shahnawaz Khan",
+    "optionB": "Khan Abdul Gaffar Khan",
+    "optionC": "W C Banerjee",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::\"मेरे पास खून, पसीना और आँसू के अतिरिक्त देने के लिए कुछ भी नहीं है \" यह किसने कहा ?",
+    "question": "\"I have nothing to give but blood, sweat and tears\" - who said this?",
+    "optionA": "Lord Nelson",
+    "optionB": "Napoleon",
+    "optionC": "Churchill",
+    "optionD": "Subhash Chandra Bose",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::&#39;फूट डालो और राज करो&#39; की नीति अपनाई थी ?",
+    "question": "Who adopted the policy of 'Divide and Rule'?",
+    "optionA": "Lord Mountbatten",
+    "optionB": "Lord William Bentinck",
+    "optionC": "Lord Curzon",
+    "optionD": "Lord Cripps",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::&#39;गदर पार्टी&#39; का मुख्यालय कहाँ था ?",
+    "question": "Where was the headquarters of the 'Gadar Party'?",
+    "optionA": "In Moscow",
+    "optionB": "In Berlin",
+    "optionC": "In Karachi",
+    "optionD": "In San Francisco",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::सुभाषचन्द्र बोस ने कब कांग्रेस की अध्यक्षता से त्यागपत्र दिया था ?",
+    "question": "When did Subhash Chandra Bose resign from the Congress presidency?",
+    "optionA": "1947",
+    "optionB": "1950",
+    "optionC": "1939",
+    "optionD": "1937",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::किन राष्ट्रिय नेता को लोकहितवादी कहा गया है ?",
+    "question": "Which national leader is known as a Lokhitwadi?",
+    "optionA": "Gopalhari Deshmukh",
+    "optionB": "Lala Lajpat Rai",
+    "optionC": "Motilal Nehru",
+    "optionD": "Mahatma Gandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::स्वतन्त्रता संग्राम में गांधीजी ने किसान आन्दोलन प्रारम्भ किया था ?",
+    "question": "In the freedom struggle, from where did Gandhiji start a peasant movement?",
+    "optionA": "Sabarmati",
+    "optionB": "Bardoli",
+    "optionC": "Champaran",
+    "optionD": "Bijoliya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत की आजादी के समय ब्रिटेन का प्रधानमंत्री कौन था ?",
+    "question": "Who was the Prime Minister of Britain at the time of India's independence?",
+    "optionA": "Attlee",
+    "optionB": "Lord Cripps",
+    "optionC": "Lord Curzon",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::1935 के भारत सरकार का अधिनियम किस निर्णय से सम्बन्धित है ?",
+    "question": "The Government of India Act 1935 is related to which decision?",
+    "optionA": "Industries in provinces",
+    "optionB": "Adult franchise",
+    "optionC": "Provincial autonomy",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत छोड़ो आन्दोलन कब हुआ था ?",
+    "question": "When did the Quit India Movement take place?",
+    "optionA": "1955",
+    "optionB": "1942",
+    "optionC": "1947",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::1905 में सर्वेण्ट्स ऑफ इण्डिया सोसाइटी को किसने आरम्भ किया ?",
+    "question": "Who started the Servants of India Society in 1905?",
+    "optionA": "Gopal Krishna Gokhale",
+    "optionB": "Mahatma Gandhi",
+    "optionC": "Motilal Nehru",
+    "optionD": "Lokmanya Tilak",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::दिल्ली चलो का नारा किसने दिया था ?",
+    "question": "Who gave the slogan 'Delhi Chalo'?",
+    "optionA": "M. K. Gandhi",
+    "optionB": "S. C. Bose",
+    "optionC": "L. L. Rai",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::किस काण्ड के कारण असहयोग आन्दोलन बन्द करना पड़ा ?",
+    "question": "Due to which incident was the Non-Cooperation Movement called off?",
+    "optionA": "Chauri-Chaura",
+    "optionB": "Champaran",
+    "optionC": "Dandi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन सीमान्त गांधी के नाम से जाने जाते हैं ?",
+    "question": "Who among the following is known as Frontier Gandhi?",
+    "optionA": "Lord Mountbatten",
+    "optionB": "Sardar Patel",
+    "optionC": "Khan Abdul Ghaffar Khan",
+    "optionD": "Lord Dalhousie",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय राष्ट्रीय कांग्रेस की प्रथम महिला अध्यक्ष कौन थी ?",
+    "question": "Who was the first woman president of the Indian National Congress?",
+    "optionA": "Sarojini Naidu",
+    "optionB": "Annie Besant",
+    "optionC": "Sucheta Kriplani",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::केन्द्र-राज्यों के प्रशासनिक संबंध भारतीय संविधान के किस अनुच्छेद में दिए गए हैं ?",
+    "question": "In which articles of the Indian Constitution are the administrative relations between the Centre and the States given?",
+    "optionA": "256-263",
+    "optionB": "250-280",
+    "optionC": "352-356",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय राजनीतिक व्यवस्था की विशेषता है ?",
+    "question": "What is the characteristic of the Indian political system?",
+    "optionA": "Caste and religion",
+    "optionB": "Region and national interest",
+    "optionC": "National interest and religion",
+    "optionD": "Caste, religion and national interest",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::गोआ भारतीय गणतन्त्र का एक हिस्सा कब बनाया गया ?",
+    "question": "When was Goa made a part of the Indian Republic?",
+    "optionA": "1961",
+    "optionB": "1947",
+    "optionC": "1950",
+    "optionD": "1963",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन भारतीय संविधान में समवर्ती सूची में रखा गया है ?",
+    "question": "Which of the following is included in the Concurrent List in the Indian Constitution?",
+    "optionA": "Population planning",
+    "optionB": "Population planning and family planning",
+    "optionC": "Economic tax",
+    "optionD": "Public treasury",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन भारत का लगातार दो बार राष्ट्रपति बना ?",
+    "question": "Who became the President of India for two consecutive terms?",
+    "optionA": "R. Venkatraman",
+    "optionB": "Rajendra Prasad",
+    "optionC": "V. V. Giri",
+    "optionD": "Radhakrishnan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति देश में आपात स्थिति की घोषणा निम्नलिखित में से किससे लिखित परामर्श प्राप्त करने के बाद ही कर सकता है ?",
+    "question": "After obtaining written advice from whom can the President declare a state of emergency in the country?",
+    "optionA": "Council of Ministers",
+    "optionB": "Speaker of Lok Sabha",
+    "optionC": "Chief Justice of India",
+    "optionD": "Prime Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान सभा के सम्मुख किसने संविधान की प्रस्तावना प्रस्तावित की थी ?",
+    "question": "Who proposed the Preamble of the Constitution before the Constituent Assembly?",
+    "optionA": "Subhas Chandra Bose",
+    "optionB": "Pandit Jawaharlal Nehru",
+    "optionC": "Swami Sahajanand",
+    "optionD": "Mahatma Gandhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::स्थानीय एम. पी. तथा एम. एल. ए. गण निम्नलिखित में से किसके पदेन सदस्य होते हैं ?",
+    "question": "Local MPs and MLAs are ex-officio members of which of the following?",
+    "optionA": "District Council",
+    "optionB": "Panchayat Samiti",
+    "optionC": "Gram Panchayat",
+    "optionD": "All",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::मौलिक अधिकारों पर निम्नलिखित में से किसके द्वारा प्रतिबन्ध लगाए जा सकते हैं ?",
+    "question": "By whom can restrictions be imposed on Fundamental Rights?",
+    "optionA": "By the President",
+    "optionB": "By the Lok Sabha",
+    "optionC": "By the Supreme Court",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से किस क्षेत्र में स्थानीय निकायों पर राज्य सरकार का कोई नियन्त्रण नहीं है ?",
+    "question": "In which of the following areas is there no control of the state government over local bodies?",
+    "optionA": "Rule-making",
+    "optionB": "Cases of employees",
+    "optionC": "Financial matters",
+    "optionD": "Complaints of citizens",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::लोकप्रिय प्रभुसत्ता का समर्थन किया था ?",
+    "question": "Who supported popular sovereignty?",
+    "optionA": "Rousseau",
+    "optionB": "John Locke",
+    "optionC": "Thomas Hobbes",
+    "optionD": "T. H. Green",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::किसी अधिनियमित संविधान का सबसे पहले उदाहरण है ?",
+    "question": "Which is the first example of a written constitution?",
+    "optionA": "Russian Constitution",
+    "optionB": "French Constitution",
+    "optionC": "Chinese Constitution",
+    "optionD": "American Constitution",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::विदेशों को भेजे जाने वाले विभिन्न संसदीय प्रतिनिधि-मण्डलों के लिए व्यक्तियों का नामंकन निम्नलिखित में से कौन करता है ?",
+    "question": "Who nominates persons for various parliamentary delegations sent to foreign countries?",
+    "optionA": "Chairman of Rajya Sabha",
+    "optionB": "Speaker of Lok Sabha",
+    "optionC": "Prime Minister",
+    "optionD": "President",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::किसी राज्य के राज्य पाल को निम्नलिखित में से किसकी शक्ति नहीं है ?",
+    "question": "Which of the following powers does a State Governor not have?",
+    "optionA": "To dissolve the Legislative Assembly",
+    "optionB": "To prorogue the Legislative Assembly",
+    "optionC": "To summon the Legislative Assembly",
+    "optionD": "To dissolve the Legislative Assembly",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से उच्चतम न्यायालय की सबसे पहली महिला न्यायाधीश कौन थी ?",
+    "question": "Who was the first female judge of the Supreme Court?",
+    "optionA": "Sundar Bhadare",
+    "optionB": "Indira Jaising",
+    "optionC": "Fatima Beevi",
+    "optionD": "Leela Seth",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::15 वीं लोक सभा के अध्यक्ष कौन हैं ?",
+    "question": "Who is the Speaker of the 15th Lok Sabha?",
+    "optionA": "Meira Kumar",
+    "optionB": "Charan Singh Atwal",
+    "optionC": "K. Rahman Khan",
+    "optionD": "Arun Jaitley",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारत में वित्त आयोग के सदस्यों की नियुक्ति किसके द्वारा की जाती है ?",
+    "question": "Who appoints the members of the Finance Commission in India?",
+    "optionA": "The Chief Justice of India",
+    "optionB": "The President",
+    "optionC": "The Prime Minister",
+    "optionD": "The Lok Sabha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::पुदुचेरी को भारतीय संघ में कब सम्मिलित किया गया ?",
+    "question": "When was Pondicherry incorporated into the Indian Union?",
+    "optionA": "1970",
+    "optionB": "1977",
+    "optionC": "1960",
+    "optionD": "1956",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से किस समिति का पदेन अध्यक्ष लोक सभा का अध्यक्ष होता है ?",
+    "question": "Which of the following committees has the Speaker of the Lok Sabha as its ex-officio Chairman?",
+    "optionA": "Rules Committee",
+    "optionB": "Public Accounts Committee",
+    "optionC": "Committee on Privileges",
+    "optionD": "Estimates Committee",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्य लोक सेवा आयोग के सदस्यों की नियुक्ति कौन करता है ?",
+    "question": "Who appoints the members of the State Public Service Commission?",
+    "optionA": "The Governor",
+    "optionB": "The President",
+    "optionC": "The Prime Minister",
+    "optionD": "The Chief Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्य सभा कब भंग होती है ?",
+    "question": "When is the Rajya Sabha dissolved?",
+    "optionA": "After 4 years",
+    "optionB": "After 6 years",
+    "optionC": "During a crisis",
+    "optionD": "Never",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारत में मंत्रिपरिषद् सामूहिक रूप से किसके प्रति उत्तरदायी है ?",
+    "question": "In India, the Council of Ministers is collectively responsible to whom?",
+    "optionA": "The Lok Sabha",
+    "optionB": "The Parliament",
+    "optionC": "The President",
+    "optionD": "The Rajya Sabha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान द्वारा मौलिक अधिकार दिए गए हैं ?",
+    "question": "Fundamental rights are given by the Indian Constitution to whom?",
+    "optionA": "Adult citizens of India",
+    "optionB": "All residents of the country",
+    "optionC": "The Central Government",
+    "optionD": "State Governments",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::राज्य पुनर्गठन आयोग के अध्यक्ष कौन थे ?",
+    "question": "Who was the chairman of the States Reorganization Commission?",
+    "optionA": "Fazal Ali",
+    "optionB": "Sardar Patel",
+    "optionC": "Govind Ballabh Pant",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::15 वीं लोक सभा में अनुसूचित जाती के उम्मीदवारों के लिए कितने स्थान आरक्षित हैं ?",
+    "question": "How many seats are reserved for Scheduled Caste candidates in the 15th Lok Sabha?",
+    "optionA": "80",
+    "optionB": "77",
+    "optionC": "41",
+    "optionD": "84",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::संसद की संयुक्त बैठक की अध्यक्षता कौन करता है ?",
+    "question": "Who presides over the joint sitting of Parliament?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Lok Sabha Speaker",
+    "optionD": "Chief Minister",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत गणतंत्र कब बना ?",
+    "question": "When was India established as a republic?",
+    "optionA": "26 January 1950",
+    "optionB": "26 November 1949",
+    "optionC": "15 August 1947",
+    "optionD": "15 August 1952",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान में मौलिक कर्तव्य कब सम्मिलित किए गए ?",
+    "question": "When were Fundamental Duties included in the Indian Constitution?",
+    "optionA": "1971",
+    "optionB": "1977",
+    "optionC": "1976",
+    "optionD": "1985",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::कौन सी धारा संसद तथा राज्य विधानमण्डलों में अनुसूचित जातियों के लिए सीटों का आरक्षण बताती है ?",
+    "question": "Which article provides for reservation of seats for Scheduled Castes in Parliament and State Legislatures?",
+    "optionA": "Article 23",
+    "optionB": "Article 17",
+    "optionC": "Article 29/2",
+    "optionD": "Article 330 and 332",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::पंचायती राज प्रणाली में महिलाओं के लिए कितनी प्रतिशत सीटें आरक्षित हैं ?",
+    "question": "What percentage of seats are reserved for women in the Panchayati Raj system?",
+    "optionA": "50%",
+    "optionB": "47%",
+    "optionC": "33%",
+    "optionD": "37%",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत में मंत्रिमण्डल सामूहिक रूप से जवाबदेह होता है ?",
+    "question": "In India, the Cabinet is collectively responsible to?",
+    "optionA": "Parliament",
+    "optionB": "Lok Sabha",
+    "optionC": "The people",
+    "optionD": "President",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::उच्च-न्यायालय के न्यायाधीशों की नियुक्ति करते हैं ?",
+    "question": "Who appoints the judges of the High Court?",
+    "optionA": "Supreme Court",
+    "optionB": "Prime Minister",
+    "optionC": "President",
+    "optionD": "Chief Minister",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय गणतन्त्र में किसी राज्य की सदस्यता है ?",
+    "question": "In the Indian Republic, the membership of a state is?",
+    "optionA": "Compulsory",
+    "optionB": "Optional",
+    "optionC": "Permanent",
+    "optionD": "Preferred",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन सा राज्य का घटक नहीं है ?",
+    "question": "Which of the following is not a component of a state?",
+    "optionA": "Power",
+    "optionB": "People",
+    "optionC": "Territory",
+    "optionD": "Government",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::धर्मनिरपेक्ष राष्ट्र का अर्थ होता है ?",
+    "question": "What is the meaning of a secular state?",
+    "optionA": "Anti-religious state",
+    "optionB": "Religion-less state",
+    "optionC": "Immoral state",
+    "optionD": "Religious state",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::आधुनिक समय में विधि का एक मात्र साधन है ?",
+    "question": "In modern times, the only means of law is?",
+    "optionA": "Custom",
+    "optionB": "Legislature",
+    "optionC": "Religion",
+    "optionD": "Administration",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::समाजिक समता से क्या अभिप्राय है ?",
+    "question": "What is meant by social equality?",
+    "optionA": "All are equal before the law",
+    "optionB": "All are equal in society",
+    "optionC": "There should be no difference in society",
+    "optionD": "There should be no discrimination in society",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::किन दो प्रकार से नागरिकता प्राप्त होती है ?",
+    "question": "In which two ways is citizenship obtained?",
+    "optionA": "Natural and acquired",
+    "optionB": "Single and dual",
+    "optionC": "Civil and political",
+    "optionD": "National and regional",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::कौन सा राजनीतिक अधिकार नहीं है ?",
+    "question": "Which is not a political right?",
+    "optionA": "Right to hold public office",
+    "optionB": "Right to vote",
+    "optionC": "Right to education",
+    "optionD": "Right to participate in elections",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत में राष्ट्रपति अपना त्यागपत्र किसके समक्ष पेश करेंगे ?",
+    "question": "In India, to whom will the President submit his resignation?",
+    "optionA": "Vice President",
+    "optionB": "Prime Minister",
+    "optionC": "Chief Justice of India",
+    "optionD": "Speaker of Lok Sabha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान की किस अनुसूची में क्षेत्रीय 22 भाषाएँ सम्मिलित की गई हैं ?",
+    "question": "In which schedule of the Constitution are the 22 regional languages included?",
+    "optionA": "First",
+    "optionB": "Fifth",
+    "optionC": "Eighth",
+    "optionD": "Seventh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::योजना आयोग का अध्यक्ष होता है ?",
+    "question": "Who is the chairman of the Planning Commission?",
+    "optionA": "Prime Minister",
+    "optionB": "Minister of Planning",
+    "optionC": "Chief Minister",
+    "optionD": "President",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::&#39;गरीबी हटाओ&#39; नारे के साथ किसका नाम जुड़ा है ?",
+    "question": "'गरीबी हटाओ' नारे के साथ किसका नाम जुड़ा है ?",
+    "optionA": "महात्मा गांधी",
+    "optionB": "जवाहरलाल नेहरू",
+    "optionC": "मोतीलाल नेहरू",
+    "optionD": "इन्दिरा गांधी",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान का निम्नलिखित में से कौन सा पक्ष यू. एस. ए. के संविधान के समान है ?",
+    "question": "भारतीय संविधान का निम्नलिखित में से कौन सा पक्ष यू. एस. ए. के संविधान के समान है ?",
+    "optionA": "मौलिक अधिकार",
+    "optionB": "कानून का शासन",
+    "optionC": "राज्य के नीति निर्देशक तत्व",
+    "optionD": "दृढ संविधान",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र दिवस किस तिथि को मनाया जाता है ?",
+    "question": "संयुक्त राष्ट्र दिवस किस तिथि को मनाया जाता है ?",
+    "optionA": "13 मार्च",
+    "optionB": "24 मार्च",
+    "optionC": "24 अक्टूबर",
+    "optionD": "15 अक्टूबर",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र संघ में हिन्दी में भाषण देने के वाले प्रथम व्यक्ति हैं ?",
+    "question": "संयुक्त राष्ट्र संघ में हिन्दी में भाषण देने के वाले प्रथम व्यक्ति हैं ?",
+    "optionA": "अटल बिहारी वाजपेयी",
+    "optionB": "मनमोहन सिंह",
+    "optionC": "अरुण जेटली",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र संघ ने निम्नलिखित में से कौन से दिन मानव अधिकारों का घोषणा-पत्र स्वीकृत किया था ?",
+    "question": "संयुक्त राष्ट्र संघ ने निम्नलिखित में से कौन से दिन मानव अधिकारों का घोषणा-पत्र स्वीकृत किया था ?",
+    "optionA": "1945",
+    "optionB": "1947",
+    "optionC": "1950",
+    "optionD": "1948",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::अन्तर्राष्ट्रीय न्यायालय में कितने जज होते हैं ?",
+    "question": "अन्तर्राष्ट्रीय न्यायालय में कितने जज होते हैं ?",
+    "optionA": "10",
+    "optionB": "17",
+    "optionC": "22",
+    "optionD": "15",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र से जुड़ा पहला विशिष्ठ संगठन है ?",
+    "question": "संयुक्त राष्ट्र से जुड़ा पहला विशिष्ठ संगठन है ?",
+    "optionA": "यूनेस्को",
+    "optionB": "अन्तर्राष्ट्रीय श्रम संगठन",
+    "optionC": "विश्व स्वास्थ्य संगठन",
+    "optionD": "खाद्य एवं कृषि संगठन",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::अन्तर्राष्ट्रीय मुद्रा कोष का मुख्यालय कहाँ पर है ?",
+    "question": "अन्तर्राष्ट्रीय मुद्रा कोष का मुख्यालय कहाँ पर है ?",
+    "optionA": "लंदन में",
+    "optionB": "न्यूयॉर्क में",
+    "optionC": "वाशिंगटन में",
+    "optionD": "जेनेवा में",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन सा देश संयुक्त राष्ट्र सुरक्षा परिषद् का स्थायी सदस्य नहीं है ?",
+    "question": "निम्नलिखित में से कौन सा देश संयुक्त राष्ट्र सुरक्षा परिषद् का स्थायी सदस्य नहीं है ?",
+    "optionA": "रूस",
+    "optionB": "जर्मनी",
+    "optionC": "संयुक्त राज्य अमरीका",
+    "optionD": "इंगलैण्ड",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::विश्व स्वास्थ्य संगठन के अंतगर्त कुल कितने राष्ट्र हैं ?",
+    "question": "विश्व स्वास्थ्य संगठन के अंतगर्त कुल कितने राष्ट्र हैं ?",
+    "optionA": "187",
+    "optionB": "185",
+    "optionC": "193",
+    "optionD": "192",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र संघ के सुरक्षा परिषद् की सदस्य संख्या है ?",
+    "question": "What is the number of members in the United Nations Security Council?",
+    "optionA": "11",
+    "optionB": "14",
+    "optionC": "15",
+    "optionD": "19",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::इंटरनेशनल कम्युनिकेशन यूनियन का मुख्यालय स्थित है ?",
+    "question": "Where is the headquarters of the International Communication Union located?",
+    "optionA": "In New York",
+    "optionB": "In Washington",
+    "optionC": "In London",
+    "optionD": "In Geneva",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::विश्व पर्यावरण दिवस कब मनाया जाता है ?",
+    "question": "When is World Environment Day celebrated?",
+    "optionA": "5 April",
+    "optionB": "5 March",
+    "optionC": "5 May",
+    "optionD": "5 June",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::रेडक्रॉस का संस्थापक कौन था ?",
+    "question": "Who was the founder of the Red Cross?",
+    "optionA": "Baden Powell",
+    "optionB": "Frederick Passy",
+    "optionC": "J. H. Dunant",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र संघ कब अस्तित्व में आया ?",
+    "question": "When did the United Nations come into existence?",
+    "optionA": "1946",
+    "optionB": "1945",
+    "optionC": "1949",
+    "optionD": "1950",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::अन्तर्राष्ट्रीय न्यायालय कहाँ स्थित है ?",
+    "question": "Where is the International Court of Justice located?",
+    "optionA": "In The Hague",
+    "optionB": "In New York",
+    "optionC": "In Geneva",
+    "optionD": "In Paris",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र संघ की आम सभा की अध्यक्ष एकमात्र कौन भारतीय महिला बनी थी ?",
+    "question": "Who was the only Indian woman to become the President of the United Nations General Assembly?",
+    "optionA": "Indira Gandhi",
+    "optionB": "Pupul Jayakar",
+    "optionC": "Dr. Padmaja Naidu",
+    "optionD": "Vijay Lakshmi Pandit",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::वर्ण भेद के विरुद्ध संयुक्त राज्य सम्मेलन कहाँ आयोजित हुआ ?",
+    "question": "Where was the World Conference against Racism held?",
+    "optionA": "In Geneva",
+    "optionB": "In Durban",
+    "optionC": "In Doha",
+    "optionD": "In Rome",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र की सुरक्षा परिषद् के अस्थायी सदस्य का कार्यकाल कितना है ?",
+    "question": "What is the term of office of a non-permanent member of the United Nations Security Council?",
+    "optionA": "1 year",
+    "optionB": "5 years",
+    "optionC": "2 years",
+    "optionD": "3 years",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संयुक्त राष्ट्र सुरक्षा परिषद् में सर्वाधिक बार निषेधाधिकार का प्रयोग किस देश ने किया ?",
+    "question": "In the United Nations Security Council, which country has used the veto power the most times?",
+    "optionA": "Russia",
+    "optionB": "United States of America",
+    "optionC": "France",
+    "optionD": "Britain",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::UNDP का पूरा नाम है ?",
+    "question": "What is the full name of UNDP?",
+    "optionA": "United National Developing Province",
+    "optionB": "United Nations Development Programme",
+    "optionC": "Arab Nation Drilling Petroleum",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::यूनेस्को का मुख्यालय कहाँ स्थित है ?",
+    "question": "Where is the headquarters of UNESCO located?",
+    "optionA": "In New York",
+    "optionB": "In Washington",
+    "optionC": "In London",
+    "optionD": "In Geneva",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान के किस संशोधन द्वारा प्रस्तावना में दो शब्द समाजवादी और धर्मनिरपेक्ष जोड़े गए थे ।",
+    "question": "By which amendment of the Indian Constitution were the two words 'Socialist' and 'Secular' added to the Preamble?",
+    "optionA": "28th",
+    "optionB": "40th",
+    "optionC": "42nd",
+    "optionD": "52nd",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान को अपनाया गया ?",
+    "question": "The Indian Constitution was adopted by?",
+    "optionA": "The Constituent Assembly",
+    "optionB": "The Indian Parliament",
+    "optionC": "The Governor General",
+    "optionD": "The British Parliament",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान सभा ने भारत के संविधान को कब स्वीकृत किया था ?",
+    "question": "When did the Constituent Assembly approve the Constitution of India?",
+    "optionA": "26 November 1949",
+    "optionB": "15 August 1947",
+    "optionC": "26 January 1850",
+    "optionD": "12 December 1976",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान सभा के प्रथम दिन के अधिवेशन की अध्यक्षता इन्होंने की थी ?",
+    "question": "Who chaired the first day's session of the Indian Constituent Assembly?",
+    "optionA": "Dr. Sachchidananda Sinha",
+    "optionB": "Pandit Jawaharlal Nehru",
+    "optionC": "Dr. Rajendra Prasad",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान सभा में किस प्रान्त का प्रतिनिधित्व सबसे अधिक था ?",
+    "question": "Which province had the most representation in the Constituent Assembly?",
+    "optionA": "Chennai",
+    "optionB": "Mumbai",
+    "optionC": "United Provinces",
+    "optionD": "Bengal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संविधान सभा का प्रथम अधिवेशन कहाँ हुआ था ?",
+    "question": "Where was the first session of the Constituent Assembly held?",
+    "optionA": "In Lahore",
+    "optionB": "In Delhi",
+    "optionC": "In Kolkata",
+    "optionD": "In Mumbai",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत की आजादी के समय इंग्लैंड में किस पार्टी की सरकार थी ?",
+    "question": "At the time of India's independence, which party was in government in England?",
+    "optionA": "Liberal Party",
+    "optionB": "Congress Party",
+    "optionC": "Labor Party",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::किस अधिनियम की प्रमुख विशेषता प्रांतीय स्वायत्तता थी ?",
+    "question": "Which Act had provincial autonomy as its main feature?",
+    "optionA": "1945",
+    "optionB": "1935",
+    "optionC": "1957",
+    "optionD": "1978",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत की संविधान सभा किसके अनुसार गठित की गई ?",
+    "question": "According to whom was the Constituent Assembly of India formed?",
+    "optionA": "Cabinet Mission Plan",
+    "optionB": "Cripps Proposal",
+    "optionC": "Mountbatten Plan",
+    "optionD": "Simon Commission's Proposal",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान सभा को किसने मूर्त रूप प्रदान किया ?",
+    "question": "Who gave the Constituent Assembly a concrete form?",
+    "optionA": "Motilal Nehru",
+    "optionB": "M. N. Roy",
+    "optionC": "Jawaharlal Nehru",
+    "optionD": "Mahatma Gandhi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::महारानी विक्टोरिया को भारत की साम्राज्ञी नियुक्त किया गया ?",
+    "question": "Queen Victoria was appointed as the Empress of India in which year?",
+    "optionA": "1899 AD",
+    "optionB": "1875 AD",
+    "optionC": "1858 AD",
+    "optionD": "1900 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::मार्ले-मिन्टो सुधार बिल किस वर्ष में पारित किया गया ?",
+    "question": "In which year was the Morley-Minto Reform Bill passed?",
+    "optionA": "1903",
+    "optionB": "1906",
+    "optionC": "1909",
+    "optionD": "1911",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::रेगुलेटिंग ऐक्ट पारित किया गया ?",
+    "question": "Regulating Act was passed in which year?",
+    "optionA": "1778 AD",
+    "optionB": "1773 AD",
+    "optionC": "1776 AD",
+    "optionD": "1793 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::लिखित संविधान की अवधारणा ने सर्वप्रथम कहाँ जन्म लिया ?",
+    "question": "Where was the concept of a written constitution born first?",
+    "optionA": "Switzerland",
+    "optionB": "France",
+    "optionC": "Britain",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत का संविधान किस प्रकार का है ?",
+    "question": "What type is the Constitution of India?",
+    "optionA": "Flexible",
+    "optionB": "Rigid",
+    "optionC": "Flexible and Rigid",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::विश्व का सबसे बड़ा, लिखित एवं सर्वाधिक व्यापक संविधान किस देश का है ?",
+    "question": "Which country has the largest, written and most extensive constitution in the world?",
+    "optionA": "Britain",
+    "optionB": "Africa",
+    "optionC": "India",
+    "optionD": "Canada",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::42 वें संविधान संशोधन द्वारा प्रस्तावना में निम्नलिखित में से कौन-सा शब्द जोड़ा गया ?",
+    "question": "Which word was added to the Preamble by the 42nd Constitutional Amendment?",
+    "optionA": "Socialist",
+    "optionB": "Political",
+    "optionC": "Democratic",
+    "optionD": "Secular",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय संघवाद को किसने सहकारी संघवाद कहा है ?",
+    "question": "Who called Indian federalism cooperative federalism?",
+    "optionA": "Sir Aitler Jennings",
+    "optionB": "D. D. Basu",
+    "optionC": "G. Austin",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय सविंधान की संरचना किस प्रकार की है ?",
+    "question": "What is the structure of the Indian Constitution?",
+    "optionA": "Federal",
+    "optionB": "Rigid",
+    "optionC": "Some unitary some rigid",
+    "optionD": "Unitary",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान का अभिभावक कौन है ?",
+    "question": "Who is the guardian of the Indian Constitution?",
+    "optionA": "Supreme Court",
+    "optionB": "Election Commission",
+    "optionC": "Prime Minister",
+    "optionD": "President",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय राजनीतिक व्यवस्था में इनमें से कौन सर्वोच्च है ?",
+    "question": "Who is supreme among these in the Indian political system?",
+    "optionA": "Supreme Court",
+    "optionB": "Constitution",
+    "optionC": "Religion",
+    "optionD": "Parliament",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान में संघवाद किस देश से लिया गया है ?",
+    "question": "From which country was federalism taken in the Indian Constitution?",
+    "optionA": "United States of America",
+    "optionB": "Canada",
+    "optionC": "Australia",
+    "optionD": "Afghanistan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत का संसदीय प्रणाली प्रभावित है ?",
+    "question": "India's parliamentary system is influenced by?",
+    "optionA": "Netherlands",
+    "optionB": "England",
+    "optionC": "France",
+    "optionD": "New Zealand",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::&#39;कानून के समान संरक्षण&#39; वाक्य कहाँ से लिया गया है ?",
+    "question": "Where was the phrase 'Equal protection of law' taken from?",
+    "optionA": "America",
+    "optionB": "Australia",
+    "optionC": "Canada",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्य के नीति-निर्देशक तत्व किस देश के संविधान के आधार पर निर्मित किये गए हैं ?",
+    "question": "On the basis of which country's constitution were the Directive Principles of State Policy created?",
+    "optionA": "Britain",
+    "optionB": "America",
+    "optionC": "Ireland",
+    "optionD": "Former Soviet Union",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संसदीय शासन प्रणाली सर्वप्रथम किस देश में विकसित हुई ?",
+    "question": "In which country was the parliamentary system of government first developed?",
+    "optionA": "Ireland",
+    "optionB": "Australia",
+    "optionC": "Britain",
+    "optionD": "Thailand",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत में कलेक्टर का पद औपनिवेशिक शासन ने उधार लिया था ?",
+    "question": "In India, the post of Collector was borrowed by the colonial administration?",
+    "optionA": "From the United States of America",
+    "optionB": "From Bangladesh",
+    "optionC": "From England",
+    "optionD": "From Japan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान निम्नलिखित में से कौन-सी नागरिकता प्रदान करता है ?",
+    "question": "Which of the following citizenships does the Indian Constitution provide?",
+    "optionA": "Dual citizenship",
+    "optionB": "Single citizenship",
+    "optionC": "Both of the above",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान के किन अनुच्छेदों में नागरिकता सम्बन्धी प्रावधान किए गए हैं ?",
+    "question": "In which articles of the Indian Constitution have provisions regarding citizenship been made?",
+    "optionA": "Articles 12-35",
+    "optionB": "Articles 5-11",
+    "optionC": "Articles 1-4",
+    "optionD": "Articles 36-51",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::कितने वर्षों तक लगातार बाहर रहने पर नागरिकता समाप्त हो जाती है ?",
+    "question": "For how many years of continuous stay abroad does citizenship cease?",
+    "optionA": "3 years",
+    "optionB": "5 years",
+    "optionC": "7 years",
+    "optionD": "9 years",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय राज्यों का भाषायी आधार पर पुनर्गठन किस वर्ष किया गया था ?",
+    "question": "In which year were the Indian states reorganized on a linguistic basis?",
+    "optionA": "1951",
+    "optionB": "1956",
+    "optionC": "1999",
+    "optionD": "1988",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::किस देश में दोहरी नागरिकता का सिद्धांत स्वीकार किया गया है ?",
+    "question": "In which country has the principle of dual citizenship been accepted?",
+    "optionA": "India",
+    "optionB": "Australia",
+    "optionC": "Canada",
+    "optionD": "United States",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::संविधान के प्रथम अनुच्छेद के अनुसार भारत है ?",
+    "question": "According to the first article of the Constitution, India is?",
+    "optionA": "A group of states",
+    "optionB": "A federation of states",
+    "optionC": "A Union of states",
+    "optionD": "A confederation of states",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान भारत का वर्णन किस रूप में करता है ?",
+    "question": "How does the Indian Constitution describe India?",
+    "optionA": "A Union of states",
+    "optionB": "Unitary",
+    "optionC": "Quasi-federal",
+    "optionD": "A federation of states",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संविधान की निम्नलिखित अनुसूचियाँ में से कौन-सी दल-बदल विरोधी कानून से सम्बन्धित है ।",
+    "question": "Which of the following schedules of the Constitution is related to anti-defection law?",
+    "optionA": "8th",
+    "optionB": "9th",
+    "optionC": "10th",
+    "optionD": "11th",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संविधान के किस अनुच्छेद में संविधान के संशोधन की प्रक्रिया का उल्लेख है ?",
+    "question": "In which article of the Constitution is the procedure for amendment of the Constitution mentioned?",
+    "optionA": "Article 352",
+    "optionB": "Article 356",
+    "optionC": "Article 360",
+    "optionD": "Article 368",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान के किस अनुच्छेद में राज्य सरकार को ग्राम पंचायत के संगठन का निर्देश देता है ?",
+    "question": "In which article of the Indian Constitution does the state government get directions for the organization of village panchayats?",
+    "optionA": "Article 32",
+    "optionB": "Article 36",
+    "optionC": "Article 40",
+    "optionD": "Article 48",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::किसी कैदी को न्यायालय के समक्ष प्रस्तुत करवाने के लिए किस रिट(Writ) की आवश्यकता होती है ?",
+    "question": "For presenting a prisoner before the court, which writ is required?",
+    "optionA": "Habeas Corpus",
+    "optionB": "Mandamus",
+    "optionC": "Prohibition",
+    "optionD": "Quo Warranto",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::वर्तमान समय में भारतीय संविधान के अन्तगर्त सम्पत्ति का अधिकार है एक ?",
+    "question": "In the present time, the right to property under the Indian Constitution is a?",
+    "optionA": "Fundamental Right",
+    "optionB": "Legal Right",
+    "optionC": "Moral Right",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::छह वर्ष की आयु से 14 वर्ष की आयु के बीच के सभी बच्चों को शिक्षा का अधिकार है ?",
+    "question": "All children between the ages of six and fourteen have the right to education?",
+    "optionA": "Fundamental Right",
+    "optionB": "Directive Principle",
+    "optionC": "Statutory Right",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::नीति निर्देशक तत्व का महत्त्व किसके लिए है ?",
+    "question": "The importance of Directive Principles is for whom?",
+    "optionA": "Citizens",
+    "optionB": "State",
+    "optionC": "Society",
+    "optionD": "Union",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत के किस राज्य में समान नागरिक संहिता लागू है ?",
+    "question": "In which state of India is a uniform civil code applicable?",
+    "optionA": "Goa",
+    "optionB": "Kerala",
+    "optionC": "Meghalaya",
+    "optionD": "Haryana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्य के नीति निर्देशक सिद्धान्तों में से किस अनुच्छेद का सम्बन्ध अंतर्राष्ट्रीय शान्ति और सुरक्षा के संवर्द्धन से है ?",
+    "question": "Which article among the State's Directive Principles is related to the promotion of international peace and security?",
+    "optionA": "Article 32",
+    "optionB": "Article 67",
+    "optionC": "Article 51",
+    "optionD": "Article 55",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संविधान में कल्याणकारी राज्य का आदेश दिया जाता है ?",
+    "question": "In the Constitution, the directive of a Welfare State is given?",
+    "optionA": "In Fundamental Rights",
+    "optionB": "In Preamble",
+    "optionC": "In Directive Principles",
+    "optionD": "In Amendment",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान में मूल कर्तव्य कब समाविष्ट किये गये ?",
+    "question": "When were the Fundamental Duties included in the Indian Constitution?",
+    "optionA": "1972",
+    "optionB": "1976",
+    "optionC": "1977",
+    "optionD": "1979",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान में मौलिक कर्तव्यों की सूचि निम्नलिखित में से किस भाग के रूप में जोड़ी गई थी ?",
+    "question": "In the Indian Constitution, the list of Fundamental Duties was added as part of which of the following?",
+    "optionA": "Part Two",
+    "optionB": "Part Three",
+    "optionC": "Part Four",
+    "optionD": "Part Five",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से किस वर्ष संविधान में मूल कर्तव्यों को अन्तः स्थापित किया गया ?",
+    "question": "In which of the following years were the Fundamental Duties incorporated in the Constitution?",
+    "optionA": "1975 A.D.",
+    "optionB": "1978 A.D.",
+    "optionC": "1976 A.D.",
+    "optionD": "1980 A.D.",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::संसद को भंग करने के लिए कौन सक्षम है ?",
+    "question": "Who is competent to dissolve the Parliament?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Vice President",
+    "optionD": "Governor",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन संसद का अनन्य भाग नहीं है ?",
+    "question": "Which of the following is not an exclusive part of Parliament?",
+    "optionA": "Vice President",
+    "optionB": "President",
+    "optionC": "Lok Sabha",
+    "optionD": "Rajya Sabha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::संसद के दोनों सदनों का सत्रावसान कौन करता है ?",
+    "question": "Who prorogues the sessions of both Houses of Parliament?",
+    "optionA": "Prime Minister",
+    "optionB": "Vice President",
+    "optionC": "President",
+    "optionD": "Lok Sabha",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत की पार्लियामेन्ट का उद्घाटन कब हुआ था ?",
+    "question": "When was the Parliament of India inaugurated?",
+    "optionA": "In 1919",
+    "optionB": "In 1921",
+    "optionC": "In 1923",
+    "optionD": "In 1927",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::अस्थायी संसद भारत में कब तक अस्तित्व में रही ?",
+    "question": "How long did the provisional Parliament exist in India?",
+    "optionA": "11 January 1950",
+    "optionB": "31 December 1950",
+    "optionC": "19 September 1951",
+    "optionD": "17 April 1952",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारत में कार्यपालिका का अध्यक्ष कौन होता है ?",
+    "question": "Who is the head of the executive in India?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Vice President",
+    "optionD": "Leader of the Opposition",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय संविधान के अनुसार देश का प्रथम नागरिक कौन होता है ?",
+    "question": "According to the Indian Constitution, who is the first citizen of the country?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Vice President",
+    "optionD": "Lok Sabha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारतीय सेनाओं का सर्वोच्च सेनापति होता है ?",
+    "question": "Who is the Supreme Commander of the Indian Armed Forces?",
+    "optionA": "President",
+    "optionB": "Vice President",
+    "optionC": "Prime Minister",
+    "optionD": "Defense Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति पद्धति में समस्त कार्यपालिका की शक्तियाँ किसमें निहित होती है ?",
+    "question": "In the presidential system, all executive powers are vested in whom?",
+    "optionA": "Cabinet",
+    "optionB": "Upper House",
+    "optionC": "Legislature",
+    "optionD": "President",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति का निर्वाचन किस प्रकार से होता है ?",
+    "question": "How is the President elected?",
+    "optionA": "Directly",
+    "optionB": "Indirectly",
+    "optionC": "By nomination",
+    "optionD": "No clear provision",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति पद के चुनाव के संबंधि विवाद को किसे निर्देशित किया जाता है ?",
+    "question": "To whom is the dispute related to the election of the President directed?",
+    "optionA": "Speaker of the Lok Sabha",
+    "optionB": "Parliamentary Committee",
+    "optionC": "Election Commission",
+    "optionD": "Supreme Court",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति के त्यागपत्र की सुचना उपराष्ट्रपति किसको देता है ?",
+    "question": "To whom does the Vice President give notice of the President's resignation?",
+    "optionA": "Attorney General of India",
+    "optionB": "Chief Justice of India",
+    "optionC": "Speaker of Lok Sabha",
+    "optionD": "Prime Minister",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::वित्त बिल के लिए किसकी पूर्व स्वीकृति आवश्यक है ?",
+    "question": "Whose prior approval is necessary for a Finance Bill?",
+    "optionA": "Finance Minister",
+    "optionB": "Prime Minister",
+    "optionC": "President",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से किसे राष्ट्रपति नियुक्ति नहीं करता है ?",
+    "question": "Whom does the President not appoint?",
+    "optionA": "Planning Commission",
+    "optionB": "Finance Commission",
+    "optionC": "Official Language Commission",
+    "optionD": "Union Public Service Commission",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से भारत का राष्ट्रपति किसकी नियुक्ति नहीं करता है ?",
+    "question": "Whom does the President of India not appoint?",
+    "optionA": "Chief Election Commissioner",
+    "optionB": "Vice President",
+    "optionC": "Governor",
+    "optionD": "Prime Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति का रिक्त स्थान भर लिया जाना चाहिए ?",
+    "question": "The vacancy of the President should be filled?",
+    "optionA": "Within 30 months",
+    "optionB": "Within 6 months",
+    "optionC": "Within 9 months",
+    "optionD": "Within 8 months",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति को लोकसभा में किन दो सदस्यों को मनोनीत करने का अधिकार है ?",
+    "question": "To which two members does the President have the right to nominate in the Lok Sabha?",
+    "optionA": "Anglo-Indian",
+    "optionB": "Person from a special area",
+    "optionC": "Minority",
+    "optionD": "Depends on the President's wish",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::अध्यादेश जारी करने का अधिकार राष्ट्रपति का कौन-सा अधिकार है ?",
+    "question": "The power to issue ordinances is what power of the President?",
+    "optionA": "Administrative",
+    "optionB": "Judicial",
+    "optionC": "Legislative",
+    "optionD": "Personal",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति के चुनाव में विवाद होने पर किसकी सलाह ली जाती है ?",
+    "question": "Whose advice is sought in case of a dispute in the election of the President?",
+    "optionA": "Vice President",
+    "optionB": "Supreme Court",
+    "optionC": "Election Commission",
+    "optionD": "Speaker of Lok Sabha",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::लाभ के पद का निर्णय कौन करेगा ?",
+    "question": "Who will decide the matter of emoluments?",
+    "optionA": "Federal Parliament",
+    "optionB": "President and Governor",
+    "optionC": "Supreme Court",
+    "optionD": "Union Public Service Commission",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत सरकार का सांविधानिक अध्यक्ष कौन है ?",
+    "question": "Who is the constitutional head of the Indian government?",
+    "optionA": "President",
+    "optionB": "Prime Minister",
+    "optionC": "Chief Justice of India",
+    "optionD": "Attorney General",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारत में राष्ट्रपति राज्यसभा के कितने सदस्यों को मनोनीत कर सकता है ?",
+    "question": "How many members of the Rajya Sabha can the President of India nominate?",
+    "optionA": "3",
+    "optionB": "13",
+    "optionC": "19",
+    "optionD": "12",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारत के पहले राष्ट्रपति के रूप में डॉ. राजेन्द्र प्रसाद का चुनाव किया गया था ?",
+    "question": "Dr. Rajendra Prasad was elected as the first President of India by?",
+    "optionA": "Parliament",
+    "optionB": "Electoral College",
+    "optionC": "People of India",
+    "optionD": "Constituent Assembly",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::भारतीय गणतंत्र का वह कौन-सा राष्ट्रपति था, जो सदा भारतीय धर्म निरपेक्षता को सर्वधर्म समभाव कहता रहा ?",
+    "question": "Which President of the Indian Republic always called Indian secularism as Sarva Dharma Sambhava?",
+    "optionA": "Dr. Rajendra Prasad",
+    "optionB": "Dr. S. Radhakrishnan",
+    "optionC": "Dr. Zakir Hussain",
+    "optionD": "Giani Zail Singh",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::संसद में शामिल नहीं है ?",
+    "question": "Who is not included in Parliament?",
+    "optionA": "Rajya Sabha",
+    "optionB": "President of India",
+    "optionC": "Lok Sabha",
+    "optionD": "Chief Election Commissioner",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::युद्ध की घोषणा या शांति का फैसला करने में कानूनी रूप से सक्षम है ?",
+    "question": "Who is legally competent to declare war or make peace?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Council of Ministers",
+    "optionD": "Parliament",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::भारत के राष्ट्रपति के पास कौन-सी वीटो शक्ति होती है ?",
+    "question": "What veto power does the President of India have?",
+    "optionA": "Suspensive veto",
+    "optionB": "Absolute veto",
+    "optionC": "Pocket veto",
+    "optionD": "All of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से कौन भारत के राष्ट्रपति के चुनाव में भाग नहीं लेता ?",
+    "question": "Who among the following does not participate in the election of the President of India?",
+    "optionA": "Rajya Sabha",
+    "optionB": "Lok Sabha",
+    "optionC": "Legislative Council",
+    "optionD": "Legislative Assembly",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::एक ही व्यक्ति को कितनी बार भारत का राष्ट्रपति बनाया जा सकता है ?",
+    "question": "How many times can a person be elected as the President of India?",
+    "optionA": "Many times",
+    "optionB": "Twice",
+    "optionC": "Thrice",
+    "optionD": "Only once",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::लोकसभा का नेता कौन होता है ?",
+    "question": "Who is the leader of the Lok Sabha?",
+    "optionA": "Prime Minister",
+    "optionB": "President",
+    "optionC": "Vice President",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::अविश्वास प्रस्ताव किस सदन में लाया जाता है ?",
+    "question": "In which house is a no-confidence motion brought?",
+    "optionA": "In any house",
+    "optionB": "Lok Sabha",
+    "optionC": "Rajya Sabha",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::लोकसभा की बैठक किस प्रकार समाप्त की जाती है ?",
+    "question": "How is the meeting of Lok Sabha concluded?",
+    "optionA": "By adjournment",
+    "optionB": "By dissolution",
+    "optionC": "By prorogation",
+    "optionD": "By all of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::लोकसभा सदस्य अपना त्यागपत्र किसको देते हैं ?",
+    "question": "To whom do Lok Sabha members submit their resignation?",
+    "optionA": "To the Prime Minister",
+    "optionB": "To the President",
+    "optionC": "To the Speaker of Lok Sabha",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::लोकसभा सदस्यों के निर्योग्यता से सम्बन्धित प्रश्नों पर निर्णय कौन करता है ?",
+    "question": "Who decides on questions related to the disqualification of Lok Sabha members?",
+    "optionA": "The Speaker of Lok Sabha",
+    "optionB": "The Minister of Parliamentary Affairs",
+    "optionC": "The President",
+    "optionD": "The Prime Minister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::निम्नलिखित में से किसे लोकसभा का अभिरक्षक कहा जाता है ?",
+    "question": "Who is called the guardian of Lok Sabha?",
+    "optionA": "The Leader of the Opposition",
+    "optionB": "The Speaker of Lok Sabha",
+    "optionC": "The Prime Minister",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::अस्थायी लोकसभाध्यक्ष को कौन नियुक्त करता है ?",
+    "question": "Who appoints the pro tem Speaker of Lok Sabha?",
+    "optionA": "The President",
+    "optionB": "The Election Commission",
+    "optionC": "The Vice President",
+    "optionD": "The incumbent Speaker of Lok Sabha",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::भारतीय संसद में शामिल है ?",
+    "question": "The Indian Parliament consists of?",
+    "optionA": "Only Lok Sabha",
+    "optionB": "Lok Sabha and the President",
+    "optionC": "Only Rajya Sabha",
+    "optionD": "Lok Sabha and Rajya Sabha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::बजट पहले किसके द्वारा पारित किया जाता है ?",
+    "question": "By whom is the budget passed first?",
+    "optionA": "Rajya Sabha",
+    "optionB": "Lok Sabha",
+    "optionC": "Both (A) and (B)",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::लोकसभा के लिए प्रथम आम चुनाव कब हुआ था ?",
+    "question": "When were the first general elections for Lok Sabha held?",
+    "optionA": "1950",
+    "optionB": "1951",
+    "optionC": "1952",
+    "optionD": "1955",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::कौन-सा राज्य सबसे अधिक प्रतिनिधि लोकसभा में भेजता है ?",
+    "question": "Which state sends the maximum number of representatives to Lok Sabha?",
+    "optionA": "Madhya Pradesh",
+    "optionB": "Uttar Pradesh",
+    "optionC": "Bihar",
+    "optionD": "West Bengal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::कौन-सी लोकसभा के चुनाव 4 चरणों में सम्पन्न हुए ?",
+    "question": "Which Lok Sabha elections were held in 4 phases?",
+    "optionA": "13th",
+    "optionB": "14th",
+    "optionC": "11th",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::राष्ट्रपति द्वारा राज्य सभा के कितने सदस्यों को नामित किया जाता है ?",
+    "question": "How many members of the Rajya Sabha are nominated by the President?",
+    "optionA": "Ten",
+    "optionB": "Five",
+    "optionC": "One-fifth of the total members",
+    "optionD": "Twelve",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "political-gk::लोकसभा में राज्यों को किस आधार पर सीटें आवंटित होती है ?",
+    "question": "On what basis are seats allocated to states in the Lok Sabha?",
+    "optionA": "Population",
+    "optionB": "Area",
+    "optionC": "Poverty",
+    "optionD": "Language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::लोकसभा की अधिकतम सदस्य संख्या कितनी हो सकती है ?",
+    "question": "What can be the maximum number of members in the Lok Sabha?",
+    "optionA": "510",
+    "optionB": "540",
+    "optionC": "552",
+    "optionD": "570",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "political-gk::भारत के उपराष्ट्रपति की स्थिति की तुलना किस देश के उपराष्ट्रपति से की जा सकती है ?",
+    "question": "The position of the Vice President of India can be compared with that of which country's Vice President?",
+    "optionA": "France",
+    "optionB": "United States",
+    "optionC": "New Zealand",
+    "optionD": "Russia",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "political-gk::उपराष्ट्रपति को पद की अवधि कितने वर्ष की होती है ?",
+    "question": "What is the term of office for the Vice President?",
+    "optionA": "5 years",
+    "optionB": "6 years",
+    "optionC": "7 years",
+    "optionD": "8 years",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "political-gk::राज्यसभा की बैठकों का सभापतित्व कौन करता है ?",
+    "question": "Who presides over the meetings of the Rajya Sabha?",
+    "optionA": "Vice President",
+    "optionB": "President",
+    "optionC": "Prime Minister",
+    "optionD": "Speaker",
+    "correctAnswer": "A"
+  }
+]
