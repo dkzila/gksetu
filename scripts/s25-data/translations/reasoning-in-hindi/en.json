@@ -1,0 +1,1928 @@
+[
+  {
+    "id": "reasoning-in-hindi::जैसे किसी गाय के लिए बछड़ा है, वैसे ही किसी बकरी के लिए है ?",
+    "question": "Like a calf is for a cow, what is for a goat?",
+    "optionA": "बछेड़ा",
+    "optionB": "पिल्ला",
+    "optionC": "छौना",
+    "optionD": "मेमना",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::&#39;मछली&#39; जैसे जल से सम्बन्धित है, वैसे ही &#39;चिड़िया&#39; किससे सम्बन्धित है ?",
+    "question": "Just as 'fish' is related to water, 'bird' is related to what?",
+    "optionA": "आकाश",
+    "optionB": "वायु",
+    "optionC": "जल",
+    "optionD": "भोजन",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::&#39;जहाज&#39; जैसे &#39;कप्तान&#39; से सम्बन्धित है, वैसे ही &#39;अखबार&#39; किससे सम्बन्धित है ?",
+    "question": "Just as 'ship' is related to 'captain', 'newspaper' is related to what?",
+    "optionA": "प्रकाशक",
+    "optionB": "सम्पादक",
+    "optionC": "मुद्रक",
+    "optionD": "पाठक",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::मोची : चमड़ा : : दर्जी : ?",
+    "question": "Cobbler : Leather : : Tailor : ?",
+    "optionA": "बजाज",
+    "optionB": "कमीज",
+    "optionC": "धागा",
+    "optionD": "कपड़ा",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::भेड़ : मटन : : हिरन : ?",
+    "question": "Sheep : Mutton : : Deer : ?",
+    "optionA": "मीट",
+    "optionB": "वील",
+    "optionC": "फ्लेश",
+    "optionD": "वेनिजन",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::पोशाक : दर्जी : : ? : बढ़ई",
+    "question": "Clothing : Tailor : : ? : Carpenter",
+    "optionA": "Leather",
+    "optionB": "Wood",
+    "optionC": "Furniture",
+    "optionD": "Cloth",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::पुस्तक : शेल्फ : : कपड़े :",
+    "question": "Book : Shelf : : Clothes :",
+    "optionA": "Cupboard",
+    "optionB": "Wardrobe",
+    "optionC": "Bureau",
+    "optionD": "Hanger",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्नलिखित शब्दों में से विषम शब्द चुनिए ?",
+    "question": "Select the odd word from the following words?",
+    "optionA": "Letter",
+    "optionB": "Speed Post",
+    "optionC": "SMS",
+    "optionD": "Money Order",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::धन : दुरूपयोग : : लेखन : ?",
+    "question": "Money : Misuse : : Writing : ?",
+    "optionA": "Fraud",
+    "optionB": "Literary Theft",
+    "optionC": "Theft",
+    "optionD": "Impurity",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::समाचार-पत्र : पाठक : : रोटी : ?",
+    "question": "Newspaper : Reader : : Bread : ?",
+    "optionA": "Baker",
+    "optionB": "Consumer",
+    "optionC": "Buyer",
+    "optionD": "Wheat",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::आशावादी : प्रसन्न : : निराशावादी : ?",
+    "question": "Optimistic : Happy : : Pessimistic : ?",
+    "optionA": "Selfish",
+    "optionB": "Inferior",
+    "optionC": "Sad",
+    "optionD": "Negligible",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक महिला की ओर संकेत करते हुए साइमन ने कहा, \" वह मेरे पिता की एकमात्र बहन की पुत्री है ।\" वह महिला साइमन से किस प्रकार सम्बन्धित है ?",
+    "question": "Pointing to a woman, Simon said, \"She is the daughter of my father's only sister.\" How is that woman related to Simon?",
+    "optionA": "Mother",
+    "optionB": "Cousin sister",
+    "optionC": "Sister",
+    "optionD": "Aunt",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::C माता है A और B की । यदि D पति है B, का तो C कौन है D की ?",
+    "question": "C is the mother of A and B. If D is the husband of B, then who is C to D?",
+    "optionA": "Mother",
+    "optionB": "Sister",
+    "optionC": "Mother-in-law",
+    "optionD": "Aunt",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::X और Y भाई-भाई हैं । R, Y का पिता है । S, T का भाई है और X का मामा है । T का R से क्या सम्बन्ध है ?",
+    "question": "X and Y are brothers. R is the father of Y. S is the brother of T and is the maternal uncle of X. What is the relationship of T with R?",
+    "optionA": "Mother",
+    "optionB": "Wife",
+    "optionC": "Sister",
+    "optionD": "Brother",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A की माँ की बहन के पुत्र की बहन A की कौन होगी ?",
+    "question": "Who will be the sister of A to the daughter of the sister of A's mother?",
+    "optionA": "Cousin brother",
+    "optionB": "Niece",
+    "optionC": "Aunt",
+    "optionD": "Cousin sister",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::किसी वृद्ध व्यक्ति का पुत्र मेरे पुत्र का चाचा है । बताइए मेरी माँ की इकलौती पुत्री के इकलौते पुत्र का सम्बन्ध उस वृद्ध से क्या है ?",
+    "question": "The son of an elderly person is the uncle of my son. Tell me, what is the relationship of the only son of the only daughter of my mother with that elderly person?",
+    "optionA": "Grandson",
+    "optionB": "Uncle",
+    "optionC": "Niece",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::A की माँ B की बहन है और C की बेटी है । Dबेटी है B की और बहन है E की, तो C का E से क्या सम्बन्ध है ?",
+    "question": "A's mother is B's sister and is C's daughter. D is B's daughter and sister of E, then what is the relationship of C with E?",
+    "optionA": "Mother",
+    "optionB": "Sister",
+    "optionC": "Father",
+    "optionD": "Grandfather or Grandmother",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::विषाणु : चेचक : : जीवाणु : ?",
+    "question": "Virus : Chickenpox :: Bacteria : ?",
+    "optionA": "Sleeping sickness",
+    "optionB": "Malaria",
+    "optionC": "Typhoid",
+    "optionD": "Smallpox",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::घर : रसोई : : पौधा : ?",
+    "question": "House : Kitchen :: Plant : ?",
+    "optionA": "Root",
+    "optionB": "Soil",
+    "optionC": "Stem",
+    "optionD": "Leaf",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि विगत परसों से एक दिन पहले का दिन शनिवार से तीन दिन आगे आने वाला दिन हो, तो आज कौन-सा दिन है ?",
+    "question": "If the day before yesterday from the day before yesterday is a day that comes three days after Saturday, then what day is today?",
+    "optionA": "Thursday",
+    "optionB": "Friday",
+    "optionC": "Tuesday",
+    "optionD": "Wednesday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 1 जनवरी को शुक्रवार है तो किसी अधिवर्ष में माह की पहली तारीख को कौन-सा दिन होगा ?",
+    "question": "If 1st January is Friday, then which day will be the first date of the month in a leap year?",
+    "optionA": "Friday",
+    "optionB": "Tuesday",
+    "optionC": "Wednesday",
+    "optionD": "Thursday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि परसों शुक्रवार था, तो आगामी परसों के बाद तीसरा दिन क्या होगा ?",
+    "question": "If the day before yesterday was Friday, then what will be the third day after the day after tomorrow?",
+    "optionA": "Thursday",
+    "optionB": "Friday",
+    "optionC": "Sunday",
+    "optionD": "Saturday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 15 सितंबर 2000 शुक्रवार है, तो 15 सितंबर 2001 को कौन-सा दिन होगा ?",
+    "question": "If 15 September 2000 is Friday, then what day will be 15 September 2001?",
+    "optionA": "Sunday",
+    "optionB": "Thursday",
+    "optionC": "Saturday",
+    "optionD": "Friday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::&#39;विश्व पर्यावरण दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'World Environment Day' celebrated?",
+    "optionA": "4 May",
+    "optionB": "5 June",
+    "optionC": "9 July",
+    "optionD": "4 November",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::अक्षरों ACER में से हरेक अक्षर का एक-एक बार प्रयोग करते हुए अंग्रेजी के कितने अर्थपूर्ण शब्द बनाए जा सकते हैं ?",
+    "question": "How many meaningful English words can be formed using each letter of the letters ACER exactly once?",
+    "optionA": "1",
+    "optionB": "2",
+    "optionC": "3",
+    "optionD": "More than 3",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::उत्तराभिमुख बच्चों की एक पंक्ति में, रितेश बाएं छोर से बारहवां है । सुधीर जो दाएं छोर से बाईसवां है, रितेश से दाएं का चौथा है, पंक्ति में कुल कितने बच्चे हैं ?",
+    "question": "In a row of children facing north, Ritesh is twelfth from the left end. Sudhir who is twenty-second from the right end is fourth to the right of Ritesh. How many children are there in the row?",
+    "optionA": "35",
+    "optionB": "36",
+    "optionC": "37",
+    "optionD": "34",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक खास कोड में RAIL को 5796 लिखा जाता है और TAPE को 3748 लिखा जाता है, उस कोड में PAIR को कैसे लिखा जाता है ?",
+    "question": "In a particular code, RAIL is written as 5796 and TAPE is written as 3748. How is PAIR written in that code?",
+    "optionA": "4795",
+    "optionB": "4785",
+    "optionC": "3795",
+    "optionD": "8795",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्नलिखित पांच में चार किसी प्रकार समान हैं इसलिए उनका एक समूह बनता है, वह एक कौन सा है जो इस समूह में नहीं आता है ?",
+    "question": "Four of the following five are alike in a certain way and hence form a group. Which one does not belong to that group?",
+    "optionA": "Rose",
+    "optionB": "Lotus",
+    "optionC": "Jasmine",
+    "optionD": "Tuberose",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::कितने सार्थक अंग्रेजी शब्द EPRY से प्रत्येक अक्षर को एक शब्द में एक बार इस्तेमाल करते हुए बनाए जा सकते हैं ?",
+    "question": "How many meaningful English words can be formed using each letter of the word EPRY exactly once in each word?",
+    "optionA": "1",
+    "optionB": "2",
+    "optionC": "3",
+    "optionD": "More than 4",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::त्येक शब्द में प्रत्येक अक्षर का केवल एक बार प्रयोग करते हुए अक्षर UTB से कितने अर्थपूर्ण शब्द बन सकते हैं ?",
+    "question": "Using each letter exactly once in each word, how many meaningful words can be formed from the letters UTB?",
+    "optionA": "One",
+    "optionB": "Two",
+    "optionC": "Three",
+    "optionD": "None",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्नलिखित में से विषम शब्द चुनिए ?",
+    "question": "Select the odd word from the following?",
+    "optionA": "Khadi",
+    "optionB": "Island",
+    "optionC": "Peninsula",
+    "optionD": "Cape",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::ऐसा युग्म ज्ञात कीजिये जो निम्नलिखित युग्म के सदृश सम्बन्ध को नहीं दर्शाता ?",
+    "question": "Find a pair that does not show a similar relationship to the following pair?",
+    "optionA": "Psychology : Mind",
+    "optionB": "Anatomy : Body",
+    "optionC": "Philosophy : Language",
+    "optionD": "Archaeology : Relics",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::छत्ता : मधुमखी : : ऊंचा नीड़ : ?",
+    "question": "Chhatta : Madhumakhi : : Uuncha Neer : ?",
+    "optionA": "Parrot",
+    "optionB": "Pigeon",
+    "optionC": "Eagle",
+    "optionD": "Bird",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी माह की दसवीं तिथि रविवार के तीन दिन पहले पड़ती हो, तो दूसरी तिथि किस दिन पड़ेगी ?",
+    "question": "If the 10th date of a month falls three days before Sunday, then on which day will the second date fall?",
+    "optionA": "Tuesday",
+    "optionB": "Thursday",
+    "optionC": "Wednesday",
+    "optionD": "Friday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::नौ दिन पहले मोहिनी सिनेमा देखने गई, वह केवल बृहस्पतिवार को ही सिनेमा देखने जाती है, आज सप्ताह का कौन-सा दिन है ?",
+    "question": "Nine days ago Mohini went to see a movie, she only goes to see a movie on Thursday, what day of the week is today?",
+    "optionA": "Saturday",
+    "optionB": "Tuesday",
+    "optionC": "Sunday",
+    "optionD": "Thursday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आने वाले कल के दो दिन बाद शुक्रवार है, तो बीते हुए कल के दो दिन पहले सप्ताह का कौन-सा दिन था ?",
+    "question": "If the day after tomorrow is Friday, then which day of the week was two days before yesterday?",
+    "optionA": "Saturday",
+    "optionB": "Thursday",
+    "optionC": "Monday",
+    "optionD": "Sunday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::बीते कल से पहले दिन से पहले दिन शनिवार के तीन दिन बाद का है, आज कौन-सा दिन है ?",
+    "question": "The day before the day before yesterday was three days after Saturday, what day is today?",
+    "optionA": "Tuesday",
+    "optionB": "Wednesday",
+    "optionC": "Thursday",
+    "optionD": "Friday",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आज बुधवार है, तो अगले रविवार के 25 दिन बाद कौन-सा दिन होगा ?",
+    "question": "If today is Wednesday, then which day will it be 25 days after next Sunday?",
+    "optionA": "Sunday",
+    "optionB": "Monday",
+    "optionC": "Thursday",
+    "optionD": "Saturday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि माह का तीसरा दिन सोमवार है, तो निम्नलिखित में उस माह के इक्कीसवें से आगे पांचवां दिन कौन-सा होगा ?",
+    "question": "If the third day of the month is Monday, then which day will be the fifth day after the twenty-first day of that month?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Thursday",
+    "optionD": "Wednesday",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्नलिखित शब्दों में से विषम शब्द चुनिए",
+    "question": "Select the odd word from the following words",
+    "optionA": "Kurukshetra",
+    "optionB": "Sarnath",
+    "optionC": "Panipat",
+    "optionD": "Haldighati",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि बीते कल से पहले दिन बुधवार था तो रविवार कब होगा ?",
+    "question": "If the day before yesterday was Wednesday, then when will Sunday be?",
+    "optionA": "Today",
+    "optionB": "Tomorrow",
+    "optionC": "The day after tomorrow",
+    "optionD": "Two days after tomorrow",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि माह की 5वीं तिथि मंगलवार है, तो माह के तीसरे शुक्रवार के 3 दिन बाद कौन-सी तिथि होगी ?",
+    "question": "If the 5th date of the month is Tuesday, then which date will be 3 days after the third Friday of the month?",
+    "optionA": "19",
+    "optionB": "18",
+    "optionC": "17",
+    "optionD": "22",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी माह की 23 तारीख को रविवार है, तो दो सप्ताह और चार दिन पहले कौन-सा दिन पड़ेगा ?",
+    "question": "If the 23rd date of a month is Sunday, then which day will it be two weeks and four days before?",
+    "optionA": "Tuesday",
+    "optionB": "Wednesday",
+    "optionC": "Thursday",
+    "optionD": "Friday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 27 मार्च, 1995 को सोमवार था, तो 1 नवम्बर, 1994 को कौन-सा दिन था ?",
+    "question": "If March 27, 1995 was Monday, then what day was November 1, 1994?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Thursday",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::X और Y दोनों बच्चे हैं, यदि Z, X का पिता है परन्तु Y, Z का पुत्र नहीं है, तो Y और Z में क्या सम्बन्ध है ?",
+    "question": "X and Y are both children. If Z is the father of X but Y is not the son of Z, then what is the relationship between Y and Z?",
+    "optionA": "Sister and brother",
+    "optionB": "Niece and maternal uncle",
+    "optionC": "Daughter and father",
+    "optionD": "Niece and paternal uncle",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक आदमी ने एक महिला से कहा, आपके भाई का एकमात्र पुत्र, मेरी पत्नी का भाई है, वह महिला उस आदमी की पत्नी से किस प्रकार सम्बन्धित है ?",
+    "question": "A man said to a woman, 'The only son of your brother is the brother of my wife.' How is that woman related to the man's wife?",
+    "optionA": "Aunt",
+    "optionB": "Grandmother",
+    "optionC": "Mother",
+    "optionD": "Sister",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::सुनीता लड़कियों की एक पंक्ति में दोनों छोरों से 11वें स्थान पर है, उस पंक्ति में कितनी लड़कियाँ हैं ?",
+    "question": "Sunita is in the 11th position from both ends in a row of girls. How many girls are there in that row?",
+    "optionA": "20",
+    "optionB": "21",
+    "optionC": "22",
+    "optionD": "24",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::सीमा का छोटा भाई सोहन, सीता से आयु में बड़ा है । श्वेता, दीप्ति से छोटी है किन्तु सीमा से बड़ी है । आयु में सबसे बड़ी कौन है ?",
+    "question": "Seema's younger brother Sohan is older than Sita in age. Shweta is younger than Deepthi but older than Seema. Who is the oldest in age?",
+    "optionA": "Seema",
+    "optionB": "Deepthi",
+    "optionC": "Sita",
+    "optionD": "Shweta",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक कक्षा में सोहन का स्थान ऊपर से सातवाँ है और नीचे से छब्बीसवाँ है, कक्षा में कुल कितने विद्यार्थी हैं ?",
+    "question": "In a class, Sohan's position from the top is seventh and from the bottom is sixteenth. How many students are there in the class?",
+    "optionA": "30",
+    "optionB": "32",
+    "optionC": "34",
+    "optionD": "35",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::&#39;सुमा&#39; उमा से छोटी है, &#39;नेहा&#39; सुमा से लम्बी है, &#39;सुधा&#39; उमा से लम्बी है लेकिन हेमा से छोटी है । &#39;उमा&#39; नेहा से लम्बी है, इनमें से सबसे लम्बा कौन है ?",
+    "question": "'Suma' is shorter than 'Uma', 'Neha' is taller than 'Suma', 'Sudha' is taller than 'Uma' but shorter than 'Hema'. 'Uma' is taller than 'Neha'. Who is the tallest among them?",
+    "optionA": "उमा",
+    "optionB": "हेमा",
+    "optionC": "नेहा",
+    "optionD": "सुधा",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A, B, C, D और E पाँच नदियाँ हैं, A, B से छोटी है मगर E से लम्बी है । C सबसे लम्बी है । D, B से बहुत छोटी है और A से कुछ लम्बी है, तो सबसे छोटी नदी कौन-सी है ?",
+    "question": "A, B, C, D and E are five rivers. A is shorter than B but longer than E. C is the longest. D is much shorter than B and a bit longer than A. Which is the shortest river?",
+    "optionA": "A",
+    "optionB": "B",
+    "optionC": "D",
+    "optionD": "E",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी अधिवर्ष में शुक्रवार के तीन दिन के बाद 1 मार्च आता है, तो 22 नवम्बर को सप्ताह का कौन-सा दिन होगा ?",
+    "question": "If in a leap year, 1 March comes after three days of Friday, then what day of the week will be 22 November?",
+    "optionA": "शनिवार",
+    "optionB": "बृहस्पतिवार",
+    "optionC": "मंगलवार",
+    "optionD": "रविवार",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी वर्ष 5 फरवरी को शुक्रवार है, तो उसी वर्ष 10 अगस्त को कौन-सा दिन होगा ?",
+    "question": "If in a year, 5 February is Friday, then what day will be 10 August in the same year?",
+    "optionA": "शुक्रवार",
+    "optionB": "बुधवार या मंगलवार",
+    "optionC": "सोमवार",
+    "optionD": "शनिवार या रविवार",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 5 जुलाई, 1996 को बुधवार है, तो इसी तिथि को वर्ष 1980 में कौन-सा दिन था ?",
+    "question": "If 5 July, 1996 is Wednesday, then what day was it on the same date in the year 1980?",
+    "optionA": "बृहस्पतिवार",
+    "optionB": "मंगलवार",
+    "optionC": "रविवार",
+    "optionD": "शुक्रवार",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 15 जनवरी, 1993 को सोमवार था, तो बताइए कि 17 अगस्त 2004 को कौन-सा दिन होगा ?",
+    "question": "If 15 January, 1993 was Monday, then tell what day will be 17 August 2004?",
+    "optionA": "शनिवार",
+    "optionB": "मंगलवार",
+    "optionC": "शुक्रवार",
+    "optionD": "बृहस्पतिवार",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::गत कल से अगले दिन से पहले पहला दिन शनिवार से तीन दिन बाद है, आज कौन-सा दिन है ?",
+    "question": "The first day before the next day from yesterday is three days after Saturday. What day is today?",
+    "optionA": "रविवार",
+    "optionB": "मंगलवार",
+    "optionC": "शुक्रवार",
+    "optionD": "बुधवार",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक बच्चा 8 अगस्त 1978 को पैदा हुआ उस दिन मंगलवार था वर्ष 1986 में उसका जन्मदिन किस दिन होगा ?",
+    "question": "A child was born on 8 August 1978, that day was Tuesday. On which day will his birthday be in the year 1986?",
+    "optionA": "शनिवार",
+    "optionB": "रविवार",
+    "optionC": "मंगलवार",
+    "optionD": "बृहस्पतिवार",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::वर्ष के 5 मार्च पर जो दिन होगा वही दिन उसी वर्ष की निम्न में से किस तिथि पर पड़ेगा ?",
+    "question": "The day that will be on 5 March of a year, the same day will fall on which of the following dates of the same year?",
+    "optionA": "5 अगस्त",
+    "optionB": "5 दिसम्बर",
+    "optionC": "5 नवम्बर",
+    "optionD": "5 अक्टूबर",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी वर्ष में, जोकि लीप वर्ष नहीं है, 28 फरवरी को सोमवार है, तो आगामी 2 जनवरी को कौन-सा दिन होगा ?",
+    "question": "If in a year, which is not a leap year, 28 February is a Monday, then what day will the next 2 January be?",
+    "optionA": "Friday",
+    "optionB": "Monday",
+    "optionC": "Tuesday",
+    "optionD": "Wednesday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि हरा का अर्थ लाल, लाल का अर्थ पीला, पीले का अर्थ नीला, नीला का अर्थ नारंगी हो, तो बताइए स्वच्छ आकाश का रंग कैसा दिखाई देता है ?",
+    "question": "If green means red, red means yellow, yellow means blue, and blue means orange, then what color does the clear sky appear to be?",
+    "optionA": "Orange",
+    "optionB": "Green",
+    "optionC": "Yellow",
+    "optionD": "Red",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि पुस्तक को घड़ी कहें, घड़ी को बैग, बैग को शब्दकोश और शब्दकोश को खिड़की कहें तो पुस्तकें ले जाने के लिए किसे प्रयुक्त करेंगे ?",
+    "question": "If a book is called a clock, a clock is called a bag, a bag is called a dictionary, and a dictionary is called a window, then what will be used to carry books?",
+    "optionA": "Bag",
+    "optionB": "Book",
+    "optionC": "Clock",
+    "optionD": "Dictionary",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि पुलिस को शिक्षक कहा जाए, शिक्षक को राजनीतिज्ञ, राजनीतिज्ञ को डॉक्टर, डॉक्टर को वकील तथा वकील को सर्जन, तो अपराधियों को कौन पकड़ेगा ?",
+    "question": "If the police is called a teacher, a teacher is called a politician, a politician is called a doctor, a doctor is called a lawyer, and a lawyer is called a surgeon, then who will catch the criminals?",
+    "optionA": "Police",
+    "optionB": "Doctor",
+    "optionC": "Teacher",
+    "optionD": "Lawyer",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि STREAMLINE के दूसरे, पाँचवे, छठे और दसवें अक्षरों को मिलाकर कोई सार्थक अंग्रेजी शब्द बनाना सम्भव हो, तो उस शब्द का तीसरा अक्षर क्या होगा ?",
+    "question": "If it is possible to form a meaningful English word by joining the second, fifth, sixth, and tenth letters of STREAMLINE, then what will be the third letter of that word?",
+    "optionA": "T",
+    "optionB": "E",
+    "optionC": "M",
+    "optionD": "A",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक जन्मदिन पार्टी में, 5 मित्र एक पंक्ति में बैठे हैं। M बाई और है O के और दाई और है P के S बैठा है दाई और T के किन्तु बाई और P के बीच में कौन बैठा है ?",
+    "question": "In a birthday party, 5 friends are sitting in a row. M is to the left of O and to the right of P. S is to the right of T but to the left of P. Who is sitting between M and P?",
+    "optionA": "M",
+    "optionB": "P",
+    "optionC": "O",
+    "optionD": "S",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::गीता, सीता से अधिक सुन्दर है लेकिन रीता जितनी सुन्दर नहीं है, तो ?",
+    "question": "Geeta is more beautiful than Sita but not as beautiful as Reeta, then?",
+    "optionA": "Sita is more beautiful than Reeta",
+    "optionB": "Sita is not as beautiful as Geeta",
+    "optionC": "Geeta is more beautiful than Reeta",
+    "optionD": "Reeta is not as beautiful as Geeta",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::45 विद्यार्थियों की एक कक्षा में एक बालक का बीसवाँ स्थान है। जब दो और बालक प्रवेश लेते हैं, तो वह एक स्थान नीचे हो जाता है। उसका अंत से नया स्थान क्या है ?",
+    "question": "In a class of 45 students, a boy is at the 20th position. When two more boys join, he moves one place down. What is his new position from the end?",
+    "optionA": "25th",
+    "optionB": "26th",
+    "optionC": "27th",
+    "optionD": "29th",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::35 बच्चों की कक्षा में गोविन्द का ऊपर से छठा स्थान है, कृष्ण गोविन्द से 7 स्थान नीचे है। कृष्ण का नीचे से कौन-सा स्थान है ?",
+    "question": "In a class of 35 children, Govind is at the 6th position from the top. Krishna is 7 places below Govind. What is Krishna's position from the bottom?",
+    "optionA": "19",
+    "optionB": "20",
+    "optionC": "22",
+    "optionD": "23",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::लड़कियों की एक पंक्ति में वीणा आरम्भ से 12वीं है और अंत से 19वीं। लड़कियों की एक अन्य पंक्ति में सुनीता आरम्भ से 14वीं है और अंत से 20वीं। दोनों पक्तियों में कुल मिलाकर कितनी लड़कियाँ",
+    "question": "In a row of girls, Veena is 12th from the beginning and 19th from the end. In another row of girls, Sunita is 14th from the beginning and 20th from the end. How many girls are there in both rows combined?",
+    "optionA": "72",
+    "optionB": "65",
+    "optionC": "63",
+    "optionD": "61",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि राम, श्याम से अधिक धनवान है परन्तु उतना नहीं जितना मोहन है, तो श्याम है ?",
+    "question": "If Ram is richer than Shyam but not as much as Mohan, then Shyam is?",
+    "optionA": "poorer than Ramesh",
+    "optionB": "richer than Ram",
+    "optionC": "poorer than Mohan",
+    "optionD": "richer than Mohan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::पाँच लड़कों ने एक दौड़ में हिस्सा लिया। राज ने मोहित से पहले लेकिन गौरव के बाद दौड़ को पूरा किया। आशीष ने संचित से पहले लेकिन मोहित के बाद दौड़ को पूरा किया। दौड़ किसने जीती ?",
+    "question": "Five boys participated in a race. Raj finished before Mohit but after Gaurav. Ashish finished before Sanchit but after Mohit. Who won the race?",
+    "optionA": "Gaurav",
+    "optionB": "Ashish",
+    "optionC": "Mohit",
+    "optionD": "Raj",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::30 छात्रों की एक कतार में अन्जू का क्रम प्रारम्भ से 13वाँ है, तो बताइए कि अंत से उसका क्रम क्या होगा ?",
+    "question": "In a queue of 30 students, Anju's position from the beginning is 13th. Tell us what will be her position from the end?",
+    "optionA": "17th",
+    "optionB": "18th",
+    "optionC": "19th",
+    "optionD": "20th",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक कार रैली में विजय, विपिन से पीछे परन्तु सुकुमार से आगे है। विपिन रवि से पीछे है परन्तु विजय से आगे है, नारायण बीच में हैं। इन सबमें सबसे आगे कौन है ?",
+    "question": "In a car rally, Vijay is behind Vipin but ahead of Sukumar. Vipin is behind Ravi but ahead of Vijay, Narayan is in between. Who is ahead among all?",
+    "optionA": "Vijay",
+    "optionB": "Sukumar",
+    "optionC": "Vipin",
+    "optionD": "Ravi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक महिला की ओर संकेत करते हुए साइमन ने कहा, वह मेरे पिता की एकमात्र बहन की पुत्री है। वह महिला साइमन से किस प्रकार संबंधित है ?",
+    "question": "Pointing towards a woman, Simon said, she is the daughter of my father's only sister. How is that woman related to Simon?",
+    "optionA": "Mother",
+    "optionB": "Cousin",
+    "optionC": "Sister",
+    "optionD": "Aunt",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::C माता है A और B की, यदि D पति है B का, तो C कौन है D की ?",
+    "question": "C is the mother of A and B, if D is the husband of B, then who is C to D?",
+    "optionA": "Mother",
+    "optionB": "Aunt",
+    "optionC": "Sister",
+    "optionD": "Mother-in-law",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::A की माँ B की बहन है और C की बेटी है, D बेटी है B की और बहन है E की, तो C का E से क्या सम्बन्ध है ?",
+    "question": "A's mother is B's sister and C's daughter, D is B's daughter and sister of E, then what is the relation of C with E?",
+    "optionA": "Sister",
+    "optionB": "Grandfather or Grandmother",
+    "optionC": "Mother",
+    "optionD": "Father",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::रमेश और सुरेश भाई-भाई हैं, राखी और गीता आपस में बहनें हैं, रमेश का लड़का गीता का भाई है, बताइए सुरेश और राखी का आपस में क्या संबंध हुआ ?",
+    "question": "Ramesh and Suresh are brothers, Rakhhi and Geeta are sisters to each other, Ramesh's son is Geeta's brother, tell what is the relation between Suresh and Rakhhi?",
+    "optionA": "Brother",
+    "optionB": "Uncle",
+    "optionC": "Grandfather",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::K, B से ज्यादा सुंदर है, B, Y के समान सुंदर नहीं है, J, B या Y के समान सुंदर नहीं है तदनुसार, सुंदरता कि कोटि में सबसे निचले स्तर पर कौन है ?",
+    "question": "K is more beautiful than B, B is not as beautiful as Y, J is not as beautiful as B or Y, accordingly, who is at the lowest level in the beauty category?",
+    "optionA": "Y",
+    "optionB": "J",
+    "optionC": "K",
+    "optionD": "B",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::&#39;P&#39; की आयु &#39;Q&#39; के बराबर है, &#39;R&#39; &#39;S&#39;से छोटा है, &#39;T&#39; &#39;R&#39; से छोटा है, किन्तु &#39;P&#39; से बड़ा है, सबसे बड़ा कौन है ?",
+    "question": "The age of 'P' is equal to 'Q', 'R' is smaller than 'S', 'T' is smaller than 'R' but bigger than 'P', who is the biggest?",
+    "optionA": "P",
+    "optionB": "Q",
+    "optionC": "S",
+    "optionD": "R",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक कक्षा में सफल हुए लड़कों की सूची में राजन का 11वाँ स्थान है और नीचे की ओर से वह 31वें स्थान पर है, तीन लड़कों ने परीक्षा ही नहीं दी और एक फेल हो गया था, कक्षा में कूल कितने छात्र ",
+    "question": "In a class, Rajan's position in the list of successful boys is 11th from the top and 31st from the bottom. Three boys did not appear for the exam and one had failed. How many students are there in the class?",
+    "optionA": "32",
+    "optionB": "38",
+    "optionC": "40",
+    "optionD": "45",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक परीक्षा में A, B, C तथा D को अलग-अलग अंक प्राप्त हुए, B ने C और D से अधिक अंक प्राप्त किए, A से कम अंक किसी ने भी नहीं प्राप्त किए, इनमें से किसने अधिकतम अंक प्राप्त किए ?",
+    "question": "In an examination, A, B, C and D got different marks. B got more marks than C and D, but less than A. Who got the maximum marks?",
+    "optionA": "A",
+    "optionB": "B",
+    "optionC": "D",
+    "optionD": "C या D",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::राकेश, नितिन से लम्बा है, किन्तु भरत जितना लम्बा नहीं है, लोकेश, राकेश से छोटा है, किन्तु गौरव से लम्बा है, इनमें सबसे लम्बा कौन है ?",
+    "question": "Rakesh is taller than Nitin but not as tall as Bharat. Lokesh is shorter than Rakesh but taller Gaurav. Who is the tallest among them?",
+    "optionA": "नितिन",
+    "optionB": "राकेश",
+    "optionC": "भरत",
+    "optionD": "गौरव",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक कक्षा में शंकर ऊपर से 16वें स्थान पर और नीचे से 49वें स्थान पर बैठा है, कक्षा में कुल कितने छात्र है ?",
+    "question": "In a class, Shankar is sitting 16th from the top and 49th from the bottom. How many students are there in the class?",
+    "optionA": "64",
+    "optionB": "65",
+    "optionC": "66",
+    "optionD": "67",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::सोनू की आयु रिचा की आयु से अधिक है परन्तु अनु से कम है, सौरभ की आयु सोनू से अधिक है परन्तु राम से कम है, तो इन सबमें सबसे छोटा कौन है ?",
+    "question": "Sonu's age is more than Richa's age but less than Anu's age. Sourabh's age is more than Sonu's age but less than Ram's age. Who is the youngest among them?",
+    "optionA": "रिचा",
+    "optionB": "सोनू",
+    "optionC": "अनु",
+    "optionD": "सौरभ",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::राम मनु की अपेक्षा अधिक लम्बा है परन्तु उतना नहीं जितना रवि है। अनु दिलीप की अपेक्षा अधिक लम्बा परन्तु मनु की अपेक्षा छोटा है, सबसे अधिक लम्बा कौन है ?",
+    "question": "Ram is taller than Manu but not as tall as Ravi. Anu is taller than Dilip but shorter than Manu. Who is the tallest?",
+    "optionA": "राम",
+    "optionB": "मनु",
+    "optionC": "रवि",
+    "optionD": "अनु",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक पंक्ति में रमन का प्रारम्भ से 15वाँ तथा अंत से 11वाँ स्थान है, उस पंक्ति में कितने लोग हैं ?",
+    "question": "In a row, Ram's position is 15th from the beginning and 11th from the end. How many people are there in that row?",
+    "optionA": "25",
+    "optionB": "26",
+    "optionC": "28",
+    "optionD": "30",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::सोनिया अपने घर से चली और 4 किमी पूर्व की ओर गई। तब वह बाएँ घूमी और 4 किमी चली, फिर वह दाएँ घूमी और 4 किमी चली, वह प्रस्थान स्थल से कितनी दूरी पर है ?",
+    "question": "Sonia started from her house and went 4 km towards the east. Then she turned left and walked 4 km, then she turned right and walked 4 km. How far is she from her starting point?",
+    "optionA": "10 किमी",
+    "optionB": "14 किमी",
+    "optionC": "8 किमी",
+    "optionD": "5 किमी",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::शारदा ने दक्षिण दिशा में चलना शुरू किया, 15 मी चलने के बाद वह दो बार अपने बाएँ घूमी और दोनों बार 15-15 मी चली, अब वह अपने प्रस्थान स्थल से कितनी दूर है और किस दिशा में हैं ?",
+    "question": "Sharda started walking towards the south. After walking 15 meters, she turned left twice and both times walked 15 meters. How far and in which direction is she from her starting point now?",
+    "optionA": "20 मी पश्चिम",
+    "optionB": "15 मी पूर्व",
+    "optionC": "15 मी दक्षिण",
+    "optionD": "30 मी पूर्व",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक दिन शाम को सूर्यास्त से पहले दो मित्र रमन और अर्जुन आमने-सामने बैठकर बातचीत कर रहे थे, यदि रमन की परछाई ठीक उसकी बाई ओर पड़ रही थी, तो अर्जुन किस दिशा की ओर मुख करके बैठा था ?",
+    "question": "One evening before sunset, two friends Ram and Arjun were sitting face to face and talking. If Ram's shadow was falling exactly to his left, in which direction was Arjun sitting?",
+    "optionA": "पश्चिम",
+    "optionB": "दक्षिण",
+    "optionC": "पूर्व",
+    "optionD": "उत्तर",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक सुबह मीना ने सूर्य की ओर चलना आरम्भ किया, कुछ देर चलकर वह अपने बाईं ओर मुड़ी और दोबारा अपने बाईं ओर मुड़ी, कुछ दूर चलकर बह बाईं और मुड़ी, वह सब किस दिशा में मुहँ किए हुए है ?",
+    "question": "One morning, Meena started walking towards the sun. After walking for some time, she turned left and then turned left again. After walking some distance, she turned left again. In which direction is she facing now?",
+    "optionA": "West",
+    "optionB": "South",
+    "optionC": "North",
+    "optionD": "East",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक व्यक्ति दक्षिण की ओर 6 किमी चलता है, बाईं और मुड़कर 4 किमी चलता है, फिर बाईं ओर मुड़कर 5 किमी जाता है, उसका मुख अब किस दिशा की ओर है ?",
+    "question": "A person walks 6 km towards the south, turns left and walks 4 km, then turns left and walks 5 km. In which direction is his face now?",
+    "optionA": "West",
+    "optionB": "East",
+    "optionC": "South",
+    "optionD": "North",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि दक्षिण-पूर्व उत्तर हो जाए, उत्तर-पूर्व पश्चिम हो जाए और आगे भी परिवर्तन का यही क्रम जारी रहे तो पश्चिम क्या होगा ?",
+    "question": "If South-East becomes North, North-West becomes West and this sequence of changes continues, then what will West become?",
+    "optionA": "South-West",
+    "optionB": "North-West",
+    "optionC": "North-East",
+    "optionD": "South-East",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक दिन मैं और आप सुबह के वक्त आपस में एक-दूसरे के आमने-सामने खड़े होकर बात कर रहे थे जिससे मेरी छाया आपके दाईं और बन रही थी, आप किस दिशा की ओर देख रहे थे ?",
+    "question": "One day, in the morning, you and I were standing face to face talking to each other, due to which my shadow was falling on your right. In which direction were you looking?",
+    "optionA": "East",
+    "optionB": "South",
+    "optionC": "North",
+    "optionD": "West",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::गरिमा का परिचय देते हुए राकेश ने कहा कि उसके पिताजी मेरे पिताजी के इकलौते पुत्र है, आप बताइए कि राकेश गरिमा से किस प्रकार संबंधित है ?",
+    "question": "While introducing Garima, Rakesh said that his father is the only son of my father. Tell me, how is Rakesh related to Garima?",
+    "optionA": "Brother",
+    "optionB": "Maternal Uncle",
+    "optionC": "Paternal Uncle",
+    "optionD": "Father",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::रघु तथा बाबू जुड़वाँ हैं, बाबू की बहन रीमा है, रीमा का पति राजन है, रघु की माँ लक्ष्मी है, लक्ष्मी का पति राजेश है, तदनुसार, राजेश का राजन से क्या रिश्ता है ?",
+    "question": "Raghav and Babu are twins. Babu's sister is Reema. Reema's husband is Rajan. Raghav's mother is Lakshmi. Lakshmi's husband is Rajesh. Accordingly, what is the relationship of Rajesh with Rajan?",
+    "optionA": "Paternal Uncle",
+    "optionB": "Cousin Brother",
+    "optionC": "Son-in-law",
+    "optionD": "Father-in-law",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::फातिमा ने अपने पति से मुस्तफा का परिचय करते हुए कहा कि उसके भाई के पिता मेरे दादाजी के इकलौते पुत्र हैं, मुस्तफा का फातिमा से क्या संबंध है ?",
+    "question": "Fatima introduced Mustafa to her husband and said that his brother's father is the only son of my grandfather. What is Mustafa's relationship with Fatima?",
+    "optionA": "Paternal Aunt",
+    "optionB": "Mother",
+    "optionC": "Niece",
+    "optionD": "Sister",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::राहुल और रोबिन भाई है, प्रमोद, रोबिन के पिता हैं, शीला, प्रमोद की बहन है, प्रेमा प्रमोद की भांजी है, शुभा, शीला की नातिन है, राहुल शुभा के क्या लगते हैं ?",
+    "question": "Rahul and Robin are brothers. Promod is Robin's father. Sheila is Promod's sister. Premila is Promod's niece. Shubha is Sheila's granddaughter. What does Rahul look like to Shubha?",
+    "optionA": "Brother",
+    "optionB": "Nephew",
+    "optionC": "Maternal Uncle",
+    "optionD": "Cousin Brother",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::विजेत 5 किमी दक्षिण की ओर जाता है, फिर दाईं ओर घूमकर 3 किमी चलता है, वह फिर दाईं ओर मुड़ता है और 5 किमी चलता है, वह फिर बाई और मुड़कर 5 किमी जाता है, वह प्रारम्भिक स्थान से अब कितनी ",
+    "question": "Vijay walks 5 km towards the south, then turns right and walks 3 km. He then turns right and walks 5 km. He then turns left and walks 5 km. How far is he from the starting point now?",
+    "optionA": "3 km",
+    "optionB": "5 km",
+    "optionC": "8 km",
+    "optionD": "6 km",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::मोहन 15 किमी उत्तर दिशा में चलता है, फिर वह बाएँ मुड़ जाता है और 10 किमी चलता है, बाद में फिर बाएँ मुड़कर 15 किमी चलता है, तो वह किस दिशा में चल रहा है ?",
+    "question": "Mohan walks 15 km towards the north, then he turns left and walks 10 km. Later, he turns left again and walks 15 km. In which direction is he walking now?",
+    "optionA": "North",
+    "optionB": "South",
+    "optionC": "West",
+    "optionD": "East",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक व्यक्ति पश्चिम की ओर चला, वह दाएँ मुदा, फिर दाएँ मुड़ा और अंत में बाईं ओर मुड़ा, अब वह किस दिशा की ओर चल रहा है ?",
+    "question": "A person walked towards the west, he turned right, then turned right again and finally turned left, now in which direction is he walking?",
+    "optionA": "North",
+    "optionB": "East",
+    "optionC": "South",
+    "optionD": "West",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::रजनीश अपने घर से निकलकर 100 मी पूर्व की ओर चलता है, फिर दाएँ मुड़कर 35 मी चलने के बाद बाएँ मुड़ जाता है, अब किस दिशा की ओर जा रहा है ?",
+    "question": "Rajnish walks 100 meters east from his house, then turns right and after walking 35 meters turns left, now in which direction is he going?",
+    "optionA": "South",
+    "optionB": "East",
+    "optionC": "North",
+    "optionD": "West",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक दिन सूर्यास्त के समय A, B आमने-सामने खड़े थे, यदि की B परछाई उसके ठीक बाईं ओर पड़ रही थी, तो A किस ओर मुँह करके खड़ा था ?",
+    "question": "One day at sunset, A and B were standing facing each other, if B's shadow was falling exactly to his left, then in which direction was A standing?",
+    "optionA": "North",
+    "optionB": "South-East",
+    "optionC": "North-East",
+    "optionD": "West",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::एक व्यक्ति अपने कार्यालय के लिए उत्तर दिशा की ओर चलता है, वह बाईं ओर घुमा और फिर दाईं ओर घुमा ओर फिर दाईं ओर घुमा, वह किस दिशा की ओर मुँह करके चल रहा है ?",
+    "question": "A person walks towards the north direction for his office, he turns left and then turns right and then turns right again, in which direction is he facing while walking?",
+    "optionA": "North",
+    "optionB": "East",
+    "optionC": "West",
+    "optionD": "South",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::मैं एक नदी के किनारे पीठ करके खड़ा हूँ, पानी में स्वतन्त्र रूप से बहती हुई कोई वस्तु मेरी बाईं ओर से दाईं ओर जा रही है, नदी पश्चिम से पूर्व की ओर बह रही है, तो मेरा मुँह किस ओर है ?",
+    "question": "I am standing with my back to the bank of a river, some object flowing freely in water is going from my left to right, the river is flowing from west to east, then where is my face?",
+    "optionA": "North",
+    "optionB": "South",
+    "optionC": "West",
+    "optionD": "East",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 1 जनवरी को शुक्रवार है, तो किसी अधिवर्ष में माह की पहली तारीख को कौन-सा दिन होगा ?",
+    "question": "If 1st January is Friday, then which day will be the first date of the month in a leap year?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Wednesday",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि विगत परसों से एक पहले का दिन शनिवार से तीन दिन आने वाला दिन हो, तो आज कौन-सा दिन है ?",
+    "question": "If the day before yesterday was a day that comes three days after Saturday, then what day is today?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Thursday",
+    "optionD": "Wednesday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 15 फरवरी , 2000 को रविवार था, तो 15 जनवरी, 2013 को कौन-सा दिन होगा ?",
+    "question": "If 15 February, 2000 was Sunday, then which day will be 15 January, 2013?",
+    "optionA": "Tuesday",
+    "optionB": "Saturday",
+    "optionC": "Wednesday",
+    "optionD": "Friday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::वर्ष 1996 में गणतंत्र दिवस शुक्रवार को मनाया गया था, वर्ष 2000 में स्वतंत्रता दिवस किस दिन मनाया गया ?",
+    "question": "In the year 1996, Republic Day was celebrated on Friday, on which day was Independence Day celebrated in the year 2000?",
+    "optionA": "Thursday",
+    "optionB": "Tuesday",
+    "optionC": "Wednesday",
+    "optionD": "Friday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::पिछले वर्ष मेरी आयु पूर्ण वर्ग संख्या में थी, अगले वर्ष यह घन संख्या में होगी, मेरी वर्तमान आयु बताइए ?",
+    "question": "Last year my age was a perfect square number, next year it will be a cube number, tell my current age?",
+    "optionA": "26",
+    "optionB": "24",
+    "optionC": "25",
+    "optionD": "27",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::पिता की वर्तमान आयु अपने पुत्र की वर्तमान आयु की चार गुनी है, यदि पाँच वर्ष पहले पिता की आयु पुत्र की आयु की सात गुनी थी, तो पिता की वर्तमान आयु क्या है ?",
+    "question": "The present age of a father is four times the present age of his son. If five years ago, the father's age was seven times the son's age, then what is the father's present age?",
+    "optionA": "31 years",
+    "optionB": "30 years",
+    "optionC": "40 years",
+    "optionD": "50 years",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::निखिल अपने भाई रोहन से आयु में 8 वर्ष छोटा है, रोहन की क्या होगी, जब वह निखिल से आयु में दोगुना बड़ा है ?",
+    "question": "Nikhil is 8 years younger than his brother Rohan. What will be Rohan's age when he is twice as old as Nikhil?",
+    "optionA": "4 years",
+    "optionB": "6 years",
+    "optionC": "10 years",
+    "optionD": "16 years",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक मैदान में कुछ बत्तख और बकरे हैं, कुल मिलाकर 77 सिर और 224 पैर हैं, बत्तखों की संख्या कितनी है ?",
+    "question": "There are some ducks and goats in a field. Altogether there are 77 heads and 224 legs. How many ducks are there?",
+    "optionA": "45",
+    "optionB": "42",
+    "optionC": "51",
+    "optionD": "47",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::अपने से आगे बैठी हुई महिला की ओर देखते हुए अमित ने कहा, वह मेरी पत्नी की बहन है, उस महिला का अमित से क्या संबंध है ?",
+    "question": "Looking at a woman sitting ahead of him, Amit said, 'She is the sister of my wife.' What is the relation of that woman with Amit?",
+    "optionA": "Daughter",
+    "optionB": "Niece",
+    "optionC": "Wife",
+    "optionD": "Sister-in-law",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::अतिथियों को आशा का परिचय कराते हुए भास्कर ने कहा, उसके पिता मेरे पिता के इकलौते पुत्र हैं, आशा भास्कर से किस प्रकार संबंधित है ?",
+    "question": "Introducing Asha to the guests, Bhaskar said, 'Her father is the only son of my father.' How is Asha related to Bhaskar?",
+    "optionA": "Niece",
+    "optionB": "Mother",
+    "optionC": "Daughter",
+    "optionD": "Granddaughter",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक लड़के की ओर इशारा करते हुए वीना ने कहा, वह मेरे दादाजी एक इकलौते पुत्र का पुत्र है, वह लड़का वीना से किस प्रकार संबंधित है ?",
+    "question": "Pointing towards a boy, Veena said, 'He is the son of the only son of my grandfather.' How is that boy related to Veena?",
+    "optionA": "Uncle",
+    "optionB": "Nephew",
+    "optionC": "Cousin",
+    "optionD": "Brother",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::आशावादी : प्रसन्न :: निराशावादी : ?",
+    "question": "Optimistic : Happy :: Pessimistic : ?",
+    "optionA": "Insignificant",
+    "optionB": "Selfish",
+    "optionC": "Inferior",
+    "optionD": "Sad",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::रंजना को ठीक से याद है कि साधना का जन्मदिन मंगवार के बाद परन्तु शुक्रवार से पहले है। सुरेश को ठीक से याद है कि साधना का जन्मदिन बुधवार के बाद परन्तु रविवार से पहले है। सप्ताह के कि",
+    "question": "Ranjana correctly remembers that Sadhana's birthday is after Tuesday but before Friday. Suresh correctly remembers that Sadhana's birthday is after Wednesday but before Sunday. On which day of the week is Sadhana's birthday definitely?",
+    "optionA": "Monday",
+    "optionB": "Saturday",
+    "optionC": "Thursday",
+    "optionD": "Cannot be determined",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::सुरेश का जन्म 4 अक्टूबर 1999 को हुआ था, शशिकान्त का जन्म सुरेश से दिन पहले हुआ था, उस वर्ष स्वतंत्रता दिवस रविवार को पड़ा था, शशिकांत किस दिन जन्मा था ?",
+    "question": "Suresh was born on 4th October 1999. Shashikant was born one day before Suresh. Independence Day that year fell on Sunday. On which day was Shashikant born?",
+    "optionA": "Tuesday",
+    "optionB": "Sunday",
+    "optionC": "Wednesday",
+    "optionD": "Monday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::शुक्रवार को एक नियोजित सम्मेलन स्थान पर पहुंचकर मैंने जाना कि मैं निर्धारित दिन के दो दिन पूर्व ही पहुंच गया। यदि मैं आगामी बुधवार को वहां पहुंचता तो कितने दिन देरी हुई होती ?",
+    "question": "Reaching the venue of a scheduled conference on Friday, I came to know that I had arrived two days before the scheduled day. If I had arrived there on the coming Wednesday, how many days would have been delayed?",
+    "optionA": "One day",
+    "optionB": "Two days",
+    "optionC": "Three days",
+    "optionD": "Four days",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि दिसंबर 17, 1899 को शनिवार था, तो दिसंबर 22, 1901 को कौन-सा दिन होगा ?",
+    "question": "If December 17, 1899 was a Saturday, then what day will December 22, 1901 be?",
+    "optionA": "Friday",
+    "optionB": "Monday",
+    "optionC": "Sunday",
+    "optionD": "Saturday",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आज के तीन बाद मंगलवार होगा, तो कल से चार दिन पहले कौन-सा दिन था ?",
+    "question": "If three days from today will be Tuesday, then what day was it four days before yesterday?",
+    "optionA": "Friday",
+    "optionB": "Wednesday",
+    "optionC": "Monday",
+    "optionD": "Saturday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::5 बजे से 6 बजे के बीच घड़ी की दोनों सुईयाँ कितने बजे एक ही सीध में होगी ?",
+    "question": "Between 5 o'clock and 6 o'clock, at what time will the two hands of a clock be in a straight line?",
+    "optionA": "8 and 456/34",
+    "optionB": "1 and 121/3",
+    "optionC": "2 and 230/8",
+    "optionD": "5 and 300/11",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::एक अलार्म घड़ी 12 बार बजने में 33 सैकण्ड का समय लेती है तो 8 बार बजने में कितना समय लेगी ?",
+    "question": "An alarm clock takes 33 seconds to ring 12 times, how much time will it take to ring 8 times?",
+    "optionA": "78 sec",
+    "optionB": "21 sec.",
+    "optionC": "23 sec.",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::7 से 8 के बीच घड़ी की दोनों सुइयाँ कितने बजे लम्बवत् होगी ?",
+    "question": "Between 7 and 8 o'clock, at what time will the two hands of a clock be perpendicular?",
+    "optionA": "9 and 123/5",
+    "optionB": "7 and 240/11",
+    "optionC": "5 and 300/11",
+    "optionD": "6 and 564/2",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक फिल्म के दो कलाकर है जिनमें एक - दूसरे के बेटे का बाप है तो बताओ उन दोनों का आपस में क्या सम्बन्ध है ?",
+    "question": "There are two actors in a film, in which one is the father of the other's son, then tell what is the relationship between them?",
+    "optionA": "Husband-wife",
+    "optionB": "Son-mother",
+    "optionC": "Father-son",
+    "optionD": "Son-grandfather",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::SECURITY शब्द में अक्षरों के ऐसे कितने जोडे हैं जिनमें से प्रत्येक के बीच उतने ही वर्ण हैं जितने अग्रेजी वर्णानुक्रम में उनके बीच हैं ?",
+    "question": "In the word SECURITY, how many pairs of letters are there such that there are as many letters between them as in the English alphabetical order?",
+    "optionA": "Two",
+    "optionB": "Three",
+    "optionC": "Five",
+    "optionD": "All of the above",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि अग्रेंजी वर्णमाला के प्रथम अर्ध्दांश को विपरीत क्रम में लिखा जाए तो बायें से 15 वें अक्षर के बायें 8 वीं अक्षर कौन-सा होगा ?",
+    "question": "If the first half of the English alphabet is written in reverse order, then what will be the 8th letter to the left of the 15th letter from the left?",
+    "optionA": "P",
+    "optionB": "R",
+    "optionC": "G",
+    "optionD": "T",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::P,T का पिता है T,M की पुत्री है M,K की पुत्री है P का K से क्या संबंध है ?",
+    "question": "P is the father of T, T is the daughter of M, M is the daughter of K, what is the relationship of P with K?",
+    "optionA": "Brother",
+    "optionB": "Son-in-law",
+    "optionC": "Grandson",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A की माता B के पिता की एक मात्र पुत्री है | B की पत्नी से A का क्या संबंध है ?",
+    "question": "A's mother is the only daughter of B's father. What is the relationship of A with B's wife?",
+    "optionA": "Aunt",
+    "optionB": "Sister",
+    "optionC": "Niece",
+    "optionD": "Cousin",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि परसों सोमवार था, तो परसों कौन-सा दिन होगा ?",
+    "question": "If yesterday was Monday, then what day will the day after tomorrow be?",
+    "optionA": "Sunday",
+    "optionB": "Friday",
+    "optionC": "Tuesday",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::12 घटें में घड़ी के बजने की संख्या ?",
+    "question": "Number of times a clock chimes in 12 hours?",
+    "optionA": "12 times",
+    "optionB": "100 times",
+    "optionC": "78 times",
+    "optionD": "23 times",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::21 वीं सदी का प्रथम दिन कौनसा होगा ?",
+    "question": "What will be the first day of the 21st century?",
+    "optionA": "Wednesday",
+    "optionB": "Monday",
+    "optionC": "Saturday",
+    "optionD": "Sunday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्न में से कौनसा वार शताब्दी का अन्तिम वार नहीं हो सकता है ?",
+    "question": "Which of the following days cannot be the last day of a century?",
+    "optionA": "Wednesday",
+    "optionB": "Friday",
+    "optionC": "Saturday",
+    "optionD": "Thursday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आगामी परसों रविवार है तो आगामी कल के दिन गत परसों का कौन- सा बार होगा ?",
+    "question": "If the day after tomorrow is Sunday, then what day was the day before yesterday?",
+    "optionA": "Thursday",
+    "optionB": "Friday",
+    "optionC": "Saturday",
+    "optionD": "Sunday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि अरूण उत्तर की ओर अभिमुख होकर सिर के बल खड़ा होता है तो उसका बायाँ हाथ किस दिशा की ओर होगा ?",
+    "question": "If Arun is facing north and stands on his head, then in which direction will his left hand be?",
+    "optionA": "West",
+    "optionB": "East",
+    "optionC": "North-South",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक घड़ी में 4.30 बजे हैं | यदि मिनट की सुई पूर्व की ओर है तो घण्टे की सुई किस दिशा में होगी ?",
+    "question": "It is 4:30 in a clock. If the minute hand is pointing towards the east, then in which direction will the hour hand be?",
+    "optionA": "East",
+    "optionB": "North-East",
+    "optionC": "South",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::PROPERTY शब्द में अक्षरों के ऐसे कितने युग्म है जिनके बीच में उतने ही अक्षर है जितने वर्णक्षरों में हैं?",
+    "question": "In the word PROPERTY, how many pairs of letters are there such that there are as many letters between them as there are letters in the alphabet?",
+    "optionA": "0",
+    "optionB": "4",
+    "optionC": "8",
+    "optionD": "None of these",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि NOTE को PQVG लिखा जाता है तो TIME कैसे लिखा जाएगा ?",
+    "question": "If NOTE is written as PQVG, then how will TIME be written?",
+    "optionA": "VOKG",
+    "optionB": "VQOG",
+    "optionC": "VKOG",
+    "optionD": "VGKO",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि FAITHको KELVI लिखा जाए, तो CLOUD को किस प्रकार लिखा जाएगा ?",
+    "question": "If FAITH is written as KELVI, then how will CLOUD be written?",
+    "optionA": "HEWRP",
+    "optionB": "HPRWE",
+    "optionC": "HPWRE",
+    "optionD": "HPERW",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि SIR को PSPIPR लिखा जाता है, तब MAN को कैसे लिखा जाएगा ?",
+    "question": "If SIR is written as PSPIPR, then how will MAN be written?",
+    "optionA": "MAPNP",
+    "optionB": "NENP",
+    "optionC": "POLITICS",
+    "optionD": "PMPAPN",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि TABLE को GZYOV लिखा जाए, तो JUICE को कैसे लिखा जाएगा ?",
+    "question": "If TABLE is written as GZYOV, then how will JUICE be written?",
+    "optionA": "HOFAD",
+    "optionB": "QFRXY",
+    "optionC": "QHZMT",
+    "optionD": "OFJZL",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::एक आदमी ने एक महिला से कहा, \" आपकी माताजी के पति की बहन मेरी बुआ है |\" महिला का उस आदमी से क्या संबंध है ?",
+    "question": "A man said to a woman, \"The sister of your mother's husband is my aunt.\" What is the relation of the woman to that man?",
+    "optionA": "मामी",
+    "optionB": "बहन",
+    "optionC": "भतीजी",
+    "optionD": "मौसी",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::महेश की माता ने महेश से कहा, \" मेरी माता का बेटा है जिसका पुत्र अच्युत का महेश के साथ क्या सम्बन्ध है ?",
+    "question": "Mahesh's mother said to Mahesh, \"My mother's son has a son. What is the relation of Achyut with Mahesh?\"",
+    "optionA": "मौसा",
+    "optionB": "भाई",
+    "optionC": "मामा",
+    "optionD": "ममेरा भाई",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::सुबह के समय राम अपने घर से आ रहा था | उसने देखा कि रीपोटर जो उसके सामने से आ रहा है की छाया उसके के दायें पड़ रही है तो राम किस दिशा में जा रहा था ?",
+    "question": "In the morning, Ram was coming from his house. He saw that the shadow of the reporter who was coming in front of him was falling on his right side. In which direction was Ram going?",
+    "optionA": "पश्चिम",
+    "optionB": "दक्षिण",
+    "optionC": "दक्षिण- पूर्व",
+    "optionD": "उत्तर- पश्चिम",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::11 बजे से 1 बजे के मध्य अतिव्यापन कब होता है ?",
+    "question": "When does the overlap occur between 11 o'clock and 1 o'clock?",
+    "optionA": "ठीक बारह बजे",
+    "optionB": "11.15",
+    "optionC": "ठीक एक बजे",
+    "optionD": "इनमें से कोई नही",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::घड़ी की दोनों सुइयाँ एक दिन में अधिकतम कितनी बार अतिव्यापन करेंगी ?",
+    "question": "How many times will the two hands of a clock overlap in a day at maximum?",
+    "optionA": "7 बार",
+    "optionB": "33 बार",
+    "optionC": "9 बार",
+    "optionD": "22 बार",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::दर्पण में देखी गई घड़ी सवा तीन बजे का समय दिखाती है, घड़ी में सही समय क्या है ?",
+    "question": "A clock seen in the mirror shows the time as half past three, what is the correct time in the clock?",
+    "optionA": "8.45",
+    "optionB": "3.45",
+    "optionC": "6.45",
+    "optionD": "9.8",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि मास का 5 वां दिन सोमवार के दो दिन बाद पड़ता है तो महीने की 19 तारीख को कौन सा दिन होगा ?",
+    "question": "If the 5th day of the month falls two days after Monday, then what day will be the 19th of the month?",
+    "optionA": "बुधवार",
+    "optionB": "शुक्रवार",
+    "optionC": "शनिवार",
+    "optionD": "इनमें से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::शब्द PATH के अक्षरों को अलग -अलग कितनी तरह क्रम्बध्द किया जा सकता है |",
+    "question": "In how many ways can the letters of the word PATH be arranged separately?",
+    "optionA": "12",
+    "optionB": "24",
+    "optionC": "34",
+    "optionD": "67",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::तिदिन प्रातः गोल गुंबज की परछांई बारा कमान के ऊपर पड़ती है ओर सांय को बारा कमान की परछाई ठीक गोल गुंबज पर पडती है | तो गोल गुंबज बारा कमान से किस दिशा में है ?",
+    "question": "During the morning, the shadow of the Gol Gumbad falls on the Bara Darwaza, and in the evening, the shadow of the Bara Darwaza falls exactly on the Gol Gumbad. In which direction is the Gol Gumbad from the Bara Darwaza?",
+    "optionA": "South direction",
+    "optionB": "East direction",
+    "optionC": "North-West",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि मैं दक्षिण की ओर अपना दायां हाथ फैलाकर खड़ा हूं तो यह बताइए कि मेरी पीठ किस दिशा मै है ?",
+    "question": "If I am standing facing south and stretch my right hand, in which direction is my back?",
+    "optionA": "South",
+    "optionB": "West",
+    "optionC": "East",
+    "optionD": "North",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::दिए गए अव्यवस्थित शब्दों के अक्षरों को सार्थक शब्दों मे व्यवस्थित करने पर कौन सा शब्द एक रंग नहीं है ?",
+    "question": "When arranging the letters of the given jumbled words into meaningful words, which word is not a color?",
+    "optionA": "LTEOIV",
+    "optionB": "REOWLF",
+    "optionC": "ENGRAO",
+    "optionD": "PELRUP",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::अग्रेजी वर्णमाला में यदि ,B,A हो जाए और P,O हो जाए तो K हो जाएगा ?",
+    "question": "In the English alphabet, if B comes after A and P comes after O, then what will come after K?",
+    "optionA": "H",
+    "optionB": "L",
+    "optionC": "N",
+    "optionD": "J",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::निम्नलिखित में कौन-सा वह अक्षर है जो बाएं से 12 वें अक्षर के बाद आता है और दाएं से 13 वें अक्षर से पहले आता है ?",
+    "question": "Which of the following letters comes after the 12th letter from the left and before the 13th letter from the right?",
+    "optionA": "M",
+    "optionB": "L",
+    "optionC": "O",
+    "optionD": "P",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::C माता है A और B की यदि D पति है B का , तो C कौन है D की ?",
+    "question": "C is the mother of A and B. If D is the husband of B, then who is C to D?",
+    "optionA": "Aunt",
+    "optionB": "Mother-in-law",
+    "optionC": "Niece",
+    "optionD": "Aunt",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::मेरे पिता की बहन के पिता के पुत्र की पुत्री का मुझसे क्या रिश्ता होगा ?",
+    "question": "What is my relationship with the daughter of the son of my father's sister's father?",
+    "optionA": "Aunt",
+    "optionB": "Aunt",
+    "optionC": "Aunt",
+    "optionD": "Sister",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::A और B बहने है | R और S भाई है | A की बेटी R की बहन है | B का S से क्या सम्बन्ध है ?",
+    "question": "A and B are sisters. R and S are brothers. A's daughter is the sister of R. What is B's relationship with S?",
+    "optionA": "Niece",
+    "optionB": "Aunt",
+    "optionC": "Aunt",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A, D का भाई है, D,B का पिता है, B और C बहनें है, यह बताइए कि C का A से क्या संबंध है ?",
+    "question": "A is the brother of D, D is the father of B, B and C are sisters, tell what is the relationship of C with A?",
+    "optionA": "Aunt",
+    "optionB": "Niece",
+    "optionC": "Aunt",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A और B भाई है, E पुत्री है F की, F पत्नी है F की, E का A से क्या संबंध है ?",
+    "question": "A and B are brothers, E is the daughter of F, F is the wife of F, what is the relationship of E with A?",
+    "optionA": "Mami",
+    "optionB": "Mother",
+    "optionC": "Bhanji",
+    "optionD": "Mausi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::M ,P का पुत्र है, Q पौत्री है O की , जो P का पति है, M का O से क्या सम्बन्ध है ?",
+    "question": "M is the son of P, Q is the granddaughter of O, who is the husband of P, what is the relationship of M with O?",
+    "optionA": "Son",
+    "optionB": "Mama",
+    "optionC": "Chacha",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::एक परिवार घूमने निकला, पुत्री अपने पिता से आगे चली, पुत्र अपनी माता से पीछे चल रहा था और पिता से आगे, सबसे पीछे कौन था ?",
+    "question": "A family went out for an outing, the daughter walked ahead of her father, the son was walking behind his mother and ahead of his father, who was at the back?",
+    "optionA": "Chachi",
+    "optionB": "Cousin sister",
+    "optionC": "Father",
+    "optionD": "Mausi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::अनु का एक भाई मोहन है, अनु , चंद्रा का पुत्र है, बिमान, चन्द्रा के पिता है, रिश्ते में मोहन , बिमान का क्या लहता है ?",
+    "question": "Anu has a brother Mohan, Anu is the son of Chandra, Biman is the father of Chandra, what is the relationship of Mohan to Biman?",
+    "optionA": "Chacha",
+    "optionB": "Grandson",
+    "optionC": "Mama",
+    "optionD": "Bhanja",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::मेरे भाई के दादा के अकेले पुत्र के अकेले बेटे से मेरा क्या रिश्ता है ?",
+    "question": "What is my relationship with the only son of the only son of my brother's grandfather?",
+    "optionA": "Chachi",
+    "optionB": "Mother",
+    "optionC": "Sister",
+    "optionD": "Mausi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि A,B, का भाई हो C,A की मौसी हो D,C का पिता हो B,D की नातिन हो; तो B का F से क्या रिश्ता होगा जो A पुत्र है ?",
+    "question": "If A is the brother of B, C is the aunt of A, D is the father of C, B is the granddaughter of D; then what will be the relationship of B with F who is the son of A?",
+    "optionA": "Buwa",
+    "optionB": "Chachi",
+    "optionC": "Bhanji",
+    "optionD": "Wife",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::एक आदमी ने अपनी बेटी का विवाह अपनी मामी के बेटे से कर दिया दामाद पहले उस आदमी को क्या कह कर बताते थे ?",
+    "question": "A man married his daughter to the son of his maternal aunt, what was the damad called to that man before?",
+    "optionA": "Chachi",
+    "optionB": "Phuphera brother",
+    "optionC": "Sister",
+    "optionD": "Bhanja",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A की माता B की बहन है और उसकी पुत्री C ,21 साल की है, B किस प्रकार C से संबधित है ?",
+    "question": "A's mother is the sister of B and her daughter C is 21 years old, how is B related to C?",
+    "optionA": "Bhanja",
+    "optionB": "Brother",
+    "optionC": "Maternal Mama",
+    "optionD": "Chachi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 1 जनवरी को शुक्रवार है तो एक अधिवर्ष में मार्च का प्रथम दिन क्या होगा ?",
+    "question": "If 1 January is Friday, then what will be the first day of March in a leap year?",
+    "optionA": "Saturday",
+    "optionB": "Tuesday",
+    "optionC": "Monday",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि बीते कल से पहले दिन (परसों ) बुधवार था , तो रविवार कब होगा ?",
+    "question": "If the day before yesterday (parson) was Wednesday, then when will Sunday be?",
+    "optionA": "Today",
+    "optionB": "Tomorrow",
+    "optionC": "The day after tomorrow",
+    "optionD": "Two days after tomorrow",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::वर्ष 1996 में गण्तंत्र दिवस शुक्रवार को मनाया गया था, वर्ष 2000 में स्वतंत्रता दिवस किस दिन मनाया गया ?",
+    "question": "In 1996, Republic Day was celebrated on a Friday, on which day was Independence Day celebrated in 2000?",
+    "optionA": "Tuesday",
+    "optionB": "Saturday",
+    "optionC": "Thursday",
+    "optionD": "Wednesday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि बीते कल से पहला दिन बुधवार था, तो रविवार कब होगा ?",
+    "question": "If the day before yesterday was Wednesday, then when will Sunday be?",
+    "optionA": "Today",
+    "optionB": "The day after tomorrow",
+    "optionC": "Tomorrow",
+    "optionD": "3 days from today",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::आज शुक्रवार है, पिछले सोमवार को तारीख 29 दिसम्बर 1975 थी , तो आज तारीख है ?",
+    "question": "Today is Friday, the date of last Monday was December 29, 1975, so what is today's date?",
+    "optionA": "December 12, 1987",
+    "optionB": "February 7, 1999",
+    "optionC": "January 2, 1976",
+    "optionD": "December 23, 1976",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::किसी महीने में 3 दिन बाद 4 तारीख को शनिवार आता है, उसी महीने की 27 तारीख को कौन -सा दिन होगा ?",
+    "question": "In a month, 3 days after the 4th date is Saturday, what day will be the 27th date of the same month?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Monday",
+    "optionD": "Wednesday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि किसी महीने की 2 तारीख रविवार को पड़ती है तो उसी महीने की 31 तारीख को कौन-सा दिन होगा ?",
+    "question": "If the 2nd date of a month falls on a Sunday, then what day will be the 31st date of the same month?",
+    "optionA": "Thursday",
+    "optionB": "Monday",
+    "optionC": "Tuesday",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि परसों मंगलवार था, तो अगले कल के बाद का दिन होगा ?",
+    "question": "If the day before yesterday was Tuesday, then what will be the day after tomorrow?",
+    "optionA": "Tuesday",
+    "optionB": "Saturday",
+    "optionC": "Thursday",
+    "optionD": "Friday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आज रविवार है तो आज के बाद 59 वां दिन कौन सा होगा ?",
+    "question": "If today is Sunday, then what will be the 59th day after today?",
+    "optionA": "Wednesday",
+    "optionB": "Thursday",
+    "optionC": "Friday",
+    "optionD": "Saturday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि एक विशिष्ट वर्ष में 16 जून को शुक्रवार था , तो उसी वर्ष मे जुलाई माह में पहला शुक्रवार किस तारीख को पड़ेगा ?",
+    "question": "If in a particular year June 16 was a Friday, then on which date will the first Friday fall in July of the same year?",
+    "optionA": "July 17",
+    "optionB": "July 9",
+    "optionC": "July 7",
+    "optionD": "July 8",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि बीते कल से पहले वाला दिन रविवार था, तो आने वाले कल से अगले दिन से तीसरे दिन कौन -सा दिन होगा ?",
+    "question": "If the day before yesterday was Sunday, then what will be the third day from the day after tomorrow?",
+    "optionA": "Saturday",
+    "optionB": "Friday",
+    "optionC": "Sunday",
+    "optionD": "Tuesday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::सूर्योदय के बाद राम एक पोल की ओर मुँह करके खड़ा था, पोल की परछाई उसके दाई ओर पड़ रही थी, बताओ वह किस दिशा की ओर मुँह करके खड़ा था ?",
+    "question": "After sunrise, Ram was standing facing a pole, the shadow of the pole was falling on his right side, tell in which direction was he standing facing?",
+    "optionA": "North-East",
+    "optionB": "South-West",
+    "optionC": "South",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::A , B के उत्तर की ओर है तथा C ,B के पश्चिम की ओर हो तो बताओ C से A किस दिशा में है ?",
+    "question": "A is to the north of B and C is to the west of B, then tell in which direction is A from C?",
+    "optionA": "East",
+    "optionB": "North-East",
+    "optionC": "South",
+    "optionD": "West",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि अप्रैल के माह में 5 सोमवार हों तो 30 अप्रैल को कौन सा वार हो सकता है ?",
+    "question": "If there are 5 Mondays in the month of April, then which day can be 30th April?",
+    "optionA": "Thursday",
+    "optionB": "Tuesday",
+    "optionC": "Wednesday",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::शब्द SOLIDARITY में अक्षरों के ऐसे कितने जोड़े है जिनके ठीक बीच उतने ही अक्षर हैं जितने कि अग्रेंजी वर्णमाला में होते हैं ?",
+    "question": "In the word SOLIDARITY, how many pairs of letters are there such that exactly as many letters lie between them as in the English alphabet?",
+    "optionA": "Four",
+    "optionB": "Two",
+    "optionC": "Three",
+    "optionD": "More than five",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::घड़ी की घंटे की सूई 72 घंटी में कितने चक्कर पूरा करेगी ?",
+    "question": "How many complete rounds will the hour hand of a clock complete in 72 hours?",
+    "optionA": "2",
+    "optionB": "3",
+    "optionC": "6",
+    "optionD": "9",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::फोटोग्राफ में एक व्यक्ति की ओर संकेत करते हुए टीना ने कहा कि\" वह मेरे चाचा की पुत्री का भाई है \" फोटोग्राफ में दिखाए गए व्यक्ति का टीना से क्या संबंध है ?",
+    "question": "Pointing to a person in a photograph, Tina said, \"He is the brother of the daughter of my uncle.\" What is the relationship of the person shown in the photograph with Tina?",
+    "optionA": "Maternal uncle",
+    "optionB": "Cousin brother",
+    "optionC": "Nephew",
+    "optionD": "Brother-in-law",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::घड़ी की मिनट व घण्टे वाली सुई के बीच एक मिनट में बनने वाले कोण का मान कितना होगा ?",
+    "question": "What will be the angle between the minute and hour hands of a clock in one minute?",
+    "optionA": "0 degrees",
+    "optionB": "3 degrees",
+    "optionC": "6 degrees",
+    "optionD": "1 degree",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::रवीना दिनेश की पत्नी है, मोहन और प्रभु भाई है मोहन, दिनेश का भाई है, प्रभु का रवीना से क्या संबध है ?",
+    "question": "Ravina is the wife of Dinesh, Mohan and Prabhu are brothers. Mohan is the brother of Dinesh. What is the relationship of Prabhu with Ravina?",
+    "optionA": "Brother of husband",
+    "optionB": "Uncle",
+    "optionC": "Maternal uncle",
+    "optionD": "Nephew",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::शब्द कोष के अनुसार निम्नलिखित में से कौन सा शब्द चौथे स्थान पर होगा ?",
+    "question": "According to the dictionary, which of the following words will come at the fourth position?",
+    "optionA": "sanskrit",
+    "optionB": "sanatorium",
+    "optionC": "sanctity",
+    "optionD": "sanction",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::एक लड़की की ओर इशारा करते हुए रवि ने कहा यह मेरे पिता के एक मात्र संतान की पुत्री है, रवि की पत्नी उस लड़की से किस प्रकार संबंधित है ?",
+    "question": "Pointing towards a girl, Ravi said, \"She is the daughter of the only child of my father.\" How is Ravi's wife related to that girl?",
+    "optionA": "Sister",
+    "optionB": "Mother",
+    "optionC": "Grandmother",
+    "optionD": "Aunt",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::अजय ने कहा ,\" यह लड़की मेरे माँ की पोते की पत्नी है, \" अजय उस लड़की का कौन है ?",
+    "question": "Ajay said, \"This girl is the wife of the grandson of my mother.\" Who is Ajay to that girl?",
+    "optionA": "Husband",
+    "optionB": "Brother",
+    "optionC": "Father-in-law",
+    "optionD": "Grandfather",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::15 अगस्त 1947 को कौनसा वार था ?",
+    "question": "15 August 1947 was which day?",
+    "optionA": "Wednesday",
+    "optionB": "Saturday",
+    "optionC": "Friday",
+    "optionD": "Monday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::400 वर्षों में कुल कितनें दिन होते हैं ?",
+    "question": "How many total days are there in 400 years?",
+    "optionA": "63511",
+    "optionB": "146097",
+    "optionC": "89721",
+    "optionD": "5467238",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::आने वाले कल के बाद शुक्रवार होगा तो बताओ बीते कल से पहले कौनसा वार था ?",
+    "question": "If the day after tomorrow is Friday, then tell which day was the day before yesterday?",
+    "optionA": "Thursday",
+    "optionB": "Monday",
+    "optionC": "Saturday",
+    "optionD": "Wednesday",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::1 जनवरी 2005 को सोमवार था, तो 31 दिसम्बर 2005 को कौनसा वार होगा ?",
+    "question": "If 1 January 2005 was Monday, then which day will be 31 December 2005?",
+    "optionA": "Tuesday",
+    "optionB": "Friday",
+    "optionC": "Sunday",
+    "optionD": "Monday",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::15 मार्च 1995 को कौनसा वार था ?",
+    "question": "Which day was 15 March 1995?",
+    "optionA": "Saturday",
+    "optionB": "Thursday",
+    "optionC": "Monday",
+    "optionD": "Wednesday",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::6 दिसम्बर, 1992 को क्या वार था ?",
+    "question": "What day was 6 December, 1992?",
+    "optionA": "Sunday",
+    "optionB": "Friday",
+    "optionC": "Wednesday",
+    "optionD": "Monday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि 13 जनवरी 1984 को बुधवार रहा हो तो बताओ 11 अगस्त 1984 को कौन सा दिन रहा होगा ?",
+    "question": "If 13 January 1984 was Wednesday, then tell which day was 11 August 1984?",
+    "optionA": "Thursday",
+    "optionB": "Sunday",
+    "optionC": "Saturday",
+    "optionD": "Wednesday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::दिसम्बर 17,1982 को शनिवार था तो दिसम्बर 22, 1984 को कौन सा वार या दिन होगा ?",
+    "question": "If 17 December,1982 was Saturday, then which day or date will be 22 December, 1984?",
+    "optionA": "Monday",
+    "optionB": "Tuesday",
+    "optionC": "Sunday",
+    "optionD": "Thursday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::अधिवर्ष को छोड़कर यदि किसी साल का पहला दिन शुक्रवार था, तो उस साल का आखिरी दिन क्या था ?",
+    "question": "Excluding leap year, if the first day of a year was Friday, then what was the last day of that year?",
+    "optionA": "Friday",
+    "optionB": "Monday",
+    "optionC": "Sunday",
+    "optionD": "Tuesday",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि आने वाले कल से तीन दिन बाद शुक्रवार हो तो बीते हुए कल से तीन दिनों पहले कौन सा दिन था ?",
+    "question": "If three days after tomorrow is Friday, then which day was three days before yesterday?",
+    "optionA": "Friday",
+    "optionB": "Tuesday",
+    "optionC": "Thursday",
+    "optionD": "Saturday",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::एक बस उत्तर से आ रही है, उसी वेग से हवा दक्षिण से जा रही है तो बस का धुआं किस दिशा में जायेगा ?",
+    "question": "A bus is coming from the north, wind is blowing from the south at the same speed, then in which direction will the smoke of the bus go?",
+    "optionA": "West",
+    "optionB": "North",
+    "optionC": "East",
+    "optionD": "South",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::A , M के दक्षिण पूर्व में है तथा N, A के उत्तर पूर्व में है तो M , N से किस दिशा में है ?",
+    "question": "A is in the southeast of M and N is in the northeast of A, then in which direction is M from N?",
+    "optionA": "North",
+    "optionB": "West",
+    "optionC": "Southeast",
+    "optionD": "Northeast",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि उत्तर को उत्तर - पूर्व कहा जाये, दक्षिण को दक्षिण -पश्चिम कहा जाये तो पूर्व को क्या कहा जायेगा ?",
+    "question": "If north is called northeast, south is called southwest, then what will east be called?",
+    "optionA": "Northwest",
+    "optionB": "South",
+    "optionC": "Southeast",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::पवन सिर के सहारे उल्टा खड़ा है यदि उसका दांया हाथ पूर्व दिशा में हो तो उसका मुख किस दिशा में है ?",
+    "question": "Pawan is standing upside down on his head, if his right hand is in the east direction, then in which direction is his face?",
+    "optionA": "Northwest",
+    "optionB": "South",
+    "optionC": "East",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::यदि GECA का अर्थ 8642 हो, तो HFBD का अर्थ क्या होगा ?",
+    "question": "If GECA means 8642, then what will HFBD mean?",
+    "optionA": "9568",
+    "optionB": "9897",
+    "optionC": "9735",
+    "optionD": "57621",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::अक्षय का जन्म 29 फरवरी 1988 को हुआ, 29-2-2004 तक उसने कितने जन्म दिन मनाये ?",
+    "question": "Akash was born on 29 February 1988, how many birthdays did he celebrate till 29-2-2004?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "6",
+    "optionD": "8",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::रोगीः अस्पतालः: कारः?",
+    "question": "Patient : Hospital : Car :?",
+    "optionA": "Bus station",
+    "optionB": "Clock tower",
+    "optionC": "Garage",
+    "optionD": "House",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::आँख : चश्मा :: टांग : ?",
+    "question": "Eye : Spectacle :: Leg :?",
+    "optionA": "Foot",
+    "optionB": "Socks",
+    "optionC": "Shoes",
+    "optionD": "Vaishakhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::पुस्तक : कागज :; रोटी : ?",
+    "question": "Book : Paper :; Roti :?",
+    "optionA": "Butter",
+    "optionB": "Cake",
+    "optionC": "Biscuit",
+    "optionD": "Flour",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::कमरा : फर्श :; नदी : ?",
+    "question": "Room : Floor :; River :?",
+    "optionA": "Fish",
+    "optionB": "Crocodile",
+    "optionC": "Bed",
+    "optionD": "Water",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::पैर : ?:: हाथ : कलाई ?",
+    "question": "Foot : ?:: Hand : Wrist ?",
+    "optionA": "Shoe",
+    "optionB": "Leg",
+    "optionC": "Ankle",
+    "optionD": "Length",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "reasoning-in-hindi::सितारे : दूरदर्शक : रूधिर कोशिकाएं : ?",
+    "question": "Stars : Telescope : Blood Cells : ?",
+    "optionA": "Blood",
+    "optionB": "Lens",
+    "optionC": "Camera",
+    "optionD": "Microscope",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::आहार : आदमी : ईधन : ?",
+    "question": "Food : Man : Fuel : ?",
+    "optionA": "Fire",
+    "optionB": "Heat",
+    "optionC": "Smoke",
+    "optionD": "Wood",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::तिमाशाली : बुध्दिमान :: सृजनात्मक : ?",
+    "question": "Timid : Wise :: Creative : ?",
+    "optionA": "Scientific",
+    "optionB": "Artistic",
+    "optionC": "Repetitive",
+    "optionD": "Productive",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "reasoning-in-hindi::लकडी : मेज :: ? : चाकू ?",
+    "question": "Wood : Table :: ? : Knife ?",
+    "optionA": "Thorn",
+    "optionB": "Saw",
+    "optionC": "Chair",
+    "optionD": "Steel",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "reasoning-in-hindi::ेमः घृणाः : मित्र: ?",
+    "question": "Hate : Friend : ?",
+    "optionA": "Enemy",
+    "optionB": "Companion",
+    "optionC": "Devotee",
+    "optionD": "Trusted",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "reasoning-in-hindi::अजय लड़कों की एक पंक्ति के दोनों छोर से पंद्रहवें स्थान पर है, पंक्ति में कुल कितने लड़के है ?",
+    "question": "Ajay is at the fifteenth position from both ends of a row of boys, how many boys are there in the row ?",
+    "optionA": "25",
+    "optionB": "27",
+    "optionC": "28",
+    "optionD": "29",
+    "correctAnswer": "D"
+  }
+]

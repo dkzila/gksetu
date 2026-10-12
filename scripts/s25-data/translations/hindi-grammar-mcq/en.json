@@ -1,0 +1,1622 @@
+[
+  {
+    "id": "hindi-grammar-mcq::ब्रजभाषा&#39; है ?",
+    "question": "What is 'Braj Bhasha'?",
+    "optionA": "Western Hindi",
+    "optionB": "Bihari Hindi",
+    "optionC": "Pahari Hindi",
+    "optionD": "Eastern Hindi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::मगही&#39; किस भाषा की बोली है ?",
+    "question": "To which language does 'Magahi' belong?",
+    "optionA": "Western Hindi",
+    "optionB": "Eastern Hindi",
+    "optionC": "Bihari",
+    "optionD": "Rajasthani",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी खड़ी बोली किस अपभ्रंश से विकसित हुई है ?",
+    "question": "From which Apabhramsha did Hindi Khari Boli develop?",
+    "optionA": "Magadhi",
+    "optionB": "Shauraseni",
+    "optionC": "Brajbhasha",
+    "optionD": "Ardhamagadhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::भाषा के आधार पर भारतीय राज्यों की पुन: संरचना की गयी थी ?",
+    "question": "On the basis of language, the reorganization of Indian states was done in?",
+    "optionA": "1953 AD",
+    "optionB": "1954 AD",
+    "optionC": "1956 AD",
+    "optionD": "1952 AD",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::किस तिथि को हिन्दी को राजभाषा बनाने का निर्णय लिया गया ?",
+    "question": "On which date was the decision made to make Hindi the official language?",
+    "optionA": "26 January, 1950 AD",
+    "optionB": "14 September, 1949 AD",
+    "optionC": "14 September, 1950 AD",
+    "optionD": "15 August, 1947 AD",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी की आदि जननी है ?",
+    "question": "What is the primitive mother of Hindi?",
+    "optionA": "Prakrit",
+    "optionB": "Pali",
+    "optionC": "Apabhramsha",
+    "optionD": "Sanskrit",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी दिवस&#39; किस दिन मनाया जाता है ?",
+    "question": "On which day is 'Hindi Diwas' celebrated?",
+    "optionA": "14 September",
+    "optionB": "28 September",
+    "optionC": "10 October",
+    "optionD": "11 June",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिंदी की विशिष्ट बोली ब्रजभाषा किस रूप में सबसे अधिक प्रसिद्ध है ?",
+    "question": "In which form is the distinctive dialect of Hindi, Braj Bhasha, most famous?",
+    "optionA": "Technical language",
+    "optionB": "National language",
+    "optionC": "Poetic language",
+    "optionD": "Official language",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::भारतवर्ष में हिंदी को आप किस वर्ग में रखेंगे ?",
+    "question": "In India, in which category would you place Hindi?",
+    "optionA": "Official language",
+    "optionB": "Auxiliary language",
+    "optionC": "Technical language",
+    "optionD": "National language",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिंदी किस भाषा परिवार की भाषा है ?",
+    "question": "To which language family does Hindi belong?",
+    "optionA": "Dravidian",
+    "optionB": "Austric",
+    "optionC": "Chinese-Tibetan",
+    "optionD": "Indo-European",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::भारत में सबसे अधिक बोले जाने वाली भाषा कौन सी है ?",
+    "question": "Which language is most spoken in India?",
+    "optionA": "Sanskrit",
+    "optionB": "Tamil",
+    "optionC": "Urdu",
+    "optionD": "Hindi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिंदी भाषा का जन्म हुआ है ?",
+    "question": "From which language did Hindi originate?",
+    "optionA": "From Prakrit",
+    "optionB": "From Pali-Prakrit",
+    "optionC": "From Vedic Sanskrit",
+    "optionD": "From Apabhramsha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से कौन सी बोली अथवा भाषा हिंदी के अंतगर्त नहीं आती है ?",
+    "question": "Which of the following dialect or language does not come under Hindi?",
+    "optionA": "Bangru",
+    "optionB": "Awadhi",
+    "optionC": "Telugu",
+    "optionD": "Kannauji",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::ढूढाली बोली है ?",
+    "question": "Dhudhali dialect is?",
+    "optionA": "Of southern Rajasthan",
+    "optionB": "Of western Rajasthan",
+    "optionC": "Of northern Rajasthan",
+    "optionD": "Of eastern Rajasthan",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिंदी भाषा किस लिपि में लिखी जाती है ?",
+    "question": "In which script is the Hindi language written?",
+    "optionA": "Brahmi",
+    "optionB": "Devanagari",
+    "optionC": "Saurashtra",
+    "optionD": "Gurmukhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी भाषा की बोलियों के वर्गीकरण के आधार पर छतीसगढ़ी बोली है ?",
+    "question": "According to the classification of Hindi dialects, Chhattisgarhi dialect is?",
+    "optionA": "Western Hindi",
+    "optionB": "Pahari Hindi",
+    "optionC": "Rajasthani Hindi",
+    "optionD": "Eastern Hindi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में से कौन सी पश्चिमी हिन्दी की बोली नहीं है ?",
+    "question": "Which of the following is not a dialect of Western Hindi?",
+    "optionA": "Braj Bhasha",
+    "optionB": "Kannauji",
+    "optionC": "Bagheli",
+    "optionD": "Bundeli",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::दक्षिणी भारत हिन्दी प्रचार सभा का मुख्यालय कहाँ स्थित है ?",
+    "question": "Where is the headquarters of Dakshin Bharat Hindi Prachar Sabha located?",
+    "optionA": "Bangalore",
+    "optionB": "Chennai",
+    "optionC": "Mysore",
+    "optionD": "Hyderabad",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी भाषा के विकास का सही अनुक्रम कौन-सा है ?",
+    "question": "Which is the correct sequence of the development of Hindi language?",
+    "optionA": "Prakrit-Apabhramsha-Hindi-Pali",
+    "optionB": "Apabhramsha-Pali-Prakrit-Hindi",
+    "optionC": "Hindi-Pali-Apabhramsha-Prakrit",
+    "optionD": "Pali-Prakrit-Apabhramsha-Hindi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::संविधान के अनुच्छेद 351 में किस विषय का वर्णन है ?",
+    "question": "What is described in Article 351 of the Constitution?",
+    "optionA": "Language of the Supreme Court",
+    "optionB": "Language of correspondence",
+    "optionC": "Directions for the development of Hindi",
+    "optionD": "Official language of the Union",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी वर्णमाला में &#39;आयोगवाह&#39; वर्ण कौन-से हैं ?",
+    "question": "In the Hindi alphabet, which are the 'Ayogavaha' characters?",
+    "optionA": "इ,ई",
+    "optionB": "उ,ऊ",
+    "optionC": "अं, अ:",
+    "optionD": "अ, आ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::वर्णमाला कहते हैं ?",
+    "question": "What is called a Varnamala?",
+    "optionA": "वर्णों के संकलन को",
+    "optionB": "शब्द गणना को",
+    "optionC": "वर्णों के व्यवस्थित समूह को",
+    "optionD": "शब्द के समूह को",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से कंठ्य ध्वनियाँ कौन सी है ?",
+    "question": "Which of the following are guttural sounds?",
+    "optionA": "य,र",
+    "optionB": "च,ज",
+    "optionC": "ट,ण",
+    "optionD": "क,ख",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्थान के आधार पर बताइए कि मूर्धन्य व्यंजन कौन-से हैं ?",
+    "question": "Based on position, tell which are the retroflex consonants?",
+    "optionA": "ड, ढ",
+    "optionB": "ज, झ",
+    "optionC": "प, फ",
+    "optionD": "ग,घ",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न से में &#39;अल्पप्राण वर्ण कौन -से हैं ?",
+    "question": "Which of the following are 'Alpprana' characters?",
+    "optionA": "क, ग",
+    "optionB": "थ, ध",
+    "optionC": "फ, भ",
+    "optionD": "अ, आ",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से &#39;नासिक्य&#39; वयंजन कौन-सा है ?",
+    "question": "Which of the following is a 'Nasika' consonant?",
+    "optionA": "ञ",
+    "optionB": "ज",
+    "optionC": "ष",
+    "optionD": "ग",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::ए&#39; , ऐ वर्ण क्या कहलाते हैं ?",
+    "question": "What are the 'e' and 'ai' characters called?",
+    "optionA": "मूर्धन्य",
+    "optionB": "ओष्ठ्य",
+    "optionC": "कंठ-तालव्य",
+    "optionD": "नासिक्य",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::कौन-सा अमानक वर्ण है ?",
+    "question": "Which is a non-standard character?",
+    "optionA": "घ",
+    "optionB": "म",
+    "optionC": "ध",
+    "optionD": "ख",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::क, ग, ज, फ़ ध्वनियाँ किसकी है ?",
+    "question": "To which language do the sounds क, ग, ज, फ़ belong?",
+    "optionA": "दक्षिणी भाषाओं की",
+    "optionB": "अरबी - फारसी की",
+    "optionC": "संस्कृत की",
+    "optionD": "अंग्रेजी की",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी में मूलतः वर्णों की संख्या कित्निहाई ?",
+    "question": "How many characters are there originally in Hindi?",
+    "optionA": "50",
+    "optionB": "51",
+    "optionC": "52",
+    "optionD": "53",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::क्ष&#39; ध्वनि किसके अंतर्गत आती है ?",
+    "question": "'क्ष' ध्वनि किसके अंतर्गत आती है ?",
+    "optionA": "घोष वर्ण",
+    "optionB": "सयुंक्त वर्ण",
+    "optionC": "तालव्य",
+    "optionD": "मूल स्वर",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी शब्दकोश के &#39;क्ष&#39; का क्रम किस वर्ण के बाद आता है ?",
+    "question": "हिन्दी शब्दकोश के 'क्ष' का क्रम किस वर्ण के बाद आता है ?",
+    "optionA": "छ",
+    "optionB": "त्र",
+    "optionC": "ज्ञ",
+    "optionD": "क",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::ज्ञ&#39; वर्ण किस वर्णों के संयोग से बना है ?",
+    "question": "'ज्ञ' वर्ण किस वर्णों के संयोग से बना है ?",
+    "optionA": "ज + ध",
+    "optionB": "ज + य",
+    "optionC": "ज + ञ",
+    "optionD": "ज् + ञ",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::अघोष वर्ण कौन -सा है ?",
+    "question": "अघोष वर्ण कौन -सा है ?",
+    "optionA": "अ",
+    "optionB": "ह",
+    "optionC": "स",
+    "optionD": "ज, झ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::घ&#39; का उच्चारण स्थान कौन-सा है ?",
+    "question": "'घ' का उच्चारण स्थान कौन-सा है ?",
+    "optionA": "कंठ",
+    "optionB": "तालु",
+    "optionC": "दंत",
+    "optionD": "मूर्द्धा",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::इनमे सयुंक्त व्यंजन कौन- सा है ?",
+    "question": "इनमे सयुंक्त व्यंजन कौन- सा है ?",
+    "optionA": "ज्ञ",
+    "optionB": "ड़",
+    "optionC": "ढ़",
+    "optionD": "ड",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में से कौन-सा वर्ण उच्चारण की दृष्टि से दंत्य नहीं है ?",
+    "question": "निम्नलिखित में से कौन-सा वर्ण उच्चारण की दृष्टि से दंत्य नहीं है ?",
+    "optionA": "न",
+    "optionB": "ट",
+    "optionC": "त",
+    "optionD": "द",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::क्ष&#39; वर्ण किसके योग से बना है ?",
+    "question": "'क्ष' वर्ण किसके योग से बना है ?",
+    "optionA": "क + श",
+    "optionB": "क+ष",
+    "optionC": "क+च",
+    "optionD": "क + छ",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी वर्णमाला से स्वरों की कुल संख्या कितनी है ?",
+    "question": "हिन्दी वर्णमाला से स्वरों की कुल संख्या कितनी है ?",
+    "optionA": "10",
+    "optionB": "11",
+    "optionC": "12",
+    "optionD": "13",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में कौन स्वर नहीं है ?",
+    "question": "निम्नलिखित में कौन स्वर नहीं है ?",
+    "optionA": "ए",
+    "optionB": "उ",
+    "optionC": "ञ",
+    "optionD": "अ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में कौन ट वर्ग नहीं है ?",
+    "question": "Which of the following is not a 'Ta' group?",
+    "optionA": "ढ",
+    "optionB": "ण",
+    "optionC": "घ",
+    "optionD": "ठ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी वर्णमाला में व्यंजनों की संख्या है ?",
+    "question": "How many consonants are there in the Hindi alphabet?",
+    "optionA": "32",
+    "optionB": "33",
+    "optionC": "34",
+    "optionD": "35",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में से कौन-सा प्श्चं स्वर है ?",
+    "question": "Which of the following is a back vowel?",
+    "optionA": "इ",
+    "optionB": "ढ",
+    "optionC": "आ",
+    "optionD": "ज",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्नलिखित में से कौन योगवाह है ?",
+    "question": "Which of the following is a 'Yogavah'?",
+    "optionA": "महाप्राण",
+    "optionB": "अल्पप्राण",
+    "optionC": "विसर्ग",
+    "optionD": "सयुंक्त व्यंजन",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::छ&#39; ध्वनि का उच्चारण स्थान हैः ?",
+    "question": "What is the place of articulation for the 'chha' sound?",
+    "optionA": "ओष्ठ्य",
+    "optionB": "तालव्य",
+    "optionC": "दंत्य",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::तालव्य व्यंजन है ?",
+    "question": "Which are the palatal consonants?",
+    "optionA": "ट,ठ, ड, ढ",
+    "optionB": "प, फ, ब, भ",
+    "optionC": "च, छ, ज, झ",
+    "optionD": "त, थ, द, ध",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::य,र,ल,व, - किस वर्ग के व्यंजन हैं ?",
+    "question": "Which group do the consonants ya, ra, la, va belong to?",
+    "optionA": "उष्म",
+    "optionB": "ओष्ठ्य",
+    "optionC": "अन्त:स्थ",
+    "optionD": "तालव्य",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::अनुनासिक व्यंजन कौन-से होते हैं ?",
+    "question": "Which are the nasal consonants?",
+    "optionA": "वर्ग के चतुर्थाक्षर",
+    "optionB": "वर्ग के तृतयाक्षर",
+    "optionC": "वर्ग के पंचमाक्षर",
+    "optionD": "वर्ग के प्रथमाक्षर",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::हिन्दी वर्णमाला में स्वरों की संख्या है ?",
+    "question": "How many vowels are there in the Hindi alphabet?",
+    "optionA": "नौ",
+    "optionB": "ग्यारह",
+    "optionC": "चौदह",
+    "optionD": "आठ",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::कंठयोष्ठ्य ध्वनि का उदाहरण है ?",
+    "question": "Which is an example of a velar sound?",
+    "optionA": "ए",
+    "optionB": "और",
+    "optionC": "तालव्य",
+    "optionD": "क",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::भाषा -निर्माण की इकाईयों का सही अनुक्रम है ?",
+    "question": "What is the correct sequence of language construction units?",
+    "optionA": "Word, Sentence, Sound, Part of Speech",
+    "optionB": "Word, Sentence, Sound, Part of Speech",
+    "optionC": "Word, Sound, Sentence, Part of Speech",
+    "optionD": "Sound, Word, Part of Speech, Sentence",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::यत्न के आधार पर &#39;ल&#39; किस प्रकार की ध्वनि है ?",
+    "question": "Based on effort, what type of sound is 'ल'?",
+    "optionA": "Uttishta",
+    "optionB": "Prakampita",
+    "optionC": "Sangrahahin",
+    "optionD": "Pashirvak",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से शुद्ध वर्तनी का चयन कीजिये ?",
+    "question": "Select the correct spelling from the following?",
+    "optionA": "Unti",
+    "optionB": "Unti",
+    "optionC": "Unnati",
+    "optionD": "Unnati",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::यह रास्ता द्रुग्म है , सावधानी से चलें ?",
+    "question": "This path is difficult, walk carefully?",
+    "optionA": "Dugram",
+    "optionB": "Durgam",
+    "optionC": "Dugram",
+    "optionD": "Durgam",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::शुद्ध वर्तनी का चयन कीजिए ?",
+    "question": "Select the correct spelling?",
+    "optionA": "Anveshan",
+    "optionB": "Anveshan",
+    "optionC": "Anveshan",
+    "optionD": "Anveshan",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::धानमंत्री में मन्त्रिमन्डल की बैठक की अध्यक्षता की ?",
+    "question": "Who presides over the cabinet meeting in the Prime Minister's Office?",
+    "optionA": "Mantrimandal",
+    "optionB": "Mantrimandal",
+    "optionC": "Manatarimandal",
+    "optionD": "Matrimandal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::वह इन सब तथ्यों से अनिभिग्य है ?",
+    "question": "He is unaware of all these facts?",
+    "optionA": "Anabhihya",
+    "optionB": "Anabhihnya",
+    "optionC": "Anabhihnya",
+    "optionD": "Anibhihnya",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्वातन्त्रय संग्राम में हजारों वीरों ने अपने प्राणों की आहुति दी ?",
+    "question": "In the freedom struggle, thousands of heroes sacrificed their lives?",
+    "optionA": "Swatantra",
+    "optionB": "Swatantrata",
+    "optionC": "Swatantrata",
+    "optionD": "Swatantrata",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::भारतीय समाज का पुनरुत्थान शिक्षा के विकास से है सम्भव है ?",
+    "question": "Is the revival of Indian society possible through the development of education?",
+    "optionA": "Punaruttan",
+    "optionB": "Punarothan",
+    "optionC": "Punarothyan",
+    "optionD": "Punuruttan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::उनके स्नेह की अन्त्रस्त्लीय सरिता मुखमुद्रा से स्पष्ट झांक रही थी ?",
+    "question": "The profound river of their affection was clearly visible on their faces?",
+    "optionA": "Antasthliya",
+    "optionB": "Antasthaliya",
+    "optionC": "Ashtaliya",
+    "optionD": "Antasthaliya",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::नायिका उत्ग्रीव रहकर दिनभर नायक की प्रतीक्षा करती रही ?",
+    "question": "The heroine waited for the hero all day with her neck raised?",
+    "optionA": "उद्ग्रीव",
+    "optionB": "उद्गिव्र",
+    "optionC": "ऊद्ग्रिव",
+    "optionD": "उत्ग्रीव",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::युधिस्तिर सबसे बड़े पांडव थे ?",
+    "question": "Yudhishthir was the eldest Pandava?",
+    "optionA": "युधिष्ठिर",
+    "optionB": "युधिशिठर",
+    "optionC": "युधिस्थिर",
+    "optionD": "युधषठिर",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::अनुशासन के अभाव में विद्यार्थियों में उच्श्रख्ला आती है ?",
+    "question": "In the absence of discipline, indiscipline arises among students?",
+    "optionA": "उच्चश्रृखलता",
+    "optionB": "उच्चश्रृंखला",
+    "optionC": "ऊचश्रृंखला",
+    "optionD": "उच्छृंखलता",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::सभी देशवासियों को देश की समस्याओं के समाधान के लिए स्वयमेव सनन्ध्द हो जाना चाहिए ?",
+    "question": "All countrymen should voluntarily come forward to solve the country's problems?",
+    "optionA": "अन्न्द्य",
+    "optionB": "सन्नदध",
+    "optionC": "सनद्ध",
+    "optionD": "सन्नद्ध",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::कृष्ण-भक्ति काव्य में ऐसा बहुत कुछ है जो नित्य और निमितिक सांप्रदायिक कामों से सम्बन्धित है ?",
+    "question": "There is much in Krishna-devotional poetry that is related to daily and occasional communal activities?",
+    "optionA": "नैमित्तिक",
+    "optionB": "नेमित्तिक",
+    "optionC": "निमितिक",
+    "optionD": "निमित्तिक",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::दिन-व-दिन रसायनों के आप्रत्याशित प्रभाव सामने आ रहे है ?",
+    "question": "The unexpected effects of chemicals are coming to light day by day?",
+    "optionA": "आप्रत्याशित",
+    "optionB": "अप्रत्याशित",
+    "optionC": "अप्रत्याशीत",
+    "optionD": "आप्रात्याशीत",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::उपनिषदों को गीता का सतरोत कहा जाता है ?",
+    "question": "The Upanishads are called the source of the Gita?",
+    "optionA": "स्त्रूत",
+    "optionB": "श्रोत",
+    "optionC": "स्त्रोत",
+    "optionD": "श्रुत",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::पति-पत्नी के जोड़े को दमपति कहते है ?",
+    "question": "The couple of husband and wife is called Dampati?",
+    "optionA": "दम्पति",
+    "optionB": "दमपती",
+    "optionC": "दम्पत्ति",
+    "optionD": "दम्पती",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::विक्रमी संवत ईसवी सं से 57 वर्ष आगे रहता है ?",
+    "question": "The Vikram Samvat is 57 years ahead of the Christian era?",
+    "optionA": "संवत",
+    "optionB": "सम्वत",
+    "optionC": "समवत",
+    "optionD": "संवत्",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::अत्याधिक व्यस्तता से जीवन में नीरसता आ जाती है ?",
+    "question": "Excessive busyness leads to monotony in life?",
+    "optionA": "अत्यधिक",
+    "optionB": "अतयधिक",
+    "optionC": "अत्याधिक",
+    "optionD": "अत्याधीक",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::अंग प्रत्यारोपण के क्षेत्र में भारतीय शल्य-चिकित्सिक पर्याप्य सफल रहे है ?",
+    "question": "In the field of organ transplantation, Indian surgeons have been reasonably successful?",
+    "optionA": "चिक्तसिक",
+    "optionB": "चिक्तसिय",
+    "optionC": "चिकित्सक",
+    "optionD": "चिकितसक",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::संस्कृत संश्लिशट भाषा है ?",
+    "question": "Sanskrit is a Sanskrit language?",
+    "optionA": "संस्लिष्ठ",
+    "optionB": "कोई त्रुटि नहीं",
+    "optionC": "संश्लिष्ट",
+    "optionD": "स्नस्लिस्ट",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::मन्दाकिनी की जलधारा अजस्सर रूप से प्रवाहित हो रही थी ?",
+    "question": "The stream of Mandakini was flowing in the form of Ajasra?",
+    "optionA": "अजस्त्र",
+    "optionB": "अजसत्र",
+    "optionC": "अज्सर",
+    "optionD": "अजससर",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सभी भारतीय गीता के महातम्य से परिचित है ?",
+    "question": "All Indians are familiar with the greatness of Gita?",
+    "optionA": "महात्म्य",
+    "optionB": "माहात्मय",
+    "optionC": "कोई त्रुटि नहीं",
+    "optionD": "माहात्म्य",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::शारीरिक आरोज्ञ के लिए प्रात : एवं संध्याकालीन भ्रमण अन्यन्त लाभप्रद माना गया है ?",
+    "question": "Morning and evening walks are considered extremely beneficial for physical health?",
+    "optionA": "अरोग्य",
+    "optionB": "आरोग",
+    "optionC": "आरोग्य",
+    "optionD": "आरोगय",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::मदर टेरेसा का जीवन रोगियों के सेवा-सूश्रूषा ?",
+    "question": "Mother Teresa's life was service to the sick?",
+    "optionA": "सुश्रूषा",
+    "optionB": "शूश्रुषा",
+    "optionC": "शुश्रूषा",
+    "optionD": "शूश्रूषा",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::ग्यान का भण्डार अथाह होता है ?",
+    "question": "The repository of knowledge is immense?",
+    "optionA": "ज्ञान",
+    "optionB": "गिआन",
+    "optionC": "ज्यान",
+    "optionD": "गियान",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::दिए गये शब्दों में शुद्ध वर्तनी वाला शब्द है ?",
+    "question": "Which of the given words has correct spelling?",
+    "optionA": "सच्चिदानंद",
+    "optionB": "सचिदानन्द",
+    "optionC": "सच्चीदानंद",
+    "optionD": "सचितानंद",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::दो वर्णों के मेल से होने वाले विकार को कहते है ?",
+    "question": "What is the disorder caused by the combination of two letters called?",
+    "optionA": "समास",
+    "optionB": "उपसर्ग",
+    "optionC": "प्रत्यय",
+    "optionD": "संधि",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::संधि कितने प्रकार के होते है ?",
+    "question": "How many types of Sandhi are there?",
+    "optionA": "2",
+    "optionB": "3",
+    "optionC": "4",
+    "optionD": "5",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::दयानन्द में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Dayananda'?",
+    "optionA": "Dīrgha Sandhi",
+    "optionB": "Vyanjana Sandhi",
+    "optionC": "Yaṇa Sandhi",
+    "optionD": "Guṇa Sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::कपीश में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Kapiś'?",
+    "optionA": "Dīrgha Sandhi",
+    "optionB": "Visarga Sandhi",
+    "optionC": "Yaṇa Sandhi",
+    "optionD": "Vṛddhi Sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सदैव में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Sadāva'?",
+    "optionA": "Visarga",
+    "optionB": "Svara",
+    "optionC": "Vyanjana",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::इनमे कौन स्वर संधि का उदाहरण है ?",
+    "question": "Which of these is an example of Svara Sandhi?",
+    "optionA": "Namaskāra",
+    "optionB": "Manohara",
+    "optionC": "Pavana",
+    "optionD": "Sanyoga",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से कौन सा शब्द दीर्घ संधि का उदाहरण नहीं है ?",
+    "question": "Which of the following words is not an example of Dīrgha Sandhi?",
+    "optionA": "Jalīya",
+    "optionB": "Gurupadeśa",
+    "optionC": "Paramaudārya",
+    "optionD": "Sadāva",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से दीर्ध संधि युक्त पद कौन सा है ?",
+    "question": "Which of the following is a phrase with Dīrgha Sandhi?",
+    "optionA": "Devaendra",
+    "optionB": "Suryodaya",
+    "optionC": "Dainyāri",
+    "optionD": "Maharṣi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::पवित्र में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Pavitra'?",
+    "optionA": "Guṇa",
+    "optionB": "Yaṇa",
+    "optionC": "Vṛddhi Sandhi",
+    "optionD": "Ayādi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::इत्यादि का सही संधि-विच्छेद है ?",
+    "question": "What is the correct sandhi-vichedha of 'ityādi'?",
+    "optionA": "Iti + yādi",
+    "optionB": "It + ādi",
+    "optionC": "Iti + ādi",
+    "optionD": "It + yādi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निरर्थक का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedha of 'Nirarthaka'?",
+    "optionA": "Niḥ + Arthaka",
+    "optionB": "Nirā + Arthaka",
+    "optionC": "Nir: + Arthaka",
+    "optionD": "Nir + Arthaka",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::धरेश का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedha of 'Dhareśa'?",
+    "optionA": "Dhara + Īśa",
+    "optionB": "Dharā + Iśa",
+    "optionC": "Dharā: + Aśa",
+    "optionD": "Dharā + Īśa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::निराशा का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of निराशा?",
+    "optionA": "निर + आशा",
+    "optionB": "नि: + आशा",
+    "optionC": "निरा + आशा",
+    "optionD": "निर : + आशा",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::महोष्ण का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of महोष्ण?",
+    "optionA": "महा + उष्ण",
+    "optionB": "महू + उष्ण",
+    "optionC": "महा + ऊष्ण",
+    "optionD": "महो + उष्ण",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::आशीर्वाद का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of आशीर्वाद?",
+    "optionA": "आशि + वाद",
+    "optionB": "आशी: + वाद",
+    "optionC": "आशीर + वाद",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::महेश का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of महेश?",
+    "optionA": "महा + ईश",
+    "optionB": "मही + ईश",
+    "optionC": "महि + ईश",
+    "optionD": "महो + ईश",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सन्मति का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of सन्मति?",
+    "optionA": "सन + मति",
+    "optionB": "सद + मति",
+    "optionC": "सत् + मति",
+    "optionD": "सम् + मति",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::अन्वय का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of अन्वय?",
+    "optionA": "अनू + अय",
+    "optionB": "अनु + आय",
+    "optionC": "अनु + अय",
+    "optionD": "अनू + आय",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::परोपकार में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in परोपकार?",
+    "optionA": "गुण",
+    "optionB": "वृद्धि",
+    "optionC": "यण संधि",
+    "optionD": "विसर्ग",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से कौन सा शब्द स्वर संधि का उदाहरण है ?",
+    "question": "Which of the following words is an example of swar sandhi?",
+    "optionA": "उच्चारण",
+    "optionB": "दिग्गज",
+    "optionC": "मन्यन्तर",
+    "optionD": "अधोगति",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निश्चल का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of निश्चल?",
+    "optionA": "निश + चल",
+    "optionB": "निस + चल",
+    "optionC": "नि : + चल",
+    "optionD": "नी: + चल",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न शब्दों में से किसमें विसर्ग संधि है ?",
+    "question": "In which of the following words is there a visarg sandhi?",
+    "optionA": "दुर्गम",
+    "optionB": "राजेन्द्र",
+    "optionC": "उज्ज्वल",
+    "optionD": "निश्चल",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::सप्तर्षि का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of सप्तर्षि?",
+    "optionA": "सप्त + ऋषि",
+    "optionB": "सप्त: + ऋषि",
+    "optionC": "सप्तर +ऋषि",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::तपोवन में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in तपोवन?",
+    "optionA": "Visarg sandhi",
+    "optionB": "Vyanjan sandhi",
+    "optionC": "Swar sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्वागत में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in स्वागत?",
+    "optionA": "Deergh sandhi",
+    "optionB": "Vyanjan sandhi",
+    "optionC": "Yan sandhi",
+    "optionD": "Vriddhi sandhi",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::दिगम्बर में प्रयुक्त संधि है ?",
+    "question": "The sandhi used in दिगम्बर is?",
+    "optionA": "Visarg",
+    "optionB": "Vyanjan",
+    "optionC": "Swar sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न शब्दों में से किसमे स्वर संधि है ?",
+    "question": "In which of the following words is there a swar sandhi?",
+    "optionA": "Rajneesh",
+    "optionB": "Tapogun",
+    "optionC": "Sadachar",
+    "optionD": "Ataev",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::त्युपकार का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of त्युपकार?",
+    "optionA": "Prati + upakar",
+    "optionB": "Prati + upakar",
+    "optionC": "Prati + apakar",
+    "optionD": "Prat + upakar",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::गायक का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of गायक?",
+    "optionA": "Gai + ak",
+    "optionB": "Ge + yak",
+    "optionC": "Gai + yak",
+    "optionD": "Gaa + ak",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::अभिषेक का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of अभिषेक?",
+    "optionA": "Abhi + sek",
+    "optionB": "Abhi: + shok",
+    "optionC": "Abhiy + sek",
+    "optionD": "Abhi + shek",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::यद्यपि में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in यद्यपि?",
+    "optionA": "Ayadi",
+    "optionB": "Yan",
+    "optionC": "Deergh",
+    "optionD": "Gun sandhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न शब्दों में से किसमें स्वर संधि है ?",
+    "question": "In which of the following words is there a swar sandhi?",
+    "optionA": "Vaagjaal",
+    "optionB": "Mahodadhi",
+    "optionC": "Adhosukh",
+    "optionD": "Sajjan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::पवित्र की सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of पवित्र?",
+    "optionA": "पव: इत्र",
+    "optionB": "पौ + इत्र",
+    "optionC": "पो + इत्र",
+    "optionD": "पव + इत्र",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::मनोयोग का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of मनोयोग?",
+    "optionA": "मन: + आयोग",
+    "optionB": "मन: + योग",
+    "optionC": "मनो: + योग",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::त्येक का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of त्येक?",
+    "optionA": "प्रति: + एक",
+    "optionB": "प्रति + अक",
+    "optionC": "प्रती + एक",
+    "optionD": "प्रति + एक",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::गिरीश का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of गिरीश?",
+    "optionA": "गिरि + ईश",
+    "optionB": "गिर + इश",
+    "optionC": "गिर + ईश",
+    "optionD": "गिरि + इश",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::नायक में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in नायक?",
+    "optionA": "गुण",
+    "optionB": "वृद्धि",
+    "optionC": "अयादि",
+    "optionD": "दीर्घ",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::चन्द्रोदय में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in चन्द्रोदय?",
+    "optionA": "गुण",
+    "optionB": "वृद्धि",
+    "optionC": "दीर्घ",
+    "optionD": "यण",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::यशोदा में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in यशोदा?",
+    "optionA": "विसर्ग",
+    "optionB": "व्यंजन",
+    "optionC": "स्वर संधि",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में एक शब्द संधि की दृष्टि से अशुद्ध है उस शब्द का चयन कीजिए ?",
+    "question": "Select the word which is incorrect from the perspective of sandhi?",
+    "optionA": "तथापि",
+    "optionB": "तदाकार",
+    "optionC": "तदोपरान्त",
+    "optionD": "तथैव",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::अभ्युदय शब्द में कौन सी संधि है ?",
+    "question": "Which sandhi is in the word अभ्युदय?",
+    "optionA": "आयादि",
+    "optionB": "यण",
+    "optionC": "दीर्घ",
+    "optionD": "गुण",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्वर संधि के कितने भेद है ?",
+    "question": "How many types of svar sandhi are there?",
+    "optionA": "2",
+    "optionB": "4",
+    "optionC": "5",
+    "optionD": "7",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्वर संधि का उदाहरण कौन सा है ?",
+    "question": "Which is an example of vowel Sandhi?",
+    "optionA": "Digambar",
+    "optionB": "Ratnakar",
+    "optionC": "Dushkarma",
+    "optionD": "Vagish",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::व्यर्थ शब्द में किन वर्णों की संधि हुई है ?",
+    "question": "In the word 'vyarth', which letters have undergone Sandhi?",
+    "optionA": "I + U",
+    "optionB": "I + E",
+    "optionC": "I + A",
+    "optionD": "I + A",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::घुड़दौड़ का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'ghurdaud'?",
+    "optionA": "Ghor + daud",
+    "optionB": "Ghora + daud",
+    "optionC": "Ghud + daud",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::महोदय का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'mahoday'?",
+    "optionA": "Maha + oday",
+    "optionB": "Mahana + uday",
+    "optionC": "Maha + uday",
+    "optionD": "Maho + day",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::तन्मय का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'tammay'?",
+    "optionA": "Tat + may",
+    "optionB": "Tan + abhay",
+    "optionC": "Tam + may",
+    "optionD": "Tan + may",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::उध्दरण का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'uddaran'?",
+    "optionA": "Ut + an",
+    "optionB": "Ut + haran",
+    "optionC": "Uddh + ran",
+    "optionD": "Ut + dharan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::तेजोमेय का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'tejomey'?",
+    "optionA": "Tej : + amay",
+    "optionB": "Tej: + may",
+    "optionC": "Tejo + may",
+    "optionD": "Tej + ome",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::राकेश का सही संधि विच्छेद है ?",
+    "question": "What is the correct Sandhi Vichedh of 'Rakesh'?",
+    "optionA": "Rak + ish",
+    "optionB": "Raka + ish",
+    "optionC": "Raka + eesh",
+    "optionD": "Rake + sh",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::नीरोग में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the Sandhi used in 'nirrog'?",
+    "optionA": "Visargh",
+    "optionB": "Vyanjan",
+    "optionC": "Swar Sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निर्जन में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the Sandhi used in 'nirjan'?",
+    "optionA": "Visargh",
+    "optionB": "Vyanjan",
+    "optionC": "Swar Sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::वातानुकूल का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of वातानुकूल?",
+    "optionA": "वाता + अनूकुल",
+    "optionB": "वात + अनूकुल",
+    "optionC": "वात + अनुकूल",
+    "optionD": "वाता + अनुकूल",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::ब्रम्हास्त्र का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of ब्रम्हास्त्र?",
+    "optionA": "ब्र्म्हा + अस्त्र",
+    "optionB": "बह्मा + अस्त्र",
+    "optionC": "ब्रम्हा: + अस्त्र",
+    "optionD": "ब्रम्हा + अस्त्र",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::उच्छवास का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of उच्छवास?",
+    "optionA": "उत् + श्वास",
+    "optionB": "उद + श्वास",
+    "optionC": "उच्छ + वास",
+    "optionD": "उच + श्वास",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::युत्तर का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of युत्तर?",
+    "optionA": "प्रति + युत्तर",
+    "optionB": "प्रत्यू + उत्तर",
+    "optionC": "प्रति + उत्तर",
+    "optionD": "प्र + त्युत्तर",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::नमस्ते का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of नमस्ते?",
+    "optionA": "नम + स्ते",
+    "optionB": "नम: + ते",
+    "optionC": "नम: + स्ते",
+    "optionD": "नम + स्ते",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::संतोष का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of संतोष?",
+    "optionA": "सम + तोष",
+    "optionB": "स: + तोष",
+    "optionC": "सन + तोष",
+    "optionD": "सम् + तोष",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::उज्ज्वल का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of उज्ज्वल?",
+    "optionA": "उत् + जबल",
+    "optionB": "उत + जल",
+    "optionC": "उत + ज्वल",
+    "optionD": "उत् + ज्वल",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::विश्वामित्र का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of विश्वामित्र?",
+    "optionA": "विश्व + अमित्र",
+    "optionB": "विश्व + मित्र",
+    "optionC": "विश्वा + मित्र",
+    "optionD": "विश्व: + मित्र",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::संगम का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched (splitting) of संगम?",
+    "optionA": "सम् + गम",
+    "optionB": "सन + गम",
+    "optionC": "सड + गम",
+    "optionD": "सम + गम",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::स्वागतम में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in स्वागतम?",
+    "optionA": "गुण",
+    "optionB": "दीर्घ",
+    "optionC": "वृद्धि संधि",
+    "optionD": "यण",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::भानूदय में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Bhanuday'?",
+    "optionA": "Dīrgha Sandhi",
+    "optionB": "Guṇa",
+    "optionC": "Vṛddhi Sandhi",
+    "optionD": "Vyanjana",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सूर्योदय में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Suryoday'?",
+    "optionA": "Vṛddhi",
+    "optionB": "Yaṇ",
+    "optionC": "Dīrgha",
+    "optionD": "Guṇa",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::हरीशचन्द्र में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Harishchandra'?",
+    "optionA": "Vyanjana",
+    "optionB": "Svara Sandhi",
+    "optionC": "Visarga Sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::उच्चारण में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Uccharan'?",
+    "optionA": "Visarga",
+    "optionB": "Svara",
+    "optionC": "Vyanjana",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::उल्लेख का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of 'Ullekh'?",
+    "optionA": "Ul + Lekh",
+    "optionB": "Ull + Lekh",
+    "optionC": "U + Aalekh",
+    "optionD": "Ut + Lekh",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::अत्याचार का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of 'Atyachar'?",
+    "optionA": "Ati + Char",
+    "optionB": "Atya + Aachar",
+    "optionC": "Ati + Aachar",
+    "optionD": "Atyaa + Char",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::दिगम्बर का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of 'Digambar'?",
+    "optionA": "Dik + Ambar",
+    "optionB": "Dik + Ambar",
+    "optionC": "Dig + Ambar",
+    "optionD": "Dig + Ambar",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::उड्डयनम का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of 'Uddayanam'?",
+    "optionA": "Ud + Dyanam",
+    "optionB": "Ut + Dyanam",
+    "optionC": "Ud + Dyanam",
+    "optionD": "Ud + Dyanam",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निर्विकार में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Nirvikar'?",
+    "optionA": "Visarga",
+    "optionB": "Vyanjana",
+    "optionC": "Svara Sandhi",
+    "optionD": "None of these",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सत्याग्रह में प्रयुक्त संधि का नाम है ?",
+    "question": "What is the name of the sandhi used in 'Satyagrah'?",
+    "optionA": "Yaṇ Sandhi",
+    "optionB": "Vṛddhi",
+    "optionC": "Guṇa",
+    "optionD": "Dīrgha",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::श्रावण का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of श्रावण?",
+    "optionA": "श्राव + अन",
+    "optionB": "श्राव + अण",
+    "optionC": "श्री + अन",
+    "optionD": "श्रो + अण",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::काव्योर्मि का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of काव्योर्मि?",
+    "optionA": "काव्य + उर्मि",
+    "optionB": "का + व्योर्मि",
+    "optionC": "कवि + उर्मि",
+    "optionD": "काव्य + ओर्मि",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सत्याग्रह का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of सत्याग्रह?",
+    "optionA": "सत्य + आग्रह",
+    "optionB": "सत + आग्रह",
+    "optionC": "सत्या + ग्रह",
+    "optionD": "सत्य + ग्रह",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निरुत्तरका सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi vichedh of निरुत्तरका?",
+    "optionA": "नि: + उतर",
+    "optionB": "नि + उत्तर",
+    "optionC": "निर + उत्तर",
+    "optionD": "नि: + उत्तर",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::मन: + भाव = ?",
+    "question": "मन: + भाव = ?",
+    "optionA": "मनोभाव",
+    "optionB": "मन्भाव",
+    "optionC": "मनहयाव",
+    "optionD": "मनयाव",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::नि: विकार = ?",
+    "question": "नि: विकार = ?",
+    "optionA": "निहविकार",
+    "optionB": "निविकार",
+    "optionC": "निबिकार",
+    "optionD": "निर्विकार",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::सज्जन का संधि विच्छेद क्या है ?",
+    "question": "What is the sandhi vichedh of सज्जन?",
+    "optionA": "सत् + जन",
+    "optionB": "सज्ज + न",
+    "optionC": "स + ज्जन",
+    "optionD": "सज + जन",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सन्मार्ग में प्रयुक्त संधि है ?",
+    "question": "The sandhi used in सन्मार्ग is?",
+    "optionA": "व्यंजन संधि",
+    "optionB": "स्वर संधि",
+    "optionC": "विसर्ग संधि",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::ज्ञानोदय में प्रयुक्त संधि है ?",
+    "question": "The sandhi used in ज्ञानोदय is?",
+    "optionA": "व्यंजन संधि",
+    "optionB": "स्वर संधि",
+    "optionC": "विसर्ग संधि",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::निराधार में प्रयुक्त संधि है ?",
+    "question": "The sandhi used in निराधार is?",
+    "optionA": "विसर्ग संधि",
+    "optionB": "व्यंजन संधि",
+    "optionC": "स्वर संधि",
+    "optionD": "इनमे से कोई नहीं",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निम्न में से किसमें व्यंजन संधि है ?",
+    "question": "In which of the following is there a consonant sandhi?",
+    "optionA": "Niradhar",
+    "optionB": "Satakara",
+    "optionC": "Himalaya",
+    "optionD": "Saptarshi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::अ+इ = ए स्वर संधि के किस भेद को व्यक्त करता है ?",
+    "question": "What type of vowel sandhi does A + I = E express?",
+    "optionA": "Gun Sandhi",
+    "optionB": "Vriddhi Sandhi",
+    "optionC": "Yan Sandhi",
+    "optionD": "Deerg Sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::सत् + चरित्र = सच्चरित्र किस संधि का उदाहरण है ?",
+    "question": "Sat + Charitra = Sachcharitra is an example of which sandhi?",
+    "optionA": "Consonant Sandhi",
+    "optionB": "Visarg Sandhi",
+    "optionC": "Deerg Sandhi",
+    "optionD": "Vowel Sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::अध: + गति = अधोगति किस संधि का उदाहरण है ?",
+    "question": "Adh + Gati = Adhogati is an example of which sandhi?",
+    "optionA": "Visarg Sandhi",
+    "optionB": "Consonant Sandhi",
+    "optionC": "Gun Sandhi",
+    "optionD": "Vowel Sandhi",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::उत् + हार के योग से कौन सा शब्द बनेगा ?",
+    "question": "Which word will be formed from the combination of Ut + Har?",
+    "optionA": "Ahar",
+    "optionB": "Udar",
+    "optionC": "Udhar",
+    "optionD": "Utara",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::दृगंचल का सही संधि विच्छेद है ?",
+    "question": "What is the correct sandhi viched of Drangchal?",
+    "optionA": "Drig + Chal",
+    "optionB": "Drik + Anchal",
+    "optionC": "Drang + Achal",
+    "optionD": "Drig + Anchal",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::पर्यावरण शब्द का संधि विच्छेद है ?",
+    "question": "What is the sandhi viched of the word Paryavaran?",
+    "optionA": "Pari + Avaran",
+    "optionB": "Parid + Avaran",
+    "optionC": "Paridhi + Avaran",
+    "optionD": "Parya + Varan",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::पवन का संधि विच्छेद क्या है ?",
+    "question": "What is the sandhi viched of Pavan?",
+    "optionA": "Pa + Van",
+    "optionB": "Po + An",
+    "optionC": "Pau + An",
+    "optionD": "Pa + Avan",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::यथार्थ में कौन सी संधि है ?",
+    "question": "Which sandhi is in Yarth?",
+    "optionA": "Yan Sandhi",
+    "optionB": "Gun Sandhi",
+    "optionC": "Vriddhi",
+    "optionD": "Deerg Sandhi",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::महोदय में कौन सी संधि है ?",
+    "question": "Which sandhi is in Mahoday?",
+    "optionA": "Yan Sandhi",
+    "optionB": "Gun Sandhi",
+    "optionC": "Vriddhi",
+    "optionD": "Deerg Sandhi",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::मतैक्य में कौन सी संधि है ?",
+    "question": "Which sandhi is in matiakya?",
+    "optionA": "Yan sandhi",
+    "optionB": "Gun sandhi",
+    "optionC": "Vriddhi",
+    "optionD": "Deerga",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::उपसर्ग का प्रयोग होता है ?",
+    "question": "Where is the prefix used?",
+    "optionA": "At the end of the word",
+    "optionB": "In the middle of the word",
+    "optionC": "At the beginning of the word",
+    "optionD": "None of these",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::जो धातु या शब्द के अंत में जोड़ा जाता है उसे कहते है ?",
+    "question": "What is called that which is added at the end of a verb or word?",
+    "optionA": "Pratyaya",
+    "optionB": "Samas",
+    "optionC": "Avyaya",
+    "optionD": "Upsarga",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::ख्यात में प्रयुक्त उपसर्ग है ?",
+    "question": "The prefix used in khyat is?",
+    "optionA": "Ta",
+    "optionB": "Prakh",
+    "optionC": "Aat",
+    "optionD": "Pr",
+    "correctAnswer": "D"
+  },
+  {
+    "id": "hindi-grammar-mcq::त्युत्पन्नमति शब्द में कौन सा उपसर्ग है ?",
+    "question": "Which prefix is in the word tyutpannmati?",
+    "optionA": "Pratyoo",
+    "optionB": "Prati",
+    "optionC": "Pr",
+    "optionD": "None of these",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::गमन शब्द को विपरीतार्थक बनाने के लिए आप किस उपसर्ग क प्रयोग करेंगे ?",
+    "question": "Which prefix will you use to make the word gaman opposite in meaning?",
+    "optionA": "A",
+    "optionB": "Prati",
+    "optionC": "Anu",
+    "optionD": "Upa",
+    "correctAnswer": "A"
+  },
+  {
+    "id": "hindi-grammar-mcq::निर्वासित में प्रत्यय है ?",
+    "question": "The pratyaya in nirvasit is?",
+    "optionA": "Ni",
+    "optionB": "Sit",
+    "optionC": "It",
+    "optionD": "Ik",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::लेखक शब्द के अंत में कौन सा प्रत्यय लगा हुआ है ?",
+    "question": "Which pratyaya is attached at the end of the word lekhak?",
+    "optionA": "Ik",
+    "optionB": "Aak",
+    "optionC": "Ak",
+    "optionD": "K",
+    "correctAnswer": "C"
+  },
+  {
+    "id": "hindi-grammar-mcq::अनुज शब्द को स्त्रीवाचक बनाने के लिए किस प्रत्यय का प्रयोग करेंगे ?",
+    "question": "Which pratyaya will you use to make the word anuj feminine?",
+    "optionA": "Iya",
+    "optionB": "A",
+    "optionC": "I",
+    "optionD": "Ik",
+    "correctAnswer": "B"
+  },
+  {
+    "id": "hindi-grammar-mcq::सुत् शब्द को स्त्रीवाचक बनाने के लिए आप किस प्रत्यय का प्रयोग करेंगे ?",
+    "question": "Which pratyaya will you use to make the word sut feminine?",
+    "optionA": "A",
+    "optionB": "Iya",
+    "optionC": "Ik",
+    "optionD": "I",
+    "correctAnswer": "A"
+  }
+]
