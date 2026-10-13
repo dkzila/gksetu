@@ -5,21 +5,20 @@
  *   - file: the JSON file (format: gksetu-mcq-translations)
  *   - lang: target language code (en, bn, gu, kn, ml, mr, or, ta, te)
  *
- * Auth: ADMIN only.
+ * Auth: question:manage permission (ADMIN or COUNTRY_ADMIN).
  */
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
-import { getUserFromRequest } from '@/lib/api/guard'
+import { requireAnyPermission } from '@/lib/api/guard'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
-  // Auth check
-  const user = await getUserFromRequest(request)
-  if (!user || (user.role !== 'ADMIN' && user.role !== 'COUNTRY_ADMIN')) {
-    return NextResponse.json({ error: 'Admin access required' }, { status: 403 })
-  }
+  // Auth check — requires question:manage permission
+  const guard = await requireAnyPermission(request, ['question:manage'])
+  if (guard instanceof NextResponse) return guard
+  const user = guard.user
 
   try {
     const formData = await request.formData()
