@@ -1,0 +1,175 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "bed-entrance-gk-in-hindi",
+  "totalMCQs": 15,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "bed-entrance-gk-in-hindi::स्कूल में से ड्रोपिंग आउट होना मतलब ?",
+      "question": "स्कूल में से ड्रोपिंग आउट होना मतलब ?",
+      "optionA": "स्कूल हमेशा के लिए छोड़ना",
+      "optionB": "स्कूल में अनियमित आना",
+      "optionC": "वर्ग में से टूअंट खेलना",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "A",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::निम्नलिखित में से कौन-सा कार्य लॉर्ड कर्जन के समयकाल में नहीं हुई ?",
+      "question": "निम्नलिखित में से कौन-सा कार्य लॉर्ड कर्जन के समयकाल में नहीं हुई ?",
+      "optionA": "अकाल आयोग का गठंन",
+      "optionB": "हंटर आयोग का गठन",
+      "optionC": "बंगाल विभाजन",
+      "optionD": "भारत लोक सेवा मंडल का गठन",
+      "correctAnswer": "B",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::किस क्षेत्र की मृदा का निर्माण ज्वालामुखी शैल असिताश्म के अपक्षय द्वारा होता है ?",
+      "question": "किस क्षेत्र की मृदा का निर्माण ज्वालामुखी शैल असिताश्म के अपक्षय द्वारा होता है ?",
+      "optionA": "पश्चिमी घाट",
+      "optionB": "थार का मरुस्थल",
+      "optionC": "हिमालय क्षेत्र",
+      "optionD": "दक्कन का पठार",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::छऊ किस राज्य का प्रसिद्ध लोक नृत्य है ?",
+      "question": "छऊ किस राज्य का प्रसिद्ध लोक नृत्य है ?",
+      "optionA": "नगालैंड",
+      "optionB": "अरुणाचल प्रदेश",
+      "optionC": "झारखंड",
+      "optionD": "मध्य प्रदेश",
+      "correctAnswer": "C",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::निम्नलिखित में से कोशिका की आत्महत्या की थैली के रूप में किसे जाना जाता है ?",
+      "question": "निम्नलिखित में से कोशिका की आत्महत्या की थैली के रूप में किसे जाना जाता है ?",
+      "optionA": "लाइसोजोम",
+      "optionB": "गॉल्जीबॉडी",
+      "optionC": "राइबोजोम",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "A",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::निम्नलिखित में से कौन पृथ्वी के अपने अक्ष पर घूमने के परिणाम होता है ?",
+      "question": "निम्नलिखित में से कौन पृथ्वी के अपने अक्ष पर घूमने के परिणाम होता है ?",
+      "optionA": "टाइड",
+      "optionB": "गुरुत्वाकर्षण बल",
+      "optionC": "कोरिओलिस बल",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "C",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::निम्नलिखित में से किस एक राज्य का भौगोलिक क्षेत्रफल सर्वाधिक है ?",
+      "question": "निम्नलिखित में से किस एक राज्य का भौगोलिक क्षेत्रफल सर्वाधिक है ?",
+      "optionA": "गुजरात",
+      "optionB": "आंध्र प्रदेश",
+      "optionC": "तमिलनाडु",
+      "optionD": "उत्तर प्रदेश",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::निम्नलिखित देशों में से किस देश की अंतर्राष्ट्रीय सीमा भारत से नहीं जुड़ती है ?",
+      "question": "निम्नलिखित देशों में से किस देश की अंतर्राष्ट्रीय सीमा भारत से नहीं जुड़ती है ?",
+      "optionA": "श्रीलंका",
+      "optionB": "बांग्लादेश",
+      "optionC": "म्यांमार",
+      "optionD": "भूटान",
+      "correctAnswer": "A",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::बिम्बिसार और अजातशत्रु संरक्षक थे ?",
+      "question": "बिम्बिसार और अजातशत्रु संरक्षक थे ?",
+      "optionA": "जैन धर्म",
+      "optionB": "शैव धर्म",
+      "optionC": "वैष्णव धर्म",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::शंकराचार्य ने निम्नलिखित में से किस सिद्धांत का प्रचार किया ?",
+      "question": "शंकराचार्य ने निम्नलिखित में से किस सिद्धांत का प्रचार किया ?",
+      "optionA": "द्वैत",
+      "optionB": "लिंगायतवाद",
+      "optionC": "विशिष्टाद्वैत",
+      "optionD": "अद्वैत",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::डूरंड कप किस खेल से संबंधित है ?",
+      "question": "डूरंड कप किस खेल से संबंधित है ?",
+      "optionA": "बैडमिंटन",
+      "optionB": "फुटबॉल",
+      "optionC": "टेनिस",
+      "optionD": "क्रिकेट",
+      "correctAnswer": "B",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::हंसने वाली गैस है ?",
+      "question": "हंसने वाली गैस है ?",
+      "optionA": "नाइट्रोजन पेन्टॉक्साइड",
+      "optionB": "नाइट्रोजन पेरॉक्साइड",
+      "optionC": "नाइट्रिक ऑक्साइड",
+      "optionD": "नाइट्रस ऑक्साइड",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::संयुक्त राष्ट्र संगठन के सदस्य देशों की कुल संख्या है ?",
+      "question": "संयुक्त राष्ट्र संगठन के सदस्य देशों की कुल संख्या है ?",
+      "optionA": "190",
+      "optionB": "191",
+      "optionC": "195",
+      "optionD": "193",
+      "correctAnswer": "D",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::बच्चों को कैसे सीखाया जाता है ?",
+      "question": "बच्चों को कैसे सीखाया जाता है ?",
+      "optionA": "उन्हें संगीत सुनाकर",
+      "optionB": "उन्हें कहानियां सुनाकर",
+      "optionC": "उन्हें भाषा की शिक्षा देकर",
+      "optionD": "उन्हें खेल पद्धति द्वारा भाषा की शिक्षा देखकर",
+      "correctAnswer": "B",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    },
+    {
+      "id": "bed-entrance-gk-in-hindi::यदि कोई छात्र दिए गए प्रश्नों का उत्तर ना दे सके तो ?",
+      "question": "यदि कोई छात्र दिए गए प्रश्नों का उत्तर ना दे सके तो ?",
+      "optionA": "शिक्षक को छात्र को सजा देना चाहिए",
+      "optionB": "शिक्षक को उन्हें उत्तर देने चाहिए",
+      "optionC": "शिक्षक को अन्य छात्रों को पूछना चाहिए",
+      "optionD": "शिक्षक को छात्र को उत्तर देना के लिए प्रोत्साहित करना चाहिए",
+      "correctAnswer": "C",
+      "subjectSlug": "bed-entrance-gk-in-hindi",
+      "topicSlug": "bed-entrance-gk"
+    }
+  ]
+}

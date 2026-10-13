@@ -1,0 +1,54 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "science-gk",
+  "totalMCQs": 4,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "science-gk::निम्नलिखित में से किसको कोशिका (Cell) का ‘पावर प्लांट&#39; भी कहा जाता है ?",
+      "question": "निम्नलिखित में से किसको कोशिका (Cell) का ‘पावर प्लांट&#39; भी कहा जाता है ?",
+      "optionA": "गॉल्जीकाय",
+      "optionB": "माइटोकॉण्ड्रिया",
+      "optionC": "राइबोसोम",
+      "optionD": "लाइसोसोम",
+      "correctAnswer": "B",
+      "subjectSlug": "science-gk",
+      "topicSlug": "science-technology"
+    },
+    {
+      "id": "science-gk::किस देश की गायें ‘टी कप काऊ&#39; के नाम से जानी जाती है ?",
+      "question": "किस देश की गायें ‘टी कप काऊ&#39; के नाम से जानी जाती है ?",
+      "optionA": "आस्ट्रेलिया",
+      "optionB": "न्यूजीलैंड",
+      "optionC": "भारत",
+      "optionD": "डेनमार्क",
+      "correctAnswer": "C",
+      "subjectSlug": "science-gk",
+      "topicSlug": "science-technology"
+    },
+    {
+      "id": "science-gk::&#39;मुर्रा भैस किस लक्षण से पहचानी जाती है ?",
+      "question": "&#39;मुर्रा भैस किस लक्षण से पहचानी जाती है ?",
+      "optionA": "छोटा मुख",
+      "optionB": "भारी शरीर",
+      "optionC": "लम्बी पूँछ",
+      "optionD": "छल्लेदार सींग",
+      "correctAnswer": "D",
+      "subjectSlug": "science-gk",
+      "topicSlug": "science-technology"
+    },
+    {
+      "id": "science-gk::&#39;गरीबों की गाय&#39; के नाम से किसे जाना जाता है ?",
+      "question": "&#39;गरीबों की गाय&#39; के नाम से किसे जाना जाता है ?",
+      "optionA": "बकरी",
+      "optionB": "भैंस",
+      "optionC": "सूअर",
+      "optionD": "भेड़",
+      "correctAnswer": "A",
+      "subjectSlug": "science-gk",
+      "topicSlug": "science-technology"
+    }
+  ]
+}

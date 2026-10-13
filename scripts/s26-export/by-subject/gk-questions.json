@@ -1,0 +1,230 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "gk-questions",
+  "totalMCQs": 20,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "gk-questions::राष्ट्रिय प्रतीक के निचले भाग में उत्क्रीर्णित शब्द &#39;सत्यमेव जयते&#39; किस सन्दर्भ से लिए गए हैं ?",
+      "question": "राष्ट्रिय प्रतीक के निचले भाग में उत्क्रीर्णित शब्द &#39;सत्यमेव जयते&#39; किस सन्दर्भ से लिए गए हैं ?",
+      "optionA": "पुराण",
+      "optionB": "जातक",
+      "optionC": "मुदकोपनिषद्",
+      "optionD": "महाभारत",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::किस राज्य की सीमा चीन से जुड़ी हुई है ?",
+      "question": "किस राज्य की सीमा चीन से जुड़ी हुई है ?",
+      "optionA": "मणिपुर",
+      "optionB": "नगालैण्ड",
+      "optionC": "असम",
+      "optionD": "अरुणाचल प्रदेश",
+      "correctAnswer": "D",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::कितने वर्ष के पश्चात राष्ट्रीय जनगणना होती है ?",
+      "question": "कितने वर्ष के पश्चात राष्ट्रीय जनगणना होती है ?",
+      "optionA": "दस",
+      "optionB": "पाँच",
+      "optionC": "तीन",
+      "optionD": "पच्चीस",
+      "correctAnswer": "A",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::काजीरंगा राष्ट्रीय पार्क है ?",
+      "question": "काजीरंगा राष्ट्रीय पार्क है ?",
+      "optionA": "उड़ीसा में",
+      "optionB": "महाराष्ट्र में",
+      "optionC": "असम में",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::ऑपरेशन फ्लड से सम्बन्धित है ?",
+      "question": "ऑपरेशन फ्लड से सम्बन्धित है ?",
+      "optionA": "तमिलनाडु",
+      "optionB": "बाढ़ नियन्त्रण",
+      "optionC": "दूध का आयात",
+      "optionD": "डेयरी विकास",
+      "correctAnswer": "D",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::धान की खेती के लिए उत्तम मिट्टी कौन सी है ?",
+      "question": "धान की खेती के लिए उत्तम मिट्टी कौन सी है ?",
+      "optionA": "सख्त मिट्टी",
+      "optionB": "काली मिट्टी",
+      "optionC": "दोमट मिट्टी",
+      "optionD": "लाल मिट्टी",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::कौन से भारतीय शहर हेवी इलेक्ट्रिकल्स से सम्बन्दित है ?",
+      "question": "कौन से भारतीय शहर हेवी इलेक्ट्रिकल्स से सम्बन्दित है ?",
+      "optionA": "नागपुर",
+      "optionB": "रायपुर",
+      "optionC": "भोपाल",
+      "optionD": "लखनऊ",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::भारत में हरित क्रान्ति का श्रेय जिस सुविख्यात कृषि औद्योगिकीविज्ञ को जाता है, उसका नाम है ?",
+      "question": "भारत में हरित क्रान्ति का श्रेय जिस सुविख्यात कृषि औद्योगिकीविज्ञ को जाता है, उसका नाम है ?",
+      "optionA": "आर. वेंकटमन",
+      "optionB": "सीताकान्त महापात्र",
+      "optionC": "डॉ. वर्गीस कुरियन",
+      "optionD": "जयन्त नार्लिकर",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::राणा प्रताप सागर सम्बन्धित है ?",
+      "question": "राणा प्रताप सागर सम्बन्धित है ?",
+      "optionA": "सौर ऊर्जा से",
+      "optionB": "सिंचाई से",
+      "optionC": "नाभिकीय ऊर्जा से",
+      "optionD": "जल विद्युत से",
+      "correctAnswer": "D",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::पृथ्वी और सूर्य के बीच अधिकतम दूरी किस तिथि को होती है ?",
+      "question": "पृथ्वी और सूर्य के बीच अधिकतम दूरी किस तिथि को होती है ?",
+      "optionA": "22 जुलाई 1947 को",
+      "optionB": "30 जनवरी",
+      "optionC": "4 जुलाई",
+      "optionD": "21 सितम्बर",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::लोकनृत्य राहुल का संबंध उत्तर प्रदेश के निम्न में से किस एकक्षेत्र से है ?",
+      "question": "लोकनृत्य राहुल का संबंध उत्तर प्रदेश के निम्न में से किस एकक्षेत्र से है ?",
+      "optionA": "पूर्वी क्षेत्र से",
+      "optionB": "मध्य क्षेत्र से",
+      "optionC": "बुन्देलखण्ड क्षेत्र से",
+      "optionD": "पश्चिमी क्षेत्र से",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::नृत्य नाटक सूरदास एवं शंकरिया किस पेशेवर जाति से संबंध रखते हैं ?",
+      "question": "नृत्य नाटक सूरदास एवं शंकरिया किस पेशेवर जाति से संबंध रखते हैं ?",
+      "optionA": "पातर",
+      "optionB": "भवाई",
+      "optionC": "नट",
+      "optionD": "भाण्ड",
+      "correctAnswer": "B",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::निम्नलिखित में से कौन सुमेलित नहीं है ?",
+      "question": "निम्नलिखित में से कौन सुमेलित नहीं है ?",
+      "optionA": "आल्हा -महोबा",
+      "optionB": "कजरी-मिर्जापुर",
+      "optionC": "बिरहा - कन्नौज",
+      "optionD": "रसिया - बरसाना",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::निम्नलिखित में से कौन-सा युग्म सुमेलित है ?",
+      "question": "निम्नलिखित में से कौन-सा युग्म सुमेलित है ?",
+      "optionA": "नकल - बिहार",
+      "optionB": "अंकियानाट - असम",
+      "optionC": "तमाशा - उड़ीसा",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "B",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::निम्नलिखित में से कौन नृत्य विद्या से संबंधित नहीं है ?",
+      "question": "निम्नलिखित में से कौन नृत्य विद्या से संबंधित नहीं है ?",
+      "optionA": "चाचरी",
+      "optionB": "चैती",
+      "optionC": "बिहू",
+      "optionD": "घूमर",
+      "correctAnswer": "B",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::लोक नृत्य करने वाले को कहते हैं ?",
+      "question": "लोक नृत्य करने वाले को कहते हैं ?",
+      "optionA": "लौकिक",
+      "optionB": "लोक नायक",
+      "optionC": "लोक नर्तक",
+      "optionD": "लोगों के साथ नाचना",
+      "correctAnswer": "C",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::भारतीय लोक नृत्य नहीं है ?",
+      "question": "भारतीय लोक नृत्य नहीं है ?",
+      "optionA": "घूमर",
+      "optionB": "डांडिया",
+      "optionC": "गरबा",
+      "optionD": "कथकली",
+      "correctAnswer": "D",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::छपेली लोक नृत्य संबंधित है ?",
+      "question": "छपेली लोक नृत्य संबंधित है ?",
+      "optionA": "अरुणाचल प्रदेश",
+      "optionB": "हिमाचल प्रदेश",
+      "optionC": "उत्तर प्रदेश",
+      "optionD": "आंध्र प्रदेश",
+      "correctAnswer": "B",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::निम्नलिखित नृत्यों में से गुजरात से संबंध रखने वाला नृत्य कौन-सा है ?",
+      "question": "निम्नलिखित नृत्यों में से गुजरात से संबंध रखने वाला नृत्य कौन-सा है ?",
+      "optionA": "डांडिया",
+      "optionB": "कुचीपुड़ी",
+      "optionC": "बॉस नृत्य",
+      "optionD": "बिदेशिया",
+      "correctAnswer": "A",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    },
+    {
+      "id": "gk-questions::किस भारतीय टेलिकॉम ऑपरेटर ने हाल ही में अपने ग्राहकों के लिए स्पीड पे(Speed Pay) की सेवा शुरू की है?",
+      "question": "किस भारतीय टेलिकॉम ऑपरेटर ने हाल ही में अपने ग्राहकों के लिए स्पीड पे(Speed Pay) की सेवा शुरू की है?",
+      "optionA": "वोडाफोन",
+      "optionB": "बीएसएनएल(BSNL)",
+      "optionC": "आइडिया सेल्युलर",
+      "optionD": "भारती एयरटेल",
+      "correctAnswer": "B",
+      "subjectSlug": "gk-questions",
+      "topicSlug": "general-knowledge"
+    }
+  ]
+}

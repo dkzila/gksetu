@@ -75,6 +75,7 @@ import { SourcesPage } from './pages/sources-page'
 import { StaffPage } from './pages/staff-page'
 import { TaxonomyPage } from './pages/taxonomy-page'
 import { TranslationsPage } from './pages/translations-page'
+import { ImportTranslationsPage } from './pages/import-translations-page'
 import { TutorialsConsolePage } from './pages/tutorials-console-page'
 
 // ---------- The page router (console sub-path → component) ----------
@@ -102,6 +103,8 @@ function renderConsolePage(consolePath: string | null) {
       return <EntitiesPage />
     case path === 'translations':
       return <TranslationsPage />
+    case path === 'import-translations':
+      return <ImportTranslationsPage />
     case path === 'questions':
       return <QuestionsPage />
     case path === 'qna':

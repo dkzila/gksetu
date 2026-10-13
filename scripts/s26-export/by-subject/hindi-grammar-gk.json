@@ -1,0 +1,65 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "hindi-grammar-gk",
+  "totalMCQs": 5,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "hindi-grammar-gk::‘भ्रमरगीत’ के रचयिता हैं?",
+      "question": "‘भ्रमरगीत’ के रचयिता हैं?",
+      "optionA": "विद्यापति",
+      "optionB": "शिवसिंह",
+      "optionC": "सूरदास",
+      "optionD": "घनानन्द",
+      "correctAnswer": "C",
+      "subjectSlug": "hindi-grammar-gk",
+      "topicSlug": "hindi-grammar"
+    },
+    {
+      "id": "hindi-grammar-gk::‘प्राणप्रिया’ का सही समानार्थी शब्द बताइए?",
+      "question": "‘प्राणप्रिया’ का सही समानार्थी शब्द बताइए?",
+      "optionA": "सहचरी",
+      "optionB": "संगिनी",
+      "optionC": "प्रेमिका",
+      "optionD": "अर्द्धांगिनी",
+      "correctAnswer": "D",
+      "subjectSlug": "hindi-grammar-gk",
+      "topicSlug": "hindi-grammar"
+    },
+    {
+      "id": "hindi-grammar-gk::‘दुरित, दुःख, दैन्य न थे जब ज्ञात, अपरिचित जरा-मरण-भ्रू पात।।’ पंक्ति के रचनाकार हैं?",
+      "question": "‘दुरित, दुःख, दैन्य न थे जब ज्ञात, अपरिचित जरा-मरण-भ्रू पात।।’ पंक्ति के रचनाकार हैं?",
+      "optionA": "सूर्यकान्त त्रिपाठी ‘निराला’",
+      "optionB": "महादेवी वर्मा",
+      "optionC": "सुमित्रानंदन पंत",
+      "optionD": "जयशंकर प्रसाद",
+      "correctAnswer": "C",
+      "subjectSlug": "hindi-grammar-gk",
+      "topicSlug": "hindi-grammar"
+    },
+    {
+      "id": "hindi-grammar-gk::दिये गए विकल्पों में से ‘मारुत’ का पर्यायवाची बताइए?",
+      "question": "दिये गए विकल्पों में से ‘मारुत’ का पर्यायवाची बताइए?",
+      "optionA": "देवता",
+      "optionB": "वायु",
+      "optionC": "पृथ्वी",
+      "optionD": "तालाब",
+      "correctAnswer": "B",
+      "subjectSlug": "hindi-grammar-gk",
+      "topicSlug": "hindi-grammar"
+    },
+    {
+      "id": "hindi-grammar-gk::‘सुहाग के नूपुर’ के रचयिता हैं-",
+      "question": "‘सुहाग के नूपुर’ के रचयिता हैं-",
+      "optionA": "प्रेमचन्द",
+      "optionB": "मोहन राकेश",
+      "optionC": "निराला",
+      "optionD": "अमृतलाल नागर",
+      "correctAnswer": "C",
+      "subjectSlug": "hindi-grammar-gk",
+      "topicSlug": "hindi-grammar"
+    }
+  ]
+}

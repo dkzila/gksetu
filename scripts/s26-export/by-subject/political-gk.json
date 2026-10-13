@@ -1,0 +1,131 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "political-gk",
+  "totalMCQs": 11,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "political-gk::भारत की स्वतन्त्रता के समय गवर्नल जनरल कौन था ?",
+      "question": "भारत की स्वतन्त्रता के समय गवर्नल जनरल कौन था ?",
+      "optionA": "लॉर्ड डलहौजी",
+      "optionB": "लॉर्ड क्रिप्स",
+      "optionC": "लॉर्ड कर्जन",
+      "optionD": "लॉर्ड माउण्टबेटन",
+      "correctAnswer": "D",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::अध्यक्षात्मक शासन का उदय सर्वप्रथम किस देश में हुआ ?",
+      "question": "अध्यक्षात्मक शासन का उदय सर्वप्रथम किस देश में हुआ ?",
+      "optionA": "न्यूजीलैंड",
+      "optionB": "संयुक्त राज्य अमेरिका",
+      "optionC": "मिस्त्र",
+      "optionD": "चीन",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::भारत में वैध प्रभुसत्ता निहित है ?",
+      "question": "भारत में वैध प्रभुसत्ता निहित है ?",
+      "optionA": "मंत्रिमण्डल में",
+      "optionB": "राष्ट्रपति में",
+      "optionC": "संविधान में",
+      "optionD": "न्यायपालिका में",
+      "correctAnswer": "C",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::भारत में सर्वोच्च माना गया है ?",
+      "question": "भारत में सर्वोच्च माना गया है ?",
+      "optionA": "न्यायपालिका को",
+      "optionB": "संविधान को",
+      "optionC": "राष्ट्रपति को",
+      "optionD": "संसद को",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::भारतीय संविधान में कुल कितने भाग हैं ?",
+      "question": "भारतीय संविधान में कुल कितने भाग हैं ?",
+      "optionA": "18",
+      "optionB": "20",
+      "optionC": "22",
+      "optionD": "24",
+      "correctAnswer": "C",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::संविधान के किस भाग में मूल अधिकार का उल्लेख मिलता है ?",
+      "question": "संविधान के किस भाग में मूल अधिकार का उल्लेख मिलता है ?",
+      "optionA": "भाग 2",
+      "optionB": "भाग 3",
+      "optionC": "भाग 4",
+      "optionD": "भाग 5",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::मूल संविधान में कितनी अनुसूचियाँ थी ?",
+      "question": "मूल संविधान में कितनी अनुसूचियाँ थी ?",
+      "optionA": "5",
+      "optionB": "8",
+      "optionC": "11",
+      "optionD": "12",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::संविधान की छठी अनुसूची इनमें से किस राज्य में लागु नहीं होती है ?",
+      "question": "संविधान की छठी अनुसूची इनमें से किस राज्य में लागु नहीं होती है ?",
+      "optionA": "मणिपुर",
+      "optionB": "मेघालय",
+      "optionC": "असम",
+      "optionD": "त्रिपुरा",
+      "correctAnswer": "A",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::सुचना का अधिकार किस राज्य में लागू नहीं होता है ?",
+      "question": "सुचना का अधिकार किस राज्य में लागू नहीं होता है ?",
+      "optionA": "जम्मू एवं कश्मीर",
+      "optionB": "मेघालय",
+      "optionC": "दिल्ली",
+      "optionD": "अरुणाचल प्रदेश",
+      "correctAnswer": "A",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::मौलिक अधिकारों में संशोधन करने में कौन सक्षम है ?",
+      "question": "मौलिक अधिकारों में संशोधन करने में कौन सक्षम है ?",
+      "optionA": "राष्ट्रपति",
+      "optionB": "संसद",
+      "optionC": "लोकसभा",
+      "optionD": "सर्वोच्च न्यायालय",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    },
+    {
+      "id": "political-gk::उपराष्ट्रपति का निर्वाचन कैसे होता है ?",
+      "question": "उपराष्ट्रपति का निर्वाचन कैसे होता है ?",
+      "optionA": "प्रत्यक्ष रूप से",
+      "optionB": "अप्रत्यक्ष रूप से",
+      "optionC": "मनोनयन द्वारा",
+      "optionD": "इनमें से कोई नहीं",
+      "correctAnswer": "B",
+      "subjectSlug": "political-gk",
+      "topicSlug": "polity-governance"
+    }
+  ]
+}

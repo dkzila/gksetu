@@ -1,0 +1,175 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "economics-gk",
+  "totalMCQs": 15,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "economics-gk::भारत में राष्ट्रिय उपभोक्ता दिवस कब मनाया जाता है ?",
+      "question": "भारत में राष्ट्रिय उपभोक्ता दिवस कब मनाया जाता है ?",
+      "optionA": "24 दिसंबर",
+      "optionB": "1 मार्च",
+      "optionC": "10 अप्रैल",
+      "optionD": "10 दिसंबर",
+      "correctAnswer": "A",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::निम्न में कौन भोज्य पदार्थों की शुद्धता की गारंटी देता है ?",
+      "question": "निम्न में कौन भोज्य पदार्थों की शुद्धता की गारंटी देता है ?",
+      "optionA": "हॉलमार्क",
+      "optionB": "एगमार्क",
+      "optionC": "बुलमार्क",
+      "optionD": "ISI मार्क",
+      "correctAnswer": "B",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में उपभोक्ता संरक्षण अधिनियम की घोषणा कब हुई ?",
+      "question": "भारत में उपभोक्ता संरक्षण अधिनियम की घोषणा कब हुई ?",
+      "optionA": "1987",
+      "optionB": "19988",
+      "optionC": "1986",
+      "optionD": "1980",
+      "correctAnswer": "C",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत के कौन से दो राज्य खनिज तेल के अग्रणी उत्पादक हैं ?",
+      "question": "भारत के कौन से दो राज्य खनिज तेल के अग्रणी उत्पादक हैं ?",
+      "optionA": "राजस्थान एवं गुजरात",
+      "optionB": "महाराष्ट्र एवं गोआ",
+      "optionC": "उड़ीसा एवं बिहार",
+      "optionD": "असम एवं गुजरात",
+      "correctAnswer": "D",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में तेल और प्राकृतिक गैस निगम (ONGC) का मुख्यालय कहाँ स्थित है ?",
+      "question": "भारत में तेल और प्राकृतिक गैस निगम (ONGC) का मुख्यालय कहाँ स्थित है ?",
+      "optionA": "हीरापुर में",
+      "optionB": "गुवाहाटी में",
+      "optionC": "देहरादून में",
+      "optionD": "मुम्बई में",
+      "correctAnswer": "C",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में बड़ी इलायची का अधिकतम उत्पादन किस राज्य में होता है ?",
+      "question": "भारत में बड़ी इलायची का अधिकतम उत्पादन किस राज्य में होता है ?",
+      "optionA": "सिक्किम",
+      "optionB": "मेघालय",
+      "optionC": "असम",
+      "optionD": "अरुणाचल प्रदेश",
+      "correctAnswer": "A",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में कौन सा राज्य काली मिर्च का सबसे बड़ा उत्पादक है ?",
+      "question": "भारत में कौन सा राज्य काली मिर्च का सबसे बड़ा उत्पादक है ?",
+      "optionA": "तमिलनाडु",
+      "optionB": "आन्ध्र प्रदेश",
+      "optionC": "केरल",
+      "optionD": "मेघालय",
+      "correctAnswer": "C",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में सबसे अधिक उपयुक्त अनाज है ?",
+      "question": "भारत में सबसे अधिक उपयुक्त अनाज है ?",
+      "optionA": "गेहूँ",
+      "optionB": "जौ",
+      "optionC": "मक्का",
+      "optionD": "चावल",
+      "correctAnswer": "D",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में किस राज्य में आर्द्र कृषि होती है ?",
+      "question": "भारत में किस राज्य में आर्द्र कृषि होती है ?",
+      "optionA": "केरल",
+      "optionB": "असम",
+      "optionC": "बिहार",
+      "optionD": "गुजरात",
+      "correctAnswer": "A",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::कौन सा राज्य काजू का सबसे बड़ा उत्पादक है ?",
+      "question": "कौन सा राज्य काजू का सबसे बड़ा उत्पादक है ?",
+      "optionA": "असम",
+      "optionB": "आन्ध्र प्रदेश",
+      "optionC": "गोआ",
+      "optionD": "केरल",
+      "correctAnswer": "D",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::निम्नलिखित राज्यों में से किस राज्य में ज्यादा चाय के बगान हैं ?",
+      "question": "निम्नलिखित राज्यों में से किस राज्य में ज्यादा चाय के बगान हैं ?",
+      "optionA": "असम",
+      "optionB": "बिहार",
+      "optionC": "मेघालय",
+      "optionD": "मणिपुर",
+      "correctAnswer": "A",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::निम्नलिखित में से किस फसल के लिए भारत का कृषि क्षेत्र सबसे अधिक है ?",
+      "question": "निम्नलिखित में से किस फसल के लिए भारत का कृषि क्षेत्र सबसे अधिक है ?",
+      "optionA": "गेहूँ",
+      "optionB": "कपास",
+      "optionC": "दलहन",
+      "optionD": "चावल",
+      "correctAnswer": "D",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::निम्नलिखित में से भारत के किस राज्य में कोयले की मात्रा सबसे अधिक है ?",
+      "question": "निम्नलिखित में से भारत के किस राज्य में कोयले की मात्रा सबसे अधिक है ?",
+      "optionA": "महाराष्ट्र",
+      "optionB": "उड़ीसा",
+      "optionC": "गुजरात",
+      "optionD": "राजस्थान",
+      "correctAnswer": "B",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::राष्ट्रीय ग्रामीण विकास संस्थान कहाँ अवस्थित है ?",
+      "question": "राष्ट्रीय ग्रामीण विकास संस्थान कहाँ अवस्थित है ?",
+      "optionA": "हैदराबाद",
+      "optionB": "पटना",
+      "optionC": "नई दिल्ली",
+      "optionD": "शिमला",
+      "correctAnswer": "A",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    },
+    {
+      "id": "economics-gk::भारत में अधिकतर बेरोजगारी है ?",
+      "question": "भारत में अधिकतर बेरोजगारी है ?",
+      "optionA": "चक्रीय",
+      "optionB": "संरचनात्मक",
+      "optionC": "तकनीकी",
+      "optionD": "घर्षणात्मक",
+      "correctAnswer": "B",
+      "subjectSlug": "economics-gk",
+      "topicSlug": "economy"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "himachal-pradesh-gk-in-hindi",
+  "totalMCQs": 10,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "himachal-pradesh-gk-in-hindi::पूर्वकाल में प्रदेश की पहाड़ी भाषा किस किस लिपि में लिखी जाती थी ?",
+      "question": "पूर्वकाल में प्रदेश की पहाड़ी भाषा किस किस लिपि में लिखी जाती थी ?",
+      "optionA": "देवनागरी",
+      "optionB": "द्रविड़",
+      "optionC": "टांकरी",
+      "optionD": "ब्राह्यी",
+      "correctAnswer": "C",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::देश के किस क्षेत्र में भागती भाषा बोली जाती है ?",
+      "question": "देश के किस क्षेत्र में भागती भाषा बोली जाती है ?",
+      "optionA": "कांगड़ा",
+      "optionB": "सोलन",
+      "optionC": "बिलासपुर",
+      "optionD": "ऊना",
+      "correctAnswer": "B",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::देश के किस क्षेत्र में कहलूरी भाषा बोली जाती है ?",
+      "question": "देश के किस क्षेत्र में कहलूरी भाषा बोली जाती है ?",
+      "optionA": "पहाड़ा",
+      "optionB": "बिलासपुर",
+      "optionC": "पंजाबी",
+      "optionD": "हिंदी",
+      "correctAnswer": "B",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::हिमाचल के कांगड़ा राज्य की चर्चा सर्वप्रथम किस इतिहासकार के द्वारा की गई ?",
+      "question": "हिमाचल के कांगड़ा राज्य की चर्चा सर्वप्रथम किस इतिहासकार के द्वारा की गई ?",
+      "optionA": "फरिश्ता",
+      "optionB": "टॉलेमी",
+      "optionC": "अलबेरुनी",
+      "optionD": "इत्सिंग",
+      "correctAnswer": "A",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::निम्न में से किसे तिब्बत में असुर कहा जाता है ?",
+      "question": "निम्न में से किसे तिब्बत में असुर कहा जाता है ?",
+      "optionA": "लहना सिंह",
+      "optionB": "शेर सिंह",
+      "optionC": "नाहर सिंह",
+      "optionD": "जोरावर सिंह",
+      "correctAnswer": "D",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::तिब्बती धर्मगुरु दलाई लामा धर्मशाला कब आए थे ?",
+      "question": "तिब्बती धर्मगुरु दलाई लामा धर्मशाला कब आए थे ?",
+      "optionA": "1957 में",
+      "optionB": "1958 में",
+      "optionC": "1959 में",
+      "optionD": "1960 में",
+      "correctAnswer": "C",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::हिमाचल प्रदेश प्रशासनिक अधिकरण की स्थापन कब हुई थी ?",
+      "question": "हिमाचल प्रदेश प्रशासनिक अधिकरण की स्थापन कब हुई थी ?",
+      "optionA": "1986 में",
+      "optionB": "1989 में",
+      "optionC": "1990 में",
+      "optionD": "1992 में",
+      "correctAnswer": "A",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::हिमाचल प्रदेश अधीनस्थ चयन बोर्ड कहाँ पर स्थित है ?",
+      "question": "हिमाचल प्रदेश अधीनस्थ चयन बोर्ड कहाँ पर स्थित है ?",
+      "optionA": "हमीरपुर",
+      "optionB": "बद्दी",
+      "optionC": "धर्मशाला",
+      "optionD": "सोलन",
+      "correctAnswer": "A",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::हिमाचल प्रदेश लोक सेवा आयोग का कार्यालय कहाँ पर स्थित है ?",
+      "question": "हिमाचल प्रदेश लोक सेवा आयोग का कार्यालय कहाँ पर स्थित है ?",
+      "optionA": "शिमला",
+      "optionB": "ऊना",
+      "optionC": "सोलन",
+      "optionD": "किन्नौर",
+      "correctAnswer": "A",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    },
+    {
+      "id": "himachal-pradesh-gk-in-hindi::हिमाचल प्रदेश अधीनस्थ चयन बोर्ड की स्थापना कहाँ की गई है ?",
+      "question": "हिमाचल प्रदेश अधीनस्थ चयन बोर्ड की स्थापना कहाँ की गई है ?",
+      "optionA": "हमीपुर",
+      "optionB": "मंडी",
+      "optionC": "चम्बा",
+      "optionD": "सिरमौर",
+      "correctAnswer": "A",
+      "subjectSlug": "himachal-pradesh-gk-in-hindi",
+      "topicSlug": "state-gk-himachal-pradesh"
+    }
+  ]
+}

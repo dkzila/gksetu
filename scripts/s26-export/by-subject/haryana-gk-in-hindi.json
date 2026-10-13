@@ -1,0 +1,120 @@
+{
+  "format": "gksetu-mcq-translations",
+  "sourceLanguage": "hi",
+  "targetLanguage": "en",
+  "subjectSlug": "haryana-gk-in-hindi",
+  "totalMCQs": 10,
+  "instructions": "Translate only question, optionA, optionB, optionC, optionD. Keep id, correctAnswer, subjectSlug, topicSlug UNCHANGED.",
+  "mcqs": [
+    {
+      "id": "haryana-gk-in-hindi::1947 में भारत के स्वतंत्र होने के पश्चात तक हरियाणा किस प्रान्त का भाग था ?",
+      "question": "1947 में भारत के स्वतंत्र होने के पश्चात तक हरियाणा किस प्रान्त का भाग था ?",
+      "optionA": "दिल्ली",
+      "optionB": "राजस्थान",
+      "optionC": "उत्तर प्रदेश",
+      "optionD": "पंजाब",
+      "correctAnswer": "D",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा का कौन सा स्थान अग्रेयगण की राजधानी थी ?",
+      "question": "हरियाणा का कौन सा स्थान अग्रेयगण की राजधानी थी ?",
+      "optionA": "रेवाड़ी",
+      "optionB": "अग्रोहा",
+      "optionC": "हंसी",
+      "optionD": "हिसार",
+      "correctAnswer": "B",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::महाभारत का प्रसिद्ध युद्ध हरियाणा में किस स्थान पर लड़ा गया था ?",
+      "question": "महाभारत का प्रसिद्ध युद्ध हरियाणा में किस स्थान पर लड़ा गया था ?",
+      "optionA": "पानीपत",
+      "optionB": "बल्लभगढ़",
+      "optionC": "झज्जर",
+      "optionD": "कुरुक्षेत्र",
+      "correctAnswer": "D",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::अप्रैल, 1919 के दिन गाँधी जी हरियाणा में कहाँ से गिरफ्तार हुए थे ?",
+      "question": "अप्रैल, 1919 के दिन गाँधी जी हरियाणा में कहाँ से गिरफ्तार हुए थे ?",
+      "optionA": "कैथल",
+      "optionB": "अम्बाला",
+      "optionC": "गुहला",
+      "optionD": "पलवल",
+      "correctAnswer": "D",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा के उत्तर में निम्नलिखित में से कौन सा प्रदेश स्थित है ?",
+      "question": "हरियाणा के उत्तर में निम्नलिखित में से कौन सा प्रदेश स्थित है ?",
+      "optionA": "उत्तर प्रदेश",
+      "optionB": "राजस्थान",
+      "optionC": "हिमाचल प्रदेश",
+      "optionD": "पंजाब",
+      "correctAnswer": "C",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा के पशिचम में निम्नलिखित में से कौन सा प्रदेश स्थित है ?",
+      "question": "हरियाणा के पशिचम में निम्नलिखित में से कौन सा प्रदेश स्थित है ?",
+      "optionA": "पंजाब",
+      "optionB": "हिमाचल प्रदेश",
+      "optionC": "उत्तर प्रदेश",
+      "optionD": "राजस्थान",
+      "correctAnswer": "A",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा की आबादी निम्नलिखित में से किस प्रदेश से अधिक है ?",
+      "question": "हरियाणा की आबादी निम्नलिखित में से किस प्रदेश से अधिक है ?",
+      "optionA": "सिक्किम",
+      "optionB": "नागालैंड",
+      "optionC": "अरुणाचल प्रदेश",
+      "optionD": "सभी से",
+      "correctAnswer": "D",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा का निम्नलिखित में से कौन सा प्रकृति भाग सबसे बड़ा है ?",
+      "question": "हरियाणा का निम्नलिखित में से कौन सा प्रकृति भाग सबसे बड़ा है ?",
+      "optionA": "रेतीला भाग",
+      "optionB": "अरावली की पहाड़ियों का शुष्क मैदानी भाग",
+      "optionC": "मैदानी भाग",
+      "optionD": "शिवालिक का पहाड़ी भाग",
+      "correctAnswer": "C",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा की सबसे प्राचीन व प्रमुख नहर कौन सी है ?",
+      "question": "हरियाणा की सबसे प्राचीन व प्रमुख नहर कौन सी है ?",
+      "optionA": "गुड़गांव नहर",
+      "optionB": "पश्चिमी यमुना नहर",
+      "optionC": "भाखड़ा नहर",
+      "optionD": "भिवानी नहर",
+      "correctAnswer": "B",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    },
+    {
+      "id": "haryana-gk-in-hindi::हरियाणा के निम्नलिखित में से किस जिले में लाल चैसटनट मिट्टी पाई जाती है ?",
+      "question": "हरियाणा के निम्नलिखित में से किस जिले में लाल चैसटनट मिट्टी पाई जाती है ?",
+      "optionA": "सेहतक जिले में",
+      "optionB": "भिवानी जिले में",
+      "optionC": "यमुनानगर जिले में",
+      "optionD": "सिरसा जिले में",
+      "correctAnswer": "C",
+      "subjectSlug": "haryana-gk-in-hindi",
+      "topicSlug": "state-gk-haryana"
+    }
+  ]
+}
