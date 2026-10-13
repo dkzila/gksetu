@@ -54,7 +54,6 @@ server.log
 # GlobIQ sandbox-internal files & folders (NEVER commit — see .globiq/credentials.md)
 .globiq/
 tool-results/
-download/
 .zscripts/
 Caddyfile
 db/
