@@ -6,7 +6,7 @@
  *
  * Console route: /console/import-translations
  */
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Upload, FileJson, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -39,6 +39,7 @@ export function ImportTranslationsPage() {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<ImportResult | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function handleUpload() {
     if (!file) return
@@ -56,15 +57,22 @@ export function ImportTranslationsPage() {
         body: formData,
       })
 
-      const data = await res.json()
+      // Safely parse response
+      let data: ImportResult & { error?: string }
+      try {
+        data = await res.json()
+      } catch {
+        setError(`Server returned status ${res.status}. Please try again.`)
+        return
+      }
 
       if (!res.ok) {
-        setError(data.error || 'Upload failed')
+        setError(data.error || `Upload failed (status ${res.status})`)
       } else {
         setResult(data)
       }
-    } catch (e) {
-      setError('Network error')
+    } catch {
+      setError('Network error — please check your connection and try again.')
     } finally {
       setLoading(false)
     }
@@ -112,6 +120,7 @@ export function ImportTranslationsPage() {
             <label className="text-sm font-medium">JSON File</label>
             <div className="flex items-center gap-3">
               <input
+                ref={fileInputRef}
                 type="file"
                 accept=".json"
                 onChange={(e) => setFile(e.target.files?.[0] ?? null)}
@@ -145,7 +154,7 @@ export function ImportTranslationsPage() {
             ) : (
               <>
                 <Upload className="h-4 w-4" />
-                Upload & Seed
+                Upload &amp; Seed
               </>
             )}
           </Button>
@@ -201,7 +210,7 @@ export function ImportTranslationsPage() {
   "targetLanguage": "en",
   "mcqs": [
     {
-      "id": "geography-gk::भारत नाम...",
+      "id": "geography-gk::...",
       "question": "Translated question text...",
       "optionA": "Translated option A",
       "optionB": "Translated option B",

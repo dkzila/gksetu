@@ -13,12 +13,18 @@ import { requireAnyPermission } from '@/lib/api/guard'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+export const maxDuration = 300 // 5 minutes for large files
 
 export async function POST(request: NextRequest) {
   // Auth check — requires question:manage permission
-  const guard = await requireAnyPermission(request, ['question:manage'])
-  if (guard instanceof NextResponse) return guard
-  const user = guard.user
+  let user: { id: string } | null = null
+  try {
+    const guard = await requireAnyPermission(request, ['question:manage'])
+    if (guard instanceof NextResponse) return guard
+    user = guard.user
+  } catch {
+    return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
+  }
 
   try {
     const formData = await request.formData()
@@ -80,71 +86,74 @@ export async function POST(request: NextRequest) {
       ])
     }
 
-    for (const mcq of mcqs) {
-      if (!mcq.question || mcq.question.length < 3) { errors++; continue }
-      if (!['A', 'B', 'C', 'D'].includes(mcq.correctAnswer)) { errors++; continue }
-      if (!mcq.subjectSlug || !mcq.topicSlug) { errors++; continue }
-
-      // Ensure topic exists
-      let topicId = topicCache.get(mcq.topicSlug)
-      if (!topicId) {
-        const topic = await db.topic.findUnique({ where: { slug: mcq.topicSlug } })
-        if (topic) {
-          topicId = topic.id
-        } else {
-          const newTopic = await db.topic.create({
-            data: {
-              slug: mcq.topicSlug,
-              canonicalName: mcq.topicSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-              description: `Topic for ${mcq.topicSlug} (SITE-S26).`,
-              type: 'TOPIC',
-              status: 'ACTIVE',
-              scope: 'GLOBAL',
-            },
-          })
-          topicId = newTopic.id
-        }
-        topicCache.set(mcq.topicSlug, topicId)
-      }
-
-      // Ensure knowledge unit exists
-      const unitSlug = `gk-hindi-${mcq.subjectSlug}`
-      let unitId = unitCache.get(unitSlug)
-      if (!unitId) {
-        const unit = await db.knowledgeUnit.findUnique({ where: { slug: unitSlug } })
-        if (unit) {
-          unitId = unit.id
-        } else {
-          const newUnit = await db.knowledgeUnit.create({
-            data: {
-              slug: unitSlug,
-              canonicalName: `gk-hindi.in ${mcq.subjectSlug} corpus`,
-              canonicalSummary: `MCQ questions from gk-hindi.in/${mcq.subjectSlug} (SITE-S25).`,
-              canonicalBody: `This knowledge unit aggregates MCQs from https://gk-hindi.in/${mcq.subjectSlug}.`,
-              type: 'CONCEPT',
-              status: 'VERIFIED',
-              difficulty: 'BASIC',
-              scope: 'GLOBAL',
-              topicId,
-            },
-          })
-          unitId = newUnit.id
-        }
-        unitCache.set(unitSlug, unitId)
-      }
-
-      // Check if question already exists
-      const existing = await db.question.findFirst({
-        where: { knowledgeUnitId: unitId, languageId: language.id, questionText: mcq.question },
-        select: { id: true },
-      })
-      if (existing) { skipped++; continue }
-
-      // Create question + revision
-      const optionsJson = serializeOptions(mcq.optionA, mcq.optionB, mcq.optionC, mcq.optionD)
-      const explanation = `Source: gk-hindi.in/${mcq.subjectSlug} (Hindi)\nAI-translated to ${language.name} — SITE-S26.`
+    for (let idx = 0; idx < mcqs.length; idx++) {
+      const mcq = mcqs[idx]
+      if (!mcq) { errors++; continue }
 
       try {
+        if (!mcq.question || mcq.question.length < 3) { errors++; continue }
+        if (!['A', 'B', 'C', 'D'].includes(mcq.correctAnswer)) { errors++; continue }
+        if (!mcq.subjectSlug || !mcq.topicSlug) { errors++; continue }
+
+        // Ensure topic exists
+        let topicId = topicCache.get(mcq.topicSlug)
+        if (!topicId) {
+          const topic = await db.topic.findUnique({ where: { slug: mcq.topicSlug } })
+          if (topic) {
+            topicId = topic.id
+          } else {
+            const newTopic = await db.topic.create({
+              data: {
+                slug: mcq.topicSlug,
+                canonicalName: mcq.topicSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+                description: `Topic for ${mcq.topicSlug} (SITE-S26).`,
+                type: 'TOPIC',
+                status: 'ACTIVE',
+                scope: 'GLOBAL',
+              },
+            })
+            topicId = newTopic.id
+          }
+          topicCache.set(mcq.topicSlug, topicId)
+        }
+
+        // Ensure knowledge unit exists
+        const unitSlug = `gk-hindi-${mcq.subjectSlug}`
+        let unitId = unitCache.get(unitSlug)
+        if (!unitId) {
+          const unit = await db.knowledgeUnit.findUnique({ where: { slug: unitSlug } })
+          if (unit) {
+            unitId = unit.id
+          } else {
+            const newUnit = await db.knowledgeUnit.create({
+              data: {
+                slug: unitSlug,
+                canonicalName: `gk-hindi.in ${mcq.subjectSlug} corpus`,
+                canonicalSummary: `MCQ questions from gk-hindi.in/${mcq.subjectSlug} (SITE-S25).`,
+                canonicalBody: `This knowledge unit aggregates MCQs from https://gk-hindi.in/${mcq.subjectSlug}.`,
+                type: 'CONCEPT',
+                status: 'VERIFIED',
+                difficulty: 'BASIC',
+                scope: 'GLOBAL',
+                topicId,
+              },
+            })
+            unitId = newUnit.id
+          }
+          unitCache.set(unitSlug, unitId)
+        }
+
+        // Check if question already exists
+        const existing = await db.question.findFirst({
+          where: { knowledgeUnitId: unitId, languageId: language.id, questionText: mcq.question },
+          select: { id: true },
+        })
+        if (existing) { skipped++; continue }
+
+        // Create question + revision
+        const optionsJson = serializeOptions(mcq.optionA, mcq.optionB, mcq.optionC, mcq.optionD)
+        const explanation = `Source: gk-hindi.in/${mcq.subjectSlug} (Hindi)\nAI-translated to ${language.name} — SITE-S26.`
+
         const question = await db.question.create({
           data: {
             knowledgeUnitId: unitId,
@@ -195,6 +204,6 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('[import-translations] error:', error)
-    return NextResponse.json({ error: 'Import failed' }, { status: 500 })
+    return NextResponse.json({ error: 'Import failed. Please check the file format.' }, { status: 500 })
   }
 }
