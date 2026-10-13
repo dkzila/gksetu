@@ -142,7 +142,7 @@ export const CONSOLE_NAV: ConsoleNavGroup[] = [
         label: 'Import Translations',
         path: 'import-translations',
         icon: Upload,
-        permission: 'questions:manage',
+        permission: 'question:manage',
         description: 'Upload a translated JSON file to bulk-seed MCQs.',
       },
     ],
